@@ -19,27 +19,15 @@ func _physics_process(delta):
 	var input := Input.get_axis("ui_left", "ui_right")
 	
 	if input:
-		if input > 0 and motion.x < 0:
-			motion.x += DESACCELERATION
-		elif input < 0 and motion.x > 0:
-			motion.x -= DESACCELERATION
+		desacellete(input)
 		
 		motion.x += ACCELERATION * input
-		
 		
 		if abs(motion.x) > MAXSPEED:
 			motion.x = MAXSPEED * input
 		
-			
 	else:
-		if motion.x > 0:
-			motion.x -= DESACCELERATION
-			if motion.x < 0:
-				motion.x = 0
-		elif motion.x < 0:
-			motion.x += DESACCELERATION
-			if motion.x > 0:
-				motion.x = 0
+		desacellete()
 	
 	if is_on_floor():
 		can_jump = true
@@ -68,6 +56,17 @@ func _physics_process(delta):
 	
 	motion = move_and_slide(motion, Vector2.UP)
 
+
+func desacellete(input := 0):
+	if motion.x > 0 and input <= 0:
+		motion.x -= DESACCELERATION
+		if motion.x < 0 and input == 0:
+			motion.x = 0
+	
+	elif motion.x < 0 and input >= 0:
+		motion.x += DESACCELERATION
+		if motion.x > 0 and input == 0:
+			motion.x = 0
 
 func _on_coyoteTimer_timeout():
 	can_jump = false
