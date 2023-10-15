@@ -9,10 +9,14 @@ const MAXSPEED := 350
 const MAXFALL := 300
 const JUMPFORCE := -300
 
+#var currentState := preload()
+
 var motion := Vector2.ZERO
 
 var can_jump := true
 var coyote := true
+
+
 
 
 func _physics_process(delta):
@@ -31,12 +35,15 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		can_jump = true
+		coyote = true
 	elif can_jump and coyote:
 		coyoteTimer.start()
 		coyote = false
 	
 	if can_jump and Input.is_action_pressed("ui_jump"):
 		motion.y = JUMPFORCE
+		coyote = false
+		can_jump = false
 	elif Input.is_action_just_released("ui_jump"):
 		motion.y /= 2
 	

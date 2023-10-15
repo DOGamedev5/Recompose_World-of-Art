@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofo.pxo-2782ed72957da6cebe3d3ae65ef34be8.stex"
+
+[deps]
+
+source_file="res://entities/player/sprites/lodrofo.pxo"
+dest_files=[ "res://.import/lodrofo.pxo-2782ed72957da6cebe3d3ae65ef34be8.stex" ]
+
+[params]
+
