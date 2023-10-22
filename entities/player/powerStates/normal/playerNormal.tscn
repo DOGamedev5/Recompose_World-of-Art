@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
+[ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.0
+height = 8.0
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+
+[node name="playerNormal" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2( 0, -12 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="4"]
+self_modulate = Color( 0.4, 0.8, 1, 1 )
+position = Vector2( 0, -12 )
+scale = Vector2( 0.25, 0.375 )
+texture = SubResource( 2 )
