@@ -14,7 +14,9 @@ enabled = true
 cast_to = Vector2( 0, 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -108 )
+position = Vector2( 0, -63 )
 current = true
+zoom = Vector2( 0.75, 0.75 )
+editor_draw_limits = true
 
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]

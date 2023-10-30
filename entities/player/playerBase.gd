@@ -15,6 +15,16 @@ export var JUMPFORCE := -400
 var motion := Vector2.ZERO
 var can_jump := true
 var coyote := true
+var fliped := false
+
+var powers := {
+	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
+	"Fly" : "res://entities/player/powerStates/fly/playerFly.tscn"
+}
+
+func _physics_process(_delta):
+	if Input.get_axis("ui_left", "ui_right") != 0:
+		fliped = Input.get_axis("ui_left", "ui_right") < 0
 
 func gravityBase():
 	if not floorDetect.is_colliding():
@@ -22,9 +32,10 @@ func gravityBase():
 		if motion.y > MAXFALL:
 			motion.y = MAXFALL
 
-func changePowerup(powerInstance):
-	get_parent().add_child(powerInstance)
-	powerInstance.global_position = global_position
+func changePowerup(powerUp):
+	var newPlayer = load(powers[powerUp]).instance()
+	get_parent().add_child(newPlayer)
+	newPlayer.global_position = global_position
 	queue_free()
 
 func idleBase():
@@ -38,7 +49,7 @@ func idleBase():
 		if motion.x > 0: 
 			motion.x = 0
 
-func moveBase(inputAxis : int, MotionCord : int):
+func moveBase(inputAxis : float, MotionCord : float):
 	
 	if MotionCord > 0 and inputAxis <= 0:
 		MotionCord -= DESACCELERATION

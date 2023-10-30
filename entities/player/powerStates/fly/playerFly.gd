@@ -4,9 +4,8 @@ enum states {IDLE, FLY}
 
 var currentState : int = states.IDLE
 
-onready var normalState = load("res://entities/player/powerStates/normal/playerNormal.tscn").instance()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	if currentState == states.IDLE:
 		var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -15,7 +14,7 @@ func _physics_process(delta):
 			currentState = states.FLY
 		
 		elif Input.is_action_just_pressed("ui_accept"):
-			changePowerup(normalState)
+			changePowerup("Normal")
 	
 	elif currentState == states.FLY:
 		var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -24,7 +23,7 @@ func _physics_process(delta):
 			currentState = states.IDLE
 		
 		elif Input.is_action_just_pressed("ui_accept"):
-			changePowerup(normalState)
+			changePowerup("Normal")
 	
 	match currentState:
 		states.IDLE:
