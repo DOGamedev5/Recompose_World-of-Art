@@ -233,6 +233,9 @@ script = ExtResource( 1 )
 ACCELERATION = 5
 JUMPFORCE = -410
 
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2( 1, 1 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 position = Vector2( 0, -16 )
 shape = SubResource( 1 )
