@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoTopSpeed.pxo-9a38d32b8a8edf31b741014bb79f6a7b.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/lodrofoTopSpeed.pxo"
+dest_files=[ "res://.import/lodrofoTopSpeed.pxo-9a38d32b8a8edf31b741014bb79f6a7b.stex" ]
+
+[params]
+

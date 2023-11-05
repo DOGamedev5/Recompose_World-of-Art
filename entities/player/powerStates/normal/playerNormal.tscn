@@ -1,13 +1,20 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/player/powerStates/normal/lodrofoIdle.pxo" type="Texture" id=3]
-[ext_resource path="res://entities/player/powerStates/normal/lodrofoRun.pxo" type="Texture" id=4]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoIdle.pxo" type="Texture" id=3]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoRun.pxo" type="Texture" id=4]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoWall.pxo" type="Texture" id=5]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/IDLE.gd" type="Script" id=6]
+[ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=7]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/RUN.gd" type="Script" id=8]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/JUMP.gd" type="Script" id=9]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/FALL.gd" type="Script" id=10]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/WALL.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 9.0
-height = 14.0
+radius = 8.0
+height = 16.0
 
 [sub_resource type="AtlasTexture" id=2]
 
@@ -192,6 +199,59 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 
+[sub_resource type="Animation" id=23]
+resource_name = "WALL"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
 [sub_resource type="AnimationNodeAnimation" id=18]
 animation = "IDLE"
 
@@ -214,17 +274,31 @@ nodes/TimeScale/position = Vector2( 453.333, 80 )
 nodes/output/position = Vector2( 613.333, 106.667 )
 node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "WALL"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
 [sub_resource type="AnimationNodeStateMachine" id=13]
 states/IDLE/node = SubResource( 20 )
-states/IDLE/position = Vector2( 365.666, 88.3333 )
+states/IDLE/position = Vector2( 364.333, 141.667 )
 states/RUN/node = SubResource( 17 )
-states/RUN/position = Vector2( 771, 88.3333 )
-transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ) ]
+states/RUN/position = Vector2( 735, 160.778 )
+states/WALL/node = SubResource( 24 )
+states/WALL/position = Vector2( 541.667, 2.06376 )
+transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ) ]
 start_node = "IDLE"
+graph_offset = Vector2( 0, -63.6029 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
@@ -234,7 +308,7 @@ ACCELERATION = 5
 JUMPFORCE = -410
 
 [node name="Camera2D" parent="." index="2"]
-zoom = Vector2( 1, 1 )
+position = Vector2( 0, -64 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 position = Vector2( 0, -16 )
@@ -249,6 +323,7 @@ region_rect = Rect2( 0, 0, 32, 32 )
 anims/IDLE = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 anims/RUN = SubResource( 5 )
+anims/WALL = SubResource( 23 )
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="6"]
 tree_root = SubResource( 13 )
@@ -256,3 +331,27 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 14 )
 parameters/RUN/TimeScale/scale = 1.0
+
+[node name="onWall" type="RayCast2D" parent="." index="7"]
+position = Vector2( 0, -16 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+
+[node name="StateMachine" type="Node" parent="." index="8"]
+script = ExtResource( 7 )
+startingState = NodePath("IDLE")
+
+[node name="IDLE" type="Node" parent="StateMachine" index="0"]
+script = ExtResource( 6 )
+
+[node name="RUN" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 8 )
+
+[node name="JUMP" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 9 )
+
+[node name="FALL" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 10 )
+
+[node name="WALL" type="Node" parent="StateMachine" index="4"]
+script = ExtResource( 11 )
