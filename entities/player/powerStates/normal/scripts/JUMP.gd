@@ -9,13 +9,19 @@ func process_state():
 
 	elif parent.floorDetect.is_colliding():
 		if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
-			return "RUN"
+			if Input.is_action_pressed("run") and abs(parent.motion.x) > 350:
+				return "TOP_SPEED"
 			
-		else:
-			 return "IDLE"
+			return "RUN"
+		
+		return "IDLE"
 	
 	return null
 
 func process_physics(_delta):
 	parent.jumpBase()
-	parent.motion.x = parent.moveBase(Input.get_axis("ui_left", "ui_right"), parent.motion.x)
+	var maxSpeed := 350
+	if Input.is_action_pressed("run") and abs(parent.motion.x) > 350:
+		maxSpeed = parent.MAXSPEED
+	else: 
+		parent.motion.x = parent.moveBase(Input.get_axis("ui_left", "ui_right"), parent.motion.x, maxSpeed)

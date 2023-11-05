@@ -49,22 +49,22 @@ func idleBase():
 		if motion.x > 0: 
 			motion.x = 0
 
-func moveBase(inputAxis : float, MotionCord : float):
-	
+func moveBase(inputAxis : float, MotionCord : float, maxSpeed : float = MAXSPEED):
 	if MotionCord > 0 and inputAxis <= 0:
-		MotionCord -= DESACCELERATION
+		MotionCord -= DESACCELERATION + (MotionCord * 0.3)
 		if MotionCord < 0 and inputAxis == 0:
 			MotionCord = 0
-	
+
 	elif MotionCord < 0 and inputAxis >= 0:
 		MotionCord += DESACCELERATION
 		if MotionCord > 0 and inputAxis == 0:
 			MotionCord = 0
 	
 	if inputAxis:
-		MotionCord += ACCELERATION * inputAxis
-		if abs(MotionCord) > MAXSPEED:
-			MotionCord = MAXSPEED * inputAxis
+		if abs(MotionCord) <= maxSpeed:
+			MotionCord += ACCELERATION * inputAxis
+		else:
+			MotionCord -= DESACCELERATION * inputAxis
 	
 	return MotionCord
 

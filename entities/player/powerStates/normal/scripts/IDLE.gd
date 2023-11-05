@@ -3,14 +3,17 @@ extends State
 
 func enter():
 	parent.playback.travel("IDLE")
+	
 
 func process_state():
 	if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
 		if parent.onWall.is_colliding():
 			return "WALL"
 		
-		else:
-			return "RUN"
+		if Input.is_action_pressed("run") and abs(parent.motion.x) > 350:
+			return "TOP_SPEED"
+		
+		return "RUN"
 
 	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
 		return "JUMP"
@@ -26,3 +29,4 @@ func process_state():
 	
 func process_physics(_delta):
 	parent.idleBase()
+	

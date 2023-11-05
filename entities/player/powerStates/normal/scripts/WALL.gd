@@ -19,4 +19,4 @@ func process_state():
 	return null
 
 func process_physics(_delta):
-	parent.motion.x = parent.moveBase(Input.get_axis("ui_left", "ui_right"), parent.motion.x)
+	parent.motion.x = parent.moveBase(Input.get_axis("ui_left", "ui_right"), parent.motion.x, 300)
