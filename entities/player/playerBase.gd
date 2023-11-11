@@ -22,6 +22,11 @@ var powers := {
 	"Fly" : "res://entities/player/powerStates/fly/playerFly.tscn"
 }
 
+var inputCord = {
+	"X" : ["ui_left", "ui_right"],
+	"y" : ["ui_up", "ui_down"]
+}
+
 func _physics_process(_delta):
 	if Input.get_axis("ui_left", "ui_right") != 0:
 		fliped = Input.get_axis("ui_left", "ui_right") < 0
@@ -49,23 +54,30 @@ func idleBase():
 		if motion.x > 0: 
 			motion.x = 0
 
-func moveBase(inputAxis : float, MotionCord : float, maxSpeed : float = MAXSPEED):
-	if MotionCord > 0 and inputAxis <= 0:
-		MotionCord -= DESACCELERATION + (MotionCord * 0.3)
-		if MotionCord < 0 and inputAxis == 0:
+func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
+	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
+	if MotionCord > 0 and input <= 0:
+		MotionCord -= DESACCELERATION + abs(MotionCord * 0.1)
+		if MotionCord < 0 and input == 0:
 			MotionCord = 0
 
-	elif MotionCord < 0 and inputAxis >= 0:
-		MotionCord += DESACCELERATION
-		if MotionCord > 0 and inputAxis == 0:
+	elif MotionCord < 0 and input >= 0:
+		MotionCord += DESACCELERATION + abs(MotionCord * 0.1)
+		if MotionCord > 0 and input == 0:
 			MotionCord = 0
 	
-	if inputAxis:
-		if abs(MotionCord) <= maxSpeed:
-			MotionCord += ACCELERATION * inputAxis
+	if input > 0:
+		if MotionCord <= maxSpeed:
+			MotionCord += ACCELERATION
 		else:
-			MotionCord -= DESACCELERATION * inputAxis
+			MotionCord -= DESACCELERATION
 	
+	elif input < 0:
+		if MotionCord >= -maxSpeed:
+			MotionCord -= ACCELERATION
+		else:
+			MotionCord += DESACCELERATION
+			
 	return MotionCord
 
 func jumpBase():
@@ -76,6 +88,17 @@ func jumpBase():
 		can_jump = false
 	elif Input.is_action_just_released("ui_jump"):
 		motion.y /= 2
+
+func _desaccelerate(inputAxis : float, MotionCord : float, maxSpeed : float = MAXSPEED):
+	if MotionCord > 0 and inputAxis <= 0:
+		MotionCord -= DESACCELERATION + (MotionCord * 0.1)
+		if MotionCord < 0 and inputAxis == 0:
+			MotionCord = 0
+
+	elif MotionCord < 0 and inputAxis >= 0:
+		MotionCord += DESACCELERATION + (MotionCord * 0.1)
+		if MotionCord > 0 and inputAxis == 0:
+			MotionCord = 0
 
 func _coyoteTimer():
 	if floorDetect.is_colliding():

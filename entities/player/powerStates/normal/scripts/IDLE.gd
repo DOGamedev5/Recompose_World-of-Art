@@ -3,6 +3,7 @@ extends State
 
 func enter():
 	parent.playback.travel("IDLE")
+	parent.running = false
 	
 
 func process_state():
@@ -10,7 +11,7 @@ func process_state():
 		if parent.onWall.is_colliding():
 			return "WALL"
 		
-		if Input.is_action_pressed("run") and abs(parent.motion.x) > 350:
+		if Input.is_action_pressed("run"):
 			return "TOP_SPEED"
 		
 		return "RUN"

@@ -3,6 +3,7 @@ extends State
 
 func enter():
 	parent.playback.travel("TOP_SPEED")
+	parent.running = true
 
 func process_state():
 	if parent.onWall.is_colliding():
@@ -17,10 +18,10 @@ func process_state():
 	elif not parent.floorDetect.is_colliding():
 		return "FALL"
 	
-	elif abs(parent.motion.x) < 300 :
+	elif not Input.is_action_pressed("run") :
 		return "RUN"
 	
 	return null
 
 func process_physics(_delta):
-	parent.motion.x = parent.moveBase(Input.get_axis("ui_left", "ui_right"), parent.motion.x)
+	parent.motion.x = parent.moveBase("X", parent.motion.x, parent.runningVelocity)

@@ -15,8 +15,8 @@
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoTopSpeed.pxo" type="Texture" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 16.0
+radius = 12.0
+height = 24.0
 
 [sub_resource type="AtlasTexture" id=2]
 
@@ -369,20 +369,24 @@ graph_offset = Vector2( 0, -63.6029 )
 
 [node name="playerNormal" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-ACCELERATION = 4
-DESACCELERATION = 8
-MAXSPEED = 500
-JUMPFORCE = -410
+ACCELERATION = 6
+GRAVITY = 15
+MAXSPEED = 450
+MAXFALL = 450
+JUMPFORCE = -615
+runningVelocity = 650.0
 
 [node name="Camera2D" parent="." index="2"]
 position = Vector2( 0, -64 )
+zoom = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2( 0, -16 )
+position = Vector2( 0, -24 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="4"]
-position = Vector2( 0, -16 )
+position = Vector2( 0, -24 )
+scale = Vector2( 1.5, 1.5 )
 texture = SubResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
@@ -401,9 +405,9 @@ parameters/playback = SubResource( 14 )
 parameters/RUN/TimeScale/scale = 3.0
 
 [node name="onWall" type="RayCast2D" parent="." index="7"]
-position = Vector2( 0, -16 )
+position = Vector2( 0, -24 )
 enabled = true
-cast_to = Vector2( 16, 0 )
+cast_to = Vector2( 24, 0 )
 
 [node name="StateMachine" type="Node" parent="." index="8"]
 script = ExtResource( 7 )
@@ -426,3 +430,10 @@ script = ExtResource( 11 )
 
 [node name="TOP_SPEED" type="Node" parent="StateMachine" index="5"]
 script = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="." index="9"]
+margin_left = -32.0
+margin_top = -72.0
+margin_right = 16.0
+margin_bottom = -58.0
+text = "a"
