@@ -1,5 +1,8 @@
 extends State
 
+func enter():
+	parent.playback.travel("FALL")
+
 func process_state():
 	if parent.can_jump and Input.is_action_pressed("ui_jump"):
 		return "JUMP"

@@ -56,6 +56,8 @@ func idleBase():
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
+	
+
 	if MotionCord > 0 and input <= 0:
 		MotionCord -= DESACCELERATION + abs(MotionCord * 0.1)
 		if MotionCord < 0 and input == 0:
@@ -65,13 +67,13 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 		MotionCord += DESACCELERATION + abs(MotionCord * 0.1)
 		if MotionCord > 0 and input == 0:
 			MotionCord = 0
-	
+
 	if input > 0:
 		if MotionCord <= maxSpeed:
 			MotionCord += ACCELERATION
 		else:
 			MotionCord -= DESACCELERATION
-	
+
 	elif input < 0:
 		if MotionCord >= -maxSpeed:
 			MotionCord -= ACCELERATION
@@ -88,17 +90,6 @@ func jumpBase():
 		can_jump = false
 	elif Input.is_action_just_released("ui_jump"):
 		motion.y /= 2
-
-func _desaccelerate(inputAxis : float, MotionCord : float, maxSpeed : float = MAXSPEED):
-	if MotionCord > 0 and inputAxis <= 0:
-		MotionCord -= DESACCELERATION + (MotionCord * 0.1)
-		if MotionCord < 0 and inputAxis == 0:
-			MotionCord = 0
-
-	elif MotionCord < 0 and inputAxis >= 0:
-		MotionCord += DESACCELERATION + (MotionCord * 0.1)
-		if MotionCord > 0 and inputAxis == 0:
-			MotionCord = 0
 
 func _coyoteTimer():
 	if floorDetect.is_colliding():

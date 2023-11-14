@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoJump.pxo-f49980802bd7cbd2bc55d67c219ef58b.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/lodrofoJump.pxo"
+dest_files=[ "res://.import/lodrofoJump.pxo-f49980802bd7cbd2bc55d67c219ef58b.stex" ]
+
+[params]
+

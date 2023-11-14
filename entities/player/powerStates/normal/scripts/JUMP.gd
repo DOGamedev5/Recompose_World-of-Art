@@ -1,7 +1,7 @@
 extends State
 
-#func enter():
-#	parent.playback.travel("JUMP")
+func enter():
+	parent.playback.travel("JUMP")
 
 func process_state():
 	if parent.motion.y > 0:
