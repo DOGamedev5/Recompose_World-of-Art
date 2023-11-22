@@ -25,3 +25,5 @@ func process_state():
 
 func process_physics(_delta):
 	parent.motion.x = parent.moveBase("X", parent.motion.x, parent.runningVelocity)
+	if abs(parent.motion.x) > 450:
+		parent.running = true

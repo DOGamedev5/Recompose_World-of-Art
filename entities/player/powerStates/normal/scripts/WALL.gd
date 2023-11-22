@@ -3,7 +3,7 @@ extends State
 func enter():
 	if parent.motion.y < 0:
 		parent.motion.y /= 2
-	if not parent.floorDetect.is_colliding() or abs(parent.motion.x) > 500:
+	if not parent.floorDetect.is_colliding() or parent.running:
 		parent.playback.travel("SPLAT")
 	
 	elif parent.floorDetect.is_colliding() and abs(parent.motion.x) <= 500:
