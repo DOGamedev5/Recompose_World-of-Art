@@ -1,23 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://entities/player/powerStates/normal/playerNormal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://worlds/tilesets/debugRoom.tres" type="TileSet" id=2]
+[ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=3]
+[ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=4]
+[ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 56, 104 )
 
 [node name="Node2D" type="Node2D"]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_offset = Vector2( 0, -600 )
-
-[node name="layer1" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0, 0 )
-motion_mirroring = Vector2( 1800, 0 )
-
-[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/layer1"]
-margin_left = 88.0
-margin_top = -392.0
-margin_right = 1888.0
-margin_bottom = 508.0
-color = Color( 0.282353, 0.247059, 0.239216, 1 )
+script = ExtResource( 3 )
+warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 1.5, 1.5 )
@@ -29,5 +22,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="playerNormal" parent="." instance=ExtResource( 1 )]
-position = Vector2( 80, 264 )
+[node name="ChangeRoom" type="Area2D" parent="."]
+position = Vector2( 3144, -16 )
+script = ExtResource( 4 )
+room = "res://worlds/gamesArt/rooms1/rooms/room1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
+position = Vector2( -120, -56 )
+shape = SubResource( 1 )
+
+[node name="RoomWarp" type="Position2D" parent="."]
+position = Vector2( -168, 264 )
+script = ExtResource( 5 )
+
+[node name="RoomWarp2" type="Position2D" parent="."]
+position = Vector2( 2928, 24 )
+script = ExtResource( 5 )

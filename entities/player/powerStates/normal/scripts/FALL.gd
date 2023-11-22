@@ -4,6 +4,9 @@ func enter():
 	parent.playback.travel("FALL")
 
 func process_state():
+	if parent.onWall.is_colliding() and abs(parent.motion.x) > 250:
+		return "WALL"
+	
 	if parent.can_jump and Input.is_action_pressed("ui_jump"):
 		return "JUMP"
 	

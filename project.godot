@@ -9,10 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "ChangeRoom",
+"language": "GDScript",
+"path": "res://worlds/classes/ChangeRoom/ChangeRoom.gd"
+}, {
+"base": "Node2D",
+"class": "LevelClass",
+"language": "GDScript",
+"path": "res://worlds/classes/levelClass/levelClass.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "PlayerBase",
 "language": "GDScript",
 "path": "res://entities/player/playerBase.gd"
+}, {
+"base": "Node2D",
+"class": "RoomClass",
+"language": "GDScript",
+"path": "res://worlds/classes/roomClass/roomClass.gd"
+}, {
+"base": "Position2D",
+"class": "RoomWarp",
+"language": "GDScript",
+"path": "res://worlds/classes/roomWarp/roomWarp.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -25,7 +45,11 @@ _global_script_classes=[ {
 "path": "res://entities/classes/statemachinee/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"ChangeRoom": "",
+"LevelClass": "",
 "PlayerBase": "",
+"RoomClass": "",
+"RoomWarp": "",
 "State": "",
 "StateMachine": ""
 }
@@ -33,12 +57,13 @@ _global_script_class_icons={
 [application]
 
 config/name="portal_RUN"
-run/main_scene="res://debugRoom.tscn"
+run/main_scene="res://worlds/gamesArt/level1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+Global="*res://gameplay/global.gd"
 
 [display]
 

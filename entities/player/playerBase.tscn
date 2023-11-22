@@ -2,7 +2,7 @@
 
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
 
-[node name="playerBase" type="KinematicBody2D"]
+[node name="playerBase" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 
 [node name="coyoteTimer" type="Timer" parent="."]
@@ -11,7 +11,7 @@ one_shot = true
 
 [node name="floorDetect" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 4 )
+cast_to = Vector2( 0, 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -63 )

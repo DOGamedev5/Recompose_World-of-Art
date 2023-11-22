@@ -1,4 +1,3 @@
-tool
 
 class_name PlayerBase extends KinematicBody2D
 
@@ -12,6 +11,7 @@ export var MAXSPEED := 350
 export var MAXFALL := 300
 export var JUMPFORCE := -400
 
+var currentState := "IDLE"
 var motion := Vector2.ZERO
 var can_jump := true
 var coyote := true
@@ -22,7 +22,7 @@ var powers := {
 	"Fly" : "res://entities/player/powerStates/fly/playerFly.tscn"
 }
 
-var inputCord = {
+var inputCord := {
 	"X" : ["ui_left", "ui_right"],
 	"y" : ["ui_up", "ui_down"]
 }
@@ -37,7 +37,13 @@ func gravityBase():
 		if motion.y > MAXFALL:
 			motion.y = MAXFALL
 
+func init(powerUp := "Normal"):
+	var newPlayer = load(powers[powerUp]).instance()
+	newPlayer.resourceInit(Global.player)
+	return newPlayer
+
 func changePowerup(powerUp):
+	Global.emit_signal("playerFormChange", powerUp)
 	var newPlayer = load(powers[powerUp]).instance()
 	get_parent().add_child(newPlayer)
 	newPlayer.global_position = global_position
@@ -101,3 +107,6 @@ func _coyoteTimer():
 
 func coyoteTimerTimeout():
 	can_jump = false
+
+func syncValues():
+	pass

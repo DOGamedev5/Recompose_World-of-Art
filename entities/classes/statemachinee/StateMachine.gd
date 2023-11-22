@@ -6,11 +6,13 @@ var currentState : State
 
 var states : Dictionary
 
-func init(parent):
+func init(parent, state := currentState):
 
 	for child in get_children():
 		states[child.name] = child
 		child.parent = parent
+	
+	currentState = state
 	
 	currentState = get_node(startingState)
 	currentState.enter()
