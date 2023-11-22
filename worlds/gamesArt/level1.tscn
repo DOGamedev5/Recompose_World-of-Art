@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
+
+[node name="level1" type="Node2D"]
+script = ExtResource( 1 )
+firstRoom = "res://debugRoom.tscn"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2( 0, -600 )
+
+[node name="layer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1800, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/layer1"]
+margin_left = 88.0
+margin_top = -392.0
+margin_right = 1888.0
+margin_bottom = 508.0
+color = Color( 0.282353, 0.247059, 0.239216, 1 )
