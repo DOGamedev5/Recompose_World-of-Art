@@ -2,6 +2,9 @@ extends State
 
 func enter():
 	parent.playback.travel("FALL")
+	
+	if parent.running and abs(parent.motion.x) <= 450:
+		parent.running = false
 
 func process_state():
 	if parent.onWall.is_colliding() and abs(parent.motion.x) > 250:

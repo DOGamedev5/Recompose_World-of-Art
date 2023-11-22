@@ -23,6 +23,5 @@ func _physics_process(_delta):
 	animation["parameters/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
 	motion = move_and_slide(motion, Vector2.UP)
-	if onWall.is_colliding():
-		print(stateMachine.currentState.name)
+	
 	$Label.text = str(motion.x)
