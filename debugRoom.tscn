@@ -28,7 +28,7 @@ script = ExtResource( 4 )
 room = "res://worlds/gamesArt/rooms1/rooms/room1.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
-position = Vector2( -120, -56 )
+position = Vector2( -48, -56 )
 shape = SubResource( 1 )
 
 [node name="RoomWarp" type="Position2D" parent="."]
@@ -36,5 +36,5 @@ position = Vector2( -168, 264 )
 script = ExtResource( 5 )
 
 [node name="RoomWarp2" type="Position2D" parent="."]
-position = Vector2( 2928, 24 )
+position = Vector2( 2976, 24 )
 script = ExtResource( 5 )

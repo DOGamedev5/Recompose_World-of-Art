@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoFall.pxo" type="Texture" id=14]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoJump.pxo" type="Texture" id=15]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoSplat.pxo" type="Texture" id=16]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoStop.pxo" type="Texture" id=17]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 12.0
@@ -362,6 +363,59 @@ tracks/3/keys = {
 "values": [ 0, 1, 2 ]
 }
 
+[sub_resource type="Animation" id=64]
+resource_name = "STOPPING"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
+}
+
 [sub_resource type="Animation" id=29]
 resource_name = "TOP_SPEED"
 length = 0.4
@@ -500,6 +554,9 @@ node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 [sub_resource type="AnimationNodeAnimation" id=50]
 animation = "SPLAT"
 
+[sub_resource type="AnimationNodeAnimation" id=65]
+animation = "STOPPING"
+
 [sub_resource type="AnimationNodeAnimation" id=30]
 animation = "TOP_SPEED"
 
@@ -521,6 +578,7 @@ animation = "WALL"
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
+advance_condition = "rodolfo"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
@@ -560,6 +618,7 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=58]
 
@@ -567,35 +626,62 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=60]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=70]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=71]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+
 [sub_resource type="AnimationNodeStateMachine" id=13]
 states/FALL/node = SubResource( 34 )
 states/FALL/position = Vector2( 319.44, 367.06 )
 states/IDLE/node = SubResource( 20 )
 states/IDLE/position = Vector2( 521.977, 112.049 )
 states/JUMP/node = SubResource( 42 )
-states/JUMP/position = Vector2( 319.038, 236.478 )
+states/JUMP/position = Vector2( 396.371, 244.478 )
 states/RUN/node = SubResource( 17 )
-states/RUN/position = Vector2( 728.601, 237.518 )
+states/RUN/position = Vector2( 633.934, 240.085 )
 states/SPLAT/node = SubResource( 50 )
-states/SPLAT/position = Vector2( 701.9, 526.964 )
+states/SPLAT/position = Vector2( 468.669, 600.298 )
+states/STOPPING/node = SubResource( 65 )
+states/STOPPING/position = Vector2( 868.566, 245.816 )
 states/TOP_SPEED/node = SubResource( 30 )
-states/TOP_SPEED/position = Vector2( 853.358, 377.855 )
+states/TOP_SPEED/position = Vector2( 984.025, 413.855 )
 states/WALL/node = SubResource( 24 )
-states/WALL/position = Vector2( 420.808, 454.662 )
-transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ), "TOP_SPEED", "RUN", SubResource( 31 ), "RUN", "TOP_SPEED", SubResource( 32 ), "IDLE", "FALL", SubResource( 35 ), "FALL", "IDLE", SubResource( 36 ), "FALL", "RUN", SubResource( 37 ), "RUN", "FALL", SubResource( 38 ), "TOP_SPEED", "FALL", SubResource( 39 ), "FALL", "TOP_SPEED", SubResource( 40 ), "JUMP", "FALL", SubResource( 43 ), "JUMP", "IDLE", SubResource( 44 ), "IDLE", "JUMP", SubResource( 45 ), "TOP_SPEED", "JUMP", SubResource( 46 ), "JUMP", "TOP_SPEED", SubResource( 47 ), "FALL", "JUMP", SubResource( 48 ), "WALL", "SPLAT", SubResource( 51 ), "SPLAT", "WALL", SubResource( 52 ), "TOP_SPEED", "SPLAT", SubResource( 53 ), "FALL", "SPLAT", SubResource( 54 ), "SPLAT", "FALL", SubResource( 55 ), "JUMP", "SPLAT", SubResource( 56 ), "SPLAT", "JUMP", SubResource( 57 ), "SPLAT", "RUN", SubResource( 58 ), "SPLAT", "TOP_SPEED", SubResource( 59 ), "RUN", "SPLAT", SubResource( 60 ) ]
+states/WALL/position = Vector2( 816.808, 666.662 )
+transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ), "TOP_SPEED", "RUN", SubResource( 31 ), "RUN", "TOP_SPEED", SubResource( 32 ), "IDLE", "FALL", SubResource( 35 ), "FALL", "IDLE", SubResource( 36 ), "FALL", "RUN", SubResource( 37 ), "RUN", "FALL", SubResource( 38 ), "TOP_SPEED", "FALL", SubResource( 39 ), "FALL", "TOP_SPEED", SubResource( 40 ), "JUMP", "FALL", SubResource( 43 ), "JUMP", "IDLE", SubResource( 44 ), "IDLE", "JUMP", SubResource( 45 ), "TOP_SPEED", "JUMP", SubResource( 46 ), "JUMP", "TOP_SPEED", SubResource( 47 ), "FALL", "JUMP", SubResource( 48 ), "WALL", "SPLAT", SubResource( 51 ), "SPLAT", "WALL", SubResource( 52 ), "TOP_SPEED", "SPLAT", SubResource( 53 ), "FALL", "SPLAT", SubResource( 54 ), "SPLAT", "FALL", SubResource( 55 ), "JUMP", "SPLAT", SubResource( 56 ), "SPLAT", "JUMP", SubResource( 57 ), "SPLAT", "RUN", SubResource( 58 ), "SPLAT", "TOP_SPEED", SubResource( 59 ), "RUN", "SPLAT", SubResource( 60 ), "TOP_SPEED", "WALL", SubResource( 61 ), "SPLAT", "IDLE", SubResource( 62 ), "IDLE", "SPLAT", SubResource( 63 ), "RUN", "STOPPING", SubResource( 66 ), "STOPPING", "RUN", SubResource( 67 ), "STOPPING", "TOP_SPEED", SubResource( 68 ), "TOP_SPEED", "STOPPING", SubResource( 69 ), "STOPPING", "IDLE", SubResource( 70 ), "STOPPING", "WALL", SubResource( 71 ), "STOPPING", "SPLAT", SubResource( 72 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -135.767, 147.488 )
+graph_offset = Vector2( -135.767, 200.846 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
 [node name="playerNormal" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 ACCELERATION = 6
+DESACCELERATION = 13
 GRAVITY = 15
 MAXSPEED = 450
 MAXFALL = 450
 JUMPFORCE = -615
 runningVelocity = 650.0
+
+[node name="floorDetect" parent="." index="1"]
+cast_to = Vector2( 0, 4 )
 
 [node name="Camera2D" parent="." index="2"]
 position = Vector2( 0, -64 )
@@ -618,6 +704,7 @@ anims/JUMP = SubResource( 41 )
 anims/RESET = SubResource( 4 )
 anims/RUN = SubResource( 5 )
 anims/SPLAT = SubResource( 49 )
+anims/STOPPING = SubResource( 64 )
 anims/TOP_SPEED = SubResource( 29 )
 anims/WALL = SubResource( 23 )
 
@@ -626,14 +713,24 @@ tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 14 )
+parameters/conditions/rodolfo = false
 parameters/RUN/TimeScale/scale = 3.0
 
-[node name="onWall" type="RayCast2D" parent="." index="7"]
+[node name="onWallTop" type="RayCast2D" parent="." index="7"]
+position = Vector2( 0, -40 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+
+[node name="onWall" type="RayCast2D" parent="." index="8"]
 position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 24, 0 )
 
-[node name="StateMachine" type="Node" parent="." index="8"]
+[node name="onWallBotton" type="RayCast2D" parent="." index="9"]
+enabled = true
+cast_to = Vector2( 28, 0 )
+
+[node name="StateMachine" type="Node" parent="." index="10"]
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
@@ -655,7 +752,7 @@ script = ExtResource( 11 )
 [node name="TOP_SPEED" type="Node" parent="StateMachine" index="5"]
 script = ExtResource( 12 )
 
-[node name="Label" type="Label" parent="." index="9"]
+[node name="Label" type="Label" parent="." index="11"]
 margin_left = -32.0
 margin_top = -72.0
 margin_right = 16.0

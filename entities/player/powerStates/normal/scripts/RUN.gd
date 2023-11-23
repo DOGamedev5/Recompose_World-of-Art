@@ -1,12 +1,12 @@
 extends State
 
 
-func enter():
+func enter(_lastState):
 	parent.playback.travel("RUN")
 	parent.running = false
 
 func process_state():
-	if parent.onWall.is_colliding():
+	if parent.onWall():
 		return "WALL"
 			
 	if parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0 :
@@ -25,3 +25,8 @@ func process_state():
 
 func process_physics(_delta):
 	parent.motion.x = parent.moveBase("X", parent.motion.x)
+	var input := Input.get_axis("ui_left", "ui_right")
+	if sign(parent.motion.x) != sign(input) and parent.motion.x != 0:
+		parent.playback.travel("STOPPING")
+	elif input != 0:
+		parent.playback.travel("RUN")

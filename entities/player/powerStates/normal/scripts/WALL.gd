@@ -1,32 +1,45 @@
 extends State
 
-func enter():
-	if parent.motion.y < 0:
-		parent.motion.y /= 2
-	if not parent.floorDetect.is_colliding() or parent.running:
+var currentState
+
+func enter(lastState):
+	print("a")
+	if not parent.floorDetect.is_colliding() or ["TOP_SPEED"].has(lastState):
 		parent.playback.travel("SPLAT")
-	
+		print("b")
+		parent.stunned = true
+
 	elif parent.floorDetect.is_colliding() and abs(parent.motion.x) <= 500:
 		parent.playback.travel("WALL")
+	
+	if parent.motion.y < 0:
+		parent.motion.y /= 2
 	parent.running = false
 
 func process_state():
-	if Input.get_axis("ui_left", "ui_right") == 0 or not parent.onWall.is_colliding():
-		return "IDLE"
+	if not parent.floorDetect.is_colliding():
+		if not parent.onWall():
+			return "FALL"
+
+
+	if parent.floorDetect.is_colliding() and not parent.onWall():
+		if Input.get_axis("ui_left", "ui_right") == 0 :
+			return "IDLE"
+		
+		return "RUN"
 	
 	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
 		return "JUMP"
 	
-	elif not parent.floorDetect.is_colliding() and not parent.onWall.is_colliding():
-		return "FALL"
-	
-	elif not parent.onWall.is_colliding():
-		return "RUN"
-	
 	return null
 
 func process_physics(_delta):
-	parent.motion.x = parent.moveBase("X", parent.motion.x, 350)
-	if parent.floorDetect.is_colliding() and parent.playback.get_current_node() != "WALL":
-		parent.playback.travel("WALL")
-	
+	if not parent.stunned:
+		parent.motion.x = parent.moveBase("X", parent.motion.x)
+	if parent.floorDetect.is_colliding():
+		
+		parent.stunned = false
+
+func exit():
+	parent.stunned = false
+

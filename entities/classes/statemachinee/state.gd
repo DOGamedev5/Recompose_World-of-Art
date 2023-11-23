@@ -5,7 +5,7 @@ export var animationName : String
 var parent 
 
 ## innitil call
-func enter():
+func enter(_lastState):
 	pass
 
 ## exit call

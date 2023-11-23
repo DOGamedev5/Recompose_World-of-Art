@@ -1,13 +1,13 @@
 extends State
 
-func enter():
+func enter(_lastState):
 	parent.playback.travel("FALL")
 	
 	if parent.running and abs(parent.motion.x) <= 450:
 		parent.running = false
 
 func process_state():
-	if parent.onWall.is_colliding() and abs(parent.motion.x) > 250:
+	if parent.onWall() and abs(parent.motion.x) > 200:
 		return "WALL"
 	
 	if parent.can_jump and Input.is_action_pressed("ui_jump"):
@@ -15,7 +15,7 @@ func process_state():
 	
 	elif parent.floorDetect.is_colliding():
 		if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
-			if Input.is_action_pressed("run"):
+			if Input.is_action_pressed("run") and parent.running:
 				return "TOP_SPEED"
 			
 			return "RUN"
