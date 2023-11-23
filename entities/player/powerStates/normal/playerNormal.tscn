@@ -597,6 +597,9 @@ MAXFALL = 450
 JUMPFORCE = -615
 runningVelocity = 650.0
 
+[node name="floorDetect" parent="." index="1"]
+cast_to = Vector2( 0, 4 )
+
 [node name="Camera2D" parent="." index="2"]
 position = Vector2( 0, -64 )
 zoom = Vector2( 1, 1 )

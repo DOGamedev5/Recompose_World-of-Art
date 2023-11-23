@@ -1,10 +1,18 @@
 extends State
 
+enum  {
+	SPLAT,
+	WALL
+}
+
+var currentState
+
 func enter():
 	if parent.motion.y < 0:
 		parent.motion.y /= 2
-	if not parent.floorDetect.is_colliding() or parent.running:
+	if not parent.floorDetect.is_colliding():
 		parent.playback.travel("SPLAT")
+		currentState = SPLAT
 	
 	elif parent.floorDetect.is_colliding() and abs(parent.motion.x) <= 500:
 		parent.playback.travel("WALL")

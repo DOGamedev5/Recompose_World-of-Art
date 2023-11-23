@@ -16,7 +16,7 @@ func process_state():
 	elif parent.floorDetect.is_colliding():
 		if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
 			
-			if Input.is_action_pressed("run"):
+			if Input.is_action_pressed("run") and parent.running:
 				return "TOP_SPEED"
 			
 			return "RUN"
