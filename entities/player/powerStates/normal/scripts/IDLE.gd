@@ -1,14 +1,14 @@
 extends State
 
 
-func enter():
+func enter(_lastState):
 	parent.playback.travel("IDLE")
 	parent.running = false
 	
 
 func process_state():
 	if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
-		if parent.onWall.is_colliding():
+		if parent.onWall():
 			return "WALL"
 		
 		if Input.is_action_pressed("run"):

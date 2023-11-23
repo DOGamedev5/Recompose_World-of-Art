@@ -16,6 +16,7 @@ var motion := Vector2.ZERO
 var can_jump := true
 var coyote := true
 var fliped := false
+var stunned := false
 
 var powers := {
 	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
@@ -28,8 +29,9 @@ var inputCord := {
 }
 
 func _physics_process(_delta):
-	if Input.get_axis("ui_left", "ui_right") != 0:
-		fliped = Input.get_axis("ui_left", "ui_right") < 0
+	if motion.x != 0:
+		fliped = motion.x < 0
+		 
 
 func gravityBase():
 	if not floorDetect.is_colliding():
@@ -65,12 +67,12 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 	
 
 	if MotionCord > 0 and input <= 0:
-		MotionCord -= DESACCELERATION + abs(MotionCord * 0.1)
+		MotionCord -= DESACCELERATION #+ abs(MotionCord * 0.1)
 		if MotionCord < 0 and input == 0:
 			MotionCord = 0
 
 	elif MotionCord < 0 and input >= 0:
-		MotionCord += DESACCELERATION + abs(MotionCord * 0.1)
+		MotionCord += DESACCELERATION #+ abs(MotionCord * 0.1)
 		if MotionCord > 0 and input == 0:
 			MotionCord = 0
 

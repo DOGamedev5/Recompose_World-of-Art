@@ -1,13 +1,13 @@
 extends State
 
-func enter():
+func enter(_lastState):
 	parent.playback.travel("JUMP")
 	
 	if parent.running and abs(parent.motion.x) <= 450:
 		parent.running = false
 
 func process_state():
-	if parent.onWall.is_colliding() and abs(parent.motion.x) > 250:
+	if parent.onWall() and abs(parent.motion.x) > 200:
 		return "WALL"
 	
 	if parent.motion.y > 0:
