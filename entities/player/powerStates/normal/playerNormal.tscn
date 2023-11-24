@@ -365,7 +365,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=64]
 resource_name = "STOPPING"
-length = 0.5
+length = 0.25
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -653,13 +653,13 @@ states/FALL/position = Vector2( 319.44, 367.06 )
 states/IDLE/node = SubResource( 20 )
 states/IDLE/position = Vector2( 521.977, 112.049 )
 states/JUMP/node = SubResource( 42 )
-states/JUMP/position = Vector2( 396.371, 244.478 )
+states/JUMP/position = Vector2( 397.704, 245.818 )
 states/RUN/node = SubResource( 17 )
 states/RUN/position = Vector2( 633.934, 240.085 )
 states/SPLAT/node = SubResource( 50 )
 states/SPLAT/position = Vector2( 468.669, 600.298 )
 states/STOPPING/node = SubResource( 65 )
-states/STOPPING/position = Vector2( 868.566, 245.816 )
+states/STOPPING/position = Vector2( 868.566, 245.374 )
 states/TOP_SPEED/node = SubResource( 30 )
 states/TOP_SPEED/position = Vector2( 984.025, 413.855 )
 states/WALL/node = SubResource( 24 )

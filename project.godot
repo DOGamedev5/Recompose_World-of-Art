@@ -10,9 +10,19 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Area2D",
+"class": "AttackComponent",
+"language": "GDScript",
+"path": "res://entities/classes/attackComponent/attackComponent.gd"
+}, {
+"base": "Area2D",
 "class": "ChangeRoom",
 "language": "GDScript",
 "path": "res://worlds/classes/ChangeRoom/ChangeRoom.gd"
+}, {
+"base": "Area2D",
+"class": "HitboxComponent",
+"language": "GDScript",
+"path": "res://entities/classes/hitboxComponent/hitboxComponent.gd"
 }, {
 "base": "Node2D",
 "class": "LevelClass",
@@ -45,7 +55,9 @@ _global_script_classes=[ {
 "path": "res://entities/classes/statemachinee/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"AttackComponent": "",
 "ChangeRoom": "",
+"HitboxComponent": "",
 "LevelClass": "",
 "PlayerBase": "",
 "RoomClass": "",
