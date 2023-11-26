@@ -22,6 +22,9 @@ func process_state():
 		
 		return "IDLE"
 	
+	elif Input.is_action_just_pressed("attack"):
+		return "ATTACK"
+	
 	return null
 
 func process_physics(_delta):
@@ -29,4 +32,5 @@ func process_physics(_delta):
 	if parent.running:
 		maxSpeed = parent.runningVelocity
 	parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
-		
+	
+	

@@ -25,7 +25,7 @@ var powers := {
 
 var inputCord := {
 	"X" : ["ui_left", "ui_right"],
-	"y" : ["ui_up", "ui_down"]
+	"Y" : ["ui_up", "ui_down"]
 }
 
 func _physics_process(_delta):
@@ -52,29 +52,13 @@ func changePowerup(powerUp):
 	queue_free()
 
 func idleBase():
-	if motion.x > 0:
-		motion.x -= DESACCELERATION
-		if motion.x < 0:
-			motion.x = 0
-	
-	elif motion.x < 0:
-		motion.x += DESACCELERATION
-		if motion.x > 0: 
-			motion.x = 0
+	motion.x = desaccelerate("X", motion.x)
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
 	
 
-	if MotionCord > 0 and input <= 0:
-		MotionCord -= DESACCELERATION #+ abs(MotionCord * 0.1)
-		if MotionCord < 0 and input == 0:
-			MotionCord = 0
-
-	elif MotionCord < 0 and input >= 0:
-		MotionCord += DESACCELERATION #+ abs(MotionCord * 0.1)
-		if MotionCord > 0 and input == 0:
-			MotionCord = 0
+	MotionCord = desaccelerate(inputAxis, MotionCord, input)
 
 	if input > 0:
 		if MotionCord <= maxSpeed:
@@ -88,6 +72,19 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 		else:
 			MotionCord += DESACCELERATION
 			
+	return MotionCord
+
+func desaccelerate(inputAxis : String, MotionCord : float, input := 0):
+	if MotionCord > 0 and input <= 0:
+		MotionCord -= DESACCELERATION #+ abs(MotionCord * 0.1)
+		if MotionCord < 0 and input == 0:
+			MotionCord = 0
+
+	elif MotionCord < 0 and input >= 0:
+		MotionCord += DESACCELERATION #+ abs(MotionCord * 0.1)
+		if MotionCord > 0 and input == 0:
+			MotionCord = 0
+	
 	return MotionCord
 
 func jumpBase():

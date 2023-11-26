@@ -20,7 +20,6 @@ func _physics_process(_delta):
 	gravityBase()
 	if not stunned:
 		for ray in onWallRayCast:
-			$Label.rect_position.x = 20 * Input.get_axis("ui_left", "ui_right") 
 			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right") 
 		
 		sprite.flip_h = fliped
@@ -29,7 +28,7 @@ func _physics_process(_delta):
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-#	$Label.text = str(fliped)
+	$Label.text = str(stateMachine.currentState.name == "ATTACK")
 
 func onWall():
 	for ray in onWallRayCast:

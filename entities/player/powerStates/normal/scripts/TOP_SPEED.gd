@@ -1,6 +1,5 @@
 extends State
 
-
 func enter(_lastState):
 	parent.playback.travel("TOP_SPEED")
 	parent.running = true
