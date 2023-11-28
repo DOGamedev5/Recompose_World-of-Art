@@ -30,6 +30,18 @@ func process_state():
 
 func process_physics(_delta):
 	parent.jumpBase()
+	if abs(parent.motion.x) > 450:
+		parent.running = true
+	
+	if abs(parent.motion.x) > parent.MAXSPEED:
+		if abs(parent.motion.x) <+ 550:
+			parent.attackDamage.setDamage(1)
+		else:
+			parent.attackDamage.setDamage(2)
+	
+	else:
+		parent.attackDamage.setDamage(0)
+	
 	var maxSpeed = parent.MAXSPEED
 	if parent.running:
 		maxSpeed = parent.runningVelocity

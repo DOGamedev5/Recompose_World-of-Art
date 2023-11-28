@@ -3,6 +3,15 @@ extends State
 func enter(_lastState):
 	parent.playback.travel("TOP_SPEED")
 	parent.running = true
+	
+	if abs(parent.motion.x) > parent.MAXSPEED:
+		if abs(parent.motion.x) <+ 550:
+			parent.attackDamage.setDamage(1)
+		else:
+			parent.attackDamage.setDamage(2)
+	
+	else:
+		parent.attackDamage.setDamage(0)
 
 func process_state():
 	if parent.onWall():
@@ -23,6 +32,15 @@ func process_state():
 	return null
 
 func process_physics(_delta):
+	if abs(parent.motion.x) > parent.MAXSPEED:
+		if abs(parent.motion.x) <+ 550:
+			parent.attackDamage.setDamage(1)
+		else:
+			parent.attackDamage.setDamage(2)
+	
+	else:
+		parent.attackDamage.setDamage(0)
+	
 	parent.motion.x = parent.moveBase("X", parent.motion.x, parent.runningVelocity)
 	if abs(parent.motion.x) > 450:
 		parent.running = true
@@ -31,3 +49,7 @@ func process_physics(_delta):
 		parent.playback.travel("STOPPING")
 	else:
 		parent.playback.travel("TOP_SPEED")
+
+func exit():
+	if not parent.running or abs(parent.motion.x) <= parent.MAXSPEED:
+		parent.attackDamage.setDamage(0)

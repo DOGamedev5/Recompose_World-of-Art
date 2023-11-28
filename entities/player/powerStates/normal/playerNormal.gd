@@ -5,6 +5,7 @@ onready var sprite = $Sprite
 onready var animation = $AnimationTree
 onready var stateMachine = $StateMachine
 onready var playback = animation["parameters/playback"]
+onready var attackDamage = $attack
 
 export(float) var runningVelocity := 550.0
 
@@ -30,7 +31,9 @@ func _physics_process(delta):
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-#	$Label.text = str(canAttackTimer)
+	$Label.text = str(attackDamage.monitoring, $attack.damage)
+	
+		
 	if canAttackTimer > 0:
 		canAttackTimer -= delta
 		if canAttackTimer < 0:

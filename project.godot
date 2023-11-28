@@ -149,6 +149,7 @@ run={
 [layer_names]
 
 2d_physics/layer_1="solido"
+2d_physics/layer_9="playerAttack"
 
 [physics]
 

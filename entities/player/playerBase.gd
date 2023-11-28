@@ -4,6 +4,7 @@ class_name PlayerBase extends KinematicBody2D
 onready var coyoteTimer = $coyoteTimer
 onready var floorDetect = $floorDetect
 
+
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
 export var GRAVITY := 10
