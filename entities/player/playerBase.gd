@@ -52,13 +52,13 @@ func changePowerup(powerUp):
 	queue_free()
 
 func idleBase():
-	motion.x = desaccelerate("X", motion.x)
+	motion.x = desaccelerate(motion.x)
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
 	
 
-	MotionCord = desaccelerate(inputAxis, MotionCord, input)
+	MotionCord = desaccelerate(MotionCord, input)
 
 	if input > 0:
 		if MotionCord <= maxSpeed:
@@ -71,18 +71,14 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 			MotionCord -= ACCELERATION
 		else:
 			MotionCord += DESACCELERATION
-			
+	
 	return MotionCord
 
-func desaccelerate(inputAxis : String, MotionCord : float, input := 0):
-	if MotionCord > 0 and input <= 0:
-		MotionCord -= DESACCELERATION #+ abs(MotionCord * 0.1)
-		if MotionCord < 0 and input == 0:
-			MotionCord = 0
-
-	elif MotionCord < 0 and input >= 0:
-		MotionCord += DESACCELERATION #+ abs(MotionCord * 0.1)
-		if MotionCord > 0 and input == 0:
+func desaccelerate(MotionCord : float, input := .0):
+	if sign(MotionCord) != input:
+		var saveSign = sign(MotionCord)
+		MotionCord -=  DESACCELERATION * saveSign
+		if (MotionCord != 0 and sign(MotionCord) != saveSign) and input == 0:
 			MotionCord = 0
 	
 	return MotionCord

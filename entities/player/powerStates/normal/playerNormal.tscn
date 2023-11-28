@@ -764,7 +764,6 @@ cast_to = Vector2( 0, 4 )
 
 [node name="Camera2D" parent="." index="2"]
 position = Vector2( 0, -64 )
-zoom = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 position = Vector2( 0, -24 )
@@ -799,16 +798,17 @@ parameters/RUN/TimeScale/scale = 3.0
 [node name="onWallTop" type="RayCast2D" parent="." index="7"]
 position = Vector2( 0, -40 )
 enabled = true
-cast_to = Vector2( 16, 0 )
+cast_to = Vector2( 20, 0 )
 
 [node name="onWall" type="RayCast2D" parent="." index="8"]
 position = Vector2( 0, -24 )
 enabled = true
-cast_to = Vector2( 24, 0 )
+cast_to = Vector2( 20, 0 )
 
 [node name="onWallBotton" type="RayCast2D" parent="." index="9"]
+position = Vector2( 0, -8 )
 enabled = true
-cast_to = Vector2( 28, 0 )
+cast_to = Vector2( 20, 0 )
 
 [node name="StateMachine" type="Node" parent="." index="10"]
 script = ExtResource( 7 )
@@ -836,6 +836,7 @@ script = ExtResource( 12 )
 script = ExtResource( 18 )
 
 [node name="Label" type="Label" parent="." index="11"]
+visible = false
 margin_left = -24.0
 margin_top = -72.0
 margin_right = 24.0

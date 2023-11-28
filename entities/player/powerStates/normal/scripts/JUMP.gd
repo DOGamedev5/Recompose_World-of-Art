@@ -23,7 +23,7 @@ func process_state():
 		
 		return "IDLE"
 	
-	elif Input.is_action_just_pressed("attack"):
+	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
 		return "ATTACK"
 	
 	return null

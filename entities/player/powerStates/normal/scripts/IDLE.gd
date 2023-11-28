@@ -22,7 +22,7 @@ func process_state():
 	elif not parent.floorDetect.is_colliding():
 		return "FALL"
 	
-	elif Input.is_action_just_pressed("attack"):
+	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
 		return "ATTACK"
 
 	return null

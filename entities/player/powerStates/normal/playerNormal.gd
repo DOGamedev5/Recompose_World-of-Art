@@ -9,13 +9,15 @@ onready var playback = animation["parameters/playback"]
 export(float) var runningVelocity := 550.0
 
 var running := false
-
+var canAttackTimer := .0
+var attackTime := 20.0
+var attackVelocity := 800.0
 
 func _ready():
 	stateMachine.init(self, currentState)
 
-func _physics_process(_delta):
-	stateMachine.processMachine(_delta)
+func _physics_process(delta):
+	stateMachine.processMachine(delta)
 	_coyoteTimer()
 	gravityBase()
 	if not stunned:
@@ -28,7 +30,11 @@ func _physics_process(_delta):
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-	$Label.text = str(stateMachine.currentState.name == "ATTACK")
+#	$Label.text = str(canAttackTimer)
+	if canAttackTimer > 0:
+		canAttackTimer -= delta
+		if canAttackTimer < 0:
+			canAttackTimer = 0
 
 func onWall():
 	for ray in onWallRayCast:
@@ -36,3 +42,4 @@ func onWall():
 			return true
 	
 	return false
+

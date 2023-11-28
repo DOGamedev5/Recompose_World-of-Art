@@ -3,7 +3,7 @@ extends State
 var jumpping := false
 var timer := 20
 
-var atkDirection := 0
+var atkDirection := .0
 
 func enter(_lastState):
 	jumpping = false
@@ -12,7 +12,7 @@ func enter(_lastState):
 	if atkDirection == 0:
 		atkDirection = (1 - (2 * int(parent.fliped)))
 	
-	parent.motion.x = 800 * atkDirection
+	parent.motion.x = parent.attackVelocity * atkDirection
 	parent.playback.travel("ATTACK")
 	
 func process_state():
@@ -42,10 +42,11 @@ func process_physics(delta):
 	if (parent.can_jump and Input.is_action_pressed("ui_jump")) or jumpping:
 		parent.jumpBase()
 		jumpping = true
-	parent.motion.x = 800 * atkDirection
+	parent.motion.x = parent.attackVelocity * atkDirection
 	
 	timer -= delta
 	if timer <= 0 and not (Input.is_action_pressed("run") and Input.get_axis("ui_left", "ui_right") != 0):
 		parent.motion.x /= 2
-#	parent.motion.x = parent.desaccelerate("X", parent.motion.x)
-	
+
+func exit():
+	parent.canAttackTimer = 0.4
