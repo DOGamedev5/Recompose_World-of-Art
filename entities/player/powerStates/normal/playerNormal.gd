@@ -21,24 +21,13 @@ func _physics_process(delta):
 	stateMachine.processMachine(delta)
 	_coyoteTimer()
 	gravityBase()
-	if not stunned:
-		for ray in onWallRayCast:
-			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right")
-		
-		
-		attackComponents[0].position.x = 24 *(1 - 2 * int(fliped))
-		attackComponents[1].position.x = 36 *(1 - 2 * int(fliped))
-		
-		$speedEffect.position.x = 20 * (1 - 2 * int(fliped))
-		$speedEffect.flip_h = fliped
-		
-		sprite.flip_h = fliped
+	setFlipConfig()
 	
 	animation["parameters/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-	$Label.text = str("motion.x: %d\nmonitoring: %s damage: %d\nrunning: %s" % [motion.x, str(attackComponents[1].monitoring), attackComponents[1].damage, str(running)])
+#	$Label.text = str()
 	
 	$speedEffect.visible = running
 	if running:
@@ -56,6 +45,20 @@ func onWall():
 			return true
 	
 	return false
+
+func setFlipConfig():
+	if not stunned:
+		for ray in onWallRayCast:
+			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right")
+		
+		
+		attackComponents[0].position.x = 24 *(1 - 2 * int(fliped))
+		attackComponents[1].position.x = 36 *(1 - 2 * int(fliped))
+		
+		$speedEffect.position.x = 20 * (1 - 2 * int(fliped))
+		$speedEffect.flip_h = fliped
+		
+		sprite.flip_h = fliped
 
 func setAttackSpeed():
 	if running:

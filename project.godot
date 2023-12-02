@@ -1,13 +1,6 @@
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; since the parameters that go here are not all obvious.
-;
-; Format:
-;   [section] ; section goes between []
-;   param=value ; assign values to parameters
+[]
 
 config_version=4
-
 _global_script_classes=[ {
 "base": "Area2D",
 "class": "AttackComponent",
@@ -68,7 +61,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="portal_RUN"
+config/name="RECOMPOSE"
 run/main_scene="res://worlds/gamesArt/level1.tscn"
 config/icon="res://icon.png"
 
