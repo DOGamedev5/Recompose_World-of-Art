@@ -4,6 +4,7 @@ class_name PlayerBase extends KinematicBody2D
 onready var coyoteTimer = $coyoteTimer
 onready var floorDetect = $floorDetect
 
+
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
 export var GRAVITY := 10
@@ -25,7 +26,7 @@ var powers := {
 
 var inputCord := {
 	"X" : ["ui_left", "ui_right"],
-	"y" : ["ui_up", "ui_down"]
+	"Y" : ["ui_up", "ui_down"]
 }
 
 func _physics_process(_delta):
@@ -52,29 +53,13 @@ func changePowerup(powerUp):
 	queue_free()
 
 func idleBase():
-	if motion.x > 0:
-		motion.x -= DESACCELERATION
-		if motion.x < 0:
-			motion.x = 0
-	
-	elif motion.x < 0:
-		motion.x += DESACCELERATION
-		if motion.x > 0: 
-			motion.x = 0
+	motion.x = desaccelerate(motion.x)
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
 	
 
-	if MotionCord > 0 and input <= 0:
-		MotionCord -= DESACCELERATION #+ abs(MotionCord * 0.1)
-		if MotionCord < 0 and input == 0:
-			MotionCord = 0
-
-	elif MotionCord < 0 and input >= 0:
-		MotionCord += DESACCELERATION #+ abs(MotionCord * 0.1)
-		if MotionCord > 0 and input == 0:
-			MotionCord = 0
+	MotionCord = desaccelerate(MotionCord, input)
 
 	if input > 0:
 		if MotionCord <= maxSpeed:
@@ -87,7 +72,16 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 			MotionCord -= ACCELERATION
 		else:
 			MotionCord += DESACCELERATION
-			
+	
+	return MotionCord
+
+func desaccelerate(MotionCord : float, input := .0):
+	if sign(MotionCord) != input:
+		var saveSign = sign(MotionCord)
+		MotionCord -=  DESACCELERATION * saveSign
+		if (MotionCord != 0 and sign(MotionCord) != saveSign) and input == 0:
+			MotionCord = 0
+	
 	return MotionCord
 
 func jumpBase():

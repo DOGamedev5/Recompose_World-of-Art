@@ -5,23 +5,32 @@ onready var sprite = $Sprite
 onready var animation = $AnimationTree
 onready var stateMachine = $StateMachine
 onready var playback = animation["parameters/playback"]
+onready var attackComponents = [$attackPunch, $attackSpeed]
 
 export(float) var runningVelocity := 550.0
 
 var running := false
-
+var canAttackTimer := .0
+var attackTime := 20.0
+var attackVelocity := 800.0
 
 func _ready():
 	stateMachine.init(self, currentState)
 
-func _physics_process(_delta):
-	stateMachine.processMachine(_delta)
+func _physics_process(delta):
+	stateMachine.processMachine(delta)
 	_coyoteTimer()
 	gravityBase()
 	if not stunned:
 		for ray in onWallRayCast:
-			$Label.rect_position.x = 20 * Input.get_axis("ui_left", "ui_right") 
-			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right") 
+			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right")
+		
+		
+		attackComponents[0].position.x = 24 *(1 - 2 * int(fliped))
+		attackComponents[1].position.x = 36 *(1 - 2 * int(fliped))
+		
+		$speedEffect.position.x = 20 * (1 - 2 * int(fliped))
+		$speedEffect.flip_h = fliped
 		
 		sprite.flip_h = fliped
 	
@@ -29,7 +38,17 @@ func _physics_process(_delta):
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-#	$Label.text = str(fliped)
+	$Label.text = str("motion.x: %d\nmonitoring: %s damage: %d\nrunning: %s" % [motion.x, str(attackComponents[1].monitoring), attackComponents[1].damage, str(running)])
+	
+	$speedEffect.visible = running
+	if running:
+		$speedEffect.modulate.a = max((abs(motion.x) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
+		
+	
+	if canAttackTimer > 0:
+		canAttackTimer -= delta
+		if canAttackTimer < 0:
+			canAttackTimer = 0
 
 func onWall():
 	for ray in onWallRayCast:
@@ -37,3 +56,14 @@ func onWall():
 			return true
 	
 	return false
+
+func setAttackSpeed():
+	if running:
+		attackComponents[1].monitoring = true
+		if abs(motion.x) <+ 550:
+			attackComponents[1].setDamage(1)
+		else:
+			attackComponents[1].setDamage(2)
+	
+	else:
+		attackComponents[1].monitoring = false

@@ -3,10 +3,8 @@ extends State
 var currentState
 
 func enter(lastState):
-	print("a")
-	if not parent.floorDetect.is_colliding() or ["TOP_SPEED"].has(lastState):
+	if not parent.floorDetect.is_colliding() or ["TOP_SPEED", "ATTACK"].has(lastState):
 		parent.playback.travel("SPLAT")
-		print("b")
 		parent.stunned = true
 
 	elif parent.floorDetect.is_colliding() and abs(parent.motion.x) <= 500:
@@ -36,9 +34,10 @@ func process_state():
 func process_physics(_delta):
 	if not parent.stunned:
 		parent.motion.x = parent.moveBase("X", parent.motion.x)
+	
 	if parent.floorDetect.is_colliding():
-		
 		parent.stunned = false
+	
 
 func exit():
 	parent.stunned = false

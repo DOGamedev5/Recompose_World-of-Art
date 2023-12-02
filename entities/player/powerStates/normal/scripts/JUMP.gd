@@ -1,6 +1,9 @@
 extends State
 
+
+
 func enter(_lastState):
+
 	parent.playback.travel("JUMP")
 	
 	if parent.running and abs(parent.motion.x) <= 450:
@@ -23,11 +26,17 @@ func process_state():
 		
 		return "IDLE"
 	
+	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
+		return "ATTACK"
+	
 	return null
 
 func process_physics(_delta):
 	parent.jumpBase()
+	parent.setAttackSpeed()
+	
 	var maxSpeed = parent.MAXSPEED
 	if parent.running:
 		maxSpeed = parent.runningVelocity
 	parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
+	
