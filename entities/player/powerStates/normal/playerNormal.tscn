@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -20,12 +20,13 @@
 [ext_resource path="res://entities/player/powerStates/normal/scripts/ATTACK.gd" type="Script" id=18]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoAttack.pxo" type="Texture" id=19]
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=20]
+[ext_resource path="res://entities/player/sprites/top_speedEffect.pxo" type="Texture" id=21]
+
+[sub_resource type="AtlasTexture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 12.0
 height = 24.0
-
-[sub_resource type="AtlasTexture" id=2]
 
 [sub_resource type="Animation" id=73]
 resource_name = "ATTACK"
@@ -750,8 +751,11 @@ graph_offset = Vector2( 150.393, 301.894 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
+[sub_resource type="RectangleShape2D" id=86]
+extents = Vector2( 20, 8 )
+
 [sub_resource type="RectangleShape2D" id=85]
-extents = Vector2( 20, 24 )
+extents = Vector2( 20, 16 )
 
 [node name="playerNormal" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
@@ -769,15 +773,15 @@ cast_to = Vector2( 0, 4 )
 [node name="Camera2D" parent="." index="2"]
 position = Vector2( 0, -64 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2( 0, -24 )
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="." index="4"]
+[node name="Sprite" type="Sprite" parent="." index="3"]
 position = Vector2( 0, -24 )
 scale = Vector2( 1.5, 1.5 )
 texture = SubResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+position = Vector2( 0, -24 )
+shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 anims/ATTACK = SubResource( 73 )
@@ -814,16 +818,38 @@ position = Vector2( 0, -8 )
 enabled = true
 cast_to = Vector2( 20, 0 )
 
-[node name="attack" type="Area2D" parent="." index="10"]
+[node name="attackPunch" type="Area2D" parent="." index="10"]
+position = Vector2( 24, -24 )
 collision_layer = 256
-collision_mask = 0
+collision_mask = 256
+monitoring = false
 script = ExtResource( 20 )
+__meta__ = {
+"_edit_group_": true
+}
+damage = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack" index="0"]
-position = Vector2( 20, -24 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
+position = Vector2( -4, 0 )
+shape = SubResource( 86 )
+
+[node name="attackSpeed" type="Area2D" parent="." index="11"]
+position = Vector2( 40, -24 )
+collision_layer = 256
+collision_mask = 256
+monitoring = false
+priority = 1.0
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_group_": true
+}
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
+position = Vector2( -20, 0 )
 shape = SubResource( 85 )
 
-[node name="StateMachine" type="Node" parent="." index="11"]
+[node name="StateMachine" type="Node" parent="." index="12"]
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
@@ -848,11 +874,17 @@ script = ExtResource( 12 )
 [node name="ATTACK" type="Node" parent="StateMachine" index="6"]
 script = ExtResource( 18 )
 
-[node name="Label" type="Label" parent="." index="12"]
+[node name="Label" type="Label" parent="." index="13"]
 margin_left = -24.0
-margin_top = -72.0
+margin_top = -96.0
 margin_right = 24.0
-margin_bottom = -58.0
+margin_bottom = -82.0
 text = "a"
 align = 1
 valign = 1
+
+[node name="speedEffect" type="Sprite" parent="." index="14"]
+self_modulate = Color( 1, 1, 1, 0.792157 )
+position = Vector2( 8, -24 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 21 )

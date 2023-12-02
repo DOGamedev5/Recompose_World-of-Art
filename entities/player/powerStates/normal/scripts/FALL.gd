@@ -1,5 +1,6 @@
 extends State
 
+
 func enter(_lastState):
 	parent.playback.travel("FALL")
 	
@@ -28,20 +29,9 @@ func process_state():
 	return null
 
 func process_physics(_delta):
+	parent.setAttackSpeed()
+	
 	var maxSpeed = parent.MAXSPEED
-	
-	if abs(parent.motion.x) > 450:
-		parent.running = true
-	
-	if abs(parent.motion.x) > parent.MAXSPEED:
-		if abs(parent.motion.x) <+ 550:
-			parent.attackDamage.setDamage(1)
-		else:
-			parent.attackDamage.setDamage(2)
-	
-	else:
-		parent.attackDamage.setDamage(0)
-	
 	if parent.running:
 		maxSpeed = parent.runningVelocity
 	parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)

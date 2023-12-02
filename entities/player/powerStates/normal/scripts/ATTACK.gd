@@ -6,7 +6,7 @@ var timer := 20
 var atkDirection := .0
 
 func enter(_lastState):
-	parent.attackDamage.setDamage(1)
+	parent.attackComponents[0].monitoring = true
 	jumpping = false
 	timer = 20
 	atkDirection = Input.get_axis("ui_left", "ui_right")
@@ -50,5 +50,5 @@ func process_physics(delta):
 		parent.motion.x /= 2
 
 func exit():
-	parent.attackDamage.setDamage(0)
+	parent.attackComponents[0].monitoring = false
 	parent.canAttackTimer = 0.4

@@ -1,10 +1,12 @@
 class_name AttackComponent extends Area2D
 
 export var damage := 0
+		
+var ray
+var collision
 
 func _ready():
 	connect("area_entered", self, "_enterHitbox")
-	monitoring = damage != 0 
 
 func _enterHitbox(area):
 	if area is HitboxComponent:

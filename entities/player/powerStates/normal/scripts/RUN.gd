@@ -4,7 +4,7 @@ extends State
 func enter(_lastState):
 	parent.playback.travel("RUN")
 	parent.running = false
-	parent.attackDamage.setDamage(0)
+
 
 func process_state():
 	if parent.onWall():

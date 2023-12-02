@@ -43,6 +43,9 @@ script = ExtResource( 5 )
 [node name="block1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1880, 288 )
 
+[node name="block4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1936, 128 )
+
 [node name="block2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1928, 288 )
 
