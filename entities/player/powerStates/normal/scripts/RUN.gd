@@ -1,9 +1,12 @@
 extends State
 
 
+onready var particle = $"../../runningParticle"
+
 func enter(_lastState):
 	parent.playback.travel("RUN")
 	parent.running = false
+	particle.emitting = true
 
 
 func process_state():
@@ -28,6 +31,7 @@ func process_state():
 	return null
 
 func process_physics(_delta):
+#	particle.initial_velocity = -(min(abs(parent.motion.x), 100) * sign(parent.motion.x))
 	parent.motion.x = parent.moveBase("X", parent.motion.x)
 	var input := Input.get_axis("ui_left", "ui_right")
 	
@@ -35,3 +39,6 @@ func process_physics(_delta):
 		parent.playback.travel("STOPPING")
 	elif input != 0:
 		parent.playback.travel("RUN")
+
+func exit():
+	particle.emitting = false

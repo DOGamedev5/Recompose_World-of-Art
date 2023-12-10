@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/effect1.pxo-c2e67ece77d43d6114c1c525be3705d8.stex"
+
+[deps]
+
+source_file="res://gameplay/effect1.pxo"
+dest_files=[ "res://.import/effect1.pxo-c2e67ece77d43d6114c1c525be3705d8.stex" ]
+
+[params]
+

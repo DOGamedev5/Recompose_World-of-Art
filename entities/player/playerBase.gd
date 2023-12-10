@@ -29,10 +29,20 @@ var inputCord := {
 	"Y" : ["ui_up", "ui_down"]
 }
 
+#signal ChangeCameraLimits(limitsMin, limitsMax)
+#
+#func _ready():
+#	connect("ChangeCameraLimits", self, "setCamaraLimits")
+
 func _physics_process(_delta):
 	if motion.x != 0:
 		fliped = motion.x < 0
 		 
+func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
+	$Camera2D.set("limit_left", limitsMin.x - 10)
+	$Camera2D.set("limit_bottom", limitsMin.y - 10)
+	$Camera2D.set("limit_right", limitsMax.x + 10)
+	$Camera2D.set("limit_bottom", limitsMax.y + 10)
 
 func gravityBase():
 	if not floorDetect.is_colliding():

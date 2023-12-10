@@ -13,6 +13,8 @@ func _ready():
 	add_child(player)
 	call_deferred("loadRoom",firstRoom)
 	
+func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
 func loadRoom(room : String, warpID := 0):
 	if currentRoom:

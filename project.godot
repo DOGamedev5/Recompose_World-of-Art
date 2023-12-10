@@ -1,6 +1,13 @@
-[]
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
 config_version=4
+
 _global_script_classes=[ {
 "base": "Area2D",
 "class": "AttackComponent",
@@ -65,6 +72,10 @@ config/name="RECOMPOSE"
 run/main_scene="res://worlds/gamesArt/level1.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout="res://musics/default_bus_layout.tres"
+
 [autoload]
 
 Global="*res://gameplay/global.gd"
@@ -81,7 +92,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/camera_limiter/plugin.cfg", "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
 
 [gui]
 
