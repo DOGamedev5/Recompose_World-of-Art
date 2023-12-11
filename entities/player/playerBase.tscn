@@ -18,4 +18,16 @@ position = Vector2( 0, -63 )
 current = true
 editor_draw_limits = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 0.858927
+anchor_bottom = 0.875
+margin_right = -6.10352e-05
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]

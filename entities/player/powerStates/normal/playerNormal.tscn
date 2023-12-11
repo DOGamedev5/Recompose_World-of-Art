@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -21,12 +21,12 @@
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoAttack.pxo" type="Texture" id=19]
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=20]
 [ext_resource path="res://entities/player/sprites/top_speedEffect.pxo" type="Texture" id=21]
+[ext_resource path="res://gameplay/effect1.pxo" type="Texture" id=22]
 
 [sub_resource type="AtlasTexture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 12.0
-height = 24.0
+[sub_resource type="RectangleShape2D" id=87]
+extents = Vector2( 8, 20 )
 
 [sub_resource type="Animation" id=73]
 resource_name = "ATTACK"
@@ -757,6 +757,17 @@ extents = Vector2( 20, 8 )
 [sub_resource type="RectangleShape2D" id=85]
 extents = Vector2( 20, 16 )
 
+[sub_resource type="CanvasItemMaterial" id=88]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=89]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 119.325 ), 498.258, 0.0, 0, 0 ]
+
 [node name="playerNormal" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 ACCELERATION = 6
@@ -765,7 +776,7 @@ GRAVITY = 15
 MAXSPEED = 450
 MAXFALL = 450
 JUMPFORCE = -615
-runningVelocity = 650.0
+runningVelocity = 750.0
 
 [node name="floorDetect" parent="." index="1"]
 cast_to = Vector2( 0, 4 )
@@ -780,8 +791,8 @@ texture = SubResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
-position = Vector2( 0, -24 )
-shape = SubResource( 1 )
+position = Vector2( 0, -20 )
+shape = SubResource( 87 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 anims/ATTACK = SubResource( 73 )
@@ -819,6 +830,7 @@ enabled = true
 cast_to = Vector2( 20, 0 )
 
 [node name="attackPunch" type="Area2D" parent="." index="10"]
+visible = false
 position = Vector2( 24, -24 )
 collision_layer = 256
 collision_mask = 256
@@ -834,6 +846,7 @@ position = Vector2( -4, 0 )
 shape = SubResource( 86 )
 
 [node name="attackSpeed" type="Area2D" parent="." index="11"]
+visible = false
 position = Vector2( 40, -24 )
 collision_layer = 256
 collision_mask = 256
@@ -885,7 +898,24 @@ align = 1
 valign = 1
 
 [node name="speedEffect" type="Sprite" parent="." index="14"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.792157 )
 position = Vector2( 8, -24 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 21 )
+
+[node name="runningParticle" type="CPUParticles2D" parent="." index="15"]
+material = SubResource( 88 )
+emitting = false
+amount = 6
+lifetime = 0.8
+local_coords = false
+texture = ExtResource( 22 )
+direction = Vector2( 0, -1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+linear_accel = 40.0
+linear_accel_curve = SubResource( 89 )
+scale_amount = 1.5
+anim_speed = 1.0
