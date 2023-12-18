@@ -13,11 +13,6 @@ extents = Vector2( 32, 32 )
 [node name="block" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="Block" type="Sprite" parent="."]
-position = Vector2( 0, -24 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 1 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -24 )
 shape = SubResource( 1 )
@@ -30,5 +25,16 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2( 0, -24 )
 shape = SubResource( 2 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 1, -23 )
+scale = Vector2( 2.3, 2.3 )
+process_parent = true
+physics_process_parent = true
+
+[node name="Block" type="Sprite" parent="."]
+position = Vector2( 0, -24 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 1 )
 
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="_on_HitboxComponent_HitboxDamaged"]

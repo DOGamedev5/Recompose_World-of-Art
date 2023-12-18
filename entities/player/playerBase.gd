@@ -29,18 +29,13 @@ var inputCord := {
 	"Y" : ["ui_up", "ui_down"]
 }
 
-#signal ChangeCameraLimits(limitsMin, limitsMax)
-#
-#func _ready():
-#	connect("ChangeCameraLimits", self, "setCamaraLimits")
-
 func _physics_process(_delta):
 	if motion.x != 0:
 		fliped = motion.x < 0
 		 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_left", limitsMin.x - 10)
-	$Camera2D.set("limit_bottom", limitsMin.y - 10)
+	$Camera2D.set("limit_top", limitsMin.y - 10)
 	$Camera2D.set("limit_right", limitsMax.x + 10)
 	$Camera2D.set("limit_bottom", limitsMax.y + 10)
 
@@ -52,14 +47,15 @@ func gravityBase():
 
 func init(powerUp := "Normal"):
 	var newPlayer = load(powers[powerUp]).instance()
-	newPlayer.resourceInit(Global.player)
+
 	return newPlayer
 
 func changePowerup(powerUp):
-	Global.emit_signal("playerFormChange", powerUp)
+	
 	var newPlayer = load(powers[powerUp]).instance()
 	get_parent().add_child(newPlayer)
 	newPlayer.global_position = global_position
+	get_parent().player = newPlayer
 	queue_free()
 
 func idleBase():
@@ -104,7 +100,7 @@ func jumpBase():
 		motion.y /= 2
 
 func _coyoteTimer():
-	if floorDetect.is_colliding():
+	if onFloor().has(true):
 		can_jump = true
 		coyote = true
 	elif can_jump and coyote:
@@ -114,5 +110,10 @@ func _coyoteTimer():
 func coyoteTimerTimeout():
 	can_jump = false
 
-func syncValues():
-	pass
+
+func onFloor() -> Array:
+	return [
+		$flooDetectBack.is_colliding(),
+		$floorDetect.is_colliding(),
+		$flooDetectFont.is_colliding()
+	]

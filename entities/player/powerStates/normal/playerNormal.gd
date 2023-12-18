@@ -6,6 +6,7 @@ onready var animation = $AnimationTree
 onready var stateMachine = $StateMachine
 onready var playback = animation["parameters/playback"]
 onready var attackComponents = [$attackPunch, $attackSpeed]
+onready var currentCollision = $CollisionShape2D
 
 export(float) var runningVelocity := 550.0
 
@@ -14,14 +15,23 @@ var canAttackTimer := .0
 var attackTime := 20.0
 var attackVelocity := 800.0
 
+onready var collisionShapes := [
+	RectangleShape2D.new(),
+	CapsuleShape2D.new()
+]
+
 func _ready():
 	stateMachine.init(self, currentState)
+	collisionShapes[0].extents = Vector2(8, 20)
+	collisionShapes[1].radius = 8
+	collisionShapes[1].height = 24
 
 func _physics_process(delta):
 	stateMachine.processMachine(delta)
 	_coyoteTimer()
 	gravityBase()
 	setFlipConfig()
+	setAttackSpeed()
 	
 	animation["parameters/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
@@ -63,10 +73,18 @@ func setFlipConfig():
 func setAttackSpeed():
 	if running:
 		attackComponents[1].monitoring = true
-		if abs(motion.x) <+ 550:
+		if abs(motion.x) < 550:
 			attackComponents[1].setDamage(1)
 		else:
 			attackComponents[1].setDamage(2)
 	
 	else:
 		attackComponents[1].monitoring = false
+
+
+func _on_HitboxComponent_area_entered(area):
+	if area is ChangeRoom:
+		area.changeRoom()
+
+func setCollision(ID := 0):
+	currentCollision.set_shape(collisionShapes[ID])

@@ -9,9 +9,19 @@ script = ExtResource( 1 )
 wait_time = 0.2
 one_shot = true
 
+[node name="flooDetectBack" type="RayCast2D" parent="."]
+position = Vector2( -6, 0 )
+enabled = true
+cast_to = Vector2( 0, 4 )
+
 [node name="floorDetect" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 2 )
+cast_to = Vector2( 0, 4 )
+
+[node name="flooDetectFont" type="RayCast2D" parent="."]
+position = Vector2( 6, 0 )
+enabled = true
+cast_to = Vector2( 0, 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -63 )

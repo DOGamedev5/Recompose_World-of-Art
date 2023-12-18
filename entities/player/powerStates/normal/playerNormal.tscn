@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=20]
 [ext_resource path="res://entities/player/sprites/top_speedEffect.pxo" type="Texture" id=21]
 [ext_resource path="res://gameplay/effect1.pxo" type="Texture" id=22]
+[ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=23]
 
 [sub_resource type="AtlasTexture" id=2]
 
@@ -755,7 +756,10 @@ graph_offset = Vector2( 150.393, 301.894 )
 extents = Vector2( 20, 8 )
 
 [sub_resource type="RectangleShape2D" id=85]
-extents = Vector2( 20, 16 )
+extents = Vector2( 20, 12 )
+
+[sub_resource type="RectangleShape2D" id=90]
+extents = Vector2( 16, 25 )
 
 [sub_resource type="CanvasItemMaterial" id=88]
 particles_animation = true
@@ -778,23 +782,17 @@ MAXFALL = 450
 JUMPFORCE = -615
 runningVelocity = 750.0
 
-[node name="floorDetect" parent="." index="1"]
-cast_to = Vector2( 0, 4 )
-
-[node name="Camera2D" parent="." index="2"]
-position = Vector2( 0, -64 )
-
-[node name="Sprite" type="Sprite" parent="." index="3"]
+[node name="Sprite" type="Sprite" parent="." index="4"]
 position = Vector2( 0, -24 )
 scale = Vector2( 1.5, 1.5 )
 texture = SubResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
 position = Vector2( 0, -20 )
 shape = SubResource( 87 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 anims/ATTACK = SubResource( 73 )
 anims/FALL = SubResource( 33 )
 anims/IDLE = SubResource( 3 )
@@ -806,7 +804,7 @@ anims/STOPPING = SubResource( 64 )
 anims/TOP_SPEED = SubResource( 29 )
 anims/WALL = SubResource( 23 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="6"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
 tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
@@ -814,22 +812,22 @@ parameters/playback = SubResource( 14 )
 parameters/conditions/rodolfo = false
 parameters/RUN/TimeScale/scale = 3.0
 
-[node name="onWallTop" type="RayCast2D" parent="." index="7"]
+[node name="onWallTop" type="RayCast2D" parent="." index="8"]
 position = Vector2( 0, -40 )
 enabled = true
 cast_to = Vector2( 20, 0 )
 
-[node name="onWall" type="RayCast2D" parent="." index="8"]
+[node name="onWall" type="RayCast2D" parent="." index="9"]
 position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 20, 0 )
 
-[node name="onWallBotton" type="RayCast2D" parent="." index="9"]
+[node name="onWallBotton" type="RayCast2D" parent="." index="10"]
 position = Vector2( 0, -8 )
 enabled = true
 cast_to = Vector2( 20, 0 )
 
-[node name="attackPunch" type="Area2D" parent="." index="10"]
+[node name="attackPunch" type="Area2D" parent="." index="11"]
 visible = false
 position = Vector2( 24, -24 )
 collision_layer = 256
@@ -845,8 +843,7 @@ damage = 1
 position = Vector2( -4, 0 )
 shape = SubResource( 86 )
 
-[node name="attackSpeed" type="Area2D" parent="." index="11"]
-visible = false
+[node name="attackSpeed" type="Area2D" parent="." index="12"]
 position = Vector2( 40, -24 )
 collision_layer = 256
 collision_mask = 256
@@ -859,10 +856,23 @@ __meta__ = {
 damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
-position = Vector2( -20, 0 )
+position = Vector2( -20, 4 )
 shape = SubResource( 85 )
 
-[node name="StateMachine" type="Node" parent="." index="12"]
+[node name="HitboxComponent" type="Area2D" parent="." index="13"]
+visible = false
+collision_layer = 0
+collision_mask = 1536
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2( 0, -23 )
+shape = SubResource( 90 )
+
+[node name="StateMachine" type="Node" parent="." index="14"]
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
@@ -887,7 +897,7 @@ script = ExtResource( 12 )
 [node name="ATTACK" type="Node" parent="StateMachine" index="6"]
 script = ExtResource( 18 )
 
-[node name="Label" type="Label" parent="." index="13"]
+[node name="Label" type="Label" parent="." index="15"]
 visible = false
 margin_left = -24.0
 margin_top = -96.0
@@ -897,14 +907,14 @@ text = "a"
 align = 1
 valign = 1
 
-[node name="speedEffect" type="Sprite" parent="." index="14"]
+[node name="speedEffect" type="Sprite" parent="." index="16"]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.792157 )
 position = Vector2( 8, -24 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 21 )
 
-[node name="runningParticle" type="CPUParticles2D" parent="." index="15"]
+[node name="runningParticle" type="CPUParticles2D" parent="." index="17"]
 material = SubResource( 88 )
 emitting = false
 amount = 6
@@ -919,3 +929,11 @@ linear_accel = 40.0
 linear_accel_curve = SubResource( 89 )
 scale_amount = 1.5
 anim_speed = 1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Camera2D" parent="." index="18"]
+position = Vector2( 0, -64 )
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_HitboxComponent_area_entered"]

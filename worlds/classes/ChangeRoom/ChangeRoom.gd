@@ -1,16 +1,24 @@
 class_name ChangeRoom extends Area2D
 
 export(String) var room
+export(String) var world = "gamesArt"
+export(int) var roomID
 export var warpID := 0
 
 onready var parent = get_parent()
 
 func _ready():
-	connect("body_entered", self, "bodyEntered")
-#	room = load(roomPath)
+	
+	set_collision_mask_bit(11, true)
+	set_collision_mask_bit(1, false)
+	set_collision_layer_bit(1, false)
+	
+	if roomID != 0:
+		room = "res://worlds/{world}/rooms/room{room}.tscn".format({"world" : world, "room" : roomID})
+		
+	monitoring = true
+	
 
-func bodyEntered(body):
-	if body.is_in_group("player"):
-		get_parent().emit_signal("changeRoom", room, warpID)
-
+func changeRoom():
+	get_parent().emit_signal("changeRoom", room, warpID)
 		

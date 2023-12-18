@@ -92,7 +92,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/camera_limiter/plugin.cfg", "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
 
 [gui]
 
@@ -154,6 +154,8 @@ run={
 
 2d_physics/layer_1="solido"
 2d_physics/layer_9="playerAttack"
+2d_physics/layer_10="enemyAttack"
+2d_physics/layer_11="anyAttack"
 
 [physics]
 
