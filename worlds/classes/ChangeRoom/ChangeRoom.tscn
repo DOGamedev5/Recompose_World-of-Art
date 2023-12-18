@@ -3,4 +3,7 @@
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 
 [node name="Area2D" type="Area2D"]
+collision_layer = 1024
+collision_mask = 0
+monitoring = false
 script = ExtResource( 1 )

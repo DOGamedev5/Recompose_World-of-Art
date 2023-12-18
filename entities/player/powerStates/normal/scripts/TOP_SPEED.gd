@@ -9,8 +9,7 @@ func enter(_lastState):
 	
 	if abs(parent.motion.x) > parent.MAXSPEED:
 		parent.running = true
-	
-	parent.setAttackSpeed()
+	parent.setCollision(1)
 
 func process_state():
 	if parent.onWall():
@@ -22,7 +21,7 @@ func process_state():
 	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
 		return "JUMP"
 	
-	elif not parent.floorDetect.is_colliding():
+	elif not parent.onFloor().has(true):
 		return "FALL"
 	
 	elif not Input.is_action_pressed("run") :
@@ -31,7 +30,6 @@ func process_state():
 	return null
 
 func process_physics(_delta):
-	parent.setAttackSpeed()
 	
 	parent.motion.x = parent.moveBase("X", parent.motion.x, parent.runningVelocity)
 	if abs(parent.motion.x) > parent.MAXSPEED:
@@ -48,3 +46,5 @@ func exit():
 	particle.emitting = false
 	if not parent.running or abs(parent.motion.x) <= parent.MAXSPEED:
 		parent.attackComponents[1].monitoring = false
+		
+	parent.setCollision(0)

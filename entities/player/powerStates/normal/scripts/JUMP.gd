@@ -3,8 +3,10 @@ extends State
 
 
 func enter(_lastState):
-
-	parent.playback.travel("JUMP")
+	if parent.running:
+		parent.playback.travel("TOP_SPEED")
+	else:
+		parent.playback.travel("JUMP")
 	
 	if parent.running and abs(parent.motion.x) <= 450:
 		parent.running = false
@@ -16,7 +18,7 @@ func process_state():
 	if parent.motion.y > 0:
 		return "FALL"
 
-	elif parent.floorDetect.is_colliding():
+	elif parent.onFloor().has(true):
 		if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
 			
 			if Input.is_action_pressed("run") and parent.running:
@@ -33,7 +35,13 @@ func process_state():
 
 func process_physics(_delta):
 	parent.jumpBase()
-	parent.setAttackSpeed()
+	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
+		parent.running = false
+	
+	if parent.running:
+		parent.playback.travel("TOP_SPEED")
+	else:
+		parent.playback.travel("JUMP")
 	
 	var maxSpeed = parent.MAXSPEED
 	if parent.running:

@@ -26,8 +26,11 @@ __meta__ = {
 
 [node name="ChangeRoom" type="Area2D" parent="."]
 position = Vector2( 3144, -16 )
+collision_layer = 1024
+collision_mask = 0
 script = ExtResource( 4 )
-room = "res://worlds/gamesArt/rooms1/rooms/room1.tscn"
+room = "res://worlds/gamesArt/rooms/room1.tscn"
+roomID = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
 position = Vector2( -48, -56 )

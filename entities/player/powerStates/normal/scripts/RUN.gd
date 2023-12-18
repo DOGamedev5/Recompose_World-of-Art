@@ -7,6 +7,7 @@ func enter(_lastState):
 	parent.playback.travel("RUN")
 	parent.running = false
 	particle.emitting = true
+	parent.setCollision(1)
 
 
 func process_state():
@@ -19,7 +20,7 @@ func process_state():
 	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
 		return "JUMP"
 	
-	elif not parent.floorDetect.is_colliding():
+	elif not parent.onFloor().has(true):
 		return "FALL"
 	
 	elif Input.is_action_pressed("run"):
@@ -42,3 +43,4 @@ func process_physics(_delta):
 
 func exit():
 	particle.emitting = false
+	parent.setCollision(0)
