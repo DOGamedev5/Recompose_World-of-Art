@@ -74,12 +74,13 @@ config/icon="res://icon.png"
 
 [audio]
 
-default_bus_layout="res://musics/default_bus_layout.tres"
+default_bus_layout="res://audio/default_bus_layout.tres"
 
 [autoload]
 
 Global="*res://gameplay/global.gd"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+AudioManager="*res://audio/audioSystem/audioSystem.tscn"
 
 [display]
 

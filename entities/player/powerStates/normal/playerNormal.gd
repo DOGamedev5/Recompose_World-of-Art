@@ -57,18 +57,20 @@ func onWall():
 	return false
 
 func setFlipConfig():
-	if not stunned:
-		for ray in onWallRayCast:
+	if stunned:
+		return
+	
+	if Input.get_axis("ui_left", "ui_right"):
+		for ray in onWallRayCast: 
 			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right")
-		
-		
-		attackComponents[0].position.x = 24 *(1 - 2 * int(fliped))
-		attackComponents[1].position.x = 36 *(1 - 2 * int(fliped))
-		
-		$speedEffect.position.x = 20 * (1 - 2 * int(fliped))
-		$speedEffect.flip_h = fliped
-		
-		sprite.flip_h = fliped
+	
+	attackComponents[0].position.x = 24 *(1 - 2 * int(fliped))
+	attackComponents[1].position.x = 36 *(1 - 2 * int(fliped))
+	
+	$speedEffect.position.x = 20 * (1 - 2 * int(fliped))
+	$speedEffect.flip_h = fliped
+	
+	sprite.flip_h = fliped
 
 func setAttackSpeed():
 	if running:

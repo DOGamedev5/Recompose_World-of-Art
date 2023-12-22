@@ -21,7 +21,7 @@
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoAttack.pxo" type="Texture" id=19]
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=20]
 [ext_resource path="res://entities/player/sprites/top_speedEffect.pxo" type="Texture" id=21]
-[ext_resource path="res://gameplay/effect1.pxo" type="Texture" id=22]
+[ext_resource path="res://gameplay/effects/effect1.pxo" type="Texture" id=22]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=23]
 
 [sub_resource type="AtlasTexture" id=2]
