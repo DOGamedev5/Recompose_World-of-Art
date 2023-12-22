@@ -8,6 +8,7 @@ export var limitsMax := Vector2(10000000, 10000000)
 signal changeRoom(room, warpID)
 
 func _ready():
+
 	connect("changeRoom", get_parent(), "loadRoom")
 	get_parent().setCameraLimits(limitsMin, limitsMax)
 	

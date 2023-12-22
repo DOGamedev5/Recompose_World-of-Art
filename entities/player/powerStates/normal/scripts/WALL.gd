@@ -3,6 +3,7 @@ extends State
 var currentState
 
 func enter(lastState):
+	
 	if not parent.floorDetect.is_colliding() or ["TOP_SPEED", "ATTACK"].has(lastState):
 		parent.playback.travel("SPLAT")
 		parent.stunned = true
@@ -20,11 +21,12 @@ func process_state():
 			return "FALL"
 
 
-	if parent.floorDetect.is_colliding() and not parent.onWall():
-		if Input.get_axis("ui_left", "ui_right") == 0 :
+	if parent.floorDetect.is_colliding():
+		if Input.get_axis("ui_left", "ui_right") == 0:
 			return "IDLE"
-		
-		return "RUN"
+			
+		elif not parent.onWall():
+			return "RUN"
 	
 	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
 		return "JUMP"

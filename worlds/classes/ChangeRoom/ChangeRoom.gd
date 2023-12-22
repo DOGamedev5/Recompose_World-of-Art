@@ -9,9 +9,9 @@ onready var parent = get_parent()
 
 func _ready():
 	
-	set_collision_mask_bit(11, true)
-	set_collision_mask_bit(1, false)
-	set_collision_layer_bit(1, false)
+	set_collision_layer_bit(10, true)
+	set_collision_mask_bit(0, false)
+	set_collision_layer_bit(0, false)
 	
 	if roomID != 0:
 		room = "res://worlds/{world}/rooms/room{room}.tscn".format({"world" : world, "room" : roomID})

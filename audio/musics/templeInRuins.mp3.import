@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/templeInRuins.mp3-9f8c17b60e483fa8ca2894963b564134.mp3str"
+
+[deps]
+
+source_file="res://audio/musics/templeInRuins.mp3"
+dest_files=[ "res://.import/templeInRuins.mp3-9f8c17b60e483fa8ca2894963b564134.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

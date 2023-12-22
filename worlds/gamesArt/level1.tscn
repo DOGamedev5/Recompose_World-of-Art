@@ -1,11 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
-[ext_resource path="res://musics/templeInRuins.mp3" type="AudioStream" id=2]
 
 [node name="level1" type="Node2D"]
 script = ExtResource( 1 )
-firstRoom = "res://debugRoom.tscn"
+firstRoom = "res://worlds/gamesArt/rooms/room1.tscn"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_offset = Vector2( 0, -600 )
@@ -20,7 +19,3 @@ margin_top = -392.0
 margin_right = 1888.0
 margin_bottom = 508.0
 color = Color( 0.282353, 0.247059, 0.239216, 1 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
-autoplay = true
