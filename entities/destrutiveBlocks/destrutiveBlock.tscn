@@ -32,9 +32,12 @@ scale = Vector2( 2.3, 2.3 )
 process_parent = true
 physics_process_parent = true
 
-[node name="Block" type="Sprite" parent="."]
+[node name="sprite" type="Sprite" parent="."]
+unique_name_in_owner = true
 position = Vector2( 0, -24 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
+hframes = 2
 
+[connection signal="script_changed" from="." to="." method="_on_block_script_changed"]
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="_on_HitboxComponent_HitboxDamaged"]

@@ -3,7 +3,7 @@ class_name PlayerBase extends KinematicBody2D
 
 onready var coyoteTimer = $coyoteTimer
 onready var floorDetect = $floorDetect
-
+onready var onWallRayCast = [$onWallTop, $onWall, $onWallBotton]
 
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
@@ -30,8 +30,17 @@ var inputCord := {
 }
 
 func _physics_process(_delta):
-	if motion.x != 0:
-		fliped = motion.x < 0
+	if not stunned:
+			
+		if motion.x != 0:
+			fliped = motion.x < 0
+		elif Input.get_axis("ui_left", "ui_right"):
+			fliped = Input.get_axis("ui_left", "ui_right") < 0
+			
+		for ray in onWallRayCast: 
+#			ray.cast_to.x = clamp(abs(motion.x), 4, 20) * Input.get_axis("ui_left", "ui_right")
+			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right")
+			
 		 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_left", limitsMin.x - 10)

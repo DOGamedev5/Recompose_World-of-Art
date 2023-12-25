@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
 [ext_resource path="res://worlds/tilesets/debugRoom.tres" type="TileSet" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=4]
+[ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 72 )
@@ -36,3 +37,6 @@ warpID = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
 position = Vector2( -6, -12 )
 shape = SubResource( 1 )
+
+[node name="literaturePortal" parent="." instance=ExtResource( 5 )]
+position = Vector2( 924, -204 )

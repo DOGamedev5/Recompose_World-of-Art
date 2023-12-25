@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoCralwIdle.pxo-c2aab1bb78eeeb0a2f06066c988c1fee.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/lodrofoCralwIdle.pxo"
+dest_files=[ "res://.import/lodrofoCralwIdle.pxo-c2aab1bb78eeeb0a2f06066c988c1fee.stex" ]
+
+[params]
+

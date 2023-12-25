@@ -40,4 +40,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="onWallTop" type="RayCast2D" parent="."]
+position = Vector2( 0, -40 )
+enabled = true
+cast_to = Vector2( 20, 0 )
+
+[node name="onWall" type="RayCast2D" parent="."]
+position = Vector2( 0, -24 )
+enabled = true
+cast_to = Vector2( 20, 0 )
+
+[node name="onWallBotton" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
+enabled = true
+cast_to = Vector2( 20, 0 )
+
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]

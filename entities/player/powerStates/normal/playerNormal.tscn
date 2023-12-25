@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=121 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -23,11 +23,12 @@
 [ext_resource path="res://entities/player/sprites/top_speedEffect.pxo" type="Texture" id=21]
 [ext_resource path="res://gameplay/effects/effect1.pxo" type="Texture" id=22]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=23]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoCralwIdle.pxo" type="Texture" id=24]
 
 [sub_resource type="AtlasTexture" id=2]
 
 [sub_resource type="RectangleShape2D" id=87]
-extents = Vector2( 8, 20 )
+extents = Vector2( 12, 20 )
 
 [sub_resource type="Animation" id=73]
 resource_name = "ATTACK"
@@ -80,6 +81,59 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 19 ) ]
+}
+
+[sub_resource type="Animation" id=91]
+resource_name = "COUNCH"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
 }
 
 [sub_resource type="Animation" id=33]
@@ -584,6 +638,9 @@ tracks/3/keys = {
 [sub_resource type="AnimationNodeAnimation" id=74]
 animation = "ATTACK"
 
+[sub_resource type="AnimationNodeAnimation" id=92]
+animation = "COUNCH"
+
 [sub_resource type="AnimationNodeAnimation" id=34]
 animation = "FALL"
 
@@ -727,9 +784,37 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=84]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=93]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=94]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=97]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=98]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=99]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=100]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=101]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=102]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=103]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=104]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=105]
+
 [sub_resource type="AnimationNodeStateMachine" id=13]
 states/ATTACK/node = SubResource( 74 )
-states/ATTACK/position = Vector2( 701.67, 459.756 )
+states/ATTACK/position = Vector2( 536.337, 481.089 )
+states/COUNCH/node = SubResource( 92 )
+states/COUNCH/position = Vector2( 1137.39, 175.227 )
 states/FALL/node = SubResource( 34 )
 states/FALL/position = Vector2( 319.44, 367.06 )
 states/IDLE/node = SubResource( 20 )
@@ -746,9 +831,9 @@ states/TOP_SPEED/node = SubResource( 30 )
 states/TOP_SPEED/position = Vector2( 984.025, 413.855 )
 states/WALL/node = SubResource( 24 )
 states/WALL/position = Vector2( 816.808, 666.662 )
-transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ), "TOP_SPEED", "RUN", SubResource( 31 ), "RUN", "TOP_SPEED", SubResource( 32 ), "IDLE", "FALL", SubResource( 35 ), "FALL", "IDLE", SubResource( 36 ), "FALL", "RUN", SubResource( 37 ), "RUN", "FALL", SubResource( 38 ), "TOP_SPEED", "FALL", SubResource( 39 ), "FALL", "TOP_SPEED", SubResource( 40 ), "JUMP", "FALL", SubResource( 43 ), "JUMP", "IDLE", SubResource( 44 ), "IDLE", "JUMP", SubResource( 45 ), "TOP_SPEED", "JUMP", SubResource( 46 ), "JUMP", "TOP_SPEED", SubResource( 47 ), "FALL", "JUMP", SubResource( 48 ), "WALL", "SPLAT", SubResource( 51 ), "SPLAT", "WALL", SubResource( 52 ), "TOP_SPEED", "SPLAT", SubResource( 53 ), "FALL", "SPLAT", SubResource( 54 ), "SPLAT", "FALL", SubResource( 55 ), "JUMP", "SPLAT", SubResource( 56 ), "SPLAT", "JUMP", SubResource( 57 ), "SPLAT", "RUN", SubResource( 58 ), "SPLAT", "TOP_SPEED", SubResource( 59 ), "RUN", "SPLAT", SubResource( 60 ), "TOP_SPEED", "WALL", SubResource( 61 ), "SPLAT", "IDLE", SubResource( 62 ), "IDLE", "SPLAT", SubResource( 63 ), "RUN", "STOPPING", SubResource( 66 ), "STOPPING", "RUN", SubResource( 67 ), "STOPPING", "TOP_SPEED", SubResource( 68 ), "TOP_SPEED", "STOPPING", SubResource( 69 ), "STOPPING", "IDLE", SubResource( 70 ), "STOPPING", "WALL", SubResource( 71 ), "STOPPING", "SPLAT", SubResource( 72 ), "RUN", "ATTACK", SubResource( 75 ), "ATTACK", "TOP_SPEED", SubResource( 76 ), "ATTACK", "RUN", SubResource( 77 ), "ATTACK", "STOPPING", SubResource( 78 ), "ATTACK", "IDLE", SubResource( 79 ), "IDLE", "ATTACK", SubResource( 80 ), "FALL", "ATTACK", SubResource( 81 ), "ATTACK", "FALL", SubResource( 82 ), "JUMP", "ATTACK", SubResource( 83 ), "ATTACK", "JUMP", SubResource( 84 ) ]
+transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ), "TOP_SPEED", "RUN", SubResource( 31 ), "RUN", "TOP_SPEED", SubResource( 32 ), "IDLE", "FALL", SubResource( 35 ), "FALL", "IDLE", SubResource( 36 ), "FALL", "RUN", SubResource( 37 ), "RUN", "FALL", SubResource( 38 ), "TOP_SPEED", "FALL", SubResource( 39 ), "FALL", "TOP_SPEED", SubResource( 40 ), "JUMP", "FALL", SubResource( 43 ), "JUMP", "IDLE", SubResource( 44 ), "IDLE", "JUMP", SubResource( 45 ), "TOP_SPEED", "JUMP", SubResource( 46 ), "JUMP", "TOP_SPEED", SubResource( 47 ), "FALL", "JUMP", SubResource( 48 ), "WALL", "SPLAT", SubResource( 51 ), "SPLAT", "WALL", SubResource( 52 ), "TOP_SPEED", "SPLAT", SubResource( 53 ), "FALL", "SPLAT", SubResource( 54 ), "SPLAT", "FALL", SubResource( 55 ), "JUMP", "SPLAT", SubResource( 56 ), "SPLAT", "JUMP", SubResource( 57 ), "SPLAT", "RUN", SubResource( 58 ), "SPLAT", "TOP_SPEED", SubResource( 59 ), "RUN", "SPLAT", SubResource( 60 ), "TOP_SPEED", "WALL", SubResource( 61 ), "SPLAT", "IDLE", SubResource( 62 ), "IDLE", "SPLAT", SubResource( 63 ), "RUN", "STOPPING", SubResource( 66 ), "STOPPING", "RUN", SubResource( 67 ), "STOPPING", "TOP_SPEED", SubResource( 68 ), "TOP_SPEED", "STOPPING", SubResource( 69 ), "STOPPING", "IDLE", SubResource( 70 ), "STOPPING", "WALL", SubResource( 71 ), "STOPPING", "SPLAT", SubResource( 72 ), "RUN", "ATTACK", SubResource( 75 ), "ATTACK", "TOP_SPEED", SubResource( 76 ), "ATTACK", "RUN", SubResource( 77 ), "ATTACK", "STOPPING", SubResource( 78 ), "ATTACK", "IDLE", SubResource( 79 ), "IDLE", "ATTACK", SubResource( 80 ), "FALL", "ATTACK", SubResource( 81 ), "ATTACK", "FALL", SubResource( 82 ), "JUMP", "ATTACK", SubResource( 83 ), "ATTACK", "JUMP", SubResource( 84 ), "IDLE", "COUNCH", SubResource( 93 ), "COUNCH", "IDLE", SubResource( 94 ), "COUNCH", "RUN", SubResource( 95 ), "RUN", "COUNCH", SubResource( 96 ), "COUNCH", "TOP_SPEED", SubResource( 97 ), "TOP_SPEED", "COUNCH", SubResource( 98 ), "STOPPING", "COUNCH", SubResource( 99 ), "COUNCH", "STOPPING", SubResource( 100 ), "FALL", "COUNCH", SubResource( 101 ), "ATTACK", "COUNCH", SubResource( 102 ), "SPLAT", "COUNCH", SubResource( 103 ), "WALL", "COUNCH", SubResource( 104 ), "COUNCH", "WALL", SubResource( 105 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 150.393, 301.894 )
+graph_offset = Vector2( 150.393, -45.9618 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
@@ -782,18 +867,22 @@ MAXFALL = 450
 JUMPFORCE = -615
 runningVelocity = 750.0
 
-[node name="Sprite" type="Sprite" parent="." index="4"]
+[node name="Camera2D" parent="." index="4"]
+position = Vector2( 0, -64 )
+
+[node name="Sprite" type="Sprite" parent="." index="9"]
 position = Vector2( 0, -24 )
 scale = Vector2( 1.5, 1.5 )
 texture = SubResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="10"]
 position = Vector2( 0, -20 )
 shape = SubResource( 87 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
 anims/ATTACK = SubResource( 73 )
+anims/COUNCH = SubResource( 91 )
 anims/FALL = SubResource( 33 )
 anims/IDLE = SubResource( 3 )
 anims/JUMP = SubResource( 41 )
@@ -804,7 +893,7 @@ anims/STOPPING = SubResource( 64 )
 anims/TOP_SPEED = SubResource( 29 )
 anims/WALL = SubResource( 23 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="7"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="12"]
 tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
@@ -812,39 +901,19 @@ parameters/playback = SubResource( 14 )
 parameters/conditions/rodolfo = false
 parameters/RUN/TimeScale/scale = 3.0
 
-[node name="onWallTop" type="RayCast2D" parent="." index="8"]
-position = Vector2( 0, -40 )
-enabled = true
-cast_to = Vector2( 20, 0 )
-
-[node name="onWall" type="RayCast2D" parent="." index="9"]
-position = Vector2( 0, -24 )
-enabled = true
-cast_to = Vector2( 20, 0 )
-
-[node name="onWallBotton" type="RayCast2D" parent="." index="10"]
-position = Vector2( 0, -8 )
-enabled = true
-cast_to = Vector2( 20, 0 )
-
-[node name="attackPunch" type="Area2D" parent="." index="11"]
-visible = false
+[node name="attackPunch" type="Area2D" parent="." index="13"]
 position = Vector2( 24, -24 )
 collision_layer = 256
 collision_mask = 256
 monitoring = false
 script = ExtResource( 20 )
-__meta__ = {
-"_edit_group_": true
-}
 damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
-position = Vector2( -4, 0 )
 shape = SubResource( 86 )
 
-[node name="attackSpeed" type="Area2D" parent="." index="12"]
-position = Vector2( 40, -24 )
+[node name="attackSpeed" type="Area2D" parent="." index="14"]
+position = Vector2( 28, -20 )
 collision_layer = 256
 collision_mask = 256
 monitoring = false
@@ -856,10 +925,9 @@ __meta__ = {
 damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
-position = Vector2( -20, 4 )
 shape = SubResource( 85 )
 
-[node name="HitboxComponent" type="Area2D" parent="." index="13"]
+[node name="HitboxComponent" type="Area2D" parent="." index="15"]
 visible = false
 collision_layer = 0
 collision_mask = 1536
@@ -872,7 +940,7 @@ __meta__ = {
 position = Vector2( 0, -23 )
 shape = SubResource( 90 )
 
-[node name="StateMachine" type="Node" parent="." index="14"]
+[node name="StateMachine" type="Node" parent="." index="16"]
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
@@ -897,8 +965,7 @@ script = ExtResource( 12 )
 [node name="ATTACK" type="Node" parent="StateMachine" index="6"]
 script = ExtResource( 18 )
 
-[node name="Label" type="Label" parent="." index="15"]
-visible = false
+[node name="Label" type="Label" parent="." index="17"]
 margin_left = -24.0
 margin_top = -96.0
 margin_right = 24.0
@@ -907,14 +974,14 @@ text = "a"
 align = 1
 valign = 1
 
-[node name="speedEffect" type="Sprite" parent="." index="16"]
+[node name="speedEffect" type="Sprite" parent="." index="18"]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.792157 )
 position = Vector2( 8, -24 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 21 )
 
-[node name="runningParticle" type="CPUParticles2D" parent="." index="17"]
+[node name="runningParticle" type="CPUParticles2D" parent="." index="19"]
 material = SubResource( 88 )
 emitting = false
 amount = 6
@@ -932,8 +999,5 @@ anim_speed = 1.0
 __meta__ = {
 "_edit_group_": true
 }
-
-[node name="Camera2D" parent="." index="18"]
-position = Vector2( 0, -64 )
 
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_HitboxComponent_area_entered"]

@@ -28,7 +28,7 @@ func process_state():
 		elif not parent.onWall():
 			return "RUN"
 	
-	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
+	if parent.can_jump and Input.is_action_pressed("ui_jump"):
 		return "JUMP"
 	
 	return null
