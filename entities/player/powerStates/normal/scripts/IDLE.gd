@@ -2,7 +2,12 @@ extends State
 
 
 func enter(_lastState):
-	parent.playback.travel("IDLE")
+	if Input.is_action_pressed("ui_down"):
+		parent.playback.travel("COUNCH")
+		parent.setCollision(2)
+	else:
+		parent.playback.travel("IDLE")
+		parent.setCollision(0)
 	parent.running = false
 	
 
@@ -30,3 +35,9 @@ func process_state():
 func process_physics(_delta):
 	parent.idleBase()
 	
+	if Input.is_action_pressed("ui_down"):
+		parent.playback.travel("COUNCH")
+		parent.setCollision(2)
+	else:
+		parent.playback.travel("IDLE")
+		parent.setCollision(0)

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoCrawling.pxo-85defbd2d3f0c9af91cf3f29251c8694.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/lodrofoCrawling.pxo"
+dest_files=[ "res://.import/lodrofoCrawling.pxo-85defbd2d3f0c9af91cf3f29251c8694.stex" ]
+
+[params]
+

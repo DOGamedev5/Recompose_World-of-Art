@@ -17,7 +17,7 @@ var attackVelocity := 800.0
 onready var collisionShapes := [
 	{shape = RectangleShape2D.new(), position = Vector2(0, -20)},
 	{shape = CapsuleShape2D.new(), position = Vector2(0, -20)},
-	{shape = CapsuleShape2D.new(), position = Vector2(0, -18)}
+	{shape = RectangleShape2D.new(), position = Vector2(0, -8)}
 ]
 
 func _ready():
@@ -25,9 +25,7 @@ func _ready():
 	collisionShapes[0].shape.extents = Vector2(12, 20)
 	collisionShapes[1].shape.radius = 12
 	collisionShapes[1].shape.height = 17
-	
-	collisionShapes[2].shape.radius = 12
-	collisionShapes[2].shape.height = 12
+	collisionShapes[2].shape.extents = Vector2(12, 8)
 
 func _physics_process(delta):
 	stateMachine.processMachine(delta)
@@ -40,7 +38,7 @@ func _physics_process(delta):
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-	$Label.text = str(stateMachine.currentState)
+	$Label.text = str(attackComponents[1].position)
 	
 	$speedEffect.visible = running
 	if running:
@@ -65,6 +63,8 @@ func setFlipConfig():
 	
 	attackComponents[0].position.x = 24 *(1 - 2 * int(fliped))
 	attackComponents[1].position.x = 28 *(1 - 2 * int(fliped))
+#	attackComponents[1].position.x = 28 * motion.normalized().x
+#	attackComponents[1].position.y = (6 * motion.normalized().y) - 23
 	
 	$speedEffect.position.x = 20 * (1 - 2 * int(fliped))
 	$speedEffect.flip_h = fliped
@@ -90,3 +90,4 @@ func _on_HitboxComponent_area_entered(area):
 func setCollision(ID := 0):
 	currentCollision.set_shape(collisionShapes[ID].shape)
 	currentCollision.position = collisionShapes[ID].position
+	

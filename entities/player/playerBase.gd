@@ -2,7 +2,6 @@
 class_name PlayerBase extends KinematicBody2D
 
 onready var coyoteTimer = $coyoteTimer
-onready var floorDetect = $floorDetect
 onready var onWallRayCast = [$onWallTop, $onWall, $onWallBotton]
 
 export var ACCELERATION := 3
@@ -49,7 +48,7 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_bottom", limitsMax.y + 10)
 
 func gravityBase():
-	if not floorDetect.is_colliding():
+	if not onFloor().has(true):
 		motion.y += GRAVITY
 		if motion.y > MAXFALL:
 			motion.y = MAXFALL
@@ -99,10 +98,10 @@ func desaccelerate(MotionCord : float, input := .0):
 	
 	return MotionCord
 
-func jumpBase():
+func jumpBase(force = JUMPFORCE):
 	
 	if can_jump:
-		motion.y = JUMPFORCE
+		motion.y = force
 		coyote = false
 		can_jump = false
 	elif Input.is_action_just_released("ui_jump"):

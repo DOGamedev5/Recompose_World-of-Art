@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=138 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -23,11 +23,13 @@
 [ext_resource path="res://entities/player/sprites/top_speedEffect.pxo" type="Texture" id=21]
 [ext_resource path="res://gameplay/effects/effect1.pxo" type="Texture" id=22]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=23]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoCralwIdle.pxo" type="Texture" id=24]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoCounch.pxo" type="Texture" id=24]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoCrawling.pxo" type="Texture" id=25]
 
 [sub_resource type="AtlasTexture" id=2]
 
 [sub_resource type="RectangleShape2D" id=87]
+custom_solver_bias = 1.0
 extents = Vector2( 12, 20 )
 
 [sub_resource type="Animation" id=73]
@@ -134,6 +136,59 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=106]
+resource_name = "CRAWLING"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
 
 [sub_resource type="Animation" id=33]
@@ -367,6 +422,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("AnimationPlayer:root_node")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ NodePath("..") ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -641,6 +708,9 @@ animation = "ATTACK"
 [sub_resource type="AnimationNodeAnimation" id=92]
 animation = "COUNCH"
 
+[sub_resource type="AnimationNodeAnimation" id=107]
+animation = "CRAWLING"
+
 [sub_resource type="AnimationNodeAnimation" id=34]
 animation = "FALL"
 
@@ -810,30 +880,60 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=105]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=108]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=109]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=110]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=111]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=112]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=113]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=114]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=115]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=116]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=117]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=118]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=119]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=120]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=121]
+
 [sub_resource type="AnimationNodeStateMachine" id=13]
 states/ATTACK/node = SubResource( 74 )
-states/ATTACK/position = Vector2( 536.337, 481.089 )
+states/ATTACK/position = Vector2( 549.67, 73.4801 )
 states/COUNCH/node = SubResource( 92 )
-states/COUNCH/position = Vector2( 1137.39, 175.227 )
+states/COUNCH/position = Vector2( 1092.05, 263.227 )
+states/CRAWLING/node = SubResource( 107 )
+states/CRAWLING/position = Vector2( 833.393, 203.532 )
 states/FALL/node = SubResource( 34 )
-states/FALL/position = Vector2( 319.44, 367.06 )
+states/FALL/position = Vector2( 58.9031, 269.727 )
 states/IDLE/node = SubResource( 20 )
-states/IDLE/position = Vector2( 521.977, 112.049 )
+states/IDLE/position = Vector2( 977.124, 373.654 )
 states/JUMP/node = SubResource( 42 )
-states/JUMP/position = Vector2( 397.704, 245.818 )
+states/JUMP/position = Vector2( 85.704, 140.485 )
 states/RUN/node = SubResource( 17 )
-states/RUN/position = Vector2( 701.934, 229.418 )
+states/RUN/position = Vector2( 57.4621, 494.147 )
 states/SPLAT/node = SubResource( 50 )
-states/SPLAT/position = Vector2( 479.336, 620.298 )
+states/SPLAT/position = Vector2( 364.635, 648.298 )
 states/STOPPING/node = SubResource( 65 )
-states/STOPPING/position = Vector2( 921.899, 157.374 )
+states/STOPPING/position = Vector2( 485.899, 408.041 )
 states/TOP_SPEED/node = SubResource( 30 )
-states/TOP_SPEED/position = Vector2( 984.025, 413.855 )
+states/TOP_SPEED/position = Vector2( 848.025, 457.855 )
 states/WALL/node = SubResource( 24 )
-states/WALL/position = Vector2( 816.808, 666.662 )
-transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ), "TOP_SPEED", "RUN", SubResource( 31 ), "RUN", "TOP_SPEED", SubResource( 32 ), "IDLE", "FALL", SubResource( 35 ), "FALL", "IDLE", SubResource( 36 ), "FALL", "RUN", SubResource( 37 ), "RUN", "FALL", SubResource( 38 ), "TOP_SPEED", "FALL", SubResource( 39 ), "FALL", "TOP_SPEED", SubResource( 40 ), "JUMP", "FALL", SubResource( 43 ), "JUMP", "IDLE", SubResource( 44 ), "IDLE", "JUMP", SubResource( 45 ), "TOP_SPEED", "JUMP", SubResource( 46 ), "JUMP", "TOP_SPEED", SubResource( 47 ), "FALL", "JUMP", SubResource( 48 ), "WALL", "SPLAT", SubResource( 51 ), "SPLAT", "WALL", SubResource( 52 ), "TOP_SPEED", "SPLAT", SubResource( 53 ), "FALL", "SPLAT", SubResource( 54 ), "SPLAT", "FALL", SubResource( 55 ), "JUMP", "SPLAT", SubResource( 56 ), "SPLAT", "JUMP", SubResource( 57 ), "SPLAT", "RUN", SubResource( 58 ), "SPLAT", "TOP_SPEED", SubResource( 59 ), "RUN", "SPLAT", SubResource( 60 ), "TOP_SPEED", "WALL", SubResource( 61 ), "SPLAT", "IDLE", SubResource( 62 ), "IDLE", "SPLAT", SubResource( 63 ), "RUN", "STOPPING", SubResource( 66 ), "STOPPING", "RUN", SubResource( 67 ), "STOPPING", "TOP_SPEED", SubResource( 68 ), "TOP_SPEED", "STOPPING", SubResource( 69 ), "STOPPING", "IDLE", SubResource( 70 ), "STOPPING", "WALL", SubResource( 71 ), "STOPPING", "SPLAT", SubResource( 72 ), "RUN", "ATTACK", SubResource( 75 ), "ATTACK", "TOP_SPEED", SubResource( 76 ), "ATTACK", "RUN", SubResource( 77 ), "ATTACK", "STOPPING", SubResource( 78 ), "ATTACK", "IDLE", SubResource( 79 ), "IDLE", "ATTACK", SubResource( 80 ), "FALL", "ATTACK", SubResource( 81 ), "ATTACK", "FALL", SubResource( 82 ), "JUMP", "ATTACK", SubResource( 83 ), "ATTACK", "JUMP", SubResource( 84 ), "IDLE", "COUNCH", SubResource( 93 ), "COUNCH", "IDLE", SubResource( 94 ), "COUNCH", "RUN", SubResource( 95 ), "RUN", "COUNCH", SubResource( 96 ), "COUNCH", "TOP_SPEED", SubResource( 97 ), "TOP_SPEED", "COUNCH", SubResource( 98 ), "STOPPING", "COUNCH", SubResource( 99 ), "COUNCH", "STOPPING", SubResource( 100 ), "FALL", "COUNCH", SubResource( 101 ), "ATTACK", "COUNCH", SubResource( 102 ), "SPLAT", "COUNCH", SubResource( 103 ), "WALL", "COUNCH", SubResource( 104 ), "COUNCH", "WALL", SubResource( 105 ) ]
+states/WALL/position = Vector2( 724.808, 667.995 )
+transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ), "TOP_SPEED", "RUN", SubResource( 31 ), "RUN", "TOP_SPEED", SubResource( 32 ), "IDLE", "FALL", SubResource( 35 ), "FALL", "IDLE", SubResource( 36 ), "FALL", "RUN", SubResource( 37 ), "RUN", "FALL", SubResource( 38 ), "TOP_SPEED", "FALL", SubResource( 39 ), "FALL", "TOP_SPEED", SubResource( 40 ), "JUMP", "FALL", SubResource( 43 ), "JUMP", "IDLE", SubResource( 44 ), "IDLE", "JUMP", SubResource( 45 ), "TOP_SPEED", "JUMP", SubResource( 46 ), "JUMP", "TOP_SPEED", SubResource( 47 ), "FALL", "JUMP", SubResource( 48 ), "WALL", "SPLAT", SubResource( 51 ), "SPLAT", "WALL", SubResource( 52 ), "TOP_SPEED", "SPLAT", SubResource( 53 ), "FALL", "SPLAT", SubResource( 54 ), "SPLAT", "FALL", SubResource( 55 ), "JUMP", "SPLAT", SubResource( 56 ), "SPLAT", "JUMP", SubResource( 57 ), "SPLAT", "RUN", SubResource( 58 ), "SPLAT", "TOP_SPEED", SubResource( 59 ), "RUN", "SPLAT", SubResource( 60 ), "TOP_SPEED", "WALL", SubResource( 61 ), "SPLAT", "IDLE", SubResource( 62 ), "IDLE", "SPLAT", SubResource( 63 ), "RUN", "STOPPING", SubResource( 66 ), "STOPPING", "RUN", SubResource( 67 ), "STOPPING", "TOP_SPEED", SubResource( 68 ), "TOP_SPEED", "STOPPING", SubResource( 69 ), "STOPPING", "IDLE", SubResource( 70 ), "STOPPING", "WALL", SubResource( 71 ), "STOPPING", "SPLAT", SubResource( 72 ), "RUN", "ATTACK", SubResource( 75 ), "ATTACK", "TOP_SPEED", SubResource( 76 ), "ATTACK", "RUN", SubResource( 77 ), "ATTACK", "STOPPING", SubResource( 78 ), "ATTACK", "IDLE", SubResource( 79 ), "IDLE", "ATTACK", SubResource( 80 ), "FALL", "ATTACK", SubResource( 81 ), "ATTACK", "FALL", SubResource( 82 ), "JUMP", "ATTACK", SubResource( 83 ), "ATTACK", "JUMP", SubResource( 84 ), "IDLE", "COUNCH", SubResource( 93 ), "COUNCH", "IDLE", SubResource( 94 ), "COUNCH", "RUN", SubResource( 95 ), "RUN", "COUNCH", SubResource( 96 ), "COUNCH", "TOP_SPEED", SubResource( 97 ), "TOP_SPEED", "COUNCH", SubResource( 98 ), "STOPPING", "COUNCH", SubResource( 99 ), "COUNCH", "STOPPING", SubResource( 100 ), "FALL", "COUNCH", SubResource( 101 ), "ATTACK", "COUNCH", SubResource( 102 ), "SPLAT", "COUNCH", SubResource( 103 ), "WALL", "COUNCH", SubResource( 104 ), "COUNCH", "WALL", SubResource( 105 ), "COUNCH", "CRAWLING", SubResource( 108 ), "CRAWLING", "COUNCH", SubResource( 109 ), "TOP_SPEED", "CRAWLING", SubResource( 110 ), "STOPPING", "CRAWLING", SubResource( 111 ), "CRAWLING", "STOPPING", SubResource( 112 ), "WALL", "CRAWLING", SubResource( 113 ), "RUN", "CRAWLING", SubResource( 114 ), "CRAWLING", "RUN", SubResource( 115 ), "IDLE", "CRAWLING", SubResource( 116 ), "CRAWLING", "IDLE", SubResource( 117 ), "ATTACK", "CRAWLING", SubResource( 118 ), "CRAWLING", "ATTACK", SubResource( 119 ), "FALL", "CRAWLING", SubResource( 120 ), "CRAWLING", "FALL", SubResource( 121 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 150.393, -45.9618 )
+graph_offset = Vector2( -194.98, -7.45258 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
@@ -841,7 +941,7 @@ graph_offset = Vector2( 150.393, -45.9618 )
 extents = Vector2( 20, 8 )
 
 [sub_resource type="RectangleShape2D" id=85]
-extents = Vector2( 20, 12 )
+extents = Vector2( 28, 18 )
 
 [sub_resource type="RectangleShape2D" id=90]
 extents = Vector2( 16, 25 )
@@ -858,6 +958,7 @@ max_value = 200.0
 _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 119.325 ), 498.258, 0.0, 0, 0 ]
 
 [node name="playerNormal" instance=ExtResource( 2 )]
+collision/safe_margin = 1.0
 script = ExtResource( 1 )
 ACCELERATION = 6
 DESACCELERATION = 13
@@ -867,8 +968,20 @@ MAXFALL = 450
 JUMPFORCE = -615
 runningVelocity = 750.0
 
+[node name="flooDetectBack" parent="." index="1"]
+position = Vector2( -12, 0 )
+
+[node name="flooDetectFont" parent="." index="3"]
+position = Vector2( 12, 0 )
+
 [node name="Camera2D" parent="." index="4"]
 position = Vector2( 0, -64 )
+
+[node name="onWallTop" parent="." index="6"]
+position = Vector2( 0, -32 )
+
+[node name="onWall" parent="." index="7"]
+position = Vector2( 0, -20 )
 
 [node name="Sprite" type="Sprite" parent="." index="9"]
 position = Vector2( 0, -24 )
@@ -883,6 +996,7 @@ shape = SubResource( 87 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
 anims/ATTACK = SubResource( 73 )
 anims/COUNCH = SubResource( 91 )
+anims/CRAWLING = SubResource( 106 )
 anims/FALL = SubResource( 33 )
 anims/IDLE = SubResource( 3 )
 anims/JUMP = SubResource( 41 )
@@ -902,6 +1016,7 @@ parameters/conditions/rodolfo = false
 parameters/RUN/TimeScale/scale = 3.0
 
 [node name="attackPunch" type="Area2D" parent="." index="13"]
+visible = false
 position = Vector2( 24, -24 )
 collision_layer = 256
 collision_mask = 256
@@ -913,18 +1028,15 @@ damage = 1
 shape = SubResource( 86 )
 
 [node name="attackSpeed" type="Area2D" parent="." index="14"]
-position = Vector2( 28, -20 )
+position = Vector2( 28, -23 )
 collision_layer = 256
 collision_mask = 256
 monitoring = false
-priority = 1.0
 script = ExtResource( 20 )
-__meta__ = {
-"_edit_group_": true
-}
 damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
+position = Vector2( 0, 3 )
 shape = SubResource( 85 )
 
 [node name="HitboxComponent" type="Area2D" parent="." index="15"]

@@ -3,13 +3,25 @@ extends State
 
 
 func enter(_lastState):
-	if parent.running:
-		parent.playback.travel("TOP_SPEED")
+	
+#	parent.setCollision(1)
+	if not Input.is_action_pressed("ui_down"):
+		if parent.running:
+			parent.playback.travel("TOP_SPEED")
+		else:
+			parent.playback.travel("JUMP")
+		
+		parent.jumpBase()
+		parent.setCollision(0)
 	else:
-		parent.playback.travel("JUMP")
+		parent.playback.travel("COUNCH")
+		parent.jumpBase(-400)
+		parent.setCollision(2)
 	
 	if parent.running and abs(parent.motion.x) <= 450:
 		parent.running = false
+	
+
 
 func process_state():
 	if parent.onWall() and abs(parent.motion.x) > 200:
@@ -34,17 +46,27 @@ func process_state():
 	return null
 
 func process_physics(_delta):
-	parent.jumpBase()
+	
 	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
 		parent.running = false
 	
-	if parent.running:
-		parent.playback.travel("TOP_SPEED")
+	if not Input.is_action_pressed("ui_down"):
+		var maxSpeed : float
+		if parent.running:
+			parent.playback.travel("TOP_SPEED")
+			maxSpeed = parent.runningVelocity
+		else:
+			parent.playback.travel("JUMP")
+			maxSpeed = parent.MAXSPEED
+		
+		parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
+		parent.setCollision(0)
 	else:
-		parent.playback.travel("JUMP")
+		parent.playback.travel("COUNCH")
+		parent.motion.x = parent.moveBase("X", parent.motion.x, 150)
+		parent.setCollision(2)
 	
-	var maxSpeed = parent.MAXSPEED
-	if parent.running:
-		maxSpeed = parent.runningVelocity
-	parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
 	
+
+func exit():
+	parent.setCollision(0)
