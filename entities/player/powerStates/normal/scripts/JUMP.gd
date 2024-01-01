@@ -14,7 +14,7 @@ func enter(_lastState):
 		parent.jumpBase()
 		parent.setCollision(0)
 	else:
-		parent.playback.travel("COUNCH")
+		parent.playback.travel("COUNCHJUMP")
 		parent.jumpBase(-400)
 		parent.setCollision(2)
 	
@@ -61,10 +61,12 @@ func process_physics(_delta):
 		
 		parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
 		parent.setCollision(0)
+		parent.jumpBase()
 	else:
-		parent.playback.travel("COUNCH")
-		parent.motion.x = parent.moveBase("X", parent.motion.x, 150)
+		parent.playback.travel("COUNCHJUMP")
+		parent.motion.x = parent.moveBase("X", parent.motion.x, 180)
 		parent.setCollision(2)
+		parent.jumpBase(-400)
 	
 	
 

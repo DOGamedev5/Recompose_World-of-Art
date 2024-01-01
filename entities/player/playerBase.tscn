@@ -40,12 +40,17 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="collideUp" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
+enabled = true
+cast_to = Vector2( 0, -40 )
+
 [node name="onWallTop" type="RayCast2D" parent="."]
 position = Vector2( 0, -40 )
 enabled = true
 cast_to = Vector2( 20, 0 )
 
-[node name="onWall" type="RayCast2D" parent="."]
+[node name="onWallMid" type="RayCast2D" parent="."]
 position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 20, 0 )

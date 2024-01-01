@@ -2,7 +2,8 @@
 class_name PlayerBase extends KinematicBody2D
 
 onready var coyoteTimer = $coyoteTimer
-onready var onWallRayCast = [$onWallTop, $onWall, $onWallBotton]
+onready var onWallRayCast = [$onWallTop, $onWallMid, $onWallBotton]
+onready var collideUPCast = $collideUp
 
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
@@ -125,3 +126,9 @@ func onFloor() -> Array:
 		$floorDetect.is_colliding(),
 		$flooDetectFont.is_colliding()
 	]
+
+func collideUp():
+	if collideUPCast.is_colliding():
+		var collision = collideUPCast.get_collision_point()
+	
+		print(floor(to_local(collision).y))

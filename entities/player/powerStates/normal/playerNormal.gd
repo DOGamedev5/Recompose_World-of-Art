@@ -15,9 +15,9 @@ var attackTime := 20.0
 var attackVelocity := 800.0
 
 onready var collisionShapes := [
-	{shape = RectangleShape2D.new(), position = Vector2(0, -20)},
-	{shape = CapsuleShape2D.new(), position = Vector2(0, -20)},
-	{shape = RectangleShape2D.new(), position = Vector2(0, -8)}
+	{shape = RectangleShape2D.new(), position = Vector2(0, -20), onWall = [true, true, true]},
+	{shape = CapsuleShape2D.new(), position = Vector2(0, -20), onWall = [true, true, true]},
+	{shape = RectangleShape2D.new(), position = Vector2(0, -8), onWall = [false, false, true]}
 ]
 
 func _ready():
@@ -44,6 +44,7 @@ func _physics_process(delta):
 	if running:
 		$speedEffect.modulate.a = max((abs(motion.x) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
 		
+	collideUp()
 	
 	if canAttackTimer > 0:
 		canAttackTimer -= delta
@@ -90,4 +91,6 @@ func _on_HitboxComponent_area_entered(area):
 func setCollision(ID := 0):
 	currentCollision.set_shape(collisionShapes[ID].shape)
 	currentCollision.position = collisionShapes[ID].position
+	for ray in range(3):
+		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
 	

@@ -42,7 +42,7 @@ func process_physics(_delta):
 	var input := Input.get_axis("ui_left", "ui_right")
 	
 	if Input.is_action_pressed("ui_down"):
-		parent.motion.x = parent.moveBase("X", parent.motion.x, 150)
+		parent.motion.x = parent.moveBase("X", parent.motion.x, 180)
 		parent.playback.travel("CRAWLING")
 		particle.emitting = false
 		parent.setCollision(2)
