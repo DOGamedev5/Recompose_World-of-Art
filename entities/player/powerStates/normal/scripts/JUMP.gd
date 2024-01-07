@@ -5,7 +5,7 @@ extends State
 func enter(_lastState):
 	
 #	parent.setCollision(1)
-	if not Input.is_action_pressed("ui_down"):
+	if not parent.counched:
 		if parent.running:
 			parent.playback.travel("TOP_SPEED")
 		else:
@@ -50,7 +50,7 @@ func process_physics(_delta):
 	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
 		parent.running = false
 	
-	if not Input.is_action_pressed("ui_down"):
+	if not parent.counched:
 		var maxSpeed : float
 		if parent.running:
 			parent.playback.travel("TOP_SPEED")
@@ -62,11 +62,11 @@ func process_physics(_delta):
 		parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
 		parent.setCollision(0)
 		parent.jumpBase()
-	else:
+	elif not parent.running:
 		parent.playback.travel("COUNCHJUMP")
-		parent.motion.x = parent.moveBase("X", parent.motion.x, 180)
+		parent.motion.x = parent.moveBase("X", parent.motion.x, 240)
 		parent.setCollision(2)
-		parent.jumpBase(-400)
+		parent.jumpBase(-535)
 	
 	
 

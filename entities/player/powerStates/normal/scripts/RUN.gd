@@ -4,7 +4,7 @@ extends State
 onready var particle = $"../../runningParticle"
 
 func enter(_lastState):
-	if Input.is_action_pressed("ui_down"):
+	if parent.counched:
 		parent.playback.travel("CRAWLING")
 		particle.emitting = false
 	else:
@@ -22,7 +22,7 @@ func process_state():
 	if parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0 :
 		return "IDLE"
 		
-	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
+	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
 	elif not parent.onFloor().has(true):
@@ -31,7 +31,7 @@ func process_state():
 	elif Input.is_action_pressed("run"):
 		return "TOP_SPEED"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
+	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch():
 		return "ATTACK"
 	
 	return null
@@ -41,7 +41,7 @@ func process_physics(_delta):
 	
 	var input := Input.get_axis("ui_left", "ui_right")
 	
-	if Input.is_action_pressed("ui_down"):
+	if parent.counched:
 		parent.motion.x = parent.moveBase("X", parent.motion.x, 180)
 		parent.playback.travel("CRAWLING")
 		particle.emitting = false

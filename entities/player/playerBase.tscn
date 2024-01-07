@@ -3,6 +3,7 @@
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
 
 [node name="playerBase" type="KinematicBody2D" groups=["player"]]
+collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="coyoteTimer" type="Timer" parent="."]
@@ -43,21 +44,21 @@ __meta__ = {
 [node name="collideUp" type="RayCast2D" parent="."]
 position = Vector2( 0, -8 )
 enabled = true
-cast_to = Vector2( 0, -40 )
+cast_to = Vector2( 0, -56 )
 
 [node name="onWallTop" type="RayCast2D" parent="."]
 position = Vector2( 0, -40 )
 enabled = true
-cast_to = Vector2( 20, 0 )
+cast_to = Vector2( 28, 0 )
 
 [node name="onWallMid" type="RayCast2D" parent="."]
 position = Vector2( 0, -24 )
 enabled = true
-cast_to = Vector2( 20, 0 )
+cast_to = Vector2( 28, 0 )
 
 [node name="onWallBotton" type="RayCast2D" parent="."]
 position = Vector2( 0, -8 )
 enabled = true
-cast_to = Vector2( 20, 0 )
+cast_to = Vector2( 28, 0 )
 
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]

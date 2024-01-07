@@ -14,10 +14,11 @@ export var JUMPFORCE := -400
 
 var currentState := "IDLE"
 var motion := Vector2.ZERO
-var can_jump := true
+var canJump := true
 var coyote := true
 var fliped := false
 var stunned := false
+var counched := false
 
 var powers := {
 	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
@@ -31,17 +32,19 @@ var inputCord := {
 
 func _physics_process(_delta):
 	if not stunned:
-			
+		if collideUp() > -33 or Input.is_action_pressed("ui_down"):
+			counched = true
+		else:
+			counched = false
+		
 		if motion.x != 0:
 			fliped = motion.x < 0
 		elif Input.get_axis("ui_left", "ui_right"):
 			fliped = Input.get_axis("ui_left", "ui_right") < 0
 			
 		for ray in onWallRayCast: 
-#			ray.cast_to.x = clamp(abs(motion.x), 4, 20) * Input.get_axis("ui_left", "ui_right")
-			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right")
-			
-		 
+			ray.cast_to.x = 28 * Input.get_axis("ui_left", "ui_right")
+					 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_left", limitsMin.x - 10)
 	$Camera2D.set("limit_top", limitsMin.y - 10)
@@ -75,7 +78,7 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 	
 
 	MotionCord = desaccelerate(MotionCord, input)
-
+		
 	if input > 0:
 		if MotionCord <= maxSpeed:
 			MotionCord += ACCELERATION
@@ -101,23 +104,23 @@ func desaccelerate(MotionCord : float, input := .0):
 
 func jumpBase(force = JUMPFORCE):
 	
-	if can_jump:
+	if canJump and couldUncounch():
 		motion.y = force
 		coyote = false
-		can_jump = false
+		canJump = false
 	elif Input.is_action_just_released("ui_jump"):
 		motion.y /= 2
 
 func _coyoteTimer():
 	if onFloor().has(true):
-		can_jump = true
+		canJump = true
 		coyote = true
-	elif can_jump and coyote:
+	elif canJump and coyote:
 		coyoteTimer.start()
 		coyote = false
 
 func coyoteTimerTimeout():
-	can_jump = false
+	canJump = false
 
 
 func onFloor() -> Array:
@@ -131,4 +134,12 @@ func collideUp():
 	if collideUPCast.is_colliding():
 		var collision = collideUPCast.get_collision_point()
 	
-		print(floor(to_local(collision).y))
+		return floor(to_local(collision).y)
+	
+	return -65
+
+func couldUncounch():
+	if counched:
+		return collideUp() < -32
+	
+	return collideUp() < -64 # -32 < -31

@@ -30,7 +30,7 @@
 
 [sub_resource type="RectangleShape2D" id=87]
 custom_solver_bias = 1.0
-extents = Vector2( 12, 20 )
+extents = Vector2( 16, 28 )
 
 [sub_resource type="Animation" id=122]
 length = 0.001
@@ -49,7 +49,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=123]
 resource_name = "speedEffect"
-length = 0.4
+length = 0.25
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -59,7 +59,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
@@ -264,7 +264,6 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=106]
 resource_name = "CRAWLING"
-length = 0.9
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -884,7 +883,6 @@ animation = "WALL"
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
-advance_condition = "rodolfo"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
@@ -1067,18 +1065,18 @@ states/WALL/node = SubResource( 24 )
 states/WALL/position = Vector2( 724.808, 667.995 )
 transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ), "TOP_SPEED", "RUN", SubResource( 31 ), "RUN", "TOP_SPEED", SubResource( 32 ), "IDLE", "FALL", SubResource( 35 ), "FALL", "IDLE", SubResource( 36 ), "FALL", "RUN", SubResource( 37 ), "RUN", "FALL", SubResource( 38 ), "TOP_SPEED", "FALL", SubResource( 39 ), "FALL", "TOP_SPEED", SubResource( 40 ), "JUMP", "FALL", SubResource( 43 ), "JUMP", "IDLE", SubResource( 44 ), "IDLE", "JUMP", SubResource( 45 ), "TOP_SPEED", "JUMP", SubResource( 46 ), "JUMP", "TOP_SPEED", SubResource( 47 ), "FALL", "JUMP", SubResource( 48 ), "WALL", "SPLAT", SubResource( 51 ), "SPLAT", "WALL", SubResource( 52 ), "TOP_SPEED", "SPLAT", SubResource( 53 ), "FALL", "SPLAT", SubResource( 54 ), "SPLAT", "FALL", SubResource( 55 ), "JUMP", "SPLAT", SubResource( 56 ), "SPLAT", "JUMP", SubResource( 57 ), "SPLAT", "RUN", SubResource( 58 ), "SPLAT", "TOP_SPEED", SubResource( 59 ), "RUN", "SPLAT", SubResource( 60 ), "TOP_SPEED", "WALL", SubResource( 61 ), "SPLAT", "IDLE", SubResource( 62 ), "IDLE", "SPLAT", SubResource( 63 ), "RUN", "STOPPING", SubResource( 66 ), "STOPPING", "RUN", SubResource( 67 ), "STOPPING", "TOP_SPEED", SubResource( 68 ), "TOP_SPEED", "STOPPING", SubResource( 69 ), "STOPPING", "IDLE", SubResource( 70 ), "STOPPING", "WALL", SubResource( 71 ), "STOPPING", "SPLAT", SubResource( 72 ), "RUN", "ATTACK", SubResource( 75 ), "ATTACK", "TOP_SPEED", SubResource( 76 ), "ATTACK", "RUN", SubResource( 77 ), "ATTACK", "STOPPING", SubResource( 78 ), "ATTACK", "IDLE", SubResource( 79 ), "IDLE", "ATTACK", SubResource( 80 ), "FALL", "ATTACK", SubResource( 81 ), "ATTACK", "FALL", SubResource( 82 ), "JUMP", "ATTACK", SubResource( 83 ), "ATTACK", "JUMP", SubResource( 84 ), "IDLE", "COUNCH", SubResource( 93 ), "COUNCH", "IDLE", SubResource( 94 ), "COUNCH", "RUN", SubResource( 95 ), "RUN", "COUNCH", SubResource( 96 ), "COUNCH", "TOP_SPEED", SubResource( 97 ), "TOP_SPEED", "COUNCH", SubResource( 98 ), "STOPPING", "COUNCH", SubResource( 99 ), "COUNCH", "STOPPING", SubResource( 100 ), "FALL", "COUNCH", SubResource( 101 ), "ATTACK", "COUNCH", SubResource( 102 ), "SPLAT", "COUNCH", SubResource( 103 ), "WALL", "COUNCH", SubResource( 104 ), "COUNCH", "WALL", SubResource( 105 ), "COUNCH", "CRAWLING", SubResource( 108 ), "CRAWLING", "COUNCH", SubResource( 109 ), "TOP_SPEED", "CRAWLING", SubResource( 110 ), "STOPPING", "CRAWLING", SubResource( 111 ), "CRAWLING", "STOPPING", SubResource( 112 ), "WALL", "CRAWLING", SubResource( 113 ), "RUN", "CRAWLING", SubResource( 114 ), "CRAWLING", "RUN", SubResource( 115 ), "IDLE", "CRAWLING", SubResource( 116 ), "CRAWLING", "IDLE", SubResource( 117 ), "ATTACK", "CRAWLING", SubResource( 118 ), "CRAWLING", "ATTACK", SubResource( 119 ), "FALL", "CRAWLING", SubResource( 120 ), "CRAWLING", "FALL", SubResource( 121 ), "COUNCH", "COUNCHJUMP", SubResource( 126 ), "COUNCHJUMP", "COUNCHFALL", SubResource( 129 ), "COUNCHFALL", "COUNCH", SubResource( 130 ), "COUNCHFALL", "CRAWLING", SubResource( 131 ), "CRAWLING", "COUNCHJUMP", SubResource( 132 ), "FALL", "COUNCHFALL", SubResource( 133 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 501.585, 84.0486 )
+graph_offset = Vector2( -103.149, 148.414 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=14]
 
 [sub_resource type="RectangleShape2D" id=86]
-extents = Vector2( 20, 8 )
+extents = Vector2( 35, 10 )
 
 [sub_resource type="RectangleShape2D" id=85]
-extents = Vector2( 28, 18 )
+extents = Vector2( 40, 24 )
 
 [sub_resource type="RectangleShape2D" id=90]
-extents = Vector2( 16, 25 )
+extents = Vector2( 16, 28 )
 
 [sub_resource type="CanvasItemMaterial" id=88]
 particles_animation = true
@@ -1094,13 +1092,13 @@ _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 
 [node name="playerNormal" instance=ExtResource( 2 )]
 collision/safe_margin = 1.0
 script = ExtResource( 1 )
-ACCELERATION = 6
-DESACCELERATION = 13
-GRAVITY = 15
-MAXSPEED = 450
-MAXFALL = 450
-JUMPFORCE = -615
-runningVelocity = 750.0
+ACCELERATION = 8
+DESACCELERATION = 18
+GRAVITY = 20
+MAXSPEED = 600
+MAXFALL = 600
+JUMPFORCE = -820
+runningVelocity = 1000.0
 
 [node name="flooDetectBack" parent="." index="1"]
 position = Vector2( -12, 0 )
@@ -1111,23 +1109,29 @@ position = Vector2( 12, 0 )
 [node name="Camera2D" parent="." index="4"]
 position = Vector2( 0, -64 )
 
-[node name="Sprite" type="Sprite" parent="." index="8"]
-position = Vector2( 0, -24 )
-scale = Vector2( 1.5, 1.5 )
+[node name="onWallTop" parent="." index="7"]
+position = Vector2( 0, -48 )
+
+[node name="onWallMid" parent="." index="8"]
+position = Vector2( 0, -28 )
+
+[node name="Sprite" type="Sprite" parent="." index="10"]
+position = Vector2( 0, -32 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="9"]
-position = Vector2( 0, -20 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="11"]
+position = Vector2( 0, -28 )
 shape = SubResource( 87 )
 
-[node name="speedAnimation" type="AnimationPlayer" parent="." index="10"]
+[node name="speedAnimation" type="AnimationPlayer" parent="." index="12"]
 root_node = NodePath("../CollisionShape2D")
 autoplay = "speedEffect"
 anims/RESET = SubResource( 122 )
 anims/speedEffect = SubResource( 123 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
 anims/ATTACK = SubResource( 73 )
 anims/COUNCH = SubResource( 91 )
 anims/COUNCHFALL = SubResource( 127 )
@@ -1143,17 +1147,15 @@ anims/STOPPING = SubResource( 64 )
 anims/TOP_SPEED = SubResource( 29 )
 anims/WALL = SubResource( 23 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="12"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="14"]
 tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 14 )
-parameters/conditions/rodolfo = false
-parameters/RUN/TimeScale/scale = 3.0
+parameters/RUN/TimeScale/scale = 1.0
 
-[node name="attackPunch" type="Area2D" parent="." index="13"]
-visible = false
-position = Vector2( 24, -24 )
+[node name="attackPunch" type="Area2D" parent="." index="15"]
+position = Vector2( 35, -31 )
 collision_layer = 256
 collision_mask = 256
 monitoring = false
@@ -1163,8 +1165,8 @@ damage = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
 shape = SubResource( 86 )
 
-[node name="attackSpeed" type="Area2D" parent="." index="14"]
-position = Vector2( 28, -23 )
+[node name="attackSpeed" type="Area2D" parent="." index="16"]
+position = Vector2( 40, -23 )
 collision_layer = 256
 collision_mask = 256
 monitoring = false
@@ -1172,11 +1174,12 @@ script = ExtResource( 20 )
 damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
-position = Vector2( 0, 3 )
+position = Vector2( 0, -5 )
 shape = SubResource( 85 )
 
-[node name="HitboxComponent" type="Area2D" parent="." index="15"]
+[node name="HitboxComponent" type="Area2D" parent="." index="17"]
 visible = false
+position = Vector2( 0, -2 )
 collision_layer = 0
 collision_mask = 1536
 script = ExtResource( 23 )
@@ -1185,10 +1188,10 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
-position = Vector2( 0, -23 )
+position = Vector2( 0, -26 )
 shape = SubResource( 90 )
 
-[node name="StateMachine" type="Node" parent="." index="16"]
+[node name="StateMachine" type="Node" parent="." index="18"]
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
@@ -1213,7 +1216,10 @@ script = ExtResource( 12 )
 [node name="ATTACK" type="Node" parent="StateMachine" index="6"]
 script = ExtResource( 18 )
 
-[node name="Label" type="Label" parent="." index="17"]
+[node name="a" type="Node2D" parent="." index="19"]
+z_index = 4
+
+[node name="Label" type="Label" parent="a" index="0"]
 margin_left = -24.0
 margin_top = -96.0
 margin_right = 24.0
@@ -1222,16 +1228,15 @@ text = "a"
 align = 1
 valign = 1
 
-[node name="speedEffect" type="Sprite" parent="." index="18"]
-visible = false
+[node name="speedEffect" type="Sprite" parent="." index="20"]
 self_modulate = Color( 1, 1, 1, 0.792157 )
-position = Vector2( 8, -24 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 28, -32 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 21 )
 hframes = 5
 frame = 4
 
-[node name="runningParticle" type="CPUParticles2D" parent="." index="19"]
+[node name="runningParticle" type="CPUParticles2D" parent="." index="21"]
 material = SubResource( 88 )
 emitting = false
 amount = 6

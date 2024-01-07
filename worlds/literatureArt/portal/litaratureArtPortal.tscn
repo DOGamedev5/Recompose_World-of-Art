@@ -4,7 +4,7 @@
 [ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 72, 60 )
+extents = Vector2( 96, 80 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -42,7 +42,7 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 
 [node name="LiteratureArtPortal" type="Sprite" parent="."]
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 2, 2 )
 z_index = -1
 texture = ExtResource( 1 )
 hframes = 6

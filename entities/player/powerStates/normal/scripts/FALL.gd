@@ -2,22 +2,22 @@ extends State
 
 
 func enter(_lastState):
-	if not Input.is_action_pressed("ui_down"):
+	if not parent.counched:
 		if parent.running:
 			parent.playback.travel("TOP_SPEED")
 		else:
 			parent.playback.travel("FALL")
 		
 		parent.setCollision(1)
-	else:
+	elif not parent.running:
 		parent.playback.travel("COUNCHFALL")
 		parent.setCollision(2)
 
 func process_state():
-	if parent.onWall() and abs(parent.motion.x) > 200:
+	if parent.onWall() and abs(parent.motion.x) > 300:
 		return "WALL"
 	
-	if parent.can_jump and Input.is_action_pressed("ui_jump"):
+	if parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
 	elif parent.onFloor().has(true):
@@ -38,7 +38,7 @@ func process_physics(_delta):
 	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
 		parent.running = false
 	
-	if not Input.is_action_pressed("ui_down"):
+	if not parent.counched:
 		var maxSpeed : float
 		if parent.running:
 			parent.playback.travel("TOP_SPEED")
@@ -49,7 +49,7 @@ func process_physics(_delta):
 		
 		parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
 		parent.setCollision(1)
-	else:
+	elif not parent.running:
 		parent.playback.travel("COUNCHFALL")
 		parent.motion.x = parent.moveBase("X", parent.motion.x, 180)
 		parent.setCollision(2)

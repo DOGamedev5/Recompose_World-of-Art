@@ -18,7 +18,7 @@ func process_state():
 	if parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0 :
 		return "IDLE"
 		
-	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
+	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
 	elif not parent.onFloor().has(true):

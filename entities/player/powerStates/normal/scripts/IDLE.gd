@@ -2,7 +2,7 @@ extends State
 
 
 func enter(_lastState):
-	if Input.is_action_pressed("ui_down"):
+	if parent.counched:
 		parent.playback.travel("COUNCH")
 		parent.setCollision(2)
 	else:
@@ -21,13 +21,13 @@ func process_state():
 		
 		return "RUN"
 
-	elif parent.can_jump and Input.is_action_pressed("ui_jump"):
+	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
 	elif not parent.onFloor().has(true):
 		return "FALL"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
+	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch():
 		return "ATTACK"
 
 	return null
@@ -35,7 +35,7 @@ func process_state():
 func process_physics(_delta):
 	parent.idleBase()
 	
-	if Input.is_action_pressed("ui_down"):
+	if parent.counched:
 		parent.playback.travel("COUNCH")
 		parent.setCollision(2)
 	else:

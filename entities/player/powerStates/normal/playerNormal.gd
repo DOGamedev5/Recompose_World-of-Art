@@ -15,17 +15,17 @@ var attackTime := 20.0
 var attackVelocity := 800.0
 
 onready var collisionShapes := [
-	{shape = RectangleShape2D.new(), position = Vector2(0, -20), onWall = [true, true, true]},
-	{shape = CapsuleShape2D.new(), position = Vector2(0, -20), onWall = [true, true, true]},
-	{shape = RectangleShape2D.new(), position = Vector2(0, -8), onWall = [false, false, true]}
+	{shape = RectangleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
+	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
+	{shape = RectangleShape2D.new(), position = Vector2(0, -12), onWall = [false, false, true]}
 ]
 
 func _ready():
 	stateMachine.init(self, currentState)
-	collisionShapes[0].shape.extents = Vector2(12, 20)
-	collisionShapes[1].shape.radius = 12
-	collisionShapes[1].shape.height = 17
-	collisionShapes[2].shape.extents = Vector2(12, 8)
+	collisionShapes[0].shape.extents = Vector2(16, 28)
+	collisionShapes[1].shape.radius = 16
+	collisionShapes[1].shape.height = 24
+	collisionShapes[2].shape.extents = Vector2(16, 12)
 
 func _physics_process(delta):
 	stateMachine.processMachine(delta)
@@ -38,14 +38,12 @@ func _physics_process(delta):
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-	$Label.text = str(attackComponents[1].position)
+	$a/Label.text = str(collideUp())
 	
 	$speedEffect.visible = running
 	if running:
 		$speedEffect.modulate.a = max((abs(motion.x) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
 		
-	collideUp()
-	
 	if canAttackTimer > 0:
 		canAttackTimer -= delta
 		if canAttackTimer < 0:
@@ -62,12 +60,12 @@ func setFlipConfig():
 	if stunned:
 		return
 	
-	attackComponents[0].position.x = 24 *(1 - 2 * int(fliped))
-	attackComponents[1].position.x = 28 *(1 - 2 * int(fliped))
-#	attackComponents[1].position.x = 28 * motion.normalized().x
-#	attackComponents[1].position.y = (6 * motion.normalized().y) - 23
+	attackComponents[0].position.x = 35 * (1 - 2 * int(fliped))
+#	attackComponents[1].position.x = 40 * (1 - 2 * int(fliped))
+	attackComponents[1].position.x = 40 * motion.normalized().x
+	attackComponents[1].position.y = (9 * motion.normalized().y) - 23
 	
-	$speedEffect.position.x = 20 * (1 - 2 * int(fliped))
+	$speedEffect.position.x = 28 * (1 - 2 * int(fliped))
 	$speedEffect.flip_h = fliped
 	
 	sprite.flip_h = fliped
@@ -75,7 +73,7 @@ func setFlipConfig():
 func setAttackSpeed():
 	if running:
 		attackComponents[1].monitoring = true
-		if abs(motion.x) < 550:
+		if abs(motion.x) < 725:
 			attackComponents[1].setDamage(1)
 		else:
 			attackComponents[1].setDamage(2)
