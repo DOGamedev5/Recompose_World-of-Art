@@ -10,7 +10,7 @@ func _ready():
 
 func _enterHitbox(area):
 	if area is HitboxComponent:
-		area.emit_signal("HitboxDamaged", damage)
+		area.emit_signal("HitboxDamaged", damage, self)
 
 func setDamage(newDamage):
 	damage = newDamage

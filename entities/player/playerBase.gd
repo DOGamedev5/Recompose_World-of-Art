@@ -12,6 +12,8 @@ export var MAXSPEED := 350
 export var MAXFALL := 300
 export var JUMPFORCE := -400
 
+signal damaged(direction)
+
 var currentState := "IDLE"
 var motion := Vector2.ZERO
 var canJump := true
@@ -119,10 +121,6 @@ func _coyoteTimer():
 		coyoteTimer.start()
 		coyote = false
 
-func coyoteTimerTimeout():
-	canJump = false
-
-
 func onFloor() -> Array:
 	return [
 		$flooDetectBack.is_colliding(),
@@ -143,3 +141,14 @@ func couldUncounch():
 		return collideUp() < -32
 	
 	return collideUp() < -64 # -32 < -31
+
+func coyoteTimerTimeout():
+	canJump = false
+
+func hitboxTriggered(damage, area):
+	if area is ChangeRoom:
+		area.changeRoom()
+	elif area is AttackComponent and area.is_in_group("enemy"):
+		var direction := sign(area.position.x - position.x)
+		emit_signal("damaged", direction)
+		

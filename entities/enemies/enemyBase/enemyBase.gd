@@ -4,7 +4,7 @@ export(NodePath) var visionArea
 export var flipArea := false
 
 export var ACCELERATION := 3
-export var DESACCELERATION := 10
+export var DESACCELERATION := 20
 export var GRAVITY := 10
 export var MAXSPEED := 350
 export var MAXFALL := 300
@@ -39,10 +39,16 @@ func _exitedVision(body):
 		emit_signal("exitedVision", body)
 
 
-func moveBase(input : Vector2, MotionCord : Vector2, maxSpeed : float = MAXSPEED):
+func moveBase(input : int, MotionCord : float, maxSpeed : float = MAXSPEED):
 	MotionCord += input * ACCELERATION
-	if MotionCord.x:
-		if abs(MotionCord.x) > maxSpeed:
-			MotionCord.x = maxSpeed * sign(MotionCord.x)
+	
+	if abs(MotionCord) > maxSpeed:
+		MotionCord = maxSpeed * sign(MotionCord) 
+	
+	if sign(MotionCord) != input:
+		var saveSign = sign(MotionCord)
+		MotionCord -=  DESACCELERATION * saveSign
+		if (MotionCord != 0 and sign(MotionCord) != saveSign) and input == 0:
+			MotionCord = 0
 	
 	return MotionCord

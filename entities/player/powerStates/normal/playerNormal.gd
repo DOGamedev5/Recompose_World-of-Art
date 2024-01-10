@@ -6,6 +6,7 @@ onready var stateMachine = $StateMachine
 onready var playback = animation["parameters/playback"]
 onready var attackComponents = [$attackPunch, $attackSpeed]
 onready var currentCollision = $CollisionShape2D
+onready var shieldTimer = $shield
 
 export(float) var runningVelocity := 550.0
 
@@ -13,6 +14,8 @@ var running := false
 var canAttackTimer := .0
 var attackTime := 20.0
 var attackVelocity := 800.0
+
+
 
 onready var collisionShapes := [
 	{shape = RectangleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
@@ -38,7 +41,7 @@ func _physics_process(delta):
 	
 	motion = move_and_slide(motion, Vector2.UP)
 	
-	$a/Label.text = str(collideUp())
+#	$a/Label.text = str(collideUp())
 	
 	$speedEffect.visible = running
 	if running:
@@ -61,8 +64,8 @@ func setFlipConfig():
 		return
 	
 	attackComponents[0].position.x = 35 * (1 - 2 * int(fliped))
-#	attackComponents[1].position.x = 40 * (1 - 2 * int(fliped))
-	attackComponents[1].position.x = 40 * motion.normalized().x
+	attackComponents[1].position.x = 40 * (1 - 2 * int(fliped))
+#	attackComponents[1].position.x = 40 * motion.normalized().x
 	attackComponents[1].position.y = (9 * motion.normalized().y) - 23
 	
 	$speedEffect.position.x = 28 * (1 - 2 * int(fliped))
@@ -81,14 +84,20 @@ func setAttackSpeed():
 	else:
 		attackComponents[1].monitoring = false
 
-
-func _on_HitboxComponent_area_entered(area):
-	if area is ChangeRoom:
-		area.changeRoom()
-
 func setCollision(ID := 0):
-	currentCollision.set_shape(collisionShapes[ID].shape)
+	currentCollision.call_deferred("set_shape", collisionShapes[ID].shape)
 	currentCollision.position = collisionShapes[ID].position
 	for ray in range(3):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
 	
+func shield():
+	shieldTimer.start()
+	$HitboxComponent.set_deferred("monitorable", false)
+	$HitboxComponent.set_deferred("monitoring", false)
+	$Sprite.modulate.a = 0.6
+
+func shieldTimeout():
+	$HitboxComponent.set_deferred("monitorable", true)
+	$HitboxComponent.set_deferred("monitoring", true)
+	print("aaaa")
+	$Sprite.modulate.a = 1

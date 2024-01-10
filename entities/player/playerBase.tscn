@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
+[ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 28 )
 
 [node name="playerBase" type="KinematicBody2D" groups=["player"]]
 collision_layer = 0
@@ -61,4 +65,18 @@ position = Vector2( 0, -8 )
 enabled = true
 cast_to = Vector2( 28, 0 )
 
+[node name="HitboxComponent" type="Area2D" parent="."]
+position = Vector2( 0, -2 )
+collision_layer = 0
+collision_mask = 1536
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2( 0, -26 )
+shape = SubResource( 1 )
+
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]
+[connection signal="HitboxDamaged" from="HitboxComponent" to="." method="hitboxTriggered"]

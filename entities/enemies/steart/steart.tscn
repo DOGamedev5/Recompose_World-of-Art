@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://entities/enemies/steart/enemy.pxo" type="Texture" id=1]
 [ext_resource path="res://entities/enemies/steart/steart.gd" type="Script" id=2]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=3]
+[ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "IDLE"
@@ -104,7 +105,10 @@ extents = Vector2( 512, 88 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 24, 30 )
 
-[node name="steart" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 16, 16 )
+
+[node name="steart" type="KinematicBody2D" groups=["enemy"]]
 z_index = -1
 collision_layer = 0
 script = ExtResource( 2 )
@@ -159,5 +163,14 @@ margin_right = 32.0
 margin_bottom = -72.0
 align = 1
 valign = 1
+
+[node name="AttackComponent" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2( 48, -32 )
+collision_layer = 0
+collision_mask = 512
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+shape = SubResource( 9 )
 
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="_damaged"]

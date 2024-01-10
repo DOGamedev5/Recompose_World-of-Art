@@ -10,7 +10,7 @@ func _resistence_set(value):
 	resistence = value
 		
 
-func _on_HitboxComponent_HitboxDamaged(damage):
+func _on_HitboxComponent_HitboxDamaged(damage, _area):
 	if damage >= resistence:
 		queue_free()
 

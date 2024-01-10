@@ -2,14 +2,14 @@ extends State
 
 
 func enter(_lastState):
-	if not parent.counched:
+	if not parent.counched or parent.running:
 		if parent.running:
 			parent.playback.travel("TOP_SPEED")
 		else:
 			parent.playback.travel("FALL")
 		
 		parent.setCollision(1)
-	elif not parent.running:
+	else:
 		parent.playback.travel("COUNCHFALL")
 		parent.setCollision(2)
 
@@ -38,7 +38,7 @@ func process_physics(_delta):
 	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
 		parent.running = false
 	
-	if not parent.counched:
+	if not parent.counched or parent.running:
 		var maxSpeed : float
 		if parent.running:
 			parent.playback.travel("TOP_SPEED")
@@ -49,7 +49,7 @@ func process_physics(_delta):
 		
 		parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
 		parent.setCollision(1)
-	elif not parent.running:
+	else:
 		parent.playback.travel("COUNCHFALL")
 		parent.motion.x = parent.moveBase("X", parent.motion.x, 180)
 		parent.setCollision(2)
