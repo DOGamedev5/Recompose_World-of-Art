@@ -6,7 +6,6 @@ onready var stateMachine = $StateMachine
 onready var playback = animation["parameters/playback"]
 onready var attackComponents = [$attackPunch, $attackSpeed]
 onready var currentCollision = $CollisionShape2D
-onready var shieldTimer = $shield
 
 export(float) var runningVelocity := 550.0
 
@@ -14,8 +13,6 @@ var running := false
 var canAttackTimer := .0
 var attackTime := 20.0
 var attackVelocity := 800.0
-
-
 
 onready var collisionShapes := [
 	{shape = RectangleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
@@ -31,6 +28,8 @@ func _ready():
 	collisionShapes[2].shape.extents = Vector2(16, 12)
 
 func _physics_process(delta):
+	if not active: return
+	
 	stateMachine.processMachine(delta)
 	_coyoteTimer()
 	gravityBase()
@@ -39,7 +38,8 @@ func _physics_process(delta):
 	
 	animation["parameters/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
-	motion = move_and_slide(motion, Vector2.UP)
+	if active:
+		motion = move_and_slide(motion, Vector2.UP)
 	
 #	$a/Label.text = str(collideUp())
 	
@@ -52,12 +52,6 @@ func _physics_process(delta):
 		if canAttackTimer < 0:
 			canAttackTimer = 0
 
-func onWall():
-	for ray in onWallRayCast:
-		if ray.is_colliding():
-			return true
-	
-	return false
 
 func setFlipConfig():
 	if stunned:
@@ -85,19 +79,13 @@ func setAttackSpeed():
 		attackComponents[1].monitoring = false
 
 func setCollision(ID := 0):
-	currentCollision.call_deferred("set_shape", collisionShapes[ID].shape)
-	currentCollision.position = collisionShapes[ID].position
+	active = false
+	currentCollision.set_deferred("position", collisionShapes[ID].position)
+	currentCollision.set_deferred("shape", collisionShapes[ID].shape)
+
 	for ray in range(3):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
 	
-func shield():
-	shieldTimer.start()
-	$HitboxComponent.set_deferred("monitorable", false)
-	$HitboxComponent.set_deferred("monitoring", false)
-	$Sprite.modulate.a = 0.6
+	active = true
+	
 
-func shieldTimeout():
-	$HitboxComponent.set_deferred("monitorable", true)
-	$HitboxComponent.set_deferred("monitoring", true)
-	print("aaaa")
-	$Sprite.modulate.a = 1

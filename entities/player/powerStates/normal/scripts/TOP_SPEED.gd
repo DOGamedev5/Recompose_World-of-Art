@@ -15,7 +15,7 @@ func process_state():
 	if parent.onWall():
 		return "WALL"
 			
-	if parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0 :
+	if parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0:
 		return "IDLE"
 		
 	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
@@ -31,7 +31,7 @@ func process_state():
 
 func process_physics(_delta):
 	
-	parent.motion.x = parent.moveBase("X", parent.motion.x, parent.runningVelocity)
+	parent.moveBase("X", parent.motion.x, parent.runningVelocity)
 	if abs(parent.motion.x) > parent.MAXSPEED:
 		parent.running = true
 	else:

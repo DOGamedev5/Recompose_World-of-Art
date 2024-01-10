@@ -4,6 +4,8 @@ class_name PlayerBase extends KinematicBody2D
 onready var coyoteTimer = $coyoteTimer
 onready var onWallRayCast = [$onWallTop, $onWallMid, $onWallBotton]
 onready var collideUPCast = $collideUp
+onready var shieldTimer = $shieldSystem/shield
+onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
 
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
@@ -21,6 +23,8 @@ var coyote := true
 var fliped := false
 var stunned := false
 var counched := false
+var active := true
+var shieldActived := false
 
 var powers := {
 	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
@@ -75,9 +79,16 @@ func changePowerup(powerUp):
 func idleBase():
 	motion.x = desaccelerate(motion.x)
 
+func onWall():
+	for ray in onWallRayCast:
+		if ray.is_colliding():
+			return true
+	
+	return false
+
+
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
-	
 
 	MotionCord = desaccelerate(MotionCord, input)
 		
@@ -93,7 +104,13 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 		else:
 			MotionCord += DESACCELERATION
 	
-	return MotionCord
+	if inputAxis == "X":
+		motion.x = MotionCord
+	else:
+		motion.y = MotionCord
+	
+	
+	
 
 func desaccelerate(MotionCord : float, input := .0):
 	if sign(MotionCord) != input:
@@ -142,13 +159,25 @@ func couldUncounch():
 	
 	return collideUp() < -64 # -32 < -31
 
+func shield():
+	shieldTimer.start()
+	animationShield.travel("shield")
+
 func coyoteTimerTimeout():
 	canJump = false
 
-func hitboxTriggered(damage, area):
+func hitboxTriggered(_damage, area):
+	if not active: return
+	
 	if area is ChangeRoom:
 		area.changeRoom()
-	elif area is AttackComponent and area.is_in_group("enemy"):
-		var direction := sign(area.position.x - position.x)
+
+	elif area is AttackComponent and area.is_in_group("enemy") and not shieldActived:
+		var direction := sign(area.global_position.x - position.x)
 		emit_signal("damaged", direction)
+		shieldActived = true
 		
+func shieldTimeout():
+	animationShield.travel("RESET")
+
+	shieldActived = false

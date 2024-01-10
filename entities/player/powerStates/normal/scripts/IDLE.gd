@@ -2,20 +2,11 @@ extends State
 
 
 func enter(_lastState):
-	if parent.counched:
-		parent.playback.travel("COUNCH")
-		parent.setCollision(2)
-	else:
-		parent.playback.travel("IDLE")
-		parent.setCollision(0)
 	parent.running = false
 	
 
 func process_state():
-	if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
-		if parent.onWall():
-			return "WALL"
-		
+	if Input.get_axis("ui_left", "ui_right") != 0:
 		if Input.is_action_pressed("run"):
 			return "TOP_SPEED"
 		

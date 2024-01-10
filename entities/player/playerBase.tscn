@@ -1,10 +1,88 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 28 )
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "RESET"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "shield"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "shieldStoping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+states/RESET/node = SubResource( 6 )
+states/RESET/position = Vector2( 316.333, 77.6667 )
+states/shield/node = SubResource( 7 )
+states/shield/position = Vector2( 596.333, 28.3333 )
+states/shieldStoping/node = SubResource( 8 )
+states/shieldStoping/position = Vector2( 571, 204.333 )
+transitions = [ "RESET", "shield", SubResource( 9 ), "shieldStoping", "RESET", SubResource( 10 ), "shield", "shieldStoping", SubResource( 11 ) ]
+start_node = "RESET"
+graph_offset = Vector2( 0, 2.15909 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "shield"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.6 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "shieldStoping"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.6 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="playerBase" type="KinematicBody2D" groups=["player"]]
 collision_layer = 0
@@ -78,5 +156,23 @@ __meta__ = {
 position = Vector2( 0, -26 )
 shape = SubResource( 1 )
 
+[node name="shieldSystem" type="Node" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="shieldSystem"]
+tree_root = SubResource( 2 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="shieldSystem"]
+anims/RESET = SubResource( 4 )
+anims/shield = SubResource( 5 )
+anims/shieldStoping = SubResource( 12 )
+
+[node name="shield" type="Timer" parent="shieldSystem"]
+wait_time = 3.5
+one_shot = true
+
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="hitboxTriggered"]
+[connection signal="timeout" from="shieldSystem/shield" to="." method="shieldTimeout"]

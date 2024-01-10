@@ -1,6 +1,7 @@
 class_name EnemyBase extends KinematicBody2D
 
 export(NodePath) var visionArea
+export(NodePath) var attackArea
 export var flipArea := false
 
 export var ACCELERATION := 3
@@ -26,7 +27,11 @@ func _physics_process(_delta):
 	if player:
 		$Label.text = str(sign(player.position.x - position.x))
 		fliped = player.position.x < position.x
-	pass 
+	
+	if attackArea:
+		var direction := (1 - 2 * int(fliped))
+		var attack = get_node(attackArea)
+		attack.position.x *= sign(attack.position.x) * direction
 
 func _enteredVision(body):
 	if body.is_in_group("player"):

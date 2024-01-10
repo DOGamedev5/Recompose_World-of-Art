@@ -113,6 +113,7 @@ z_index = -1
 collision_layer = 0
 script = ExtResource( 2 )
 visionArea = NodePath("Area2D")
+attackArea = NodePath("AttackComponent")
 ACCELERATION = 6
 MAXSPEED = 250
 
@@ -165,7 +166,7 @@ align = 1
 valign = 1
 
 [node name="AttackComponent" type="Area2D" parent="." groups=["enemy"]]
-position = Vector2( 48, -32 )
+position = Vector2( 32, -32 )
 collision_layer = 0
 collision_mask = 512
 script = ExtResource( 4 )

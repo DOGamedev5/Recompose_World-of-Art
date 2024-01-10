@@ -10,6 +10,6 @@ func _physics_process(_delta):
 	
 	motion = move_and_slide(motion)
 
-func _damaged(damage, area):
+func _damaged(damage, _area):
 	if damage > 0:
 		queue_free()

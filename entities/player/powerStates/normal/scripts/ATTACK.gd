@@ -50,6 +50,8 @@ func process_physics(delta):
 	timer -= delta
 	if timer <= 0 and not (Input.is_action_pressed("run") and Input.get_axis("ui_left", "ui_right") != 0):
 		parent.motion.x /= 2
+	
+
 
 func exit():
 	parent.attackComponents[0].monitoring = false
