@@ -9,7 +9,9 @@ func process_state():
 	
 	elif parent.onFloor().has(true):
 		if parent.motion.x == 0: return "IDLE"
-			
+		
+		if parent.isRolling: return "ROLL"
+		
 		if Input.is_action_pressed("run"): return "TOP_SPEED"
 		
 		return "RUN"
@@ -25,7 +27,11 @@ func process_physics(_delta):
 	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
 		parent.running = false
 	
-	if not parent.counched or parent.running:
+	if parent.isRolling:
+		parent.motion.x = sign(parent.motion.x) * parent.MAXSPEED
+		parent.playback.travel("ROLL")
+	
+	elif not parent.counched or parent.running:
 		if parent.running:
 			parent.playback.travel("TOP_SPEED")
 			maxSpeed = parent.runningVelocity
@@ -33,12 +39,12 @@ func process_physics(_delta):
 			parent.playback.travel("FALL")
 			maxSpeed = parent.MAXSPEED
 		
-		parent.setCollision(1)
+		parent.setCollision(0)
 		
 	else:
 		parent.playback.travel("COUNCHFALL")
 		maxSpeed = 180
-		parent.setCollision(2)
+		parent.setCollision(1)
 	
 	parent.moveBase("X", parent.motion.x, maxSpeed)
 

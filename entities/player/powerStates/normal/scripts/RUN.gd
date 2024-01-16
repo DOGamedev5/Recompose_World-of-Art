@@ -35,11 +35,11 @@ func process_physics(_delta):
 		parent.moveBase("X", parent.motion.x, 180)
 		parent.playback.travel("CRAWLING")
 		particle.emitting = false
-		parent.setCollision(2)
+		parent.setCollision(1)
 	else:
 		parent.moveBase("X", parent.motion.x)
 		particle.emitting = true
-		parent.setCollision(1)
+		parent.setCollision(0)
 		if sign(parent.motion.x) != sign(input) and parent.motion.x != 0:
 			parent.playback.travel("STOPPING")
 		elif input != 0:

@@ -2,7 +2,7 @@
 class_name PlayerBase extends KinematicBody2D
 
 onready var coyoteTimer = $coyoteTimer
-onready var onWallRayCast = [$onWallTop, $onWallMid, $onWallBotton]
+onready var onWallRayCast = [$onWallTop, $onWallMid]
 onready var collideUPCast = $collideUp
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
@@ -18,6 +18,7 @@ signal damaged(direction)
 
 var currentState := "IDLE"
 var motion := Vector2.ZERO
+var velocity := Vector2.ZERO
 var canJump := true
 var coyote := true
 var fliped := false
@@ -25,6 +26,12 @@ var stunned := false
 var counched := false
 var active := true
 var shieldActived := false
+var isJumping := false
+
+var slopeInfo = {
+	isOnSlope = false,
+	perpendicular = Vector2.ZERO
+}
 
 var powers := {
 	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
@@ -50,6 +57,8 @@ func _physics_process(_delta):
 			
 		for ray in onWallRayCast: 
 			ray.cast_to.x = 28 * Input.get_axis("ui_left", "ui_right")
+#		$slopeDetect.position.x = 8 * Input.get_axis("ui_left", "ui_right")
+		
 					 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_left", limitsMin.x - 10)
@@ -79,19 +88,13 @@ func changePowerup(powerUp):
 func idleBase():
 	motion.x = desaccelerate(motion.x)
 
-func onWall():
-	for ray in onWallRayCast:
-		if ray.is_colliding():
-			return true
-	
-	return false
 
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
 
 	MotionCord = desaccelerate(MotionCord, input)
-		
+	
 	if input > 0:
 		if MotionCord <= maxSpeed:
 			MotionCord += ACCELERATION
@@ -108,9 +111,11 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 		motion.x = MotionCord
 	else:
 		motion.y = MotionCord
-	
-	
-	
+
+func move(stopSlope = true):
+	motion = move_and_slide(motion, Vector2.UP, stopSlope, 4, deg2rad(46))
+#	motion = move_and_slide_with_snap(motion, Vector2.DOWN*20, Vector2.UP, true, 4, deg2rad(360))
+
 
 func desaccelerate(MotionCord : float, input := .0):
 	if sign(MotionCord) != input:
@@ -122,6 +127,7 @@ func desaccelerate(MotionCord : float, input := .0):
 	return MotionCord
 
 func jumpBase(force = JUMPFORCE):
+	isJumping = true
 	
 	if canJump and couldUncounch():
 		motion.y = force
@@ -139,11 +145,36 @@ func _coyoteTimer():
 		coyote = false
 
 func onFloor() -> Array:
-	return [
+	
+	var collisions = [
 		$flooDetectBack.is_colliding(),
 		$floorDetect.is_colliding(),
 		$flooDetectFont.is_colliding()
 	]
+	return collisions
+
+func onSlope():
+	var normalAngle
+	var normal
+	var isOnSlope
+	if $slopeDetect.is_colliding():
+		normal = $slopeDetect.get_collision_normal()
+		normalAngle = normal.angle()
+		
+		isOnSlope = !(abs(rad2deg(normalAngle)) >= 85 and abs(rad2deg(normalAngle)) <= 95)
+		
+	else:
+		isOnSlope = false
+		
+	return [isOnSlope, normal]
+
+func onWall():
+	for ray in onWallRayCast:
+		if ray.is_colliding():
+			return true
+
+	return false
+
 
 func collideUp():
 	if collideUPCast.is_colliding():
@@ -157,7 +188,7 @@ func couldUncounch():
 	if counched:
 		return collideUp() < -32
 	
-	return collideUp() < -64 # -32 < -31
+	return collideUp() < -64
 
 func shield():
 	shieldTimer.start()

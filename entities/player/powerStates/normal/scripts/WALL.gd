@@ -3,7 +3,7 @@ extends State
 var currentState
 
 func enter(lastState):
-	if not parent.onFloor().has(true) or ["TOP_SPEED", "ATTACK"].has(lastState):
+	if not parent.onFloor().has(true) or ["TOP_SPEED", "ATTACK", "ROLL"].has(lastState):
 		parent.playback.travel("SPLAT")
 		parent.stunned = true
 

@@ -4,7 +4,7 @@
 [ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 96, 80 )
+extents = Vector2( 288, 120 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001

@@ -95,16 +95,16 @@ one_shot = true
 [node name="flooDetectBack" type="RayCast2D" parent="."]
 position = Vector2( -6, 0 )
 enabled = true
-cast_to = Vector2( 0, 4 )
+cast_to = Vector2( 0, 12 )
 
 [node name="floorDetect" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 4 )
+cast_to = Vector2( 0, 12 )
 
 [node name="flooDetectFont" type="RayCast2D" parent="."]
 position = Vector2( 6, 0 )
 enabled = true
-cast_to = Vector2( 0, 4 )
+cast_to = Vector2( 0, 12 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -63 )
@@ -138,10 +138,10 @@ position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 28, 0 )
 
-[node name="onWallBotton" type="RayCast2D" parent="."]
-position = Vector2( 0, -8 )
+[node name="slopeDetect" type="RayCast2D" parent="."]
+position = Vector2( 0, -32 )
 enabled = true
-cast_to = Vector2( 28, 0 )
+cast_to = Vector2( 0, 56 )
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 position = Vector2( 0, -2 )

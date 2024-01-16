@@ -4,7 +4,7 @@ onready var sprite = $Sprite
 onready var animation = $AnimationTree
 onready var stateMachine = $StateMachine
 onready var playback = animation["parameters/playback"]
-onready var attackComponents = [$attackPunch, $attackSpeed]
+onready var attackComponents = [$attackPunch, $attackSpeed, $attackRoll]
 onready var currentCollision = $CollisionShape2D
 
 export(float) var runningVelocity := 550.0
@@ -13,19 +13,19 @@ var running := false
 var canAttackTimer := .0
 var attackTime := 20.0
 var attackVelocity := 800.0
+var isRolling := false
 
 onready var collisionShapes := [
-	{shape = RectangleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
-	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
-	{shape = RectangleShape2D.new(), position = Vector2(0, -12), onWall = [false, false, true]}
+	{shape = RectangleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true], rotation = 0},
+	
+	{shape = RectangleShape2D.new(), position = Vector2(0, -12), onWall = [false, false, true], rotation = 0}
 ]
 
 func _ready():
 	stateMachine.init(self, currentState)
 	collisionShapes[0].shape.extents = Vector2(16, 28)
-	collisionShapes[1].shape.radius = 16
-	collisionShapes[1].shape.height = 24
-	collisionShapes[2].shape.extents = Vector2(16, 12)
+	
+	collisionShapes[1].shape.extents = Vector2(16, 12)
 
 func _physics_process(delta):
 	if not active: return
@@ -35,13 +35,15 @@ func _physics_process(delta):
 	gravityBase()
 	setFlipConfig()
 	setAttackSpeed()
+	onSlope()
 	
 	animation["parameters/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
 	if active:
-		motion = move_and_slide(motion, Vector2.UP)
+		move(!isRolling)
+#		motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*8, Vector2.UP, true, 4, deg2rad(46)).y
 	
-#	$a/Label.text = str(collideUp())
+	$a/Label.text = str(onSlope()[0]) + "  " + str(stateMachine.currentState.name)
 	
 	$speedEffect.visible = running
 	if running:
@@ -61,6 +63,7 @@ func setFlipConfig():
 	attackComponents[1].position.x = 40 * (1 - 2 * int(fliped))
 #	attackComponents[1].position.x = 40 * motion.normalized().x
 	attackComponents[1].position.y = (9 * motion.normalized().y) - 23
+	attackComponents[2].position.x = 35 * (1 - 2 * int(fliped))
 	
 	$speedEffect.position.x = 28 * (1 - 2 * int(fliped))
 	$speedEffect.flip_h = fliped
@@ -68,22 +71,28 @@ func setFlipConfig():
 	sprite.flip_h = fliped
 
 func setAttackSpeed():
-	if running:
+	if running and not isRolling:
 		attackComponents[1].monitoring = true
 		if abs(motion.x) < 725:
 			attackComponents[1].setDamage(1)
 		else:
 			attackComponents[1].setDamage(2)
 	
+	elif isRolling:
+		attackComponents[2].monitoring = true
+		attackComponents[1].monitoring = false
 	else:
 		attackComponents[1].monitoring = false
 
 func setCollision(ID := 0):
+#	if ID == 1: ID = 0
 	active = false
 	currentCollision.set_deferred("position", collisionShapes[ID].position)
 	currentCollision.set_deferred("shape", collisionShapes[ID].shape)
+	currentCollision.set_deferred("rotation_degrees", collisionShapes[ID].rotation)
+	
 
-	for ray in range(3):
+	for ray in range(2):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
 	
 	active = true

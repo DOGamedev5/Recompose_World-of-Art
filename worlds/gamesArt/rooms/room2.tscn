@@ -52,7 +52,7 @@ position = Vector2( 24, -12 )
 shape = SubResource( 1 )
 
 [node name="RoomWarp2" type="Position2D" parent="."]
-position = Vector2( 2386, 12 )
+position = Vector2( 2416, 16 )
 script = ExtResource( 5 )
 
 [node name="block25" parent="." instance=ExtResource( 2 )]
