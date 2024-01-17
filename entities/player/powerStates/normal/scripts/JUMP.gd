@@ -1,6 +1,8 @@
 extends State
 
 func enter(laststate):
+	parent.currentSnapLength = 0
+	parent.snapDesatived = true
 	if laststate == "ROLL":
 		parent.isRolling = true
 
@@ -25,7 +27,7 @@ func process_state():
 
 func process_physics(_delta):
 	
-	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
+	if parent.running and abs(parent.motion.x) + abs(parent.motion.y) <= parent.MAXSPEED:
 		parent.running = false
 	
 	if parent.isRolling:
@@ -51,5 +53,7 @@ func process_physics(_delta):
 		parent.jumpBase(-535)
 
 func exit():
+	parent.currentSnapLength = parent.SNAPLENGTH
+	parent.snapDesatived = false
 	parent.isRolling = false
 	parent.setCollision(0)

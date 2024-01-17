@@ -31,7 +31,7 @@ func process_state():
 func process_physics(_delta):
 	
 	parent.moveBase("X", parent.motion.x, parent.runningVelocity)
-	if abs(parent.motion.x) > parent.MAXSPEED:
+	if abs(parent.motion.x) + abs(parent.motion.y) > parent.MAXSPEED:
 		parent.running = true
 	else:
 		parent.running = false

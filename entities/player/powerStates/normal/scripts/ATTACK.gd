@@ -6,6 +6,8 @@ var timer := 20
 var atkDirection := .0
 
 func enter(_lastState):
+	parent.snapDesatived = true
+	
 	parent.attackComponents[0].monitoring = true
 	jumpping = false
 	timer = 20
@@ -54,5 +56,6 @@ func process_physics(delta):
 
 
 func exit():
+	parent.snapDesatived = false
 	parent.attackComponents[0].monitoring = false
 	parent.canAttackTimer = 0.4

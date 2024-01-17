@@ -21,7 +21,7 @@ func process_state():
 	elif not parent.onFloor().has(true):
 		return "FALL"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch():
+	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch(true):
 		return "ATTACK"
 	
 	

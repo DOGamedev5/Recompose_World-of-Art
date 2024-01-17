@@ -1,5 +1,9 @@
 extends State
 
+func enter(laststate):
+	if laststate == "ROLL":
+		parent.isRolling = true
+
 func process_state():
 	if parent.onWall() and abs(parent.motion.x) > 300:
 		return "WALL"
@@ -24,7 +28,7 @@ func process_state():
 func process_physics(_delta):
 	var maxSpeed : float
 	
-	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
+	if parent.running and abs(parent.motion.x) + abs(parent.motion.y) <= parent.MAXSPEED:
 		parent.running = false
 	
 	if parent.isRolling:

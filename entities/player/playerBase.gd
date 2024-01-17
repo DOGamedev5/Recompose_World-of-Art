@@ -7,6 +7,8 @@ onready var collideUPCast = $collideUp
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
 
+const SNAPLENGTH := 32
+
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
 export var GRAVITY := 10
@@ -26,12 +28,11 @@ var stunned := false
 var counched := false
 var active := true
 var shieldActived := false
-var isJumping := false
+var currentSnapLength := 0
+var snapDesatived := false
 
-var slopeInfo = {
-	isOnSlope = false,
-	perpendicular = Vector2.ZERO
-}
+var perpendicular = Vector2.RIGHT
+
 
 var powers := {
 	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
@@ -68,9 +69,12 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 
 func gravityBase():
 	if not onFloor().has(true):
+		
 		motion.y += GRAVITY
 		if motion.y > MAXFALL:
 			motion.y = MAXFALL
+	elif currentSnapLength == SNAPLENGTH and motion.y != 0  and (!onSlope()[0] or motion.x == 0) and !snapDesatived:
+		motion.y = 0
 
 func init(powerUp := "Normal"):
 	var newPlayer = load(powers[powerUp]).instance()
@@ -88,12 +92,11 @@ func changePowerup(powerUp):
 func idleBase():
 	motion.x = desaccelerate(motion.x)
 
-
-
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
 
 	MotionCord = desaccelerate(MotionCord, input)
+	
 	
 	if input > 0:
 		if MotionCord <= maxSpeed:
@@ -113,8 +116,16 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 		motion.y = MotionCord
 
 func move(stopSlope = true):
-	motion = move_and_slide(motion, Vector2.UP, stopSlope, 4, deg2rad(46))
-#	motion = move_and_slide_with_snap(motion, Vector2.DOWN*20, Vector2.UP, true, 4, deg2rad(360))
+#	motion.y = move_and_slide(motion, Vector2.UP, stopSlope, 4, deg2rad(46)).y
+	var snap := Vector2.ZERO
+	if not snapDesatived: 
+		snap = Vector2.DOWN*currentSnapLength 
+
+	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true, 4, deg2rad(46)).y
+	
+	if onFloor().has(true) and motion.y >= 0 and currentSnapLength == 0 and not Input.is_action_pressed("ui_jump"):
+		currentSnapLength = SNAPLENGTH
+		motion.y = 0
 
 
 func desaccelerate(MotionCord : float, input := .0):
@@ -127,14 +138,17 @@ func desaccelerate(MotionCord : float, input := .0):
 	return MotionCord
 
 func jumpBase(force = JUMPFORCE):
-	isJumping = true
+	
 	
 	if canJump and couldUncounch():
+		
+		
 		motion.y = force
 		coyote = false
 		canJump = false
 	elif Input.is_action_just_released("ui_jump"):
 		motion.y /= 2
+		snapDesatived = false
 
 func _coyoteTimer():
 	if onFloor().has(true):
@@ -144,14 +158,30 @@ func _coyoteTimer():
 		coyoteTimer.start()
 		coyote = false
 
-func onFloor() -> Array:
+func onFloor():
 	
-	var collisions = [
-		$flooDetectBack.is_colliding(),
-		$floorDetect.is_colliding(),
-		$flooDetectFont.is_colliding()
+	var raycasts = [
+		$flooDetectBack,
+		$floorDetect,
+		$flooDetectFont
 	]
-	return collisions
+
+	if $slopeDetect.is_colliding() and onSlope()[0]: return [true, true, true]
+	
+	var leviting := 8
+	for ray in raycasts:
+		if !ray.is_colliding(): continue
+		
+		var point = to_local(ray.get_collision_point())
+		
+		if point.y < leviting:
+			leviting = point.y
+	
+	var result = leviting < 0.5
+	if result:
+		global_position.y += leviting
+	return [result, result, result]
+	
 
 func onSlope():
 	var normalAngle
@@ -169,9 +199,27 @@ func onSlope():
 	return [isOnSlope, normal]
 
 func onWall():
+	var distance := 28
+	var rayDirection
+	
 	for ray in onWallRayCast:
-		if ray.is_colliding():
-			return true
+		if !ray.is_colliding(): continue
+		var point = abs(to_local(ray.get_collision_point()).x)
+		
+		if point < distance:
+			distance = point
+		
+		rayDirection = sign(ray.cast_to.x)
+		
+		
+#			if motion.x != 0: motion.x = 0
+	var result = distance < 16.8 and distance >= 16
+	if result:
+		if rayDirection == sign(motion.x):
+			motion.x = 0
+			
+		global_position.x += (distance - 16) * rayDirection
+		return true
 
 	return false
 
@@ -184,8 +232,8 @@ func collideUp():
 	
 	return -65
 
-func couldUncounch():
-	if counched:
+func couldUncounch(counch = counched):
+	if counch:
 		return collideUp() < -32
 	
 	return collideUp() < -64

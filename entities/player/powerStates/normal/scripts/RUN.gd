@@ -4,6 +4,7 @@ extends State
 onready var particle = $"../../runningParticle"
 
 func enter(_lastState):
+#	print(_lastState)
 	parent.running = false
 
 func process_state():
@@ -22,7 +23,7 @@ func process_state():
 	elif Input.is_action_pressed("run"):
 		return "TOP_SPEED"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch():
+	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch(true):
 		return "ATTACK"
 	
 	return null

@@ -15,20 +15,26 @@ var attackTime := 20.0
 var attackVelocity := 800.0
 var isRolling := false
 
+
 onready var collisionShapes := [
-	{shape = RectangleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true], rotation = 0},
+	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true], rotation = 0},
+#	{shape = RectangleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true], rotation = 0},
 	
 	{shape = RectangleShape2D.new(), position = Vector2(0, -12), onWall = [false, false, true], rotation = 0}
 ]
 
 func _ready():
 	stateMachine.init(self, currentState)
-	collisionShapes[0].shape.extents = Vector2(16, 28)
-	
+#	collisionShapes[0].shape.extents = Vector2(16, 28)
+	collisionShapes[0].shape.radius = 16
+	collisionShapes[0].shape.height = 24
 	collisionShapes[1].shape.extents = Vector2(16, 12)
 
 func _physics_process(delta):
 	if not active: return
+	
+#	if isRolling:
+#		snapDesatived = true
 	
 	stateMachine.processMachine(delta)
 	_coyoteTimer()
@@ -41,13 +47,12 @@ func _physics_process(delta):
 	
 	if active:
 		move(!isRolling)
-#		motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*8, Vector2.UP, true, 4, deg2rad(46)).y
 	
-	$a/Label.text = str(onSlope()[0]) + "  " + str(stateMachine.currentState.name)
-	
+	$a/Label.text = str(stateMachine.currentState.name) + " " +str(currentSnapLength) + " \n " + str(SNAPLENGTH) + "  " + str(snapDesatived)
+
 	$speedEffect.visible = running
 	if running:
-		$speedEffect.modulate.a = max((abs(motion.x) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
+		$speedEffect.modulate.a = max(((abs(motion.x) + abs(motion.y)) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
 		
 	if canAttackTimer > 0:
 		canAttackTimer -= delta
@@ -73,7 +78,7 @@ func setFlipConfig():
 func setAttackSpeed():
 	if running and not isRolling:
 		attackComponents[1].monitoring = true
-		if abs(motion.x) < 725:
+		if abs(motion.x) + abs(motion.y) < 725:
 			attackComponents[1].setDamage(1)
 		else:
 			attackComponents[1].setDamage(2)
@@ -82,6 +87,7 @@ func setAttackSpeed():
 		attackComponents[2].monitoring = true
 		attackComponents[1].monitoring = false
 	else:
+		attackComponents[2].monitoring = false
 		attackComponents[1].monitoring = false
 
 func setCollision(ID := 0):

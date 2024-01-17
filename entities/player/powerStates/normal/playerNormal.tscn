@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=2]
+[gd_scene load_steps=179 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -33,7 +33,12 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
+[sub_resource type="CapsuleShape2D" id=160]
+radius = 16.0
+height = 24.0
+
 [sub_resource type="RectangleShape2D" id=87]
+resource_local_to_scene = true
 custom_solver_bias = 1.0
 extents = Vector2( 16, 28 )
 
@@ -1235,15 +1240,15 @@ JUMPFORCE = -850
 runningVelocity = 1000.0
 
 [node name="flooDetectBack" parent="." index="1"]
-position = Vector2( -12, 0 )
-cast_to = Vector2( 0, 8 )
+position = Vector2( -14, -8 )
+cast_to = Vector2( 0, 16 )
 
 [node name="floorDetect" parent="." index="2"]
 cast_to = Vector2( 0, 8 )
 
 [node name="flooDetectFont" parent="." index="3"]
-position = Vector2( 12, 0 )
-cast_to = Vector2( 0, 8 )
+position = Vector2( 14, -8 )
+cast_to = Vector2( 0, 16 )
 
 [node name="Camera2D" parent="." index="4"]
 position = Vector2( 0, -64 )
@@ -1273,17 +1278,23 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="13"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="13"]
+visible = false
+position = Vector2( 0, -28 )
+shape = SubResource( 160 )
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="14"]
 position = Vector2( 0, -28 )
 shape = SubResource( 87 )
 
-[node name="speedAnimation" type="AnimationPlayer" parent="." index="14"]
+[node name="speedAnimation" type="AnimationPlayer" parent="." index="15"]
 root_node = NodePath("../CollisionShape2D")
 autoplay = "speedEffect"
 anims/RESET = SubResource( 122 )
 anims/speedEffect = SubResource( 123 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="15"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="16"]
 anims/ATTACK = SubResource( 73 )
 anims/COUNCH = SubResource( 91 )
 anims/COUNCHFALL = SubResource( 127 )
@@ -1301,14 +1312,14 @@ anims/STOPPING = SubResource( 64 )
 anims/TOP_SPEED = SubResource( 29 )
 anims/WALL = SubResource( 23 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="16"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="17"]
 tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 152 )
 parameters/RUN/TimeScale/scale = 1.0
 
-[node name="attackPunch" type="Area2D" parent="." index="17"]
+[node name="attackPunch" type="Area2D" parent="." index="18"]
 visible = false
 position = Vector2( 35, -31 )
 collision_layer = 256
@@ -1320,7 +1331,7 @@ damage = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
 shape = SubResource( 86 )
 
-[node name="attackSpeed" type="Area2D" parent="." index="18"]
+[node name="attackSpeed" type="Area2D" parent="." index="19"]
 visible = false
 position = Vector2( 40, -23 )
 collision_layer = 256
@@ -1333,7 +1344,7 @@ damage = 2
 position = Vector2( 0, -5 )
 shape = SubResource( 85 )
 
-[node name="attackRoll" type="Area2D" parent="." index="19"]
+[node name="attackRoll" type="Area2D" parent="." index="20"]
 position = Vector2( 35, -16 )
 collision_layer = 256
 collision_mask = 256
@@ -1343,7 +1354,7 @@ damage = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackRoll" index="0"]
 shape = SubResource( 159 )
 
-[node name="StateMachine" type="Node" parent="." index="20"]
+[node name="StateMachine" type="Node" parent="." index="21"]
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
@@ -1374,7 +1385,7 @@ script = ExtResource( 28 )
 [node name="ROLL" type="Node" parent="StateMachine" index="8"]
 script = ExtResource( 30 )
 
-[node name="a" type="Node2D" parent="." index="21"]
+[node name="a" type="Node2D" parent="." index="22"]
 z_index = 4
 
 [node name="Label" type="Label" parent="a" index="0"]
@@ -1386,7 +1397,7 @@ text = "a"
 align = 1
 valign = 1
 
-[node name="speedEffect" type="Sprite" parent="." index="22"]
+[node name="speedEffect" type="Sprite" parent="." index="23"]
 self_modulate = Color( 1, 1, 1, 0.792157 )
 position = Vector2( 28, -32 )
 scale = Vector2( 2, 2 )
@@ -1394,7 +1405,7 @@ texture = ExtResource( 21 )
 hframes = 5
 frame = 4
 
-[node name="runningParticle" type="CPUParticles2D" parent="." index="23"]
+[node name="runningParticle" type="CPUParticles2D" parent="." index="24"]
 material = SubResource( 88 )
 emitting = false
 amount = 6
