@@ -1386,6 +1386,7 @@ script = ExtResource( 28 )
 script = ExtResource( 30 )
 
 [node name="a" type="Node2D" parent="." index="22"]
+visible = false
 z_index = 4
 
 [node name="Label" type="Label" parent="a" index="0"]
