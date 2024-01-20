@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoLadder.pxo-29b8bf9d29836a0ccb3b5fb9c5b08c1f.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoLadder.pxo"
+dest_files=[ "res://.import/lodrofoLadder.pxo-29b8bf9d29836a0ccb3b5fb9c5b08c1f.stex" ]
+
+[params]
+

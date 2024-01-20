@@ -44,16 +44,16 @@ func process_physics(_delta):
 			maxSpeed = parent.MAXSPEED
 		
 		parent.moveBase("X", parent.motion.x, maxSpeed)
-		parent.setCollision(0)
+
 		parent.jumpBase()
 	else:
 		parent.playback.travel("COUNCHJUMP")
 		parent.moveBase("X", parent.motion.x, 240)
-		parent.setCollision(1)
+
 		parent.jumpBase(-535)
 
 func exit():
 	parent.currentSnapLength = parent.SNAPLENGTH
 	parent.snapDesatived = false
 	parent.isRolling = false
-	parent.setCollision(0)
+

@@ -9,12 +9,13 @@ onready var currentCollision = $CollisionShape2D
 
 export(float) var runningVelocity := 550.0
 
-var running := false
+export var running := false
 var canAttackTimer := .0
 var attackTime := 20.0
 var attackVelocity := 800.0
 var isRolling := false
 
+onready var runningParticle = $runningParticle
 
 onready var collisionShapes := [
 	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true], rotation = 0},
@@ -52,7 +53,7 @@ func _physics_process(delta):
 
 	$speedEffect.visible = running
 	if running:
-		$speedEffect.modulate.a = max(((abs(motion.x) + abs(motion.y)) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
+		$speedEffect.modulate.a = max((sqrt(pow(motion.x, 2) + pow(motion.y, 2)) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
 		
 	if canAttackTimer > 0:
 		canAttackTimer -= delta
@@ -78,7 +79,7 @@ func setFlipConfig():
 func setAttackSpeed():
 	if running and not isRolling:
 		attackComponents[1].monitoring = true
-		if abs(motion.x) + abs(motion.y) < 725:
+		if sqrt(pow(motion.x, 2) + pow(motion.y, 2)) < 725:
 			attackComponents[1].setDamage(1)
 		else:
 			attackComponents[1].setDamage(2)

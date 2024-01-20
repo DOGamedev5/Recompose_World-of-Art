@@ -1,6 +1,7 @@
 extends State
 
 func enter(laststate):
+	parent.runningParticle = false
 	if laststate == "ROLL":
 		parent.isRolling = true
 
@@ -43,14 +44,12 @@ func process_physics(_delta):
 			parent.playback.travel("FALL")
 			maxSpeed = parent.MAXSPEED
 		
-		parent.setCollision(0)
 		
 	else:
 		parent.playback.travel("COUNCHFALL")
 		maxSpeed = 180
-		parent.setCollision(1)
+		
 	
 	parent.moveBase("X", parent.motion.x, maxSpeed)
 
-func exit():
-	parent.setCollision(0)
+

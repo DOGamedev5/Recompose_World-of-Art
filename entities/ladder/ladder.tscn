@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 32 )
 
-[node name="ladder" type="Node2D"]
+[node name="ladder" type="Node2D" groups=["ladder"]]
 z_index = -1
 
 [node name="Ladder" type="Sprite" parent="."]
@@ -13,8 +13,8 @@ position = Vector2( 0, -32 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["ladder"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["ladder"]]
 position = Vector2( 0, -32 )
 shape = SubResource( 1 )

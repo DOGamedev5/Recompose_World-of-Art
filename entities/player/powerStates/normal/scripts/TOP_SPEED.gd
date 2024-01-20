@@ -8,7 +8,7 @@ func enter(_lastState):
 	
 	if abs(parent.motion.x) > parent.MAXSPEED:
 		parent.running = true
-	parent.setCollision(0)
+
 
 func process_state():
 	if parent.onWall():

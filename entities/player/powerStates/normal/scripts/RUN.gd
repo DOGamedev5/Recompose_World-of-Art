@@ -3,8 +3,7 @@ extends State
 
 onready var particle = $"../../runningParticle"
 
-func enter(_lastState):
-#	print(_lastState)
+func enter(_laststate):
 	parent.running = false
 
 func process_state():
@@ -35,12 +34,9 @@ func process_physics(_delta):
 	if parent.counched:
 		parent.moveBase("X", parent.motion.x, 180)
 		parent.playback.travel("CRAWLING")
-		particle.emitting = false
-		parent.setCollision(1)
 	else:
 		parent.moveBase("X", parent.motion.x)
-		particle.emitting = true
-		parent.setCollision(0)
+		
 		if sign(parent.motion.x) != sign(input) and parent.motion.x != 0:
 			parent.playback.travel("STOPPING")
 		elif input != 0:
@@ -48,5 +44,5 @@ func process_physics(_delta):
 
 func exit():
 	particle.emitting = false
-	parent.setCollision(0)
+
 	

@@ -127,6 +127,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ ExtResource( 19 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "setCollision"
+} ]
+}
 
 [sub_resource type="Animation" id=91]
 resource_name = "COUNCH"
@@ -180,6 +194,32 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 1 ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "setCollision"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:running")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=127]
 resource_name = "COUNCHFALL"
@@ -218,6 +258,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "setCollision"
+} ]
 }
 
 [sub_resource type="Animation" id=124]
@@ -271,6 +325,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 1, 1 ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "setCollision"
+} ]
+}
 
 [sub_resource type="Animation" id=106]
 resource_name = "CRAWLING"
@@ -322,6 +390,32 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("runningParticle:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "setCollision"
+} ]
 }
 
 [sub_resource type="Animation" id=134]
@@ -414,6 +508,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 0, 1, 2 ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "setCollision"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "IDLE"
@@ -467,6 +575,32 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 1 ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:running")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "setCollision"
+} ]
+}
 
 [sub_resource type="Animation" id=41]
 resource_name = "JUMP"
@@ -519,6 +653,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 15 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "setCollision"
+} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -637,6 +785,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "setCollision"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "RUN"
@@ -689,6 +851,32 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 1 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "setCollision"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("runningParticle:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=49]
@@ -849,6 +1037,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "setCollision"
+} ]
 }
 
 [sub_resource type="Animation" id=23]
@@ -1204,7 +1406,7 @@ states/WALL/node = SubResource( 24 )
 states/WALL/position = Vector2( 724.808, 667.995 )
 transitions = [ "IDLE", "RUN", SubResource( 21 ), "RUN", "IDLE", SubResource( 22 ), "RUN", "WALL", SubResource( 25 ), "WALL", "RUN", SubResource( 26 ), "IDLE", "WALL", SubResource( 27 ), "WALL", "IDLE", SubResource( 28 ), "TOP_SPEED", "RUN", SubResource( 31 ), "RUN", "TOP_SPEED", SubResource( 32 ), "IDLE", "FALL", SubResource( 35 ), "FALL", "IDLE", SubResource( 36 ), "FALL", "RUN", SubResource( 37 ), "RUN", "FALL", SubResource( 38 ), "TOP_SPEED", "FALL", SubResource( 39 ), "FALL", "TOP_SPEED", SubResource( 40 ), "JUMP", "FALL", SubResource( 43 ), "JUMP", "IDLE", SubResource( 44 ), "IDLE", "JUMP", SubResource( 45 ), "TOP_SPEED", "JUMP", SubResource( 46 ), "JUMP", "TOP_SPEED", SubResource( 47 ), "FALL", "JUMP", SubResource( 48 ), "WALL", "SPLAT", SubResource( 51 ), "SPLAT", "WALL", SubResource( 52 ), "TOP_SPEED", "SPLAT", SubResource( 53 ), "FALL", "SPLAT", SubResource( 54 ), "SPLAT", "FALL", SubResource( 55 ), "JUMP", "SPLAT", SubResource( 56 ), "SPLAT", "JUMP", SubResource( 57 ), "SPLAT", "RUN", SubResource( 58 ), "SPLAT", "TOP_SPEED", SubResource( 59 ), "RUN", "SPLAT", SubResource( 60 ), "TOP_SPEED", "WALL", SubResource( 61 ), "SPLAT", "IDLE", SubResource( 62 ), "IDLE", "SPLAT", SubResource( 63 ), "RUN", "STOPPING", SubResource( 66 ), "STOPPING", "RUN", SubResource( 67 ), "STOPPING", "TOP_SPEED", SubResource( 68 ), "TOP_SPEED", "STOPPING", SubResource( 69 ), "STOPPING", "IDLE", SubResource( 70 ), "STOPPING", "WALL", SubResource( 71 ), "STOPPING", "SPLAT", SubResource( 72 ), "RUN", "ATTACK", SubResource( 75 ), "ATTACK", "TOP_SPEED", SubResource( 76 ), "ATTACK", "RUN", SubResource( 77 ), "ATTACK", "STOPPING", SubResource( 78 ), "ATTACK", "IDLE", SubResource( 79 ), "IDLE", "ATTACK", SubResource( 80 ), "FALL", "ATTACK", SubResource( 81 ), "ATTACK", "FALL", SubResource( 82 ), "JUMP", "ATTACK", SubResource( 83 ), "ATTACK", "JUMP", SubResource( 84 ), "IDLE", "COUNCH", SubResource( 93 ), "COUNCH", "IDLE", SubResource( 94 ), "COUNCH", "RUN", SubResource( 95 ), "RUN", "COUNCH", SubResource( 96 ), "COUNCH", "TOP_SPEED", SubResource( 97 ), "TOP_SPEED", "COUNCH", SubResource( 98 ), "STOPPING", "COUNCH", SubResource( 99 ), "COUNCH", "STOPPING", SubResource( 100 ), "FALL", "COUNCH", SubResource( 101 ), "ATTACK", "COUNCH", SubResource( 102 ), "SPLAT", "COUNCH", SubResource( 103 ), "WALL", "COUNCH", SubResource( 104 ), "COUNCH", "WALL", SubResource( 105 ), "COUNCH", "CRAWLING", SubResource( 108 ), "CRAWLING", "COUNCH", SubResource( 109 ), "TOP_SPEED", "CRAWLING", SubResource( 110 ), "STOPPING", "CRAWLING", SubResource( 111 ), "CRAWLING", "STOPPING", SubResource( 112 ), "WALL", "CRAWLING", SubResource( 113 ), "RUN", "CRAWLING", SubResource( 114 ), "CRAWLING", "RUN", SubResource( 115 ), "IDLE", "CRAWLING", SubResource( 116 ), "CRAWLING", "IDLE", SubResource( 117 ), "ATTACK", "CRAWLING", SubResource( 118 ), "CRAWLING", "ATTACK", SubResource( 119 ), "FALL", "CRAWLING", SubResource( 120 ), "CRAWLING", "FALL", SubResource( 121 ), "COUNCH", "COUNCHJUMP", SubResource( 126 ), "COUNCHJUMP", "COUNCHFALL", SubResource( 129 ), "COUNCHFALL", "COUNCH", SubResource( 130 ), "COUNCHFALL", "CRAWLING", SubResource( 131 ), "CRAWLING", "COUNCHJUMP", SubResource( 132 ), "FALL", "COUNCHFALL", SubResource( 133 ), "TOP_SPEED", "DAMAGED", SubResource( 136 ), "IDLE", "DAMAGED", SubResource( 137 ), "DAMAGED", "IDLE", SubResource( 138 ), "WALL", "DAMAGED", SubResource( 139 ), "FALL", "DAMAGED", SubResource( 140 ), "CRAWLING", "DAMAGED", SubResource( 141 ), "COUNCHFALL", "DAMAGED", SubResource( 142 ), "COUNCH", "DAMAGED", SubResource( 143 ), "ATTACK", "DAMAGED", SubResource( 144 ), "STOPPING", "DAMAGED", SubResource( 145 ), "RUN", "DAMAGED", SubResource( 146 ), "DAMAGED", "RUN", SubResource( 147 ), "DAMAGED", "TOP_SPEED", SubResource( 148 ), "DAMAGED", "CRAWLING", SubResource( 149 ), "DAMAGED", "COUNCH", SubResource( 150 ), "DAMAGED", "COUNCHFALL", SubResource( 151 ), "RUN", "ROLL", SubResource( 156 ), "IDLE", "ROLL", SubResource( 157 ), "ROLL", "SPLAT", SubResource( 158 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 340.227, 248.683 )
+graph_offset = Vector2( 340.227, 52.683 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=152]
 
@@ -1238,6 +1440,7 @@ MAXSPEED = 600
 MAXFALL = 600
 JUMPFORCE = -850
 runningVelocity = 1000.0
+running = false
 
 [node name="flooDetectBack" parent="." index="1"]
 position = Vector2( -14, -8 )
@@ -1408,7 +1611,6 @@ frame = 4
 
 [node name="runningParticle" type="CPUParticles2D" parent="." index="24"]
 material = SubResource( 88 )
-emitting = false
 amount = 6
 lifetime = 0.8
 local_coords = false
