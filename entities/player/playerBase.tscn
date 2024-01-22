@@ -149,7 +149,8 @@ collision_layer = 0
 collision_mask = 1536
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
@@ -175,4 +176,5 @@ one_shot = true
 
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="hitboxTriggered"]
+[connection signal="area_exited" from="HitboxComponent" to="." method="hitboxExited"]
 [connection signal="timeout" from="shieldSystem/shield" to="." method="shieldTimeout"]

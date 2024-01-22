@@ -2,7 +2,7 @@ extends State
 
 
 func process_state():
-	if parent.onSlope()[0] and Input.is_action_just_pressed("ui_down"):
+	if parent.onSlope() and Input.is_action_just_pressed("ui_down"):
 		return "ROLL"
 		
 	elif Input.get_axis("ui_left", "ui_right") != 0:
@@ -20,7 +20,8 @@ func process_state():
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch(true):
 		return "ATTACK"
 	
-	
+	if Input.is_action_just_pressed("ui_up") and parent.canLadder:
+		return "LADDER"
 
 	return null
 	

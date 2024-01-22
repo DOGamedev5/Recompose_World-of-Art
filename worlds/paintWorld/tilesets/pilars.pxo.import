@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/pilars.pxo-03c936e1e8ffca9af9377444cbdabb68.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/tilesets/pilars.pxo"
+dest_files=[ "res://.import/pilars.pxo-03c936e1e8ffca9af9377444cbdabb68.stex" ]
+
+[params]
+

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/tilesetTutorial.pxo-e804e8485df3ce236a6baea4f3b540a3.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/tilesets/tilesetTutorial.pxo"
+dest_files=[ "res://.import/tilesetTutorial.pxo-e804e8485df3ce236a6baea4f3b540a3.stex" ]
+
+[params]
+

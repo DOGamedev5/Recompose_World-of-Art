@@ -7,7 +7,12 @@ onready var collideUPCast = $collideUp
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
 
-const SNAPLENGTH := 32
+const SNAPLENGTH := 64
+
+export(NodePath) var stateMachinePath
+var stateMachine
+
+export var gravity := true
 
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
@@ -18,9 +23,7 @@ export var JUMPFORCE := -400
 
 signal damaged(direction)
 
-var currentState := "IDLE"
 var motion := Vector2.ZERO
-var velocity := Vector2.ZERO
 var canJump := true
 var coyote := true
 var fliped := false
@@ -30,8 +33,7 @@ var active := true
 var shieldActived := false
 var currentSnapLength := 0
 var snapDesatived := false
-
-var perpendicular = Vector2.RIGHT
+var canLadder := false
 
 
 var powers := {
@@ -44,9 +46,17 @@ var inputCord := {
 	"Y" : ["ui_up", "ui_down"]
 }
 
-func _physics_process(_delta):
+func _ready():
+	if stateMachinePath: 
+		stateMachine = get_node(stateMachinePath)
+		stateMachine.init(self)
+
+
+
+func _physics_process(delta):
 	if not stunned:
-		if collideUp() > -33 or Input.is_action_pressed("ui_down"):
+		
+		if collideUp() > -34 or Input.is_action_pressed("ui_down"):
 			counched = true
 		else:
 			counched = false
@@ -57,10 +67,21 @@ func _physics_process(_delta):
 			fliped = Input.get_axis("ui_left", "ui_right") < 0
 			
 		for ray in onWallRayCast: 
-			ray.cast_to.x = 28 * Input.get_axis("ui_left", "ui_right")
-#		$slopeDetect.position.x = 8 * Input.get_axis("ui_left", "ui_right")
-		
-					 
+			if motion.x:
+				ray.cast_to.x = 28 * sign(motion.x)
+			else:
+				ray.cast_to.x = 28 * Input.get_axis("ui_left", "ui_right")
+	
+	if not active: return
+	
+	if stateMachine:
+		stateMachine.processMachine(delta)
+	
+	if gravity:
+		gravityBase()
+	
+
+
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_left", limitsMin.x - 10)
 	$Camera2D.set("limit_top", limitsMin.y - 10)
@@ -73,8 +94,7 @@ func gravityBase():
 		motion.y += GRAVITY
 		if motion.y > MAXFALL:
 			motion.y = MAXFALL
-	elif currentSnapLength == SNAPLENGTH and motion.y != 0  and (!onSlope()[0] or motion.x == 0) and !snapDesatived:
-		motion.y = 0
+	
 
 func init(powerUp := "Normal"):
 	var newPlayer = load(powers[powerUp]).instance()
@@ -116,17 +136,18 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 		motion.y = MotionCord
 
 func move(stopSlope = true):
-#	motion.y = move_and_slide(motion, Vector2.UP, stopSlope, 4, deg2rad(46)).y
 	var snap := Vector2.ZERO
-	if not snapDesatived: 
-		snap = Vector2.DOWN*currentSnapLength 
+	if not snapDesatived:
+		
+		snap = Vector2.DOWN*SNAPLENGTH
 
 	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true, 4, deg2rad(46)).y
 	
-	if onFloor().has(true) and motion.y >= 0 and currentSnapLength == 0 and not Input.is_action_pressed("ui_jump"):
-		currentSnapLength = SNAPLENGTH
+	
+	if onFloor().has(true) and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
 		motion.y = 0
-
+		
+	
 
 func desaccelerate(MotionCord : float, input := .0):
 	if sign(MotionCord) != input:
@@ -141,11 +162,11 @@ func jumpBase(force = JUMPFORCE):
 	
 	
 	if canJump and couldUncounch():
-		
-		
+		snapDesatived = true
 		motion.y = force
 		coyote = false
 		canJump = false
+		
 	elif Input.is_action_just_released("ui_jump"):
 		motion.y /= 2
 		snapDesatived = false
@@ -159,27 +180,32 @@ func _coyoteTimer():
 		coyote = false
 
 func onFloor():
-	
+	if !gravity: return [false, false, false]
 	var raycasts = [
 		$flooDetectBack,
 		$floorDetect,
 		$flooDetectFont
 	]
-
-	if $slopeDetect.is_colliding() and onSlope()[0]: return [true, true, true]
 	
-	var leviting := 8
-	for ray in raycasts:
+	var leviting := 24
+	
+	for i in range(3):
+		var ray = raycasts[i]
 		if !ray.is_colliding(): continue
 		
-		var point = to_local(ray.get_collision_point())
+		var point = to_local(ray.get_collision_point()).y
 		
-		if point.y < leviting:
-			leviting = point.y
+		if point < leviting:
+			leviting = point
 	
-	var result = leviting < 0.5
-	if result:
-		global_position.y += leviting
+#	print(leviting)
+	var result = leviting <= 8 
+	
+	if result: global_position.y += leviting
+	
+	if $slopeDetect.is_colliding() and onSlope():
+#		global_position.y += -8
+		return [true, true, true]
 	return [result, result, result]
 	
 
@@ -196,7 +222,14 @@ func onSlope():
 	else:
 		isOnSlope = false
 		
-	return [isOnSlope, normal]
+	return isOnSlope
+
+func getSlopeNormal():
+	var normal := Vector2.UP
+	if $slopeDetect.is_colliding():
+		normal = $slopeDetect.get_collision_normal()
+	
+	return normal
 
 func onWall():
 	var distance := 28
@@ -204,16 +237,22 @@ func onWall():
 	
 	for ray in onWallRayCast:
 		if !ray.is_colliding(): continue
+		
 		var point = abs(to_local(ray.get_collision_point()).x)
 		
 		if point < distance:
 			distance = point
 		
 		rayDirection = sign(ray.cast_to.x)
-		
-		
-#			if motion.x != 0: motion.x = 0
+	
+	
 	var result = distance < 16.8 and distance >= 16
+	
+	if result and  rayDirection != Input.get_axis("ui_left", "ui_right"):
+		if Input.get_axis("ui_left", "ui_right") != 0 and motion.x:
+			motion.x = 0
+		
+	
 	if result:
 		if rayDirection == sign(motion.x):
 			motion.x = 0
@@ -234,7 +273,7 @@ func collideUp():
 
 func couldUncounch(counch = counched):
 	if counch:
-		return collideUp() < -32
+		return collideUp() < -33
 	
 	return collideUp() < -64
 
@@ -255,7 +294,14 @@ func hitboxTriggered(_damage, area):
 		var direction := sign(area.global_position.x - position.x)
 		emit_signal("damaged", direction)
 		shieldActived = true
+	
+	elif area.is_in_group("ladder"):
+		canLadder = true	
 		
+func hitboxExited(area):
+	if area.is_in_group("ladder"):
+		canLadder = false
+
 func shieldTimeout():
 	animationShield.travel("RESET")
 

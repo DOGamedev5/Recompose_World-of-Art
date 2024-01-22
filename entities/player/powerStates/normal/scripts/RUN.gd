@@ -7,6 +7,9 @@ func enter(_laststate):
 	parent.running = false
 
 func process_state():
+	if parent.onSlope() and Input.is_action_just_pressed("ui_down"):
+		return "ROLL"
+	
 	if parent.onWall():
 		return "WALL"
 			

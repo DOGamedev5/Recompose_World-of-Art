@@ -3,11 +3,11 @@ extends State
 var direction : int
 
 func itsDamaged(dir):
-#	if not parent.shieldActived:
 	parent.stateMachine.changeState("DAMAGED")
 	direction = -dir
+	parent.snapDesatived = true
 	parent.playback.travel("DAMAGED")
-	parent.motion.y = -300
+	parent.motion.y = -600
 	parent.motion.x = 600 * direction
 	parent.shield()
 
@@ -23,5 +23,7 @@ func process_state():
 
 func process_physics(_delta):
 	parent.motion.x = parent.desaccelerate(parent.motion.x, 0)
-	
+
+func exit():
+	parent.snapDesatived = false
 

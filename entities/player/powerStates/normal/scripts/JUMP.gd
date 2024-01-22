@@ -1,7 +1,7 @@
 extends State
 
 func enter(laststate):
-	parent.currentSnapLength = 0
+
 	parent.snapDesatived = true
 	if laststate == "ROLL":
 		parent.isRolling = true
@@ -53,7 +53,7 @@ func process_physics(_delta):
 		parent.jumpBase(-535)
 
 func exit():
-	parent.currentSnapLength = parent.SNAPLENGTH
+
 	parent.snapDesatived = false
 	parent.isRolling = false
 

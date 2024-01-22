@@ -2,7 +2,6 @@ extends PlayerBase
 
 onready var sprite = $Sprite
 onready var animation = $AnimationTree
-onready var stateMachine = $StateMachine
 onready var playback = animation["parameters/playback"]
 onready var attackComponents = [$attackPunch, $attackSpeed, $attackRoll]
 onready var currentCollision = $CollisionShape2D
@@ -18,38 +17,29 @@ var isRolling := false
 onready var runningParticle = $runningParticle
 
 onready var collisionShapes := [
-	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true], rotation = 0},
-#	{shape = RectangleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true], rotation = 0},
-	
-	{shape = RectangleShape2D.new(), position = Vector2(0, -12), onWall = [false, false, true], rotation = 0}
+	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
+	{shape = CircleShape2D.new(), position = Vector2(0, -16), onWall = [false, false, true]}
 ]
 
 func _ready():
-	stateMachine.init(self, currentState)
-#	collisionShapes[0].shape.extents = Vector2(16, 28)
+	
 	collisionShapes[0].shape.radius = 16
 	collisionShapes[0].shape.height = 24
-	collisionShapes[1].shape.extents = Vector2(16, 12)
-
+	collisionShapes[1].shape.radius = 15
+	
 func _physics_process(delta):
 	if not active: return
 	
-#	if isRolling:
-#		snapDesatived = true
-	
-	stateMachine.processMachine(delta)
 	_coyoteTimer()
-	gravityBase()
 	setFlipConfig()
 	setAttackSpeed()
-	onSlope()
 	
 	animation["parameters/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
 	if active:
 		move(!isRolling)
 	
-	$a/Label.text = str(stateMachine.currentState.name) + " " +str(currentSnapLength) + " \n " + str(SNAPLENGTH) + "  " + str(snapDesatived)
+	$a/Label.text = str(canLadder) +" \n " + str(motion) + "  " + str(snapDesatived)
 
 	$speedEffect.visible = running
 	if running:
@@ -67,8 +57,8 @@ func setFlipConfig():
 	
 	attackComponents[0].position.x = 35 * (1 - 2 * int(fliped))
 	attackComponents[1].position.x = 40 * (1 - 2 * int(fliped))
-#	attackComponents[1].position.x = 40 * motion.normalized().x
-	attackComponents[1].position.y = (9 * motion.normalized().y) - 23
+
+	attackComponents[1].position.y = (16 * motion.normalized().y) - 23
 	attackComponents[2].position.x = 35 * (1 - 2 * int(fliped))
 	
 	$speedEffect.position.x = 28 * (1 - 2 * int(fliped))
@@ -84,24 +74,18 @@ func setAttackSpeed():
 		else:
 			attackComponents[1].setDamage(2)
 	
-	elif isRolling:
-		attackComponents[2].monitoring = true
-		attackComponents[1].monitoring = false
 	else:
-		attackComponents[2].monitoring = false
 		attackComponents[1].monitoring = false
+	
+	attackComponents[2].monitoring = isRolling
 
 func setCollision(ID := 0):
-#	if ID == 1: ID = 0
 	active = false
 	currentCollision.set_deferred("position", collisionShapes[ID].position)
 	currentCollision.set_deferred("shape", collisionShapes[ID].shape)
-	currentCollision.set_deferred("rotation_degrees", collisionShapes[ID].rotation)
+	currentCollision.set_deferred("custom_solver_bias", 0.2)
 	
-
 	for ray in range(2):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
 	
 	active = true
-	
-
