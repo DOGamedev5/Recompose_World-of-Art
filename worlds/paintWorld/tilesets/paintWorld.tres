@@ -154,19 +154,23 @@ points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=57]
+custom_solver_bias = 1.0
 points = PoolVector2Array( 0, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=58]
+custom_solver_bias = 1.0
 points = PoolVector2Array( 8, 8, 0, 8, 8, 0, 8, 0 )
 
-[sub_resource type="ConcavePolygonShape2D" id=59]
-segments = PoolVector2Array( 0, 0, 8, 0, 8, 0, 8, 8, 8, 8, 0, 8, 0, 8, 0, 0 )
+[sub_resource type="ConvexPolygonShape2D" id=59]
+custom_solver_bias = 1.0
+points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
-[sub_resource type="ConcavePolygonShape2D" id=60]
-segments = PoolVector2Array( 0, 0, 8, 0, 8, 0, 8, 8, 8, 8, 0, 8, 0, 8, 0, 0 )
+[sub_resource type="ConvexPolygonShape2D" id=60]
+custom_solver_bias = 1.0
+points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
-[sub_resource type="ConcavePolygonShape2D" id=61]
-segments = PoolVector2Array( 0, 0, 8, 0, 8, 0, 8, 8, 8, 8, 0, 8, 0, 8, 0, 0 )
+[sub_resource type="ConvexPolygonShape2D" id=61]
+points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [resource]
 0/name = "tilesetTutorial.pxo 0"
@@ -526,13 +530,13 @@ segments = PoolVector2Array( 0, 0, 8, 0, 8, 0, 8, 8, 8, 8, 0, 8, 0, 8, 0, 0 )
 "shape": SubResource( 58 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
-"autotile_coord": Vector2( 1, 0 ),
+"autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 59 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
-"autotile_coord": Vector2( 2, 0 ),
+"autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 60 ),

@@ -24,6 +24,9 @@ func process_state():
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
 		return "ATTACK"
 	
+	elif Input.is_action_just_pressed("ui_up") and parent.canLadder:
+		return "LADDER"
+	
 	return null
 
 func process_physics(_delta):

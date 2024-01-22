@@ -15,7 +15,7 @@ extents = Vector2( 48, 176 )
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 1 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
-limitsMin = Vector2( -6, -768 )
+limitsMin = Vector2( -6, -720 )
 limitsMax = Vector2( 1312, 96 )
 
 [node name="TileMap" type="TileMap" parent="."]

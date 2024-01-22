@@ -9,6 +9,7 @@ onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
 
 const SNAPLENGTH := 64
 
+
 export(NodePath) var stateMachinePath
 var stateMachine
 
@@ -22,6 +23,8 @@ export var MAXFALL := 300
 export var JUMPFORCE := -400
 
 signal damaged(direction)
+
+var enteredObjects := []
 
 var motion := Vector2.ZERO
 var canJump := true
@@ -180,7 +183,7 @@ func _coyoteTimer():
 		coyote = false
 
 func onFloor():
-	if !gravity: return [false, false, false]
+	if !gravity: return [true, true, true]
 	var raycasts = [
 		$flooDetectBack,
 		$floorDetect,
@@ -238,6 +241,10 @@ func onWall():
 	for ray in onWallRayCast:
 		if !ray.is_colliding(): continue
 		
+		var normal = ray.get_collision_normal()
+		
+		if abs(normal.y) > 0.5: continue
+		
 		var point = abs(to_local(ray.get_collision_point()).x)
 		
 		if point < distance:
@@ -250,11 +257,13 @@ func onWall():
 	
 	if result and  rayDirection != Input.get_axis("ui_left", "ui_right"):
 		if Input.get_axis("ui_left", "ui_right") != 0 and motion.x:
+			
 			motion.x = 0
 		
 	
 	if result:
 		if rayDirection == sign(motion.x):
+			
 			motion.x = 0
 			
 		global_position.x += (distance - 16) * rayDirection
@@ -296,11 +305,21 @@ func hitboxTriggered(_damage, area):
 		shieldActived = true
 	
 	elif area.is_in_group("ladder"):
+		enteredObjects.append(area)
 		canLadder = true	
 		
 func hitboxExited(area):
 	if area.is_in_group("ladder"):
-		canLadder = false
+		enteredObjects.erase(area)
+	
+	var onLadder := false
+	
+	for obj in enteredObjects:
+		if obj.is_in_group("ladder"):
+			onLadder = true
+			break
+	
+	canLadder = onLadder
 
 func shieldTimeout():
 	animationShield.travel("RESET")

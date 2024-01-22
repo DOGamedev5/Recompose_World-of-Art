@@ -39,7 +39,7 @@ func _physics_process(delta):
 	if active:
 		move(!isRolling)
 	
-	$a/Label.text = str(canLadder) +" \n " + str(motion) + "  " + str(snapDesatived)
+#	$a/Label.text = str(canLadder) +" \n " + str(motion) + "  " + str(snapDesatived)
 
 	$speedEffect.visible = running
 	if running:

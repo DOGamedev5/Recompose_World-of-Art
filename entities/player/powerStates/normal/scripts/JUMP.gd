@@ -1,7 +1,7 @@
 extends State
 
 func enter(laststate):
-
+	parent.jumpBase()
 	parent.snapDesatived = true
 	if laststate == "ROLL":
 		parent.isRolling = true
@@ -22,6 +22,9 @@ func process_state():
 	
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
 		return "ATTACK"
+	
+	elif Input.is_action_just_pressed("ui_up") and parent.canLadder:
+		return "LADDER"
 	
 	return null
 
