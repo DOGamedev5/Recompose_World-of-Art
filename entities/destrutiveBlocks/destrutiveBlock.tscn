@@ -10,7 +10,7 @@ extents = Vector2( 32, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
-[node name="block" type="KinematicBody2D"]
+[node name="block" type="KinematicBody2D" groups=["destrutive"]]
 script = ExtResource( 2 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
@@ -19,7 +19,7 @@ scale = Vector2( 3.2, 3.2 )
 process_parent = true
 physics_process_parent = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["destrutive"]]
 position = Vector2( 0, -32 )
 shape = SubResource( 1 )
 

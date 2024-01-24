@@ -18,7 +18,7 @@ onready var runningParticle = $runningParticle
 
 onready var collisionShapes := [
 	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
-	{shape = CircleShape2D.new(), position = Vector2(0, -16), onWall = [false, false, true]}
+	{shape = CircleShape2D.new(), position = Vector2(0, -16), onWall = [false, true, true]}
 ]
 
 func _ready():
@@ -39,7 +39,7 @@ func _physics_process(delta):
 	if active:
 		move(!isRolling)
 	
-#	$a/Label.text = str(canLadder) +" \n " + str(motion) + "  " + str(snapDesatived)
+	$a/Label.text = str(breaking)
 
 	$speedEffect.visible = running
 	if running:
@@ -52,13 +52,13 @@ func _physics_process(delta):
 
 
 func setFlipConfig():
-	if stunned:
-		return
+	if stunned: return
 	
 	attackComponents[0].position.x = 35 * (1 - 2 * int(fliped))
+	
 	attackComponents[1].position.x = 40 * (1 - 2 * int(fliped))
-
 	attackComponents[1].position.y = (16 * motion.normalized().y) - 23
+	
 	attackComponents[2].position.x = 35 * (1 - 2 * int(fliped))
 	
 	$speedEffect.position.x = 28 * (1 - 2 * int(fliped))
@@ -68,16 +68,21 @@ func setFlipConfig():
 
 func setAttackSpeed():
 	if running and not isRolling:
-		attackComponents[1].monitoring = true
 		if sqrt(pow(motion.x, 2) + pow(motion.y, 2)) < 725:
 			attackComponents[1].setDamage(1)
 		else:
 			attackComponents[1].setDamage(2)
 	
 	else:
-		attackComponents[1].monitoring = false
+		attackComponents[1].setDamage(0)
+		
+	attackComponents[2].setDamage(int(isRolling))
+	var power := 0
+	for atk in attackComponents:
+		if atk.monitoring:
+			power += atk.damage
 	
-	attackComponents[2].monitoring = isRolling
+	breaking = power
 
 func setCollision(ID := 0):
 	active = false
@@ -85,7 +90,7 @@ func setCollision(ID := 0):
 	currentCollision.set_deferred("shape", collisionShapes[ID].shape)
 	currentCollision.set_deferred("custom_solver_bias", 0.2)
 	
-	for ray in range(2):
+	for ray in range(3):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
 	
 	active = true

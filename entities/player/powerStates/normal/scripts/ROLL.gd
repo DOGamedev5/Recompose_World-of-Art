@@ -9,11 +9,14 @@ func enter(_lastState):
 	particle.emitting = true
 
 	direction = sign(parent.getSlopeNormal().x)
+	if direction == 0:
+		direction = sign(parent.motion.x)
+
 	parent.isRolling = true
 	parent.setCollision(1)
 
 func process_state():
-	if sign(parent.motion.x) != direction:
+	if parent.onWall():
 		return "WALL"
 		
 	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
@@ -25,6 +28,9 @@ func process_state():
 	return null
 
 func process_physics(_delta):
+	var detect = sign(parent.getSlopeNormal().x)
+	if detect:
+		direction = detect
 	parent.motion.x = parent.MAXSPEED * direction
 	parent.motion.y = parent.MAXSPEED
 

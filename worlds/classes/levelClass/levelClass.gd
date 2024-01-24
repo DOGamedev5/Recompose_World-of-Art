@@ -28,5 +28,6 @@ func loadRoom(room : String, warpID := 0):
 	currentRoom.init(player, warpID)
 #	player.call_deferred("set_physics_process", true)
 	player.set_deferred("active", true)
+	player.resetParticles()
 
 	

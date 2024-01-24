@@ -1,12 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=4]
+[ext_resource path="res://worlds/paintWorld/tilesets/colliseu.tres" type="TileSet" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 232 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 37, 301 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 216 )
 
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 3 )
@@ -34,3 +41,34 @@ shape = SubResource( 1 )
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( 1760, -224 )
 script = ExtResource( 4 )
+
+[node name="colliseu2" type="Node2D" parent="."]
+position = Vector2( 48, -320 )
+
+[node name="colliseuDown" type="TileMap" parent="colliseu2"]
+scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 128, 160 )
+format = 1
+tile_data = PoolIntArray( -720871, 0, 0, -65536, 0, 0, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 2 )
+
+[node name="colliseuUp" type="TileMap" parent="colliseu2"]
+scale = Vector2( 2, 2 )
+z_index = 1
+z_as_relative = false
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 128, 160 )
+format = 1
+tile_data = PoolIntArray( -458730, 0, 3, -65536, 0, 3, -65532, 0, 5 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="colliseu2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliseu2/StaticBody2D"]
+position = Vector2( 27, -291 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="colliseu2/StaticBody2D"]
+position = Vector2( 1248, -408 )
+shape = SubResource( 3 )

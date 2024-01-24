@@ -138,6 +138,11 @@ position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 28, 0 )
 
+[node name="onWallDown" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
+enabled = true
+cast_to = Vector2( 28, 0 )
+
 [node name="slopeDetect" type="RayCast2D" parent="."]
 position = Vector2( 0, -32 )
 enabled = true

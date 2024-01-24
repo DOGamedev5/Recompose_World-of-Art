@@ -7,7 +7,7 @@ func enter(_laststate):
 	parent.running = false
 
 func process_state():
-	if parent.onSlope() and Input.is_action_just_pressed("ui_down"):
+	if (parent.onSlope() or abs(parent.motion.x) > 500) and Input.is_action_just_pressed("ui_down"):
 		return "ROLL"
 	
 	if parent.onWall():
@@ -22,7 +22,7 @@ func process_state():
 	elif not parent.onFloor().has(true):
 		return "FALL"
 	
-	elif Input.is_action_pressed("run"):
+	elif Input.is_action_pressed("run") and parent.couldUncounch(true):
 		return "TOP_SPEED"
 	
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch(true):
@@ -41,7 +41,7 @@ func process_physics(_delta):
 	if parent.counched:
 		parent.moveBase("X", parent.motion.x, 180)
 		parent.playback.travel("CRAWLING")
-	else:
+	elif parent.couldUncounch(true):
 		parent.moveBase("X", parent.motion.x)
 		
 		if sign(parent.motion.x) != sign(input) and parent.motion.x != 0:

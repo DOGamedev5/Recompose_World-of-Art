@@ -2,16 +2,17 @@
 class_name PlayerBase extends KinematicBody2D
 
 onready var coyoteTimer = $coyoteTimer
-onready var onWallRayCast = [$onWallTop, $onWallMid]
+onready var onWallRayCast = [$onWallTop, $onWallMid, $onWallDown]
 onready var collideUPCast = $collideUp
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
 
-const SNAPLENGTH := 64
-
+const SNAPLENGTH := 32
 
 export(NodePath) var stateMachinePath
 var stateMachine
+
+export(Array) var particles
 
 export var gravity := true
 
@@ -37,7 +38,7 @@ var shieldActived := false
 var currentSnapLength := 0
 var snapDesatived := false
 var canLadder := false
-
+var breaking := 0
 
 var powers := {
 	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
@@ -53,8 +54,6 @@ func _ready():
 	if stateMachinePath: 
 		stateMachine = get_node(stateMachinePath)
 		stateMachine.init(self)
-
-
 
 func _physics_process(delta):
 	if not stunned:
@@ -82,14 +81,23 @@ func _physics_process(delta):
 	
 	if gravity:
 		gravityBase()
-	
-
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_left", limitsMin.x - 10)
 	$Camera2D.set("limit_top", limitsMin.y - 10)
 	$Camera2D.set("limit_right", limitsMax.x + 10)
 	$Camera2D.set("limit_bottom", limitsMax.y + 10)
+
+func resetParticles():
+	if not particles: return
+	
+	for obj in particles:
+		var node = get_node(obj)
+		if node is CPUParticles2D or node is Particles2D:
+			node.restart()
+		else:
+			push_warning("warning: " + node.name + " its not a CPUParticles2D or Particles2D")
+			
 
 func gravityBase():
 	if not onFloor().has(true):
@@ -105,10 +113,11 @@ func init(powerUp := "Normal"):
 	return newPlayer
 
 func changePowerup(powerUp):
-	
 	var newPlayer = load(powers[powerUp]).instance()
+	
 	get_parent().add_child(newPlayer)
 	newPlayer.global_position = global_position
+	
 	get_parent().player = newPlayer
 	queue_free()
 
@@ -119,7 +128,6 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
 
 	MotionCord = desaccelerate(MotionCord, input)
-	
 	
 	if input > 0:
 		if MotionCord <= maxSpeed:
@@ -142,15 +150,12 @@ func move(stopSlope = true):
 	var snap := Vector2.ZERO
 	if not snapDesatived:
 		
-		snap = Vector2.DOWN*SNAPLENGTH
+		snap = Vector2.DOWN * SNAPLENGTH * abs(motion.x) / 500
 
 	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true, 4, deg2rad(46)).y
 	
-	
 	if onFloor().has(true) and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
 		motion.y = 0
-		
-	
 
 func desaccelerate(MotionCord : float, input := .0):
 	if sign(MotionCord) != input:
@@ -162,8 +167,6 @@ func desaccelerate(MotionCord : float, input := .0):
 	return MotionCord
 
 func jumpBase(force = JUMPFORCE):
-	
-	
 	if canJump and couldUncounch():
 		snapDesatived = true
 		motion.y = force
@@ -201,17 +204,15 @@ func onFloor():
 		if point < leviting:
 			leviting = point
 	
-#	print(leviting)
 	var result = leviting <= 8 
 	
 	if result: global_position.y += leviting
 	
 	if $slopeDetect.is_colliding() and onSlope():
-#		global_position.y += -8
 		return [true, true, true]
+	
 	return [result, result, result]
 	
-
 func onSlope():
 	var normalAngle
 	var normal
@@ -252,15 +253,14 @@ func onWall():
 		
 		rayDirection = sign(ray.cast_to.x)
 	
-	
-	var result = distance < 16.8 and distance >= 16
+	var result = distance < 16.8 and distance >= 15
 	
 	if result and  rayDirection != Input.get_axis("ui_left", "ui_right"):
 		if Input.get_axis("ui_left", "ui_right") != 0 and motion.x:
 			
 			motion.x = 0
+			return true
 		
-	
 	if result:
 		if rayDirection == sign(motion.x):
 			
@@ -270,7 +270,6 @@ func onWall():
 		return true
 
 	return false
-
 
 func collideUp():
 	if collideUPCast.is_colliding():
@@ -323,5 +322,4 @@ func hitboxExited(area):
 
 func shieldTimeout():
 	animationShield.travel("RESET")
-
 	shieldActived = false

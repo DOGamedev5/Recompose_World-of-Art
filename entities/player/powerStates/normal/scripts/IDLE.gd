@@ -6,7 +6,7 @@ func process_state():
 		return "ROLL"
 		
 	elif Input.get_axis("ui_left", "ui_right") != 0:
-		if Input.is_action_pressed("run"):
+		if Input.is_action_pressed("run") and parent.couldUncounch(true):
 			return "TOP_SPEED"
 		
 		return "RUN"
@@ -26,6 +26,7 @@ func process_state():
 	return null
 	
 func process_physics(_delta):
+
 	parent.idleBase()
 	
 	if parent.counched:

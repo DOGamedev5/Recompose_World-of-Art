@@ -1,7 +1,10 @@
 extends State
 
 func enter(laststate):
-	parent.jumpBase()
+#	if not parent.counched:
+#		parent.jumpBase()
+#	else:
+#		parent.jumpBase(-535)
 	parent.snapDesatived = true
 	if laststate == "ROLL":
 		parent.isRolling = true

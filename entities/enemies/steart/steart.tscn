@@ -106,7 +106,7 @@ extents = Vector2( 512, 88 )
 extents = Vector2( 24, 30 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 16, 16 )
+extents = Vector2( 24, 16 )
 
 [node name="steart" type="KinematicBody2D" groups=["enemy"]]
 z_index = -1
@@ -172,6 +172,7 @@ collision_mask = 512
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+position = Vector2( -8, 0 )
 shape = SubResource( 9 )
 
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="_damaged"]
