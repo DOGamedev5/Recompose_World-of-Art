@@ -82,6 +82,11 @@ func _physics_process(delta):
 	if gravity:
 		gravityBase()
 
+func setParticle(index := 0, emitting := true):
+	var particle = get_node(particles[index])
+	
+	particle.emitting = emitting
+
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_left", limitsMin.x - 10)
 	$Camera2D.set("limit_top", limitsMin.y - 10)
@@ -94,7 +99,10 @@ func resetParticles():
 	for obj in particles:
 		var node = get_node(obj)
 		if node is CPUParticles2D or node is Particles2D:
+			var emitting = node.emitting
 			node.restart()
+			
+			node.emitting = emitting
 		else:
 			push_warning("warning: " + node.name + " its not a CPUParticles2D or Particles2D")
 			

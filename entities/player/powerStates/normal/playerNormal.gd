@@ -14,8 +14,6 @@ var attackTime := 20.0
 var attackVelocity := 800.0
 var isRolling := false
 
-onready var runningParticle = $runningParticle
-
 onready var collisionShapes := [
 	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
 	{shape = CircleShape2D.new(), position = Vector2(0, -16), onWall = [false, true, true]}

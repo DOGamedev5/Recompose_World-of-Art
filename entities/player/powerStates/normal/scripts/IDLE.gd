@@ -1,5 +1,8 @@
 extends State
 
+func enter(_laststate):
+	parent.setParticle(0, false)
+	parent.setParticle(1, false)
 
 func process_state():
 	if parent.onSlope() and Input.is_action_just_pressed("ui_down"):
@@ -20,7 +23,7 @@ func process_state():
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch(true):
 		return "ATTACK"
 	
-	if Input.is_action_just_pressed("ui_up") and parent.canLadder:
+	if (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
 		return "LADDER"
 
 	return null

@@ -1,10 +1,9 @@
 extends State
 
 func enter(laststate):
-#	if not parent.counched:
-#		parent.jumpBase()
-#	else:
-#		parent.jumpBase(-535)
+	parent.setParticle(0, false)
+	parent.setParticle(1, false)
+	
 	parent.snapDesatived = true
 	if laststate == "ROLL":
 		parent.isRolling = true
@@ -26,7 +25,7 @@ func process_state():
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
 		return "ATTACK"
 	
-	elif Input.is_action_just_pressed("ui_up") and parent.canLadder:
+	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
 		return "LADDER"
 	
 	return null
@@ -59,7 +58,6 @@ func process_physics(_delta):
 		parent.jumpBase(-535)
 
 func exit():
-
 	parent.snapDesatived = false
 	parent.isRolling = false
 

@@ -8,6 +8,9 @@ var atkDirection := .0
 func enter(_lastState):
 	parent.snapDesatived = true
 	
+	parent.setParticle(0, false)
+	parent.setParticle(1, false)
+	
 	parent.attackComponents[0].monitoring = true
 	jumpping = false
 	timer = 20

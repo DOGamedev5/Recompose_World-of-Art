@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=2]
+[gd_scene load_steps=202 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://entities/player/powerStates/normal/scripts/ROLL.gd" type="Script" id=30]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/LADDER.gd" type="Script" id=31]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoLadder.pxo" type="Texture" id=32]
+[ext_resource path="res://gameplay/effects/effect2.pxo" type="Texture" id=33]
 
 [sub_resource type="RectangleShape2D" id=87]
 resource_local_to_scene = true
@@ -387,25 +388,13 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("runningParticle:emitting")
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/5/type = "method"
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -518,18 +507,6 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("runningParticle:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "IDLE"
@@ -609,18 +586,6 @@ tracks/5/keys = {
 "method": "setCollision"
 } ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("runningParticle:emitting")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=41]
 resource_name = "JUMP"
@@ -688,18 +653,6 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("runningParticle:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=185]
 resource_name = "LADDERDOWN"
@@ -742,18 +695,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [ ExtResource( 32 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("runningParticle:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=162]
 resource_name = "LADDERUP"
@@ -795,18 +736,6 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 2,
 "values": [ ExtResource( 32 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("runningParticle:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -1017,18 +946,6 @@ tracks/4/keys = {
 "args": [ 0 ],
 "method": "setCollision"
 } ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("runningParticle:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
 }
 
 [sub_resource type="Animation" id=49]
@@ -1635,13 +1552,19 @@ min_value = -200.0
 max_value = 200.0
 _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 119.325 ), 498.258, 0.0, 0, 0 ]
 
+[sub_resource type="CanvasItemMaterial" id=193]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
 [node name="playerNormal" instance=ExtResource( 2 )]
 collision/safe_margin = 1.0
 script = ExtResource( 1 )
 stateMachinePath = NodePath("StateMachine")
-particles = [ NodePath("runningParticle") ]
+particles = [ NodePath("runningParticle"), NodePath("topspeedParicle") ]
 ACCELERATION = 8
 DESACCELERATION = 18
 GRAVITY = 26
@@ -1832,6 +1755,20 @@ initial_velocity = 10.0
 linear_accel = 40.0
 linear_accel_curve = SubResource( 89 )
 scale_amount = 1.5
+anim_speed = 1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="topspeedParicle" type="CPUParticles2D" parent="." index="24"]
+material = SubResource( 193 )
+emitting = false
+amount = 6
+lifetime = 0.5
+local_coords = false
+draw_order = 1
+texture = ExtResource( 33 )
+gravity = Vector2( 0, 0 )
 anim_speed = 1.0
 __meta__ = {
 "_edit_group_": true

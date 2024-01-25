@@ -1,15 +1,13 @@
 extends State
 
 onready var ladderAnimation = $"../../AnimationTree"["parameters/LADDER/StateMachine/playback"]
-
-
 onready var seek = $"../../AnimationTree"["parameters/LADDER/Seek/seek_position"]
 
 var lastAnimation := -1
 
 func enter(_lastState):
-	
-#	ladderAnimation.stop()
+	parent.setParticle(0, false)
+	parent.setParticle(1, false)
 	parent.playback.travel("LADDER")
 	parent.motion.x = 0
 	parent.snapDesatived = true
@@ -24,7 +22,7 @@ func process_state():
 	if Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
-	if not parent.canLadder:
+	if not parent.canLadder or (Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right")):
 		return "FALL"
 	
 	return null
@@ -52,8 +50,8 @@ func process_physics(_delta):
 			ladderAnimation.travel("LADDERDOWN")
 		lastAnimation = input
 		
-	
 
 func exit():
+	parent.motion.y = -500
 	parent.snapDesatived = false
 	parent.gravity = true

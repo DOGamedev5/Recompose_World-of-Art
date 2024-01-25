@@ -1,7 +1,7 @@
 extends State
 
 func enter(laststate):
-	parent.runningParticle = false
+	parent.setParticle(0, false)
 	if laststate == "ROLL":
 		parent.isRolling = true
 
@@ -24,7 +24,7 @@ func process_state():
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
 		return "ATTACK"
 	
-	elif Input.is_action_just_pressed("ui_up") and parent.canLadder:
+	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
 		return "LADDER"
 	
 	return null

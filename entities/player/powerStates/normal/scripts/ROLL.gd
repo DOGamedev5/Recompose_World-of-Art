@@ -4,6 +4,8 @@ onready var particle = $"../../runningParticle"
 var direction := 1
 
 func enter(_lastState):
+	parent.setParticle(0, true)
+	parent.setParticle(1, false)
 	parent.snapDesatived = false
 	parent.playback.travel("ROLL")
 	particle.emitting = true
@@ -22,9 +24,6 @@ func process_state():
 	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 
-#	elif not parent.onFloor().has(true):
-#		return "FALL"
-
 	return null
 
 func process_physics(_delta):
@@ -35,7 +34,6 @@ func process_physics(_delta):
 	parent.motion.y = parent.MAXSPEED
 
 func exit():
-#	parent.snapDesatived = false
-	particle.emitting = false
+	parent.setParticle(0, false)
 	parent.setCollision(0)
 	parent.isRolling = false

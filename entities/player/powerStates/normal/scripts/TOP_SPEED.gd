@@ -1,10 +1,11 @@
 extends State
 
-onready var particle = $"../../runningParticle"
+
 
 func enter(_lastState):
+	parent.setParticle(0, false)
+	parent.setParticle(1, true)
 	parent.playback.travel("TOP_SPEED")
-	particle.emitting = true
 	
 	if abs(parent.motion.x) > parent.MAXSPEED:
 		parent.running = true
@@ -42,7 +43,7 @@ func process_physics(_delta):
 		parent.playback.travel("TOP_SPEED")
 
 func exit():
-	particle.emitting = false
+	parent.setParticle(1, false)
 	if not parent.running or abs(parent.motion.x) <= parent.MAXSPEED:
 		parent.attackComponents[1].monitoring = false
 		

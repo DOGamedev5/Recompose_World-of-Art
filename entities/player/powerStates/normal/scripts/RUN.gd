@@ -1,9 +1,11 @@
 extends State
 
 
-onready var particle = $"../../runningParticle"
+
 
 func enter(_laststate):
+	parent.setParticle(0, true)
+	parent.setParticle(1, false)
 	parent.running = false
 
 func process_state():
@@ -28,7 +30,7 @@ func process_state():
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch(true):
 		return "ATTACK"
 	
-	elif Input.is_action_just_pressed("ui_up") and parent.canLadder:
+	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
 		return "LADDER"
 
 	
@@ -50,6 +52,6 @@ func process_physics(_delta):
 			parent.playback.travel("RUN")
 
 func exit():
-	particle.emitting = false
+	parent.setParticle(0, false)
 
 	
