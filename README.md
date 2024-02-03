@@ -34,6 +34,8 @@ K to dash
 
 ![1](https://github.com/DOGamedev5/Recompose_World-of-Art/assets/87737053/ae4f93e0-815d-4f47-985d-eee2f5fe95a0)
 
+[Instagram](https://www.instagram.com/Xulico.Pixel)
+
 ### Andrew
 
 ![2](https://github.com/DOGamedev5/Recompose_World-of-Art/assets/87737053/13f1eb26-83a5-4679-ab78-bbd3b4d54151)
@@ -66,4 +68,7 @@ K to dash
 
 [Artstation](https://www.artstation.com/fari16)
 
+### João Ricardo
+
+![7](https://github.com/Ciencia-Cafe/black-hole_RUN/assets/87737053/369cfb46-2d59-4c90-95cd-3dec5b7c7652)
 
