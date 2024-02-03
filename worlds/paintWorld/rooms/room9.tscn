@@ -1,19 +1,20 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=4]
 [ext_resource path="res://worlds/paintWorld/tilesets/colliseu.tres" type="TileSet" id=5]
+[ext_resource path="res://entities/enemies/minibosses/metaint/metaint.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 232 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 40, 334.5 )
+extents = Vector2( 36, 248 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 40, 240 )
+extents = Vector2( 36, 240 )
 
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 3 )
@@ -39,7 +40,7 @@ position = Vector2( -48, -32 )
 shape = SubResource( 1 )
 
 [node name="RoomWarp" type="Position2D" parent="."]
-position = Vector2( 1696, -224 )
+position = Vector2( 1760, -224 )
 script = ExtResource( 4 )
 
 [node name="colliseu2" type="Node2D" parent="."]
@@ -69,15 +70,18 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="colliseu2/StaticBody2D"]
-position = Vector2( 40, -337.5 )
+position = Vector2( 36, -424 )
 shape = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="colliseu2/StaticBody2D"]
-position = Vector2( 1496, -416 )
+position = Vector2( 1500, -416 )
 shape = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="EnemyBase" parent="colliseu2" instance=ExtResource( 6 )]
+position = Vector2( 240, 0 )

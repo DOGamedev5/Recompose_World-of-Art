@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/PaintHouse.pxo-f2bcb2bfb02b07a6f5133d8c3cab10bf.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/sprites/PaintHouse.pxo"
+dest_files=[ "res://.import/PaintHouse.pxo-f2bcb2bfb02b07a6f5133d8c3cab10bf.stex" ]
+
+[params]
+

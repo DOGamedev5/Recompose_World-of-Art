@@ -3,7 +3,7 @@ extends State
 onready var ladderAnimation = $"../../AnimationTree"["parameters/LADDER/StateMachine/playback"]
 onready var seek = $"../../AnimationTree"["parameters/LADDER/Seek/seek_position"]
 
-var lastAnimation := -1
+var lastAnimation := -1.0
 
 func enter(_lastState):
 	parent.setParticle(0, false)

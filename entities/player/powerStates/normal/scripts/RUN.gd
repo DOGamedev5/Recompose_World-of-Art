@@ -1,8 +1,6 @@
 extends State
 
 
-
-
 func enter(_laststate):
 	parent.setParticle(0, true)
 	parent.setParticle(1, false)
@@ -43,9 +41,10 @@ func process_physics(_delta):
 	if parent.counched:
 		parent.moveBase("X", parent.motion.x, 180)
 		parent.playback.travel("CRAWLING")
+		parent.setParticle(0, false)
 	elif parent.couldUncounch(true):
 		parent.moveBase("X", parent.motion.x)
-		
+		parent.setParticle(0, true)
 		if sign(parent.motion.x) != sign(input) and parent.motion.x != 0:
 			parent.playback.travel("STOPPING")
 		elif input != 0:
