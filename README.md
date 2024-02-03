@@ -78,6 +78,8 @@ K to dash
 
 #### [Artstation](https://www.artstation.com/fari16)
 
+#### [Twitter](https://twitter.com/PixelFari)
+
 ---
 
 ### João Ricardo
