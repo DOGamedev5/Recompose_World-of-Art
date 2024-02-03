@@ -34,36 +34,53 @@ K to dash
 
 ![1](https://github.com/DOGamedev5/Recompose_World-of-Art/assets/87737053/ae4f93e0-815d-4f47-985d-eee2f5fe95a0)
 
+#### [Instagram](https://www.instagram.com/Xulico.Pixel)
+
+---
+
 ### Andrew
 
 ![2](https://github.com/DOGamedev5/Recompose_World-of-Art/assets/87737053/13f1eb26-83a5-4679-ab78-bbd3b4d54151)
 
-[Twitter](https://twitter.com/Andrew_px1)
+#### [Twitter](https://twitter.com/Andrew_px1)
+
+---
 
 ### Kumuri
 
 ![3](https://github.com/DOGamedev5/Recompose_World-of-Art/assets/87737053/f01ed7e7-198f-4896-b9a0-286c19ba6261)
 
-[Artstation](https://www.artstation.com/kumorikek/profile)
+#### [Artstation](https://www.artstation.com/kumorikek/profile)
+
+---
 
 ### Tiago
 
 ![4](https://github.com/DOGamedev5/Recompose_World-of-Art/assets/87737053/430c3d77-9102-43c1-bd3e-49018842fc46)
 
-[Artstation](https://www.artstation.com/zoroaki)
+#### [Artstation](https://www.artstation.com/zoroaki)
+
+---
 
 ### Glentgm
 
 ![5](https://github.com/DOGamedev5/Recompose_World-of-Art/assets/87737053/bbe9db91-9907-4149-94b2-18d9cca5c59e)
 
-[Artstation](https://www.artstation.com/Glentgm)
+#### [Artstation](https://www.artstation.com/Glentgm)
 
-[commisions](https://vgen.co/glentgm)
+#### [commisions](https://vgen.co/glentgm)
+
+---
 
 ### Fari
 
 ![6](https://github.com/DOGamedev5/Recompose_World-of-Art/assets/87737053/2a6d6115-eee3-46b7-83fc-f0d651976c47)
 
-[Artstation](https://www.artstation.com/fari16)
+#### [Artstation](https://www.artstation.com/fari16)
 
+---
+
+### João Ricardo
+
+![7](https://github.com/Ciencia-Cafe/black-hole_RUN/assets/87737053/369cfb46-2d59-4c90-95cd-3dec5b7c7652)
 
