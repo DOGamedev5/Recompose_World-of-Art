@@ -3,7 +3,42 @@ recompose its a game inspired in pizza tower and hollow knight, a frenetic metro
 
 ## paints sprites credits
 
+### Xulico
 
+![Xulico0](worlds/paintWorld/sprites/credit_images/0.jpg)
+
+![Xulico1](worlds/paintWorld/sprites/credit_images/2.jpg)
+
+### Andrew
+
+![Andrew](worlds/paintWorld/sprites/credit_images/1.jpg)
+
+[Twitter](https://twitter.com/Andrew_px1)
+
+### Kumuri
+
+![Kumuri](worlds/paintWorld/sprites/credit_images/3.jpg)
+
+[Artstation](https://www.artstation.com/kumorikek/profile)
+
+### Tiago
+
+![Tiago](worlds/paintWorld/sprites/credit_images/4.jpg)
+
+[Artstation](https://www.artstation.com/zoroaki)
+
+### Glentgm
+
+![Glentgm](worlds/paintWorld/sprites/credit_images/5.jpg)
+
+[Artstation](https://www.artstation.com/Glentgm)
+[commisions](https://vgen.co/glentgm)
+
+### Fari
+
+![Fari](worlds/paintWorld/sprites/credit_images/6.jpg)
+
+[Artstation](https://www.artstation.com/fari16)
 
 ## Story
 you are lodrofo, one of the peoples who lives in the PaintWorld, some day the AIs have been created, with the ideia of being Tools to help to make art and for the ones that dont have habilities to make art have the possibility to share sentiments with the AIs, 
