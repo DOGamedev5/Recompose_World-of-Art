@@ -32,10 +32,7 @@ func process_state():
 func process_physics(_delta):
 	
 	parent.moveBase("X", parent.motion.x, parent.runningVelocity)
-	if abs(parent.motion.x) + abs(parent.motion.y) > parent.MAXSPEED:
-		parent.running = true
-	else:
-		parent.running = false
+	parent.detectRunning()
 	
 	if sign(parent.motion.x) != sign(Input.get_axis("ui_left", "ui_right")) and parent.motion.x != 0:
 		parent.playback.travel("STOPPING")

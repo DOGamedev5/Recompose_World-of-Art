@@ -32,8 +32,7 @@ func process_state():
 func process_physics(_delta):
 	var maxSpeed : float
 	
-	if parent.running and abs(parent.motion.x) + abs(parent.motion.y) <= parent.MAXSPEED:
-		parent.running = false
+	parent.stoppedRunning()
 	
 	if parent.isRolling:
 		parent.motion.x = sign(parent.motion.x) * parent.MAXSPEED
@@ -46,7 +45,6 @@ func process_physics(_delta):
 		else:
 			parent.playback.travel("FALL")
 			maxSpeed = parent.MAXSPEED
-		
 		
 	else:
 		parent.playback.travel("COUNCHFALL")

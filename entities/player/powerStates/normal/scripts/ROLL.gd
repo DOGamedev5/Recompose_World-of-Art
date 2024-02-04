@@ -1,7 +1,7 @@
 extends State
 
 onready var particle = $"../../runningParticle"
-var direction := 1
+var direction := 1.0
 
 func enter(_lastState):
 	parent.setParticle(0, true)

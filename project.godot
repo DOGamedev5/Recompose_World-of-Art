@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://worlds/classes/levelClass/levelClass.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "NPCBase",
+"language": "GDScript",
+"path": "res://entities/NPCs/NPCBase.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "PlayerBase",
 "language": "GDScript",
 "path": "res://entities/player/playerBase.gd"
@@ -65,6 +70,7 @@ _global_script_class_icons={
 "EnemyBase": "",
 "HitboxComponent": "",
 "LevelClass": "",
+"NPCBase": "",
 "PlayerBase": "",
 "RoomClass": "",
 "RoomWarp": "",

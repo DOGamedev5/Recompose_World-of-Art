@@ -37,26 +37,41 @@ func _physics_process(delta):
 	if active:
 		move(!isRolling)
 	
-	$a/Label.text = str(breaking)
+	$a/Label.text = str(motion.x)
 
 	$speedEffect.visible = running
 	if running:
-		$speedEffect.modulate.a = max((sqrt(pow(motion.x, 2) + pow(motion.y, 2)) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
+		var velocity = motion.x
+		if onSlope():
+			velocity = sqrt(pow(motion.x, 2) + pow(motion.y, 2))
+		 
+		$speedEffect.modulate.a = max((velocity - MAXSPEED) / (runningVelocity - MAXSPEED-100), 0.65)
 		
 	if canAttackTimer > 0:
 		canAttackTimer -= delta
 		if canAttackTimer < 0:
 			canAttackTimer = 0
 
+func stoppedRunning():
+	var velocity = motion.x
+	if onSlope():
+		velocity = sqrt(pow(motion.x, 2) + pow(motion.y, 2))
+		
+	if running and abs(velocity) <= MAXSPEED:
+		running = false
+
+func detectRunning():
+	var velocity = motion.x
+	if onSlope():
+		velocity = sqrt(pow(motion.x, 2) + pow(motion.y, 2))
+	
+	running = abs(velocity) > MAXSPEED
 
 func setFlipConfig():
 	if stunned: return
 	
 	attackComponents[0].position.x = 35 * (1 - 2 * int(fliped))
-	
 	attackComponents[1].position.x = 40 * (1 - 2 * int(fliped))
-	attackComponents[1].position.y = (16 * motion.normalized().y) - 23
-	
 	attackComponents[2].position.x = 35 * (1 - 2 * int(fliped))
 	
 	$speedEffect.position.x = 28 * (1 - 2 * int(fliped))
