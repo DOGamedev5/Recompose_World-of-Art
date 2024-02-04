@@ -1,92 +1,109 @@
 extends PlayerBase
 
-onready var onWallRayCast = [$onWallTop, $onWall, $onWallBotton]
 onready var sprite = $Sprite
 onready var animation = $AnimationTree
-onready var stateMachine = $StateMachine
 onready var playback = animation["parameters/playback"]
-onready var attackComponents = [$attackPunch, $attackSpeed]
+onready var attackComponents = [$attackPunch, $attackSpeed, $attackRoll]
 onready var currentCollision = $CollisionShape2D
 
 export(float) var runningVelocity := 550.0
 
-var running := false
+export var running := false
 var canAttackTimer := .0
 var attackTime := 20.0
 var attackVelocity := 800.0
+var isRolling := false
 
 onready var collisionShapes := [
-	RectangleShape2D.new(),
-	CapsuleShape2D.new()
+	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
+	{shape = CircleShape2D.new(), position = Vector2(0, -16), onWall = [false, true, true]}
 ]
 
 func _ready():
-	stateMachine.init(self, currentState)
-	collisionShapes[0].extents = Vector2(8, 20)
-	collisionShapes[1].radius = 8
-	collisionShapes[1].height = 24
-
+	
+	collisionShapes[0].shape.radius = 16
+	collisionShapes[0].shape.height = 24
+	collisionShapes[1].shape.radius = 15
+	
 func _physics_process(delta):
-	stateMachine.processMachine(delta)
+	if not active: return
+	
 	_coyoteTimer()
-	gravityBase()
 	setFlipConfig()
 	setAttackSpeed()
 	
 	animation["parameters/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
-	motion = move_and_slide(motion, Vector2.UP)
+	if active:
+		move(!isRolling)
 	
-#	$Label.text = str()
-	
+	$a/Label.text = str(motion.x)
+
 	$speedEffect.visible = running
 	if running:
-		$speedEffect.modulate.a = max((abs(motion.x) - MAXSPEED) / (runningVelocity - MAXSPEED), 0.65)
+		var velocity = motion.x
+		if onSlope():
+			velocity = sqrt(pow(motion.x, 2) + pow(motion.y, 2))
+		 
+		$speedEffect.modulate.a = max((velocity - MAXSPEED) / (runningVelocity - MAXSPEED-100), 0.65)
 		
-	
 	if canAttackTimer > 0:
 		canAttackTimer -= delta
 		if canAttackTimer < 0:
 			canAttackTimer = 0
 
-func onWall():
-	for ray in onWallRayCast:
-		if ray.is_colliding():
-			return true
+func stoppedRunning():
+	var velocity = motion.x
+	if onSlope():
+		velocity = sqrt(pow(motion.x, 2) + pow(motion.y, 2))
+		
+	if running and abs(velocity) <= MAXSPEED:
+		running = false
+
+func detectRunning():
+	var velocity = motion.x
+	if onSlope():
+		velocity = sqrt(pow(motion.x, 2) + pow(motion.y, 2))
 	
-	return false
+	running = abs(velocity) > MAXSPEED
 
 func setFlipConfig():
-	if stunned:
-		return
+	if stunned: return
 	
-	if Input.get_axis("ui_left", "ui_right"):
-		for ray in onWallRayCast: 
-			ray.cast_to.x = 20 * Input.get_axis("ui_left", "ui_right")
+	attackComponents[0].position.x = 35 * (1 - 2 * int(fliped))
+	attackComponents[1].position.x = 40 * (1 - 2 * int(fliped))
+	attackComponents[2].position.x = 35 * (1 - 2 * int(fliped))
 	
-	attackComponents[0].position.x = 24 *(1 - 2 * int(fliped))
-	attackComponents[1].position.x = 36 *(1 - 2 * int(fliped))
-	
-	$speedEffect.position.x = 20 * (1 - 2 * int(fliped))
+	$speedEffect.position.x = 28 * (1 - 2 * int(fliped))
 	$speedEffect.flip_h = fliped
 	
 	sprite.flip_h = fliped
 
 func setAttackSpeed():
-	if running:
-		attackComponents[1].monitoring = true
-		if abs(motion.x) < 550:
+	if running and not isRolling:
+		if sqrt(pow(motion.x, 2) + pow(motion.y, 2)) < 725:
 			attackComponents[1].setDamage(1)
 		else:
 			attackComponents[1].setDamage(2)
 	
 	else:
-		attackComponents[1].monitoring = false
-
-
-func _on_HitboxComponent_area_entered(area):
-	if area is ChangeRoom:
-		area.changeRoom()
+		attackComponents[1].setDamage(0)
+		
+	attackComponents[2].setDamage(int(isRolling))
+	var power := 0
+	for atk in attackComponents:
+		if atk.monitoring:
+			power += atk.damage
+	
+	breaking = power
 
 func setCollision(ID := 0):
-	currentCollision.set_shape(collisionShapes[ID])
+	active = false
+	currentCollision.set_deferred("position", collisionShapes[ID].position)
+	currentCollision.set_deferred("shape", collisionShapes[ID].shape)
+	currentCollision.set_deferred("custom_solver_bias", 0.2)
+	
+	for ray in range(3):
+		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
+	
+	active = true

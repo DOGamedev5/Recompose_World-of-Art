@@ -6,6 +6,11 @@ var timer := 20
 var atkDirection := .0
 
 func enter(_lastState):
+	parent.snapDesatived = true
+	
+	parent.setParticle(0, false)
+	parent.setParticle(1, false)
+	
 	parent.attackComponents[0].monitoring = true
 	jumpping = false
 	timer = 20
@@ -13,7 +18,9 @@ func enter(_lastState):
 	if atkDirection == 0:
 		atkDirection = (1 - (2 * int(parent.fliped)))
 	
+	parent.fliped = atkDirection < 0
 	parent.motion.x = parent.attackVelocity * atkDirection
+	parent.motion.y = 0
 	parent.playback.travel("ATTACK")
 	
 func process_state():
@@ -28,7 +35,7 @@ func process_state():
 		
 			return "RUN"
 			
-		if parent.can_jump and Input.is_action_pressed("ui_jump"):
+		if parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 			return "JUMP"
 		
 		elif not parent.onFloor().has(true):
@@ -40,15 +47,18 @@ func process_state():
 	return null
 	
 func process_physics(delta):
-	if (parent.can_jump and Input.is_action_pressed("ui_jump")) or jumpping:
-		parent.jumpBase()
-		jumpping = true
+#	if (parent.can_jump and Input.is_action_pressed("ui_jump")) or jumpping:
+#		parent.jumpBase()
+#		jumpping = true
 	parent.motion.x = parent.attackVelocity * atkDirection
-	
+	parent.motion.y = 0
 	timer -= delta
 	if timer <= 0 and not (Input.is_action_pressed("run") and Input.get_axis("ui_left", "ui_right") != 0):
 		parent.motion.x /= 2
+	
+
 
 func exit():
+	parent.snapDesatived = false
 	parent.attackComponents[0].monitoring = false
 	parent.canAttackTimer = 0.4

@@ -1,7 +1,5 @@
 class_name State extends Node
 
-export var animationName : String
-
 var parent 
 
 ## innitil call

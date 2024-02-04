@@ -1,7 +1,7 @@
 class_name ChangeRoom extends Area2D
 
 export(String) var room
-export(String) var world = "gamesArt"
+export(String) var world = "paintWorld"
 export(int) var roomID
 export var warpID := 0
 

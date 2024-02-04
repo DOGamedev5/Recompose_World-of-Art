@@ -18,7 +18,7 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
 func loadRoom(room : String, warpID := 0):
-	player.set_physics_process(false)
+	player.active = false
 	
 	if currentRoom:
 		currentRoom.queue_free()
@@ -26,6 +26,8 @@ func loadRoom(room : String, warpID := 0):
 	
 	call_deferred("add_child", currentRoom)
 	currentRoom.init(player, warpID)
-	player.call_deferred("set_physics_process", true)
+#	player.call_deferred("set_physics_process", true)
+	player.set_deferred("active", true)
+	player.resetParticles()
 
 	

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/background1.pxo-c4fb898bd023aa2e6ae5400d05557d33.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/tilesets/background1.pxo"
+dest_files=[ "res://.import/background1.pxo-c4fb898bd023aa2e6ae5400d05557d33.stex" ]
+
+[params]
+

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/literatureArtPortal.pxo-b9be67184b459aa643f38b27a157933d.stex"
+
+[deps]
+
+source_file="res://worlds/literatureArt/portal/literatureArtPortal.pxo"
+dest_files=[ "res://.import/literatureArtPortal.pxo-b9be67184b459aa643f38b27a157933d.stex" ]
+
+[params]
+

@@ -1,50 +1,56 @@
 extends State
 
-
-func enter(_lastState):
-	parent.setCollision(1)
-	if parent.running:
-		parent.playback.travel("TOP_SPEED")
-	else:
-		parent.playback.travel("FALL")
-	
-	
+func enter(laststate):
+	parent.setParticle(0, false)
+	if laststate == "ROLL":
+		parent.isRolling = true
 
 func process_state():
-	if parent.onWall() and abs(parent.motion.x) > 200:
+	if parent.onWall() and abs(parent.motion.x) > 300:
 		return "WALL"
 	
-	if parent.can_jump and Input.is_action_pressed("ui_jump"):
+	if parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
 	elif parent.onFloor().has(true):
-		if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
-			if Input.is_action_pressed("run") and parent.running:
-				return "TOP_SPEED"
-			
-			return "RUN"
+		if parent.motion.x == 0: return "IDLE"
 		
-		return "IDLE"
+		if parent.isRolling: return "ROLL"
+		
+		if Input.is_action_pressed("run"): return "TOP_SPEED"
+		
+		return "RUN"
 	
 	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
 		return "ATTACK"
 	
+	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
+		return "LADDER"
+	
 	return null
 
 func process_physics(_delta):
-	if parent.running and abs(parent.motion.x) <= parent.MAXSPEED:
-		parent.running = false
+	var maxSpeed : float
 	
-	if parent.running:
-		parent.playback.travel("TOP_SPEED")
+	parent.stoppedRunning()
+	
+	if parent.isRolling:
+		parent.motion.x = sign(parent.motion.x) * parent.MAXSPEED
+		parent.playback.travel("ROLL")
+	
+	elif not parent.counched or parent.running:
+		if parent.running:
+			parent.playback.travel("TOP_SPEED")
+			maxSpeed = parent.runningVelocity
+		else:
+			parent.playback.travel("FALL")
+			maxSpeed = parent.MAXSPEED
+		
 	else:
-		parent.playback.travel("FALL")
+		parent.playback.travel("COUNCHFALL")
+		maxSpeed = 180
+		
 	
-	
-	var maxSpeed = parent.MAXSPEED
-	if parent.running:
-		maxSpeed = parent.runningVelocity
-	parent.motion.x = parent.moveBase("X", parent.motion.x, maxSpeed)
+	parent.moveBase("X", parent.motion.x, maxSpeed)
 
-func exit():
-	parent.setCollision(0)
+

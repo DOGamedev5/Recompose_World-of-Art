@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/iront.pxo-a9d500213dc7b47c984fc45f110d5ae1.stex"
+
+[deps]
+
+source_file="res://entities/NPCs/iront/iront.pxo"
+dest_files=[ "res://.import/iront.pxo-a9d500213dc7b47c984fc45f110d5ae1.stex" ]
+
+[params]
+

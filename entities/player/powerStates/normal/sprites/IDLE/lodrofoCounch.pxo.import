@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoCounch.pxo-fd2a96cca41b8ae9d72f93f885924d60.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoCounch.pxo"
+dest_files=[ "res://.import/lodrofoCounch.pxo-fd2a96cca41b8ae9d72f93f885924d60.stex" ]
+
+[params]
+
