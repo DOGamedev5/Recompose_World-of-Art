@@ -12,7 +12,7 @@ func process_state():
 	if parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
-	elif parent.onFloor().has(true):
+	elif parent.onFloor():
 		if parent.motion.x == 0: return "IDLE"
 		
 		if parent.isRolling: return "ROLL"
@@ -21,7 +21,7 @@ func process_state():
 		
 		return "RUN"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
+	elif Input.is_action_just_pressed("attack") and parent.canAttack:
 		return "ATTACK"
 	
 	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:

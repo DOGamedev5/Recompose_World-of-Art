@@ -19,13 +19,13 @@ func process_state():
 	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
-	elif not parent.onFloor().has(true):
+	elif not parent.onFloor():
 		return "FALL"
 	
 	elif Input.is_action_pressed("run") and parent.couldUncounch(true):
 		return "TOP_SPEED"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0 and parent.couldUncounch(true):
+	elif Input.is_action_just_pressed("attack") and parent.canAttack and parent.couldUncounch(true):
 		return "ATTACK"
 	
 	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:

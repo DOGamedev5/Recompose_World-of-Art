@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoEye.pxo-8b3aaacd9b5bbc5fe91fae081c7d67a4.stex"
+
+[deps]
+
+source_file="res://entities/player/HUD/lodrofoEye.pxo"
+dest_files=[ "res://.import/lodrofoEye.pxo-8b3aaacd9b5bbc5fe91fae081c7d67a4.stex" ]
+
+[params]
+

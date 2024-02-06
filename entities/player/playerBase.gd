@@ -6,6 +6,8 @@ onready var onWallRayCast = [$onWallTop, $onWallMid, $onWallDown]
 onready var collideUPCast = $collideUp
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
+onready var transition = $HUD/transition
+onready var HUD = $HUD
 
 const SNAPLENGTH := 32
 
@@ -13,21 +15,23 @@ export(NodePath) var stateMachinePath
 var stateMachine
 
 export(Array) var particles
+export(Array) var FlipObjects
 
 export var gravity := true
-
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
 export var GRAVITY := 10
 export var MAXSPEED := 350
 export var MAXFALL := 300
 export var JUMPFORCE := -400
-
+export var MAXHEALTH := 400
+ 
 signal damaged(direction)
 
 var enteredObjects := []
 
 var motion := Vector2.ZERO
+
 var canJump := true
 var coyote := true
 var fliped := false
@@ -38,7 +42,8 @@ var shieldActived := false
 var currentSnapLength := 0
 var snapDesatived := false
 var canLadder := false
-var breaking := 0
+
+var health = MAXHEALTH
 
 var powers := {
 	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
@@ -93,6 +98,11 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	$Camera2D.set("limit_right", limitsMax.x + 10)
 	$Camera2D.set("limit_bottom", limitsMax.y + 10)
 
+func flipObject(objects):
+	for obj in objects:
+		obj.position.x = obj.position.x * (1 - 2 * int(fliped)) * sign(obj.position.x)
+
+
 func resetParticles():
 	if not particles: return
 	
@@ -108,7 +118,7 @@ func resetParticles():
 			
 
 func gravityBase():
-	if not onFloor().has(true):
+	if not onFloor():
 		
 		motion.y += GRAVITY
 		if motion.y > MAXFALL:
@@ -136,7 +146,7 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
 
 	MotionCord = desaccelerate(MotionCord, input)
-	
+
 	if input > 0:
 		if MotionCord <= maxSpeed:
 			MotionCord += ACCELERATION
@@ -160,9 +170,9 @@ func move(stopSlope = true):
 		
 		snap = Vector2.DOWN * SNAPLENGTH * abs(motion.x) / 500
 
-	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true, 4, deg2rad(46)).y
+	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
 	
-	if onFloor().has(true) and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
+	if onFloor() and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
 		motion.y = 0
 
 func desaccelerate(MotionCord : float, input := .0):
@@ -186,7 +196,7 @@ func jumpBase(force = JUMPFORCE):
 		snapDesatived = false
 
 func _coyoteTimer():
-	if onFloor().has(true):
+	if onFloor():
 		canJump = true
 		coyote = true
 	elif canJump and coyote:
@@ -194,7 +204,7 @@ func _coyoteTimer():
 		coyote = false
 
 func onFloor():
-	if !gravity: return [true, true, true]
+	if !gravity: return true
 	var raycasts = [
 		$flooDetectBack,
 		$floorDetect,
@@ -217,9 +227,9 @@ func onFloor():
 	if result: global_position.y += leviting
 	
 	if $slopeDetect.is_colliding() and onSlope():
-		return [true, true, true]
+		return true
 	
-	return [result, result, result]
+	return result
 	
 func onSlope():
 	var normalAngle
@@ -305,7 +315,7 @@ func hitboxTriggered(_damage, area):
 	
 	if area is ChangeRoom:
 		area.changeRoom()
-
+	
 	elif area is AttackComponent and area.is_in_group("enemy") and not shieldActived:
 		var direction := sign(area.global_position.x - position.x)
 		emit_signal("damaged", direction)
@@ -316,6 +326,7 @@ func hitboxTriggered(_damage, area):
 		canLadder = true	
 		
 func hitboxExited(area):
+	
 	if area.is_in_group("ladder"):
 		enteredObjects.erase(area)
 	

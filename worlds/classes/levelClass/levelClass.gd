@@ -19,6 +19,7 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 
 func loadRoom(room : String, warpID := 0):
 	player.active = false
+	player.transition.transitionIn()
 	
 	if currentRoom:
 		currentRoom.queue_free()
@@ -26,7 +27,8 @@ func loadRoom(room : String, warpID := 0):
 	
 	call_deferred("add_child", currentRoom)
 	currentRoom.init(player, warpID)
-#	player.call_deferred("set_physics_process", true)
+	
+	player.transition.call_deferred("transitionOut")
 	player.set_deferred("active", true)
 	player.resetParticles()
 
