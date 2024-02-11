@@ -43,6 +43,7 @@ func process_physics(_delta):
 		else:
 			ladderAnimation.travel("LADDERUP")
 		lastAnimation = input
+	
 	elif input == -1:
 		if not ladderAnimation.is_playing():
 			ladderAnimation.start("LADDERUP")
@@ -50,7 +51,6 @@ func process_physics(_delta):
 			ladderAnimation.travel("LADDERDOWN")
 		lastAnimation = input
 		
-
 func exit():
 	parent.motion.y = -500
 	parent.snapDesatived = false

@@ -140,6 +140,11 @@ func changePowerup(powerUp):
 	queue_free()
 
 func idleBase():
+	var isOnFloor = is_on_floor()
+	var isOnSlope = get_floor_normal().x != 0
+	
+	if isOnFloor and isOnSlope and !snapDesatived and motion.x == 0:
+		motion.y = 0
 	motion.x = desaccelerate(motion.x)
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
@@ -168,11 +173,11 @@ func move(stopSlope = true):
 	var snap := Vector2.ZERO
 	if not snapDesatived:
 		
-		snap = Vector2.DOWN * SNAPLENGTH * abs(motion.x) / 500
+		snap = Vector2.DOWN * SNAPLENGTH
 
 	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
 	
-	if onFloor() and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
+	if onFloor() and motion.y != 0 and not Input.is_action_pressed("ui_jump") and (not onSlope() and motion.x == 0) and !snapDesatived:
 		motion.y = 0
 
 func desaccelerate(MotionCord : float, input := .0):
@@ -196,7 +201,7 @@ func jumpBase(force = JUMPFORCE):
 		snapDesatived = false
 
 func _coyoteTimer():
-	if onFloor():
+	if onFloor()  and gravity:
 		canJump = true
 		coyote = true
 	elif canJump and coyote:
@@ -205,46 +210,12 @@ func _coyoteTimer():
 
 func onFloor():
 	if !gravity: return true
-	var raycasts = [
-		$flooDetectBack,
-		$floorDetect,
-		$flooDetectFont
-	]
-	
-	var leviting := 24
-	
-	for i in range(3):
-		var ray = raycasts[i]
-		if !ray.is_colliding(): continue
-		
-		var point = to_local(ray.get_collision_point()).y
-		
-		if point < leviting:
-			leviting = point
-	
-	var result = leviting <= 8 
-	
-	if result: global_position.y += leviting
-	
-	if $slopeDetect.is_colliding() and onSlope():
-		return true
-	
-	return result
+	return is_on_floor()
 	
 func onSlope():
-	var normalAngle
-	var normal
-	var isOnSlope
-	if $slopeDetect.is_colliding():
-		normal = $slopeDetect.get_collision_normal()
-		normalAngle = normal.angle()
-		
-		isOnSlope = !(abs(rad2deg(normalAngle)) >= 85 and abs(rad2deg(normalAngle)) <= 95)
-		
-	else:
-		isOnSlope = false
-		
-	return isOnSlope
+	
+	return is_on_floor() and  get_floor_normal().x != 0
+
 
 func getSlopeNormal():
 	var normal := Vector2.UP
@@ -273,7 +244,7 @@ func onWall():
 	
 	var result = distance < 16.8 and distance >= 15
 	
-	if result and  rayDirection != Input.get_axis("ui_left", "ui_right"):
+	if result and  rayDirection != Input.get_axis("ui_left", "ui_right") and active:
 		if Input.get_axis("ui_left", "ui_right") != 0 and motion.x:
 			
 			motion.x = 0
@@ -314,6 +285,7 @@ func hitboxTriggered(_damage, area):
 	if not active: return
 	
 	if area is ChangeRoom:
+		active = false
 		area.changeRoom()
 	
 	elif area is AttackComponent and area.is_in_group("enemy") and not shieldActived:

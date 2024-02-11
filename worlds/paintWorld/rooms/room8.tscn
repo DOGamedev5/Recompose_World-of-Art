@@ -34,14 +34,17 @@ tile_data = PoolIntArray( -5111905, 0, 8, -5111904, 0, 10, -5111903, 0, 10, -511
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( 608, -48 )
 script = ExtResource( 4 )
+fixed_X = false
 
 [node name="RoomWarp2" type="Position2D" parent="."]
 position = Vector2( -1424, -224 )
 script = ExtResource( 4 )
+fixed_Y = false
 
 [node name="RoomWarp3" type="Position2D" parent="."]
 position = Vector2( 1216, -224 )
 script = ExtResource( 4 )
+fixed_Y = false
 
 [node name="ChangeRoom" type="Area2D" parent="."]
 position = Vector2( 608, 64 )

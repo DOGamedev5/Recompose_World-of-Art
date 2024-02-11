@@ -38,6 +38,8 @@ shape = SubResource( 1 )
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( 1408, -96 )
 script = ExtResource( 4 )
+fixed_Y = false
+offset_Y = 430.0
 
 [node name="ChangeRoom2" type="Area2D" parent="."]
 position = Vector2( -176, -208 )

@@ -1579,7 +1579,8 @@ cast_to = Vector2( 0, 24 )
 
 [node name="floorDetect" parent="." index="3"]
 position = Vector2( 0, -8 )
-cast_to = Vector2( 0, 24 )
+z_index = 6
+cast_to = Vector2( 0, 32 )
 
 [node name="flooDetectFont" parent="." index="4"]
 position = Vector2( 14, -8 )
@@ -1588,19 +1589,23 @@ cast_to = Vector2( 0, 24 )
 [node name="Camera2D" parent="." index="5"]
 position = Vector2( 0, -64 )
 
-[node name="collideUp" parent="." index="7"]
+[node name="collideUp" parent="." index="6"]
 visible = false
 
-[node name="onWallTop" parent="." index="8"]
+[node name="onWallTop" parent="." index="7"]
 position = Vector2( 0, -48 )
 
-[node name="onWallMid" parent="." index="9"]
+[node name="onWallMid" parent="." index="8"]
 position = Vector2( 0, -28 )
 enabled = false
 
-[node name="slopeDetect" parent="." index="11"]
+[node name="slopeDetect" parent="." index="10"]
 position = Vector2( 0, -16 )
 cast_to = Vector2( 0, 80 )
+
+[node name="HitboxComponent" parent="." index="11"]
+visible = false
+collision_layer = 1536
 
 [node name="Sprite" type="Sprite" parent="." index="12"]
 position = Vector2( 0, -32 )
@@ -1776,10 +1781,6 @@ anim_speed = 1.0
 __meta__ = {
 "_edit_group_": true
 }
-
-[node name="HitboxComponent" parent="." index="25"]
-visible = false
-collision_layer = 1536
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )

@@ -34,3 +34,4 @@ shape = SubResource( 1 )
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( 32, -224 )
 script = ExtResource( 4 )
+fixed_Y = false

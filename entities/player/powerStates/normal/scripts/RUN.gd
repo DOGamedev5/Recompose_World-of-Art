@@ -6,6 +6,7 @@ func enter(_laststate):
 	parent.setParticle(1, false)
 	parent.running = false
 
+
 func process_state():
 	if (parent.onSlope() or abs(parent.motion.x) > 500) and Input.is_action_just_pressed("ui_down"):
 		return "ROLL"

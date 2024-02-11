@@ -6,6 +6,7 @@ func itsDamaged(dir):
 	parent.stateMachine.changeState("DAMAGED")
 	direction = -dir
 	parent.snapDesatived = true
+
 	parent.playback.travel("DAMAGED")
 	parent.motion.y = -600
 	parent.motion.x = 600 * direction

@@ -10,12 +10,12 @@ onready var timeScale = [
 
 var lastTransition := ""
 
-func transitionOut(time := 0.7):
+func transitionOut(_time := 0.7):
 	pass
 #	timeScale[1] = 1 / time
 #	stateMachine.travel("transitionOut")
 
-func transitionIn(time := 0.7):
+func transitionIn(_time := 0.7):
 	pass
 #	timeScale[0] = 1 / time
 #	stateMachine.travel("transitionIn")

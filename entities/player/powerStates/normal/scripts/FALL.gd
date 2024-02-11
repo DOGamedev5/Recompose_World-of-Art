@@ -1,6 +1,7 @@
 extends State
 
 func enter(laststate):
+	
 	parent.setParticle(0, false)
 	if laststate == "ROLL":
 		parent.isRolling = true

@@ -50,14 +50,19 @@ shape = SubResource( 1 )
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( 912, -112 )
 script = ExtResource( 5 )
+fixed_Y = false
+offset_Y = -16.0
 
 [node name="RoomWarp2" type="Position2D" parent="."]
 position = Vector2( 896, 512 )
 script = ExtResource( 5 )
+fixed_Y = false
+offset_Y = 512.0
 
 [node name="RoomWarp3" type="Position2D" parent="."]
 position = Vector2( 608, -640 )
 script = ExtResource( 5 )
+fixed_X = false
 
 [node name="ladder" parent="." instance=ExtResource( 1 )]
 position = Vector2( 608, -112 )

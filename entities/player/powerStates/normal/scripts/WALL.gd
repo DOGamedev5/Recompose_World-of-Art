@@ -15,6 +15,7 @@ func enter(lastState):
 		
 	parent.running = false
 
+
 func process_state():
 	if not parent.onFloor():
 		if not parent.onWall():

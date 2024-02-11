@@ -22,6 +22,7 @@ func enter(_lastState):
 	parent.motion.x = parent.attackVelocity * atkDirection
 	parent.gravity = false
 	parent.motion.y = 0
+	parent.canJump = false
 	parent.playback.travel("ATTACK")
 	
 func process_state():
@@ -29,25 +30,23 @@ func process_state():
 		return "WALL"
 	
 	if attackTimer.is_stopped():
+		if not parent.onFloor():
+			return "FALL"
+		
 		if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
 			
 			if Input.is_action_pressed("run"):
 				return "TOP_SPEED"
 		
 			return "RUN"
-			
-		if parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
-			return "JUMP"
-		
-		elif not parent.onFloor():
-			return "FALL"
 		
 		elif parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0 :
 			return "IDLE"
 
 	return null
 	
-func process_physics(delta):
+func process_physics(_delta):
+	parent.motion.y = 0
 	parent.motion.x = parent.attackVelocity * atkDirection
 
 
@@ -55,6 +54,7 @@ func exit():
 	parent.snapDesatived = false
 	parent.attackComponents[0].monitoring = false
 	parent.gravity = true
+	parent.motion.y = 0
 	parent.attackDelay.start()
 	if not (Input.is_action_pressed("run") and Input.get_axis("ui_left", "ui_right") != 0):
 		parent.motion.x /= 2

@@ -44,9 +44,9 @@ func _physics_process(delta):
 
 	$speedEffect.visible = running
 	if running:
-		var velocity = motion.x
+		var velocity = abs(motion.x)
 		if onSlope():
-			velocity = sqrt(pow(motion.x, 2) + pow(motion.y, 2))
+			velocity = abs(sqrt(pow(motion.x, 2) + pow(motion.y, 2)))
 		 
 		$speedEffect.modulate.a = max((velocity - MAXSPEED) / (runningVelocity - MAXSPEED-100), 0.65)
 		

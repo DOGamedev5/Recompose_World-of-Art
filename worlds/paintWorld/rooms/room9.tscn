@@ -42,6 +42,7 @@ shape = SubResource( 1 )
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( 1760, -224 )
 script = ExtResource( 4 )
+fixed_Y = false
 
 [node name="colliseu2" type="Node2D" parent="."]
 position = Vector2( 256, -224 )
