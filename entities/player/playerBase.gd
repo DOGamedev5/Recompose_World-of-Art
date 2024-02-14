@@ -177,7 +177,9 @@ func move(stopSlope = true):
 
 	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
 	
-	if onFloor() and motion.y != 0 and not Input.is_action_pressed("ui_jump") and (not onSlope() and motion.x == 0) and !snapDesatived:
+	currentSnapLength = snap.y
+	
+	if onFloor() and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
 		motion.y = 0
 
 func desaccelerate(MotionCord : float, input := .0):

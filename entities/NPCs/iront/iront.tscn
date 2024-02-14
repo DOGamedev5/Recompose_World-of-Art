@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/NPCs/iront/iront.pxo" type="Texture" id=1]
+[ext_resource path="res://gameplay/hud/dialog/dialog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/NPCs/iront/iront.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 32 )
@@ -8,8 +10,12 @@ extents = Vector2( 16, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 128 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 53, 72 )
+
+[node name="iront" type="KinematicBody2D"]
 collision_layer = 0
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -32 )
@@ -29,3 +35,19 @@ position = Vector2( -32, -80 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 0, -48 )
 shape = SubResource( 2 )
+
+[node name="dialog" parent="." instance=ExtResource( 2 )]
+texts1 = [ "Rodolfo- oh, sorry, Lodrofo!!!
+what do you want?", "you want to fight in the coliseun?!?!
+oh ok, there is your sword." ]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 43, -72 )
+shape = SubResource( 3 )
+
+[connection signal="area_entered" from="Area2D" to="." method="enterEntity"]
+[connection signal="area_exited" from="Area2D" to="." method="exitEntity"]
