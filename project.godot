@@ -97,13 +97,10 @@ default_bus_layout="res://audio/default_bus_layout.tres"
 [autoload]
 
 Global="*res://gameplay/global.gd"
-IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 AudioManager="*res://audio/audioSystem/audioSystem.tscn"
 
 [display]
 
-window/integer_resolution_handler/base_width=1361
-window/integer_resolution_handler/base_height=768
 window/size/width=1361
 window/size/height=736
 window/size/fullscreen=true
@@ -112,7 +109,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot_pixelorama_importer/plugin.cfg" )
 
 [gui]
 

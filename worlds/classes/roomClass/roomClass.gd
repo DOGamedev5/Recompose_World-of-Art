@@ -4,13 +4,25 @@ export var warp = []
 
 export var limitsMin := Vector2(-10000000, -10000000)
 export var limitsMax := Vector2(10000000, 10000000)
+export(Color) var canvasModulateColor = Color(1, 1, 1, 1)
 
 signal changeRoom(room, warpID)
 
-func _ready():
+var canvasModulate : CanvasModulate
 
-	connect("changeRoom", get_parent(), "loadRoom")
+func _ready():
+	canvasModulate = CanvasModulate.new()
+	add_child(canvasModulate)
+	canvasModulate.set_color(canvasModulateColor)
+	_simplesLightToggled(Global.simpleLight)
+	
+	var _1 = connect("changeRoom", get_parent(), "loadRoom")
+	var _2 = Global.connect("simpleLightChanged", self, "_simplesLightToggled")
+	
 	get_parent().setCameraLimits(limitsMin, limitsMax)
+	
+func _simplesLightToggled(value):
+	canvasModulate.visible = !value
 	
 
 func init(player, warpID):

@@ -39,7 +39,7 @@ var stunned := false
 var counched := false
 var active := true
 var shieldActived := false
-var currentSnapLength := 0
+var currentSnapLength := .0
 var snapDesatived := false
 var canLadder := false
 

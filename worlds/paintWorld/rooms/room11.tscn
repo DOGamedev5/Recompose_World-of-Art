@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=2]
 [ext_resource path="res://entities/ladder/ladder.tscn" type="PackedScene" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=4]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=5]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/lampaint.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 128 )
@@ -15,6 +16,7 @@ script = ExtResource( 5 )
 warp = [ NodePath("RoomWarp") ]
 limitsMin = Vector2( -1168, -1584 )
 limitsMax = Vector2( 544, 208 )
+canvasModulateColor = Color( 0.541176, 0.552941, 0.627451, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -112,15 +114,18 @@ position = Vector2( 128, -96 )
 
 [node name="lampaint2" parent="lampaints" instance=ExtResource( 6 )]
 position = Vector2( -48, -96 )
+fliped = true
 
 [node name="lampaint3" parent="lampaints" instance=ExtResource( 6 )]
 position = Vector2( -640, -320 )
+fliped = true
 
 [node name="lampaint4" parent="lampaints" instance=ExtResource( 6 )]
 position = Vector2( 128, -496 )
 
 [node name="lampaint5" parent="lampaints" instance=ExtResource( 6 )]
 position = Vector2( -128, -896 )
+fliped = true
 
 [node name="lampaint6" parent="lampaints" instance=ExtResource( 6 )]
 position = Vector2( -816, -1200 )
@@ -128,6 +133,26 @@ position = Vector2( -816, -1200 )
 [node name="lampaint7" parent="lampaints" instance=ExtResource( 6 )]
 position = Vector2( 176, -1072 )
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-z_as_relative = false
-color = Color( 0.541176, 0.552941, 0.627451, 1 )
+[node name="lampaint8" parent="lampaints" instance=ExtResource( 7 )]
+position = Vector2( -32, -368 )
+fliped = true
+
+[node name="lampaint9" parent="lampaints" instance=ExtResource( 7 )]
+position = Vector2( -272, -624 )
+fliped = true
+
+[node name="lampaint10" parent="lampaints" instance=ExtResource( 7 )]
+position = Vector2( -784, -720 )
+
+[node name="lampaint11" parent="lampaints" instance=ExtResource( 7 )]
+position = Vector2( -544, -1088 )
+
+[node name="lampaint12" parent="lampaints" instance=ExtResource( 7 )]
+position = Vector2( -1120, -464 )
+
+[node name="lampaint14" parent="lampaints" instance=ExtResource( 7 )]
+position = Vector2( -672, -224 )
+
+[node name="lampaint13" parent="lampaints" instance=ExtResource( 6 )]
+position = Vector2( -256, -1168 )
+fliped = true

@@ -9,7 +9,7 @@ signal changeRoom(room, warpID)
 
 func _ready():
 	AudioManager.playMusic("temple in ruins")
-	connect("changeRoom", self, "loadRoom")
+	var _1 = connect("changeRoom", self, "loadRoom")
 	player = load("res://entities/player/powerStates/normal/playerNormal.tscn").instance()
 	add_child(player)
 	call_deferred("loadRoom",firstRoom)

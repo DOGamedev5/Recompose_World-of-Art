@@ -6,7 +6,7 @@ var ray
 var collision
 
 func _ready():
-	connect("area_entered", self, "_enterHitbox")
+	var _1 = connect("area_entered", self, "_enterHitbox")
 
 func _enterHitbox(area):
 	if area is HitboxComponent:

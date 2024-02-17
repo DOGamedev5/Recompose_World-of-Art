@@ -9,7 +9,8 @@ onready var proprietyLabels := {
 	"running" : $DEBUG/PanelContainer/VBoxContainer/running,
 	"onSlope" : $DEBUG/PanelContainer/VBoxContainer/onSlope,
 	"snapDesatived" : $DEBUG/PanelContainer/VBoxContainer/snapDesatived,
-	"snapLenght" : $DEBUG/PanelContainer/VBoxContainer/snapLenght
+	"snapLenght" : $DEBUG/PanelContainer/VBoxContainer/snapLenght,
+	"FPS" : $DEBUG/PanelContainer/VBoxContainer/FPS
 }
 
 func _input(_event):
@@ -17,7 +18,7 @@ func _input(_event):
 		debugPanel = !debugPanel
 		$DEBUG.visible = debugPanel
 	
-func _process(delta):
+func _process(_delta):
 	proprietyLabels["currentState"].text = (
 		"current State: " + player.stateMachine.currentState.name)
 
@@ -35,8 +36,14 @@ func _process(delta):
 	
 	proprietyLabels["snapLenght"].text = (
 		"snap lenght: " + str(player.currentSnapLength))
-
+	
+	proprietyLabels["FPS"].text = (
+		"FPS: " + str(Engine.get_frames_per_second()))
+	
 
 func debugButtonPressed():
 	player.get_parent().emit_signal("changeRoom", "res://debugRoom.tscn", 0)
 
+func simpleLightToggled():
+	var value = $DEBUG/PanelContainer/VBoxContainer/simpleLight.pressed
+	Global.emit_signal("simpleLightChanged", value)

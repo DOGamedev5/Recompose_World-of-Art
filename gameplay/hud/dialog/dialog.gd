@@ -25,7 +25,7 @@ func desactiveded():
 	player = null
 	visible = false
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("interact") and actived and !visible:
 		textIndex = 0
 		currentText.bbcode_text = texts[textIndex]

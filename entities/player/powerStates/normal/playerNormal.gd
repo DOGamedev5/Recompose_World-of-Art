@@ -28,7 +28,7 @@ func _ready():
 	collisionShapes[0].shape.height = 24
 	collisionShapes[1].shape.radius = 15
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not active: return
 	
 	_coyoteTimer()
