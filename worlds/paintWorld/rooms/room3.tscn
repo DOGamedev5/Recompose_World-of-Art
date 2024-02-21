@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=4]
 [ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 72 )
@@ -17,6 +19,7 @@ script = ExtResource( 1 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
 limitsMin = Vector2( 16, -864 )
 limitsMax = Vector2( 2000, 288 )
+canvasModulateColor = Color( 0.541176, 0.552941, 0.627451, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 0, -1 )
@@ -30,16 +33,12 @@ tile_data = PoolIntArray( -3604481, 0, 8, -3670016, 0, 10, -3670015, 0, 10, -367
 position = Vector2( 80, 16 )
 script = ExtResource( 4 )
 fixed_Y = false
-Ymin = -112
-Ymax = 16
 
 [node name="RoomWarp2" type="Position2D" parent="."]
 position = Vector2( 176, -528 )
 script = ExtResource( 4 )
 fixed_Y = false
 offset_Y = -430.0
-Ymin = -736
-Ymax = -528
 
 [node name="ChangeRoom" type="Area2D" parent="."]
 position = Vector2( -16, -32 )
@@ -64,3 +63,49 @@ roomID = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom2"]
 position = Vector2( -8, 8 )
 shape = SubResource( 2 )
+
+[node name="lamps" type="Node2D" parent="."]
+position = Vector2( -240, -32 )
+
+[node name="lampaint1" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 624, 48 )
+
+[node name="lampaint2" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 976, 48 )
+fliped = true
+
+[node name="lampaint3" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 1744, 0 )
+fliped = true
+
+[node name="lampaint4" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 1504, -368 )
+
+[node name="lampaint5" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 480, -496 )
+
+[node name="lampaint6" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 816, -496 )
+
+[node name="lampaint7" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 1680, -320 )
+visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
+
+[node name="lampaint9" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 2160, -400 )
+fliped = true
+visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
+
+[node name="lampaint10" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 1936, -176 )
+fliped = true
+visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
+
+[node name="lampaint11" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 1328, -320 )
+fliped = true
+visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
+
+[node name="lampaint8" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 512, -208 )
+visiblility = NodePath("../lampaint2/VisibilityEnabler2D")

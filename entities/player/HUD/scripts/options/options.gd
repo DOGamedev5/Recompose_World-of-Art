@@ -13,6 +13,9 @@ onready var proprietyLabels := {
 	"FPS" : $DEBUG/PanelContainer/VBoxContainer/FPS
 }
 
+func _ready():
+	$DEBUG/PanelContainer/VBoxContainer/simpleLight.pressed = Global.simpleLight
+
 func _input(_event):
 	if Input.is_action_just_pressed("Debug"):
 		debugPanel = !debugPanel

@@ -47,8 +47,12 @@ func _physics_process(_delta):
 		var velocity = abs(motion.x)
 		if onSlope():
 			velocity = abs(sqrt(pow(motion.x, 2) + pow(motion.y, 2)))
-		 
-		$speedEffect.modulate.a = max((velocity - MAXSPEED) / (runningVelocity - MAXSPEED-100), 0.65)
+		
+		var value = max((velocity - MAXSPEED) / (runningVelocity - MAXSPEED-100), 0.65) 
+		
+		$speedEffect.modulate.a = value
+		$speedEffect.modulate.r = 1 + value * 0.5
+		$speedEffect.modulate.g = 1 + value * 0.5
 		
 	if attackDelay.is_stopped():
 		canAttack = true

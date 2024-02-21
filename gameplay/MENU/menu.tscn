@@ -1,0 +1,373 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
+[ext_resource path="res://gameplay/MENU/scripts/options.gd" type="Script" id=3]
+[ext_resource path="res://gameplay/MENU/scripts/saves.gd" type="Script" id=4]
+[ext_resource path="res://gameplay/MENU/scripts/saveSlot.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_size = 4
+outline_color = Color( 0.341176, 0.180392, 0.345098, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+outline_size = 2
+outline_color = Color( 0.341176, 0.180392, 0.345098, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 2
+outline_color = Color( 0.282353, 0.317647, 0.329412, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+outline_size = 2
+outline_color = Color( 0.341176, 0.180392, 0.345098, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 1 )
+
+[node name="menu" type="CanvasLayer"]
+
+[node name="initial" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="initial"]
+anchor_left = 0.246877
+anchor_top = 0.152174
+anchor_right = 0.740632
+anchor_bottom = 0.391304
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="initial/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 35.0
+margin_right = -80.0
+margin_bottom = -39.0
+custom_fonts/font = SubResource( 1 )
+text = "RECOMPOSE"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="initial"]
+anchor_left = 0.376194
+anchor_top = 0.506793
+anchor_right = 0.611315
+anchor_bottom = 0.688859
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="start" type="Button" parent="initial/VBoxContainer"]
+margin_right = 319.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 2 )
+text = "start"
+
+[node name="HSeparator" type="HSeparator" parent="initial/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 61.0
+margin_right = 319.0
+margin_bottom = 73.0
+custom_constants/separation = 12
+
+[node name="options" type="Button" parent="initial/VBoxContainer"]
+margin_top = 77.0
+margin_right = 319.0
+margin_bottom = 134.0
+custom_fonts/font = SubResource( 2 )
+text = "options"
+
+[node name="options" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="options"]
+self_modulate = Color( 0.14902, 0.054902, 0.176471, 0.701961 )
+anchor_left = 0.341
+anchor_top = 0.196
+anchor_right = 0.658
+anchor_bottom = 0.804
+margin_left = -0.101013
+margin_top = -0.256012
+margin_right = 0.461914
+margin_bottom = 0.255981
+
+[node name="VBoxContainer" type="VBoxContainer" parent="options/Panel"]
+modulate = Color( 0.945098, 0.988235, 1, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -32.0
+
+[node name="Label" type="Label" parent="options/Panel/VBoxContainer"]
+margin_right = 368.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 2 )
+text = "Options"
+align = 1
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="options/Panel/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 55.0
+margin_right = 368.0
+margin_bottom = 87.0
+custom_constants/separation = 32
+
+[node name="simpleLight" type="CheckButton" parent="options/Panel/VBoxContainer"]
+margin_top = 91.0
+margin_right = 368.0
+margin_bottom = 131.0
+custom_fonts/font = SubResource( 3 )
+text = "simple lights"
+align = 1
+icon_align = 1
+
+[node name="exitOptions" type="Button" parent="options/Panel"]
+anchor_left = 0.333333
+anchor_top = 1.0692
+anchor_right = 0.666667
+anchor_bottom = 1.19643
+custom_fonts/font = SubResource( 4 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="saves" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="saves"]
+anchor_left = 0.105512
+anchor_top = 0.152
+anchor_right = 0.893
+anchor_bottom = 0.826087
+margin_left = 0.397995
+margin_top = -8.87201
+margin_right = 0.626953
+margin_bottom = -9.0
+alignment = 1
+
+[node name="saveSlot" type="Panel" parent="saves/HBoxContainer"]
+margin_left = 65.0
+margin_right = 340.0
+margin_bottom = 496.0
+rect_min_size = Vector2( 275, 0 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="saves/HBoxContainer/saveSlot"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 30.0
+margin_right = -20.0
+margin_bottom = -30.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
+margin_right = 235.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 2 )
+text = "SAVE 1"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 55.0
+margin_right = 235.0
+margin_bottom = 275.0
+custom_constants/separation = 220
+
+[node name="play" type="Button" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
+margin_top = 279.0
+margin_right = 235.0
+margin_bottom = 336.0
+custom_fonts/font = SubResource( 4 )
+text = "Play"
+
+[node name="HSeparator2" type="HSeparator" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 340.0
+margin_right = 235.0
+margin_bottom = 344.0
+custom_constants/separation = 4
+
+[node name="erase" type="Button" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
+margin_top = 348.0
+margin_right = 235.0
+margin_bottom = 405.0
+custom_fonts/font = SubResource( 4 )
+text = "Erase"
+
+[node name="VSeparator" type="VSeparator" parent="saves/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 344.0
+margin_right = 394.0
+margin_bottom = 496.0
+custom_constants/separation = 50
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="saveSlot2" type="Panel" parent="saves/HBoxContainer"]
+margin_left = 398.0
+margin_right = 673.0
+margin_bottom = 496.0
+rect_min_size = Vector2( 275, 0 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+saveID = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="saves/HBoxContainer/saveSlot2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 30.0
+margin_right = -20.0
+margin_bottom = -30.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
+margin_right = 235.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 2 )
+text = "SAVE 2"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 55.0
+margin_right = 235.0
+margin_bottom = 275.0
+custom_constants/separation = 220
+
+[node name="play" type="Button" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
+margin_top = 279.0
+margin_right = 235.0
+margin_bottom = 336.0
+custom_fonts/font = SubResource( 4 )
+text = "Play"
+
+[node name="HSeparator2" type="HSeparator" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 340.0
+margin_right = 235.0
+margin_bottom = 344.0
+custom_constants/separation = 4
+
+[node name="erase" type="Button" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
+margin_top = 348.0
+margin_right = 235.0
+margin_bottom = 405.0
+custom_fonts/font = SubResource( 4 )
+text = "Erase"
+
+[node name="VSeparator2" type="VSeparator" parent="saves/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 677.0
+margin_right = 727.0
+margin_bottom = 496.0
+custom_constants/separation = 50
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="saveSlot3" type="Panel" parent="saves/HBoxContainer"]
+margin_left = 731.0
+margin_right = 1006.0
+margin_bottom = 496.0
+rect_min_size = Vector2( 275, 0 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+saveID = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="saves/HBoxContainer/saveSlot3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 30.0
+margin_right = -20.0
+margin_bottom = -30.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
+margin_right = 235.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 2 )
+text = "SAVE 3"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 55.0
+margin_right = 235.0
+margin_bottom = 275.0
+custom_constants/separation = 220
+
+[node name="play" type="Button" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
+margin_top = 279.0
+margin_right = 235.0
+margin_bottom = 336.0
+custom_fonts/font = SubResource( 4 )
+text = "Play"
+
+[node name="HSeparator2" type="HSeparator" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 340.0
+margin_right = 235.0
+margin_bottom = 344.0
+custom_constants/separation = 4
+
+[node name="erase" type="Button" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
+margin_top = 348.0
+margin_right = 235.0
+margin_bottom = 405.0
+custom_fonts/font = SubResource( 4 )
+text = "Erase"
+
+[node name="ExitSaves" type="Button" parent="saves"]
+margin_left = 592.0
+margin_top = 631.0
+margin_right = 768.0
+margin_bottom = 688.0
+custom_fonts/font = SubResource( 4 )
+text = "Exit"
+
+[connection signal="pressed" from="initial/VBoxContainer/start" to="initial" method="_on_start_pressed"]
+[connection signal="pressed" from="initial/VBoxContainer/options" to="initial" method="_on_options_pressed"]
+[connection signal="toggled" from="options/Panel/VBoxContainer/simpleLight" to="options" method="_on_simpleLight_toggled"]
+[connection signal="pressed" from="options/Panel/exitOptions" to="options" method="_on_exitOptions_pressed"]
+[connection signal="pressed" from="saves/ExitSaves" to="saves" method="_on_ExitSaves_pressed"]

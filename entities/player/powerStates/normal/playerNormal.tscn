@@ -1742,7 +1742,7 @@ align = 1
 valign = 1
 
 [node name="speedEffect" type="Sprite" parent="." index="22"]
-self_modulate = Color( 1, 1, 1, 0.792157 )
+self_modulate = Color( 1, 1, 1, 0.79 )
 position = Vector2( 28, -32 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 21 )

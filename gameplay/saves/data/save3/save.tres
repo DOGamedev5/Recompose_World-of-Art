@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://gameplay/saves/resource/saveResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+player = {
+"position": Vector2( -16, -96 )
+}
+world = {
+"currentRoomID": 1,
+"currentWorld": "paintWorld",
+"paintWorld": {
+"colliseun": false
+}
+}

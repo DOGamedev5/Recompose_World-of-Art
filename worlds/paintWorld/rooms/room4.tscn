@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=4]
 [ext_resource path="res://entities/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 144 )
@@ -17,6 +18,7 @@ script = ExtResource( 3 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
 limitsMin = Vector2( -64, -768 )
 limitsMax = Vector2( 1552, 96 )
+canvasModulateColor = Color( 0.541176, 0.552941, 0.627451, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -56,3 +58,20 @@ script = ExtResource( 4 )
 
 [node name="block" parent="." instance=ExtResource( 5 )]
 position = Vector2( 240, -96 )
+
+[node name="lamps" type="Node2D" parent="."]
+
+[node name="lampaint1" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 512, -96 )
+
+[node name="lampaint2" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 880, -272 )
+fliped = true
+
+[node name="lampaint3" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 1360, -96 )
+fliped = true
+
+[node name="lampaint4" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 48, -96 )
+fliped = true

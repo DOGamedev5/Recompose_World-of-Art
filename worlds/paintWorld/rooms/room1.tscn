@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=3]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=4]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/savePoints/savepoint.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 56, 160 )
@@ -20,6 +23,7 @@ script = ExtResource( 4 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
 limitsMin = Vector2( -240, -736 )
 limitsMax = Vector2( 1664, 208 )
+canvasModulateColor = Color( 0.541176, 0.552941, 0.627451, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -87,3 +91,34 @@ position = Vector2( 768, 192 )
 
 [node name="block6" parent="." instance=ExtResource( 2 )]
 position = Vector2( 832, 192 )
+
+[node name="lamps" type="Node2D" parent="."]
+
+[node name="lampaint1" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 240, 64 )
+
+[node name="lampaint2" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 512, -224 )
+fliped = true
+
+[node name="lampaint3" parent="lamps" instance=ExtResource( 7 )]
+position = Vector2( 1328, -96 )
+fliped = true
+
+[node name="lampaint4" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 1024, -80 )
+fliped = true
+visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
+
+[node name="lampaint5" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( -160, -256 )
+visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
+
+[node name="lampaint6" parent="lamps" instance=ExtResource( 6 )]
+position = Vector2( 1584, -368 )
+fliped = true
+visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
+
+[node name="savePoint" parent="." instance=ExtResource( 8 )]
+position = Vector2( -16, -96 )
+roomId = 1

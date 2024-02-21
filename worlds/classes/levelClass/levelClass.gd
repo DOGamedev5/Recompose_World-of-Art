@@ -3,6 +3,7 @@ class_name LevelClass extends Node2D
 export var firstRoom := ""
 
 var currentRoom
+var currentRoomID := 0
 var player
 
 signal changeRoom(room, warpID)
@@ -18,6 +19,7 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
 func loadRoom(room : String, warpID := 0):
+	
 	player.active = false
 	player.transition.transitionIn()
 	

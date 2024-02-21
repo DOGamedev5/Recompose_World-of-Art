@@ -15,7 +15,7 @@ visiblility = NodePath("VisibilityEnabler2D")
 
 [node name="Light" type="Sprite" parent="."]
 visible = false
-self_modulate = Color( 1, 0.729412, 0.345098, 0.196078 )
+self_modulate = Color( 2, 1.81961, 1.36863, 0.0470588 )
 show_behind_parent = true
 position = Vector2( 20, -72 )
 scale = Vector2( 2, 2 )

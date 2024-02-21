@@ -237,8 +237,8 @@ script = ExtResource( 1 )
 [node name="ColorRect" type="ColorRect" parent="transition"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 14971.0
-margin_bottom = 8096.0
+margin_right = 16332.0
+margin_bottom = 8832.0
 rect_scale = Vector2( 1e-05, 1 )
 color = Color( 0.0431373, 0.0392157, 0.0431373, 0.639216 )
 

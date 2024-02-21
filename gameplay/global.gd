@@ -2,6 +2,8 @@ extends Node
 
 var simpleLight := false
 
+var save : SaveResource
+
 signal simpleLightChanged(value)
 
 func _ready():

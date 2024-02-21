@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://entities/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://worlds/paintWorld/sprites/PaintHouse.pxo" type="Texture" id=7]
 [ext_resource path="res://entities/NPCs/iront/iront.tscn" type="PackedScene" id=8]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 192, 48 )
@@ -23,6 +25,7 @@ script = ExtResource( 3 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2"), NodePath("RoomWarp3") ]
 limitsMin = Vector2( -1504, -1216 )
 limitsMax = Vector2( 1280, 0 )
+canvasModulateColor = Color( 0.541176, 0.552941, 0.627451, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -170,28 +173,69 @@ texture = ExtResource( 7 )
 hframes = 3
 frame = 2
 
-[node name="block" parent="." instance=ExtResource( 6 )]
+[node name="KinematicBody2D" parent="." instance=ExtResource( 8 )]
+position = Vector2( -1392, -224 )
+
+[node name="blocks" type="Node2D" parent="."]
+
+[node name="block" parent="blocks" instance=ExtResource( 6 )]
 position = Vector2( -688, -224 )
 
-[node name="block2" parent="." instance=ExtResource( 6 )]
+[node name="block2" parent="blocks" instance=ExtResource( 6 )]
 position = Vector2( 928, -224 )
 
-[node name="block3" parent="." instance=ExtResource( 6 )]
+[node name="block3" parent="blocks" instance=ExtResource( 6 )]
 position = Vector2( 928, -288 )
 
-[node name="block4" parent="." instance=ExtResource( 6 )]
+[node name="block4" parent="blocks" instance=ExtResource( 6 )]
 position = Vector2( 992, -224 )
 
-[node name="block5" parent="." instance=ExtResource( 6 )]
+[node name="block5" parent="blocks" instance=ExtResource( 6 )]
 position = Vector2( 864, -224 )
 
-[node name="block6" parent="." instance=ExtResource( 6 )]
+[node name="block6" parent="blocks" instance=ExtResource( 6 )]
 position = Vector2( 864, -288 )
 resistence = 2
 
-[node name="block7" parent="." instance=ExtResource( 6 )]
+[node name="block7" parent="blocks" instance=ExtResource( 6 )]
 position = Vector2( 928, -352 )
 resistence = 2
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 8 )]
-position = Vector2( -1392, -224 )
+[node name="lamps" type="Node2D" parent="."]
+
+[node name="lampaint1" parent="lamps" instance=ExtResource( 10 )]
+position = Vector2( -224, -320 )
+
+[node name="lampaint2" parent="lamps" instance=ExtResource( 10 )]
+position = Vector2( -960, -224 )
+
+[node name="lampaint3" parent="lamps" instance=ExtResource( 10 )]
+position = Vector2( 320, -224 )
+fliped = true
+
+[node name="lampaint4" parent="lamps" instance=ExtResource( 10 )]
+position = Vector2( 1104, -224 )
+fliped = true
+
+[node name="lampaint5" parent="lamps" instance=ExtResource( 10 )]
+position = Vector2( 560, -688 )
+fliped = true
+
+[node name="lampaint6" parent="lamps" instance=ExtResource( 9 )]
+position = Vector2( -720, -656 )
+fliped = true
+
+[node name="lampaint7" parent="lamps" instance=ExtResource( 9 )]
+position = Vector2( 1088, -592 )
+fliped = true
+
+[node name="lampaint8" parent="lamps" instance=ExtResource( 9 )]
+position = Vector2( 1088, -944 )
+fliped = true
+
+[node name="lampaint9" parent="lamps" instance=ExtResource( 9 )]
+position = Vector2( 48, -832 )
+
+[node name="lampaint10" parent="lamps" instance=ExtResource( 9 )]
+position = Vector2( -496, -896 )
+fliped = true
