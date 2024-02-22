@@ -4,8 +4,9 @@
 
 [resource]
 script = ExtResource( 1 )
+saveID = 1
 player = {
-"position": Vector2( 50, -96 )
+"position": Vector2( -16, -96 )
 }
 world = {
 "currentRoomID": 1,

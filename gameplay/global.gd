@@ -3,6 +3,7 @@ extends Node
 var simpleLight := false
 
 var save : SaveResource
+var savePath : String
 
 signal simpleLightChanged(value)
 
@@ -20,10 +21,8 @@ func _input(_event):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 
-func freeze(time := 0.15, slow = 0.1):
-	Engine.time_scale = slow
-	yield(get_tree().create_timer(time * slow), "timeout")
-	Engine.time_scale = 1
+func setupPlayer(player):
+	player.position = save.player["position"]
 
 func _setSimpleLight(value):
 	

@@ -4,7 +4,7 @@
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
 [ext_resource path="res://gameplay/MENU/scripts/options.gd" type="Script" id=3]
 [ext_resource path="res://gameplay/MENU/scripts/saves.gd" type="Script" id=4]
-[ext_resource path="res://gameplay/MENU/scripts/saveSlot.gd" type="Script" id=5]
+[ext_resource path="res://gameplay/MENU/saveSlot.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -167,62 +167,7 @@ margin_right = 0.626953
 margin_bottom = -9.0
 alignment = 1
 
-[node name="saveSlot" type="Panel" parent="saves/HBoxContainer"]
-margin_left = 65.0
-margin_right = 340.0
-margin_bottom = 496.0
-rect_min_size = Vector2( 275, 0 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="saves/HBoxContainer/saveSlot"]
-self_modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 30.0
-margin_right = -20.0
-margin_bottom = -30.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
-margin_right = 235.0
-margin_bottom = 51.0
-custom_fonts/font = SubResource( 2 )
-text = "SAVE 1"
-align = 1
-
-[node name="HSeparator" type="HSeparator" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 55.0
-margin_right = 235.0
-margin_bottom = 275.0
-custom_constants/separation = 220
-
-[node name="play" type="Button" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
-margin_top = 279.0
-margin_right = 235.0
-margin_bottom = 336.0
-custom_fonts/font = SubResource( 4 )
-text = "Play"
-
-[node name="HSeparator2" type="HSeparator" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 340.0
-margin_right = 235.0
-margin_bottom = 344.0
-custom_constants/separation = 4
-
-[node name="erase" type="Button" parent="saves/HBoxContainer/saveSlot/VBoxContainer"]
-margin_top = 348.0
-margin_right = 235.0
-margin_bottom = 405.0
-custom_fonts/font = SubResource( 4 )
-text = "Erase"
+[node name="saveSlot" parent="saves/HBoxContainer" instance=ExtResource( 6 )]
 
 [node name="VSeparator" type="VSeparator" parent="saves/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -234,62 +179,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="saveSlot2" type="Panel" parent="saves/HBoxContainer"]
+[node name="saveSlot2" parent="saves/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 398.0
 margin_right = 673.0
-margin_bottom = 496.0
-rect_min_size = Vector2( 275, 0 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
 saveID = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="saves/HBoxContainer/saveSlot2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 30.0
-margin_right = -20.0
-margin_bottom = -30.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
-margin_right = 235.0
-margin_bottom = 51.0
-custom_fonts/font = SubResource( 2 )
-text = "SAVE 2"
-align = 1
-
-[node name="HSeparator" type="HSeparator" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 55.0
-margin_right = 235.0
-margin_bottom = 275.0
-custom_constants/separation = 220
-
-[node name="play" type="Button" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
-margin_top = 279.0
-margin_right = 235.0
-margin_bottom = 336.0
-custom_fonts/font = SubResource( 4 )
-text = "Play"
-
-[node name="HSeparator2" type="HSeparator" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 340.0
-margin_right = 235.0
-margin_bottom = 344.0
-custom_constants/separation = 4
-
-[node name="erase" type="Button" parent="saves/HBoxContainer/saveSlot2/VBoxContainer"]
-margin_top = 348.0
-margin_right = 235.0
-margin_bottom = 405.0
-custom_fonts/font = SubResource( 4 )
-text = "Erase"
 
 [node name="VSeparator2" type="VSeparator" parent="saves/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -301,62 +194,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="saveSlot3" type="Panel" parent="saves/HBoxContainer"]
+[node name="saveSlot3" parent="saves/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 731.0
 margin_right = 1006.0
-margin_bottom = 496.0
-rect_min_size = Vector2( 275, 0 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
 saveID = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="saves/HBoxContainer/saveSlot3"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 30.0
-margin_right = -20.0
-margin_bottom = -30.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
-margin_right = 235.0
-margin_bottom = 51.0
-custom_fonts/font = SubResource( 2 )
-text = "SAVE 3"
-align = 1
-
-[node name="HSeparator" type="HSeparator" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 55.0
-margin_right = 235.0
-margin_bottom = 275.0
-custom_constants/separation = 220
-
-[node name="play" type="Button" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
-margin_top = 279.0
-margin_right = 235.0
-margin_bottom = 336.0
-custom_fonts/font = SubResource( 4 )
-text = "Play"
-
-[node name="HSeparator2" type="HSeparator" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 340.0
-margin_right = 235.0
-margin_bottom = 344.0
-custom_constants/separation = 4
-
-[node name="erase" type="Button" parent="saves/HBoxContainer/saveSlot3/VBoxContainer"]
-margin_top = 348.0
-margin_right = 235.0
-margin_bottom = 405.0
-custom_fonts/font = SubResource( 4 )
-text = "Erase"
 
 [node name="ExitSaves" type="Button" parent="saves"]
 margin_left = 592.0

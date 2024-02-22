@@ -1,4 +1,10 @@
 extends Node2D
 
 export var roomId := 0
-export(Resource) var saveResource = SaveResource.new()
+
+func saveData(data = Global.save):
+	var save = data
+	data.player["position"] = position
+	data.world["currentRoomiD"] = roomId
+	ResourceSaver.save(Global.savePath, save)
+	

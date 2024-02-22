@@ -13,6 +13,7 @@ func _ready():
 	var _1 = connect("changeRoom", self, "loadRoom")
 	player = load("res://entities/player/powerStates/normal/playerNormal.tscn").instance()
 	add_child(player)
+	Global.setupPlayer(player)
 	call_deferred("loadRoom",firstRoom)
 	
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
