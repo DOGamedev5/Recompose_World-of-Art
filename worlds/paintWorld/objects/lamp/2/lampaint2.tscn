@@ -8,6 +8,8 @@
 polygon = PoolVector2Array( -22, -22, 22, -22, 22, -16, -22, -16 )
 
 [node name="lampaint2" type="Node2D"]
+z_index = -2
+z_as_relative = false
 script = ExtResource( 3 )
 visiblility = NodePath("VisibilityEnabler2D")
 

@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+saveID = 1
 player = {
 "position": Vector2( -16, -96 )
 }

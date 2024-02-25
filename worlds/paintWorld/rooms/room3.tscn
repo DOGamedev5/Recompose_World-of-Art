@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/savePoints/savepoint.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 72 )
@@ -109,3 +110,7 @@ visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
 [node name="lampaint8" parent="lamps" instance=ExtResource( 6 )]
 position = Vector2( 512, -208 )
 visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
+
+[node name="savePoint" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1360, -400 )
+roomId = 3

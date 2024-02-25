@@ -56,6 +56,7 @@ var inputCord := {
 }
 
 func _ready():
+	print(position.x)
 	if stateMachinePath: 
 		stateMachine = get_node(stateMachinePath)
 		stateMachine.init(self)

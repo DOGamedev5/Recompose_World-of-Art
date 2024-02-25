@@ -3,8 +3,6 @@ extends Control
 onready var options = $"../options"
 onready var saves = $"../saves"
 
-
-
 var current := true
 
 func _process(_delta):

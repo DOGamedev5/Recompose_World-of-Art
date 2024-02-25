@@ -24,6 +24,5 @@ func _ready():
 func _simplesLightToggled(value):
 	canvasModulate.visible = !value
 	
-
 func init(player, warpID):
 	get_node(warp[warpID]).init(player)

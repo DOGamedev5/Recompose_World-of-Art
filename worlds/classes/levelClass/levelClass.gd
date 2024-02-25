@@ -13,11 +13,27 @@ func _ready():
 	var _1 = connect("changeRoom", self, "loadRoom")
 	player = load("res://entities/player/powerStates/normal/playerNormal.tscn").instance()
 	add_child(player)
-	Global.setupPlayer(player)
-	call_deferred("loadRoom",firstRoom)
+	
+	call_deferred("loadSave")
+	
 	
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
+
+func loadSave():
+	var room = "res://worlds/{0}/rooms/room{1}.tscn".format([
+		Global.save.world["currentWorld"],
+		Global.save.world["currentRoomID"]
+	])
+	
+	player.active = false
+	
+	currentRoom = load(room).instance()
+	call_deferred("add_child", currentRoom)
+	
+	player.position = Global.save.player["position"]
+	
+	player.set_deferred("active", true)
 
 func loadRoom(room : String, warpID := 0):
 	
