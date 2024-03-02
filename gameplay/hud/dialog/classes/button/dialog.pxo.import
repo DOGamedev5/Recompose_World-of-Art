@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/dialog.pxo-ae34d916e45b981173f750fd75f4bd1e.stex"
+
+[deps]
+
+source_file="res://gameplay/hud/dialog/classes/button/dialog.pxo"
+dest_files=[ "res://.import/dialog.pxo-ae34d916e45b981173f750fd75f4bd1e.stex" ]
+
+[params]
+

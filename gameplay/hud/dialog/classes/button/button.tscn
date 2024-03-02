@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gameplay/hud/dialog/dialog.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gameplay/hud/dialog/classes/button/button.gd" type="Script" id=2]
+[ext_resource path="res://gameplay/hud/dialog/ButtonDialog.pxo" type="Texture" id=3]
+
+[node name="option" type="Control"]
+anchor_right = 0.376
+anchor_bottom = 0.087
+margin_right = -335.736
+margin_bottom = -0.0320053
+script = ExtResource( 2 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 176.0
+margin_bottom = 64.0
+texture = ExtResource( 3 )
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_fonts/font = ExtResource( 1 )
+text = "AAAAAAAAAaaaaaaa"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}

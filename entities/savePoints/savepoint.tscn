@@ -72,5 +72,6 @@ margin_top = -55.0
 margin_right = 0.0
 margin_bottom = -55.0
 areaInteractPath = NodePath("../Area2D")
+text = "press E"
 
 [connection signal="interacted" from="interactBallon" to="." method="saveData"]

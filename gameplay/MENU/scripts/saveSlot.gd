@@ -14,7 +14,6 @@ func _ready():
 	
 	if ResourceLoader.exists(savePath):
 		save = load(savePath)
-		print("aaaa")
 	
 	else:
 		var dir := Directory.new()
@@ -23,8 +22,7 @@ func _ready():
 		if not dir.dir_exists(dirSavePath % saveID):
 			var _1 = dir.make_dir(dirSavePath % saveID)
 			
-		ResourceSaver.save(savePath, save)
-		print("bbbb")
+		var _1 = ResourceSaver.save(savePath, save)
 		
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	

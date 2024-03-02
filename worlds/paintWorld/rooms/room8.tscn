@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://entities/NPCs/iront/iront.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entities/savePoints/savepoint.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 192, 48 )
@@ -239,3 +240,7 @@ position = Vector2( 48, -832 )
 [node name="lampaint10" parent="lamps" instance=ExtResource( 9 )]
 position = Vector2( -496, -896 )
 fliped = true
+
+[node name="savePoint" parent="." instance=ExtResource( 11 )]
+position = Vector2( 720, -224 )
+roomId = 8
