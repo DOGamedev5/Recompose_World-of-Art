@@ -50,7 +50,6 @@ expand = true
 
 [node name="ballonContent" type="Control" parent="."]
 use_parent_material = true
-rect_scale = Vector2( 1e-05, 1e-05 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -78,7 +77,10 @@ material = SubResource( 5 )
 use_parent_material = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 4
+margin_left = 4.0
+margin_right = -4.0
+grow_horizontal = 0
+grow_vertical = 0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )

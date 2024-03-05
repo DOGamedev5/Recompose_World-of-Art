@@ -11,8 +11,10 @@ func enter(_lastState):
 	particle.emitting = true
 
 	direction = sign(parent.getSlopeNormal().x)
-	if direction == 0:
+	if direction == 0 and parent.motion.x:
 		direction = sign(parent.motion.x)
+	elif direction == 0:
+		direction = 1 - (int(parent.fliped)*2)
 
 	parent.isRolling = true
 	parent.setCollision(1)

@@ -18,10 +18,10 @@ extra_spacing_char = 4
 font_data = ExtResource( 2 )
 
 [node name="saveSlot" type="Panel"]
-margin_left = 65.0
-margin_right = 340.0
+margin_right = 275.0
 margin_bottom = 496.0
 rect_min_size = Vector2( 275, 0 )
+rect_pivot_offset = Vector2( 137.5, 248 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -73,3 +73,5 @@ margin_right = 235.0
 margin_bottom = 405.0
 custom_fonts/font = SubResource( 4 )
 text = "Erase"
+
+[node name="Tween" type="Tween" parent="."]

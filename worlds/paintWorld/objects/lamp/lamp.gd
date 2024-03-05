@@ -9,8 +9,8 @@ func _ready():
 	var visibily = get_node(visiblility)
 	
 	var _2 = visibily.connect("screen_entered", self, "ative")
-#	visibily.connect("screen_exited", self, "desative")
-	var _3 = Global.connect("simpleLightChanged", self, "_toggledSimpleLight")
+	var _3 = visibily.connect("screen_exited", self, "desative")
+	var _4 = Global.connect("simpleLightChanged", self, "_toggledSimpleLight")
 	
 	_toggledSimpleLight(Global.simpleLight)
 
@@ -28,7 +28,6 @@ func scriptChanged():
 
 func desative():
 	$Light2D.enabled = false
-	
 
 func ative():
 	if not Global.simpleLight:

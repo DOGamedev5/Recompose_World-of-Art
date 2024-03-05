@@ -8,13 +8,10 @@ export(Color) var canvasModulateColor = Color(1, 1, 1, 1)
 
 signal changeRoom(room, warpID)
 
-var canvasModulate : CanvasModulate
+onready var canvasModulate = $"../CanvasModulate"
 
 func _ready():
-	canvasModulate = CanvasModulate.new()
-	add_child(canvasModulate)
-	canvasModulate.set_color(canvasModulateColor)
-	_simplesLightToggled(Global.simpleLight)
+	call_deferred("_simplesLightToggled", Global.simpleLight)
 	
 	var _1 = connect("changeRoom", get_parent(), "loadRoom")
 	var _2 = Global.connect("simpleLightChanged", self, "_simplesLightToggled")
@@ -23,6 +20,10 @@ func _ready():
 	
 func _simplesLightToggled(value):
 	canvasModulate.visible = !value
-	
+	if canvasModulate.visible:
+		canvasModulate.set_color(canvasModulateColor)
+		print(canvasModulateColor)
+
+
 func init(player, warpID):
 	get_node(warp[warpID]).init(player)

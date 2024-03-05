@@ -12,6 +12,7 @@ func _on_start_pressed():
 	current = false
 	options.current = false
 	saves.current = true
+	saves.visibily()
 
 func _on_options_pressed():
 	current = false

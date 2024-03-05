@@ -4,11 +4,12 @@
 
 [resource]
 script = ExtResource( 1 )
+saveID = 1
 player = {
-"position": Vector2( -16, -96 )
+"position": Vector2( 1360, -400 )
 }
 world = {
-"currentRoomID": 1,
+"currentRoomID": 3,
 "currentWorld": "paintWorld",
 "paintWorld": {
 "colliseun": false

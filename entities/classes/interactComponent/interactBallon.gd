@@ -17,7 +17,6 @@ signal interacted
 
 func _ready():
 	
-	setSize()
 	areaInteract = get_node(areaInteractPath)
 	
 	var _1 = areaInteract.connect("area_entered", self, "enteredArea")
@@ -60,8 +59,8 @@ func changed(value):
 	
 func setSize():
 	var size = $ballonContent/ballon/text.rect_size.x
-
-	$ballonContent/ballon.rect_position.x = -((size+4)/2)
-	$ballonContent/ballon.rect_size.x = size+4
+	
+	$ballonContent/ballon.rect_position.x = -((size+8)/2)
+	$ballonContent/ballon.rect_size.x = size+8
 	
 	

@@ -154,6 +154,7 @@ __meta__ = {
 [node name="saves" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 680.5, 368 )
 script = ExtResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="saves"]
@@ -168,6 +169,8 @@ margin_bottom = -9.0
 alignment = 1
 
 [node name="saveSlot" parent="saves/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 65.0
+margin_right = 340.0
 
 [node name="VSeparator" type="VSeparator" parent="saves/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -206,6 +209,8 @@ margin_right = 768.0
 margin_bottom = 688.0
 custom_fonts/font = SubResource( 4 )
 text = "Exit"
+
+[node name="Tween" type="Tween" parent="saves"]
 
 [connection signal="pressed" from="initial/VBoxContainer/start" to="initial" method="_on_start_pressed"]
 [connection signal="pressed" from="initial/VBoxContainer/options" to="initial" method="_on_options_pressed"]

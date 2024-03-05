@@ -18,3 +18,5 @@ margin_top = -448.0
 margin_right = 1800.0
 margin_bottom = 452.0
 color = Color( 0.105882, 0.0784314, 0.12549, 1 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]

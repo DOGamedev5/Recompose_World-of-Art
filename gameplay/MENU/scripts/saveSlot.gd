@@ -4,6 +4,8 @@ export var saveID := 1
 
 const dirSavePath = "res://gameplay/saves/data/save%d"
 
+onready var tween = $Tween
+
 var save
 var savePath
 
@@ -44,3 +46,14 @@ func _on_Erase_pressed():
 
 
 
+
+
+func visibility_changed():
+	if self.visible:
+		tween.interpolate_property(self, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.8,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	else:
+		tween.interpolate_property(self, "rect_scale", Vector2(1, 1), Vector2(0, 0), 0.8,
+		Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	
+	tween.start()

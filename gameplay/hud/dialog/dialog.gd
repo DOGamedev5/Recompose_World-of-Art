@@ -17,7 +17,8 @@ var player
 
 var textIndex := 0
 var actived := false
-var interacted := false
+var hasInteracted := false
+var optionID
 
 func _ready():
 	rect.rect_pivot_offset = rect.rect_size/2
@@ -36,26 +37,30 @@ func activeded(Player, Texts):
 func desactiveded():
 	actived = false
 	player = null
-	interacted = false
+	hasInteracted = false
 	
 
 func interacted():
-	if actived and !interacted:
+	if actived and !hasInteracted:
 		textIndex = 0
 		currentText.bbcode_text = texts[textIndex]
-		interacted = true
+		hasInteracted = true
 		
 		tween.interpolate_property(rect, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.3,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 		tween.start()
 	
-	elif actived and interacted:
+	elif actived and hasInteracted:
 		var maxTexts = texts.size() - 1
+		
+		if options.get_children():
+			pass
+		
 		if textIndex < maxTexts:
 			textIndex += 1
 			_setText()
 		else:
-			interacted = false
+			hasInteracted = false
 			tween.interpolate_property(rect, "rect_scale", Vector2(1, 1), Vector2(0, 0), 0.4,
 			Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 			tween.start()
@@ -68,9 +73,14 @@ func _setText():
 	var text = texts[textIndex]
 	if text is String:
 		currentText.bbcode_text = text
+		
 	elif text is Question:
 		currentText.bbcode_text = text.question
+		
 		for option in text.options:
 			var newOption = button.instance()
-			newOption
+			newOption.text = option
+			
 			options.add_child(newOption)
+			newOption.updateTexture(0)
+			newOption.setSize()
