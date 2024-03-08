@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 saveID = 1
 player = {
-"position": Vector2( 1360, -400 )
+"position": Vector2( -16, -96 )
 }
 world = {
 "currentRoomID": 3,

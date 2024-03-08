@@ -31,7 +31,8 @@ func loadSave():
 	currentRoom = load(room).instance()
 	call_deferred("add_child", currentRoom)
 	
-	player.position = Global.save.player["position"]
+	player.position.x = Global.save.player["position"]["x"]
+	player.position.y = Global.save.player["position"]["y"]
 	
 	player.set_deferred("active", true)
 

@@ -2,7 +2,7 @@ extends Node
 
 export var saveID := 1
 
-const dirSavePath = "res://gameplay/saves/data/save%d"
+const dirSavePath = "user://save%d"
 
 onready var tween = $Tween
 
@@ -12,20 +12,9 @@ var savePath
 onready var room := preload("res://worlds/paintWorld/level1.tscn")
 
 func _ready():
-	savePath = "res://gameplay/saves/data/save%d/save.tres" % saveID
 	
-	if ResourceLoader.exists(savePath):
-		save = load(savePath)
+	savePath = "user://save%d.json" % saveID
 	
-	else:
-		var dir := Directory.new()
-		save = SaveResource.new()
-		
-		if not dir.dir_exists(dirSavePath % saveID):
-			var _1 = dir.make_dir(dirSavePath % saveID)
-			
-		var _1 = ResourceSaver.save(savePath, save)
-		
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	
 	var _1 = $VBoxContainer/play.connect("pressed", self, "_on_Play_pressed")
@@ -34,19 +23,12 @@ func _ready():
 	
 
 func _on_Play_pressed():
-	Global.save = save
-	Global.savePath = savePath
+	Global.loadData(savePath)
+	
 	var _1 = get_tree().change_scene_to(room)
 
 func _on_Erase_pressed():
-	var emptySlot = SaveResource.new()
-	
-	save = emptySlot
-	var _1 = ResourceSaver.save(savePath, save)
-
-
-
-
+	Global.saveData(savePath, SaveResource.new())
 
 func visibility_changed():
 	if self.visible:
