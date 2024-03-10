@@ -9,9 +9,6 @@ func enter(_lastState):
 	
 	if abs(parent.motion.x) > parent.MAXSPEED:
 		parent.running = true
-	
-
-
 
 func process_state():
 	if parent.onWall():
@@ -26,7 +23,7 @@ func process_state():
 	elif not parent.onFloor():
 		return "FALL"
 	
-	elif not Input.is_action_pressed("run") :
+	elif not Input.is_action_pressed("run"):
 		return "RUN"
 	
 	return null

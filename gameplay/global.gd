@@ -29,6 +29,9 @@ func _setSimpleLight(value):
 	
 	simpleLight = value
 
+func saveExist(dataPath):
+	return _file.file_exists(dataPath)
+
 func saveData(dataPath, data := SaveResource.new()):
 	var ERROR := _file.open(dataPath, File.WRITE)
 	

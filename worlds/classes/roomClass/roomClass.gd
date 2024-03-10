@@ -22,7 +22,6 @@ func _simplesLightToggled(value):
 	canvasModulate.visible = !value
 	if canvasModulate.visible:
 		canvasModulate.set_color(canvasModulateColor)
-		print(canvasModulateColor)
 
 
 func init(player, warpID):

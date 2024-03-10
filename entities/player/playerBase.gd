@@ -38,6 +38,7 @@ var fliped := false
 var stunned := false
 var counched := false
 var active := true
+var moving := true
 var shieldActived := false
 var currentSnapLength := .0
 var snapDesatived := false
@@ -61,7 +62,9 @@ func _ready():
 		stateMachine.init(self)
 
 func _physics_process(delta):
-	if not stunned:
+	if not moving:
+		motion.x = 0
+	if not stunned and moving:
 		
 		if collideUp() > -34 or Input.is_action_pressed("ui_down"):
 			counched = true
@@ -151,7 +154,9 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
 
 	MotionCord = desaccelerate(MotionCord, input)
-
+	
+	if not moving: return
+	
 	if input > 0:
 		if MotionCord <= maxSpeed:
 			MotionCord += ACCELERATION

@@ -18,6 +18,3 @@ export var world := {
 func _ready():
 	save = "res://gameplay/saves/data/save%d.tres" % saveID
 	
-
-func write():
-	pass

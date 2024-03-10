@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/dialog.pxo-752a4848fac1b7863606fa6e195e52f1.stex"
+
+[deps]
+
+source_file="res://entities/classes/dialogComponent/dialog.pxo"
+dest_files=[ "res://.import/dialog.pxo-752a4848fac1b7863606fa6e195e52f1.stex" ]
+
+[params]
+

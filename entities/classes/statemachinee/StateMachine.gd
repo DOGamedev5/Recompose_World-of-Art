@@ -26,8 +26,11 @@ func changeState(newState : String):
 	currentState = get_node(newState)
 	currentState.enter(lastState)
 
-func processMachine(delta):
-	var newState = currentState.process_state()
+func processMachine(delta, processState := true):
+	var newState
+	if processState:
+		newState = currentState.process_state()
+	
 	if newState != null:
 		changeState(newState)
 	

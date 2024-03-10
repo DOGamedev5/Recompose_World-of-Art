@@ -8,14 +8,14 @@ func enter(_laststate):
 
 
 func process_state():
+	if parent.motion.x == 0 and (Input.get_axis("ui_left", "ui_right") == 0 or not parent.moving) :
+		return "IDLE"
+		
 	if (parent.onSlope() or abs(parent.motion.x) > 500) and Input.is_action_just_pressed("ui_down"):
 		return "ROLL"
 	
 	if parent.onWall():
 		return "WALL"
-			
-	if parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0 :
-		return "IDLE"
 		
 	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
@@ -43,9 +43,11 @@ func process_physics(_delta):
 		parent.moveBase("X", parent.motion.x, 180)
 		parent.playback.travel("CRAWLING")
 		parent.setParticle(0, false)
+		
 	elif parent.couldUncounch(true):
 		parent.moveBase("X", parent.motion.x)
 		parent.setParticle(0, true)
+		
 		if sign(parent.motion.x) != sign(input) and parent.motion.x != 0:
 			parent.playback.travel("STOPPING")
 		elif input != 0:

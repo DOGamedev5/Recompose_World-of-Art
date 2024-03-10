@@ -8,11 +8,6 @@ onready var textDialogs := [
 	preload("res://entities/NPCs/iront/irontQuestion.tres")
 ]
 
-func enterEntity(area):
-	if area.is_in_group("player"):
-		dialog.activeded(area, textDialogs)
-		
-func exitEntity(area):
-	if area.is_in_group("player"):
-		dialog.desactiveded()
+func _ready():
+	dialog.setup(textDialogs)
 		

@@ -5,6 +5,9 @@ func enter(_laststate):
 	parent.setParticle(1, false)
 
 func process_state():
+	if not parent.moving:
+		return null
+		
 	if parent.onSlope() and Input.is_action_just_pressed("ui_down"):
 		return "ROLL"
 		

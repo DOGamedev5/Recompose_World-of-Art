@@ -2,15 +2,9 @@
 
 [ext_resource path="res://gameplay/MENU/scripts/saveSlot.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=2]
-size = 64
-outline_size = 2
-outline_color = Color( 0.341176, 0.180392, 0.345098, 1 )
-extra_spacing_char = 4
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
 size = 64
 outline_size = 2
 outline_color = Color( 0.341176, 0.180392, 0.345098, 1 )
@@ -53,25 +47,25 @@ margin_right = 235.0
 margin_bottom = 275.0
 custom_constants/separation = 220
 
-[node name="play" type="Button" parent="VBoxContainer"]
+[node name="play" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 279.0
 margin_right = 235.0
-margin_bottom = 336.0
-custom_fonts/font = SubResource( 4 )
+margin_bottom = 351.0
+rect_min_size = Vector2( 170, 72 )
 text = "Play"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 340.0
+margin_top = 355.0
 margin_right = 235.0
-margin_bottom = 344.0
+margin_bottom = 359.0
 custom_constants/separation = 4
 
-[node name="erase" type="Button" parent="VBoxContainer"]
-margin_top = 348.0
+[node name="erase" parent="VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 363.0
 margin_right = 235.0
-margin_bottom = 405.0
-custom_fonts/font = SubResource( 4 )
+margin_bottom = 435.0
+rect_min_size = Vector2( 200, 72 )
 text = "Erase"
 
 [node name="Tween" type="Tween" parent="."]

@@ -2,6 +2,7 @@ extends Control
 
 onready var initial = $"../initial"
 onready var saves = $"../saves"
+onready var parent = $"../"
 onready var buttons = {
 	simpleLight = $Panel/VBoxContainer/simpleLight
 }
@@ -17,13 +18,8 @@ func _ready():
 	Global.simpleLight = optionsSave.simpleLight
 	buttons.simpleLight.pressed = optionsSave.simpleLight
 
-func _process(_delta):
-	visible = current
-
 func _on_exitOptions_pressed():
-	current = false
-	initial.current = true
-	saves.current = false
+	parent.transition(initial, [self, saves])
 
 func _on_simpleLight_toggled(button_pressed):
 	Global.simpleLight = button_pressed

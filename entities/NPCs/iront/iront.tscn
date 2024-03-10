@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://entities/NPCs/iront/iront.pxo" type="Texture" id=1]
-[ext_resource path="res://gameplay/hud/dialog/dialog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/NPCs/iront/iront.gd" type="Script" id=3]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=4]
 
@@ -55,6 +55,3 @@ margin_right = 0.0
 margin_bottom = -80.0
 areaInteractPath = NodePath("../Area2D")
 text = "E"
-
-[connection signal="area_entered" from="Area2D" to="." method="enterEntity"]
-[connection signal="area_exited" from="Area2D" to="." method="exitEntity"]

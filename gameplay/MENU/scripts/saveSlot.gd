@@ -14,13 +14,13 @@ onready var room := preload("res://worlds/paintWorld/level1.tscn")
 func _ready():
 	
 	savePath = "user://save%d.json" % saveID
+	if not Global.saveExist(savePath):
+		Global.saveData(savePath)
 	
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	
 	var _1 = $VBoxContainer/play.connect("pressed", self, "_on_Play_pressed")
 	var _2 = $VBoxContainer/erase.connect("pressed", self, "_on_Erase_pressed")
-	
-	
 
 func _on_Play_pressed():
 	Global.loadData(savePath)

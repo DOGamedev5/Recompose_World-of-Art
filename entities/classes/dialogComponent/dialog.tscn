@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://gameplay/hud/dialog/dialog.pxo" type="Texture" id=1]
-[ext_resource path="res://gameplay/hud/dialog/dialog.tres" type="DynamicFont" id=2]
-[ext_resource path="res://gameplay/hud/dialog/dialog.gd" type="Script" id=3]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.pxo" type="Texture" id=1]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=2]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 content_margin_left = 2.0
