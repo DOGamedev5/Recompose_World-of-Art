@@ -13,12 +13,17 @@ onready var button = preload("res://entities/classes/dialogComponent/classes/but
 export(NodePath) var interactBallonPath
 var interactBallon
 
+signal optionChosen(question, option)
+
 var textIndex := 0
 var actived := false
 var hasInteracted := false
 var optionID := 0
+var isQuestion := false
 
 var player : PlayerBase = null
+
+
 
 func _ready():
 	rect.rect_pivot_offset = rect.rect_size/2
@@ -36,6 +41,12 @@ func _process(_delta):
 			continue
 		
 		optionsList[opt].updateTexture(0)
+	
+	if Input.is_action_just_pressed("ui_right") and optionID < optionsList.size()-1:
+		optionID += 1
+	
+	elif Input.is_action_just_pressed("ui_left") and optionID > 0:
+		optionID -= 1
 
 func setup(Texts):
 	textIndex = 0
@@ -56,7 +67,7 @@ func desactiveded(Player = player):
 	Player.moving = true
 	player = null 
 	
-	tween.interpolate_property(rect, "rect_scale", Vector2(1, 1), Vector2(0, 0), 0.4,
+	tween.interpolate_property(rect, "rect_scale", rect["rect_scale"], Vector2(0, 0), 0.4,
 	Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
 	tween.start()
 	
@@ -67,6 +78,10 @@ func desactiveded(Player = player):
 func interacted(Player):
 	
 	player = Player
+	
+	if isQuestion:
+		emit_signal("optionChosen", texts[textIndex].question, texts[textIndex].options[optionID])
+		isQuestion = false
 	
 	for option in options.get_children():
 		option.queue_free()
@@ -92,6 +107,7 @@ func _setText():
 		currentText.bbcode_text = text
 		
 	elif text is Question:
+		isQuestion = true
 		currentText.bbcode_text = text.question
 		
 		for option in text.options:
@@ -101,3 +117,12 @@ func _setText():
 			options.add_child(newOption)
 			newOption.updateTexture(0)
 			newOption.setSize()
+	
+func addText(text : String):
+	texts.append(text)
+
+func addQuestion(question : Question):
+	texts.append(question)
+
+func addDialog(dialog : Array):
+	texts.append_array(dialog)

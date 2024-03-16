@@ -82,6 +82,7 @@ func _saveData_Dictionary(dic : Dictionary) -> Dictionary:
 			jsonData[valueKey] = _saveData_Dictionary(value)
 			continue
 		
+		
 		jsonData[valueKey] = value
 	
 	return jsonData

@@ -41,3 +41,10 @@ custom_fonts/font = SubResource( 2 )
 text = "Options"
 align = 1
 valign = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="pressed" from="." to="." method="_on_buttonMenu_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

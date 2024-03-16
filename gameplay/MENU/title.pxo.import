@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/title.pxo-6203ba6faa0aa7a5544b6fb3f006739f.stex"
+
+[deps]
+
+source_file="res://gameplay/MENU/title.pxo"
+dest_files=[ "res://.import/title.pxo-6203ba6faa0aa7a5544b6fb3f006739f.stex" ]
+
+[params]
+
