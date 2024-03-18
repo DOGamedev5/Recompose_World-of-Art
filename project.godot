@@ -116,6 +116,7 @@ default_bus_layout="res://audio/default_bus_layout.tres"
 
 Global="*res://gameplay/global.gd"
 AudioManager="*res://audio/audioSystem/audioSystem.tscn"
+LoadSystem="*res://gameplay/loadSystem/loadSystem.gd"
 
 [display]
 

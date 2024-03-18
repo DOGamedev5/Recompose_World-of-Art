@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://gameplay/MENU/scripts/saveSlot.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/MENU/panel.pxo" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 128, 128 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 16.0
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
@@ -16,6 +25,7 @@ margin_right = 275.0
 margin_bottom = 496.0
 rect_min_size = Vector2( 275, 0 )
 rect_pivot_offset = Vector2( 137.5, 248 )
+custom_styles/panel = SubResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true

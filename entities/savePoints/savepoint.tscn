@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://entities/savePoints/savepoint.gd" type="Script" id=1]
 [ext_resource path="res://entities/savePoints/sprites/savePointPaint.pxo" type="Texture" id=2]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/classes/informationComponent/information.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -73,5 +74,9 @@ margin_right = 0.0
 margin_bottom = -55.0
 areaInteractPath = NodePath("../Area2D")
 text = "press E"
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 4 )]
+text = "Game Saved"
+interactBallon = NodePath("../interactBallon")
 
 [connection signal="interacted" from="interactBallon" to="." method="saveData"]

@@ -6,6 +6,9 @@ const dirSavePath = "user://save%d"
 
 onready var tween = $Tween
 
+export var menuPath : NodePath
+onready var menu = get_node(menuPath)
+
 var save
 var savePath
 
@@ -23,9 +26,9 @@ func _ready():
 	var _2 = $VBoxContainer/erase.connect("pressed", self, "_on_Erase_pressed")
 
 func _on_Play_pressed():
-	Global.loadData(savePath)
+	Global.call_deferred("loadData", savePath)
 	
-	var _1 = get_tree().change_scene_to(room)
+	LoadSystem.loadScene(menu, "res://worlds/paintWorld/level1.tscn")
 
 func _on_Erase_pressed():
 	Global.saveData(savePath, SaveResource.new())
