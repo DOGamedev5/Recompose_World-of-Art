@@ -31,6 +31,7 @@ func process_state():
 	return null
 
 func process_physics(_delta):
+	if not parent.moving: return
 	var maxSpeed : float
 	
 	parent.stoppedRunning()

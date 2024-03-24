@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource( 1 )
-simpleLight = true
+simpleLight = false

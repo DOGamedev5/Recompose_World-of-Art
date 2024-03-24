@@ -1,14 +1,21 @@
 class_name EnemyBase extends KinematicBody2D
 
 export(NodePath) var visionArea
-export(NodePath) var attackArea
+export(Array, NodePath) var attackAreaArray 
+export(NodePath) var stateMachinePath
+export(NodePath) var hitboxArea
+
+var stateMachine
+
 export var flipArea := false
 
 export var ACCELERATION := 3
 export var DESACCELERATION := 20
-export var GRAVITY := 10
+export var GravityForce := 10
 export var MAXSPEED := 350
 export var MAXFALL := 300
+export var gravity := true
+
 
 var motion := Vector2.ZERO
 var player = null
@@ -22,16 +29,41 @@ func _ready():
 		visionArea = get_node(visionArea)
 		visionArea.connect("body_entered", self, "_enteredVision")
 		visionArea.connect("body_exited", self, "_exitedVision")
-
-func _physics_process(_delta):
-	if player:
-		$Label.text = str(sign(player.position.x - position.x))
-		fliped = player.position.x < position.x
 	
-	if attackArea:
+	if hitboxArea:
+		hitboxArea = get_node(hitboxArea)
+		hitboxArea.connect("HitboxDamaged", self, "hitted")
+	
+	if stateMachinePath:
+		stateMachine = get_node(stateMachinePath)
+		stateMachine.init(self)
+
+func gravityProcess():
+	if not onFloor():
+		
+		motion.y += GravityForce
+		if motion.y > MAXFALL:
+			motion.y = MAXFALL
+
+func _physics_process(delta):
+	if stateMachine:
+		stateMachine.processMachine(delta)
+	
+	gravityProcess()
+	
+	if player:
+		
+		if motion.x:
+			fliped = motion.x < 0
+		else:
+			fliped = player.global_position.x < global_position.x
+	
+	if attackAreaArray and flipArea:
 		var direction := (1 - 2 * int(fliped))
-		var attack = get_node(attackArea)
-		attack.position.x *= sign(attack.position.x) * direction
+		
+		for attackPath in attackAreaArray:
+			var attack = get_node(attackPath)
+			attack.position.x *= sign(attack.position.x) * direction
 
 func _enteredVision(body):
 	if body.is_in_group("player"):
@@ -44,8 +76,8 @@ func _exitedVision(body):
 		emit_signal("exitedVision", body)
 
 
-func moveBase(input : int, MotionCord : float, maxSpeed : float = MAXSPEED):
-	MotionCord += input * ACCELERATION
+func moveBase(input : int, MotionCord : float, maxSpeed : float = MAXSPEED, ACCEL := ACCELERATION):
+	MotionCord += input * ACCEL
 	
 	if abs(MotionCord) > maxSpeed:
 		MotionCord = maxSpeed * sign(MotionCord) 
@@ -57,3 +89,23 @@ func moveBase(input : int, MotionCord : float, maxSpeed : float = MAXSPEED):
 			MotionCord = 0
 	
 	return MotionCord
+
+func desaccelete(MotionCord, input := 0, desacceleration := DESACCELERATION):
+	if sign(MotionCord) != input:
+		var saveSign = sign(MotionCord)
+		MotionCord -=  desacceleration * saveSign
+		if (MotionCord != 0 and sign(MotionCord) != saveSign) and input == 0:
+			MotionCord = 0
+	
+	return MotionCord
+
+func onFloor():
+	if !gravity: return true
+	return is_on_floor()
+
+func hitted(damage, _area):
+	if damage <= 0:
+		return
+	modulate = Color(4, 4, 4, 1)
+	yield(get_tree().create_timer(0.25), "timeout")
+	modulate = Color(1, 1, 1, 1)

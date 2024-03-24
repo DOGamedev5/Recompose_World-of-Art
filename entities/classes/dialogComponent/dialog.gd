@@ -14,6 +14,8 @@ export(NodePath) var interactBallonPath
 var interactBallon
 
 signal optionChosen(question, option)
+signal dialogClosed
+signal dialogOpened
 
 var textIndex := 0
 var actived := false
@@ -60,12 +62,17 @@ func ativeded():
 	tween.interpolate_property(rect, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.3,
 	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
+	
+	yield(tween, "tween_all_completed")
+	
+	emit_signal("dialogOpened")
 
 func desactiveded(Player = player):
 	actived = false
 	hasInteracted = false
 	Player.moving = true
-	player = null 
+	player = null
+	emit_signal("dialogClosed")
 	
 	tween.interpolate_property(rect, "rect_scale", rect["rect_scale"], Vector2(0, 0), 0.4,
 	Tween.TRANS_CIRC, Tween.EASE_IN_OUT)

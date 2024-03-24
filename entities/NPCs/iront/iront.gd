@@ -30,3 +30,7 @@ func optionChosen(question, option):
 			dialog.addText("ok fine, there is you sword")
 			Global.save.world["paintWorld"]["colliseun"] = true
 			barrier.disabled = true
+
+func _on_dialog_dialogClosed():
+	dialog.setup(textDialogs[int(barrier.disabled)])
+

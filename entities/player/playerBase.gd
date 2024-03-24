@@ -8,6 +8,7 @@ onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
 onready var transition = $HUD/transition
 onready var HUD = $HUD
+onready var camera = $Camera2D
 
 const SNAPLENGTH := 32
 
@@ -96,10 +97,10 @@ func setParticle(index := 0, emitting := true):
 	particle.emitting = emitting
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
-	$Camera2D.set("limit_left", limitsMin.x - 10)
-	$Camera2D.set("limit_top", limitsMin.y - 10)
-	$Camera2D.set("limit_right", limitsMax.x + 10)
-	$Camera2D.set("limit_bottom", limitsMax.y + 10)
+	camera.set("limit_left", limitsMin.x - 10)
+	camera.set("limit_top", limitsMin.y - 10)
+	camera.set("limit_right", limitsMax.x + 10)
+	camera.set("limit_bottom", limitsMax.y + 10)
 
 func flipObject(objects):
 	for obj in objects:
@@ -298,6 +299,7 @@ func hitboxTriggered(_damage, area):
 	elif area is AttackComponent and area.is_in_group("enemy") and not shieldActived:
 		var direction := sign(area.global_position.x - position.x)
 		emit_signal("damaged", direction)
+		health -= area.damage
 		shieldActived = true
 	
 	elif area.is_in_group("ladder"):

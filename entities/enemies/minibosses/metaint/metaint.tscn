@@ -1,16 +1,452 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://entities/enemies/minibosses/metaint/metaint.gd" type="Script" id=1]
-[ext_resource path="res://entities/enemies/minibosses/metaint/metaint.pxo" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintIdle.pxo" type="Texture" id=2]
+[ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=3]
+[ext_resource path="res://entities/enemies/minibosses/metaint/script/IDLE.gd" type="Script" id=4]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintTrhead.pxo" type="Texture" id=5]
+[ext_resource path="res://entities/enemies/minibosses/metaint/script/THREAD.gd" type="Script" id=6]
+[ext_resource path="res://entities/enemies/minibosses/metaint/script/TOJUMP.gd" type="Script" id=7]
+[ext_resource path="res://entities/enemies/minibosses/metaint/script/JUMP.gd" type="Script" id=8]
+[ext_resource path="res://entities/enemies/minibosses/metaint/script/FALL.gd" type="Script" id=9]
+[ext_resource path="res://entities/enemies/minibosses/metaint/script/TORUN.gd" type="Script" id=10]
+[ext_resource path="res://entities/enemies/minibosses/metaint/script/RUN.gd" type="Script" id=11]
+[ext_resource path="res://entities/enemies/minibosses/metaint/script/WALK.gd" type="Script" id=12]
+[ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=13]
+[ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=14]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintJump.pxo" type="Texture" id=15]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintToJump.pxo" type="Texture" id=16]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintFall.pxo" type="Texture" id=17]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintRun.pxo" type="Texture" id=18]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintGround.pxo" type="Texture" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36, 44 )
 
-[node name="EnemyBase" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 824, 160 )
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "FALL"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "GROUND"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "JUMP"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "THREAD"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "TOJUMP"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "TORUN"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/FALL/node = SubResource( 22 )
+states/FALL/position = Vector2( 644.333, 305.667 )
+states/GROUND/node = SubResource( 30 )
+states/GROUND/position = Vector2( 719, 192.767 )
+states/IDLE/node = SubResource( 3 )
+states/IDLE/position = Vector2( 543, 97.6667 )
+states/JUMP/node = SubResource( 15 )
+states/JUMP/position = Vector2( 493.667, 312.333 )
+states/THREAD/node = SubResource( 4 )
+states/THREAD/position = Vector2( 771, 99 )
+states/TOJUMP/node = SubResource( 16 )
+states/TOJUMP/position = Vector2( 390.556, 191 )
+states/TORUN/node = SubResource( 26 )
+states/TORUN/position = Vector2( 392.333, -10.1497 )
+transitions = [ "IDLE", "THREAD", SubResource( 5 ), "THREAD", "IDLE", SubResource( 6 ), "IDLE", "TOJUMP", SubResource( 17 ), "TOJUMP", "JUMP", SubResource( 18 ), "JUMP", "FALL", SubResource( 23 ), "TORUN", "IDLE", SubResource( 27 ), "IDLE", "TORUN", SubResource( 28 ), "FALL", "GROUND", SubResource( 31 ), "GROUND", "IDLE", SubResource( 32 ) ]
+start_node = "IDLE"
+graph_offset = Vector2( 0, -95.5664 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="Animation" id=25]
+resource_name = "FALL"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 2 ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "GROUND"
+length = 0.375
+step = 0.075
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 19 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "IDLE"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "JUMP"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Metaint:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "THREAD"
+length = 2.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 1.4, 1.6, 1.8, 2, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "TOJUMP"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "TORUN"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.15, 0.25, 0.35, 0.45, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 64, 56 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 128, 32 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 48, 40 )
+
+[node name="metaint" type="KinematicBody2D" groups=["enemy"]]
 z_index = -1
 z_as_relative = false
 collision_layer = 0
 script = ExtResource( 1 )
+visionArea = NodePath("Area2D")
+attackAreaArray = [ NodePath("jumpAttack"), NodePath("runAttack") ]
+stateMachinePath = NodePath("StateMachine")
+hitboxArea = NodePath("hitbox")
+flipArea = true
+ACCELERATION = 5
+DESACCELERATION = 30
+GravityForce = 30
+MAXSPEED = 200
+MAXFALL = 800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 4, -44 )
@@ -20,3 +456,102 @@ shape = SubResource( 1 )
 position = Vector2( 0, -96 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
+startingState = NodePath("IDLE")
+
+[node name="IDLE" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="StateMachine/IDLE"]
+wait_time = 1.2
+one_shot = true
+
+[node name="THREAD" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="TOJUMP" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="cooldown" type="Timer" parent="StateMachine/TOJUMP"]
+one_shot = true
+
+[node name="JUMP" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="FALL" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="TORUN" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="cooldown" type="Timer" parent="StateMachine/TORUN"]
+wait_time = 0.7
+one_shot = true
+
+[node name="RUN" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
+[node name="Timer" type="Timer" parent="StateMachine/RUN"]
+wait_time = 0.6
+one_shot = true
+
+[node name="WALK" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -160 )
+shape = SubResource( 2 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 7 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FALL = SubResource( 25 )
+anims/GROUND = SubResource( 33 )
+anims/IDLE = SubResource( 9 )
+anims/JUMP = SubResource( 20 )
+anims/RESET = SubResource( 10 )
+anims/THREAD = SubResource( 11 )
+anims/TOJUMP = SubResource( 21 )
+anims/TORUN = SubResource( 29 )
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" groups=["enemy"]]
+position = Vector2( 0, -56 )
+shape = SubResource( 12 )
+
+[node name="jumpAttack" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 0
+collision_mask = 1536
+monitoring = false
+monitorable = false
+script = ExtResource( 14 )
+damage = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jumpAttack" groups=["enemy"]]
+position = Vector2( 0, -32 )
+shape = SubResource( 13 )
+
+[node name="runAttack" type="Area2D" parent="." groups=["enemy"]]
+position = Vector2( 72, 0 )
+collision_layer = 0
+collision_mask = 512
+monitoring = false
+monitorable = false
+script = ExtResource( 14 )
+damage = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="runAttack" groups=["enemy"]]
+position = Vector2( 0, -72 )
+shape = SubResource( 14 )

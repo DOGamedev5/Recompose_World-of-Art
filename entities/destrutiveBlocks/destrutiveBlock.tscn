@@ -8,7 +8,7 @@
 extents = Vector2( 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 32 )
+extents = Vector2( 48, 32 )
 
 [node name="block" type="KinematicBody2D" groups=["destrutive"]]
 script = ExtResource( 2 )

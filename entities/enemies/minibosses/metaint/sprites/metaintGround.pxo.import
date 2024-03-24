@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/metaintGround.pxo-bf414a2159b14207843271519a129ebf.stex"
+
+[deps]
+
+source_file="res://entities/enemies/minibosses/metaint/sprites/metaintGround.pxo"
+dest_files=[ "res://.import/metaintGround.pxo-bf414a2159b14207843271519a129ebf.stex" ]
+
+[params]
+

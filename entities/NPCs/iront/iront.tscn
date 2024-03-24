@@ -12,7 +12,7 @@ extents = Vector2( 16, 32 )
 extents = Vector2( 32, 128 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 53, 72 )
+extents = Vector2( 96, 72 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -76,7 +76,7 @@ collision_layer = 1024
 collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 43, -72 )
+position = Vector2( 0, -72 )
 shape = SubResource( 3 )
 
 [node name="interactBallon" parent="." instance=ExtResource( 4 )]
@@ -92,4 +92,5 @@ autoplay = "idle"
 anims/RESET = SubResource( 4 )
 anims/idle = SubResource( 5 )
 
+[connection signal="dialogClosed" from="dialog" to="." method="_on_dialog_dialogClosed"]
 [connection signal="optionChosen" from="dialog" to="." method="optionChosen"]

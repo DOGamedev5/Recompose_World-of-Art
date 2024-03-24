@@ -10,5 +10,8 @@ func _ready():
 func setHealthMax(healthMax):
 	healthBarr.max_value = healthMax
 
+func _physics_process(_delta):
+	setHealth(get_parent().health)
+
 func setHealth(currentValue):
 	healthBarr.value = currentValue

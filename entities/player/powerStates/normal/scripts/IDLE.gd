@@ -1,6 +1,8 @@
 extends State
 
 func enter(_laststate):
+	
+	
 	parent.setParticle(0, false)
 	parent.setParticle(1, false)
 
@@ -35,7 +37,11 @@ func process_physics(_delta):
 
 	parent.idleBase()
 	
-	if parent.counched:
+	if not parent.is_on_floor():
+		parent.playback.travel("FALL")
+	
+	elif parent.counched:
 		parent.playback.travel("COUNCH")
+	
 	else:
 		parent.playback.travel("IDLE")
