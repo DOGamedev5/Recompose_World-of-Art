@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://entities/enemies/minibosses/metaint/metaint.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintIdle.pxo" type="Texture" id=2]
@@ -17,8 +17,9 @@
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintJump.pxo" type="Texture" id=15]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintToJump.pxo" type="Texture" id=16]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintFall.pxo" type="Texture" id=17]
-[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintRun.pxo" type="Texture" id=18]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintToRun.pxo" type="Texture" id=18]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintGround.pxo" type="Texture" id=19]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintRun.pxo" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36, 44 )
@@ -37,6 +38,9 @@ animation = "IDLE"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
 animation = "JUMP"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "RUN"
 
 [sub_resource type="AnimationNodeAnimation" id=4]
 animation = "THREAD"
@@ -60,14 +64,17 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
 switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
 
 [sub_resource type="AnimationNodeStateMachine" id=7]
 states/FALL/node = SubResource( 22 )
@@ -78,13 +85,15 @@ states/IDLE/node = SubResource( 3 )
 states/IDLE/position = Vector2( 543, 97.6667 )
 states/JUMP/node = SubResource( 15 )
 states/JUMP/position = Vector2( 493.667, 312.333 )
+states/RUN/node = SubResource( 34 )
+states/RUN/position = Vector2( 581.667, -36.5664 )
 states/THREAD/node = SubResource( 4 )
 states/THREAD/position = Vector2( 771, 99 )
 states/TOJUMP/node = SubResource( 16 )
 states/TOJUMP/position = Vector2( 390.556, 191 )
 states/TORUN/node = SubResource( 26 )
-states/TORUN/position = Vector2( 392.333, -10.1497 )
-transitions = [ "IDLE", "THREAD", SubResource( 5 ), "THREAD", "IDLE", SubResource( 6 ), "IDLE", "TOJUMP", SubResource( 17 ), "TOJUMP", "JUMP", SubResource( 18 ), "JUMP", "FALL", SubResource( 23 ), "TORUN", "IDLE", SubResource( 27 ), "IDLE", "TORUN", SubResource( 28 ), "FALL", "GROUND", SubResource( 31 ), "GROUND", "IDLE", SubResource( 32 ) ]
+states/TORUN/position = Vector2( 341.666, -18.1497 )
+transitions = [ "IDLE", "THREAD", SubResource( 5 ), "THREAD", "IDLE", SubResource( 6 ), "IDLE", "TOJUMP", SubResource( 17 ), "TOJUMP", "JUMP", SubResource( 18 ), "JUMP", "FALL", SubResource( 23 ), "IDLE", "TORUN", SubResource( 28 ), "FALL", "GROUND", SubResource( 31 ), "GROUND", "IDLE", SubResource( 32 ), "TORUN", "RUN", SubResource( 35 ), "RUN", "IDLE", SubResource( 36 ) ]
 start_node = "IDLE"
 graph_offset = Vector2( 0, -95.5664 )
 
@@ -94,16 +103,16 @@ graph_offset = Vector2( 0, -95.5664 )
 resource_name = "FALL"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Metaint:texture")
+tracks/0/path = NodePath("Metaint:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 17 ) ]
+"values": [ 0, 1, 2, 2 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Metaint:hframes")
@@ -114,20 +123,20 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ 4 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Metaint:frame")
+tracks/2/path = NodePath("Metaint:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 2 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 17 ) ]
 }
 
 [sub_resource type="Animation" id=33]
@@ -135,56 +144,57 @@ resource_name = "GROUND"
 length = 0.375
 step = 0.075
 tracks/0/type = "value"
-tracks/0/path = NodePath("Metaint:texture")
+tracks/0/path = NodePath("Metaint:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 19 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Metaint:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 5 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Metaint:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 19 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "IDLE"
+length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Metaint:texture")
+tracks/0/path = NodePath("Metaint:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ 0, 1, 2, 3 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Metaint:hframes")
@@ -195,11 +205,11 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
+"update": 0,
+"values": [ 4 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Metaint:frame")
+tracks/2/path = NodePath("Metaint:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -207,24 +217,24 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
+"update": 0,
+"values": [ ExtResource( 2 ) ]
 }
 
 [sub_resource type="Animation" id=20]
 resource_name = "JUMP"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Metaint:hframes")
+tracks/0/path = NodePath("Metaint:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 3 ]
+"values": [ 0, 1, 2 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Metaint:texture")
@@ -235,26 +245,26 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ ExtResource( 15 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Metaint:frame")
+tracks/2/path = NodePath("Metaint:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
 }
 
 [sub_resource type="Animation" id=10]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Metaint:texture")
+tracks/0/path = NodePath("Metaint:vframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -263,10 +273,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ ExtResource( 2 ) ]
+"values": [ 1 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Metaint:hframes")
+tracks/1/path = NodePath("Metaint:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -275,10 +285,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1 ]
+"values": [ 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Metaint:frame")
+tracks/2/path = NodePath("Metaint:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -287,10 +297,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Metaint:vframes")
+tracks/3/path = NodePath("Metaint:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -299,23 +309,66 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1 ]
+"values": [ ExtResource( 2 ) ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "THREAD"
-length = 2.4
+[sub_resource type="Animation" id=37]
+resource_name = "RUN"
+length = 0.5
+loop = true
+step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Metaint:texture")
+tracks/0/path = NodePath("Metaint:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Metaint:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 20 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Metaint:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "THREAD"
+length = 3.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Metaint:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.35, 0.4, 0.45, 1.4, 1.55, 1.7, 1.85, 2, 2.15, 2.3, 2.45, 2.6, 2.8, 2.85, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.10957, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 5 ) ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 5, 4, 5, 6, 5, 4, 7, 8, 0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Metaint:hframes")
@@ -326,36 +379,36 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4 ]
+"update": 0,
+"values": [ 9 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Metaint:frame")
+tracks/2/path = NodePath("Metaint:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4, 1.4, 1.6, 1.8, 2, 2.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 2, 3, 2 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 5 ) ]
 }
 
 [sub_resource type="Animation" id=21]
 resource_name = "TOJUMP"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Metaint:texture")
+tracks/0/path = NodePath("Metaint:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 16 ) ]
+"values": [ 0, 1, 2, 3 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Metaint:hframes")
@@ -366,20 +419,20 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ 4 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Metaint:frame")
+tracks/2/path = NodePath("Metaint:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 16 ) ]
 }
 
 [sub_resource type="Animation" id=29]
@@ -387,16 +440,16 @@ resource_name = "TORUN"
 length = 0.65
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Metaint:texture")
+tracks/0/path = NodePath("Metaint:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.05, 0.15, 0.25, 0.35, 0.45, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 18 ) ]
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Metaint:hframes")
@@ -407,20 +460,20 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
+"update": 0,
 "values": [ 7 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Metaint:frame")
+tracks/2/path = NodePath("Metaint:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15, 0.25, 0.35, 0.45, 0.55 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 18 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=12]
@@ -430,7 +483,7 @@ extents = Vector2( 64, 56 )
 extents = Vector2( 128, 32 )
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 48, 40 )
+extents = Vector2( 56, 36 )
 
 [node name="metaint" type="KinematicBody2D" groups=["enemy"]]
 z_index = -1
@@ -441,6 +494,8 @@ visionArea = NodePath("Area2D")
 attackAreaArray = [ NodePath("jumpAttack"), NodePath("runAttack") ]
 stateMachinePath = NodePath("StateMachine")
 hitboxArea = NodePath("hitbox")
+maxHealth = 60
+health = 60
 flipArea = true
 ACCELERATION = 5
 DESACCELERATION = 30
@@ -501,6 +556,7 @@ one_shot = true
 script = ExtResource( 12 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, -160 )
@@ -518,11 +574,13 @@ anims/GROUND = SubResource( 33 )
 anims/IDLE = SubResource( 9 )
 anims/JUMP = SubResource( 20 )
 anims/RESET = SubResource( 10 )
+anims/RUN = SubResource( 37 )
 anims/THREAD = SubResource( 11 )
 anims/TOJUMP = SubResource( 21 )
 anims/TORUN = SubResource( 29 )
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+visible = false
 collision_layer = 256
 collision_mask = 256
 script = ExtResource( 13 )
@@ -532,6 +590,7 @@ position = Vector2( 0, -56 )
 shape = SubResource( 12 )
 
 [node name="jumpAttack" type="Area2D" parent="." groups=["enemy"]]
+visible = false
 collision_layer = 0
 collision_mask = 1536
 monitoring = false
@@ -553,5 +612,7 @@ script = ExtResource( 14 )
 damage = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="runAttack" groups=["enemy"]]
-position = Vector2( 0, -72 )
+position = Vector2( 8, -68 )
 shape = SubResource( 14 )
+
+[connection signal="defeated" from="." to="." method="_on_metaint_defeated"]

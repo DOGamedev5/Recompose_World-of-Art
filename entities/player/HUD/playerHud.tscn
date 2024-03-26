@@ -1,11 +1,12 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
-[ext_resource path="res://entities/player/HUD/lodrofoEye.pxo" type="Texture" id=2]
+[ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
 [ext_resource path="res://entities/player/HUD/liveBarr/liveBarr.pxo" type="Texture" id=3]
 [ext_resource path="res://entities/player/HUD/playerHud.gd" type="Script" id=4]
 [ext_resource path="res://entities/player/HUD/scripts/options/options.gd" type="Script" id=5]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeDamaged.pxo" type="Texture" id=7]
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 3 )
@@ -18,6 +19,34 @@ region = Rect2( 48, 0, 24, 32 )
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 66, 66 )
+
+[sub_resource type="Animation" id=20]
+resource_name = "DAMAGED"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture:atlas")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.101, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 66, 66 ), Rect2( 66, 0, 66, 66 ), Rect2( 132, 0, 66, 66 ), Rect2( 198, 0, 66, 66 ), Rect2( 264, 0, 66, 66 ), Rect2( 330, 0, 66, 66 ), Rect2( 396, 0, 66, 66 ), Rect2( 462, 0, 66, 66 ), Rect2( 528, 0, 66, 66 ), Rect2( 594, 0, 66, 66 ), Rect2( 660, 0, 66, 66 ), Rect2( 726, 0, 66, 66 ), Rect2( 792, 0, 66, 66 ), Rect2( 858, 0, 66, 66 ), Rect2( 924, 0, 66, 66 ), Rect2( 990, 0, 66, 66 ), Rect2( 1056, 0, 66, 66 ), Rect2( 1122, 0, 66, 66 ), Rect2( 1188, 0, 66, 66 ), Rect2( 1254, 0, 66, 66 ), Rect2( 1320, 0, 66, 66 ) ]
+}
 
 [sub_resource type="Animation" id=15]
 resource_name = "NORMAL"
@@ -35,6 +64,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Rect2( 0, 0, 66, 66 ), Rect2( 66, 0, 66, 66 ), Rect2( 132, 0, 66, 66 ), Rect2( 198, 0, 66, 66 ), Rect2( 264, 0, 66, 66 ), Rect2( 330, 0, 66, 66 ), Rect2( 396, 0, 66, 66 ), Rect2( 462, 0, 66, 66 ), Rect2( 528, 0, 66, 66 ), Rect2( 594, 0, 66, 66 ), Rect2( 660, 0, 66, 66 ), Rect2( 726, 0, 66, 66 ), Rect2( 792, 0, 66, 66 ), Rect2( 858, 0, 66, 66 ), Rect2( 924, 0, 66, 66 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:texture:atlas")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
 
 [sub_resource type="Animation" id=16]
 length = 0.001
@@ -50,6 +91,40 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Rect2( 0, 0, 66, 66 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:texture:atlas")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "DAMAGED"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "NORMAL"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=22]
+states/DAMAGED/node = SubResource( 24 )
+states/DAMAGED/position = Vector2( 704.333, 65.6667 )
+states/NORMAL/node = SubResource( 21 )
+states/NORMAL/position = Vector2( 483, 112.333 )
+transitions = [ "NORMAL", "DAMAGED", SubResource( 25 ), "DAMAGED", "NORMAL", SubResource( 26 ) ]
+start_node = "NORMAL"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "transitionIn"
@@ -224,9 +299,15 @@ texture = SubResource( 14 )
 expand = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/eyeIcon"]
-autoplay = "NORMAL"
+anims/DAMAGED = SubResource( 20 )
 anims/NORMAL = SubResource( 15 )
 anims/RESET = SubResource( 16 )
+
+[node name="AnimationTree" type="AnimationTree" parent="HUD/eyeIcon"]
+tree_root = SubResource( 22 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 23 )
 
 [node name="transition" type="Control" parent="."]
 visible = false

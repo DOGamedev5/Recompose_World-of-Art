@@ -7,6 +7,9 @@ export(NodePath) var hitboxArea
 
 var stateMachine
 
+export var maxHealth := 20
+export var health := 20
+
 export var flipArea := false
 
 export var ACCELERATION := 3
@@ -23,6 +26,7 @@ var fliped := false
 
 signal enteredVision(body)
 signal exitedVision(body)
+signal defeated(enemy)
 
 func _ready():
 	if visionArea:
@@ -107,5 +111,10 @@ func hitted(damage, _area):
 	if damage <= 0:
 		return
 	modulate = Color(4, 4, 4, 1)
+	health -= damage
+	
 	yield(get_tree().create_timer(0.25), "timeout")
 	modulate = Color(1, 1, 1, 1)
+	
+	if health <= 0:
+		emit_signal("defeated", self)

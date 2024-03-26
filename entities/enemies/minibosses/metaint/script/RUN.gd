@@ -6,6 +6,7 @@ onready var attack = $"../../runAttack"
 var direction := -1
 
 func enter(_lastState):
+	parent.playback.travel("RUN")
 	attack.monitoring = true
 	direction = 1 - 2*int(parent.fliped)
 	timer.start()

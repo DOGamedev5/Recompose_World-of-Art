@@ -12,3 +12,6 @@ func _process(_delta):
 
 func changeState(state : String):
 	stateMachine.changeState(state)
+
+func _on_metaint_defeated(_enemy):
+	queue_free()
