@@ -14,9 +14,10 @@ func _ready():
 		Global.save.world["paintWorld"]["metaint"] = false
 
 func _on_Area2D_area_entered(area):
-	player = area.get_parent()
-	player.moving = false
-	anim.play("cutscene")
+	if area.is_in_group("player"):
+		player = area.get_parent()
+		player.moving = false
+		anim.play("cutscene")
 
 
 func _on_animation_finished(_anim_name):

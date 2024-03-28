@@ -2,30 +2,38 @@ extends State
 
 onready var timer = $Timer
 
-var chooseNextAttack = ["TOJUMP", "TORUN"]
+var attacked := false
 
-
-func enter(_lastState):
-
+func enter(lastState):
+	if lastState != "ATTACK":
+		attacked = false
+	
 	if parent.active:
-		timer.wait_time = rand_range(0.6, 1.2)
+		timer.wait_time = rand_range(1.5, 2.1)
 		timer.start()
-
-func exit():
-	pass
 
 func process_state():
 	
+	if not parent.active: return null
 	
-	if timer.is_stopped() and parent.active:
-		if parent.position.x < 224 or parent.position.x > 1312:
-			return "WALK"
+	if parent.areas.sword and timer.time_left < timer.wait_time - 0.8:
+		timer.stop()
+		if attacked:
+			return "TOJUMP"
 		
-		chooseNextAttack.shuffle()
+		attacked = true
+		return "TOATTACK"
+	
+	elif parent.areas.jump and timer.time_left < timer.wait_time - 1.2:
+		timer.stop()
+		return "TOJUMP"
+	
+	elif timer.is_stopped():
+		return "TORUN"
+ 
+	if parent.position.x < 224 or parent.position.x > 1312:
+		return "WALK"
 		
-		return chooseNextAttack[0]
-	
-	
 	return null
 
 func process_physics(_delta):
@@ -34,6 +42,7 @@ func process_physics(_delta):
 	randomize()
 	
 	parent.playback.travel("IDLE")
+	$"../../Metaint".flip_h = parent.fliped
 
 
 

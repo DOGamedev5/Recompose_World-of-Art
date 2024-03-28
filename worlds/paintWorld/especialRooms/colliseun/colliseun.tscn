@@ -126,12 +126,12 @@ script = ExtResource( 1 )
 
 [node name="colliseuDown" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
-z_index = -1
+z_index = -2
 z_as_relative = false
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 128, 160 )
 format = 1
-tile_data = PoolIntArray( -720871, 0, 0, -65536, 0, 0, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 2 )
+tile_data = PoolIntArray( -720871, 0, 0, -65536, 0, 0, -65535, 0, 1, -65534, 0, 2, -65533, 0, 2, -65532, 0, 3, -65531, 0, 4 )
 
 [node name="colliseuUp" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -140,7 +140,7 @@ z_as_relative = false
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 128, 160 )
 format = 1
-tile_data = PoolIntArray( -458730, 0, 3, -65536, 0, 3, -65531, 0, 5 )
+tile_data = PoolIntArray( -458730, 0, 3, -65536, 0, 5, -65531, 0, 7 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 __meta__ = {
@@ -168,6 +168,7 @@ disabled = true
 
 [node name="metaint" parent="." instance=ExtResource( 2 )]
 position = Vector2( 448, 0 )
+z_as_relative = true
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 1056, 0 )

@@ -6,6 +6,7 @@ func enter(_lastState):
 	parent.playback.travel("JUMP")
 	
 	direction = 1 - 2*int(parent.fliped)
+	parent.flipLock = true
 	parent.motion.y = -1200
 
 func process_state():

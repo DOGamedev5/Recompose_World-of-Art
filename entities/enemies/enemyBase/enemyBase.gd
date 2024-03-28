@@ -18,11 +18,12 @@ export var GravityForce := 10
 export var MAXSPEED := 350
 export var MAXFALL := 300
 export var gravity := true
-
+export var unlimitedVision  := false
 
 var motion := Vector2.ZERO
 var player = null
 var fliped := false
+var flipLock := false
 
 signal enteredVision(body)
 signal exitedVision(body)
@@ -55,7 +56,7 @@ func _physics_process(delta):
 	
 	gravityProcess()
 	
-	if player:
+	if player and not flipLock:
 		
 		if motion.x:
 			fliped = motion.x < 0
@@ -75,7 +76,7 @@ func _enteredVision(body):
 		emit_signal("enteredVision", body)
 
 func _exitedVision(body):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and not unlimitedVision:
 		player = null
 		emit_signal("exitedVision", body)
 
@@ -107,8 +108,8 @@ func onFloor():
 	if !gravity: return true
 	return is_on_floor()
 
-func hitted(damage, _area):
-	if damage <= 0:
+func hitted(damage, area):
+	if damage <= 0 or health <= 0:
 		return
 	modulate = Color(4, 4, 4, 1)
 	health -= damage
@@ -118,3 +119,4 @@ func hitted(damage, _area):
 	
 	if health <= 0:
 		emit_signal("defeated", self)
+		
