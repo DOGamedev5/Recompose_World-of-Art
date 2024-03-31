@@ -5,11 +5,13 @@ export var fliped := false setget _setFliped
 export(NodePath) var visiblility
 
 func _ready():
-	var _1 = connect("script_changed", self, "scriptChanged")
-	var visibily = get_node(visiblility)
+#	var _1 = connect("script_changed", self, "scriptChanged")
+	if visiblility:
+		var visibily = get_node(visiblility)
 	
-	var _2 = visibily.connect("screen_entered", self, "ative")
-	var _3 = visibily.connect("screen_exited", self, "desative")
+		var _2 = visibily.connect("screen_entered", self, "ative")
+		var _3 = visibily.connect("screen_exited", self, "desative")
+	
 	var _4 = Global.connect("simpleLightChanged", self, "_toggledSimpleLight")
 	
 	_toggledSimpleLight(Global.simpleLight)

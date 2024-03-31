@@ -26,7 +26,7 @@ func _ready():
 	var _2 = $VBoxContainer/erase.connect("pressed", self, "_on_Erase_pressed")
 
 func _on_Play_pressed():
-	Global.call_deferred("loadData", savePath)
+	Global.call_deferred("loadData", savePath, SaveResource.new())
 	
 	LoadSystem.loadScene(menu, "res://worlds/paintWorld/level1.tscn")
 

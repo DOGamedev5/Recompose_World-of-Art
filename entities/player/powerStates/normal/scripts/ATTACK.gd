@@ -58,3 +58,5 @@ func exit():
 	parent.attackDelay.start()
 	if not (Input.is_action_pressed("run") and Input.get_axis("ui_left", "ui_right") != 0):
 		parent.motion.x /= 2
+	else:
+		parent.motion.x *= 0.85

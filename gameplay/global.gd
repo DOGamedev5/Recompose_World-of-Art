@@ -48,9 +48,7 @@ func saveData(dataPath, data := SaveResource.new()):
 	_file.store_string(JSONstr)
 	_file.close()
 
-func loadData(dataPath):
-	
-	var data := SaveResource.new()
+func loadData(dataPath, data : Resource):
 	var ERROR := _file.open(dataPath, File.READ)
 	
 	if ERROR != OK:
@@ -64,9 +62,10 @@ func loadData(dataPath):
 	
 	var loadedData : Dictionary = JSON.parse(content).result
 	
-	data.player = _loadData_Dictionary(loadedData["player"])
-	data.world = _loadData_Dictionary(loadedData["world"])
+	for key in loadedData.keys():
+		data[key] = _loadData_Dictionary(loadedData[key])
 	
+
 	save = data
 
 func _saveData_Dictionary(dic : Dictionary) -> Dictionary:

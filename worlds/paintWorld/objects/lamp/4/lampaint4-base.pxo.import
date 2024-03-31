@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lampaint4-base.pxo-57bf23800b33204c0baf9c5e0d2ffe0e.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/objects/lamp/4/lampaint4-base.pxo"
+dest_files=[ "res://.import/lampaint4-base.pxo-57bf23800b33204c0baf9c5e0d2ffe0e.stex" ]
+
+[params]
+

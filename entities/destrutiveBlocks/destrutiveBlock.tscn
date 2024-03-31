@@ -8,7 +8,7 @@
 extents = Vector2( 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 48, 32 )
+extents = Vector2( 32, 32 )
 
 [node name="block" type="KinematicBody2D" groups=["destrutive"]]
 script = ExtResource( 2 )
@@ -39,5 +39,4 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 2
 
-[connection signal="script_changed" from="." to="." method="_on_block_script_changed"]
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="_on_HitboxComponent_HitboxDamaged"]

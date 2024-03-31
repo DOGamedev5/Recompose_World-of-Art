@@ -108,7 +108,7 @@ func onFloor():
 	if !gravity: return true
 	return is_on_floor()
 
-func hitted(damage, area):
+func hitted(damage, _area):
 	if damage <= 0 or health <= 0:
 		return
 	modulate = Color(4, 4, 4, 1)

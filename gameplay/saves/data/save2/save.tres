@@ -9,7 +9,7 @@ player = {
 "position": Vector2( -16, -96 )
 }
 world = {
-"currentRoomID": 3,
+"currentRoomID": 1,
 "currentWorld": "paintWorld",
 "paintWorld": {
 "colliseun": false

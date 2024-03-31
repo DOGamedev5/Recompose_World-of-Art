@@ -34,7 +34,7 @@ func _setLengh():
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT
 	)
 	tween.interpolate_property(
-		paper, "rect_position", paper["rect_position"], Vector2(1260 - newLenght, paper["rect_position"].y), 0.6,
+		paper, "rect_position", paper["rect_position"], Vector2(1260 - newLenght+68, paper["rect_position"].y), 0.6,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT
 	)
 	
