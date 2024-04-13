@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://worlds/paintWorld/sprites/credits_images/7.png" type="Texture" id=19]
 [ext_resource path="res://gameplay/MENU/scripts/Credits.gd" type="Script" id=20]
 [ext_resource path="res://gameplay/MENU/panel.pxo" type="Texture" id=21]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.tscn" type="PackedScene" id=22]
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 21 )
@@ -40,7 +41,7 @@ font_data = ExtResource( 1 )
 [sub_resource type="DynamicFont" id=7]
 size = 32
 outline_size = 2
-outline_color = Color( 0.282353, 0.317647, 0.329412, 1 )
+outline_color = Color( 0.709804, 0.556863, 0.392157, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 1 )
 
@@ -169,22 +170,41 @@ margin_right = 367.0
 margin_bottom = 87.0
 custom_constants/separation = 32
 
-[node name="simpleLight" type="CheckButton" parent="options/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="options/Panel/VBoxContainer"]
 margin_top = 91.0
 margin_right = 367.0
-margin_bottom = 131.0
+margin_bottom = 125.0
+alignment = 1
+
+[node name="Label2" type="Label" parent="options/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 11.0
+margin_top = 4.0
+margin_right = 215.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0.988235, 0.976471, 0.87451, 1 )
 custom_fonts/font = SubResource( 7 )
-text = "simple lights"
+text = "Simple Lights"
 align = 1
-icon_align = 1
+valign = 1
+
+[node name="VSeparator" type="VSeparator" parent="options/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 219.0
+margin_right = 299.0
+margin_bottom = 34.0
+custom_constants/separation = 80
+
+[node name="CheckButton" parent="options/Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 22 )]
+margin_left = 303.0
+margin_right = 355.0
+align = 2
+icon_align = 2
 
 [node name="buttonMenu" parent="options/Panel" instance=ExtResource( 7 )]
-anchor_left = 0.333333
-anchor_top = 1.0692
-anchor_right = 0.666666
-anchor_bottom = 1.22991
-margin_right = 0.0
-margin_bottom = 0.0
+margin_left = 144.0
+margin_top = 479.002
+margin_right = 320.0
+margin_bottom = 551.002
 rect_min_size = Vector2( 144, 72 )
 text = "Back"
 __meta__ = {
@@ -703,7 +723,7 @@ __meta__ = {
 [connection signal="pressed" from="initial/VBoxContainer/start" to="initial" method="_on_start_pressed"]
 [connection signal="pressed" from="initial/VBoxContainer/options" to="initial" method="_on_options_pressed"]
 [connection signal="pressed" from="initial/VBoxContainer/credits" to="initial" method="_on_credits_pressed"]
-[connection signal="toggled" from="options/Panel/VBoxContainer/simpleLight" to="options" method="_on_simpleLight_toggled"]
+[connection signal="toggled" from="options/Panel/VBoxContainer/HBoxContainer/CheckButton" to="options" method="_on_simpleLight_toggled"]
 [connection signal="pressed" from="options/Panel/buttonMenu" to="options" method="_on_exitOptions_pressed"]
 [connection signal="pressed" from="saves/buttonMenu" to="saves" method="_on_ExitSaves_pressed"]
 [connection signal="pressed" from="Credits/buttonMenu" to="Credits" method="_on_buttonMenu_pressed"]

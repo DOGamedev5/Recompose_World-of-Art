@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/NPCs/NPCBase.gd"
 }, {
-"base": "Resource",
+"base": "SaveBase",
 "class": "OptionsSave",
 "language": "GDScript",
 "path": "res://gameplay/MENU/optionsSave.gd"
@@ -70,7 +70,12 @@ _global_script_classes=[ {
 "path": "res://worlds/classes/roomWarp/roomWarp.gd"
 }, {
 "base": "Resource",
-"class": "SaveResource",
+"class": "SaveBase",
+"language": "GDScript",
+"path": "res://gameplay/saves/saveBase.gd"
+}, {
+"base": "SaveBase",
+"class": "SaveGame",
 "language": "GDScript",
 "path": "res://gameplay/saves/resource/saveResource.gd"
 }, {
@@ -97,7 +102,8 @@ _global_script_class_icons={
 "Question": "",
 "RoomClass": "",
 "RoomWarp": "",
-"SaveResource": "",
+"SaveBase": "",
+"SaveGame": "",
 "State": "",
 "StateMachine": ""
 }
@@ -105,7 +111,7 @@ _global_script_class_icons={
 [application]
 
 config/name="RECOMPOSE"
-run/main_scene="res://gameplay/MENU/menu.tscn"
+run/main_scene="res://gameplay/intro/intro.tscn"
 config/icon="res://icon.png"
 
 [audio]

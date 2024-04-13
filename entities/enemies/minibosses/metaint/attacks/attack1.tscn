@@ -1,0 +1,167 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=1]
+[ext_resource path="res://gameplay/effects/effect3.pxo" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/minibosses/metaint/attacks/attack1.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 36 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Effect3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AttackComponent/CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ SubResource( 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AttackComponent/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -48 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "collide"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Effect3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Effect3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "start"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Effect3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "collide"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/collide/node = SubResource( 6 )
+states/collide/position = Vector2( 725.667, 112.333 )
+states/idle/node = SubResource( 7 )
+states/idle/position = Vector2( 511, 111 )
+states/start/node = SubResource( 8 )
+states/start/position = Vector2( 297.667, 111 )
+transitions = [ "start", "idle", SubResource( 9 ), "idle", "collide", SubResource( 10 ), "idle", "start", SubResource( 11 ) ]
+start_node = "start"
+end_node = "collide"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 8, 48 )
+
+[node name="Node2D" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 4 )
+
+[node name="AttackComponent" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 0
+collision_mask = 1536
+script = ExtResource( 1 )
+damage = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+position = Vector2( 0, -48 )
+shape = SubResource( 1 )
+
+[node name="Effect3" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 7
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/collide = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/start = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16, -48 )
+shape = SubResource( 14 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

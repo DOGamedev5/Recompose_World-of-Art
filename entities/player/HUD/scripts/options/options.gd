@@ -14,7 +14,7 @@ onready var proprietyLabels := {
 }
 
 func _ready():
-	$DEBUG/PanelContainer/VBoxContainer/simpleLight.pressed = Global.simpleLight
+	$DEBUG/PanelContainer/VBoxContainer/simpleLight.pressed = Global.options.simpleLight
 
 func _input(_event):
 	if Input.is_action_just_pressed("Debug"):

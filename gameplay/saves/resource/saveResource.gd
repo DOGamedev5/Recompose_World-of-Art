@@ -1,7 +1,4 @@
-class_name SaveResource extends Resource
-
-export var saveID := 1
-var save
+class_name SaveGame extends SaveBase
 
 export var player := {
 	"position" : Vector2(-16, -96)
@@ -15,6 +12,4 @@ export var world := {
 	}
 }
 
-func _ready():
-	save = "res://gameplay/saves/data/save%d.tres" % saveID
 	

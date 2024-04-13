@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://entities/enemies/minibosses/metaint/metaint.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintIdle.pxo" type="Texture" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=28]
 [ext_resource path="res://entities/enemies/minibosses/metaint/script/DEFEAT.gd" type="Script" id=29]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintDefeat.pxo" type="Texture" id=30]
+[ext_resource path="res://gameplay/effects/effect2.pxo" type="Texture" id=31]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36, 44 )
@@ -165,7 +166,7 @@ states/WALK/node = SubResource( 49 )
 states/WALK/position = Vector2( 417.667, -111.233 )
 transitions = [ "IDLE", "THREAD", SubResource( 5 ), "THREAD", "IDLE", SubResource( 6 ), "IDLE", "TOJUMP", SubResource( 17 ), "TOJUMP", "JUMP", SubResource( 18 ), "JUMP", "FALL", SubResource( 23 ), "IDLE", "TORUN", SubResource( 28 ), "FALL", "GROUND", SubResource( 31 ), "GROUND", "IDLE", SubResource( 32 ), "TORUN", "RUN", SubResource( 35 ), "RUN", "IDLE", SubResource( 36 ), "IDLE", "TOATTACK", SubResource( 39 ), "TOATTACK", "ATTACK", SubResource( 43 ), "ATTACK", "IDLE", SubResource( 44 ), "IDLE", "WALK", SubResource( 50 ), "WALK", "IDLE", SubResource( 51 ), "IDLE", "DEFEATED", SubResource( 55 ), "RUN", "DEFEATED", SubResource( 57 ), "TORUN", "DEFEATED", SubResource( 58 ), "WALK", "DEFEATED", SubResource( 59 ), "ATTACK", "DEFEATED", SubResource( 60 ), "TOATTACK", "DEFEATED", SubResource( 61 ), "TOJUMP", "DEFEATED", SubResource( 62 ), "GROUND", "DEFEATED", SubResource( 63 ), "JUMP", "DEFEATED", SubResource( 64 ), "FALL", "DEFEATED", SubResource( 65 ), "DEFEATED", "DEFEAT", SubResource( 67 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 0, -138.955 )
+graph_offset = Vector2( 0, 86.4942 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
@@ -191,10 +192,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [  ]
+"values": [ ExtResource( 22 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Metaint:frame")
@@ -231,6 +232,20 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0, Vector2( 128, 0 ), 1 ],
+"method": "spawnAttack"
+} ]
 }
 
 [sub_resource type="Animation" id=68]
@@ -405,6 +420,34 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0, Vector2( 32, 0 ), 1 ],
+"method": "spawnAttack"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0, Vector2( 32, 0 ), -1 ],
+"method": "spawnAttack"
+} ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "IDLE"
@@ -445,6 +488,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ ExtResource( 2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("topspeedParicle:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -573,6 +628,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("topspeedParicle:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=37]
 resource_name = "RUN"
@@ -614,6 +681,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 10 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("topspeedParicle:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -842,6 +921,12 @@ extents = Vector2( 148, 48 )
 [sub_resource type="RectangleShape2D" id=69]
 extents = Vector2( 136, 72 )
 
+[sub_resource type="CanvasItemMaterial" id=70]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [node name="metaint" type="KinematicBody2D" groups=["enemy"]]
 z_index = -1
 z_as_relative = false
@@ -1066,6 +1151,19 @@ shape = SubResource( 69 )
 
 [node name="dialog" parent="." instance=ExtResource( 27 )]
 interactBallonPath = NodePath("../interactBallon")
+
+[node name="topspeedParicle" type="CPUParticles2D" parent="."]
+material = SubResource( 70 )
+emitting = false
+lifetime = 0.5
+local_coords = false
+draw_order = 1
+texture = ExtResource( 31 )
+gravity = Vector2( 0, 0 )
+anim_speed = 1.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [connection signal="defeated" from="." to="." method="_on_metaint_defeated"]
 [connection signal="area_entered" from="swordRegion" to="." method="_swordRegion_entered"]

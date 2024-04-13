@@ -20,5 +20,6 @@ func _ready():
 	
 
 func changeRoom():
-	get_parent().emit_signal("changeRoom", room, warpID)
+	get_parent().get_parent().loadRoom(room, warpID)
+#	get_parent().get_parent().emit_signal("changeRoom", room, warpID)
 		

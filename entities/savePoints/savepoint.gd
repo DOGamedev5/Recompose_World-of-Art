@@ -8,5 +8,5 @@ func saveData(_player):
 	data.player["position"] = position
 	data.world["currentRoomID"] = roomId
 	data.world["currentWorld"] = world
-	Global.saveData(Global.savePath, data)
+	Global.saveGameData(Global.savePath, data)
 	

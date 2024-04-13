@@ -10,6 +10,10 @@ var areas = {
 	jump = false
 }
 
+onready var attacks = [
+	preload("res://entities/enemies/minibosses/metaint/attacks/attack1.tscn")
+]
+
 func _process(_delta):
 	$Metaint.flip_h = fliped
 	if active:
@@ -17,6 +21,17 @@ func _process(_delta):
 
 func changeState(state : String):
 	stateMachine.changeState(state)
+
+func spawnAttack(id : int, pos:Vector2, dirMulti = 1):
+	var dir = (1 - (2*int(fliped))) * dirMulti
+	var attack = attacks[id].instance()
+	attack.fliped = fliped
+	if dirMulti < 0:
+		attack.fliped = !fliped
+	
+	get_parent().add_child(attack)
+	attack.position.x = position.x + (pos.x*dirMulti*dir)
+	
 
 func _on_metaint_defeated(_enemy):
 	if stateMachine.currentState.name != "DEFEATED":

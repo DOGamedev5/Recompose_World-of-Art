@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/buttonToggle.pxo-07f3adc609062828ccd9725ca4262da0.stex"
+
+[deps]
+
+source_file="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.pxo"
+dest_files=[ "res://.import/buttonToggle.pxo-07f3adc609062828ccd9725ca4262da0.stex" ]
+
+[params]
+

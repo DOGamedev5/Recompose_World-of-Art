@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource( 1 )
+values = {
+}
 simpleLight = true

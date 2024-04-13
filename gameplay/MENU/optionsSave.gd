@@ -1,3 +1,3 @@
-class_name OptionsSave extends Resource
+class_name OptionsSave extends SaveBase
 
-export var simpleLight := false
+export var simpleLight = false

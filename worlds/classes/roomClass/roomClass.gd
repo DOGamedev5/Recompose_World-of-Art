@@ -6,14 +6,14 @@ export var limitsMin := Vector2(-10000000, -10000000)
 export var limitsMax := Vector2(10000000, 10000000)
 export(Color) var canvasModulateColor = Color(1, 1, 1, 1)
 
-signal changeRoom(room, warpID)
+
 
 onready var canvasModulate = $"../CanvasModulate"
 
 func _ready():
-	call_deferred("_simplesLightToggled", Global.simpleLight)
+	call_deferred("_simplesLightToggled", Global.options.simpleLight)
 	
-	var _1 = connect("changeRoom", get_parent(), "loadRoom")
+	
 	var _2 = Global.connect("simpleLightChanged", self, "_simplesLightToggled")
 	
 	get_parent().setCameraLimits(limitsMin, limitsMax)

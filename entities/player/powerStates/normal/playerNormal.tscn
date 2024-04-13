@@ -1554,7 +1554,7 @@ _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 
 
 [sub_resource type="CanvasItemMaterial" id=193]
 particles_animation = true
-particles_anim_h_frames = 6
+particles_anim_h_frames = 7
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
@@ -1771,7 +1771,7 @@ __meta__ = {
 [node name="topspeedParicle" type="CPUParticles2D" parent="." index="24"]
 material = SubResource( 193 )
 emitting = false
-amount = 6
+amount = 12
 lifetime = 0.5
 local_coords = false
 draw_order = 1

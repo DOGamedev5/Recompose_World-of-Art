@@ -14,7 +14,7 @@ func _ready():
 	
 	var _4 = Global.connect("simpleLightChanged", self, "_toggledSimpleLight")
 	
-	_toggledSimpleLight(Global.simpleLight)
+	_toggledSimpleLight(Global.options.simpleLight)
 
 func _setFliped(value):
 	fliped = value
@@ -32,7 +32,7 @@ func desative():
 	$Light2D.enabled = false
 
 func ative():
-	if not Global.simpleLight:
+	if not Global.options.simpleLight:
 		$Light2D.enabled = true
 
 func _toggledSimpleLight(value):

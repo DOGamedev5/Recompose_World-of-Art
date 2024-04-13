@@ -16,9 +16,9 @@ onready var room := preload("res://worlds/paintWorld/level1.tscn")
 
 func _ready():
 	
-	savePath = "user://save%d.json" % saveID
+	savePath = "user://save%d.tres" % saveID
 	if not Global.saveExist(savePath):
-		Global.saveData(savePath)
+		Global.saveGameData(savePath, SaveGame.new())
 	
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	
@@ -26,12 +26,12 @@ func _ready():
 	var _2 = $VBoxContainer/erase.connect("pressed", self, "_on_Erase_pressed")
 
 func _on_Play_pressed():
-	Global.call_deferred("loadData", savePath, SaveResource.new())
+	Global.loadGameData(savePath)
 	
 	LoadSystem.loadScene(menu, "res://worlds/paintWorld/level1.tscn")
 
 func _on_Erase_pressed():
-	Global.saveData(savePath, SaveResource.new())
+	Global.saveGameData(savePath, SaveGame.new())
 
 func visibility_changed():
 	if self.visible:
