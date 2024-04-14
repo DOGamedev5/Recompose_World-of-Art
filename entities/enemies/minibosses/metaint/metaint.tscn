@@ -1134,9 +1134,9 @@ shape = SubResource( 53 )
 
 [node name="interactBallon" parent="." instance=ExtResource( 28 )]
 margin_left = 0.0
-margin_top = -128.0
+margin_top = -120.0
 margin_right = 0.0
-margin_bottom = -128.0
+margin_bottom = -120.0
 areaInteractPath = NodePath("../interact")
 text = "E"
 

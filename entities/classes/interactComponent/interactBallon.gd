@@ -17,7 +17,7 @@ var player : PlayerBase = null
 
 signal interacted(player)
 signal exitered(player)
-signal entered
+signal entered(player)
 
 func _ready():
 	
@@ -37,7 +37,7 @@ func enteredArea(area2D):
 	
 	player = area2D.get_parent()
 	
-	emit_signal("entered")
+	emit_signal("entered", player)
 	
 	canInteract = true
 	arrow.modulate.a8 = 198
@@ -65,10 +65,12 @@ func exitedArea(area2D):
 		tween.start()
 	
 func changed(value):
-	$ballonContent/ballon/text.text = value
+	$ballonContent/ballon/text.set_deferred("text", value)
+	call_deferred("setSize")
 	
 func setSize():
-	var size = $ballonContent/ballon/text.rect_size.x
+	var lenghtText = $ballonContent/ballon/text.text.length()
+	var size = lenghtText * 14 + (lenghtText - 1) * 3
 	
 	$ballonContent/ballon.rect_position.x = -((size+8)/2)
 	$ballonContent/ballon.rect_size.x = size+8

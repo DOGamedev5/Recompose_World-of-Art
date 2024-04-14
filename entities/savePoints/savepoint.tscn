@@ -69,9 +69,9 @@ frame = 1
 
 [node name="interactBallon" parent="." instance=ExtResource( 3 )]
 margin_left = 0.0
-margin_top = -55.0
+margin_top = -64.0
 margin_right = 0.0
-margin_bottom = -55.0
+margin_bottom = -64.0
 areaInteractPath = NodePath("../Area2D")
 text = "press E"
 

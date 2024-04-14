@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://entities/savePoints/savepoint.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=9]
+[ext_resource path="res://entities/NPCs/guardaint/guardaint.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 56, 160 )
@@ -132,3 +133,7 @@ visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
 [node name="savePoint" parent="." instance=ExtResource( 8 )]
 position = Vector2( -16, -96 )
 roomId = 1
+
+[node name="Guardaint" parent="." instance=ExtResource( 10 )]
+position = Vector2( 288, 64 )
+text = "Press Space"
