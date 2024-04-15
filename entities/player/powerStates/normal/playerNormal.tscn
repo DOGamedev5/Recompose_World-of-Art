@@ -1,4 +1,4 @@
-[gd_scene load_steps=202 format=2]
+[gd_scene load_steps=205 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -33,6 +33,7 @@
 [ext_resource path="res://entities/player/powerStates/normal/scripts/LADDER.gd" type="Script" id=31]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoLadder.pxo" type="Texture" id=32]
 [ext_resource path="res://gameplay/effects/effect2.pxo" type="Texture" id=33]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/DashParticle.pxo" type="Texture" id=34]
 
 [sub_resource type="RectangleShape2D" id=87]
 resource_local_to_scene = true
@@ -1554,9 +1555,19 @@ _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 
 
 [sub_resource type="CanvasItemMaterial" id=193]
 particles_animation = true
-particles_anim_h_frames = 7
+particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id=194]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="AtlasTexture" id=195]
+atlas = ExtResource( 34 )
+region = Rect2( 0, 0, 256, 64 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
@@ -1762,7 +1773,7 @@ gravity = Vector2( 0, 0 )
 initial_velocity = 10.0
 linear_accel = 40.0
 linear_accel_curve = SubResource( 89 )
-scale_amount = 1.5
+scale_amount = 2.0
 anim_speed = 1.0
 __meta__ = {
 "_edit_group_": true
@@ -1777,7 +1788,22 @@ local_coords = false
 draw_order = 1
 texture = ExtResource( 33 )
 gravity = Vector2( 0, 0 )
+scale_amount = 2.0
 anim_speed = 1.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="dashParticle" type="CPUParticles2D" parent="." index="25"]
+material = SubResource( 194 )
+position = Vector2( 0, -32 )
+emitting = false
+amount = 1
+one_shot = true
+texture = SubResource( 195 )
+gravity = Vector2( 0, 0 )
+scale_amount = 2.0
+anim_speed = 2.0
 __meta__ = {
 "_edit_group_": true
 }

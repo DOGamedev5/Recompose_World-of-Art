@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://entities/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=5]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=7]
+[ext_resource path="res://entities/NPCs/guardaint/guardaint.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 144 )
@@ -83,3 +84,7 @@ fliped = true
 [node name="lampaint4" parent="lamps" instance=ExtResource( 6 )]
 position = Vector2( 48, -96 )
 fliped = true
+
+[node name="Guardaint" parent="." instance=ExtResource( 8 )]
+position = Vector2( 816, -271 )
+text = "press S"

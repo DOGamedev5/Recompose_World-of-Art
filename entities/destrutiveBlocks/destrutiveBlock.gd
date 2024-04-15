@@ -1,6 +1,8 @@
 tool
 extends KinematicBody2D
 
+onready var particle = preload("res://entities/destrutiveBlocks/particles.tscn")
+
 export var resistence := 1 setget _resistence_set
 
 
@@ -12,4 +14,11 @@ func _resistence_set(value):
 
 func _on_HitboxComponent_HitboxDamaged(damage, _area):
 	if damage >= resistence:
+		var particleInstance = particle.instance()
+		
+		particleInstance.resistence = resistence
+		get_parent().add_child(particleInstance)
+		particleInstance.position = position
+		
+		
 		queue_free()

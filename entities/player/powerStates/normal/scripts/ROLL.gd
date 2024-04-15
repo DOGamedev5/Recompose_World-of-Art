@@ -36,7 +36,9 @@ func process_physics(_delta):
 		direction = sign(parent.onWallRayCast[2].get_collision_normal().x)
 		
 	parent.motion.x = parent.MAXSPEED * direction
-	parent.motion.y = parent.MAXSPEED
+	
+	parent.setParticle(0, parent.onFloor())
+
 
 func exit():
 	parent.setParticle(0, false)

@@ -300,6 +300,7 @@ func hitboxTriggered(_damage, area):
 		var direction := sign(area.global_position.x - position.x)
 		emit_signal("damaged", direction)
 		health -= area.damage
+		HUD.setHealth(health)
 		shieldActived = true
 	
 	elif area.is_in_group("ladder"):

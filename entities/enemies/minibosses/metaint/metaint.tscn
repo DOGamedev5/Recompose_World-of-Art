@@ -1086,7 +1086,7 @@ shape = SubResource( 14 )
 [node name="swordAttack1" type="Area2D" parent="." groups=["enemy"]]
 visible = false
 position = Vector2( 0, -112 )
-collision_layer = 0
+collision_layer = 512
 collision_mask = 512
 monitoring = false
 monitorable = false
@@ -1100,7 +1100,7 @@ shape = SubResource( 48 )
 [node name="swordAttack2" type="Area2D" parent="." groups=["enemy"]]
 visible = false
 position = Vector2( 104, 0 )
-collision_layer = 0
+collision_layer = 512
 collision_mask = 512
 monitoring = false
 monitorable = false
@@ -1113,7 +1113,7 @@ shape = SubResource( 46 )
 
 [node name="swordRegion" type="Area2D" parent="."]
 visible = false
-collision_layer = 0
+collision_layer = 512
 collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="swordRegion"]

@@ -8,13 +8,15 @@ onready var player = $"../"
 func _ready():
 	healthBarr.max_value = get_parent().MAXHEALTH
 	healthBarr.value = get_parent().health
+	
+
 	var _1 = player.connect("damaged", self, "hitted")
 
 func setHealthMax(healthMax):
 	healthBarr.max_value = healthMax
 
 func hitted(_direction):
-	setHealth(get_parent().health)
+#	setHealth(get_parent().health)
 	playbackEye.travel("DAMAGED")
 	
 

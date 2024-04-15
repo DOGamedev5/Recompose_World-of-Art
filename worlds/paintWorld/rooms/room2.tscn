@@ -77,71 +77,71 @@ position = Vector2( 256, -96 )
 position = Vector2( 256, -160 )
 
 [node name="block1" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 992, 16 )
+position = Vector2( 1200, 16 )
 
 [node name="block2" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 992, -48 )
+position = Vector2( 1200, -48 )
 
 [node name="block3" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1056, 16 )
+position = Vector2( 1264, 16 )
 
 [node name="block4" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1056, -48 )
+position = Vector2( 1264, -48 )
 
 [node name="block5" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1120, 16 )
+position = Vector2( 1328, 16 )
 
 [node name="block6" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1120, -48 )
+position = Vector2( 1328, -48 )
 
 [node name="block7" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1184, 16 )
+position = Vector2( 1392, 16 )
 
 [node name="block8" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1184, -48 )
+position = Vector2( 1392, -48 )
 
 [node name="block9" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1248, 16 )
+position = Vector2( 1456, 16 )
 
 [node name="block10" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1248, -48 )
+position = Vector2( 1456, -48 )
 
 [node name="block11" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1312, 16 )
+position = Vector2( 1520, 16 )
 
 [node name="block12" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1312, -48 )
+position = Vector2( 1520, -48 )
 
 [node name="block13" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1376, 16 )
+position = Vector2( 1584, 16 )
 
 [node name="block14" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1376, -48 )
+position = Vector2( 1584, -48 )
 
 [node name="block15" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1440, 16 )
+position = Vector2( 1648, 16 )
 
 [node name="block16" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1440, -48 )
+position = Vector2( 1648, -48 )
 
 [node name="block17" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1504, 16 )
+position = Vector2( 1712, 16 )
 
 [node name="block18" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1504, -48 )
+position = Vector2( 1712, -48 )
 
 [node name="block19" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1568, 16 )
+position = Vector2( 1776, 16 )
 
 [node name="block20" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1568, -48 )
+position = Vector2( 1776, -48 )
 
 [node name="block21" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1632, 16 )
+position = Vector2( 1840, 16 )
 resistence = 2
 
 [node name="block22" parent="blocks" instance=ExtResource( 2 )]
-position = Vector2( 1632, -48 )
+position = Vector2( 1840, -48 )
 resistence = 2
 
 [node name="lamps" type="Node2D" parent="."]

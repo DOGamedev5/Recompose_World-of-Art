@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/DashParticle.pxo-bcadffd4fa8adc97591636aeed2d030c.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/DashParticle.pxo"
+dest_files=[ "res://.import/DashParticle.pxo-bcadffd4fa8adc97591636aeed2d030c.stex" ]
+
+[params]
+

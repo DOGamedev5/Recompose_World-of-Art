@@ -72,7 +72,11 @@ func setSize():
 	var lenghtText = $ballonContent/ballon/text.text.length()
 	var size = lenghtText * 14 + (lenghtText - 1) * 3
 	
-	$ballonContent/ballon.rect_position.x = -((size+8)/2)
+
+	$ballonContent/ballon.rect_position.x = -((size)/2) -8
+	print($ballonContent/ballon.rect_position.x)
+	print(lenghtText)
+	print(size)
 	$ballonContent/ballon.rect_size.x = size+8
 	
 	
