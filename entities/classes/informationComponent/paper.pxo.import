@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/paper.pxo-4a158674b494a1b8d7c55aeeaabc0814.stex"
+
+[deps]
+
+source_file="res://entities/classes/informationComponent/paper.pxo"
+dest_files=[ "res://.import/paper.pxo-4a158674b494a1b8d7c55aeeaabc0814.stex" ]
+
+[params]
+

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/paintCavernsBack.pxo-13abf5eaa5da3e611ebb5f5e8c1d9e50.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/tilesets/paintCavernsBack.pxo"
+dest_files=[ "res://.import/paintCavernsBack.pxo-13abf5eaa5da3e611ebb5f5e8c1d9e50.stex" ]
+
+[params]
+

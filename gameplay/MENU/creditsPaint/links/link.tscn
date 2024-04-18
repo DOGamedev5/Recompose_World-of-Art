@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gameplay/MENU/creditsPaint/links/link.gd" type="Script" id=2]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 2
+outline_color = Color( 0.145098, 0.0901961, 0.192157, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 3 )
+
+[node name="LinkButton" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 14.0
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 142.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0.764706, 0.486275, 0.811765, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Contact: "
+
+[node name="LinkButton" type="LinkButton" parent="."]
+margin_left = 146.0
+margin_right = 146.0
+margin_bottom = 30.0
+focus_mode = 2
+custom_colors/font_color = Color( 0.462745, 0.74902, 0.564706, 1 )
+custom_colors/font_color_hover = Color( 0.67451, 0.992157, 0.964706, 1 )
+custom_fonts/font = ExtResource( 1 )
+
+[connection signal="pressed" from="LinkButton" to="." method="_on_LinkButton_pressed"]

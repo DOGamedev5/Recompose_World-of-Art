@@ -3,7 +3,7 @@
 [ext_resource path="res://entities/ladder/ladder.pxo" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 32 )
+extents = Vector2( 32, 32 )
 
 [node name="ladder" type="Node2D" groups=["ladder"]]
 z_index = -1

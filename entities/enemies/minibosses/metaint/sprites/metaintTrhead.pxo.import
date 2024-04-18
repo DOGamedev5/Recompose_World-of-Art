@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/metaintTrhead.pxo-58e67146564a97e70a873abb00e2490a.stex"
+
+[deps]
+
+source_file="res://entities/enemies/minibosses/metaint/sprites/metaintTrhead.pxo"
+dest_files=[ "res://.import/metaintTrhead.pxo-58e67146564a97e70a873abb00e2490a.stex" ]
+
+[params]
+

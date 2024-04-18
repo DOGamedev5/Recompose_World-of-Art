@@ -6,6 +6,9 @@ onready var onWallRayCast = [$onWallTop, $onWallMid, $onWallDown]
 onready var collideUPCast = $collideUp
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
+onready var transition = $HUD/transition
+onready var HUD = $HUD
+onready var camera = $Camera2D
 
 const SNAPLENGTH := 32
 
@@ -13,32 +16,37 @@ export(NodePath) var stateMachinePath
 var stateMachine
 
 export(Array) var particles
+export(Array) var FlipObjects
 
 export var gravity := true
-
 export var ACCELERATION := 3
 export var DESACCELERATION := 10
 export var GRAVITY := 10
 export var MAXSPEED := 350
 export var MAXFALL := 300
 export var JUMPFORCE := -400
-
+export var MAXHEALTH := 400
+ 
 signal damaged(direction)
 
 var enteredObjects := []
 
 var motion := Vector2.ZERO
+var inCutscene := false
+
 var canJump := true
 var coyote := true
 var fliped := false
 var stunned := false
 var counched := false
 var active := true
+var moving := true
 var shieldActived := false
-var currentSnapLength := 0
+var currentSnapLength := .0
 var snapDesatived := false
 var canLadder := false
-var breaking := 0
+
+var health = MAXHEALTH
 
 var powers := {
 	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
@@ -56,7 +64,9 @@ func _ready():
 		stateMachine.init(self)
 
 func _physics_process(delta):
-	if not stunned:
+	if not moving:
+		motion.x = 0
+	if not stunned and moving:
 		
 		if collideUp() > -34 or Input.is_action_pressed("ui_down"):
 			counched = true
@@ -88,10 +98,15 @@ func setParticle(index := 0, emitting := true):
 	particle.emitting = emitting
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
-	$Camera2D.set("limit_left", limitsMin.x - 10)
-	$Camera2D.set("limit_top", limitsMin.y - 10)
-	$Camera2D.set("limit_right", limitsMax.x + 10)
-	$Camera2D.set("limit_bottom", limitsMax.y + 10)
+	camera.set("limit_left", limitsMin.x - 10)
+	camera.set("limit_top", limitsMin.y - 10)
+	camera.set("limit_right", limitsMax.x + 10)
+	camera.set("limit_bottom", limitsMax.y + 10)
+
+func flipObject(objects):
+	for obj in objects:
+		obj.position.x = obj.position.x * (1 - 2 * int(fliped)) * sign(obj.position.x)
+
 
 func resetParticles():
 	if not particles: return
@@ -108,7 +123,7 @@ func resetParticles():
 			
 
 func gravityBase():
-	if not onFloor().has(true):
+	if not onFloor():
 		
 		motion.y += GRAVITY
 		if motion.y > MAXFALL:
@@ -130,12 +145,21 @@ func changePowerup(powerUp):
 	queue_free()
 
 func idleBase():
+	var isOnFloor = is_on_floor()
+	var isOnSlope = get_floor_normal().x != 0
+	
+	if isOnFloor and isOnSlope and !snapDesatived and motion.x == 0:
+		motion.y = 0
 	motion.x = desaccelerate(motion.x)
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
+	if inCutscene:
+		input = 0
 
 	MotionCord = desaccelerate(MotionCord, input)
+	
+	if not moving: return
 	
 	if input > 0:
 		if MotionCord <= maxSpeed:
@@ -158,11 +182,13 @@ func move(stopSlope = true):
 	var snap := Vector2.ZERO
 	if not snapDesatived:
 		
-		snap = Vector2.DOWN * SNAPLENGTH * abs(motion.x) / 500
+		snap = Vector2.DOWN * SNAPLENGTH
 
-	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true, 4, deg2rad(46)).y
+	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
 	
-	if onFloor().has(true) and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
+	currentSnapLength = snap.y
+	
+	if onFloor() and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
 		motion.y = 0
 
 func desaccelerate(MotionCord : float, input := .0):
@@ -186,7 +212,7 @@ func jumpBase(force = JUMPFORCE):
 		snapDesatived = false
 
 func _coyoteTimer():
-	if onFloor().has(true):
+	if onFloor()  and gravity:
 		canJump = true
 		coyote = true
 	elif canJump and coyote:
@@ -194,47 +220,13 @@ func _coyoteTimer():
 		coyote = false
 
 func onFloor():
-	if !gravity: return [true, true, true]
-	var raycasts = [
-		$flooDetectBack,
-		$floorDetect,
-		$flooDetectFont
-	]
-	
-	var leviting := 24
-	
-	for i in range(3):
-		var ray = raycasts[i]
-		if !ray.is_colliding(): continue
-		
-		var point = to_local(ray.get_collision_point()).y
-		
-		if point < leviting:
-			leviting = point
-	
-	var result = leviting <= 8 
-	
-	if result: global_position.y += leviting
-	
-	if $slopeDetect.is_colliding() and onSlope():
-		return [true, true, true]
-	
-	return [result, result, result]
+	if !gravity: return true
+	return is_on_floor()
 	
 func onSlope():
-	var normalAngle
-	var normal
-	var isOnSlope
-	if $slopeDetect.is_colliding():
-		normal = $slopeDetect.get_collision_normal()
-		normalAngle = normal.angle()
-		
-		isOnSlope = !(abs(rad2deg(normalAngle)) >= 85 and abs(rad2deg(normalAngle)) <= 95)
-		
-	else:
-		isOnSlope = false
-		
-	return isOnSlope
+	
+	return is_on_floor() and  get_floor_normal().x != 0
+
 
 func getSlopeNormal():
 	var normal := Vector2.UP
@@ -263,7 +255,7 @@ func onWall():
 	
 	var result = distance < 16.8 and distance >= 15
 	
-	if result and  rayDirection != Input.get_axis("ui_left", "ui_right"):
+	if result and  rayDirection != Input.get_axis("ui_left", "ui_right") and active:
 		if Input.get_axis("ui_left", "ui_right") != 0 and motion.x:
 			
 			motion.x = 0
@@ -297,6 +289,16 @@ func shield():
 	shieldTimer.start()
 	animationShield.travel("shield")
 
+func setCutscene(value : bool):
+	inCutscene = value
+	moving = not value
+	if value:
+		motion.x = 0
+		if motion.y < 0:
+			motion.y /= 2
+	
+		stateMachine.changeState("IDLE")
+
 func coyoteTimerTimeout():
 	canJump = false
 
@@ -304,11 +306,14 @@ func hitboxTriggered(_damage, area):
 	if not active: return
 	
 	if area is ChangeRoom:
+		active = false
 		area.changeRoom()
-
+	
 	elif area is AttackComponent and area.is_in_group("enemy") and not shieldActived:
 		var direction := sign(area.global_position.x - position.x)
 		emit_signal("damaged", direction)
+		health -= area.damage
+		HUD.setHealth(health)
 		shieldActived = true
 	
 	elif area.is_in_group("ladder"):
@@ -316,6 +321,7 @@ func hitboxTriggered(_damage, area):
 		canLadder = true	
 		
 func hitboxExited(area):
+	
 	if area.is_in_group("ladder"):
 		enteredObjects.erase(area)
 	

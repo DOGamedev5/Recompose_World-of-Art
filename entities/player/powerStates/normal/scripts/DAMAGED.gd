@@ -6,6 +6,7 @@ func itsDamaged(dir):
 	parent.stateMachine.changeState("DAMAGED")
 	direction = -dir
 	parent.snapDesatived = true
+
 	parent.playback.travel("DAMAGED")
 	parent.motion.y = -600
 	parent.motion.x = 600 * direction
@@ -14,7 +15,7 @@ func itsDamaged(dir):
 
 func process_state():
 	if parent.motion.x == 0:
-		if not parent.onFloor().has(true):
+		if not parent.onFloor():
 			return "FALL"
 		
 		return "IDLE"

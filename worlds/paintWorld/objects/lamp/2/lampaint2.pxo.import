@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lampaint2.pxo-96e0b1ffea04ebb39567de3d89cfc096.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/objects/lamp/2/lampaint2.pxo"
+dest_files=[ "res://.import/lampaint2.pxo-96e0b1ffea04ebb39567de3d89cfc096.stex" ]
+
+[params]
+

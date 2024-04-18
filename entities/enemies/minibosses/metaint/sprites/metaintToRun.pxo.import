@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/metaintToRun.pxo-511288150e3c6f3dc1940bc9f06f8166.stex"
+
+[deps]
+
+source_file="res://entities/enemies/minibosses/metaint/sprites/metaintToRun.pxo"
+dest_files=[ "res://.import/metaintToRun.pxo-511288150e3c6f3dc1940bc9f06f8166.stex" ]
+
+[params]
+

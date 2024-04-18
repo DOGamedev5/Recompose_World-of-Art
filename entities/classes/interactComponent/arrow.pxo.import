@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/arrow.pxo-4ed15efc809d2bee4fe7f939b6b4b244.stex"
+
+[deps]
+
+source_file="res://entities/classes/interactComponent/arrow.pxo"
+dest_files=[ "res://.import/arrow.pxo-4ed15efc809d2bee4fe7f939b6b4b244.stex" ]
+
+[params]
+

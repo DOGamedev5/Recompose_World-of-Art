@@ -3,22 +3,42 @@ class_name LevelClass extends Node2D
 export var firstRoom := ""
 
 var currentRoom
+var currentRoomID := 0
 var player
 
-signal changeRoom(room, warpID)
 
 func _ready():
 	AudioManager.playMusic("temple in ruins")
-	connect("changeRoom", self, "loadRoom")
+
 	player = load("res://entities/player/powerStates/normal/playerNormal.tscn").instance()
 	add_child(player)
-	call_deferred("loadRoom",firstRoom)
+	
+	call_deferred("loadSave")
+	
 	
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
-func loadRoom(room : String, warpID := 0):
+func loadSave():
+	var room = "res://worlds/{0}/rooms/room{1}.tscn".format([
+		Global.save.world["currentWorld"],
+		Global.save.world["currentRoomID"]
+	])
+	
 	player.active = false
+	
+	currentRoom = load(room).instance()
+	call_deferred("add_child", currentRoom)
+	
+	player.position.x = Global.save.player["position"]["x"]
+	player.position.y = Global.save.player["position"]["y"]
+	
+	player.set_deferred("active", true)
+
+func loadRoom(room : String, warpID := 0):
+	
+	player.active = false
+	player.transition.transitionIn()
 	
 	if currentRoom:
 		currentRoom.queue_free()
@@ -26,7 +46,8 @@ func loadRoom(room : String, warpID := 0):
 	
 	call_deferred("add_child", currentRoom)
 	currentRoom.init(player, warpID)
-#	player.call_deferred("set_physics_process", true)
+	
+	player.transition.call_deferred("transitionOut")
 	player.set_deferred("active", true)
 	player.resetParticles()
 

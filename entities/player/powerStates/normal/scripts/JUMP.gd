@@ -9,20 +9,20 @@ func enter(laststate):
 		parent.isRolling = true
 
 func process_state():
-	if parent.onWall() and abs(parent.motion.x) > 200:
+	if parent.onWallRayCast[1].is_colliding() and abs(parent.motion.x) > 250:
 		return "WALL"
 	
 	if parent.motion.y > 0:
 		return "FALL"
 
-	elif parent.onFloor().has(true):
+	elif parent.onFloor():
 		if parent.motion.x == 0: return "IDLE"
 			
 		if Input.is_action_pressed("run"): return "TOP_SPEED"
 			
 		return "RUN"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttackTimer == 0:
+	elif Input.is_action_just_pressed("attack") and parent.canAttack:
 		return "ATTACK"
 	
 	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
@@ -43,16 +43,20 @@ func process_physics(_delta):
 			parent.playback.travel("TOP_SPEED")
 			maxSpeed = parent.runningVelocity
 		else:
-			parent.playback.travel("JUMP")
+			parent.playback.travel("NORMAL")
+			parent.normalPlayback.travel("JUMP")
 			maxSpeed = parent.MAXSPEED
 		
 		parent.moveBase("X", parent.motion.x, maxSpeed)
 
 		parent.jumpBase()
+	
 	else:
-		parent.playback.travel("COUNCHJUMP")
+		parent.playback.travel("COUNCH")
+		parent.counchPlayback.travel("COUNCHJUMP")
+		
 		parent.moveBase("X", parent.motion.x, 240)
-
+		
 		parent.jumpBase(-535)
 
 func exit():

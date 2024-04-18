@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entities/classes/dialogComponent/classes/button/buttonDialog.gd" type="Script" id=1]
+[ext_resource path="res://entities/classes/dialogComponent/classes/button/ButtonDialog.pxo" type="Texture" id=2]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=3]
+
+[sub_resource type="Theme" id=2]
+OptionButton/icons/arrow = null
+
+[node name="option" type="Control"]
+anchor_right = 0.376
+anchor_bottom = 0.087
+margin_right = -335.736
+margin_bottom = -0.0320053
+script = ExtResource( 1 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 96, 96 )
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+theme = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
+text = "a"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://entities/destrutiveBlocks/block.pxo" type="Texture" id=1]
+[ext_resource path="res://entities/destrutiveBlocks/sprites/paintWorld/block.pxo" type="Texture" id=1]
 [ext_resource path="res://entities/destrutiveBlocks/destrutiveBlock.gd" type="Script" id=2]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=3]
 
@@ -39,5 +39,4 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 2
 
-[connection signal="script_changed" from="." to="." method="_on_block_script_changed"]
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="_on_HitboxComponent_HitboxDamaged"]

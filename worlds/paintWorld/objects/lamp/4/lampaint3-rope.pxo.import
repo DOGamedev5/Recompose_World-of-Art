@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lampaint3-rope.pxo-df85d7b9174602b8c4bd0ebf229378b0.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/objects/lamp/4/lampaint3-rope.pxo"
+dest_files=[ "res://.import/lampaint3-rope.pxo-df85d7b9174602b8c4bd0ebf229378b0.stex" ]
+
+[params]
+

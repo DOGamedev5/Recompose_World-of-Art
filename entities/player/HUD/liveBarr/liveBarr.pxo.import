@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/liveBarr.pxo-46acef2a1e42e398882fccf35ba55259.stex"
+
+[deps]
+
+source_file="res://entities/player/HUD/liveBarr/liveBarr.pxo"
+dest_files=[ "res://.import/liveBarr.pxo-46acef2a1e42e398882fccf35ba55259.stex" ]
+
+[params]
+

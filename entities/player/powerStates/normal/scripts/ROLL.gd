@@ -11,8 +11,10 @@ func enter(_lastState):
 	particle.emitting = true
 
 	direction = sign(parent.getSlopeNormal().x)
-	if direction == 0:
+	if direction == 0 and parent.motion.x:
 		direction = sign(parent.motion.x)
+	elif direction == 0:
+		direction = 1 - (int(parent.fliped)*2)
 
 	parent.isRolling = true
 	parent.setCollision(1)
@@ -28,10 +30,15 @@ func process_state():
 
 func process_physics(_delta):
 	var detect = sign(parent.getSlopeNormal().x)
-	if detect:
+	if detect and parent.onFloor():
 		direction = detect
+	elif parent.onWallRayCast[2].is_colliding():
+		direction = sign(parent.onWallRayCast[2].get_collision_normal().x)
+		
 	parent.motion.x = parent.MAXSPEED * direction
-	parent.motion.y = parent.MAXSPEED
+	
+	parent.setParticle(0, parent.onFloor())
+
 
 func exit():
 	parent.setParticle(0, false)

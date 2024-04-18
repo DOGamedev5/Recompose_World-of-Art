@@ -1,15 +1,19 @@
 extends State
 
-
+onready var animation = $"../../AnimationTree"
+onready var playback = animation["parameters/TOP_SPEED/RUN/playback"]
 
 func enter(_lastState):
 	parent.setParticle(0, false)
 	parent.setParticle(1, true)
 	parent.playback.travel("TOP_SPEED")
 	
+	if abs(parent.motion.x) < 120:
+		parent.motion.x = 120 * sign(parent.motion.x)
+	
 	if abs(parent.motion.x) > parent.MAXSPEED:
 		parent.running = true
-
+		playback.travel("TOP_SPEED")
 
 func process_state():
 	if parent.onWall():
@@ -21,10 +25,10 @@ func process_state():
 	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
-	elif not parent.onFloor().has(true):
+	elif not parent.onFloor():
 		return "FALL"
 	
-	elif not Input.is_action_pressed("run") :
+	elif not Input.is_action_pressed("run"):
 		return "RUN"
 	
 	return null
@@ -35,9 +39,13 @@ func process_physics(_delta):
 	parent.detectRunning()
 	
 	if sign(parent.motion.x) != sign(Input.get_axis("ui_left", "ui_right")) and parent.motion.x != 0:
-		parent.playback.travel("STOPPING")
+		parent.playback.travel("NORMAL")
+		parent.normalPlayback.travel("STOPPING")
 	else:
 		parent.playback.travel("TOP_SPEED")
+		if parent.running:
+			playback.travel("TOP_SPEED")
+		
 
 func exit():
 	parent.setParticle(1, false)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=2]
+[ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 28 )
@@ -88,6 +89,8 @@ tracks/0/keys = {
 collision_layer = 0
 script = ExtResource( 1 )
 
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
 [node name="coyoteTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -110,18 +113,6 @@ cast_to = Vector2( 0, 12 )
 position = Vector2( 0, -63 )
 current = true
 editor_draw_limits = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchor_right = 0.858927
-anchor_bottom = 0.875
-margin_right = -6.10352e-05
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="collideUp" type="RayCast2D" parent="."]
 position = Vector2( 0, -8 )
@@ -148,7 +139,7 @@ position = Vector2( 0, -32 )
 enabled = true
 cast_to = Vector2( 0, 56 )
 
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HitboxComponent" type="Area2D" parent="." groups=["player"]]
 position = Vector2( 0, -2 )
 collision_layer = 0
 collision_mask = 1536
@@ -158,7 +149,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" groups=["player"]]
 position = Vector2( 0, -26 )
 shape = SubResource( 1 )
 

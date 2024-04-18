@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/metaintIdle.pxo-752d51bb9716f62db62c9ce30c8e8ef3.stex"
+
+[deps]
+
+source_file="res://entities/enemies/minibosses/metaint/sprites/metaintIdle.pxo"
+dest_files=[ "res://.import/metaintIdle.pxo-752d51bb9716f62db62c9ce30c8e8ef3.stex" ]
+
+[params]
+

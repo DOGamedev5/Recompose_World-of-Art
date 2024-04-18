@@ -1,5 +1,17 @@
 class_name RoomWarp extends Position2D
 
+export var fixed_X := true
+export var fixed_Y := true
+export var offset_X := .0
+export var offset_Y := .0
+
 func init(player):
-	player.global_position = position
-	
+	if fixed_X:
+		player.global_position.x = position.x 
+	else:
+		player.global_position.x += offset_X
+		
+	if fixed_Y:
+		player.global_position.y = position.y
+	else:
+		player.global_position.y += offset_Y

@@ -1,16 +1,56 @@
 extends EnemyBase
 
+onready var animation = $AnimationTree
+onready var playback = animation["parameters/playback"]
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var active := false
 
+var areas = {
+	sword = false,
+	jump = false
+}
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+onready var attacks = [
+	preload("res://entities/enemies/minibosses/metaint/attacks/attack1.tscn")
+]
 
+func _process(_delta):
+	$Metaint.flip_h = fliped
+	if active:
+		motion = move_and_slide(motion, Vector2.UP)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func changeState(state : String):
+	stateMachine.changeState(state)
+
+func spawnAttack(id : int, pos:Vector2, dirMulti = 1):
+	var dir = (1 - (2*int(fliped))) * dirMulti
+	var attack = attacks[id].instance()
+	attack.fliped = fliped
+	if dirMulti < 0:
+		attack.fliped = !fliped
+	
+	get_parent().add_child(attack)
+	attack.position.x = position.x + (pos.x*dirMulti*dir)
+	
+
+func _on_metaint_defeated(_enemy):
+	if stateMachine.currentState.name != "DEFEATED":
+		stateMachine.changeState("DEFEATED")
+
+func _swordRegion_entered(area):
+	if area.is_in_group("player"):
+		areas.sword = true
+
+func _swordRegion_exited(area):
+	if area.is_in_group("player"):
+		areas.sword = false
+
+func _jumpRegion_entered(area):
+	if area.is_in_group("player"):
+		areas.jump = true
+
+func _jumpRegion_exited(area):
+	if area.is_in_group("player"):
+		areas.jump = false
+
+	

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/portalSimulation.pxo-c3b43209067c8a46a85ccb89e28b1603.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/objects/portalSimulation/sprites/portalSimulation.pxo"
+dest_files=[ "res://.import/portalSimulation.pxo-c3b43209067c8a46a85ccb89e28b1603.stex" ]
+
+[params]
+

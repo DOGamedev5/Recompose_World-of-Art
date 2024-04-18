@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/metaintWalk.pxo-e643bd220140118d01ca7c7a3e8632ad.stex"
+
+[deps]
+
+source_file="res://entities/enemies/minibosses/metaint/sprites/metaintWalk.pxo"
+dest_files=[ "res://.import/metaintWalk.pxo-e643bd220140118d01ca7c7a3e8632ad.stex" ]
+
+[params]
+

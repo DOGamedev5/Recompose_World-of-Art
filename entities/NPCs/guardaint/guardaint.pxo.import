@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/guardaint.pxo-61fb120a14d84a074b3758ef615d5978.stex"
+
+[deps]
+
+source_file="res://entities/NPCs/guardaint/guardaint.pxo"
+dest_files=[ "res://.import/guardaint.pxo-61fb120a14d84a074b3758ef615d5978.stex" ]
+
+[params]
+
