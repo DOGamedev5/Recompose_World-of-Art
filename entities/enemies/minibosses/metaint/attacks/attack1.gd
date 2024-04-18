@@ -10,8 +10,8 @@ func _ready():
 	$Effect3.flip_h = fliped
 	$CollisionShape2D.position.x = $CollisionShape2D.position.x * direction
 
-func _physics_process(delta):
-	move_and_slide(Vector2(velocity * direction, 0), Vector2.UP)
+func _physics_process(_delta):
+	var _1 = move_and_slide(Vector2(velocity * direction, 0), Vector2.UP)
 	
 	if is_on_wall():
 		$AnimationTree["parameters/playback"].travel("collide")

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoToRun.pxo-6b6b7bb8619a59a275b5c12272ba90d1.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/lodrofoToRun.pxo"
+dest_files=[ "res://.import/lodrofoToRun.pxo-6b6b7bb8619a59a275b5c12272ba90d1.stex" ]
+
+[params]
+

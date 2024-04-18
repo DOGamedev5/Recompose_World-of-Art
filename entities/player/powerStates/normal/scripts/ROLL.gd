@@ -30,7 +30,7 @@ func process_state():
 
 func process_physics(_delta):
 	var detect = sign(parent.getSlopeNormal().x)
-	if detect:
+	if detect and parent.onFloor():
 		direction = detect
 	elif parent.onWallRayCast[2].is_colliding():
 		direction = sign(parent.onWallRayCast[2].get_collision_normal().x)

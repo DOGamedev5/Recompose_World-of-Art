@@ -2,7 +2,7 @@ class_name NPCBase extends KinematicBody2D
 
 export(NodePath) var interactionBallonPath
 export(NodePath) var spritePath
-export var fliped := false
+export var fliped := false setget setFliped
 
 var interactBallon
 var sprite
@@ -29,6 +29,11 @@ func _physics_process(_delta):
 		fliped = direction != 1
 	
 	sprite.flip_h = fliped
+
+func setFliped(value):
+	fliped = value
+	if sprite:
+		sprite.flip_h = fliped
 
 func _playerEntered(player):
 	playerNode = player

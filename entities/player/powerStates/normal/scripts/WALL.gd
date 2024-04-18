@@ -1,14 +1,18 @@
 extends State
 
-var currentState
+var splat := false
 
 func enter(lastState):
-	if not parent.onFloor() or ["TOP_SPEED", "ATTACK", "ROLL"].has(lastState):
-		parent.playback.travel("SPLAT")
+	parent.playback.travel("WALLED")
+	
+	if not parent.onFloor() or ["TOP_SPEED", "ATTACK", "ROLL", "JUMP", "FALL"].has(lastState):
+		parent.walledPlayback.travel("SPLAT")
 		parent.stunned = true
+		splat = true
 
 	elif parent.onFloor() and abs(parent.motion.x) <= parent.MAXSPEED:
-		parent.playback.travel("WALL")
+		splat = false
+		parent.walledPlayback.travel("WALL")
 	
 	if parent.motion.y < 0:
 		parent.motion.y /= 2
@@ -18,9 +22,8 @@ func enter(lastState):
 
 func process_state():
 	if not parent.onFloor():
-		if not parent.onWall():
+		if not parent.onWall() or not splat:
 			return "FALL"
-
 
 	if parent.onFloor():
 		if Input.get_axis("ui_left", "ui_right") == 0:
@@ -35,6 +38,9 @@ func process_state():
 	return null
 
 func process_physics(_delta):
+	if splat and not parent.onFloor():
+		parent.walledPlayback.travel("SPLAT")
+	
 	if not parent.stunned:
 		parent.moveBase("X", parent.motion.x)
 	

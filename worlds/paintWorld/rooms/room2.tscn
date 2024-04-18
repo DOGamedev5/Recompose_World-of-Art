@@ -132,9 +132,11 @@ position = Vector2( 1712, -48 )
 
 [node name="block19" parent="blocks" instance=ExtResource( 2 )]
 position = Vector2( 1776, 16 )
+resistence = 2
 
 [node name="block20" parent="blocks" instance=ExtResource( 2 )]
 position = Vector2( 1776, -48 )
+resistence = 2
 
 [node name="block21" parent="blocks" instance=ExtResource( 2 )]
 position = Vector2( 1840, 16 )

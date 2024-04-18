@@ -74,9 +74,6 @@ func setSize():
 	
 
 	$ballonContent/ballon.rect_position.x = -((size)/2) -8
-	print($ballonContent/ballon.rect_position.x)
-	print(lenghtText)
-	print(size)
 	$ballonContent/ballon.rect_size.x = size+8
 	
 	

@@ -2,7 +2,12 @@ extends PlayerBase
 
 onready var sprite = $Sprite
 onready var animation = $AnimationTree
+
 onready var playback = animation["parameters/playback"]
+onready var counchPlayback = animation["parameters/COUNCH/COUNCH/playback"]
+onready var normalPlayback = animation["parameters/NORMAL/NORMAL/playback"]
+onready var walledPlayback = animation["parameters/WALLED/WALLED/playback"]
+
 onready var attackComponents = [$attackPunch, $attackSpeed, $attackRoll]
 onready var currentCollision = $CollisionShape2D
 onready var attackDelay = $StateMachine/ATTACK/attackDelay
@@ -22,6 +27,10 @@ onready var collisionShapes := [
 	{shape = CircleShape2D.new(), position = Vector2(0, -16), onWall = [false, true, true]}
 ]
 
+onready var stepSFX = [
+	preload("res://entities/player/sfx/step.ogg")
+]
+
 func _ready():
 	
 	collisionShapes[0].shape.radius = 16
@@ -35,7 +44,7 @@ func _physics_process(_delta):
 	setFlipConfig()
 	setAttack()
 	
-	animation["parameters/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
+	animation["parameters/NORMAL/NORMAL/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
 	if active:
 		move(!isRolling)
@@ -106,3 +115,8 @@ func setCollision(ID := 0):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
 	
 	active = true
+
+func _stepSfx():
+	var sfx = stepSFX[0]
+	AudioManager.playSFX(sfx)
+	

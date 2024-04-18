@@ -45,7 +45,7 @@ func _process(_delta):
 	
 
 func debugButtonPressed():
-	player.get_parent().emit_signal("changeRoom", "res://debugRoom.tscn", 0)
+	player.get_parent().loadRoom("res://debugRoom.tscn", 0)
 
 func simpleLightToggled():
 	var value = $DEBUG/PanelContainer/VBoxContainer/simpleLight.pressed
