@@ -1,3 +1,4 @@
+tool
 class_name InteractBallon extends Control
 
 export(NodePath) var areaInteractPath
@@ -65,6 +66,7 @@ func exitedArea(area2D):
 		tween.start()
 	
 func changed(value):
+	text = value
 	$ballonContent/ballon/text.set_deferred("text", value)
 	call_deferred("setSize")
 	

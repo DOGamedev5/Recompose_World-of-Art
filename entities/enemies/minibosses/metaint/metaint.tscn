@@ -1133,6 +1133,7 @@ position = Vector2( -616, -48 )
 shape = SubResource( 53 )
 
 [node name="interactBallon" parent="." instance=ExtResource( 28 )]
+visible = false
 margin_left = 0.0
 margin_top = -120.0
 margin_right = 0.0

@@ -9,3 +9,9 @@ var current := false
 
 func _on_buttonMenu_pressed():
 	parent.transition(initial, [self, options, initial, saves])
+
+func enter():
+	$buttonMenu.active = true
+
+func changed():
+	$buttonMenu.active = false

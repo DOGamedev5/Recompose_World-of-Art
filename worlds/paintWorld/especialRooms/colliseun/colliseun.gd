@@ -16,14 +16,14 @@ func _ready():
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("player"):
 		player = area.get_parent()
-		player.moving = false
+		player.setCutscene(true)
 		anim.play("cutscene")
 
 
 func _on_animation_finished(_anim_name):
 	trigger.disabled = true
 	player.camera.current = true
-	player.moving = true
+	player.setCutscene(false)
 
 
 func _on_metaint_defeated(_enemy):

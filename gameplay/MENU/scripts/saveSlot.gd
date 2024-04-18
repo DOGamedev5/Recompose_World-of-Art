@@ -5,6 +5,7 @@ export var saveID := 1
 const dirSavePath = "user://save%d"
 
 onready var tween = $Tween
+onready var buttons := [$VBoxContainer/play, $VBoxContainer/erase]
 
 export var menuPath : NodePath
 onready var menu = get_node(menuPath)
@@ -42,3 +43,11 @@ func visibility_changed():
 		Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	
 	tween.start()
+
+func enter():
+	for button in buttons:
+		button.active = true
+
+func changed():
+	for button in buttons:
+		button.active = false

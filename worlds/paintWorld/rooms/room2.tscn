@@ -7,7 +7,7 @@
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=7]
-[ext_resource path="res://entities/NPCs/guardaint/guardaint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://entities/placa/plate.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 174 )
@@ -165,12 +165,11 @@ fliped = true
 position = Vector2( 2240, 16 )
 fliped = true
 
-[node name="Guardaint2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 512, 16 )
-fliped = true
-text = "Press L to run"
-
-[node name="Guardaint" parent="." instance=ExtResource( 8 )]
+[node name="plate" parent="." instance=ExtResource( 8 )]
 position = Vector2( 128, -96 )
+information = "Press K"
 fliped = true
-text = "Press K"
+
+[node name="plate2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 528, 16 )
+information = "Press L to run"

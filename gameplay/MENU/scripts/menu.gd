@@ -9,7 +9,11 @@ func transition(show, hide : Array):
 	
 	for obj in hide:
 		obj.current = false
+		obj.changed()
 		tween.interpolate_property(obj, "rect_scale", obj["rect_scale"], Vector2(0, 0), 0.4,
 		Tween.TRANS_CUBIC, Tween.EASE_IN)
 	
 	tween.start()
+	yield(tween, "tween_all_completed")
+	
+	show.enter()

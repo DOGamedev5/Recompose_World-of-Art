@@ -37,10 +37,7 @@ func process_state():
 	return null
 
 func process_physics(_delta):
-	
 	var input := Input.get_axis("ui_left", "ui_right")
-	
-	
 	
 	if parent.counched:
 		parent.moveBase("X", parent.motion.x, 180)

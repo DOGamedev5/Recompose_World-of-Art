@@ -3,6 +3,7 @@ extends Button
 onready var tween = $Tween
 onready var base = $ButtonToggleBase
 onready var button = $ButtonToggleBase/button
+export var active = true
 		
 		
 func _ready():
@@ -33,6 +34,7 @@ func pressedTween():
 
 
 func _on_CheckButton_toggled(button_pressed):
+	if not active: return
 	if button_pressed:
 		pressedTween()
 	else:

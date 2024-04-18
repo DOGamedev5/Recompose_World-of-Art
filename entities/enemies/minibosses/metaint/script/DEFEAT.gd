@@ -9,6 +9,7 @@ const dialog = [
 ]
 
 func enter(_lastState):
+	$"../../interactBallon".visible = true
 	parent.motion.x = 0
 	parent.playback.travel("DEFEAT")
 	interactArea.monitoring = true

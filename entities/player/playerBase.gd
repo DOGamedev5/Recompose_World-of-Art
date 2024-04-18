@@ -32,6 +32,7 @@ signal damaged(direction)
 var enteredObjects := []
 
 var motion := Vector2.ZERO
+var inCutscene := false
 
 var canJump := true
 var coyote := true
@@ -153,6 +154,8 @@ func idleBase():
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
+	if inCutscene:
+		input = 0
 
 	MotionCord = desaccelerate(MotionCord, input)
 	
@@ -285,6 +288,16 @@ func couldUncounch(counch = counched):
 func shield():
 	shieldTimer.start()
 	animationShield.travel("shield")
+
+func setCutscene(value : bool):
+	inCutscene = value
+	moving = not value
+	if value:
+		motion.x = 0
+		if motion.y < 0:
+			motion.y /= 2
+	
+		stateMachine.changeState("IDLE")
 
 func coyoteTimerTimeout():
 	canJump = false
