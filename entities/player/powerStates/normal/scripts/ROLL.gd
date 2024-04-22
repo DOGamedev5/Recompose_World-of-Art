@@ -7,7 +7,8 @@ func enter(_lastState):
 	parent.setParticle(0, true)
 	parent.setParticle(1, false)
 	parent.snapDesatived = false
-	parent.playback.travel("ROLL")
+	parent.playback.travel("NORMAL")
+	parent.normalPlayback.travel("ROLL")
 	particle.emitting = true
 
 	direction = sign(parent.getSlopeNormal().x)

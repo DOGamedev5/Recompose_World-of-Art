@@ -1,4 +1,4 @@
-[gd_scene load_steps=181 format=2]
+[gd_scene load_steps=177 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -1465,9 +1465,6 @@ nodes/NORMAL/position = Vector2( 720, 240 )
 nodes/output/position = Vector2( 1066.67, 320 )
 node_connections = [ "output", 0, "NORMAL" ]
 
-[sub_resource type="AnimationNodeAnimation" id=155]
-animation = "ROLL"
-
 [sub_resource type="AnimationNodeAnimation" id=198]
 animation = "TOP_SPEED"
 
@@ -1566,10 +1563,6 @@ node_connections = [ "output", 0, "WALLED" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=289]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=292]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=293]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=294]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=295]
@@ -1592,32 +1585,28 @@ node_connections = [ "output", 0, "WALLED" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=330]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=331]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=332]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=333]
 
 [sub_resource type="AnimationNodeStateMachine" id=13]
 states/ATTACK/node = SubResource( 74 )
-states/ATTACK/position = Vector2( 236.337, 289.48 )
+states/ATTACK/position = Vector2( 728.811, 550.975 )
 states/COUNCH/node = SubResource( 246 )
-states/COUNCH/position = Vector2( 827.513, 450.116 )
+states/COUNCH/position = Vector2( 160.846, 550.601 )
 states/DAMAGED/node = SubResource( 135 )
 states/DAMAGED/position = Vector2( 500.795, 647.417 )
 states/LADDER/node = SubResource( 174 )
-states/LADDER/position = Vector2( 836.82, 298.236 )
+states/LADDER/position = Vector2( 729.026, 350.491 )
 states/NORMAL/node = SubResource( 283 )
-states/NORMAL/position = Vector2( 484.64, 196.104 )
-states/ROLL/node = SubResource( 155 )
-states/ROLL/position = Vector2( 611.613, 731.433 )
+states/NORMAL/position = Vector2( 731.791, 197.77 )
 states/TOP_SPEED/node = SubResource( 206 )
-states/TOP_SPEED/position = Vector2( 98.3083, 429.355 )
+states/TOP_SPEED/position = Vector2( 258.308, 197.02 )
 states/WALLED/node = SubResource( 325 )
-states/WALLED/position = Vector2( 173.287, 612.094 )
-transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "TOP_SPEED", "LADDER", SubResource( 207 ), "TOP_SPEED", "DAMAGED", SubResource( 211 ), "DAMAGED", "TOP_SPEED", SubResource( 212 ), "ATTACK", "TOP_SPEED", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "TOP_SPEED", "COUNCH", SubResource( 254 ), "COUNCH", "TOP_SPEED", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "TOP_SPEED", SubResource( 284 ), "TOP_SPEED", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "ROLL", SubResource( 292 ), "ROLL", "NORMAL", SubResource( 293 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "TOP_SPEED", "WALLED", SubResource( 327 ), "WALLED", "TOP_SPEED", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "ROLL", "WALLED", SubResource( 331 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ) ]
+states/WALLED/position = Vector2( 154.649, 350.401 )
+transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "TOP_SPEED", "LADDER", SubResource( 207 ), "TOP_SPEED", "DAMAGED", SubResource( 211 ), "DAMAGED", "TOP_SPEED", SubResource( 212 ), "ATTACK", "TOP_SPEED", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "TOP_SPEED", "COUNCH", SubResource( 254 ), "COUNCH", "TOP_SPEED", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "TOP_SPEED", SubResource( 284 ), "TOP_SPEED", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "TOP_SPEED", "WALLED", SubResource( 327 ), "WALLED", "TOP_SPEED", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ) ]
 start_node = "NORMAL"
-graph_offset = Vector2( -180.6, 412.783 )
+graph_offset = Vector2( -180.6, 42.3828 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=152]
 

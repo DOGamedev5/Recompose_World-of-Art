@@ -2,13 +2,13 @@ tool
 class_name InteractBallon extends Control
 
 export(NodePath) var areaInteractPath
+export var text := "EA" setget changed
+export var showArroy := true
 
 onready var ballon = $ballonContent/ballon
 onready var arrow = $arrow
 onready var ballonText = $ballonContent/ballon/text
 onready var tween = $Tween
-
-export var text := "EA" setget changed
 
 var areaInteract : Area2D
 
@@ -23,6 +23,8 @@ signal entered(player)
 func _ready():
 	
 	areaInteract = get_node(areaInteractPath)
+	
+	arrow.visible = showArroy
 	
 	var _1 = areaInteract.connect("area_entered", self, "enteredArea")
 	var _2 = areaInteract.connect("area_exited", self, "exitedArea")
@@ -41,6 +43,7 @@ func enteredArea(area2D):
 	emit_signal("entered", player)
 	
 	canInteract = true
+	arrow.visible = true
 	arrow.modulate.a8 = 198
 	
 	if tween.is_inside_tree():
@@ -59,6 +62,7 @@ func exitedArea(area2D):
 	player = null
 	
 	canInteract = false
+	arrow.visible = showArroy
 	arrow.modulate.a8 = 111
 	if tween.is_inside_tree():
 		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(0, 0), 0.8,

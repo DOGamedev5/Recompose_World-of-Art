@@ -20,8 +20,9 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
 func loadSave():
-	var room = "res://worlds/{0}/rooms/room{1}.tscn".format([
+	var room = "res://worlds/{0}/{1}/room{2}.tscn".format([
 		Global.save.world["currentWorld"],
+		Global.save.world["currentTypeRoom"],
 		Global.save.world["currentRoomID"]
 	])
 	
@@ -35,7 +36,7 @@ func loadSave():
 	
 	player.set_deferred("active", true)
 
-func loadRoom(room : String, warpID := 0):
+func loadRoom(room : String, warpID := 0, type := "warp"):
 	
 	player.active = false
 	player.transition.transitionIn()
@@ -45,10 +46,12 @@ func loadRoom(room : String, warpID := 0):
 	currentRoom = load(room).instance()
 	
 	call_deferred("add_child", currentRoom)
-	currentRoom.init(player, warpID)
+	currentRoom.init(player, warpID, type)
 	
 	player.transition.call_deferred("transitionOut")
 	player.set_deferred("active", true)
 	player.resetParticles()
+
+
 
 	

@@ -7,6 +7,8 @@ onready var playback = animation["parameters/playback"]
 onready var counchPlayback = animation["parameters/COUNCH/COUNCH/playback"]
 onready var normalPlayback = animation["parameters/NORMAL/NORMAL/playback"]
 onready var walledPlayback = animation["parameters/WALLED/WALLED/playback"]
+onready var ladderPlayback = animation["parameters/LADDER/StateMachine/playback"]
+onready var topSpeedPlayback = animation["parameters/TOP_SPEED/RUN/playback"]
 
 onready var attackComponents = [$attackPunch, $attackSpeed, $attackRoll]
 onready var currentCollision = $CollisionShape2D

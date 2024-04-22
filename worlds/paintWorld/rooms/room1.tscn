@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://entities/savePoints/savepoint.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=9]
 [ext_resource path="res://entities/placa/plate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entities/doors/door.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 56, 160 )
@@ -23,6 +24,7 @@ extents = Vector2( 112, 48 )
 [node name="room1" type="Node2D"]
 script = ExtResource( 4 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
+doors = [ NodePath("door") ]
 limitsMin = Vector2( -240, -736 )
 limitsMax = Vector2( 1664, 208 )
 canvasModulateColor = Color( 0.541176, 0.552941, 0.627451, 1 )
@@ -106,7 +108,7 @@ position = Vector2( 832, 192 )
 [node name="lamps" type="Node2D" parent="."]
 
 [node name="lampaint1" parent="lamps" instance=ExtResource( 7 )]
-position = Vector2( 240, 64 )
+position = Vector2( 256, 64 )
 
 [node name="lampaint2" parent="lamps" instance=ExtResource( 7 )]
 position = Vector2( 512, -224 )
@@ -131,9 +133,14 @@ fliped = true
 visiblility = NodePath("../lampaint2/VisibilityEnabler2D")
 
 [node name="savePoint" parent="." instance=ExtResource( 8 )]
-position = Vector2( -16, -96 )
+position = Vector2( 352, -224 )
 roomId = 1
 
 [node name="plate" parent="." instance=ExtResource( 10 )]
 position = Vector2( 288, 64 )
 information = "Press Space"
+
+[node name="door" parent="." instance=ExtResource( 11 )]
+position = Vector2( -32, -96 )
+roomID = 1
+category = "especialRooms"

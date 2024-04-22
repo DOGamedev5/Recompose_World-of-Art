@@ -10,21 +10,25 @@ height = 48.0
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 104, 64 )
 
-[node name="NPCBase" type="KinematicBody2D"]
+[node name="fenico" type="KinematicBody2D"]
+collision_layer = 0
 script = ExtResource( 1 )
-interactionBallonPath = NodePath("Area2D")
 spritePath = NodePath("Fenico")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, -56 )
+shape = SubResource( 1 )
 
 [node name="Fenico" type="Sprite" parent="."]
 position = Vector2( 0, -64 )
 scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -56 )
-shape = SubResource( 1 )
-
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 1024
 

@@ -25,6 +25,10 @@ func _ready():
 	
 	var _1 = $VBoxContainer/play.connect("pressed", self, "_on_Play_pressed")
 	var _2 = $VBoxContainer/erase.connect("pressed", self, "_on_Erase_pressed")
+	
+	var played = Global.loadData(savePath).played
+	
+	buttons[1].disatived = not played
 
 func _on_Play_pressed():
 	Global.loadGameData(savePath)
@@ -33,6 +37,7 @@ func _on_Play_pressed():
 
 func _on_Erase_pressed():
 	Global.saveGameData(savePath, SaveGame.new())
+	buttons[1].disatived = true
 
 func visibility_changed():
 	if self.visible:

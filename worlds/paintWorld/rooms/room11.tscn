@@ -165,6 +165,9 @@ fliped = true
 [node name="lampaint6" parent="lampaints" instance=ExtResource( 6 )]
 position = Vector2( -816, -1200 )
 
+[node name="lampaint15" parent="lampaints" instance=ExtResource( 6 )]
+position = Vector2( -1184, -1200 )
+
 [node name="lampaint7" parent="lampaints" instance=ExtResource( 6 )]
 position = Vector2( 176, -1072 )
 

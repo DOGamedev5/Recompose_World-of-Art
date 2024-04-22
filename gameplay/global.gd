@@ -32,7 +32,6 @@ func _setSimpleLight(value):
 	options.simpleLight = value
 
 func saveExist(dataPath):
-#	return ResourceLoader.exists(dataPath)
 	return _file.file_exists(dataPath)
 
 func saveGameData(dataPath, data : SaveGame):
@@ -46,6 +45,5 @@ func saveData(dataPath, data : SaveBase):
 	var _1 = ResourceSaver.save(dataPath, data)
 
 func loadData(dataPath):
-
 	return ResourceLoader.load(dataPath, "", true)
 

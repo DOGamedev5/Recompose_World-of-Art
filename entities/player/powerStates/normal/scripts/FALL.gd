@@ -40,7 +40,8 @@ func process_physics(_delta):
 	
 	if parent.isRolling:
 		parent.motion.x = sign(parent.motion.x) * parent.MAXSPEED
-		parent.playback.travel("ROLL")
+		parent.playback.travel("NORMAL")
+		parent.normalPlayback.travel("ROLL")
 	
 	elif not parent.counched or parent.running:
 		if parent.running:

@@ -1,8 +1,5 @@
 extends State
 
-onready var animation = $"../../AnimationTree"
-onready var playback = animation["parameters/TOP_SPEED/RUN/playback"]
-
 func enter(_lastState):
 	parent.setParticle(0, false)
 	parent.setParticle(1, true)
@@ -13,7 +10,7 @@ func enter(_lastState):
 	
 	if abs(parent.motion.x) > parent.MAXSPEED:
 		parent.running = true
-		playback.travel("TOP_SPEED")
+		parent.topSpeedPlayback.travel("TOP_SPEED")
 
 func process_state():
 	if parent.onWall():
@@ -44,7 +41,7 @@ func process_physics(_delta):
 	else:
 		parent.playback.travel("TOP_SPEED")
 		if parent.running:
-			playback.travel("TOP_SPEED")
+			parent.topSpeedPlayback.travel("TOP_SPEED")
 		
 
 func exit():
