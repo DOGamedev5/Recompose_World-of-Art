@@ -6,12 +6,15 @@ onready var currentText = $Control/NinePatchRect/RichTextLabel
 onready var options = $Control/NinePatchRect/options
 onready var rect = $Control/NinePatchRect
 onready var tween = $Tween
+onready var reaction = $Control/NinePatchRect/TextureRect
 
 onready var font = preload("res://entities/classes/dialogComponent/dialog.tres")
 onready var button = preload("res://entities/classes/dialogComponent/classes/button/buttonDialog.tscn")
 
 export(NodePath) var interactBallonPath
 var interactBallon
+
+export(Array, Texture) var images
 
 signal optionChosen(question, option)
 signal dialogClosed
@@ -29,10 +32,11 @@ var player : PlayerBase = null
 
 func _ready():
 	rect.rect_pivot_offset = rect.rect_size/2
-	interactBallon = get_node(interactBallonPath)
 	
-	var _1 = interactBallon.connect("interacted", self, "interacted")
-	var _2 = interactBallon.connect("exitered", self, "desactiveded")
+	if interactBallonPath:
+		interactBallon = get_node(interactBallonPath)
+		var _1 = interactBallon.connect("interacted", self, "interacted")
+		var _2 = interactBallon.connect("exitered", self, "desactiveded")
 
 func _process(_delta):
 	var optionsList = options.get_children()
@@ -107,14 +111,37 @@ func interacted(Player):
 	
 	_setText()
 
-			
 func _setText():
 	var text = texts[textIndex]
+	
+	if text is Dictionary:
+		if text.has("image"):
+			reaction.texture["atlas"] = images[text["image"]]
+			currentText.margin_left = 16 + 184 + 16
+			
+			
+			if text.has("react"):
+				reaction.texture["region"].position.x = text["react"]*92
+				
+			else:
+				reaction.texture["region"].position.x = 0
+			
+		else:
+			reaction.texture["atlas"] = null
+			currentText.margin_left = 16
+		
+		currentText.bbcode_text = text["text"]
+	else:
+		reaction.texture["atlas"] = null
+		currentText.margin_left = 16
+		reaction.texture["region"].position.x = 0
+	
 	if text is String:
 		currentText.bbcode_text = text
 		
 	elif text is Question:
 		isQuestion = true
+
 		currentText.bbcode_text = text.question
 		
 		for option in text.options:
@@ -124,6 +151,8 @@ func _setText():
 			options.add_child(newOption)
 			newOption.updateTexture(0)
 			newOption.setSize()
+	
+	
 	
 func addText(text : String):
 	texts.append(text)

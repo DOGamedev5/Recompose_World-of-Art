@@ -1,11 +1,42 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
+[ext_resource path="res://worlds/paintWorld/especialRooms/room1/room1.gd" type="Script" id=1]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4.tscn" type="PackedScene" id=2]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=3]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=4]
 [ext_resource path="res://entities/NPCs/sublords/fenico/fenico.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/doors/door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/classes/dialogComponent/textIcon.pxo" type="Texture" id=8]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoReaction.pxo" type="Texture" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "introdution"
+tracks/0/type = "method"
+tracks/0/path = NodePath("dialog")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "interact"
+} ]
+}
 
 [node name="room1" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,9 +44,9 @@ __meta__ = {
 "_edit_vertical_guides_": [ -192.0 ]
 }
 doors = [ NodePath("door") ]
-limitsMin = Vector2( -256, -744 )
-limitsMax = Vector2( 1085, 0 )
-canvasModulateColor = Color( 0.894118, 0.8, 0.882353, 1 )
+limitsMin = Vector2( -144, -677 )
+limitsMax = Vector2( 1085, 128 )
+canvasModulateColor = Color( 0.741176, 0.670588, 0.803922, 1 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -48,3 +79,11 @@ ropeLenght = 150
 
 [node name="fenico" parent="." instance=ExtResource( 5 )]
 position = Vector2( 344, -112 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/introdution = SubResource( 1 )
+
+[node name="dialog" parent="." instance=ExtResource( 7 )]
+images = [ ExtResource( 9 ), ExtResource( 8 ) ]
+
+[connection signal="dialogClosed" from="dialog" to="." method="_on_dialog_dialogClosed"]

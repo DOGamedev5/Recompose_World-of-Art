@@ -6,7 +6,6 @@ var currentRoom
 var currentRoomID := 0
 var player
 
-
 func _ready():
 	AudioManager.playMusic("temple in ruins")
 
@@ -20,21 +19,28 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
 func loadSave():
-	var room = "res://worlds/{0}/{1}/room{2}.tscn".format([
-		Global.save.world["currentWorld"],
-		Global.save.world["currentTypeRoom"],
-		Global.save.world["currentRoomID"]
-	])
+	var room : String
+	
+	if Global.save.world["currentRoomID"] != 0:
+		room = "res://worlds/{0}/{1}/room{2}.tscn".format([
+			Global.save.world["currentWorld"],
+			Global.save.world["currentTypeRoom"],
+			Global.save.world["currentRoomID"]
+		])
+	
+	else:
+		room = Global.save.world["currentRoomPath"]
 	
 	player.active = false
 	
 	currentRoom = load(room).instance()
 	call_deferred("add_child", currentRoom)
 	
-	player.position.x = Global.save.player["position"]["x"]
-	player.position.y = Global.save.player["position"]["y"]
+	player.position = Global.save.player["position"]
+	
 	
 	player.set_deferred("active", true)
+
 
 func loadRoom(room : String, warpID := 0, type := "warp"):
 	

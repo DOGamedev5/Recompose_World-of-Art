@@ -8,10 +8,13 @@ func enter(_lastState):
 	parent.setParticle(0, false)
 	parent.setParticle(1, false)
 	parent.playback.travel("LADDER")
+	
 	parent.motion.x = 0
+	
 	parent.snapDesatived = true
 	parent.gravity = false
 	parent.running = false
+	
 	for obj in parent.enteredObjects:
 		if obj.is_in_group("ladder"):
 			parent.position = obj.global_position

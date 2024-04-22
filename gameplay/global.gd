@@ -1,6 +1,5 @@
 extends Node
 
-
 var options : OptionsSave
 
 var save : SaveGame

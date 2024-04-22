@@ -142,5 +142,5 @@ information = "Press Space"
 
 [node name="door" parent="." instance=ExtResource( 11 )]
 position = Vector2( -32, -96 )
-roomID = 1
+roomPath = "res://worlds/paintWorld/especialRooms/room1/room1.tscn"
 category = "especialRooms"

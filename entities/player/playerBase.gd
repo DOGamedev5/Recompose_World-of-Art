@@ -75,7 +75,7 @@ func _physics_process(delta):
 		
 		if motion.x != 0:
 			fliped = motion.x < 0
-		elif Input.get_axis("ui_left", "ui_right"):
+		elif Input.get_axis("ui_left", "ui_right") and not inCutscene:
 			fliped = Input.get_axis("ui_left", "ui_right") < 0
 			
 		for ray in onWallRayCast: 

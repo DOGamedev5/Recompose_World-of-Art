@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/textIcon.pxo-bc596ae272554c873982c14c6a8117fb.stex"
+
+[deps]
+
+source_file="res://entities/classes/dialogComponent/textIcon.pxo"
+dest_files=[ "res://.import/textIcon.pxo-bc596ae272554c873982c14c6a8117fb.stex" ]
+
+[params]
+
