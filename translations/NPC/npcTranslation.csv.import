@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://translations/NPC/npcTranslation.pt_BR.translation", "res://translations/NPC/npcTranslation.en.translation" ]
+
+source_file="res://translations/NPC/npcTranslation.csv"
+dest_files=[ "res://translations/NPC/npcTranslation.pt_BR.translation", "res://translations/NPC/npcTranslation.en.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

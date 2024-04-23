@@ -130,23 +130,23 @@ func _setText():
 			reaction.texture["atlas"] = null
 			currentText.margin_left = 16
 		
-		currentText.bbcode_text = text["text"]
+		currentText.bbcode_text = tr(text["text"])
 	else:
 		reaction.texture["atlas"] = null
 		currentText.margin_left = 16
 		reaction.texture["region"].position.x = 0
 	
 	if text is String:
-		currentText.bbcode_text = text
+		currentText.bbcode_text = tr(text)
 		
 	elif text is Question:
 		isQuestion = true
 
-		currentText.bbcode_text = text.question
+		currentText.bbcode_text = tr(text.question)
 		
 		for option in text.options:
 			var newOption = button.instance()
-			newOption.text = option
+			newOption.text = tr(option)
 			
 			options.add_child(newOption)
 			newOption.updateTexture(0)

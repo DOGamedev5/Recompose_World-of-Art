@@ -87,5 +87,5 @@ fliped = true
 
 [node name="plate" parent="." instance=ExtResource( 8 )]
 position = Vector2( 752, -224 )
-information = "press S"
+information = "other_tutor_4"
 fliped = true

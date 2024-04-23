@@ -228,6 +228,11 @@ confirm={
 2d_physics/layer_10="enemyAttack"
 2d_physics/layer_11="anyAttack"
 
+[locale]
+
+translations=PoolStringArray( "res://translations/menu/menuTranslation.en.translation", "res://translations/menu/menuTranslation.pt_BR.translation", "res://translations/NPC/npcTranslation.en.translation", "res://translations/NPC/npcTranslation.pt_BR.translation", "res://translations/sublord/sublordTranslation .en.translation", "res://translations/sublord/sublordTranslation .pt_BR.translation", "res://translations/other/otherTranslation.en.translation", "res://translations/other/otherTranslation.pt_BR.translation" )
+locale_filter=[ 0, [ "en", "pt_BR" ] ]
+
 [physics]
 
 common/enable_pause_aware_picking=true

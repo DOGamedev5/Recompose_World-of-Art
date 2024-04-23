@@ -23,7 +23,8 @@ func updateTexture(stat = currentStat):
 
 func setSize():
 	label.set_text(text)
-	var size = $NinePatchRect/Label.text.length()*16 + 16
+	var lenghtText = tr($NinePatchRect/Label.text).length()
+	var size = lenghtText* 14 + (lenghtText - 1) * 4
 
 	$NinePatchRect.rect_min_size.x = size
 	

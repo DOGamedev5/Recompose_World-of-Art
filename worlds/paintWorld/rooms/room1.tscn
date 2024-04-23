@@ -138,7 +138,7 @@ roomId = 1
 
 [node name="plate" parent="." instance=ExtResource( 10 )]
 position = Vector2( 288, 64 )
-information = "Press Space"
+information = "other_tutor_1"
 
 [node name="door" parent="." instance=ExtResource( 11 )]
 position = Vector2( -32, -96 )

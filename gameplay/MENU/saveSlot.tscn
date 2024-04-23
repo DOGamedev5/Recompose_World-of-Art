@@ -44,7 +44,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 235.0
+margin_right = 412.0
 margin_bottom = 51.0
 custom_fonts/font = SubResource( 2 )
 text = "SAVE 1"
@@ -53,29 +53,29 @@ align = 1
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_top = 55.0
-margin_right = 235.0
+margin_right = 412.0
 margin_bottom = 275.0
 custom_constants/separation = 220
 
 [node name="play" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 279.0
-margin_right = 235.0
+margin_right = 412.0
 margin_bottom = 351.0
 rect_min_size = Vector2( 170, 72 )
-text = "Play"
+text = "mn_start_play"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_top = 355.0
-margin_right = 235.0
+margin_right = 412.0
 margin_bottom = 359.0
 custom_constants/separation = 4
 
 [node name="erase" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 363.0
-margin_right = 235.0
+margin_right = 412.0
 margin_bottom = 435.0
 rect_min_size = Vector2( 200, 72 )
-text = "Erase"
+text = "mn_start_erase"
 
 [node name="Tween" type="Tween" parent="."]

@@ -75,7 +75,7 @@ func changed(value):
 	call_deferred("setSize")
 	
 func setSize():
-	var lenghtText = $ballonContent/ballon/text.text.length()
+	var lenghtText = tr($ballonContent/ballon/text.text).length()
 	var size = lenghtText * 14 + (lenghtText - 1) * 3
 	
 

@@ -167,9 +167,9 @@ fliped = true
 
 [node name="plate" parent="." instance=ExtResource( 8 )]
 position = Vector2( 128, -96 )
-information = "Press K"
+information = "other_tutor_2"
 fliped = true
 
 [node name="plate2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 528, 16 )
-information = "Press L to run"
+information = "other_tutor_3"
