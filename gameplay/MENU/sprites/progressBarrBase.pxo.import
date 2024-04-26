@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/progressBarrBase.pxo-d7c392d7b390b7fc6130a923795b4e07.stex"
+
+[deps]
+
+source_file="res://gameplay/MENU/sprites/progressBarrBase.pxo"
+dest_files=[ "res://.import/progressBarrBase.pxo-d7c392d7b390b7fc6130a923795b4e07.stex" ]
+
+[params]
+

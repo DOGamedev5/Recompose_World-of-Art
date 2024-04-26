@@ -3,7 +3,7 @@ class_name PlayerBase extends KinematicBody2D
 
 onready var coyoteTimer = $coyoteTimer
 onready var onWallRayCast = [$onWallTop, $onWallMid, $onWallDown]
-onready var collideUPCast = $collideUp
+onready var collideUPCast = [$collideUpBack, $collideUp, $collideUpFront]
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
 onready var transition = $HUD/transition
@@ -272,12 +272,16 @@ func onWall():
 	return false
 
 func collideUp():
-	if collideUPCast.is_colliding():
-		var collision = collideUPCast.get_collision_point()
+	var collision := -65.0
 	
-		return floor(to_local(collision).y)
+	for ray in collideUPCast:
+		if ray.is_colliding():
+			var collisionPoint = ray.get_collision_point()
 	
-	return -65
+			if floor(to_local(collisionPoint).y) > collision:
+				collision = floor(to_local(collisionPoint).y)
+	
+	return collision
 
 func couldUncounch(counch = counched):
 	if counch:

@@ -119,6 +119,16 @@ position = Vector2( 0, -8 )
 enabled = true
 cast_to = Vector2( 0, -56 )
 
+[node name="collideUpFront" type="RayCast2D" parent="."]
+position = Vector2( 16, -8 )
+enabled = true
+cast_to = Vector2( 0, -56 )
+
+[node name="collideUpBack" type="RayCast2D" parent="."]
+position = Vector2( -16, -8 )
+enabled = true
+cast_to = Vector2( 0, -56 )
+
 [node name="onWallTop" type="RayCast2D" parent="."]
 position = Vector2( 0, -40 )
 enabled = true

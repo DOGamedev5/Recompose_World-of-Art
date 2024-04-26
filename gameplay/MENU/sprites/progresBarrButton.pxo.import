@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/progresBarrButton.pxo-4095f21eb148d9c4a62b612ed31ff96b.stex"
+
+[deps]
+
+source_file="res://gameplay/MENU/sprites/progresBarrButton.pxo"
+dest_files=[ "res://.import/progresBarrButton.pxo-4095f21eb148d9c4a62b612ed31ff96b.stex" ]
+
+[params]
+

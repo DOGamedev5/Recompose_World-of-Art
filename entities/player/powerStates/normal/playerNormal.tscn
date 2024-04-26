@@ -410,6 +410,23 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_stepSfx"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+} ]
+}
 
 [sub_resource type="Animation" id=134]
 resource_name = "DAMAGED"
@@ -1146,6 +1163,23 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_stepSfx"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+} ]
+}
 
 [sub_resource type="Animation" id=196]
 resource_name = "ToRun1"
@@ -1185,6 +1219,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_stepSfx"
+} ]
 }
 
 [sub_resource type="Animation" id=197]
@@ -1226,6 +1274,23 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 2, 3, 4, 5, 6, 7 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_stepSfx"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+} ]
 }
 
 [sub_resource type="Animation" id=23]
@@ -1331,7 +1396,7 @@ states/CRAWLING/node = SubResource( 232 )
 states/CRAWLING/position = Vector2( 874.111, 251 )
 transitions = [ "COUNCH", "CRAWLING", SubResource( 233 ), "COUNCH", "COUNCHJUMP", SubResource( 234 ), "COUNCHJUMP", "COUNCHFALL", SubResource( 235 ), "CRAWLING", "COUNCHFALL", SubResource( 236 ), "COUNCH", "COUNCHFALL", SubResource( 237 ), "CRAWLING", "COUNCHJUMP", SubResource( 238 ), "COUNCHJUMP", "CRAWLING", SubResource( 239 ), "COUNCHJUMP", "COUNCH", SubResource( 240 ), "COUNCHFALL", "COUNCHJUMP", SubResource( 241 ), "CRAWLING", "COUNCH", SubResource( 242 ), "COUNCHFALL", "COUNCH", SubResource( 243 ), "COUNCHFALL", "CRAWLING", SubResource( 244 ) ]
 start_node = "COUNCH"
-graph_offset = Vector2( 0, 274.512 )
+graph_offset = Vector2( 0, 17.7465 )
 
 [sub_resource type="AnimationNodeBlendTree" id=246]
 graph_offset = Vector2( 542.803, 449.911 )
@@ -1456,7 +1521,7 @@ states/STOPPING/node = SubResource( 268 )
 states/STOPPING/position = Vector2( 761.667, 105.667 )
 transitions = [ "JUMP", "FALL", SubResource( 271 ), "STOPPING", "IDLE", SubResource( 277 ), "IDLE", "JUMP", SubResource( 278 ), "FALL", "IDLE", SubResource( 279 ), "IDLE", "FALL", SubResource( 280 ), "STOPPING", "RUN", SubResource( 304 ), "RUN", "STOPPING", SubResource( 305 ), "RUN", "IDLE", SubResource( 306 ), "IDLE", "RUN", SubResource( 307 ), "RUN", "JUMP", SubResource( 308 ), "JUMP", "RUN", SubResource( 309 ), "RUN", "FALL", SubResource( 310 ), "FALL", "RUN", SubResource( 311 ), "RUN", "ROLL", SubResource( 313 ), "ROLL", "JUMP", SubResource( 314 ), "FALL", "ROLL", SubResource( 315 ), "STOPPING", "ROLL", SubResource( 316 ), "IDLE", "ROLL", SubResource( 317 ), "ROLL", "IDLE", SubResource( 318 ), "ROLL", "RUN", SubResource( 319 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 0, 44.7778 )
+graph_offset = Vector2( 0, 353.983 )
 
 [sub_resource type="AnimationNodeBlendTree" id=283]
 graph_offset = Vector2( 320.276, 101.525 )
@@ -1606,7 +1671,7 @@ states/WALLED/node = SubResource( 325 )
 states/WALLED/position = Vector2( 154.649, 350.401 )
 transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "TOP_SPEED", "LADDER", SubResource( 207 ), "TOP_SPEED", "DAMAGED", SubResource( 211 ), "DAMAGED", "TOP_SPEED", SubResource( 212 ), "ATTACK", "TOP_SPEED", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "TOP_SPEED", "COUNCH", SubResource( 254 ), "COUNCH", "TOP_SPEED", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "TOP_SPEED", SubResource( 284 ), "TOP_SPEED", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "TOP_SPEED", "WALLED", SubResource( 327 ), "WALLED", "TOP_SPEED", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ) ]
 start_node = "NORMAL"
-graph_offset = Vector2( -180.6, 42.3828 )
+graph_offset = Vector2( -180.6, 81.3882 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=152]
 
@@ -1681,23 +1746,12 @@ cast_to = Vector2( 0, 24 )
 [node name="Camera2D" parent="." index="5"]
 position = Vector2( 0, -64 )
 
-[node name="collideUp" parent="." index="6"]
-visible = false
-
-[node name="onWallTop" parent="." index="7"]
+[node name="onWallTop" parent="." index="9"]
 position = Vector2( 0, -48 )
 
-[node name="onWallMid" parent="." index="8"]
+[node name="onWallMid" parent="." index="10"]
 position = Vector2( 0, -28 )
 enabled = false
-
-[node name="slopeDetect" parent="." index="10"]
-position = Vector2( 0, -16 )
-cast_to = Vector2( 0, 80 )
-
-[node name="HitboxComponent" parent="." index="11"]
-visible = false
-collision_layer = 1536
 
 [node name="topspeedParicle" type="CPUParticles2D" parent="." index="12"]
 material = SubResource( 193 )
@@ -1895,6 +1949,14 @@ anim_speed = 2.0
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="slopeDetect" parent="." index="26"]
+position = Vector2( 0, -16 )
+cast_to = Vector2( 0, 80 )
+
+[node name="HitboxComponent" parent="." index="27"]
+visible = false
+collision_layer = 1536
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )

@@ -1,15 +1,17 @@
 extends Node
 
 onready var musics := {
-	"temple in ruins" : preload("res://audio/musics/templeInRuins.mp3")
+	"temple in ruins" : preload("res://audio/musics/templeInRuins.mp3"),
+	"paintCaverns" : preload("res://audio/musics/paintCaverns.ogg")
 }
 
 onready var musicPlayer := $musicPlayer
 
 var currentMusic : String
 
-func playMusic(music : String):
+func playMusic(music : String = currentMusic):
 	if music == currentMusic:
+		musicPlayer.playing = true
 		return
 	
 	if musicPlayer.playing:

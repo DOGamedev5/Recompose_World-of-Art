@@ -2,12 +2,14 @@ class_name LevelClass extends Node2D
 
 export var firstRoom := ""
 
+signal changedRoom
+
 var currentRoom
 var currentRoomID := 0
 var player
 
 func _ready():
-	AudioManager.playMusic("temple in ruins")
+	AudioManager.playMusic("paintCaverns")
 
 	player = load("res://entities/player/powerStates/normal/playerNormal.tscn").instance()
 	add_child(player)
@@ -47,8 +49,11 @@ func loadRoom(room : String, warpID := 0, type := "warp"):
 	player.active = false
 	player.transition.transitionIn()
 	
+	emit_signal("changedRoom")
+	
 	if currentRoom:
 		currentRoom.queue_free()
+		
 	currentRoom = load(room).instance()
 	
 	call_deferred("add_child", currentRoom)
