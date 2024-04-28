@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/fenicoReact.pxo-2278153d32358c1616fbd12ff2a89a67.stex"
+
+[deps]
+
+source_file="res://entities/NPCs/sublords/fenico/fenicoReact.pxo"
+dest_files=[ "res://.import/fenicoReact.pxo-2278153d32358c1616fbd12ff2a89a67.stex" ]
+
+[params]
+

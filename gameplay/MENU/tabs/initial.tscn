@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=3]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.tscn" type="PackedScene" id=4]
@@ -38,14 +37,9 @@ anchor_top = 0.5
 anchor_right = 0.61058
 anchor_bottom = 0.722826
 
-[node name="start" type="Button" parent="VBoxContainer" instance=ExtResource( 4 )]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_right = 319.0
-margin_bottom = 72.0
-rect_min_size = Vector2( 319, 72 )
+[node name="start" parent="VBoxContainer" instance=ExtResource( 4 )]
 custom_fonts/font = SubResource( 8 )
 text = "mn_start"
-script = ExtResource( 1 )
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -54,15 +48,11 @@ margin_right = 319.0
 margin_bottom = 88.0
 custom_constants/separation = 12
 
-[node name="options" type="Button" parent="VBoxContainer" instance=ExtResource( 4 )]
-self_modulate = Color( 1, 1, 1, 0 )
+[node name="options" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 92.0
-margin_right = 319.0
 margin_bottom = 164.0
-rect_min_size = Vector2( 319, 72 )
 custom_fonts/font = SubResource( 8 )
 text = "mn_opt"
-script = ExtResource( 1 )
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -71,19 +61,12 @@ margin_right = 319.0
 margin_bottom = 180.0
 custom_constants/separation = 12
 
-[node name="credits" type="Button" parent="VBoxContainer" instance=ExtResource( 4 )]
-self_modulate = Color( 1, 1, 1, 0 )
+[node name="credits" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 184.0
-margin_right = 319.0
 margin_bottom = 256.0
-rect_min_size = Vector2( 319, 72 )
 custom_fonts/font = SubResource( 8 )
 text = "mn_cre"
-script = ExtResource( 1 )
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/start" to="VBoxContainer/start" method="_on_buttonMenu_pressed"]
 [connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/options" to="VBoxContainer/options" method="_on_buttonMenu_pressed"]
 [connection signal="pressed" from="VBoxContainer/credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="VBoxContainer/credits" to="VBoxContainer/credits" method="_on_buttonMenu_pressed"]

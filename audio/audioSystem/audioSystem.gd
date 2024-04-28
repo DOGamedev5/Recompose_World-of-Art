@@ -2,6 +2,7 @@ extends Node
 
 onready var musics := {
 	"temple in ruins" : preload("res://audio/musics/templeInRuins.mp3"),
+	"recompose" : preload("res://audio/musics/recompose.ogg"),
 	"paintCaverns" : preload("res://audio/musics/paintCaverns.ogg")
 }
 

@@ -118,7 +118,8 @@ _global_script_class_icons={
 
 config/name="RECOMPOSE"
 run/main_scene="res://gameplay/intro/intro.tscn"
-config/icon="res://icon.png"
+config/icon="res://recomposeIcon.svg"
+config/windows_native_icon="res://recomposeIcon.ico"
 
 [audio]
 

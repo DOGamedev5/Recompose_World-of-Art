@@ -5,19 +5,19 @@ onready var dialog = $dialog
 var player : PlayerBase
 
 var dialogs = [
-	{"image" : 1, "text" : "fenico_1"},
+	{"image" : 1, "react" : 0, "text" : "fenico_1"},
 	{"image" : 0, "react" : 1, "text" :  "fenico_2"},
-	{"image" : 1, "text" : "fenico_3"},
+	{"image" : 1, "react" : 1, "text" : "fenico_3"},
 	{"image" : 0, "react" : 2, "text" :  "fenico_4"},
-	{"image" : 1, "text" :  "fenico_5"},
-	{"image" : 1, "text" :  "fenico_6"},
+	{"image" : 1, "react" : 4, "text" :  "fenico_5"},
+	{"image" : 1, "react" : 2, "text" :  "fenico_6"},
 	{"image" : 0, "react" : 1, "text" :  "fenico_7"},
-	{"image" : 1, "text" :  "fenico_8"},
+	{"image" : 1, "react" : 2, "text" :  "fenico_8"},
 	{"image" : 0, "react" : 1, "text" :  "fenico_9"},
-	{"image" : 1, "text" :  "fenico_10"},
-	{"image" : 1, "text" :  "fenico_11"},
+	{"image" : 1, "react" : 1, "text" :  "fenico_10"},
+	{"image" : 1, "react" : 5, "text" :  "fenico_11"},
 	{"image" : 0, "react" : 0, "text" :  "fenico_12"},
-	{"image" : 1, "text" :  "fenico_13"},
+	{"image" : 1, "react" : 0, "text" :  "fenico_13"},
 ]
 
 func _ready():

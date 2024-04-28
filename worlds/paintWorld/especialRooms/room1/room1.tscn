@@ -7,7 +7,7 @@
 [ext_resource path="res://entities/NPCs/sublords/fenico/fenico.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/doors/door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=7]
-[ext_resource path="res://entities/classes/dialogComponent/textIcon.pxo" type="Texture" id=8]
+[ext_resource path="res://entities/NPCs/sublords/fenico/fenicoReact.pxo" type="Texture" id=8]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoReaction.pxo" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
