@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://entities/enemies/minibosses/metaint/metaint.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintIdle.pxo" type="Texture" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://entities/enemies/minibosses/metaint/script/DEFEAT.gd" type="Script" id=29]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintDefeat.pxo" type="Texture" id=30]
 [ext_resource path="res://gameplay/effects/effect2.pxo" type="Texture" id=31]
+[ext_resource path="res://entities/classes/dialogComponent/textIcon.pxo" type="Texture" id=32]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36, 44 )
@@ -936,8 +937,8 @@ visionArea = NodePath("Area2D")
 attackAreaArray = [ NodePath("jumpAttack"), NodePath("runAttack"), NodePath("swordAttack2") ]
 stateMachinePath = NodePath("StateMachine")
 hitboxArea = NodePath("hitbox")
-maxHealth = 120
-health = 120
+maxHealth = 100
+health = 100
 flipArea = true
 ACCELERATION = 5
 DESACCELERATION = 30
@@ -1152,6 +1153,7 @@ shape = SubResource( 69 )
 
 [node name="dialog" parent="." instance=ExtResource( 27 )]
 interactBallonPath = NodePath("../interactBallon")
+images = [ ExtResource( 32 ) ]
 
 [node name="topspeedParicle" type="CPUParticles2D" parent="."]
 material = SubResource( 70 )

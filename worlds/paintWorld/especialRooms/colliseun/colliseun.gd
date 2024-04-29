@@ -3,12 +3,19 @@ extends Node2D
 onready var trigger := $Area2D/CollisionShape2D
 onready var anim = $AnimationPlayer
 onready var metaint = $metaint
+onready var dialog = $dialog
 
 var player : PlayerBase
 
+const dialogText = [
+	{"image" : 0, "react" : 0, "text" : "metaint_1"},
+	{"image" : 0, "react" : 0, "text" : "metaint_2"}
+]
+
 func _ready():
+	dialog.addDialog(dialogText)
 	
-	AudioManager.stop()
+#	AudioManager.stop()
 	var _1 = get_parent().get_parent().connect("changedRoom", self, "exited")
 	
 	if Global.save.world["paintWorld"].has("metaint") and Global.save.world["paintWorld"]["metaint"] == true:
@@ -18,6 +25,13 @@ func _ready():
 		AudioManager.stop()
 		Global.save.world["paintWorld"]["metaint"] = false
 
+func interact():
+	dialog.interacted(player)
+
+func _input(_event):
+	if Input.is_action_just_pressed("interact") and dialog.hasInteracted:
+		interact()
+
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("player"):
 		player = area.get_parent()
@@ -25,8 +39,9 @@ func _on_Area2D_area_entered(area):
 		anim.play("cutscene")
 
 
-func _on_animation_finished(_anim_name):
+func _on_cutscene_finished():
 	trigger.disabled = true
+	metaint.active = true
 	player.camera.current = true
 	player.setCutscene(false)
 

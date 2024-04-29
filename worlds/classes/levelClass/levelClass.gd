@@ -8,13 +8,17 @@ var currentRoom
 var currentRoomID := 0
 var player
 
-func _ready():
-	AudioManager.playMusic("paintCaverns")
 
-	player = load("res://entities/player/powerStates/normal/playerNormal.tscn").instance()
+func _ready():
+	
+	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/normal/playerNormal.tscn")
+	
+	player = playerScene.instance()
 	add_child(player)
 	
 	call_deferred("loadSave")
+	
+	AudioManager.playMusic("paintCaverns")
 	
 	
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
@@ -35,13 +39,18 @@ func loadSave():
 	
 	player.active = false
 	
-	currentRoom = load(room).instance()
+	var currentRoomScene = LoadSystem.loadObject(room)
+	
+	currentRoom = currentRoomScene.instance()
+	
 	call_deferred("add_child", currentRoom)
 	
 	player.position = Global.save.player["position"]
 	
 	
 	player.set_deferred("active", true)
+	
+	LoadSystem.closeLoad()
 
 
 func loadRoom(room : String, warpID := 0, type := "warp"):

@@ -47,6 +47,7 @@ outline_color = Color( 0.184314, 0.309804, 0.345098, 1 )
 font_data = ExtResource( 1 )
 
 [node name="LoadScene" type="CanvasLayer"]
+layer = 2
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -85,10 +86,10 @@ anims/RESET = SubResource( 2 )
 anims/runLodrofo = SubResource( 3 )
 
 [node name="Label" type="Label" parent="Control/Control"]
-anchor_left = -0.166
+anchor_left = -0.553273
 anchor_right = 0.886
 anchor_bottom = 0.692
-margin_left = 15.974
+margin_left = -0.103973
 margin_top = 64.0
 margin_right = -160.054
 margin_bottom = -23.936
@@ -96,6 +97,8 @@ custom_colors/font_color = Color( 0.764706, 0.937255, 0.772549, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "0%"
 align = 2
+clip_text = true
+percent_visible = -0.5
 __meta__ = {
 "_edit_use_anchors_": true
 }

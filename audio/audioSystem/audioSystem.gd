@@ -12,7 +12,9 @@ var currentMusic : String
 
 func playMusic(music : String = currentMusic):
 	if music == currentMusic:
-		musicPlayer.playing = true
+		if not musicPlayer.playing:
+			musicPlayer.playing = true
+		
 		return
 	
 	if musicPlayer.playing:

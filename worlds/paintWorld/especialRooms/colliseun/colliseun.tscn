@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://worlds/paintWorld/especialRooms/colliseun/colliseun.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/minibosses/metaint/metaint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://worlds/paintWorld/tilesets/colliseu.tres" type="TileSet" id=3]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/classes/dialogComponent/textIcon.pxo" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 36, 240 )
@@ -65,10 +67,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 5.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Camera2D:position")
@@ -115,10 +117,24 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 5.5 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "interact"
+} ]
 }
 
 [node name="colliseu2" type="Node2D"]
@@ -190,6 +206,9 @@ limit_bottom = 2
 anims/RESET = SubResource( 6 )
 anims/cutscene = SubResource( 7 )
 
+[node name="dialog" parent="." instance=ExtResource( 4 )]
+images = [ ExtResource( 5 ) ]
+
 [connection signal="defeated" from="metaint" to="." method="_on_metaint_defeated"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
+[connection signal="dialogClosed" from="dialog" to="." method="_on_cutscene_finished"]

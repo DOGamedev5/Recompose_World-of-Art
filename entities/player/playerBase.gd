@@ -278,7 +278,7 @@ func collideUp():
 		if ray.is_colliding():
 			var collisionPoint = ray.get_collision_point()
 	
-			if floor(to_local(collisionPoint).y) > collision:
+			if floor(to_local(collisionPoint).y) < -29.0 and floor(to_local(collisionPoint).y) > collision:
 				collision = floor(to_local(collisionPoint).y)
 	
 	return collision

@@ -231,7 +231,7 @@ confirm={
 
 [locale]
 
-translations=PoolStringArray( "res://translations/menu/menuTranslation.en.translation", "res://translations/menu/menuTranslation.pt_BR.translation", "res://translations/NPC/npcTranslation.en.translation", "res://translations/NPC/npcTranslation.pt_BR.translation", "res://translations/sublord/sublordTranslation .en.translation", "res://translations/sublord/sublordTranslation .pt_BR.translation", "res://translations/other/otherTranslation.en.translation", "res://translations/other/otherTranslation.pt_BR.translation" )
+translations=PoolStringArray( "res://translations/menu/menuTranslation.en.translation", "res://translations/menu/menuTranslation.pt_BR.translation", "res://translations/NPC/npcTranslation.en.translation", "res://translations/NPC/npcTranslation.pt_BR.translation", "res://translations/sublord/sublordTranslation .en.translation", "res://translations/sublord/sublordTranslation .pt_BR.translation", "res://translations/other/otherTranslation.en.translation", "res://translations/other/otherTranslation.pt_BR.translation", "res://translations/bosses/bosses.en.translation", "res://translations/bosses/bosses.pt_BR.translation" )
 locale_filter=[ 0, [ "en", "pt_BR" ] ]
 
 [physics]

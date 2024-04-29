@@ -4,14 +4,20 @@ onready var loadScreen := preload("res://gameplay/loadSystem/loadSystem.tscn")
 
 const MAIN_SCENE := "res://gameplay/MENU/menu.tscn"
 
+var loadSceneInstance
+
+signal finishedLoad()
+
 func loadScene(current, next : String, currentPath := MAIN_SCENE):
 	
-	var loadSceneInstance = loadScreen.instance()
+	
+	loadSceneInstance = loadScreen.instance()
 	get_tree().get_root().call_deferred("add_child", loadSceneInstance)
 	
 	var loader := ResourceLoader.load_interactive(next)
 	
 	if loader == null:
+		emit_signal("finishedLoad")
 		printerr("failed to load")
 		return
 	
@@ -25,20 +31,50 @@ func loadScene(current, next : String, currentPath := MAIN_SCENE):
 	while true:
 		
 		var error = loader.poll()
-		label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
 		
 		if error == OK:
-			print(label.text)
+			label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
+
 		
 		elif error == ERR_FILE_EOF:
 			var scene = loader.get_resource().instance()
+			emit_signal("finishedLoad")
 			get_tree().get_root().call_deferred("add_child", scene)
 			
-			loadSceneInstance.queue_free()
 			return
 		
 		else:
 			get_tree().get_root().call_deferred("add_child", load(currentPath))
-			
-			loadSceneInstance.queue_free()
+			emit_signal("finishedLoad")
 			return
+
+func loadObject(object):
+	
+	var loader := ResourceLoader.load_interactive(object)
+	
+	if loader == null:
+		emit_signal("finishedLoad")
+		printerr("failed to load")
+		return
+	
+	var label = loadSceneInstance.get_node("Control/Control/Label")
+	
+	while true:
+		
+		var error = loader.poll()
+		
+		if error == OK:
+			label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
+	
+		
+		elif error == ERR_FILE_EOF:
+			var scene = loader.get_resource()
+			emit_signal("finishedLoad")
+			return scene
+		
+		else:
+			emit_signal("finishedLoad")
+			return
+
+func closeLoad():
+	loadSceneInstance.queue_free()

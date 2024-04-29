@@ -120,5 +120,6 @@ func setCollision(ID := 0):
 
 func _stepSfx():
 	var sfx = stepSFX[0]
-	AudioManager.playSFX(sfx)
+	if is_on_floor():
+		AudioManager.playSFX(sfx)
 	

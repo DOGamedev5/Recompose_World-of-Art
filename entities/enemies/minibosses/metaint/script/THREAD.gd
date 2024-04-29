@@ -6,7 +6,7 @@ func process_physics(_delta):
 	
 
 func process_state():
-	if parent.playback.get_current_play_position() == parent.playback.get_current_length():
+	if parent.active:
 		return "IDLE"
 	
 	return null
