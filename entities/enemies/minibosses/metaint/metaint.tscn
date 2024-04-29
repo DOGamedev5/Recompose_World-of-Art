@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://entities/enemies/minibosses/metaint/metaint.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintIdle.pxo" type="Texture" id=2]
@@ -30,7 +30,7 @@
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=28]
 [ext_resource path="res://entities/enemies/minibosses/metaint/script/DEFEAT.gd" type="Script" id=29]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintDefeat.pxo" type="Texture" id=30]
-[ext_resource path="res://gameplay/effects/effect2.pxo" type="Texture" id=31]
+[ext_resource path="res://entities/destrutiveBlocks/sprites/paintWorld/blockParticle.pxo" type="Texture" id=31]
 [ext_resource path="res://entities/classes/dialogComponent/textIcon.pxo" type="Texture" id=32]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -490,18 +490,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [ ExtResource( 2 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("topspeedParicle:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=20]
 resource_name = "JUMP"
@@ -629,18 +617,6 @@ tracks/6/keys = {
 "update": 0,
 "values": [ false ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("topspeedParicle:emitting")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=37]
 resource_name = "RUN"
@@ -682,18 +658,6 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 10 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("topspeedParicle:emitting")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -922,11 +886,15 @@ extents = Vector2( 148, 48 )
 [sub_resource type="RectangleShape2D" id=69]
 extents = Vector2( 136, 72 )
 
-[sub_resource type="CanvasItemMaterial" id=70]
-particles_animation = true
-particles_anim_h_frames = 7
-particles_anim_v_frames = 1
-particles_anim_loop = false
+[sub_resource type="AtlasTexture" id=70]
+resource_local_to_scene = true
+atlas = ExtResource( 31 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=71]
+resource_local_to_scene = true
+atlas = ExtResource( 31 )
+region = Rect2( 0, 0, 16, 16 )
 
 [node name="metaint" type="KinematicBody2D" groups=["enemy"]]
 z_index = -1
@@ -1155,18 +1123,50 @@ shape = SubResource( 69 )
 interactBallonPath = NodePath("../interactBallon")
 images = [ ExtResource( 32 ) ]
 
-[node name="topspeedParicle" type="CPUParticles2D" parent="."]
-material = SubResource( 70 )
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-lifetime = 0.5
+amount = 16
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.8
+randomness = 1.0
+lifetime_randomness = 0.5
 local_coords = false
-draw_order = 1
-texture = ExtResource( 31 )
-gravity = Vector2( 0, 0 )
-anim_speed = 1.0
-__meta__ = {
-"_edit_group_": true
-}
+texture = SubResource( 70 )
+direction = Vector2( 0, 1 )
+spread = 120.0
+gravity = Vector2( 0, 300 )
+initial_velocity = 120.0
+initial_velocity_random = 0.3
+angular_velocity = 40.0
+angular_velocity_random = 0.4
+linear_accel = 80.0
+linear_accel_random = 0.3
+radial_accel = 40.0
+radial_accel_random = 1.0
+scale_amount = 2.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 9
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.84
+randomness = 1.0
+lifetime_randomness = 0.5
+local_coords = false
+texture = SubResource( 71 )
+direction = Vector2( 0, 1 )
+spread = 120.0
+gravity = Vector2( 0, 300 )
+initial_velocity = 120.0
+initial_velocity_random = 0.3
+angular_velocity = 40.0
+angular_velocity_random = 0.4
+linear_accel = 80.0
+linear_accel_random = 0.3
+radial_accel = 40.0
+scale_amount = 2.0
 
 [connection signal="defeated" from="." to="." method="_on_metaint_defeated"]
 [connection signal="area_entered" from="swordRegion" to="." method="_swordRegion_entered"]

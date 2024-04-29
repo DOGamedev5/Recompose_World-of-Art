@@ -7,6 +7,7 @@ onready var options = $Control/NinePatchRect/options
 onready var rect = $Control/NinePatchRect
 onready var tween = $Tween
 onready var reaction = $Control/NinePatchRect/TextureRect
+onready var characterName = $Control/NinePatchRect/name
 
 onready var font = preload("res://entities/classes/dialogComponent/dialog.tres")
 onready var button = preload("res://entities/classes/dialogComponent/classes/button/buttonDialog.tscn")
@@ -27,8 +28,6 @@ var optionID := 0
 var isQuestion := false
 
 var player : PlayerBase = null
-
-
 
 func _ready():
 	rect.rect_pivot_offset = rect.rect_size/2
@@ -80,6 +79,10 @@ func desactiveded(Player = player):
 	
 	tween.interpolate_property(rect, "rect_scale", rect["rect_scale"], Vector2(0, 0), 0.4,
 	Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+	
+	if not tween.is_inside_tree():
+		yield(tween, "tree_entered")
+	
 	tween.start()
 	
 	yield(tween, "tween_all_completed")
@@ -118,6 +121,7 @@ func _setText():
 		if text.has("image"):
 			reaction.texture["atlas"] = images[text["image"]]
 			currentText.margin_left = 16 + 184 + 16
+			characterName.margin_left = 16 + 184 + 16
 			
 			
 			if text.has("react"):
@@ -129,12 +133,28 @@ func _setText():
 		else:
 			reaction.texture["atlas"] = null
 			currentText.margin_left = 16
+			characterName.margin_left = 16
+		
+		if text.has("name"):
+			characterName.text = text["name"]
+			currentText.margin_top = 48
+			characterName.visible = true
+			
+		else:
+			currentText.margin_top = 16
+			characterName.visible = false
 		
 		currentText.bbcode_text = tr(text["text"])
+		
 	else:
 		reaction.texture["atlas"] = null
-		currentText.margin_left = 16
 		reaction.texture["region"].position.x = 0
+		
+		currentText.margin_left = 16
+		currentText.margin_top = 16
+		
+		characterName.margin_left = 16
+		characterName.visible = false
 	
 	if text is String:
 		currentText.bbcode_text = tr(text)
