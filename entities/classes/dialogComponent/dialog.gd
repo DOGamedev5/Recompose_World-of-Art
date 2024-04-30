@@ -71,6 +71,7 @@ func ativeded():
 	emit_signal("dialogOpened")
 
 func desactiveded(Player = player):
+	tween.remove_all()
 	actived = false
 	hasInteracted = false
 	Player.moving = true
@@ -106,13 +107,21 @@ func interacted(Player):
 		ativeded()
 		textIndex = 0
 		
-	else:
+	elif currentText.percent_visible == 1:
+		
 		var maxTexts = texts.size() - 1
 
 		if textIndex >= maxTexts:
 			desactiveded()
 		else:
 			textIndex += 1
+	
+	else:
+		tween.remove(currentText, "percent_visible")
+		currentText.percent_visible = 1
+		
+		return
+	
 	
 	_setText()
 
@@ -177,6 +186,10 @@ func _setText():
 			newOption.updateTexture(0)
 			newOption.setSize()
 	
+	tween.interpolate_property(currentText, "percent_visible", 0, 1, (currentText.text.length() / 10) * 0.35,
+	Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	
+	tween.start()
 	
 	
 func addText(text : String):
