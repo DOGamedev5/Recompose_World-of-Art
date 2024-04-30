@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/reactBorder.pxo-26d3465e200e63dff58088c42152a480.stex"
+
+[deps]
+
+source_file="res://entities/classes/dialogComponent/reactBorder.pxo"
+dest_files=[ "res://.import/reactBorder.pxo-26d3465e200e63dff58088c42152a480.stex" ]
+
+[params]
+

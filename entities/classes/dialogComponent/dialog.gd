@@ -75,7 +75,6 @@ func desactiveded(Player = player):
 	hasInteracted = false
 	Player.moving = true
 	player = null
-	emit_signal("dialogClosed")
 	
 	tween.interpolate_property(rect, "rect_scale", rect["rect_scale"], Vector2(0, 0), 0.4,
 	Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
@@ -86,8 +85,11 @@ func desactiveded(Player = player):
 	tween.start()
 	
 	yield(tween, "tween_all_completed")
+	
 	for option in options.get_children():
 		option.queue_free()
+	
+	emit_signal("dialogClosed")
 	
 func interacted(Player):
 	
@@ -119,6 +121,7 @@ func _setText():
 	
 	if text is Dictionary:
 		if text.has("image"):
+			reaction.visible = true
 			reaction.texture["atlas"] = images[text["image"]]
 			currentText.margin_left = 16 + 184 + 16
 			characterName.margin_left = 16 + 184 + 16
@@ -131,6 +134,7 @@ func _setText():
 				reaction.texture["region"].position.x = 0
 			
 		else:
+			reaction.visible = false
 			reaction.texture["atlas"] = null
 			currentText.margin_left = 16
 			characterName.margin_left = 16
@@ -147,6 +151,7 @@ func _setText():
 		currentText.bbcode_text = tr(text["text"])
 		
 	else:
+		reaction.visible = false
 		reaction.texture["atlas"] = null
 		reaction.texture["region"].position.x = 0
 		
