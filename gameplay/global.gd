@@ -5,12 +5,28 @@ var options : OptionsSave
 var save : SaveGame
 var savePath : String
 var _file := File.new()
+var gamePaused := false setget setGamePause
 
 signal simpleLightChanged(value)
+signal gamePaused
+signal gameUnpaused
+
 
 func _ready():
+	pause_mode = PAUSE_MODE_PROCESS
 	var _1 = connect("simpleLightChanged", self, "_setSimpleLight")	
 
+func _input(_event):
+	if Input.is_action_just_pressed("fullscreen"):
+		OS.window_fullscreen = not OS.window_fullscreen
+
+func setGamePause(value):
+	gamePaused = value
+	
+	if value == true:
+		emit_signal("gamePaused")
+	else:
+		emit_signal("gameUnpaused")
 
 func _setterSimpleLight(value):
 	options.options.simpleLight = value
@@ -18,10 +34,6 @@ func _setterSimpleLight(value):
 
 func compareFloats(a : float, b : float, tolerance := 0.000001):
 	return abs(a - b) < tolerance
-
-func _input(_event):
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
 
 func setupPlayer(player):
 	player.position = save.player["position"]

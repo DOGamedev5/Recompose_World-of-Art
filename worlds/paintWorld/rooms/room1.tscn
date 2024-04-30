@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://entities/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=9]
 [ext_resource path="res://entities/placa/plate.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/doors/door.tscn" type="PackedScene" id=11]
+[ext_resource path="res://entities/NPCs/guardaint/guardaint.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 56, 160 )
@@ -144,3 +145,6 @@ information = "other_tutor_1"
 position = Vector2( -32, -96 )
 roomPath = "res://worlds/paintWorld/especialRooms/room1/room1.tscn"
 category = "especialRooms"
+
+[node name="Guardaint" parent="." instance=ExtResource( 12 )]
+position = Vector2( -192, -96 )

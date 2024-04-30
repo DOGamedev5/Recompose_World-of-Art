@@ -47,6 +47,7 @@ outline_color = Color( 0.184314, 0.309804, 0.345098, 1 )
 font_data = ExtResource( 1 )
 
 [node name="LoadScene" type="CanvasLayer"]
+pause_mode = 2
 layer = 2
 
 [node name="Control" type="Control" parent="."]
@@ -98,7 +99,6 @@ custom_fonts/font = SubResource( 4 )
 text = "0%"
 align = 2
 clip_text = true
-percent_visible = -0.5
 __meta__ = {
 "_edit_use_anchors_": true
 }

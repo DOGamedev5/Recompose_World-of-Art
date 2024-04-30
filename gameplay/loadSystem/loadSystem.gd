@@ -8,9 +8,7 @@ var loadSceneInstance
 
 signal finishedLoad()
 
-func loadScene(current, next : String, currentPath := MAIN_SCENE):
-	
-	
+func loadScene(current, next : String, closeAfterLoad := false,currentPath := MAIN_SCENE):
 	loadSceneInstance = loadScreen.instance()
 	get_tree().get_root().call_deferred("add_child", loadSceneInstance)
 	
@@ -29,7 +27,6 @@ func loadScene(current, next : String, currentPath := MAIN_SCENE):
 	var label = loadSceneInstance.get_node("Control/Control/Label")
 	
 	while true:
-		
 		var error = loader.poll()
 		
 		if error == OK:
@@ -41,11 +38,16 @@ func loadScene(current, next : String, currentPath := MAIN_SCENE):
 			emit_signal("finishedLoad")
 			get_tree().get_root().call_deferred("add_child", scene)
 			
+			if closeAfterLoad:
+				closeLoad()
+			
 			return
 		
 		else:
 			get_tree().get_root().call_deferred("add_child", load(currentPath))
 			emit_signal("finishedLoad")
+			closeLoad()
+			
 			return
 
 func loadObject(object):
@@ -66,7 +68,6 @@ func loadObject(object):
 		if error == OK:
 			label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
 	
-		
 		elif error == ERR_FILE_EOF:
 			var scene = loader.get_resource()
 			emit_signal("finishedLoad")
