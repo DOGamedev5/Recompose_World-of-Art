@@ -32,6 +32,7 @@ func stop():
 
 func playSFX(SFX : AudioStream, positional := false, position = Vector2.ZERO, distance = .0, maskArea = 0):
 	var newSfx
+	
 	if positional:
 		newSfx = AudioStreamPlayer2D.new()
 		newSfx.position = position

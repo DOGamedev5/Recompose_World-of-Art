@@ -1,5 +1,7 @@
 extends Node
 
+const optionsSavePath = "user://options.tres"
+
 var options : OptionsSave
 
 var save : SaveGame
@@ -57,4 +59,5 @@ func saveData(dataPath, data : SaveBase):
 
 func loadData(dataPath):
 	return ResourceLoader.load(dataPath, "", true)
+
 

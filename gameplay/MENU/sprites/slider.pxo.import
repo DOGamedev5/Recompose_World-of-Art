@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/slider.pxo-d5235a68e04b1c71d4dd3611b3619373.stex"
+
+[deps]
+
+source_file="res://gameplay/MENU/sprites/slider.pxo"
+dest_files=[ "res://.import/slider.pxo-d5235a68e04b1c71d4dd3611b3619373.stex" ]
+
+[params]
+

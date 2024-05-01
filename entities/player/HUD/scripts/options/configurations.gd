@@ -1,11 +1,16 @@
 extends Control
 
 onready var propertiesList = {
-	"simpleLight" : $Panel/VBoxContainer/HBoxContainer/CheckButton
+	"simpleLight" : $Panel/VBoxContainer/HBoxContainer/CheckButton,
+	"music" : $Panel/VBoxContainer/music,
+	"sfx" : $Panel/VBoxContainer/sound
 }
+
 
 func _ready():
 	propertiesList["simpleLight"].pressed = Global.options.simpleLight
+	propertiesList["music"].value = Global.options.musicVolume
+	propertiesList["sfx"].value = Global.options.sfxVolume
 
 func _input(_event):
 	if Input.is_action_just_pressed("menu"):
@@ -28,4 +33,14 @@ func _on_menu_pressed():
 
 func _on_configurations_visibility_changed():
 	get_tree().paused = visible
-#	Global.setGamePause(visible)
+
+func _on_music_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear2db(value))
+	Global.options.musicVolume = value
+
+func _on_sound_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear2db(value))
+	Global.options.sfxVolume = value
+
+func _on_drag_ended(_value_changed):
+	Global.saveData(Global.optionsSavePath, Global.options)
