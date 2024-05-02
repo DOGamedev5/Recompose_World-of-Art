@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://entities/player/HUD/scripts/options/configurations.gd" type="Script" id=14]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.tscn" type="PackedScene" id=15]
 [ext_resource path="res://gameplay/MENU/sprites/slider.pxo" type="Texture" id=16]
+[ext_resource path="res://entities/player/HUD/sprites/backgroundInventory.pxo" type="Texture" id=17]
+[ext_resource path="res://entities/player/HUD/simpleButton/simpleButton.tscn" type="PackedScene" id=18]
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 3 )
@@ -336,6 +338,7 @@ layer = 2
 script = ExtResource( 4 )
 
 [node name="HUD" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -392,8 +395,8 @@ script = ExtResource( 1 )
 [node name="ColorRect" type="ColorRect" parent="transition"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 25859.0
-margin_bottom = 13984.0
+margin_right = 29942.0
+margin_bottom = 16192.0
 rect_scale = Vector2( 1e-05, 1 )
 color = Color( 0.0431373, 0.0392157, 0.0431373, 0.639216 )
 
@@ -505,23 +508,55 @@ margin_bottom = 182.0
 custom_fonts/font = SubResource( 19 )
 text = "simpleLight"
 
-[node name="fragments" type="Control" parent="options"]
+[node name="inventory" type="Control" parent="options"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="TextureRect" type="TextureRect" parent="options/fragments"]
+[node name="NinePatchRect" type="NinePatchRect" parent="options/inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 17 )
+region_rect = Rect2( 0, 0, 280, 144 )
+patch_margin_left = 136
+patch_margin_top = 68
+patch_margin_right = 136
+patch_margin_bottom = 68
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="options/inventory"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -432.0
-margin_top = -232.0
+margin_top = -278.0
 margin_right = 432.0
-margin_bottom = 324.0
+margin_bottom = 278.0
 rect_min_size = Vector2( 432, 278 )
 texture = ExtResource( 10 )
 expand = true
+
+[node name="Button" parent="options/inventory" instance=ExtResource( 18 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 64.0
+margin_top = 112.0
+margin_right = 99.0
+margin_bottom = 151.0
+buttonText = "< inventory"
+
+[node name="Button2" parent="options/inventory" instance=ExtResource( 18 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1264.0
+margin_top = 112.0
+margin_right = 1299.0
+margin_bottom = 151.0
+buttonText = "map >"
+flipGrowDirecion = true
 
 [node name="configurations" type="Control" parent="options"]
 pause_mode = 2
