@@ -13,12 +13,18 @@ func _ready():
 	propertiesList["sfx"].value = Global.options.sfxVolume
 
 func _input(_event):
-	if Input.is_action_just_pressed("menu"):
+	if Input.is_action_just_pressed("menu") and $"../../".currentScreen in ["HUD", "CONF"]:
 		visible = not visible
 		$"../../HUD".visible = not visible
+		
+		if visible:
+			$"../../".currentScreen = "CONF"
+		else:
+			$"../../".currentScreen = "HUD"
 
 func _on_SImpleLight_toggled(button_pressed):
 	Global.emit_signal("simpleLightChanged", button_pressed)
+	Global.saveData(Global.optionsSavePath, Global.options)
 
 func _on_close_pressed():
 	visible = false

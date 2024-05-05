@@ -18,7 +18,6 @@ func _on_options_pressed():
 func _on_credits_pressed():
 	parent.transition(credits, [self, saves, options])
 
-
 func enter():
 	for button in buttons:
 		button.active = true
@@ -26,3 +25,6 @@ func enter():
 func changed():
 	for button in buttons:
 		button.active = false
+
+func _on_exit_pressed():
+	get_tree().quit()

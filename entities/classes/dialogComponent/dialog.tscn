@@ -9,15 +9,15 @@
 [sub_resource type="AtlasTexture" id=2]
 region = Rect2( 0, 0, 92, 92 )
 
-[sub_resource type="StyleBoxEmpty" id=1]
-content_margin_left = 2.0
-
 [sub_resource type="DynamicFont" id=3]
 size = 32
 outline_size = 2
 outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 2.0
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -50,17 +50,24 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="TextureRect" type="TextureRect" parent="Control/NinePatchRect"]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/NinePatchRect"]
+anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 16.0
-margin_right = 200.0
-margin_bottom = -15.9998
+margin_right = -16.0
+margin_bottom = -16.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/NinePatchRect/HBoxContainer"]
+visible = false
+margin_right = 183.0
+margin_bottom = 183.0
+rect_min_size = Vector2( 183, 0 )
+size_flags_horizontal = 0
 texture = SubResource( 2 )
 stretch_mode = 1
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="Control/NinePatchRect/TextureRect"]
+[node name="NinePatchRect2" type="NinePatchRect" parent="Control/NinePatchRect/HBoxContainer/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -11.0
@@ -73,38 +80,50 @@ patch_margin_top = 28
 patch_margin_right = 24
 patch_margin_bottom = 28
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/NinePatchRect"]
-anchor_right = 1.0
-anchor_bottom = 0.873
-margin_left = 16.0
-margin_top = 48.0
-margin_right = -16.0
-margin_bottom = -16.0
+[node name="MarginContainer" type="MarginContainer" parent="Control/NinePatchRect/HBoxContainer"]
+margin_right = 1297.0
+margin_bottom = 183.0
+size_flags_horizontal = 3
+custom_constants/margin_left = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/NinePatchRect/HBoxContainer/MarginContainer"]
+margin_left = 8.0
+margin_right = 1297.0
+margin_bottom = 183.0
+size_flags_horizontal = 3
+
+[node name="name" type="Label" parent="Control/NinePatchRect/HBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
+margin_right = 146.0
+margin_bottom = 30.0
+size_flags_horizontal = 2
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 3 )
+text = "test name"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/NinePatchRect/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 1289.0
+margin_bottom = 179.0
+size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )
 custom_styles/normal = SubResource( 1 )
 bbcode_enabled = true
+bbcode_text = "aaaaaaaaaaaaaaaaaaaaa"
 visible_characters = 0
 percent_visible = 0.0
 tab_size = 3
+text = "aaaaaaaaaaaaaaaaaaaaa"
 scroll_active = false
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="options" type="HBoxContainer" parent="Control/NinePatchRect"]
-margin_left = 16.0
-margin_top = 120.0
-margin_right = 1313.0
-margin_bottom = 176.0
-
-[node name="name" type="Label" parent="Control/NinePatchRect"]
-visible = false
-margin_left = 208.0
-margin_top = 15.9998
-margin_right = 346.0
-margin_bottom = 45.9998
-custom_fonts/font = SubResource( 3 )
-text = "test name"
+[node name="options" type="HBoxContainer" parent="Control/NinePatchRect/HBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 183.0
+margin_right = 1289.0
+margin_bottom = 183.0
+size_flags_horizontal = 11
+size_flags_vertical = 9
 
 [node name="Label" type="Label" parent="Control/NinePatchRect"]
 anchor_left = 0.835102

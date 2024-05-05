@@ -2,12 +2,12 @@ extends CanvasLayer
 
 var texts : Array
 
-onready var currentText = $Control/NinePatchRect/RichTextLabel
-onready var options = $Control/NinePatchRect/options
+onready var currentText = $Control/NinePatchRect/HBoxContainer/MarginContainer/VBoxContainer/RichTextLabel
+onready var options = $Control/NinePatchRect/HBoxContainer/MarginContainer/VBoxContainer/options
 onready var rect = $Control/NinePatchRect
 onready var tween = $Tween
-onready var reaction = $Control/NinePatchRect/TextureRect
-onready var characterName = $Control/NinePatchRect/name
+onready var reaction = $Control/NinePatchRect/HBoxContainer/TextureRect
+onready var characterName = $Control/NinePatchRect/HBoxContainer/MarginContainer/VBoxContainer/name
 
 onready var font = preload("res://entities/classes/dialogComponent/dialog.tres")
 onready var button = preload("res://entities/classes/dialogComponent/classes/button/buttonDialog.tscn")
@@ -108,7 +108,6 @@ func interacted(Player):
 		textIndex = 0
 		
 	elif currentText.percent_visible == 1:
-		
 		var maxTexts = texts.size() - 1
 
 		if textIndex >= maxTexts:
@@ -121,8 +120,7 @@ func interacted(Player):
 		currentText.percent_visible = 1
 		
 		return
-	
-	
+
 	_setText()
 
 func _setText():
@@ -132,8 +130,6 @@ func _setText():
 		if text.has("image"):
 			reaction.visible = true
 			reaction.texture["atlas"] = images[text["image"]]
-			currentText.margin_left = 16 + 184 + 16
-			characterName.margin_left = 16 + 184 + 16
 			
 			
 			if text.has("react"):
@@ -145,16 +141,12 @@ func _setText():
 		else:
 			reaction.visible = false
 			reaction.texture["atlas"] = null
-			currentText.margin_left = 16
-			characterName.margin_left = 16
 		
 		if text.has("name"):
 			characterName.text = text["name"]
-			currentText.margin_top = 48
 			characterName.visible = true
 			
 		else:
-			currentText.margin_top = 16
 			characterName.visible = false
 		
 		currentText.bbcode_text = tr(text["text"])
@@ -164,10 +156,6 @@ func _setText():
 		reaction.texture["atlas"] = null
 		reaction.texture["region"].position.x = 0
 		
-		currentText.margin_left = 16
-		currentText.margin_top = 16
-		
-		characterName.margin_left = 16
 		characterName.visible = false
 	
 	if text is String:
@@ -190,7 +178,6 @@ func _setText():
 	Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	
 	tween.start()
-	
 	
 func addText(text : String):
 	texts.append(text)

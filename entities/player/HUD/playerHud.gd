@@ -5,6 +5,8 @@ onready var animationTreeEye = $HUD/eyeIcon/AnimationTree
 onready var playbackEye = animationTreeEye["parameters/playback"]
 onready var player = $"../"
 
+var currentScreen := "HUD"
+
 func _ready():
 	healthBarr.max_value = get_parent().MAXHEALTH
 	healthBarr.value = get_parent().health
