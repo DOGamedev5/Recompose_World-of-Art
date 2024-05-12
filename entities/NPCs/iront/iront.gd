@@ -5,12 +5,12 @@ onready var barrier = $StaticBody2D/CollisionShape2D
 
 onready var textDialogs := [
 	[
-		"iront_1",
-		"iront_2",
+		{"name" : "iront","text" : "iront_1"},
+		{"name" : "iront","text" : "iront_2"},
 		preload("res://entities/NPCs/iront/irontQuestion.tres")
 	],
 	[
-		"iront_4"
+		{"name" : "iront","text" : "iront_4"}
 	]
 ]
 

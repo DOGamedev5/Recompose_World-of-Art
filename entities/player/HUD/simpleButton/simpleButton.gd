@@ -16,8 +16,7 @@ var positionBase
 func _ready():
 	positionBase = rect_position
 	button.shortcut = shortcut
-	print(positionBase)
-	print(rect_position)
+	button.shortcut = shortcut
 	textChanged(buttonText)
 
 func _process(_delta):

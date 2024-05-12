@@ -7,3 +7,6 @@ dialog_press,Precione E para continuar...,Press E to continue...
 player_hud_conf,configurações.,configurations.
 player_hud_conf_quit,sair do jogo,quit game
 player_hud_conf_exit,menu,menu
+player_hud_items,inventario,imventory
+player_hud_stats,status,stats
+player_hud_map,mapa,map

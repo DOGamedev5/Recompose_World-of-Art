@@ -31,7 +31,7 @@
 [ext_resource path="res://entities/enemies/minibosses/metaint/script/DEFEAT.gd" type="Script" id=29]
 [ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintDefeat.pxo" type="Texture" id=30]
 [ext_resource path="res://entities/destrutiveBlocks/sprites/paintWorld/blockParticle.pxo" type="Texture" id=31]
-[ext_resource path="res://entities/classes/dialogComponent/textIcon.pxo" type="Texture" id=32]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintReaction.pxo" type="Texture" id=32]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36, 44 )

@@ -94,3 +94,5 @@ shape = SubResource( 5 )
 
 [node name="dialog" parent="." instance=ExtResource( 4 )]
 interactBallonPath = NodePath("../interactBallon")
+
+[connection signal="dialogClosed" from="dialog" to="." method="_on_dialog_dialogClosed"]

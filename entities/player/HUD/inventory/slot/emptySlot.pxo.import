@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/emptySlot.pxo-52f5c2b099f925478d263fe3302e787e.stex"
+
+[deps]
+
+source_file="res://entities/player/HUD/inventory/slot/emptySlot.pxo"
+dest_files=[ "res://.import/emptySlot.pxo-52f5c2b099f925478d263fe3302e787e.stex" ]
+
+[params]
+

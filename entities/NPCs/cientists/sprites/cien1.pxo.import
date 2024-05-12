@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/cien1.pxo-53ef3b982d7a33c59f870dc28253dc5b.stex"
+
+[deps]
+
+source_file="res://entities/NPCs/cientists/sprites/cien1.pxo"
+dest_files=[ "res://.import/cien1.pxo-53ef3b982d7a33c59f870dc28253dc5b.stex" ]
+
+[params]
+

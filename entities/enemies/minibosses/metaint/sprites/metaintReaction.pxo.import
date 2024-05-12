@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/metaintReaction.pxo-3fbd9bf85b9398c7ba3ed884006849fa.stex"
+
+[deps]
+
+source_file="res://entities/enemies/minibosses/metaint/sprites/metaintReaction.pxo"
+dest_files=[ "res://.import/metaintReaction.pxo-3fbd9bf85b9398c7ba3ed884006849fa.stex" ]
+
+[params]
+

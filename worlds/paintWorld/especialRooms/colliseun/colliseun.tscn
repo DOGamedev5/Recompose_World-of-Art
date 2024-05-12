@@ -4,7 +4,7 @@
 [ext_resource path="res://entities/enemies/minibosses/metaint/metaint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://worlds/paintWorld/tilesets/colliseu.tres" type="TileSet" id=3]
 [ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://entities/classes/dialogComponent/textIcon.pxo" type="Texture" id=5]
+[ext_resource path="res://entities/enemies/minibosses/metaint/sprites/metaintReaction.pxo" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 36, 240 )

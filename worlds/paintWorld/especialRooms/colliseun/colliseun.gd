@@ -8,8 +8,8 @@ onready var dialog = $dialog
 var player : PlayerBase
 
 const dialogText = [
-	{"image" : 0, "react" : 0, "text" : "metaint_1", "name" : "Metaint"},
-	{"image" : 0, "react" : 0, "text" : "metaint_2", "name" : "Metaint"}
+	{"image" : 0, "react" : 0, "text" : "metaint_1", "name" : "metaint"},
+	{"image" : 0, "react" : 0, "text" : "metaint_2", "name" : "metaint"}
 ]
 
 func _ready():
