@@ -32,8 +32,14 @@ func process_state():
 		elif not parent.onWall():
 			return "RUN"
 	
-	if parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
-		return "JUMP"
+	if Input.is_action_just_pressed("ui_jump"):
+		if parent.canJump and parent.couldUncounch():
+			return "JUMP"
+		
+		parent.motion.x = (1 - (int(parent.fliped) * 2)) * -200
+		parent.motion.y = -500
+
+		return "FALL"
 	
 	return null
 
@@ -48,5 +54,6 @@ func process_physics(_delta):
 		parent.stunned = false
 	
 func exit():
+		
 	parent.stunned = false
 

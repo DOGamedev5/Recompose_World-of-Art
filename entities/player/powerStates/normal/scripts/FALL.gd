@@ -3,6 +3,7 @@ extends State
 func enter(laststate):
 	
 	parent.setParticle(0, false)
+	
 	if laststate == "ROLL":
 		parent.isRolling = true
 
@@ -36,7 +37,8 @@ func process_physics(_delta):
 	
 	parent.stoppedRunning()
 	
-
+	if abs(parent.motion.x) < 250 and int(parent.realMotion.x) == 0:
+		parent.motion.x = 0
 	
 	if parent.isRolling:
 		parent.motion.x = sign(parent.motion.x) * parent.MAXSPEED

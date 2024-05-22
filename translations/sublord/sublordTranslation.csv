@@ -1,14 +1,10 @@
 ,pt_BR,en
-fenico_1,"olá, rei, sou eu [color=red]Fenico","hello, king, its me [color=red]Phenic"
-fenico_2,[shake]oi? o que? rei?!?![/shake],what... hey? king?!?!
-fenico_3,"sim, rei, sou eu, o seu sublord leal, eu apenas consegui pegar um unico fragmento de sua alma","yeah, king, its me, your loyal sublord, I only could get one fragment of your soul"
-fenico_4,[shake radius = 10 freq = 4] O QUE? [/shake] como assim? rei? meu nome é... [wave]é...[/wave] Lodrofo?,"[shake radius = 10 freq = 4] WHAT? [/shake] I dont get it, king? my name is... [wave]is...[/wave] Lodrofo?"
-fenico_5,"sim! Rei Lodrofo, você lembrou de seu nome, acho que você não lembra de nada, ja que você so tem apenas um fragmento de sua alma, então eu te conto o que aconteceu","yes! King Lodrofo, you remembered your name, I think you don't remember nothing, since that you only have one fragment of your soul, so I'll tell you what happened"
-fenico_6,"os Sublords, eles te trairam, mas alguns deles, como eu, permanecemos leais a você","the Sublords, they betrayed you, but some of then, like me, remained loyal to you"
-fenico_7,como irei recuperar o resto da minha alma?,how am I going to recover the rest of my soul?
-fenico_8,"tudo que sei é que os Sublords  guardaram os fragmentos em varias dimensões, e essas dimensões estão espalhadas no reino","everthing I know is that the sublords stored the fragments in various dimensions, such as are scattered throughout the kingdom"
-fenico_9,por que eles não... só destruiram?,why didn't they... just destroyed them?
-fenico_10,"não é possivel destrui-las, por causa disso, eles guardaram elas nas dimensões","is not possible to destroy them, because of that, they stored in the dimensions"
-fenico_11,"e eu não posso ajudar você nas dimensões, é necessario ser ágil para pegar os fragmentos, e você é um [color=grey]rob^[/color] agora, então você pode morrer o quanto quiser","and I can't help you in the dimensios, is need to be agile to get the fragments, you are a [color=grey]robot[/color] now, you can die whatever you want"
-fenico_12,então... eu vou tentar recuperar os fragmentos por minha conta,so... I will try to recover the fragments by myself
-fenico_13,"boa sorte, meu rei Lodrofo","good luck, my king Lodrofo"
+fenico_1,"olá rei, vejo que acabou de acordar","hello king, I see you just woke up"
+fenico_2,quem é você?,who're you?
+fenico_3,"meu nome é Fênico, eu sou um de seus servos, os [color=purple]Sub Lords[/color]","my name is Phenic, I am one of your servants, the [color=purple]Sub Lords[/color]"
+fenico_4,ok… pera rei? eu sou [shake]REI?[/shake],ok… wait king? I am [shake]KING?[/shake]
+fenico_5,"sim… o que sobrou de você, você é um robô com a consciência do rei","yes... what's left of you, you're a robot with the conscience of the king"
+fenico_6,o que aconteceu com meu corpo? Você fez isso comigo?,What happened to my body? Did you do this to me?
+fenico_7,"eu coloquei um fragmento de sua alma nesse robô, para recuperar suas memórias você tem que recuperar elas, as quais estão guardadas em dimensões, apenas você pode recuperar os fragmentos","I just put a fragment of your soul in this robot, to recover your memories you have to recover them, so they are in dimensions spread across the kingdom, but no one is able to overcome them, but you can do it"
+fenico_8,como assim? o que eu tenho de especial?,why me? What's special about me?
+fenico_9,"você é rápido e ágil, você é LODROFO O REI DE PAINT WORLD","you are fast and agile, you are LODROFO THE KING OF PAINT WORLD"

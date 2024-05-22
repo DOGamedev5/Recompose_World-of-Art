@@ -32,6 +32,8 @@ signal damaged(direction)
 var enteredObjects := []
 
 var motion := Vector2.ZERO
+var realMotion := Vector2.ZERO
+var lastPosition := Vector2.ZERO
 var inCutscene := false
 
 var canJump := true
@@ -59,6 +61,7 @@ var inputCord := {
 }
 
 func _ready():
+	lastPosition = position
 	if stateMachinePath: 
 		stateMachine = get_node(stateMachinePath)
 		stateMachine.init(self)
@@ -66,6 +69,11 @@ func _ready():
 func _physics_process(delta):
 	if not moving:
 		motion.x = 0
+	
+	
+	realMotion = ((position - lastPosition) * Engine.get_frames_per_second())
+	set_deferred("lastPosition", position)
+	
 	if not stunned and moving:
 		
 		if collideUp() > -34 or Input.is_action_pressed("ui_down"):
@@ -185,6 +193,7 @@ func move(stopSlope = true):
 		snap = Vector2.DOWN * SNAPLENGTH
 
 	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
+	
 	
 	currentSnapLength = snap.y
 	

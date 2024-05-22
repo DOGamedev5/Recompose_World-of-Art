@@ -136,6 +136,7 @@ offset_X = 64.0
 position = Vector2( 992, 16 )
 script = ExtResource( 5 )
 roomID = 12
+warpID = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
 shape = SubResource( 1 )

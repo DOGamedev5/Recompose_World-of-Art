@@ -19,7 +19,12 @@ func setHealthMax(healthMax):
 func hitted(_direction):
 
 	playbackEye.travel("DAMAGED")
-	
 
 func setHealth(currentValue):
 	healthBarr.value = currentValue
+
+func _on_inventoryButton_pressed():
+	$inventory.visible = true
+	$HUD.visible = false
+	
+	currentScreen = "INVENTORY"

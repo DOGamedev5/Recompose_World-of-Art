@@ -1,7 +1,7 @@
 extends Control
 
 var debugPanel := false
-onready var player = $"../../../"
+onready var player = $"../../"
 
 onready var proprietyLabels := {
 	"currentState" : $PanelContainer/VBoxContainer/currentState,

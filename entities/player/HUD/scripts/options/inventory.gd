@@ -14,14 +14,14 @@ onready var buttons := {
 }
 
 func _input(_event):
-	if Input.is_action_just_pressed("inventory") and $"../../".currentScreen in ["HUD", "INVENTORY"]:
+	if Input.is_action_just_pressed("inventory") and $"../".currentScreen in ["HUD", "INVENTORY"]:
 		visible = not visible
-		$"../../HUD".visible = not visible
+		$"../HUD".visible = not visible
 		
 		if visible:
-			$"../../".currentScreen = "INVENTORY"
+			$"../".currentScreen = "INVENTORY"
 		else:
-			$"../../".currentScreen = "HUD"
+			$"../".currentScreen = "HUD"
 
 func _process(_delta):
 	match currentScreen:

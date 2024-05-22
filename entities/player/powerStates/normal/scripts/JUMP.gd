@@ -1,8 +1,12 @@
 extends State
 
+var lastState
+
 func enter(laststate):
 	parent.setParticle(0, false)
 	parent.setParticle(1, false)
+	
+	lastState = laststate
 	
 	parent.snapDesatived = true
 	if laststate == "ROLL":
@@ -32,6 +36,10 @@ func process_state():
 
 func process_physics(_delta):
 	parent.stoppedRunning()
+	
+	
+	if abs(parent.motion.x) < 250 and int(parent.realMotion.x) == 0:
+		parent.motion.x = 0
 	
 	if parent.isRolling:
 		parent.motion.x = sign(parent.motion.x) * parent.MAXSPEED

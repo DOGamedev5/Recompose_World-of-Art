@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
@@ -23,6 +23,15 @@
 [ext_resource path="res://gameplay/themes/panel.tres" type="StyleBox" id=21]
 [ext_resource path="res://gameplay/effects/theme.tres" type="Theme" id=22]
 [ext_resource path="res://gameplay/themes/scroll.tres" type="Theme" id=23]
+[ext_resource path="res://entities/player/HUD/inventory/inventoryIcon.pxo" type="Texture" id=24]
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 24 )
+region = Rect2( 62, 0, 62, 54 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 24 )
+region = Rect2( 0, 0, 62, 54 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 3 )
@@ -373,12 +382,31 @@ atlas = ExtResource( 13 )
 region = Rect2( 24, 0, 24, 27 )
 
 [node name="HUD" type="CanvasLayer"]
-layer = 2
+layer = 3
 script = ExtResource( 4 )
 
 [node name="HUD" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Control" type="Control" parent="HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -145.0
+margin_bottom = 136.0
+mouse_filter = 1
+
+[node name="inventoryButton" type="TextureButton" parent="HUD/Control"]
+pause_mode = 2
+margin_left = -16.0
+margin_top = 40.0
+margin_right = 108.0
+margin_bottom = 144.0
+mouse_default_cursor_shape = 2
+texture_normal = SubResource( 49 )
+texture_pressed = SubResource( 50 )
+texture_hover = SubResource( 50 )
+expand = true
 
 [node name="health" type="Control" parent="HUD"]
 margin_right = 40.0
@@ -433,8 +461,8 @@ script = ExtResource( 1 )
 [node name="ColorRect" type="ColorRect" parent="transition"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 48996.0
-margin_bottom = 26496.0
+margin_right = 53079.0
+margin_bottom = 28704.0
 rect_scale = Vector2( 1e-05, 1 )
 color = Color( 0.0431373, 0.0392157, 0.0431373, 0.639216 )
 
@@ -453,20 +481,13 @@ anims/RESET = SubResource( 11 )
 anims/transitionIn = SubResource( 12 )
 anims/transitionOut = SubResource( 13 )
 
-[node name="options" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="DEBUG" type="Control" parent="options"]
+[node name="DEBUG" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
 
-[node name="PanelContainer" type="PanelContainer" parent="options/DEBUG"]
+[node name="PanelContainer" type="PanelContainer" parent="DEBUG"]
 self_modulate = Color( 0.164706, 0.192157, 0.254902, 1 )
 anchor_left = 0.811
 anchor_top = 0.054
@@ -477,83 +498,83 @@ margin_top = 0.256001
 margin_right = 0.328003
 margin_bottom = -0.320007
 
-[node name="VBoxContainer" type="VBoxContainer" parent="options/DEBUG/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DEBUG/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 185.0
 margin_bottom = 225.0
 
-[node name="debugButton" type="Button" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="debugButton" type="Button" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_right = 178.0
 margin_bottom = 21.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 19 )
 text = "go to Debug Room"
 
-[node name="currentState" type="Label" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="currentState" type="Label" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_top = 25.0
 margin_right = 178.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 19 )
 text = "current State:"
 
-[node name="motion" type="Label" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="motion" type="Label" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_top = 44.0
 margin_right = 178.0
 margin_bottom = 59.0
 custom_fonts/font = SubResource( 19 )
 text = "Motion: "
 
-[node name="running" type="Label" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="running" type="Label" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_top = 63.0
 margin_right = 178.0
 margin_bottom = 78.0
 custom_fonts/font = SubResource( 19 )
 text = "running: "
 
-[node name="onSlope" type="Label" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="onSlope" type="Label" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_top = 82.0
 margin_right = 178.0
 margin_bottom = 97.0
 custom_fonts/font = SubResource( 19 )
 text = "On slope"
 
-[node name="snapDesatived" type="Label" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="snapDesatived" type="Label" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_top = 101.0
 margin_right = 178.0
 margin_bottom = 116.0
 custom_fonts/font = SubResource( 19 )
 text = "Snap desatived: "
 
-[node name="snapLenght" type="Label" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="snapLenght" type="Label" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_top = 120.0
 margin_right = 178.0
 margin_bottom = 135.0
 custom_fonts/font = SubResource( 19 )
 text = "Snap lenght: "
 
-[node name="FPS" type="Label" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="FPS" type="Label" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_top = 139.0
 margin_right = 178.0
 margin_bottom = 154.0
 custom_fonts/font = SubResource( 19 )
 text = "FPS: "
 
-[node name="simpleLight" type="CheckBox" parent="options/DEBUG/PanelContainer/VBoxContainer"]
+[node name="simpleLight" type="CheckBox" parent="DEBUG/PanelContainer/VBoxContainer"]
 margin_top = 158.0
 margin_right = 178.0
 margin_bottom = 182.0
 custom_fonts/font = SubResource( 19 )
 text = "simpleLight"
 
-[node name="inventory" type="Control" parent="options"]
+[node name="inventory" type="Control" parent="."]
 pause_mode = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 19 )
 
-[node name="NinePatchRect" type="NinePatchRect" parent="options/inventory"]
+[node name="NinePatchRect" type="NinePatchRect" parent="inventory"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 17 )
@@ -566,18 +587,18 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="map" type="Control" parent="options/inventory"]
+[node name="map" type="Control" parent="inventory"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="items" type="Control" parent="options/inventory"]
+[node name="items" type="Control" parent="inventory"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = SubResource( 39 )
 
-[node name="MarginContainer" type="MarginContainer" parent="options/inventory/items"]
+[node name="MarginContainer" type="MarginContainer" parent="inventory/items"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 160
@@ -585,55 +606,55 @@ custom_constants/margin_top = 128
 custom_constants/margin_left = 128
 custom_constants/margin_bottom = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="options/inventory/items/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory/items/MarginContainer"]
 margin_left = 128.0
 margin_top = 128.0
 margin_right = 1201.0
 margin_bottom = 672.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="options/inventory/items/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="inventory/items/MarginContainer/VBoxContainer"]
 margin_right = 1073.0
 margin_bottom = 286.0
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 470.0
 margin_bottom = 286.0
 rect_min_size = Vector2( 470, 0 )
 custom_constants/margin_right = 96
 
-[node name="PanelContainer" type="PanelContainer" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 margin_right = 374.0
 margin_bottom = 286.0
 custom_styles/panel = ExtResource( 21 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 358.0
 margin_bottom = 270.0
 
-[node name="Label" type="Label" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
 margin_right = 342.0
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 43 )
 text = "repellendus"
 
-[node name="Label2" type="Label" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 34.0
 margin_right = 342.0
 margin_bottom = 64.0
 custom_fonts/font = SubResource( 43 )
 text = "magni "
 
-[node name="Label3" type="Label" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 68.0
 margin_right = 342.0
 margin_bottom = 98.0
 custom_fonts/font = SubResource( 43 )
 text = "cupiditate"
 
-[node name="Panel" type="Panel" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 474.0
 margin_right = 1073.0
 margin_bottom = 286.0
@@ -641,7 +662,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 48 )
 
-[node name="MarginContainer" type="MarginContainer" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 22 )
@@ -650,7 +671,7 @@ custom_constants/margin_top = 16
 custom_constants/margin_left = 16
 custom_constants/margin_bottom = 16
 
-[node name="ScrollContainer" type="ScrollContainer" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 583.0
@@ -658,75 +679,75 @@ margin_bottom = 270.0
 theme = ExtResource( 23 )
 scroll_horizontal_enabled = false
 
-[node name="GridContainer" type="GridContainer" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
 margin_right = 540.0
 margin_bottom = 336.0
 rect_clip_content = true
 columns = 8
 
-[node name="TextureRect" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 64.0
 margin_bottom = 64.0
 
-[node name="TextureRect2" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect2" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 68.0
 margin_right = 132.0
 margin_bottom = 64.0
 
-[node name="TextureRect3" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect3" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 136.0
 margin_right = 200.0
 margin_bottom = 64.0
 
-[node name="TextureRect4" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect4" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 204.0
 margin_right = 268.0
 margin_bottom = 64.0
 
-[node name="TextureRect5" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect5" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 272.0
 margin_right = 336.0
 margin_bottom = 64.0
 
-[node name="TextureRect6" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect6" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 340.0
 margin_right = 404.0
 margin_bottom = 64.0
 
-[node name="TextureRect7" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect7" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 408.0
 margin_right = 472.0
 margin_bottom = 64.0
 
-[node name="TextureRect8" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect8" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 476.0
 margin_right = 540.0
 margin_bottom = 64.0
 
-[node name="TextureRect9" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect9" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 68.0
 margin_right = 64.0
 margin_bottom = 132.0
 
-[node name="TextureRect10" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect10" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 68.0
@@ -734,7 +755,7 @@ margin_top = 68.0
 margin_right = 132.0
 margin_bottom = 132.0
 
-[node name="TextureRect11" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect11" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 136.0
@@ -742,7 +763,7 @@ margin_top = 68.0
 margin_right = 200.0
 margin_bottom = 132.0
 
-[node name="TextureRect12" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect12" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 204.0
@@ -750,7 +771,7 @@ margin_top = 68.0
 margin_right = 268.0
 margin_bottom = 132.0
 
-[node name="TextureRect13" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect13" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 272.0
@@ -758,7 +779,7 @@ margin_top = 68.0
 margin_right = 336.0
 margin_bottom = 132.0
 
-[node name="TextureRect14" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect14" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 340.0
@@ -766,7 +787,7 @@ margin_top = 68.0
 margin_right = 404.0
 margin_bottom = 132.0
 
-[node name="TextureRect15" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect15" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 408.0
@@ -774,7 +795,7 @@ margin_top = 68.0
 margin_right = 472.0
 margin_bottom = 132.0
 
-[node name="TextureRect16" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect16" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 476.0
@@ -782,14 +803,14 @@ margin_top = 68.0
 margin_right = 540.0
 margin_bottom = 132.0
 
-[node name="TextureRect17" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect17" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 136.0
 margin_right = 64.0
 margin_bottom = 200.0
 
-[node name="TextureRect18" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect18" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 68.0
@@ -797,7 +818,7 @@ margin_top = 136.0
 margin_right = 132.0
 margin_bottom = 200.0
 
-[node name="TextureRect19" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect19" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 136.0
@@ -805,7 +826,7 @@ margin_top = 136.0
 margin_right = 200.0
 margin_bottom = 200.0
 
-[node name="TextureRect20" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect20" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 204.0
@@ -813,7 +834,7 @@ margin_top = 136.0
 margin_right = 268.0
 margin_bottom = 200.0
 
-[node name="TextureRect21" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect21" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 272.0
@@ -821,7 +842,7 @@ margin_top = 136.0
 margin_right = 336.0
 margin_bottom = 200.0
 
-[node name="TextureRect22" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect22" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 340.0
@@ -829,7 +850,7 @@ margin_top = 136.0
 margin_right = 404.0
 margin_bottom = 200.0
 
-[node name="TextureRect23" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect23" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 408.0
@@ -837,7 +858,7 @@ margin_top = 136.0
 margin_right = 472.0
 margin_bottom = 200.0
 
-[node name="TextureRect24" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect24" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 476.0
@@ -845,14 +866,14 @@ margin_top = 136.0
 margin_right = 540.0
 margin_bottom = 200.0
 
-[node name="TextureRect25" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect25" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 204.0
 margin_right = 64.0
 margin_bottom = 268.0
 
-[node name="TextureRect26" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect26" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 68.0
@@ -860,7 +881,7 @@ margin_top = 204.0
 margin_right = 132.0
 margin_bottom = 268.0
 
-[node name="TextureRect27" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect27" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 136.0
@@ -868,7 +889,7 @@ margin_top = 204.0
 margin_right = 200.0
 margin_bottom = 268.0
 
-[node name="TextureRect28" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect28" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 204.0
@@ -876,7 +897,7 @@ margin_top = 204.0
 margin_right = 268.0
 margin_bottom = 268.0
 
-[node name="TextureRect29" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect29" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 272.0
@@ -884,7 +905,7 @@ margin_top = 204.0
 margin_right = 336.0
 margin_bottom = 268.0
 
-[node name="TextureRect30" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect30" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 340.0
@@ -892,7 +913,7 @@ margin_top = 204.0
 margin_right = 404.0
 margin_bottom = 268.0
 
-[node name="TextureRect31" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect31" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 408.0
@@ -900,7 +921,7 @@ margin_top = 204.0
 margin_right = 472.0
 margin_bottom = 268.0
 
-[node name="TextureRect32" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect32" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 476.0
@@ -908,14 +929,14 @@ margin_top = 204.0
 margin_right = 540.0
 margin_bottom = 268.0
 
-[node name="TextureRect33" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect33" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 272.0
 margin_right = 64.0
 margin_bottom = 336.0
 
-[node name="TextureRect34" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect34" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 68.0
@@ -923,7 +944,7 @@ margin_top = 272.0
 margin_right = 132.0
 margin_bottom = 336.0
 
-[node name="TextureRect35" parent="options/inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
+[node name="TextureRect35" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 136.0
@@ -931,21 +952,21 @@ margin_top = 272.0
 margin_right = 200.0
 margin_bottom = 336.0
 
-[node name="MarginContainer" type="MarginContainer" parent="options/inventory/items/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="inventory/items/MarginContainer/VBoxContainer"]
 margin_top = 290.0
 margin_right = 1073.0
 margin_bottom = 544.0
 rect_min_size = Vector2( 0, 254 )
 custom_constants/margin_top = 32
 
-[node name="PanelContainer" type="PanelContainer" parent="options/inventory/items/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="inventory/items/MarginContainer/VBoxContainer/MarginContainer"]
 margin_top = 32.0
 margin_right = 1073.0
 margin_bottom = 254.0
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 48 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="options/inventory/items/MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="inventory/items/MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1057.0
@@ -960,12 +981,11 @@ rodolfo
 memes
 [color=red]rodolfomenes + 50"
 
-[node name="stats" type="Control" parent="options/inventory"]
-visible = false
+[node name="stats" type="Control" parent="inventory"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="TextureRect" type="TextureRect" parent="options/inventory/stats"]
+[node name="TextureRect" type="TextureRect" parent="inventory/stats"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -978,7 +998,7 @@ rect_min_size = Vector2( 432, 278 )
 texture = ExtResource( 10 )
 expand = true
 
-[node name="left" parent="options/inventory" instance=ExtResource( 18 )]
+[node name="left" parent="inventory" instance=ExtResource( 18 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 64.0
@@ -990,7 +1010,7 @@ size_flags_vertical = 2
 buttonText = "< left"
 shortcut = SubResource( 46 )
 
-[node name="right" parent="options/inventory" instance=ExtResource( 18 )]
+[node name="right" parent="inventory" instance=ExtResource( 18 )]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 0.0
@@ -1004,7 +1024,7 @@ buttonText = "right >"
 flipGrowDirecion = true
 shortcut = SubResource( 47 )
 
-[node name="configurations" type="Control" parent="options"]
+[node name="configurations" type="Control" parent="."]
 pause_mode = 2
 visible = false
 anchor_right = 1.0
@@ -1014,12 +1034,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="options/configurations"]
+[node name="ColorRect" type="ColorRect" parent="configurations"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
 
-[node name="Panel" type="Panel" parent="options/configurations"]
+[node name="Panel" type="Panel" parent="configurations"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1030,7 +1050,7 @@ margin_right = 295.5
 margin_bottom = 222.0
 custom_styles/panel = SubResource( 38 )
 
-[node name="Label" type="Label" parent="options/configurations/Panel"]
+[node name="Label" type="Label" parent="configurations/Panel"]
 margin_left = 27.5
 margin_top = 16.0
 margin_right = 315.5
@@ -1042,7 +1062,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="options/configurations/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="configurations/Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1052,19 +1072,19 @@ margin_top = -200.0
 margin_right = 254.0
 margin_bottom = 176.0
 
-[node name="HSeparator" type="HSeparator" parent="options/configurations/Panel/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="configurations/Panel/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_right = 508.0
 margin_bottom = 30.0
 custom_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="options/configurations/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="configurations/Panel/VBoxContainer"]
 margin_top = 34.0
 margin_right = 508.0
 margin_bottom = 68.0
 alignment = 1
 
-[node name="Label2" type="Label" parent="options/configurations/Panel/VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer"]
 margin_left = 124.0
 margin_top = 4.0
 margin_right = 264.0
@@ -1074,27 +1094,27 @@ custom_fonts/font = SubResource( 29 )
 text = "mn_opt_sl"
 valign = 1
 
-[node name="VSeparator" type="VSeparator" parent="options/configurations/Panel/VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="configurations/Panel/VBoxContainer/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 268.0
 margin_right = 328.0
 margin_bottom = 34.0
 custom_constants/separation = 60
 
-[node name="CheckButton" parent="options/configurations/Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
+[node name="CheckButton" parent="configurations/Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
 margin_left = 332.0
 margin_right = 384.0
 align = 2
 icon_align = 2
 
-[node name="HSeparator2" type="HSeparator" parent="options/configurations/Panel/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="configurations/Panel/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_top = 72.0
 margin_right = 508.0
 margin_bottom = 87.0
 custom_constants/separation = 15
 
-[node name="Label3" type="Label" parent="options/configurations/Panel/VBoxContainer"]
+[node name="Label3" type="Label" parent="configurations/Panel/VBoxContainer"]
 margin_top = 91.0
 margin_right = 508.0
 margin_bottom = 117.0
@@ -1103,7 +1123,7 @@ custom_fonts/font = SubResource( 33 )
 text = "mn_opt_music"
 valign = 1
 
-[node name="music" type="HSlider" parent="options/configurations/Panel/VBoxContainer"]
+[node name="music" type="HSlider" parent="configurations/Panel/VBoxContainer"]
 margin_top = 121.0
 margin_right = 508.0
 margin_bottom = 139.0
@@ -1116,7 +1136,7 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="options/configurations/Panel/VBoxContainer/music"]
+[node name="NinePatchRect" type="NinePatchRect" parent="configurations/Panel/VBoxContainer/music"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
@@ -1127,14 +1147,14 @@ patch_margin_top = 4
 patch_margin_right = 10
 patch_margin_bottom = 6
 
-[node name="HSeparator3" type="HSeparator" parent="options/configurations/Panel/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="configurations/Panel/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_top = 143.0
 margin_right = 508.0
 margin_bottom = 158.0
 custom_constants/separation = 15
 
-[node name="Label4" type="Label" parent="options/configurations/Panel/VBoxContainer"]
+[node name="Label4" type="Label" parent="configurations/Panel/VBoxContainer"]
 margin_top = 162.0
 margin_right = 508.0
 margin_bottom = 188.0
@@ -1143,7 +1163,7 @@ custom_fonts/font = SubResource( 33 )
 text = "mn_opt_sfx"
 valign = 1
 
-[node name="sound" type="HSlider" parent="options/configurations/Panel/VBoxContainer"]
+[node name="sound" type="HSlider" parent="configurations/Panel/VBoxContainer"]
 margin_top = 192.0
 margin_right = 508.0
 margin_bottom = 210.0
@@ -1156,7 +1176,7 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="options/configurations/Panel/VBoxContainer/sound"]
+[node name="NinePatchRect" type="NinePatchRect" parent="configurations/Panel/VBoxContainer/sound"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -2.0
@@ -1167,7 +1187,7 @@ patch_margin_top = 4
 patch_margin_right = 10
 patch_margin_bottom = 6
 
-[node name="close" type="TextureButton" parent="options/configurations/Panel"]
+[node name="close" type="TextureButton" parent="configurations/Panel"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -60.5
@@ -1179,7 +1199,7 @@ texture_pressed = SubResource( 31 )
 texture_hover = SubResource( 32 )
 expand = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="options/configurations/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="configurations/Panel"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1193,38 +1213,37 @@ grow_vertical = 2
 rect_clip_content = true
 alignment = 1
 
-[node name="quit" parent="options/configurations/Panel/HBoxContainer" instance=ExtResource( 15 )]
+[node name="quit" parent="configurations/Panel/HBoxContainer" instance=ExtResource( 15 )]
 margin_right = 584.0
 grow_horizontal = 2
 rect_min_size = Vector2( 297, 72 )
 text = "player_hud_conf_quit"
 
-[node name="VSeparator2" type="VSeparator" parent="options/configurations/Panel/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="configurations/Panel/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 588.0
 margin_right = 593.0
 margin_bottom = 72.0
 custom_constants/separation = 5
 
-[node name="menu" parent="options/configurations/Panel/HBoxContainer" instance=ExtResource( 15 )]
+[node name="menu" parent="configurations/Panel/HBoxContainer" instance=ExtResource( 15 )]
 margin_left = 597.0
 margin_right = 1181.0
 grow_horizontal = 2
 rect_min_size = Vector2( 176, 72 )
 text = "player_hud_conf_exit"
 
+[connection signal="pressed" from="HUD/Control/inventoryButton" to="." method="_on_inventoryButton_pressed"]
 [connection signal="tween_completed" from="transition/Tween" to="transition" method="tweenCompleted"]
-[connection signal="pressed" from="options/DEBUG/PanelContainer/VBoxContainer/debugButton" to="options" method="debugButtonPressed"]
-[connection signal="pressed" from="options/DEBUG/PanelContainer/VBoxContainer/simpleLight" to="options" method="simpleLightToggled"]
-[connection signal="visibility_changed" from="options/inventory" to="options/inventory" method="_on_inventory_visibility_changed"]
-[connection signal="pressed" from="options/inventory/left" to="options/inventory" method="_on_left_pressed"]
-[connection signal="pressed" from="options/inventory/right" to="options/inventory" method="_on_right_pressed"]
-[connection signal="visibility_changed" from="options/configurations" to="options/configurations" method="_on_configurations_visibility_changed"]
-[connection signal="toggled" from="options/configurations/Panel/VBoxContainer/HBoxContainer/CheckButton" to="options/configurations" method="_on_SImpleLight_toggled"]
-[connection signal="drag_ended" from="options/configurations/Panel/VBoxContainer/music" to="options/configurations" method="_on_drag_ended"]
-[connection signal="value_changed" from="options/configurations/Panel/VBoxContainer/music" to="options/configurations" method="_on_music_value_changed"]
-[connection signal="drag_ended" from="options/configurations/Panel/VBoxContainer/sound" to="options/configurations" method="_on_drag_ended"]
-[connection signal="value_changed" from="options/configurations/Panel/VBoxContainer/sound" to="options/configurations" method="_on_sound_value_changed"]
-[connection signal="pressed" from="options/configurations/Panel/close" to="options/configurations" method="_on_close_pressed"]
-[connection signal="pressed" from="options/configurations/Panel/HBoxContainer/quit" to="options/configurations" method="_on_quit_pressed"]
-[connection signal="pressed" from="options/configurations/Panel/HBoxContainer/menu" to="options/configurations" method="_on_menu_pressed"]
+[connection signal="visibility_changed" from="inventory" to="inventory" method="_on_inventory_visibility_changed"]
+[connection signal="pressed" from="inventory/left" to="inventory" method="_on_left_pressed"]
+[connection signal="pressed" from="inventory/right" to="inventory" method="_on_right_pressed"]
+[connection signal="visibility_changed" from="configurations" to="configurations" method="_on_configurations_visibility_changed"]
+[connection signal="toggled" from="configurations/Panel/VBoxContainer/HBoxContainer/CheckButton" to="configurations" method="_on_SImpleLight_toggled"]
+[connection signal="drag_ended" from="configurations/Panel/VBoxContainer/music" to="configurations" method="_on_drag_ended"]
+[connection signal="value_changed" from="configurations/Panel/VBoxContainer/music" to="configurations" method="_on_music_value_changed"]
+[connection signal="drag_ended" from="configurations/Panel/VBoxContainer/sound" to="configurations" method="_on_drag_ended"]
+[connection signal="value_changed" from="configurations/Panel/VBoxContainer/sound" to="configurations" method="_on_sound_value_changed"]
+[connection signal="pressed" from="configurations/Panel/close" to="configurations" method="_on_close_pressed"]
+[connection signal="pressed" from="configurations/Panel/HBoxContainer/quit" to="configurations" method="_on_quit_pressed"]
+[connection signal="pressed" from="configurations/Panel/HBoxContainer/menu" to="configurations" method="_on_menu_pressed"]

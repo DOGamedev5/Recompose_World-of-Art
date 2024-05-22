@@ -51,7 +51,7 @@ func _physics_process(_delta):
 	if active:
 		move(!isRolling)
 	
-	$a/Label.text = str(motion.x)
+	$a/Label.text = str(motion.x) + " " + str(int(realMotion.x))
 
 	$speedEffect.visible = running
 	if running:

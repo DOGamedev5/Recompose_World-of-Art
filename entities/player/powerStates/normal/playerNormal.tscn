@@ -1729,6 +1729,7 @@ MAXSPEED = 600
 MAXFALL = 600
 JUMPFORCE = -850
 runningVelocity = 1000.0
+running = false
 
 [node name="flooDetectBack" parent="." index="2"]
 position = Vector2( -14, -8 )
