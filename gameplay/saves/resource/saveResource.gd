@@ -7,9 +7,9 @@ export var player := {
 }
 
 export var world := {
-	"currentWorld" : "paintWorld",
-	"currentTypeRoom" : "especialRooms",
-	"currentRoomID" : 0,
+	"currentWorld" : "sandDesert",
+	"currentTypeRoom" : "rooms",
+	"currentRoomID" : 1,
 	"currentRoomPath" : "res://worlds/paintWorld/especialRooms/room1/room1.tscn",
 	"paintWorld" : {
 		"colliseun" : false

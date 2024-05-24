@@ -8,6 +8,8 @@ export(String, "rooms", "especialRooms") var category = "rooms"
 
 export var warpID := 0
 
+var roomData : Dictionary
+
 onready var parent = get_parent()
 
 func _ready():
@@ -21,9 +23,16 @@ func _ready():
 			"category" : category,
 			"room" : roomID
 		})
+	
+	roomData = {
+		roomPath = roomPath,
+		world = world,
+		category = category,
+		ID = roomID
+	}
 		
 	monitoring = true
 
 func changeRoom():
-	get_parent().get_parent().loadRoom(roomPath, warpID, "warp")
+	get_parent().get_parent().loadRoom(roomData, warpID, "warp")
 		

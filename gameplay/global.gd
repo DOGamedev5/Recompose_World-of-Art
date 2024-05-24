@@ -13,7 +13,6 @@ signal simpleLightChanged(value)
 signal gamePaused
 signal gameUnpaused
 
-
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
 	var _1 = connect("simpleLightChanged", self, "_setSimpleLight")	

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/cloud.pxo-64c85a738d2a7c1c7d82a3e483951586.stex"
+
+[deps]
+
+source_file="res://worlds/sandDesert/tilesets/cloud.pxo"
+dest_files=[ "res://.import/cloud.pxo-64c85a738d2a7c1c7d82a3e483951586.stex" ]
+
+[params]
+

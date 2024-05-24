@@ -13,8 +13,6 @@ onready var menu = get_node(menuPath)
 var save
 var savePath
 
-onready var room := preload("res://worlds/paintWorld/level1.tscn")
-
 func _ready():
 	
 	savePath = "user://save%d.tres" % saveID
@@ -33,7 +31,7 @@ func _ready():
 func _on_Play_pressed():
 	Global.loadGameData(savePath)
 	
-	LoadSystem.loadScene(menu, "res://worlds/paintWorld/level1.tscn")
+	LoadSystem.loadScene(menu, "res://worlds/main.tscn")
 
 func _on_Erase_pressed():
 	Global.saveGameData(savePath, SaveGame.new())

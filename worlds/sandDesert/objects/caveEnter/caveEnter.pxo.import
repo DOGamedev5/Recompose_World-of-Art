@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/caveEnter.pxo-d0e3dc4fc56d9344b3034b12ee727683.stex"
+
+[deps]
+
+source_file="res://worlds/sandDesert/objects/caveEnter/caveEnter.pxo"
+dest_files=[ "res://.import/caveEnter.pxo-d0e3dc4fc56d9344b3034b12ee727683.stex" ]
+
+[params]
+

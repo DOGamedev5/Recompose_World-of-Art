@@ -1,6 +1,6 @@
 class_name LevelClass extends Node2D
 
-export var firstRoom := ""
+export(String, FILE, "*.tscn") var firstRoom := ""
 
 signal changedRoom
 
@@ -8,6 +8,9 @@ var currentRoom
 var currentRoomID := 0
 var player
 
+var currentWorld := "sandDesert"
+
+var background
 
 func _ready():
 	
@@ -41,8 +44,12 @@ func loadSave():
 	
 	var currentRoomScene = LoadSystem.loadObject(room)
 	
+	var backgroundScene = LoadSystem.loadObject("res://worlds/{0}/background.tscn".format([Global.save.world["currentWorld"]]))
+	
+	background = backgroundScene.instance()
 	currentRoom = currentRoomScene.instance()
 	
+	add_child(background)
 	call_deferred("add_child", currentRoom)
 	
 	player.position = Global.save.player["position"]
@@ -53,7 +60,7 @@ func loadSave():
 	LoadSystem.closeLoad()
 
 
-func loadRoom(room : String, warpID := 0, type := "warp"):
+func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
 	
 	player.active = false
 	player.transition.transitionIn()
@@ -62,8 +69,12 @@ func loadRoom(room : String, warpID := 0, type := "warp"):
 	
 	if currentRoom:
 		currentRoom.queue_free()
-		
-	currentRoom = load(room).instance()
+	
+	currentWorld = room.category
+	
+	print(room.roomPath)
+	
+	currentRoom = load(room.roomPath).instance()
 	
 	call_deferred("add_child", currentRoom)
 	currentRoom.init(player, warpID, type)

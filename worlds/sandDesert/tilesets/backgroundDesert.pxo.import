@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/backgroundDesert.pxo-1b22f527f2f74e41adb2f9d7ac1cfcb6.stex"
+
+[deps]
+
+source_file="res://worlds/sandDesert/tilesets/backgroundDesert.pxo"
+dest_files=[ "res://.import/backgroundDesert.pxo-1b22f527f2f74e41adb2f9d7ac1cfcb6.stex" ]
+
+[params]
+

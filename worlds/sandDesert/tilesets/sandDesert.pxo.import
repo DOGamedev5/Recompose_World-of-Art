@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/sandDesert.pxo-5f903c5c79d2a54640cf24990ad13497.stex"
+
+[deps]
+
+source_file="res://worlds/sandDesert/tilesets/sandDesert.pxo"
+dest_files=[ "res://.import/sandDesert.pxo-5f903c5c79d2a54640cf24990ad13497.stex" ]
+
+[params]
+

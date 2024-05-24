@@ -22,7 +22,7 @@ content_margin_left = 2.0
 [sub_resource type="DynamicFont" id=4]
 size = 32
 outline_size = 2
-outline_color = Color( 0.94902, 0.933333, 0.886275, 1 )
+outline_color = Color( 0.886275, 0.941176, 0.94902, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 4 )
 
@@ -135,7 +135,7 @@ margin_top = -39.8958
 margin_right = 0.276978
 margin_bottom = -1.89583
 grow_horizontal = 0
-custom_colors/font_color = Color( 0.462745, 0.333333, 0.321569, 1 )
+custom_colors/font_color = Color( 0.321569, 0.337255, 0.462745, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "dialog_press"
 align = 2

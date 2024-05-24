@@ -43,7 +43,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ -192.0 ]
 }
-doors = [ NodePath("door") ]
+doors = [ NodePath("door"), NodePath("door2") ]
 limitsMin = Vector2( -144, -677 )
 limitsMax = Vector2( 1085, 128 )
 canvasModulateColor = Color( 0.741176, 0.670588, 0.803922, 1 )
@@ -57,7 +57,15 @@ tile_data = PoolIntArray( -1048576, 0, 262147, -1048575, 0, 10, -1048574, 0, 10,
 
 [node name="door" parent="." instance=ExtResource( 6 )]
 position = Vector2( 176, -112 )
+roomPath = "res://worlds/paintWorld/rooms/room1.tscn"
 roomID = 1
+
+[node name="door2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 576, -112 )
+roomPath = "res://worlds/sandDesert/rooms/room1.tscn"
+world = "sandDesert"
+roomID = 1
+frame = 1
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
