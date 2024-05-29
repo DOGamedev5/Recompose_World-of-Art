@@ -18,13 +18,13 @@ var dialogs = [
 ]
 
 func _ready():
-	if not Global.save.played:
-		player = get_parent().player
-		player.setCutscene(true)
-		player.fliped = true
-		dialog.addDialog(dialogs)
+	pass
+#	if not Global.save.played:
+#		player = get_parent().player
+#		player.setCutscene(true)
+#		player.fliped = true
+#		dialog.addDialog(dialogs)
 		
-		$AnimationPlayer.play("introdution")
 
 func interact():
 	dialog.interacted(player)

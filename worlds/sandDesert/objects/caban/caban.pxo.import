@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/caban.pxo-e4072b1f4ca67557dc3d75ce0bdafe8e.stex"
+
+[deps]
+
+source_file="res://worlds/sandDesert/objects/caban/caban.pxo"
+dest_files=[ "res://.import/caban.pxo-e4072b1f4ca67557dc3d75ce0bdafe8e.stex" ]
+
+[params]
+

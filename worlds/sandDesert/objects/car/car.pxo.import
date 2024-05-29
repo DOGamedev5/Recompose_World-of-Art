@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/car.pxo-7133a52c1efe7283f03b7aab71fb93bd.stex"
+
+[deps]
+
+source_file="res://worlds/sandDesert/objects/car/car.pxo"
+dest_files=[ "res://.import/car.pxo-7133a52c1efe7283f03b7aab71fb93bd.stex" ]
+
+[params]
+

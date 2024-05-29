@@ -70,12 +70,19 @@ func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
 	if currentRoom:
 		currentRoom.queue_free()
 	
-	currentWorld = room.category
+	if currentWorld != room.world:
+		currentWorld = room.world
+		var backgroundScene = load("res://worlds/{0}/background.tscn".format([currentWorld]))
+		if background:
+			background.queue_free()
+		
+		
+		background = backgroundScene.instance()
+		add_child(background)
 	
-	print(room.roomPath)
-	
+		
 	currentRoom = load(room.roomPath).instance()
-	
+
 	call_deferred("add_child", currentRoom)
 	currentRoom.init(player, warpID, type)
 	
