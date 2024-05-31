@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/sandDesert/tilesets/sandDesert.tres" type="TileSet" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://worlds/sandDesert/objects/car/car.pxo" type="Texture" id=6]
 [ext_resource path="res://worlds/sandDesert/objects/caban/caban.pxo" type="Texture" id=7]
 [ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://entities/NPCs/alex/alex.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "caveEnter.pxo 0"
@@ -63,16 +64,17 @@ tile_data = PoolIntArray( -2424833, 0, 8, -2490368, 0, 9, -2490367, 0, 11, -2359
 [node name="caveEnter" parent="." instance=ExtResource( 3 )]
 position = Vector2( 3432, -62 )
 category = "especialRooms"
+doorID = 0
 
 [node name="TileMap2" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -196508, 0, 65536, -196507, 0, 65537, -196506, 0, 65537, -196505, 0, 65537, -196504, 0, 65537, -196503, 0, 65537, -196502, 0, 65537, -196501, 0, 1, -130970, 0, 0 )
+tile_data = PoolIntArray( -196511, 0, 65536, -196510, 0, 65537, -196509, 0, 65537, -196508, 0, 65537, -196507, 0, 65537, -196506, 0, 65537, -196505, 0, 65537, -196504, 0, 65537, -196503, 0, 65537, -196502, 0, 65537, -196501, 0, 1, -130970, 0, 0 )
 
 [node name="cart" type="Sprite" parent="."]
-position = Vector2( 3274, -84 )
+position = Vector2( 3224, -84 )
 scale = Vector2( 2, 2 )
 z_index = -1
 z_as_relative = false
@@ -93,13 +95,16 @@ z_as_relative = false
 texture = ExtResource( 6 )
 
 [node name="Caban" type="Sprite" parent="."]
-position = Vector2( 1788, -124 )
+position = Vector2( 1712, -124 )
 scale = Vector2( 2, 2 )
 z_index = -2
 z_as_relative = false
 texture = ExtResource( 7 )
-hframes = 3
-frame = 2
+hframes = 4
+frame = 3
 
 [node name="literaturePortal" parent="." instance=ExtResource( 8 )]
 position = Vector2( 2336, -160 )
+
+[node name="NPCBase" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1392, -48 )

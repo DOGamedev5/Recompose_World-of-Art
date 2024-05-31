@@ -14,7 +14,6 @@ extents = Vector2( 64, 44 )
 [node name="caveEnter" type="Node2D"]
 script = ExtResource( 3 )
 roomPath = "res://worlds/paintWorld/especialRooms/room1/room1.tscn"
-doorID = 1
 
 [node name="CaveEnter" type="Sprite" parent="."]
 position = Vector2( 0, -64 )
