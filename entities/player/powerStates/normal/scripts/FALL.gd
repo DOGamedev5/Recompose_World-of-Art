@@ -19,9 +19,9 @@ func process_state():
 		
 		if parent.isRolling: return "ROLL"
 		
-		if Input.is_action_pressed("run"): return "TOP_SPEED"
+		if Input.is_action_pressed("run"): return "RUN"
 		
-		return "RUN"
+		return "WALK"
 	
 	elif Input.is_action_just_pressed("attack") and parent.canAttack:
 		return "ATTACK"
@@ -47,7 +47,7 @@ func process_physics(_delta):
 	
 	elif not parent.counched or parent.running:
 		if parent.running:
-			parent.playback.travel("TOP_SPEED")
+			parent.playback.travel("RUN")
 			maxSpeed = parent.runningVelocity
 			
 		else:

@@ -1,23 +1,27 @@
 ,pt_BR,en
-iront_1,"olá mano, o que você quer?","hello pal, what do you want?"
-iront_2,[shake]você quer entrar no COLISEU?!?![/shake]\n,"[shake]you want to fight in the COLISEUN[/shake]?!?!\noh ok, I will let you enter"
-iront_3,você quer entrar no coliseu agora?,do you want to enter the coliseum now?
-iront_3_1,sim!,yes!
-iront_3_2,não... deixa eu treinar um pouco,"No, let me train more."
-iront_3_3,"beleza, boa sorte garoto","alright, good luck little one"
-iront_4,"olá mano, tudo nos conformes?","hello, everthing going well?"
-guardaint_1,"[shake]EI![/shake] você não pode passar aqui meu jovem, ao não ser que tenha o [color=yellow]passe[/color]","[shake]HEY![/shake] You can't pass here, young man, unless you have the [color=yellow]pass[/color]"
-guardaint_2,"para obter o [color=yellow]passe[/color] você tem que falar com [color=red]Metaint[/color], talvez você tenha que derrota-lo em uma batalha, [wave] he, he...[/wave], nesse caso eu desejo boa sorte","to get the [color=yellow]pass[/color] you have to talk to [color=red]Metaint[/color], maybe you have to defeat him in a battle, [wave] he, he...[ /wave], in which case I wish you good luck"
-guardaint_3,"[shake]PERA[wave], VO- VOCÊ TEM O PAS-PASSE, MAS COMO? VOCÊ DERROTOU O [color=red]METAINT[/color]?!?!","[shake]WAIT[wave], YOU- YOU HAVE THE PASS, BUT HOW? DID YOU DEFEAT [color=red]METAINT[/color]?!?!"
-guardaint_4,[tornado]você pode passar...[/tornado],[tornado]you can pass...[/tornado]
-guardaint_5,como vai? você está livre pra passar garoto,how are you? you're free to pass boy
-cien_1,"olá, qual seu nome? Lodrofo? que coincidencia, é o mesmo nome que o rei","Hello, what is your name? Lodrofo? What a coincidence, it's the same name as the king"
-cien_2,"chega de papo furado, qual o motivo de ter vindo aqui?","enough chitchat, what's the reason you came here?"
-cien_3,guardaint me enviou para recuperar os fragmentos,Guardaint sent me to retrieve the fragments
-cien_4,"[wave]pera aí...[/wave] você é um robo..., ÔH TOM! EU ACHO QUE COLOCARAM UM FRAGMENTO NO SEU ROBÔ!","[wave]wait a minute...[/wave] you're a robot..., HEY TOM! I THINK THEY PUT A FRAGMENT IN YOUR ROBOT!"
-cien_5,"ei ei! eu ja to sabendo que sou um robô, o Fênico colocou um fragmento meu nessa maquinha e ""voltei a vida"" digamos assim","Hey Hey! I already know that I'm a robot, Phenic put a fragment of me in this little machine and ""I came back to life"", something like that"
-cien_6,"o Fênico?!?! como ele obteu esse robô, acredito que deve ter obtido a consciencia e memorias do rei...","the Phenic?!?! How did he obtain this robot, I believe he must have obtained the king's consciousness and memories..."
-cien_7,"eu não obtive todas as memorias, apenas consciencia, eu vim para poder recuperar mus fragmentos!","I didn't get all the memories, just consciousness, I came to be able to recover many fragments!"
-cien_8,"ok, Rei, temos que te preparar para o que irar enfrentar, para isso criamos nossa propria dimensão para treino","ok, King, we have to prepare you for what you will face, so we created our own training dimension"
-cien_9,"está vendo o livro gigante nessa sala? bem, ele é uma dimensão de treinamento, pule pra dentro do livro para entrar na dimensão e boa sorte!","Do you see the giant book in this room? well, it's a training dimension, jump into the book to enter the dimension and good luck!"
-cien_10,"vai la, pule no livro","go on, jump into book"
+alex_1,"EI! você é um voluntario da expedição RECOMPOSE? sim? ah, graças à Deus, estou esperando a decadas aqui","HEY!, are you a volunteer for the RECOMPOSE expedition? Yes? Oh, thank God, I've been waiting here for decades"
+alex_2,"mas, só veio você? eu esperava, no minimo 5 nesse expedição... ","but, only you came? I expected at least 5 in this expedition..."
+alex_3,"bem meu nome é Alex, sou tipo seu supervisor, ta vendo aquele cara atrás de mim? o nome dele é Archiboks, ele vai explicar e te treinar sobre as Dimensões Artefartais, venha falar comigo quando estiver preparado","well my name is Alex, I'm like your supervisor, do you see that guy behind me? his name is Archiboks, he will explain and train you about the Artefartal Dimensions, come talk to me when you are ready"
+archiboks_1,FINALMENTE! NÂO AGUENTAVA MAIS!,FINALLY! I COULDN'T TAKE IT ANYMORE!
+archiboks_2,"oh- desculpa, eu to aqui parado esperando por 4 horas...","oh- sorry, I've been standing here waiting for 4 hours..."
+archiboks_3,"bem, presumo que queira saber o que é uma dimensão artefatal, essas dimensões foram criadas para guardar os Artefatos, os quais a Organização RECOMPOSE esta interresada","well, I assume you want to know what an artifactual dimension is, these dimensions were created to store the Artifacts, which the Organization RECOMPOSE is interested in"
+archiboks_4,"seu trabalho é obter esses artefatos dessas dimensões, parece simples certo? mas infelizmente os artefatos são guardados separado em pedaços, além disso a dimensão geralmente é quase um labirinto e ainda cheio de desafios","your job is to get these artifacts from these dimensions, seems simple right? but unfortunately the artifacts are kept separately in pieces, in addition the dimension is usually almost a maze and still full of challenges"
+archiboks_5,"para sair da dimensão com os fragmentos é necessario destruir um selo, e ao destruir esse selo você terá um tempo limite para sair de lá","to get out of the dimension with the fragments you need to destroy a seal, and when you destroy this seal you will have a time limit to get out of there."
+archiboks_6,"se quiser treinar um pouco, você pode entrar nesse livro, é uma dimensão que fizemos com esse propórsito","if you want to train a little, you can read this book, it's a dimension we created with this purpose"
+archiboks_7,gostaria que eu repertisse?,would you like me to repeat it?
+archiboks_7_1,"sim, por favor","yes, please"
+archiboks_7_2,"não, eu ja entendi de primeira","no, I already get it"
+alex_4,"olá de novo, ja está pronto?","hello again, are you ready?"
+alex_4_1,sim!,yes!
+alex_4_2,não,no
+alex_5,"otimo, assine esse papel com seu nome","great, sign this paper with your name"
+alex_6,"hum, Lodrofo {name}, belo nome, pera, lodrofo é anagrama par-","um, Lodrofo {name}, nice name, wait, lodrofo is an anagram for-"
+alex_7,"esquece, bem ali na frente tem uma entrada de uma caverna, lá está situado uma dimensão artefatal, antes que esqueça, você vai encontrar ""múmias"" por lá...","forget it, right there in front there is an entrance to a cave, there is an artifactual dimension located there, before you forget, you will find ""mummies"" there..."
+alex_8,"a antiga civilação que vivia proxima aqui tinha o custume de transformar soldados em múmias, para que mesmo após a morte eles pudessem defender os artefatos","the ancient civilization that lived near here had the custom of transforming soldiers into mummies, so that even after death they could defend the artifacts"
+alex_9,gostaria ouvir mais sobre essa civilização chamada Painternia?,would you like to hear more about this civilization called Painternia?
+alex_9_1,sim,yes
+alex_9_2,não,no
+alex_10,"otimo! Eles eram uma civilização conhecida por praticar o ato de pintura para expressar sentimentos, as casas deles tinham formatos de baldes de tintas como reflexo dessa cultura, eles utilizavam aquela caverna como meio de recursos para contruções e pinturas.","excellent! They were a civilization known for practicing the act of painting to express feelings, their houses were shaped like paint buckets as a reflection of this culture, they used that cave as a means of resources for construction and painting."
+alex_11,"eles tinham um conhecimento avançado na ciência  e até fizeram um elevador para as cavernas, mesmo minerando eles não paravam de criar pinturas, as quais espalhados pelas cavernas, você ainda pode ver a assinatura deles nelas","they had advanced knowledge in science and even made an elevator for the caves, even while mining they didn't stop creating paintings, which are spread throughout the caves, you can still see their signatures on them"
+alex_12,"o rei deles era chamado de Glent Pixels, também chamado de Void pixels, infelizmente não se sabe o motivo de seu desaparecimento, o que é um pouco triste","their king was called Glent Pixels, also called Void pixels, unfortunately the reason for his disappearance is unknown, which is a little sad"
+alex_13,contarei mais sobre essa civilação la dentro,I will tell you more about this civilization inside

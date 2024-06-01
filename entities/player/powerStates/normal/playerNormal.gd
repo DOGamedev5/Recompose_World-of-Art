@@ -8,7 +8,7 @@ onready var counchPlayback = animation["parameters/COUNCH/COUNCH/playback"]
 onready var normalPlayback = animation["parameters/NORMAL/NORMAL/playback"]
 onready var walledPlayback = animation["parameters/WALLED/WALLED/playback"]
 onready var ladderPlayback = animation["parameters/LADDER/StateMachine/playback"]
-onready var topSpeedPlayback = animation["parameters/TOP_SPEED/RUN/playback"]
+onready var topSpeedPlayback = animation["parameters/RUN/RUN/playback"]
 
 onready var attackComponents = [$attackPunch, $attackSpeed, $attackRoll]
 onready var currentCollision = $CollisionShape2D
@@ -46,7 +46,7 @@ func _physics_process(_delta):
 	setFlipConfig()
 	setAttack()
 	
-	animation["parameters/NORMAL/NORMAL/RUN/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
+	animation["parameters/NORMAL/NORMAL/WALK/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
 	if active:
 		move(!isRolling)

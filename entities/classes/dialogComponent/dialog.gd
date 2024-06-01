@@ -35,7 +35,6 @@ func _ready():
 	if interactBallonPath:
 		interactBallon = get_node(interactBallonPath)
 		var _1 = interactBallon.connect("interacted", self, "interacted")
-		var _2 = interactBallon.connect("exitered", self, "desactiveded")
 
 func _process(_delta):
 	var optionsList = options.get_children()
@@ -55,8 +54,18 @@ func _process(_delta):
 
 func setup(Texts):
 	textIndex = 0
-	texts = Texts
-	_setText()
+	if texts:
+		texts.clear()
+	texts.append_array(Texts)
+
+func addText(text : String):
+	texts.append(text)
+
+func addQuestion(question : Question):
+	texts.append(question)
+
+func addDialog(dialog : Array):
+	texts.append_array(dialog)
 
 func ativeded():
 	hasInteracted = true
@@ -112,6 +121,8 @@ func interacted(Player):
 
 		if textIndex >= maxTexts:
 			desactiveded()
+			
+			return
 		else:
 			textIndex += 1
 	
@@ -120,17 +131,15 @@ func interacted(Player):
 		currentText.percent_visible = 1
 		
 		return
+	
+	_setText(texts[textIndex])
 
-	_setText()
-
-func _setText():
-	var text = texts[textIndex]
+func _setText(text):
 	
 	if text is Dictionary:
 		if text.has("image"):
 			reaction.visible = true
 			reaction.texture["atlas"] = images[text["image"]]
-			
 			
 			if text.has("react"):
 				reaction.texture["region"].position.x = text["react"]*92
@@ -179,11 +188,3 @@ func _setText():
 	
 	tween.start()
 	
-func addText(text : String):
-	texts.append(text)
-
-func addQuestion(question : Question):
-	texts.append(question)
-
-func addDialog(dialog : Array):
-	texts.append_array(dialog)

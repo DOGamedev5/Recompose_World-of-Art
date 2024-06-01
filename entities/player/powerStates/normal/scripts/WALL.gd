@@ -30,7 +30,7 @@ func process_state():
 			return "IDLE"
 			
 		elif not parent.onWall():
-			return "RUN"
+			return "WALK"
 	
 	if Input.is_action_just_pressed("ui_jump"):
 		if parent.canJump and parent.couldUncounch():

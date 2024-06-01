@@ -1,10 +1,6 @@
 extends State
 
-
-
 func enter(_laststate):
-	
-	
 	parent.setParticle(0, false)
 	parent.setParticle(1, false)
 
@@ -17,9 +13,9 @@ func process_state():
 		
 	elif Input.get_axis("ui_left", "ui_right") != 0:
 		if Input.is_action_pressed("run") and parent.couldUncounch(true):
-			return "TOP_SPEED"
+			return "RUN"
 		
-		return "RUN"
+		return "WALK"
 
 	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch(true):
 		return "JUMP"
@@ -36,7 +32,6 @@ func process_state():
 	return null
 	
 func process_physics(_delta):
-
 	parent.idleBase()
 	
 	if parent.counched:

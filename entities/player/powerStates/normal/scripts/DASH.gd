@@ -36,9 +36,9 @@ func process_state():
 		if Input.get_axis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
 			
 			if Input.is_action_pressed("run"):
-				return "TOP_SPEED"
+				return "RUN"
 		
-			return "RUN"
+			return "WALK"
 		
 		elif parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0 :
 			return "IDLE"
