@@ -1,12 +1,19 @@
-extends Node2D
+extends Node
 
 onready var animation = $AnimationPlayer
 
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("player"):
-		animation.play("open")
+var roomData = {
+	roomPath = "res://worlds/literatureArt/rooms/room1.tscn",
+	world = "literatureArt",
+	category = "rooms",
+	ID = 0
+}
 
+func _on_interactBallon_entered(_player):
+	animation.play("open")
 
-func _on_Area2D_body_exited(body):
-	if body.is_in_group("player"):
-		animation.play_backwards("open")
+func _on_interactBallon_exitered(_player):
+	animation.play_backwards("open")
+
+func _on_interactBallon_interacted(_player):
+	get_parent().get_parent().loadRoom(roomData, 0, "warp")
