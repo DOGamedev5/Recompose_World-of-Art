@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://gameplay/effects/theme.tres" type="Theme" id=22]
 [ext_resource path="res://gameplay/themes/scroll.tres" type="Theme" id=23]
 [ext_resource path="res://entities/player/HUD/inventory/inventoryIcon.pxo" type="Texture" id=24]
+[ext_resource path="res://entities/player/HUD/scripts/cinematic/cinematic.gd" type="Script" id=25]
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 24 )
@@ -461,8 +462,8 @@ script = ExtResource( 1 )
 [node name="ColorRect" type="ColorRect" parent="transition"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 53079.0
-margin_bottom = 28704.0
+margin_right = 58523.0
+margin_bottom = 31648.0
 rect_scale = Vector2( 1e-05, 1 )
 color = Color( 0.0431373, 0.0392157, 0.0431373, 0.639216 )
 
@@ -1024,15 +1025,32 @@ buttonText = "right >"
 flipGrowDirecion = true
 shortcut = SubResource( 47 )
 
-[node name="configurations" type="Control" parent="."]
-pause_mode = 2
-visible = false
+[node name="cinematic" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 14 )
+script = ExtResource( 25 )
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": true
 }
+
+[node name="up" type="ColorRect" parent="cinematic"]
+anchor_right = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="down" type="ColorRect" parent="cinematic"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="cinematic"]
+
+[node name="configurations" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 4
+visible = false
+script = ExtResource( 14 )
 
 [node name="ColorRect" type="ColorRect" parent="configurations"]
 anchor_right = 1.0

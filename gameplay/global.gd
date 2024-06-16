@@ -2,6 +2,8 @@ extends Node
 
 const optionsSavePath = "user://options.tres"
 
+onready var player :PlayerBase
+
 var options : OptionsSave
 
 var save : SaveGame
@@ -36,9 +38,6 @@ func _setterSimpleLight(value):
 func compareFloats(a : float, b : float, tolerance := 0.000001):
 	return abs(a - b) < tolerance
 
-func setupPlayer(player):
-	player.position = save.player["position"]
-
 func _setSimpleLight(value):
 	
 	options.simpleLight = value
@@ -53,7 +52,7 @@ func loadGameData(dataPath):
 	save = loadData(dataPath)
 	savePath = dataPath
 
-func saveData(dataPath, data : SaveBase):
+func saveData(dataPath, data : Resource):
 	var _1 = ResourceSaver.save(dataPath, data)
 
 func loadData(dataPath):

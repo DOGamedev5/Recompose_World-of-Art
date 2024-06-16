@@ -1,4 +1,4 @@
-class_name SaveGame extends SaveBase
+class_name SaveGame extends Resource
 
 export var played := false
 
@@ -8,9 +8,9 @@ export var player := {
 
 export var world := {
 	"currentWorld" : "sandDesert",
-	"currentTypeRoom" : "rooms",
-	"currentRoomID" : 1,
-	"currentRoomPath" : "res://worlds/paintWorld/especialRooms/room1/room1.tscn",
+	"currentTypeRoom" : "especialRooms",
+	"currentRoomID" : 0,
+	"currentRoomPath" : "res://worlds/sandDesert/especialRooms/welcome/welcome.tscn",
 	"paintWorld" : {
 		"colliseun" : false
 	}

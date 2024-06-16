@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://worlds/classes/ChangeRoom/ChangeRoom.gd"
 }, {
+"base": "AnimationPlayer",
+"class": "CutScene",
+"language": "GDScript",
+"path": "res://gameplay/classes/cinematic/cinematicPlayer.gd"
+}, {
+"base": "Resource",
+"class": "DialogText",
+"language": "GDScript",
+"path": "res://entities/classes/dialogComponent/classes/textDialog.gd"
+}, {
 "base": "Node2D",
 "class": "Door",
 "language": "GDScript",
@@ -49,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/NPCs/NPCBase.gd"
 }, {
-"base": "SaveBase",
+"base": "Resource",
 "class": "OptionsSave",
 "language": "GDScript",
 "path": "res://gameplay/MENU/optionsSave.gd"
@@ -75,11 +85,6 @@ _global_script_classes=[ {
 "path": "res://worlds/classes/roomWarp/roomWarp.gd"
 }, {
 "base": "Resource",
-"class": "SaveBase",
-"language": "GDScript",
-"path": "res://gameplay/saves/saveBase.gd"
-}, {
-"base": "SaveBase",
 "class": "SaveGame",
 "language": "GDScript",
 "path": "res://gameplay/saves/resource/saveResource.gd"
@@ -97,11 +102,13 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "dialogList",
 "language": "GDScript",
-"path": "res://entities/NPCs/classes/dialogList/dialogList.gd"
+"path": "res://entities/classes/dialogComponent/classes/dialogList.gd"
 } ]
 _global_script_class_icons={
 "AttackComponent": "",
 "ChangeRoom": "",
+"CutScene": "",
+"DialogText": "",
 "Door": "",
 "EnemyBase": "",
 "HitboxComponent": "",
@@ -113,7 +120,6 @@ _global_script_class_icons={
 "Question": "",
 "RoomClass": "",
 "RoomWarp": "",
-"SaveBase": "",
 "SaveGame": "",
 "State": "",
 "StateMachine": "",
@@ -141,6 +147,7 @@ LoadSystem="*res://gameplay/loadSystem/loadSystem.gd"
 
 window/size/width=1361
 window/size/height=736
+window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

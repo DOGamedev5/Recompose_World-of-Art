@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/alexIcon.pxo-c95318562ff7930f47776e39a4dfd385.stex"
+
+[deps]
+
+source_file="res://entities/NPCs/alex/alexIcon.pxo"
+dest_files=[ "res://.import/alexIcon.pxo-c95318562ff7930f47776e39a4dfd385.stex" ]
+
+[params]
+

@@ -11,13 +11,13 @@ func process_state():
 	if parent.onSlope() and Input.is_action_just_pressed("ui_down"):
 		return "ROLL"
 		
-	elif Input.get_axis("ui_left", "ui_right") != 0:
+	elif Input.get_axis("ui_left", "ui_right") != 0 and not parent.cinematic:
 		if Input.is_action_pressed("run") and parent.couldUncounch(true):
 			return "RUN"
 		
 		return "WALK"
 
-	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch(true):
+	elif parent.canJump and not parent.cinematic and Input.is_action_pressed("ui_jump") and parent.couldUncounch(true):
 		return "JUMP"
 	
 	elif not parent.onFloor():

@@ -4,6 +4,7 @@ onready var healthBarr = $HUD/health/TextureProgress
 onready var animationTreeEye = $HUD/eyeIcon/AnimationTree
 onready var playbackEye = animationTreeEye["parameters/playback"]
 onready var player = $"../"
+onready var cinematic := $cinematic
 
 var currentScreen := "HUD"
 

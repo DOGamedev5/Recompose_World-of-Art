@@ -76,7 +76,6 @@ func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
 		if background:
 			background.queue_free()
 		
-		
 		background = backgroundScene.instance()
 		add_child(background)
 	
@@ -89,7 +88,3 @@ func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
 	player.transition.call_deferred("transitionOut")
 	player.set_deferred("active", true)
 	player.resetParticles()
-
-
-
-	

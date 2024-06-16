@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 onready var propertiesList = {
 	"simpleLight" : $Panel/VBoxContainer/HBoxContainer/CheckButton,
@@ -14,14 +14,20 @@ func _ready():
 	propertiesList["sfx"].value = Global.options.sfxVolume
 
 func _input(_event):
-	if Input.is_action_just_pressed("menu") and $"../".currentScreen in ["HUD", "CONF"]:
+	if Input.is_action_just_pressed("menu") and $"../".currentScreen in ["HUD", "CONF", "CINE"]:
 		visible = not visible
+		
 		$"../HUD".visible = not visible
+		if $"../".player.cinematic:
+			$"../HUD".visible = false
 		
 		if visible:
 			$"../".currentScreen = "CONF"
 		else:
-			$"../".currentScreen = "HUD"
+			if $"../".player.cinematic:
+				$"../".currentScreen = "CINE"
+			else:
+				$"../".currentScreen = "HUD"
 
 func _on_SImpleLight_toggled(button_pressed):
 	Global.emit_signal("simpleLightChanged", button_pressed)

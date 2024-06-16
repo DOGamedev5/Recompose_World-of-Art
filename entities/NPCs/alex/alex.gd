@@ -12,19 +12,18 @@ var dialogs = [
 		Question.new("alex_4", ["alex_4_1", "alex_4_2"]),
 	],
 	[
-		{"name" : "Alex", "text" : "alex_5"},
-		{"name" : "Alex", "text" : "alex_6"},
 		{"name" : "Alex", "text" : "alex_7"},
-		{"name" : "Alex", "text" : "alex_8"}
+		{"name" : "Alex", "text" : "alex_8"},
+		{"name" : "Alex", "text" : "alex_9"},
 	],
 	[
-		Question.new("alex_9", ["alex_9_1", "alex_9_2"])
+		Question.new("alex_10", ["alex_10_1", "alex_10_2"])
 	], 
 	[
-		{"name" : "Alex", "text" : "alex_10"},
 		{"name" : "Alex", "text" : "alex_11"},
 		{"name" : "Alex", "text" : "alex_12"},
-		{"name" : "Alex", "text" : "alex_13"}
+		{"name" : "Alex", "text" : "alex_13"},
+		{"name" : "Alex", "text" : "alex_14"},
 	]
 ]
 
@@ -32,6 +31,11 @@ var currentDialog := 0
 
 func _ready():
 	dialog.setup(dialogs[0])
+
+func openDialog(index):
+	currentDialog = index	
+	dialog.setup(dialogs[currentDialog])
+	dialog.ativeded()
 
 func _on_dialog_dialogClosed():
 	if currentDialog < 3 and currentDialog != 1:

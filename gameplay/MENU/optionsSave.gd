@@ -1,4 +1,4 @@
-class_name OptionsSave extends SaveBase
+class_name OptionsSave extends Resource
 
 export var simpleLight = false
 export var musicVolume := 0.75

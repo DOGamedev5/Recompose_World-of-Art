@@ -27,6 +27,7 @@ extra_spacing_char = 4
 font_data = ExtResource( 4 )
 
 [node name="dialog" type="CanvasLayer"]
+layer = 3
 script = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="."]

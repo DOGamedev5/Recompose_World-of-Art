@@ -62,6 +62,7 @@ script = ExtResource( 4 )
 interactionBallonPath = NodePath("interactBallon")
 spritePath = NodePath("Alex")
 animationPath = NodePath("AnimationPlayer")
+canFlip = false
 
 [node name="Alex" type="Sprite" parent="."]
 position = Vector2( 0, -42 )

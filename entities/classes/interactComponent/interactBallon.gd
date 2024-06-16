@@ -16,9 +16,9 @@ var canInteract := false
 
 var player : PlayerBase = null
 
-signal interacted(player)
-signal exitered(player)
-signal entered(player)
+signal interacted()
+signal exitered()
+signal entered()
 
 func _ready():
 	
@@ -33,14 +33,14 @@ func _ready():
 
 func _input(_event):
 	if Input.is_action_just_pressed("interact") and canInteract:
-		emit_signal("interacted", player)
+		emit_signal("interacted")
 
 func enteredArea(area2D):
 	if not area2D.is_in_group("player"): return
 	
 	player = area2D.get_parent()
 	
-	emit_signal("entered", player)
+	emit_signal("entered")
 	
 	canInteract = true
 	arrow.visible = true
@@ -58,7 +58,7 @@ func exitedArea(area2D):
 	if not area2D.is_in_group("player"): return
 	
 	
-	emit_signal("exitered", player)
+	emit_signal("exitered")
 	player = null
 	
 	canInteract = false

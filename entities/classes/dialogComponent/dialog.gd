@@ -22,7 +22,6 @@ signal dialogClosed
 signal dialogOpened
 
 var textIndex := 0
-var actived := false
 var hasInteracted := false
 var optionID := 0
 var isQuestion := false
@@ -81,7 +80,6 @@ func ativeded():
 
 func desactiveded(Player = player):
 	tween.remove_all()
-	actived = false
 	hasInteracted = false
 	Player.moving = true
 	player = null
@@ -101,9 +99,9 @@ func desactiveded(Player = player):
 	
 	emit_signal("dialogClosed")
 	
-func interacted(Player):
+func interacted():
 	
-	player = Player
+	player = Global.player
 	
 	if isQuestion:
 		emit_signal("optionChosen", texts[textIndex].question, texts[textIndex].options[optionID])

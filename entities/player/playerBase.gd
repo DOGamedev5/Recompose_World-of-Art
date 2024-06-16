@@ -34,7 +34,7 @@ var enteredObjects := []
 var motion := Vector2.ZERO
 var realMotion := Vector2.ZERO
 var lastPosition := Vector2.ZERO
-var inCutscene := false
+var cinematic := false
 
 var canJump := true
 var coyote := true
@@ -61,6 +61,8 @@ var inputCord := {
 }
 
 func _ready():
+	Global.player = self
+	
 	lastPosition = position
 	if stateMachinePath: 
 		stateMachine = get_node(stateMachinePath)
@@ -70,20 +72,19 @@ func _physics_process(delta):
 	if not moving:
 		motion.x = 0
 	
-	
 	realMotion = ((position - lastPosition) * Engine.get_frames_per_second())
 	set_deferred("lastPosition", position)
 	
 	if not stunned and moving:
 		
-		if collideUp() > -34 or Input.is_action_pressed("ui_down"):
+		if collideUp() > -34 or (Input.is_action_pressed("ui_down") and not cinematic):
 			counched = true
 		else:
 			counched = false
 		
 		if motion.x != 0:
 			fliped = motion.x < 0
-		elif Input.get_axis("ui_left", "ui_right") and not inCutscene:
+		elif Input.get_axis("ui_left", "ui_right") and not cinematic:
 			fliped = Input.get_axis("ui_left", "ui_right") < 0
 			
 		for ray in onWallRayCast: 
@@ -114,7 +115,6 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 func flipObject(objects):
 	for obj in objects:
 		obj.position.x = obj.position.x * (1 - 2 * int(fliped)) * sign(obj.position.x)
-
 
 func resetParticles():
 	if not particles: return
@@ -162,7 +162,7 @@ func idleBase():
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
 	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
-	if inCutscene:
+	if cinematic:
 		input = 0
 
 	MotionCord = desaccelerate(MotionCord, input)
@@ -302,10 +302,11 @@ func shield():
 	shieldTimer.start()
 	animationShield.travel("shield")
 
-func setCutscene(value : bool):
-	inCutscene = value
+func setCinematic(value : bool):
+	cinematic = value
 	moving = not value
 	if value:
+		HUD.cinematic.actived()
 		motion.x = 0
 		if motion.y < 0:
 			motion.y /= 2
@@ -350,3 +351,4 @@ func hitboxExited(area):
 func shieldTimeout():
 	animationShield.travel("RESET")
 	shieldActived = false
+

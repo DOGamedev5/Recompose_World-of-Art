@@ -6,6 +6,7 @@ export(NodePath) var animationPath
 
 export var fliped := false setget setFliped
 export var canFlip := true
+export var cinematic := false
 
 var interactBallon
 var sprite
@@ -39,7 +40,7 @@ func unpause():
 	set_process(true)
 
 func _physics_process(_delta):
-	if playerNode and canFlip:
+	if playerNode and canFlip and not cinematic:
 		direction = sign(playerNode.global_position.x - global_position.x)
 		fliped = direction != 1
 	
