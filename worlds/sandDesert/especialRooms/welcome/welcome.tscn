@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://worlds/sandDesert/especialRooms/welcome/welcome.gd" type="Script" id=1]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://worlds/sandDesert/objects/caban/caban.pxo" type="Texture" id=10]
 [ext_resource path="res://entities/NPCs/alex/alex.tscn" type="PackedScene" id=11]
 [ext_resource path="res://entities/NPCs/alex/alexIcon.pxo" type="Texture" id=12]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/expression-pro-v1.1/ExpressionPro.otf" type="DynamicFontData" id=13]
+[ext_resource path="res://worlds/sandDesert/especialRooms/welcome/sprites/contract.pxo" type="Texture" id=14]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=15]
+[ext_resource path="res://entities/NPCs/gledon/gledon.tscn" type="PackedScene" id=16]
 
 [sub_resource type="TileSet" id=1]
 0/name = "caveEnter.pxo 0"
@@ -101,6 +105,57 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "hello1"
+tracks/0/type = "method"
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "_setDialog"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "hello2"
+tracks/0/type = "method"
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 2 ],
+"method": "_setDialog"
+} ]
+}
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = ExtResource( 13 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+outline_size = 2
+outline_color = Color( 0.784314, 0.886275, 0.898039, 1 )
+extra_spacing_char = 2
+font_data = ExtResource( 15 )
+
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 1 )
 doors = [ NodePath("caveEnter") ]
@@ -154,7 +209,7 @@ z_as_relative = false
 texture = ExtResource( 8 )
 
 [node name="Caban" type="Sprite" parent="."]
-position = Vector2( 1712, -124 )
+position = Vector2( 1400, -108 )
 scale = Vector2( 2, 2 )
 z_index = -2
 z_as_relative = false
@@ -163,7 +218,7 @@ hframes = 4
 frame = 3
 
 [node name="literaturePortal" parent="." instance=ExtResource( 5 )]
-position = Vector2( 2336, -160 )
+position = Vector2( 1832, -134 )
 
 [node name="alex" parent="." instance=ExtResource( 11 )]
 position = Vector2( 960, -48 )
@@ -172,8 +227,85 @@ cinematic = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hello = SubResource( 4 )
+anims/hello1 = SubResource( 10 )
+anims/hello2 = SubResource( 11 )
 script = ExtResource( 3 )
 dialogPath = NodePath("../dialog")
 
 [node name="dialog" parent="." instance=ExtResource( 4 )]
 images = [ ExtResource( 12 ) ]
+
+[node name="contract" type="CanvasLayer" parent="."]
+layer = 4
+visible = false
+
+[node name="Control" type="Control" parent="contract"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="contract/Control"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0627451, 0.0196078, 0.101961, 0.505882 )
+
+[node name="TextureRect" type="TextureRect" parent="contract/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -223.5
+margin_top = -240.0
+margin_right = 224.5
+margin_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 448, 480 )
+rect_scale = Vector2( 1e-05, 1e-05 )
+rect_pivot_offset = Vector2( 224, 240 )
+texture = ExtResource( 14 )
+expand = true
+
+[node name="LineEdit" type="LineEdit" parent="contract/Control/TextureRect"]
+margin_left = 121.0
+margin_top = 372.0
+margin_right = 408.0
+margin_bottom = 428.0
+custom_colors/selection_color = Color( 0.85098, 1, 0.611765, 1 )
+custom_colors/cursor_color = Color( 0.258824, 0.227451, 0.372549, 1 )
+custom_colors/font_color_selected = Color( 0.0392157, 0.176471, 0.129412, 1 )
+custom_colors/font_color = Color( 0.258824, 0.227451, 0.372549, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/read_only = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+max_length = 8
+selecting_enabled = false
+placeholder_text = "Name"
+placeholder_alpha = 0.406
+
+[node name="Label" type="Label" parent="contract/Control/TextureRect"]
+self_modulate = Color( 1, 1, 1, 0.803922 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -208.0
+margin_top = 243.5
+margin_right = 208.0
+margin_bottom = 278.5
+custom_colors/font_color = Color( 0.258824, 0.227451, 0.372549, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "contract"
+align = 1
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="NPCBase" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1288, -46 )
+
+[connection signal="dialogClosed" from="dialog" to="." method="_on_dialog_dialogClosed"]
+[connection signal="optionChosen" from="dialog" to="." method="_on_dialog_optionChosen"]
+[connection signal="text_entered" from="contract/Control/TextureRect/LineEdit" to="." method="_on_LineEdit_text_entered"]

@@ -16,6 +16,9 @@ func _setup(Dialogs):
 func _start():
 	Global.player.setCinematic(true)
 
+func _end():
+	Global.player.setCinematic(false)
+
 func _setDialog(index := 0):
 	if not dialog.hasInteracted:
 		dialog.setup(dialogs[index])

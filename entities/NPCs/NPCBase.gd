@@ -12,7 +12,7 @@ var interactBallon
 var sprite
 var animationNode
 
-var playerNode
+var entered := false
 
 var direction
 
@@ -33,15 +33,12 @@ func _ready():
 	var _1 = Global.connect("gamePaused", self, "pause")
 	var _2 = Global.connect("gameUnpaused", self, "unpause")
 
-func pause():
-	pass
-
 func unpause():
 	set_process(true)
 
 func _physics_process(_delta):
-	if playerNode and canFlip and not cinematic:
-		direction = sign(playerNode.global_position.x - global_position.x)
+	if entered and canFlip and not cinematic:
+		direction = sign(Global.player.global_position.x - global_position.x)
 		fliped = direction != 1
 	
 	sprite.flip_h = fliped
@@ -51,8 +48,8 @@ func setFliped(value):
 	if sprite:
 		sprite.flip_h = fliped
 
-func _playerEntered(player):
-	playerNode = player
+func _playerEntered():
+	entered = true
 
-func _playerExitered(_player):
-	playerNode = null
+func _playerExitered():
+	entered = false

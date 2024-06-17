@@ -87,7 +87,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "SaveGame",
 "language": "GDScript",
-"path": "res://gameplay/saves/resource/saveResource.gd"
+"path": "res://gameplay/saves/saveResource.gd"
 }, {
 "base": "Node",
 "class": "State",

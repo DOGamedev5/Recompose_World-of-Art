@@ -9,11 +9,11 @@ var roomData = {
 	ID = 0
 }
 
-func _on_interactBallon_entered(_player):
+func _on_interactBallon_entered():
 	animation.play("open")
 
-func _on_interactBallon_exitered(_player):
+func _on_interactBallon_exitered():
 	animation.play_backwards("open")
 
-func _on_interactBallon_interacted(_player):
+func _on_interactBallon_interacted():
 	get_parent().get_parent().loadRoom(roomData, 0, "warp")

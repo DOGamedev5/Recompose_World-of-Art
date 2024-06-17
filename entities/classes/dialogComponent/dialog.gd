@@ -68,7 +68,7 @@ func addDialog(dialog : Array):
 
 func ativeded():
 	hasInteracted = true
-	player.moving = false
+	Global.player.moving = false
 	
 	tween.interpolate_property(rect, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.3,
 	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
@@ -78,11 +78,10 @@ func ativeded():
 	
 	emit_signal("dialogOpened")
 
-func desactiveded(Player = player):
+func desactiveded():
 	tween.remove_all()
 	hasInteracted = false
-	Player.moving = true
-	player = null
+	Global.player.moving = true
 	
 	tween.interpolate_property(rect, "rect_scale", rect["rect_scale"], Vector2(0, 0), 0.4,
 	Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
@@ -103,7 +102,7 @@ func interacted():
 	
 	player = Global.player
 	
-	if isQuestion:
+	if isQuestion and currentText.percent_visible == 1:
 		emit_signal("optionChosen", texts[textIndex].question, texts[textIndex].options[optionID])
 		isQuestion = false
 	
@@ -156,7 +155,7 @@ func _setText(text):
 		else:
 			characterName.visible = false
 		
-		currentText.bbcode_text = tr(text["text"])
+		currentText.bbcode_text = tr(text["text"]).format(Global.save.player["playerProperties"])
 		
 	else:
 		reaction.visible = false
@@ -166,12 +165,12 @@ func _setText(text):
 		characterName.visible = false
 	
 	if text is String:
-		currentText.bbcode_text = tr(text)
+		currentText.bbcode_text = tr(text).format(Global.save.player["playerProperties"])
 		
 	elif text is Question:
 		isQuestion = true
 
-		currentText.bbcode_text = tr(text.question)
+		currentText.bbcode_text = tr(text.question).format(Global.save.player["playerProperties"])
 		
 		for option in text.options:
 			var newOption = button.instance()
@@ -181,8 +180,8 @@ func _setText(text):
 			newOption.updateTexture(0)
 			newOption.setSize()
 	
-	tween.interpolate_property(currentText, "percent_visible", 0, 1, (currentText.text.length() / 10) * 0.35,
+	if not text is Question:
+		tween.interpolate_property(currentText, "percent_visible", 0, 1, (currentText.text.length() / 10) * 0.35,
 	Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	
-	tween.start()
-	
+		tween.start()

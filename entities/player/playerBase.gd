@@ -312,6 +312,9 @@ func setCinematic(value : bool):
 			motion.y /= 2
 	
 		stateMachine.changeState("IDLE")
+	
+	else:
+		HUD.cinematic.desactivaded()
 
 func coyoteTimerTimeout():
 	canJump = false
