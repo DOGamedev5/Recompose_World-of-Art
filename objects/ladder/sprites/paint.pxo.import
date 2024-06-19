@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/paint.pxo-1c2cfa79df3536dcfa5d5b702244d786.stex"
+
+[deps]
+
+source_file="res://objects/ladder/sprites/paint.pxo"
+dest_files=[ "res://.import/paint.pxo-1c2cfa79df3536dcfa5d5b702244d786.stex" ]
+
+[params]
+

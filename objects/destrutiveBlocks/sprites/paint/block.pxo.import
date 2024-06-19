@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/block.pxo-4c12fcc034744f9f65b783b1184a88bf.stex"
+
+[deps]
+
+source_file="res://objects/destrutiveBlocks/sprites/paint/block.pxo"
+dest_files=[ "res://.import/block.pxo-4c12fcc034744f9f65b783b1184a88bf.stex" ]
+
+[params]
+

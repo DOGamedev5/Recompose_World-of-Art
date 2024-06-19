@@ -100,5 +100,4 @@ anims/RESET = SubResource( 4 )
 [node name="dialog" parent="." instance=ExtResource( 2 )]
 interactBallonPath = NodePath("../interactBallon")
 
-[connection signal="dialogClosed" from="dialog" to="." method="_on_dialog_dialogClosed"]
 [connection signal="optionChosen" from="dialog" to="." method="_on_dialog_optionChosen"]

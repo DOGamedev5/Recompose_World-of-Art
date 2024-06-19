@@ -72,6 +72,8 @@ func ativeded():
 	
 	tween.interpolate_property(rect, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.3,
 	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	tween.interpolate_property($Control/TextureRect, "self_modulate", Color(0,0,0,0), Color.white, 0.3,
+	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	yield(tween, "tween_all_completed")
@@ -85,6 +87,8 @@ func desactiveded():
 	
 	tween.interpolate_property(rect, "rect_scale", rect["rect_scale"], Vector2(0, 0), 0.4,
 	Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
+	tween.interpolate_property($Control/TextureRect, "self_modulate",  Color.white, Color(0,0,0,0), 0.3,
+	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	
 	if not tween.is_inside_tree():
 		yield(tween, "tree_entered")
@@ -185,3 +189,5 @@ func _setText(text):
 	Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	
 		tween.start()
+	else:
+		currentText.percent_visible = 1

@@ -44,7 +44,7 @@ height = 32.0
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 72, 40 )
 
-[node name="NPCBase" type="KinematicBody2D"]
+[node name="gledon" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 4 )
 interactionBallonPath = NodePath("interactBallon")
@@ -64,6 +64,8 @@ shape = SubResource( 3 )
 [node name="Gledon" type="Sprite" parent="."]
 position = Vector2( 0, -48 )
 scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
 texture = ExtResource( 1 )
 hframes = 4
 
@@ -76,6 +78,7 @@ areaInteractPath = NodePath("../Area2D")
 text = "E"
 
 [node name="dialog" parent="." instance=ExtResource( 3 )]
+interactBallonPath = NodePath("../interactBallon")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 1024

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://worlds/literatureArt/portal/literatureArtPortal.pxo" type="Texture" id=1]
 [ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.gd" type="Script" id=2]
@@ -39,6 +39,9 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 64, 64 )
+
 [node name="literaturePortal" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -65,8 +68,15 @@ margin_left = 0.0
 margin_top = -64.0
 margin_right = 0.0
 margin_bottom = -64.0
-areaInteractPath = NodePath("../Area2D")
+areaInteractPath = NodePath("../Area2D2")
 text = "E"
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource( 4 )
 
 [connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
 [connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]

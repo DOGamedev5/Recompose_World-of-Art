@@ -4,10 +4,11 @@ onready var dialog = $dialog
 
 var dialogs := [
 	[
-		{"name" : "Gledon", "text" : "alex_1"},
+		{"name" : "Gledon", "text" : "gledon_1"},
+		{"name" : "Gledon", "text" : "gledon_2"},
 	]
 ]
 
 
 func _ready():
-	pass # Replace with function body.
+	dialog.setup(dialogs[0])
