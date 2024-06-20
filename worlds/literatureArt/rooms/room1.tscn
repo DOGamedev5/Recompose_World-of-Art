@@ -26,12 +26,12 @@ position = Vector2( 112, -288 )
 script = ExtResource( 3 )
 
 [node name="RoomWarp2" type="Position2D" parent="."]
-position = Vector2( 1728, -384 )
+position = Vector2( 1792, -384 )
 script = ExtResource( 3 )
 fixed_Y = false
 
 [node name="ChangeRoom" type="Area2D" parent="."]
-position = Vector2( 1816, -512 )
+position = Vector2( 1872, -512 )
 script = ExtResource( 1 )
 world = "literatureArt"
 roomID = 2

@@ -5,7 +5,7 @@
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=3]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=4]
 [ext_resource path="res://worlds/paintWorld/objects/elevator/elevator.tscn" type="PackedScene" id=5]
-[ext_resource path="res://entities/doors/door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/classes/doors/door.tscn" type="PackedScene" id=6]
 
 [node name="room1" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,9 +33,9 @@ tile_data = PoolIntArray( -3080212, 0, 8, -3080211, 0, 10, -3080210, 0, 10, -308
 
 [node name="door" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1200, -112 )
-roomPath = "res://worlds/sandDesert/rooms/room1.tscn"
+roomPath = "res://worlds/sandDesert/especialRooms/welcome/welcome.tscn"
 world = "sandDesert"
-roomID = 1
+category = "especialRooms"
 frame = 1
 
 [node name="lamps" type="Node2D" parent="."]

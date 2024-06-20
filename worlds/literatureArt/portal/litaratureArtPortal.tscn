@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://worlds/literatureArt/portal/literatureArtPortal.pxo" type="Texture" id=1]
+[ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.gd" type="Script" id=2]
-[ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://worlds/literatureArt/portal/literatureArtPortal.pxo" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 288, 120 )
@@ -48,7 +48,7 @@ script = ExtResource( 2 )
 [node name="LiteratureArtPortal" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 z_index = -1
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 hframes = 6
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -63,7 +63,7 @@ shape = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 anims/open = SubResource( 3 )
 
-[node name="interactBallon" parent="." instance=ExtResource( 3 )]
+[node name="interactBallon" parent="." instance=ExtResource( 1 )]
 margin_left = 0.0
 margin_top = -64.0
 margin_right = 0.0

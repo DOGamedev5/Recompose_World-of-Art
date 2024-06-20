@@ -41,9 +41,11 @@ func _on_dialog_dialogClosed():
 		
 	elif currentHelloPart == 1 and not extended:
 		$AnimationPlayer._end()
+		Global.save.played = true
 	
 	elif currentHelloPart == 2:
 		$AnimationPlayer._end()
+		Global.save.played = true
 
 func _on_LineEdit_text_entered(new_text):
 	if not new_text: return

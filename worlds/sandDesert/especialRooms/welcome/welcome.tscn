@@ -178,7 +178,6 @@ tile_data = PoolIntArray( -2424833, 0, 8, -2490368, 0, 9, -2490367, 0, 11, -2359
 
 [node name="caveEnter" parent="." instance=ExtResource( 9 )]
 position = Vector2( 3432, -62 )
-category = "especialRooms"
 
 [node name="TileMap2" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )

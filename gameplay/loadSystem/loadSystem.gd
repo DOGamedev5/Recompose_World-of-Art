@@ -50,8 +50,8 @@ func loadScene(current, next : String, closeAfterLoad := false,currentPath := MA
 			
 			return
 
-func loadObject(object):
-	
+func loadObject(object, screen := true):
+	var label
 	var loader := ResourceLoader.load_interactive(object)
 	
 	if loader == null:
@@ -59,14 +59,15 @@ func loadObject(object):
 		printerr("failed to load")
 		return
 	
-	var label = loadSceneInstance.get_node("Control/Control/Label")
+	if screen:
+		label = loadSceneInstance.get_node("Control/Control/Label")
 	
 	while true:
 		
 		var error = loader.poll()
 		
 		if error == OK:
-			label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
+			if screen: label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
 	
 		elif error == ERR_FILE_EOF:
 			var scene = loader.get_resource()
