@@ -1,23 +1,18 @@
-tool
-
-class_name Door extends Node2D
+class_name PathBase extends Area2D
 
 export(String, FILE, "*.tscn") var roomPath
 export(String) var world = "paintWorld"
 export(int) var roomID
 export(String, "rooms", "especialRooms") var category = "rooms"
 
-export(int, 0, 1) var frame := 0 setget doorFrame
-
-export var doorID := 0
-
-onready var parent = get_parent()
+export var warpID := 0
 
 var roomData : Dictionary
 
 func _ready():
-	if not parent is RoomClass:
-		parent = parent.get_parent()
+	set_collision_layer_bit(10, true)
+	set_collision_mask_bit(0, false)
+	set_collision_layer_bit(0, false)
 	
 	if roomID != 0:
 		roomPath = "res://worlds/{world}/{category}/room{room}.tscn".format({
@@ -26,7 +21,6 @@ func _ready():
 			"room" : roomID
 		})
 	
-	
 	roomData = {
 		roomPath = roomPath,
 		world = world,
@@ -34,13 +28,5 @@ func _ready():
 		ID = roomID
 	}
 
-func doorFrame(value):
-	frame = value
-	$CaveDoor.frame = value
-
-func init(player):
-	player.global_position = position
-
-func changeRoom(_player):
-	get_parent().get_parent().loadRoom(roomData, doorID, "door")
-		
+func changeRoom():
+	get_parent().get_parent().loadRoom(roomData, warpID, "warp")

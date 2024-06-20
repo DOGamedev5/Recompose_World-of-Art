@@ -2,7 +2,7 @@
 
 [ext_resource path="res://worlds/sandDesert/objects/caveEnter/caveEnter.pxo" type="Texture" id=1]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/doors/door.gd" type="Script" id=3]
+[ext_resource path="res://worlds/classes/doors/door.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )

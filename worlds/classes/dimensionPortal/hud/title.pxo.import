@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/title.pxo-1f9047bf49f6543649b79e5d4e31095c.stex"
+
+[deps]
+
+source_file="res://worlds/classes/dimensionPortal/hud/title.pxo"
+dest_files=[ "res://.import/title.pxo-1f9047bf49f6543649b79e5d4e31095c.stex" ]
+
+[params]
+
