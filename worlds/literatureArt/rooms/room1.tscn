@@ -3,7 +3,7 @@
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=2]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=3]
-[ext_resource path="res://dimensions/literatureArt/tileset/artificialTiles.tres" type="TileSet" id=4]
+[ext_resource path="res://worlds/literatureArt/tileset/artificialTiles.tres" type="TileSet" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 152 )
@@ -26,12 +26,12 @@ position = Vector2( 112, -288 )
 script = ExtResource( 3 )
 
 [node name="RoomWarp2" type="Position2D" parent="."]
-position = Vector2( 1728, -384 )
+position = Vector2( 1792, -384 )
 script = ExtResource( 3 )
 fixed_Y = false
 
 [node name="ChangeRoom" type="Area2D" parent="."]
-position = Vector2( 1816, -512 )
+position = Vector2( 1872, -512 )
 script = ExtResource( 1 )
 world = "literatureArt"
 roomID = 2

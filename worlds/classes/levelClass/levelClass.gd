@@ -62,8 +62,9 @@ func loadSave():
 
 func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
 	
-	player.active = false
 	player.transition.transitionIn()
+	
+	yield(player.transition, "transitionedIn")
 	
 	emit_signal("changedRoom")
 	
@@ -72,19 +73,19 @@ func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
 	
 	if currentWorld != room.world:
 		currentWorld = room.world
-		var backgroundScene = load("res://worlds/{0}/background.tscn".format([currentWorld]))
+		var backgroundScene = LoadSystem.loadObject("res://worlds/{0}/background.tscn".format([currentWorld]), false)
 		if background:
 			background.queue_free()
 		
 		background = backgroundScene.instance()
 		add_child(background)
 	
-		
-	currentRoom = load(room.roomPath).instance()
+	
+	var currentRoomScene  = LoadSystem.loadObject(room.roomPath, false)
+	currentRoom = currentRoomScene.instance()
 
 	call_deferred("add_child", currentRoom)
 	currentRoom.init(player, warpID, type)
 	
 	player.transition.call_deferred("transitionOut")
-	player.set_deferred("active", true)
 	player.resetParticles()

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=2]
-[ext_resource path="res://dimensions/literatureArt/tileset/artificialTiles.tres" type="TileSet" id=3]
+[ext_resource path="res://worlds/literatureArt/tileset/artificialTiles.tres" type="TileSet" id=3]
 [ext_resource path="res://objects/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=5]
 
@@ -146,7 +146,7 @@ position = Vector2( 480, -384 )
 texture = "artificial"
 
 [node name="RoomWarp" type="Position2D" parent="."]
-position = Vector2( 80, -384 )
+position = Vector2( 0, -384 )
 script = ExtResource( 2 )
 fixed_Y = false
 
@@ -156,7 +156,7 @@ script = ExtResource( 2 )
 fixed_Y = false
 
 [node name="ChangeRoom" type="Area2D" parent="."]
-position = Vector2( -16, -544 )
+position = Vector2( -80, -544 )
 script = ExtResource( 5 )
 world = "literatureArt"
 roomID = 1
@@ -167,7 +167,7 @@ position = Vector2( -8, 16 )
 shape = SubResource( 1 )
 
 [node name="ChangeRoom2" type="Area2D" parent="."]
-position = Vector2( 2768, -240 )
+position = Vector2( 2832, -240 )
 script = ExtResource( 5 )
 world = "literatureArt"
 roomID = 3

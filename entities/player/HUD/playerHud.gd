@@ -5,6 +5,7 @@ onready var animationTreeEye = $HUD/eyeIcon/AnimationTree
 onready var playbackEye = animationTreeEye["parameters/playback"]
 onready var player = $"../"
 onready var cinematic := $cinematic
+onready var transition = $transition
 
 var currentScreen := "HUD"
 
