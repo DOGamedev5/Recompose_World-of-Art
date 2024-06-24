@@ -83,7 +83,8 @@ func ativeded():
 func desactiveded():
 	tween.remove_all()
 	hasInteracted = false
-	Global.player.moving = true
+	if not Global.player.cinematic:
+		Global.player.moving = true
 	
 	tween.interpolate_property(rect, "rect_scale", rect["rect_scale"], Vector2(0, 0), 0.4,
 	Tween.TRANS_CIRC, Tween.EASE_IN_OUT)
