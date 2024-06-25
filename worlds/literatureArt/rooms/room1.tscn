@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=2]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=3]
 [ext_resource path="res://worlds/literatureArt/tileset/artificialTiles.tres" type="TileSet" id=4]
+[ext_resource path="res://entities/savePoints/savepoint.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 152 )
@@ -39,3 +40,8 @@ roomID = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
 position = Vector2( 8, -24 )
 shape = SubResource( 1 )
+
+[node name="savePoint" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1248, -480 )
+roomId = 1
+world = "literatureArt"

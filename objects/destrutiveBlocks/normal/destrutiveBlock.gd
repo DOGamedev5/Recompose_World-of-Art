@@ -1,14 +1,9 @@
 tool
-extends KinematicBody2D
+class_name Block extends KinematicBody2D
 
 onready var particle = preload("res://objects/destrutiveBlocks/particles.tscn")
 
 export var resistence := 1 setget _resistence_set
-export(String, "artificial", "paint") var texture = "paint" setget _texture_set
-
-func _texture_set(value):
-	texture = value
-	$"%sprite".texture = load("res://objects/destrutiveBlocks/sprites/%s/block.pxo" % (texture))
 
 func _resistence_set(value):
 	var frame = clamp(value -1, 0, 1)

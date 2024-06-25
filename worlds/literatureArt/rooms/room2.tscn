@@ -3,7 +3,7 @@
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=2]
 [ext_resource path="res://worlds/literatureArt/tileset/artificialTiles.tres" type="TileSet" id=3]
-[ext_resource path="res://objects/destrutiveBlocks/destrutiveBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/destrutiveBlocks/normal/32x32/destrutiveBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -29,121 +29,93 @@ tile_data = PoolIntArray( -4980739, 0, 8, -4980738, 0, 9, -4980737, 0, 9, -50462
 
 [node name="block" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1440, -176 )
-texture = "artificial"
 
 [node name="block2" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1504, -176 )
-texture = "artificial"
 
 [node name="block3" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1568, -176 )
-texture = "artificial"
 
 [node name="block4" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1632, -176 )
-texture = "artificial"
 
 [node name="block5" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1696, -176 )
-texture = "artificial"
 
 [node name="block6" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1760, -176 )
-texture = "artificial"
 
 [node name="block7" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1824, -176 )
-texture = "artificial"
 
 [node name="block8" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1888, -176 )
 resistence = 2
-texture = "artificial"
 
 [node name="block9" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1952, -176 )
 resistence = 2
-texture = "artificial"
 
 [node name="block10" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 2016, -176 )
 resistence = 2
-texture = "artificial"
 
 [node name="block19" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1440, -240 )
-texture = "artificial"
 
 [node name="block20" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1504, -240 )
-texture = "artificial"
 
 [node name="block21" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1568, -240 )
-texture = "artificial"
 
 [node name="block22" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1632, -240 )
-texture = "artificial"
 
 [node name="block23" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1696, -240 )
-texture = "artificial"
 
 [node name="block24" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1760, -240 )
-texture = "artificial"
 
 [node name="block25" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1824, -240 )
-texture = "artificial"
 
 [node name="block26" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1888, -240 )
 resistence = 2
-texture = "artificial"
 
 [node name="block27" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 1952, -240 )
 resistence = 2
-texture = "artificial"
 
 [node name="block28" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 2016, -240 )
 resistence = 2
-texture = "artificial"
 
 [node name="block11" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 416, -384 )
-texture = "artificial"
 
 [node name="block12" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 416, -448 )
-texture = "artificial"
 
 [node name="block13" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 416, -512 )
-texture = "artificial"
 
 [node name="block14" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 416, -576 )
-texture = "artificial"
 
 [node name="block15" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 480, -576 )
-texture = "artificial"
 
 [node name="block16" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 480, -512 )
-texture = "artificial"
 
 [node name="block17" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 480, -448 )
-texture = "artificial"
 
 [node name="block18" parent="Node2D" instance=ExtResource( 4 )]
 position = Vector2( 480, -384 )
-texture = "artificial"
 
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( 0, -384 )

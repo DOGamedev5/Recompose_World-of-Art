@@ -5,7 +5,7 @@ export var roomId := 0
 export var world := "paintWorld"
 export(String, "rooms", "especialRooms") var roomType = "rooms"
 
-func saveData(_player):
+func saveData():
 	var data = Global.save
 	
 	data.player["position"] = position

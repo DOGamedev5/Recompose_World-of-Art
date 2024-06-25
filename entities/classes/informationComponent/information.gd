@@ -16,7 +16,7 @@ func _ready():
 		
 		var _1 = ballon.connect("interacted", self, "interacted")
 
-func interacted(_player):
+func interacted():
 	_setLengh()
 
 func showText(Text):

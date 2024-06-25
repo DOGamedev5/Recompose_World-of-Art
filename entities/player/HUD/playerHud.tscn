@@ -345,7 +345,6 @@ wait_time = 0.4
 one_shot = true
 
 [node name="DEBUG" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -1115,6 +1114,7 @@ rect_min_size = Vector2( 176, 72 )
 text = "player_hud_conf_exit"
 
 [connection signal="pressed" from="HUD/Control/inventoryButton" to="." method="_on_inventoryButton_pressed"]
+[connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/debugButton" to="DEBUG" method="debugButtonPressed"]
 [connection signal="visibility_changed" from="inventory" to="inventory" method="_on_inventory_visibility_changed"]
 [connection signal="pressed" from="inventory/left" to="inventory" method="_on_left_pressed"]
 [connection signal="pressed" from="inventory/right" to="inventory" method="_on_right_pressed"]
