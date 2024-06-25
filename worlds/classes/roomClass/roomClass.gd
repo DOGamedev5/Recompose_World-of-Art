@@ -9,6 +9,13 @@ export(Color) var canvasModulateColor = Color(1, 1, 1, 1)
 
 onready var canvasModulate = $"../CanvasModulate"
 
+func _init():
+	var tilemap : TileMap = TileMap.new()
+	add_child(tilemap)
+	tilemap.owner = self
+	tilemap.scale = Vector2(2, 2)
+	tilemap.cell_size = Vector2(8, 8)
+
 func _ready():
 	call_deferred("_simplesLightToggled", Global.options.simpleLight)
 	
