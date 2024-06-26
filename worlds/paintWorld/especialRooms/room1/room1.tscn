@@ -34,7 +34,7 @@ tile_data = PoolIntArray( -3080212, 0, 8, -3080211, 0, 10, -3080210, 0, 10, -308
 [node name="door" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1200, -112 )
 roomPath = "res://worlds/sandDesert/especialRooms/welcome/welcome.tscn"
-world = "sandDesert"
+world = "res://worlds/sandDesert"
 category = "especialRooms"
 frame = 1
 

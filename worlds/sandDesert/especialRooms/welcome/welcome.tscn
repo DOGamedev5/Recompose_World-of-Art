@@ -4,7 +4,7 @@
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=2]
 [ext_resource path="res://gameplay/classes/cinematic/cinematicPlayer.gd" type="Script" id=3]
 [ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://dimensions/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://worlds/sandDesert/tilesets/sandDesert.tres" type="TileSet" id=6]
 [ext_resource path="res://worlds/sandDesert/objects/caveEnter/caveEnter.pxo" type="Texture" id=7]
 [ext_resource path="res://worlds/sandDesert/objects/car/car.pxo" type="Texture" id=8]
@@ -188,6 +188,7 @@ setup = true
 
 [node name="caveEnter" parent="." instance=ExtResource( 9 )]
 position = Vector2( 3432, -62 )
+world = "res://worlds/paintWorld/"
 
 [node name="TileMap2" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )

@@ -8,6 +8,7 @@ export var doorID := 0
 onready var parent = get_parent()
 
 func _ready():
+	roomData.warpType = "door"
 	if not parent is RoomClass:
 		parent = parent.get_parent()
 	
@@ -19,5 +20,5 @@ func init(player):
 	player.global_position = position
 
 func changeRoom():
-	get_parent().get_parent().loadRoom(roomData, doorID, "door")
+	get_parent().get_parent().loadRoom(roomData)
 		

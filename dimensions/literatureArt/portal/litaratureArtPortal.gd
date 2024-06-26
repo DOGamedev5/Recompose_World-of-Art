@@ -1,9 +1,9 @@
-extends Node
+extends DimensionPortal
 
 onready var animation = $AnimationPlayer
 
-var roomData = {
-	roomPath = "res://worlds/literatureArt/rooms/room1.tscn",
+var rroomData = {
+	roomPath = "res://dimensions/literatureArt/rooms/room1.tscn",
 	world = "literatureArt",
 	category = "rooms",
 	ID = 0
@@ -16,4 +16,4 @@ func _on_interactBallon_exitered():
 	animation.play_backwards("open")
 
 func _on_interactBallon_interacted():
-	get_parent().get_parent().loadRoom(roomData, 0, "warp")
+	get_parent().get_parent().loadRoom(roomData)
