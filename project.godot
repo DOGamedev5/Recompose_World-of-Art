@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://gameplay/classes/cinematic/cinematicPlayer.gd"
 }, {
 "base": "PathBase",
+"class": "DimensionPortal",
+"language": "GDScript",
+"path": "res://worlds/classes/dimensionPortal/dimensionPortalClass.gd"
+}, {
+"base": "PathBase",
 "class": "Door",
 "language": "GDScript",
 "path": "res://worlds/classes/doors/door.gd"
@@ -84,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://worlds/classes/roomClass/roomClass.gd"
 }, {
+"base": "Resource",
+"class": "RoomData",
+"language": "GDScript",
+"path": "res://worlds/classes/pathBase/RoomData.gd"
+}, {
 "base": "Position2D",
 "class": "RoomWarp",
 "language": "GDScript",
@@ -108,17 +118,13 @@ _global_script_classes=[ {
 "class": "TileProps",
 "language": "GDScript",
 "path": "res://worlds/classes/tileProps/tileProps.gd"
-}, {
-"base": "PathBase",
-"class": "dimensionPortal",
-"language": "GDScript",
-"path": "res://worlds/classes/dimensionPortal/dimensionPortalClass.gd"
 } ]
 _global_script_class_icons={
 "AttackComponent": "",
 "Block": "",
 "ChangeRoom": "",
 "CutScene": "",
+"DimensionPortal": "",
 "Door": "",
 "EnemyBase": "",
 "HitboxComponent": "",
@@ -130,12 +136,12 @@ _global_script_class_icons={
 "PlayerBase": "",
 "Question": "",
 "RoomClass": "",
+"RoomData": "",
 "RoomWarp": "",
 "SaveGame": "",
 "State": "",
 "StateMachine": "",
-"TileProps": "",
-"dimensionPortal": ""
+"TileProps": ""
 }
 
 [application]

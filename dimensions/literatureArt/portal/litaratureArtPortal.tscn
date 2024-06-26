@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=1]
-[ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.gd" type="Script" id=2]
-[ext_resource path="res://worlds/literatureArt/portal/literatureArtPortal.pxo" type="Texture" id=3]
+[ext_resource path="res://dimensions/literatureArt/portal/litaratureArtPortal.gd" type="Script" id=2]
+[ext_resource path="res://dimensions/literatureArt/portal/literatureArtPortal.pxo" type="Texture" id=3]
+[ext_resource path="res://worlds/classes/dimensionPortal/hud/hudPortal.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 64, 64 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 288, 120 )
@@ -39,11 +43,14 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 64, 64 )
-
-[node name="literaturePortal" type="Node2D"]
+[node name="literaturePortal" type="Area2D"]
 script = ExtResource( 2 )
+world = "res://dimensions/literatureArt"
+roomID = 1
+hudPortalPath = NodePath("hud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
 
 [node name="LiteratureArtPortal" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
@@ -63,20 +70,22 @@ shape = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 anims/open = SubResource( 3 )
 
+[node name="hud" parent="." instance=ExtResource( 4 )]
+visible = true
+margin_top = -83.0
+margin_bottom = -83.0
+interactBallonPath = NodePath("../interactBallon")
+textName = "LiteratureArt"
+
 [node name="interactBallon" parent="." instance=ExtResource( 1 )]
+visible = false
 margin_left = 0.0
-margin_top = -64.0
+margin_top = -107.0
 margin_right = 0.0
-margin_bottom = -64.0
-areaInteractPath = NodePath("../Area2D2")
+margin_bottom = -107.0
+areaInteractPath = NodePath("..")
 text = "E"
-
-[node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 1024
-collision_mask = 1024
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-shape = SubResource( 4 )
+showArroy = false
 
 [connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
 [connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]

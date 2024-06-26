@@ -30,21 +30,14 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 func loadSave():
 	var room : String
 	
-	if Global.save.world["currentRoomID"] != 0:
-		room = "res://worlds/{0}/{1}/room{2}.tscn".format([
-			Global.save.world["currentWorld"],
-			Global.save.world["currentTypeRoom"],
-			Global.save.world["currentRoomID"]
-		])
 	
-	else:
-		room = Global.save.world["currentRoomPath"]
+	room = Global.currentRoom.roomPath
 	
 	player.active = false
 	
 	var currentRoomScene = LoadSystem.loadObject(room)
 	
-	var backgroundScene = LoadSystem.loadObject("res://worlds/{0}/background.tscn".format([Global.save.world["currentWorld"]]))
+	var backgroundScene = LoadSystem.loadObject("{0}/background.tscn".format([Global.currentRoom.world]))
 	
 	background = backgroundScene.instance()
 	currentRoom = currentRoomScene.instance()
@@ -60,7 +53,7 @@ func loadSave():
 	LoadSystem.closeLoad()
 
 
-func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
+func loadRoom(room : RoomData):
 	
 	player.transition.transitionIn()
 	
@@ -71,9 +64,14 @@ func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
 	if currentRoom:
 		currentRoom.queue_free()
 	
+	Global.currentRoom = room
+	
 	if currentWorld != room.world:
+		
 		currentWorld = room.world
-		var backgroundScene = LoadSystem.loadObject("res://worlds/{0}/background.tscn".format([currentWorld]), false)
+		
+		var backgroundScene = LoadSystem.loadObject("{0}/background.tscn".format([room.world]), false)
+		
 		if background:
 			background.queue_free()
 		
@@ -85,7 +83,7 @@ func loadRoom(room : Dictionary, warpID := 0, type := "warp"):
 	currentRoom = currentRoomScene.instance()
 
 	call_deferred("add_child", currentRoom)
-	currentRoom.init(player, warpID, type)
+	currentRoom.init(player, room.warpID, room.warpType)
 	
 	player.transition.call_deferred("transitionOut")
 	player.resetParticles()

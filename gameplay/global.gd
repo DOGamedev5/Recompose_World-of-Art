@@ -4,13 +4,13 @@ const optionsSavePath = "user://options.tres"
 
 onready var player :PlayerBase
 
-
 var options : OptionsSave
 
 var save : SaveGame
 var savePath : String
 var _file := File.new()
 var gamePaused := false setget setGamePause
+var currentRoom : RoomData
 
 signal simpleLightChanged(value)
 signal gamePaused
@@ -51,6 +51,7 @@ func saveGameData(dataPath, data : SaveGame):
 
 func loadGameData(dataPath):
 	save = loadData(dataPath)
+	currentRoom = save.world["currentRoom"]
 	savePath = dataPath
 
 func saveData(dataPath, data : Resource):

@@ -4,3 +4,5 @@
 
 [node name="PathBase" type="Area2D"]
 script = ExtResource( 1 )
+world = "res://dimensions/literatureArt"
+roomID = 1
