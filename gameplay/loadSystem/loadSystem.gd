@@ -37,6 +37,7 @@ func loadScene(current, next : String, closeAfterLoad := false,currentPath := MA
 			var scene = loader.get_resource().instance()
 			emit_signal("finishedLoad")
 			get_tree().get_root().call_deferred("add_child", scene)
+			get_tree().set_deferred("current_scene", scene)
 			
 			if closeAfterLoad:
 				closeLoad()

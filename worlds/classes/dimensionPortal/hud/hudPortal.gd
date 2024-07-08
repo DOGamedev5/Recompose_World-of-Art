@@ -28,6 +28,8 @@ func entered():
 	tween.start()
 
 func exitered():
+	if not tween.is_inside_tree(): yield(tween, "tree_entered")
+	
 	tween.interpolate_property(self, "rect_scale", rect_scale, Vector2(0, 0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween.start()
 	

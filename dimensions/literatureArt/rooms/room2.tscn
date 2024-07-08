@@ -130,7 +130,7 @@ fixed_Y = false
 [node name="ChangeRoom" type="Area2D" parent="."]
 position = Vector2( -80, -544 )
 script = ExtResource( 5 )
-world = "literatureArt"
+world = "res://dimensions/literatureArt"
 roomID = 1
 warpID = 1
 
@@ -141,7 +141,7 @@ shape = SubResource( 1 )
 [node name="ChangeRoom2" type="Area2D" parent="."]
 position = Vector2( 2832, -240 )
 script = ExtResource( 5 )
-world = "literatureArt"
+world = "res://dimensions/literatureArt"
 roomID = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom2"]

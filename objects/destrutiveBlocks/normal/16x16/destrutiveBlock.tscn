@@ -12,6 +12,7 @@ extents = Vector2( 16, 16 )
 
 [node name="block" type="KinematicBody2D" groups=["destrutive"]]
 script = ExtResource( 3 )
+particlesAmount = 1
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 1.43051e-06, -16 )

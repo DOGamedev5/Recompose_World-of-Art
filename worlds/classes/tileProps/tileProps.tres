@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=2]
 
-[ext_resource path="res://objects/ladder/sprites/paint.pxo" type="Texture" id=1]
+[ext_resource path="res://objects/ladder/sprites/sandDesert.pxo" type="Texture" id=1]
 [ext_resource path="res://objects/destrutiveBlocks/normal/16x16/block16.pxo" type="Texture" id=2]
 
 [sub_resource type="StreamTexture" id=1]

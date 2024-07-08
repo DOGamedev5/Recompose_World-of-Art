@@ -4,9 +4,11 @@ onready var part1 = $CPUParticles2D
 onready var part2 = $CPUParticles2D2
 
 export var resistence := 1
+export var particlesAmount := 3
 
 func _ready():
-	
+	part1.amount = particlesAmount + 1
+	part2.amount = particlesAmount
 	
 	part1.texture["region"].position.x = min(16 * resistence - 16, 16)
 	part2.texture["region"].position.x = min(16 * resistence - 16, 16)

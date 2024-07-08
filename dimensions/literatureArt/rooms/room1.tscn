@@ -34,7 +34,7 @@ fixed_Y = false
 [node name="ChangeRoom" type="Area2D" parent="."]
 position = Vector2( 1872, -512 )
 script = ExtResource( 1 )
-world = "literatureArt"
+world = "res://dimensions/literatureArt"
 roomID = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
@@ -43,5 +43,3 @@ shape = SubResource( 1 )
 
 [node name="savePoint" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1248, -480 )
-roomId = 1
-world = "literatureArt"
