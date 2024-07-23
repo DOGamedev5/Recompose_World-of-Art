@@ -2,6 +2,7 @@ class_name RoomClass extends Node2D
 
 export(Array, NodePath) var warp = []
 export(Array, NodePath) var doors = []
+export(Array, NodePath) var tubes = []
 
 export var limitsMin := Vector2(-10000000, -10000000)
 export var limitsMax := Vector2(10000000, 10000000)
@@ -35,7 +36,10 @@ func init(player, warpID, type := "warp"):
 	
 	if type == "warp":
 		path = warp[warpID]
-	else:
+	elif type == "door":
 		path = doors[warpID]
+	else:
+		path = tubes[warpID]
+	
 	
 	get_node(path).init(player)

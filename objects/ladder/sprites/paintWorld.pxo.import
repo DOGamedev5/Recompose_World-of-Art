@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/paintWorld.pxo-cacc313869c9e04714d7d438d0e301c4.stex"
+
+[deps]
+
+source_file="res://objects/ladder/sprites/paintWorld.pxo"
+dest_files=[ "res://.import/paintWorld.pxo-cacc313869c9e04714d7d438d0e301c4.stex" ]
+
+[params]
+

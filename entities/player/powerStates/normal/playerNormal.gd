@@ -36,7 +36,7 @@ onready var stepSFX = [
 func _ready():
 	
 	collisionShapes[0].shape.radius = 16
-	collisionShapes[0].shape.height = 24
+	collisionShapes[0].shape.height = 23
 	collisionShapes[1].shape.radius = 15
 	
 func _physics_process(_delta):

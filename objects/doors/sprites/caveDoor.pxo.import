@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/caveDoor.pxo-8df4b00657d44f7c79abc50b69cd8d8a.stex"
+
+[deps]
+
+source_file="res://objects/doors/sprites/caveDoor.pxo"
+dest_files=[ "res://.import/caveDoor.pxo-8df4b00657d44f7c79abc50b69cd8d8a.stex" ]
+
+[params]
+

@@ -42,10 +42,9 @@ particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="RectangleShape2D" id=87]
-resource_local_to_scene = true
-custom_solver_bias = 1.0
-extents = Vector2( 16, 28 )
+[sub_resource type="CapsuleShape2D" id=336]
+radius = 16.0
+height = 23.0
 
 [sub_resource type="Animation" id=122]
 length = 0.001
@@ -1776,7 +1775,7 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="14"]
 position = Vector2( 0, -28 )
-shape = SubResource( 87 )
+shape = SubResource( 336 )
 
 [node name="speedAnimation" type="AnimationPlayer" parent="." index="15"]
 root_node = NodePath("../CollisionShape2D")

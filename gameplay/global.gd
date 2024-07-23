@@ -11,6 +11,7 @@ var savePath : String
 var _file := File.new()
 var gamePaused := false setget setGamePause
 var currentRoom : RoomData
+var world : LevelClass
 
 signal simpleLightChanged(value)
 signal gamePaused

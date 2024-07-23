@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://worlds/classes/doors/sprites/caveDoor.pxo" type="Texture" id=1]
-[ext_resource path="res://worlds/classes/doors/door.gd" type="Script" id=2]
+[ext_resource path="res://objects/doors/sprites/caveDoor.pxo" type="Texture" id=1]
+[ext_resource path="res://objects/doors/door.gd" type="Script" id=2]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -33,4 +33,4 @@ areaInteractPath = NodePath("..")
 text = "E"
 showArroy = false
 
-[connection signal="interacted" from="interactBallon" to="." method="changeRoom"]
+[connection signal="interacted" from="interactBallon" to="." method="interacted"]

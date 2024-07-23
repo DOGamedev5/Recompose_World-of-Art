@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var debugPanel := false
 onready var player = $"../../"
@@ -13,8 +13,12 @@ onready var proprietyLabels := {
 	"FPS" : $PanelContainer/VBoxContainer/FPS
 }
 
+var selectedWorld : String
+
 func _ready():
 	$PanelContainer/VBoxContainer/simpleLight.pressed = Global.options.simpleLight
+	$PanelContainer/VBoxContainer/HBoxContainer2/ToolButton.add_item("rooms", 0)
+	$PanelContainer/VBoxContainer/HBoxContainer2/ToolButton.add_item("especialRooms", 1)
 
 func _input(_event):
 	if Input.is_action_just_pressed("Debug"):
@@ -52,3 +56,16 @@ func debugButtonPressed():
 func simpleLightToggled():
 	var value = $PanelContainer/VBoxContainer/simpleLight.pressed
 	Global.emit_signal("simpleLightChanged", value)
+
+func _on_room_pressed():
+	$worldSelect.popup()
+
+func _on_worldSelect_dir_selected(dir):
+	selectedWorld = dir
+	$PanelContainer/VBoxContainer/currentWorld.text = "current World: " + dir
+
+func _on_go_to_room_pressed():
+	var roomID = $PanelContainer/VBoxContainer/HBoxContainer/SpinBox.value
+	var category = $PanelContainer/VBoxContainer/HBoxContainer2/ToolButton.text
+	var room := RoomData.new(roomID, selectedWorld, category, "", 0, "warp", true)
+	Global.world.loadRoom(room)

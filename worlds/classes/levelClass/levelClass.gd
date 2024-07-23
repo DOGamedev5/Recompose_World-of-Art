@@ -13,7 +13,7 @@ var currentWorld := "sandDesert"
 var background
 
 func _ready():
-	
+	Global.world = self
 	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/normal/playerNormal.tscn")
 	
 	player = playerScene.instance()

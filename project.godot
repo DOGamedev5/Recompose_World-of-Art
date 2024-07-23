@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "PathBase",
 "class": "Door",
 "language": "GDScript",
-"path": "res://worlds/classes/doors/door.gd"
+"path": "res://objects/doors/door.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "EnemyBase",
