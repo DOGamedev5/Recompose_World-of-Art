@@ -10,7 +10,7 @@
 [ext_resource path="res://entities/NPCs/iront/iront.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=10]
-[ext_resource path="res://entities/savePoints/savepoint.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/savePoints/savepoint.tscn" type="PackedScene" id=11]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]

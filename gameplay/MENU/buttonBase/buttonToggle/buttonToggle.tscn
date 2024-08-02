@@ -38,5 +38,3 @@ texture = SubResource( 3 )
 expand = true
 
 [node name="Tween" type="Tween" parent="."]
-
-[connection signal="toggled" from="." to="." method="_on_CheckButton_toggled"]

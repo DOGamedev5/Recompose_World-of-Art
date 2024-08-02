@@ -209,14 +209,14 @@ font_data = ExtResource( 9 )
 [sub_resource type="DynamicFont" id=29]
 size = 32
 outline_size = 2
-outline_color = Color( 0.709804, 0.556863, 0.392157, 1 )
+outline_color = Color( 0.403922, 0.592157, 0.529412, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=33]
 size = 32
 outline_size = 2
-outline_color = Color( 0.709804, 0.556863, 0.392157, 1 )
+outline_color = Color( 0.403922, 0.592157, 0.529412, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 11 )
 
@@ -975,7 +975,6 @@ color = Color( 0, 0, 0, 1 )
 [node name="configurations" type="CanvasLayer" parent="."]
 pause_mode = 2
 layer = 5
-visible = false
 script = ExtResource( 14 )
 
 [node name="ColorRect" type="ColorRect" parent="configurations"]
@@ -1029,48 +1028,67 @@ margin_bottom = 68.0
 alignment = 1
 
 [node name="Label2" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer"]
-margin_left = 124.0
 margin_top = 4.0
-margin_right = 264.0
+margin_right = 452.0
 margin_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
 custom_fonts/font = SubResource( 29 )
 text = "mn_opt_sl"
 valign = 1
 
-[node name="VSeparator" type="VSeparator" parent="configurations/Panel/VBoxContainer/HBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 268.0
-margin_right = 328.0
-margin_bottom = 34.0
-custom_constants/separation = 60
-
 [node name="CheckButton" parent="configurations/Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
-margin_left = 332.0
-margin_right = 384.0
+margin_left = 456.0
+margin_right = 508.0
+align = 2
+icon_align = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="configurations/Panel/VBoxContainer"]
+margin_top = 72.0
+margin_right = 508.0
+margin_bottom = 106.0
+alignment = 1
+
+[node name="Label2" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer2"]
+margin_top = 4.0
+margin_right = 452.0
+margin_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 29 )
+text = "use Thread Lights"
+valign = 1
+
+[node name="CheckButton" parent="configurations/Panel/VBoxContainer/HBoxContainer2" instance=ExtResource( 12 )]
+margin_left = 456.0
+margin_right = 508.0
 align = 2
 icon_align = 2
 
 [node name="HSeparator2" type="HSeparator" parent="configurations/Panel/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 72.0
+margin_top = 110.0
 margin_right = 508.0
-margin_bottom = 87.0
+margin_bottom = 125.0
 custom_constants/separation = 15
 
 [node name="Label3" type="Label" parent="configurations/Panel/VBoxContainer"]
-margin_top = 91.0
+margin_top = 129.0
 margin_right = 508.0
-margin_bottom = 117.0
+margin_bottom = 155.0
 custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
 custom_fonts/font = SubResource( 33 )
 text = "mn_opt_music"
 valign = 1
 
 [node name="music" type="HSlider" parent="configurations/Panel/VBoxContainer"]
-margin_top = 121.0
+margin_top = 159.0
 margin_right = 508.0
-margin_bottom = 139.0
+margin_bottom = 177.0
 custom_icons/grabber_highlight = SubResource( 34 )
 custom_icons/grabber = SubResource( 34 )
 custom_styles/slider = SubResource( 35 )
@@ -1093,24 +1111,24 @@ patch_margin_bottom = 6
 
 [node name="HSeparator3" type="HSeparator" parent="configurations/Panel/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 143.0
+margin_top = 181.0
 margin_right = 508.0
-margin_bottom = 158.0
+margin_bottom = 196.0
 custom_constants/separation = 15
 
 [node name="Label4" type="Label" parent="configurations/Panel/VBoxContainer"]
-margin_top = 162.0
+margin_top = 200.0
 margin_right = 508.0
-margin_bottom = 188.0
+margin_bottom = 226.0
 custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
 custom_fonts/font = SubResource( 33 )
 text = "mn_opt_sfx"
 valign = 1
 
 [node name="sound" type="HSlider" parent="configurations/Panel/VBoxContainer"]
-margin_top = 192.0
+margin_top = 230.0
 margin_right = 508.0
-margin_bottom = 210.0
+margin_bottom = 248.0
 custom_icons/grabber_highlight = SubResource( 34 )
 custom_icons/grabber = SubResource( 34 )
 custom_styles/slider = SubResource( 35 )
@@ -1187,6 +1205,7 @@ text = "player_hud_conf_exit"
 [connection signal="pressed" from="inventory/right" to="inventory" method="_on_right_pressed"]
 [connection signal="visibility_changed" from="configurations" to="configurations" method="_on_configurations_visibility_changed"]
 [connection signal="toggled" from="configurations/Panel/VBoxContainer/HBoxContainer/CheckButton" to="configurations" method="_on_SImpleLight_toggled"]
+[connection signal="toggled" from="configurations/Panel/VBoxContainer/HBoxContainer2/CheckButton" to="configurations" method="_on_ThreadLight_toggled"]
 [connection signal="drag_ended" from="configurations/Panel/VBoxContainer/music" to="configurations" method="_on_drag_ended"]
 [connection signal="value_changed" from="configurations/Panel/VBoxContainer/music" to="configurations" method="_on_music_value_changed"]
 [connection signal="drag_ended" from="configurations/Panel/VBoxContainer/sound" to="configurations" method="_on_drag_ended"]

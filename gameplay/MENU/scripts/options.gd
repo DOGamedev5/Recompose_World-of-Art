@@ -12,15 +12,10 @@ onready var slides := {
 	sfx = $Panel/VBoxContainer/sound
 }
 
-
-
 var current := false
 
 func _ready():
-	if not Global.saveExist(Global.optionsSavePath):
-		Global.saveData(Global.optionsSavePath, OptionsSave.new())
 	
-	Global.options = Global.loadData(Global.optionsSavePath)
 	
 	buttons.simpleLight.pressed = Global.options.simpleLight
 	

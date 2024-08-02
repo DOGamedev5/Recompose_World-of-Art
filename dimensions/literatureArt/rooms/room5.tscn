@@ -16,7 +16,7 @@ extents = Vector2( 44, 168 )
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 2 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
-tubes = [ NodePath("tube"), NodePath("tube2") ]
+tubes = [ NodePath("tube"), NodePath("") ]
 limitsMin = Vector2( 0, -1424 )
 limitsMax = Vector2( 6640, 616 )
 
@@ -59,14 +59,8 @@ fixed_Y = false
 [node name="tube" parent="." instance=ExtResource( 1 )]
 position = Vector2( 6104, -368 )
 world = "res://dimensions/literatureArt"
-roomID = 5
-warpID = 1
+roomID = 6
 direction = 0
-
-[node name="tube2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 536, -336 )
-world = "res://dimensions/literatureArt"
-roomID = 5
 
 [node name="blocks" type="Node2D" parent="."]
 

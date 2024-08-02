@@ -9,17 +9,30 @@ var options : OptionsSave
 var save : SaveGame
 var savePath : String
 var _file := File.new()
+var _dir := Directory.new()
 var gamePaused := false setget setGamePause
 var currentRoom : RoomData
 var world : LevelClass
+var lightThread : Thread
 
 signal simpleLightChanged(value)
 signal gamePaused
 signal gameUnpaused
+signal threadIsReady
+signal threadLightChanged(value)
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
 	var _1 = connect("simpleLightChanged", self, "_setSimpleLight")	
+	if not saveExist(optionsSavePath):
+		saveData(optionsSavePath, OptionsSave.new())
+	
+	options = loadData(Global.optionsSavePath)
+	
+	if options.useThreadForLights:
+		lightThread = Thread.new()
+		emit_signal("threadIsReady")
+	
 
 func _input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
@@ -52,7 +65,9 @@ func saveGameData(dataPath, data : SaveGame):
 
 func loadGameData(dataPath):
 	save = loadData(dataPath)
+	
 	currentRoom = save.world["currentRoom"]
+	
 	savePath = dataPath
 
 func saveData(dataPath, data : Resource):

@@ -3,6 +3,7 @@ extends Node
 
 export var fliped := false setget _setFliped
 export(NodePath) var visiblility
+export(Vector2) var lightPosition
 
 func _ready():
 #	var _1 = connect("script_changed", self, "scriptChanged")
@@ -13,6 +14,11 @@ func _ready():
 		var _3 = visibily.connect("screen_exited", self, "desative")
 	
 	var _4 = Global.connect("simpleLightChanged", self, "_toggledSimpleLight")
+	
+	if Global.options.useThreadForLights:
+		if Global.lightThread:
+			print("rodolfo")
+		
 	
 	_toggledSimpleLight(Global.options.simpleLight)
 

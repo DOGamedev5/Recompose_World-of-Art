@@ -30,7 +30,6 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 func loadSave():
 	var room : String
 	
-	
 	room = Global.currentRoom.roomPath
 	
 	player.active = false

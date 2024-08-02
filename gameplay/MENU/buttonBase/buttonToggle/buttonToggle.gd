@@ -7,6 +7,8 @@ export var active = true
 		
 		
 func _ready():
+	var _1 = connect("toggled", self, "_on_CheckButton_toggled")
+	
 	if pressed:
 		pressedTween()
 	else:
@@ -33,7 +35,7 @@ func pressedTween():
 	tween.start()
 
 
-func _on_CheckButton_toggled(button_pressed):
+func _on_CheckButton_toggled(button_pressed = pressed):
 	if not active: return
 	if button_pressed:
 		pressedTween()

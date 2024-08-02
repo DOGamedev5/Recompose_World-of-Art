@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/savePointPaint.pxo-077ef831023c66d2ca237af2ecaa6ada.stex"
+
+[deps]
+
+source_file="res://objects/savePoints/sprites/savePointPaint.pxo"
+dest_files=[ "res://.import/savePointPaint.pxo-077ef831023c66d2ca237af2ecaa6ada.stex" ]
+
+[params]
+
