@@ -2,7 +2,6 @@ extends CanvasLayer
 
 onready var propertiesList = {
 	"simpleLight" : $Panel/VBoxContainer/HBoxContainer/CheckButton,
-	"threadLight" : $Panel/VBoxContainer/HBoxContainer2/CheckButton,
 	"music" : $Panel/VBoxContainer/music,
 	"sfx" : $Panel/VBoxContainer/sound
 }
@@ -12,8 +11,6 @@ func _ready():
 	
 	propertiesList["simpleLight"].pressed = Global.options.simpleLight
 	propertiesList["simpleLight"]._on_CheckButton_toggled()
-	propertiesList["threadLight"].pressed = Global.options.useThreadForLights
-	propertiesList["threadLight"]._on_CheckButton_toggled()
 	propertiesList["music"].value = Global.options.musicVolume
 	propertiesList["sfx"].value = Global.options.sfxVolume
 
@@ -62,6 +59,3 @@ func _on_sound_value_changed(value):
 func _on_drag_ended(_value_changed):
 	Global.saveData(Global.optionsSavePath, Global.options)
 
-func _on_ThreadLight_toggled(button_pressed):
-	Global.emit_signal("threadLightChanged", button_pressed)
-	Global.saveData(Global.optionsSavePath, Global.options)

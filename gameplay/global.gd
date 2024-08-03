@@ -18,16 +18,22 @@ var lightThread : Thread
 signal simpleLightChanged(value)
 signal gamePaused
 signal gameUnpaused
+#
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
+	var _1v = connect("simpleLightChanged", self, "_setSimpleLight")
+	
 	if not _dir.dir_exists("user://userData"):
 		var _1 = _dir.make_dir("user://userData")
 	
 	if not _dir.dir_exists("user://userData/saves"):
 		var _1 = _dir.make_dir("user://userData/saves")
 		
-	
+	if not saveExist(optionsSavePath):
+		saveData(optionsSavePath, OptionsSave.new())
+		
+	options = loadData(Global.optionsSavePath)
 	
 	var _1 = connect("simpleLightChanged", self, "_setSimpleLight")	
 	if not saveExist(optionsSavePath):
@@ -35,7 +41,6 @@ func _ready():
 	
 	options = loadData(Global.optionsSavePath)
 	
-
 func _input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen
