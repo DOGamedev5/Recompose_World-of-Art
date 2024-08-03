@@ -18,20 +18,22 @@ var lightThread : Thread
 signal simpleLightChanged(value)
 signal gamePaused
 signal gameUnpaused
-signal threadIsReady
-signal threadLightChanged(value)
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
+	if not _dir.dir_exists("user://userData"):
+		var _1 = _dir.make_dir("user://userData")
+	
+	if not _dir.dir_exists("user://userData/saves"):
+		var _1 = _dir.make_dir("user://userData/saves")
+		
+	
+	
 	var _1 = connect("simpleLightChanged", self, "_setSimpleLight")	
 	if not saveExist(optionsSavePath):
 		saveData(optionsSavePath, OptionsSave.new())
 	
 	options = loadData(Global.optionsSavePath)
-	
-	if options.useThreadForLights:
-		lightThread = Thread.new()
-		emit_signal("threadIsReady")
 	
 
 func _input(_event):

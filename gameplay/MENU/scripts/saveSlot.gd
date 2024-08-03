@@ -2,7 +2,7 @@ extends Node
 
 export var saveID := 1
 
-const dirSavePath = "user://save%d"
+const dirSavePath = "user://userData/saves/save%d/"
 
 onready var tween = $Tween
 onready var buttons := [$VBoxContainer/play, $VBoxContainer/erase]
@@ -11,13 +11,17 @@ export var menuPath : NodePath
 onready var menu = get_node(menuPath)
 
 var save
-var savePath
+var savePath : String
 
 func _ready():
+	savePath = dirSavePath % saveID
 	
-	savePath = "user://save%d.tres" % saveID
-	if not Global.saveExist(savePath):
-		Global.saveGameData(savePath, SaveGame.new())
+	if not Global._dir.dir_exists(savePath):
+		Global._dir.make_dir(savePath)
+	
+	
+	if not Global.saveExist(savePath + "save.tres"):
+		Global.saveGameData(savePath + "save.tres", SaveGame.new())
 	
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	
