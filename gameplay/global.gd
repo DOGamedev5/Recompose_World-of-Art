@@ -18,24 +18,23 @@ var lightThread : Thread
 signal simpleLightChanged(value)
 signal gamePaused
 signal gameUnpaused
-#
+
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
-	var _1v = connect("simpleLightChanged", self, "_setSimpleLight")
+	var _1 = connect("simpleLightChanged", self, "_setSimpleLight")
 	
 	if not _dir.dir_exists("user://userData"):
-		var _1 = _dir.make_dir("user://userData")
+		var _2 = _dir.make_dir("user://userData")
 	
 	if not _dir.dir_exists("user://userData/saves"):
-		var _1 = _dir.make_dir("user://userData/saves")
+		var _2 = _dir.make_dir("user://userData/saves")
 		
 	if not saveExist(optionsSavePath):
 		saveData(optionsSavePath, OptionsSave.new())
 		
 	options = loadData(Global.optionsSavePath)
 	
-	var _1 = connect("simpleLightChanged", self, "_setSimpleLight")	
 	if not saveExist(optionsSavePath):
 		saveData(optionsSavePath, OptionsSave.new())
 	
@@ -67,15 +66,16 @@ func _setSimpleLight(value):
 func saveExist(dataPath):
 	return _file.file_exists(dataPath)
 
-func saveGameData(dataPath, data : SaveGame):
-	saveData(dataPath, data)
-
 func loadGameData(dataPath):
-	save = loadData(dataPath)
+	save = loadData(dataPath + "save.tres")
 	
-	currentRoom = save.world["currentRoom"]
+	currentRoom = loadData(dataPath + "roomData.tres")
 	
 	savePath = dataPath
+
+func saveGameData():
+	saveData(savePath + "save.tres", save)
+	saveData(savePath + "roomData.tres", currentRoom)
 
 func saveData(dataPath, data : Resource):
 	var _1 = ResourceSaver.save(dataPath, data)
@@ -83,4 +83,13 @@ func saveData(dataPath, data : Resource):
 func loadData(dataPath):
 	return ResourceLoader.load(dataPath, "", true)
 
+func changePlayer(powerUp):
+	var position : Vector2 = Global.player.global_position
+	player.queue_free()
+	player = load(powerUp).instance()
+
+	world.call_deferred("add_child", Global.player)
+	player.set_deferred("global_position", position)
+
+	world.player = Global.player
 

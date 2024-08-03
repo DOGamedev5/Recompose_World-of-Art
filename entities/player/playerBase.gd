@@ -63,6 +63,7 @@ var inputCord := {
 func _ready():
 	Global.player = self
 	
+	
 	lastPosition = position
 	if stateMachinePath: 
 		stateMachine = get_node(stateMachinePath)
@@ -144,13 +145,7 @@ func init(powerUp := "Normal"):
 	return newPlayer
 
 func changePowerup(powerUp):
-	var newPlayer = load(powers[powerUp]).instance()
-	
-	get_parent().add_child(newPlayer)
-	newPlayer.global_position = global_position
-	
-	get_parent().player = newPlayer
-	queue_free()
+	Global.changePlayer(powerUp)
 
 func idleBase():
 	var isOnFloor = is_on_floor()

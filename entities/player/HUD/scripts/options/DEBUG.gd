@@ -29,14 +29,12 @@ func _process(_delta):
 	DEBUGSetup()
 	
 func DEBUGSetup():
-	proprietyLabels["currentState"].text = (
+	
+	if player.stateMachine: proprietyLabels["currentState"].text = (
 		"current State: " + player.stateMachine.currentState.name)
 
 	proprietyLabels["motion"].text = (
 		"Motion: " + str(player.motion))
-		
-	proprietyLabels["running"].text = (
-		"Running: " + str(player.running))
 		
 	proprietyLabels["onSlope"].text = (
 		"On slope: " + str(player.onSlope()))
@@ -49,7 +47,12 @@ func DEBUGSetup():
 	
 	proprietyLabels["FPS"].text = (
 		"FPS: " + str(Engine.get_frames_per_second()))
+	
+	if not player.is_in_group("normal"): return
 
+	proprietyLabels["running"].text = (
+		"Running: " + str(player.running))
+	
 func debugButtonPressed():
 	player.get_parent().loadRoom("res://debugRoom.tscn", 0)
 

@@ -1716,7 +1716,7 @@ region = Rect2( 0, 0, 256, 64 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
-[node name="playerNormal" instance=ExtResource( 2 )]
+[node name="playerNormal" groups=["normal"] instance=ExtResource( 2 )]
 collision/safe_margin = 1.0
 script = ExtResource( 1 )
 stateMachinePath = NodePath("StateMachine")

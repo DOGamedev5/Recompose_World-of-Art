@@ -2,15 +2,16 @@ class_name SaveGame extends Resource
 
 export var played := false
 
-var player := {
+var version := "v1.2.1"
+
+export var player := {
 	"position" : Vector2(664, -64),
 	"playerProperties" : {
 		"name" : "Doe"
 	}
 }
 
-var world := {
-	"currentRoom" : RoomData.new(0, "res://worlds/sandDesert", "especialRooms", "res://worlds/sandDesert/especialRooms/welcome/welcome.tscn", 0, "warp"),
+export var world := {
 	"paintWorld" : {
 		"colliseun" : false
 	}

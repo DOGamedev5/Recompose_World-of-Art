@@ -14,7 +14,8 @@ var background
 
 func _ready():
 	Global.world = self
-	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/normal/playerNormal.tscn")
+#	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/normal/playerNormal.tscn")
+	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/book/playerBook.tscn")
 	
 	player = playerScene.instance()
 	add_child(player)
@@ -45,7 +46,7 @@ func loadSave():
 	call_deferred("add_child", currentRoom)
 	
 	player.position = Global.save.player["position"]
-	
+	print(Global.save.player["position"])	
 	
 	player.set_deferred("active", true)
 	

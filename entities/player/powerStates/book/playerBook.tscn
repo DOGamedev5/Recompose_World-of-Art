@@ -1,0 +1,50 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://entities/player/powerStates/book/sprites/bookIdle.pxo" type="Texture" id=3]
+[ext_resource path="res://entities/player/powerStates/book/scripts/IDLE.gd" type="Script" id=4]
+[ext_resource path="res://entities/player/powerStates/book/scripts/WALK.gd" type="Script" id=5]
+[ext_resource path="res://entities/player/powerStates/book/playerBook.gd" type="Script" id=6]
+[ext_resource path="res://entities/player/powerStates/book/scripts/JUMP.gd" type="Script" id=7]
+[ext_resource path="res://entities/player/powerStates/book/scripts/FLY.gd" type="Script" id=8]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+custom_solver_bias = 1.0
+extents = Vector2( 32, 28 )
+
+[node name="playerBook" instance=ExtResource( 1 )]
+script = ExtResource( 6 )
+stateMachinePath = NodePath("StateMachine")
+ACCELERATION = 12
+MAXFALL = 100
+
+[node name="AnimationTree" parent="shieldSystem" index="0"]
+parameters/playback = SubResource( 1 )
+
+[node name="StateMachine" type="Node" parent="." index="15"]
+script = ExtResource( 2 )
+startingState = NodePath("IDLE")
+
+[node name="IDLE" type="Node" parent="StateMachine" index="0"]
+script = ExtResource( 4 )
+
+[node name="WALK" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 5 )
+
+[node name="JUMP" type="Node" parent="StateMachine" index="2"]
+script = ExtResource( 7 )
+
+[node name="FLY" type="Node" parent="StateMachine" index="3"]
+script = ExtResource( 8 )
+
+[node name="BookIdle" type="Sprite" parent="." index="16"]
+position = Vector2( 0, -40 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="17"]
+position = Vector2( 0, -28 )
+shape = SubResource( 2 )

@@ -17,18 +17,21 @@ func _ready():
 	savePath = dirSavePath % saveID
 	
 	if not Global._dir.dir_exists(savePath):
-		Global._dir.make_dir(savePath)
-	
+		var _1 := Global._dir.make_dir(savePath)
 	
 	if not Global.saveExist(savePath + "save.tres"):
-		Global.saveGameData(savePath + "save.tres", SaveGame.new())
+		Global.saveData(savePath + "save.tres", SaveGame.new())
+		Global.saveData(savePath + "roomData.tres", RoomData.new())
+		
+	elif not Global.saveExist(savePath + "roomData.tres"):
+		Global.saveData(savePath + "roomData.tres", RoomData.new())
 	
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	
 	var _1 = $VBoxContainer/play.connect("pressed", self, "_on_Play_pressed")
 	var _2 = $VBoxContainer/erase.connect("pressed", self, "_on_Erase_pressed")
 	
-	var played = Global.loadData(savePath).played
+	var played = Global.loadData(savePath + "save.tres").played
 	
 	buttons[1].disatived = not played
 
@@ -38,7 +41,8 @@ func _on_Play_pressed():
 	LoadSystem.loadScene(menu, "res://worlds/main.tscn")
 
 func _on_Erase_pressed():
-	Global.saveGameData(savePath, SaveGame.new())
+	Global.saveData(savePath + "save.tres", SaveGame.new())
+	Global.saveData(savePath + "roomData.tres", RoomData.new())
 	buttons[1].disatived = true
 
 func visibility_changed():
