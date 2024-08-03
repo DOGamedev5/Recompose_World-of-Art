@@ -18,8 +18,7 @@ var lightThread : Thread
 signal simpleLightChanged(value)
 signal gamePaused
 signal gameUnpaused
-signal threadIsReady
-signal threadLightChanged(value)
+
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
@@ -29,11 +28,6 @@ func _ready():
 	
 	options = loadData(Global.optionsSavePath)
 	
-	if options.useThreadForLights:
-		lightThread = Thread.new()
-		emit_signal("threadIsReady")
-	
-
 func _input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen
