@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/bookWalk.pxo-2bd2c5a6d8be1e9a0fcb05728dc9a6b2.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/book/sprites/bookWalk.pxo"
+dest_files=[ "res://.import/bookWalk.pxo-2bd2c5a6d8be1e9a0fcb05728dc9a6b2.stex" ]
+
+[params]
+
