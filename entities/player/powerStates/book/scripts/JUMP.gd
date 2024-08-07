@@ -3,7 +3,6 @@ extends State
 func enter(_laststate):
 	parent.snapDesatived = true
 
-
 func process_state():
 	if parent.motion.y > 0:
 		return "FLY"

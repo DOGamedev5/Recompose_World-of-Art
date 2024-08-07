@@ -66,3 +66,4 @@ collision_mask = 0
 shape = SubResource( 4 )
 
 [connection signal="area_entered" from="." to="." method="_on_Node2D_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_tube_area_exited"]

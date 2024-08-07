@@ -1,8 +1,5 @@
 extends State
 
-func enter(_laststate):
-	pass
-
 func process_state():
 	if not parent.onFloor():
 		return "FLY"
@@ -20,4 +17,4 @@ func process_state():
 	
 func process_physics(_delta):
 	parent.idleBase()
-	
+	parent.playback.travel("IDLE")

@@ -31,7 +31,7 @@ func _simplesLightToggled(value):
 		canvasModulate.set_color(canvasModulateColor)
 
 
-func init(player, warpID, type := "warp"):
+func init(warpID, type := "warp"):
 	var path : NodePath
 	
 	if type == "warp":
@@ -42,4 +42,4 @@ func init(player, warpID, type := "warp"):
 		path = tubes[warpID]
 	
 	
-	get_node(path).init(player)
+	get_node(path).init()

@@ -10,8 +10,8 @@ func doorFrame(value):
 	frame = value
 	$CaveDoor.frame = value
 
-func init(player):
-	player.global_position = position
+func init():
+	Global.player.global_position = position
 
 func interacted():
 	changeRoom()

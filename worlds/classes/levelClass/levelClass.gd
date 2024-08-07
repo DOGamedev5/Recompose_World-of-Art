@@ -46,7 +46,6 @@ func loadSave():
 	call_deferred("add_child", currentRoom)
 	
 	player.position = Global.save.player["position"]
-	print(Global.save.player["position"])	
 	
 	player.set_deferred("active", true)
 	
@@ -54,11 +53,9 @@ func loadSave():
 
 
 func loadRoom(room : RoomData):
-	
 	player.transition.transitionIn()
 	
 	yield(player.transition, "transitionedIn")
-	
 	emit_signal("changedRoom")
 	
 	if currentRoom:
@@ -67,23 +64,20 @@ func loadRoom(room : RoomData):
 	Global.currentRoom = room
 	
 	if currentWorld != room.world:
-		
 		currentWorld = room.world
 		
 		var backgroundScene = LoadSystem.loadObject("{0}/background.tscn".format([room.world]), false)
-		
 		if background:
 			background.queue_free()
 		
 		background = backgroundScene.instance()
 		add_child(background)
 	
-	
 	var currentRoomScene  = LoadSystem.loadObject(room.roomPath, false)
 	currentRoom = currentRoomScene.instance()
 
-	call_deferred("add_child", currentRoom)
-	currentRoom.init(player, room.warpID, room.warpType)
+	add_child(currentRoom)
+	currentRoom.init(room.warpID, room.warpType)
 	
 	player.transition.call_deferred("transitionOut")
 	player.resetParticles()

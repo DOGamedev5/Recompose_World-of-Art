@@ -9,11 +9,10 @@ func process_state():
 	
 	elif parent.canJump and not parent.cinematic and Input.is_action_pressed("ui_jump"):
 		return "JUMP"
-	
-	
 
 	return null
 
 func process_physics(_delta):
 	parent.moveBase("X", parent.motion.x)
+	parent.playback.travel("WALK")
 

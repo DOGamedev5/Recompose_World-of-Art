@@ -4,6 +4,8 @@ export(int, "left", "right", "up", "down") var direction := 1 setget setDirectio
 
 onready var camera := $Camera2D
 
+var enteredArea := false
+
 func _ready():
 	roomData.warpType = "tube"
 	var currentRoom = Global.world.currentRoom
@@ -14,6 +16,26 @@ func _ready():
 	setDirection(direction)
 	var textureName = Global.currentRoom.world.get_file()
 	$sprite.texture = load("res://objects/tubeEnter/sprites/%s.pxo" % (textureName))
+
+func _physics_process(_delta):
+	if enteredArea and detectEnter() and not $AnimationPlayer.is_playing():
+		Global.player.motion = Vector2.ZERO
+		Global.player.visible = false
+		Global.player.pause_mode = Node.PAUSE_MODE_STOP
+		$Camera2D.current = true
+		$AnimationPlayer.play("enter")
+		yield($AnimationPlayer, "animation_finished")
+		changeRoom()
+
+func detectEnter():
+	match direction:
+		0: if Global.player.motion.x > 0: return true
+		1: if Global.player.motion.x < 0: return true
+		2: if Global.player.motion.y > 0: return true
+		3: if Global.player.motion.y < 0: return true
+		
+	return false
+	
 
 func setDirection(value):
 	var sprite := $sprite
@@ -51,41 +73,31 @@ func setDirection(value):
 			rect.position = Vector2(0, 40)
 
 
-func init(player):
+func init():
 	var directions := [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 	
-	player.pause_mode = Node.PAUSE_MODE_STOP
+	Global.player.pause_mode = Node.PAUSE_MODE_STOP
 	$Camera2D.current = true
-	$StaticBody2D/CollisionShape2D.disabled = true
-	$rect.disabled = true
 	
-	player.global_position = position + Vector2.DOWN * 48
+	Global.player.global_position = global_position + directions[direction] * 86
+
 	
 	$AnimationPlayer.play("enter")
 	yield($AnimationPlayer, "animation_finished")
 	
-	player.motion = directions[direction] * 750
-	player.visible = true
-	player.camera.current = true
-	
-	yield(get_tree().create_timer(0.5), "timeout")
-	
-	$StaticBody2D/CollisionShape2D.disabled = false
-	$rect.disabled = false
-	player.pause_mode = Node.PAUSE_MODE_INHERIT
+	Global.player.visible = true
+	Global.player.camera.current = true
+	Global.player.pause_mode = Node.PAUSE_MODE_INHERIT
 
 
 func _on_Node2D_area_entered(area):
 	var object = area.get_parent()
 	
 	if object is PlayerBase:
-		object.pause_mode = Node.PAUSE_MODE_STOP
-		object.visible = false
-		object.motion = Vector2.ZERO
-		object.global_position = position
-		$Camera2D.current = true
-		$AnimationPlayer.play("enter")
-		yield($AnimationPlayer, "animation_finished")
-		changeRoom()
-		
+		enteredArea = true
 
+func _on_tube_area_exited(area):
+	var object = area.get_parent()
+	
+	if object is PlayerBase:
+		enteredArea = false
