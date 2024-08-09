@@ -16,9 +16,8 @@
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
-[sub_resource type="RectangleShape2D" id=2]
-custom_solver_bias = 1.0
-extents = Vector2( 32, 28 )
+[sub_resource type="CircleShape2D" id=35]
+radius = 28.0
 
 [sub_resource type="Animation" id=13]
 resource_name = "FALL"
@@ -366,11 +365,15 @@ position = Vector2( 0, -40 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="17"]
-position = Vector2( 0, -28 )
-shape = SubResource( 2 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="17"]
+position = Vector2( -6, -28 )
+shape = SubResource( 35 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="18"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="18"]
+position = Vector2( 6, -28 )
+shape = SubResource( 35 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="19"]
 anims/FALL = SubResource( 13 )
 anims/FLY = SubResource( 25 )
 anims/IDLE = SubResource( 3 )
@@ -378,7 +381,7 @@ anims/JUMP = SubResource( 12 )
 anims/RESET = SubResource( 4 )
 anims/WALK = SubResource( 5 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="19"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="20"]
 tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
