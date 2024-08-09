@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/bookFly.pxo-5ba6ad359a48a096ac62c48efe33f886.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/book/sprites/bookFly.pxo"
+dest_files=[ "res://.import/bookFly.pxo-5ba6ad359a48a096ac62c48efe33f886.stex" ]
+
+[params]
+

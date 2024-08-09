@@ -20,6 +20,7 @@ func process_physics(_delta):
 		
 	parent.moveBase("X", parent.motion.x)
 	parent.jumpBase()
+	parent.playback.travel("JUMP")
 
 func exit():
 	parent.snapDesatived = false

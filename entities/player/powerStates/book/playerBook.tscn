@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=2]
@@ -10,12 +10,95 @@
 [ext_resource path="res://entities/player/powerStates/book/scripts/FLY.gd" type="Script" id=8]
 [ext_resource path="res://entities/player/powerStates/book/scripts/FALL.gd" type="Script" id=9]
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookWalk.pxo" type="Texture" id=10]
+[ext_resource path="res://entities/player/powerStates/book/sprites/bookJump.pxo" type="Texture" id=11]
+[ext_resource path="res://entities/player/powerStates/book/sprites/bookFall.pxo" type="Texture" id=12]
+[ext_resource path="res://entities/player/powerStates/book/sprites/bookFly.pxo" type="Texture" id=13]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
 custom_solver_bias = 1.0
 extents = Vector2( 32, 28 )
+
+[sub_resource type="Animation" id=13]
+resource_name = "FALL"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("BookIdle:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BookIdle:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "FLY"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("BookIdle:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BookIdle:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 4 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "IDLE"
@@ -27,10 +110,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 0, 1, 2 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("BookIdle:hframes")
@@ -42,7 +125,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1 ]
+"values": [ 3 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("BookIdle:texture")
@@ -55,6 +138,46 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "JUMP"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("BookIdle:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BookIdle:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -138,8 +261,17 @@ tracks/2/keys = {
 "values": [ ExtResource( 10 ) ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "FALL"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "FLY"
+
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "JUMP"
 
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "WALK"
@@ -148,12 +280,53 @@ animation = "WALK"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
 [sub_resource type="AnimationNodeStateMachine" id=10]
+states/FALL/node = SubResource( 14 )
+states/FALL/position = Vector2( 673.667, 94.5556 )
+states/FLY/node = SubResource( 26 )
+states/FLY/position = Vector2( 563, 33.6667 )
 states/IDLE/node = SubResource( 6 )
-states/IDLE/position = Vector2( 449.667, 113.667 )
+states/IDLE/position = Vector2( 448.411, 214.704 )
+states/JUMP/node = SubResource( 15 )
+states/JUMP/position = Vector2( 449.206, 93.6667 )
 states/WALK/node = SubResource( 7 )
-states/WALK/position = Vector2( 692.333, 132.333 )
-transitions = [ "IDLE", "WALK", SubResource( 8 ), "WALK", "IDLE", SubResource( 9 ) ]
+states/WALK/position = Vector2( 672.333, 215.445 )
+transitions = [ "IDLE", "WALK", SubResource( 8 ), "WALK", "IDLE", SubResource( 9 ), "IDLE", "JUMP", SubResource( 16 ), "JUMP", "IDLE", SubResource( 17 ), "WALK", "JUMP", SubResource( 18 ), "JUMP", "FALL", SubResource( 19 ), "FALL", "IDLE", SubResource( 20 ), "FALL", "WALK", SubResource( 21 ), "IDLE", "FALL", SubResource( 22 ), "WALK", "FALL", SubResource( 23 ), "FALL", "JUMP", SubResource( 24 ), "FALL", "FLY", SubResource( 27 ), "FLY", "FALL", SubResource( 28 ), "JUMP", "FLY", SubResource( 29 ), "FLY", "JUMP", SubResource( 30 ), "FLY", "IDLE", SubResource( 31 ), "IDLE", "FLY", SubResource( 32 ), "FLY", "WALK", SubResource( 33 ), "WALK", "FLY", SubResource( 34 ) ]
 start_node = "IDLE"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
@@ -198,7 +371,10 @@ position = Vector2( 0, -28 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="18"]
+anims/FALL = SubResource( 13 )
+anims/FLY = SubResource( 25 )
 anims/IDLE = SubResource( 3 )
+anims/JUMP = SubResource( 12 )
 anims/RESET = SubResource( 4 )
 anims/WALK = SubResource( 5 )
 

@@ -14,6 +14,7 @@ func process_physics(_delta):
 		parent.motion.x = 0
 		
 	parent.moveBase("X", parent.motion.x)
+	parent.playback.travel("FALL")
 
 func exit():
 	parent.MAXFALL = 100
