@@ -464,5 +464,5 @@ anims/WALK = SubResource( 5 )
 tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-root_motion_track = NodePath("sprite:hframes")
+root_motion_track = NodePath("sprite:frame")
 parameters/playback = SubResource( 11 )

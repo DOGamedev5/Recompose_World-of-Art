@@ -14,8 +14,8 @@ var background
 
 func _ready():
 	Global.world = self
-#	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/normal/playerNormal.tscn")
-	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/book/playerBook.tscn")
+	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/normal/playerNormal.tscn")
+#	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/book/playerBook.tscn")
 	
 	player = playerScene.instance()
 	add_child(player)

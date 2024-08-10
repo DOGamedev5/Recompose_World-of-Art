@@ -76,10 +76,10 @@ func setDirection(value):
 func init():
 	var directions := [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 	
-	Global.player.pause_mode = Node.PAUSE_MODE_STOP
+	Global.player.moving = false
 	$Camera2D.current = true
 	
-	Global.player.global_position = global_position + directions[direction] * 86
+	Global.player.global_position = (global_position + directions[direction] * 86) + Vector2.DOWN*32
 
 	
 	$AnimationPlayer.play("enter")
@@ -87,7 +87,7 @@ func init():
 	
 	Global.player.visible = true
 	Global.player.camera.current = true
-	Global.player.pause_mode = Node.PAUSE_MODE_INHERIT
+	Global.player.moving = true
 
 
 func _on_Node2D_area_entered(area):
