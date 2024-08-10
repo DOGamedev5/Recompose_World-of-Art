@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookJump.pxo" type="Texture" id=11]
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookFall.pxo" type="Texture" id=12]
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookFly.pxo" type="Texture" id=13]
+[ext_resource path="res://entities/player/powerStates/book/sprites/bookFlyOut.pxo" type="Texture" id=14]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -23,7 +24,7 @@ radius = 28.0
 resource_name = "FALL"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("BookIdle:texture")
+tracks/0/path = NodePath("sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -35,7 +36,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 12 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/path = NodePath("sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -47,7 +48,7 @@ tracks/1/keys = {
 "values": [ 5 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BookIdle:frame")
+tracks/2/path = NodePath("sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -61,9 +62,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=25]
 resource_name = "FLY"
-length = 0.6
+length = 0.7
 tracks/0/type = "value"
-tracks/0/path = NodePath("BookIdle:texture")
+tracks/0/path = NodePath("sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -75,7 +76,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 13 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/path = NodePath("sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -84,26 +85,67 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 7 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BookIdle:frame")
+tracks/2/path = NodePath("sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 4 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "FLY_OUT"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
 
 [sub_resource type="Animation" id=3]
 resource_name = "IDLE"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("BookIdle:frame")
+tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -115,7 +157,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/path = NodePath("sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -127,7 +169,7 @@ tracks/1/keys = {
 "values": [ 3 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BookIdle:texture")
+tracks/2/path = NodePath("sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -143,7 +185,7 @@ tracks/2/keys = {
 resource_name = "JUMP"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("BookIdle:texture")
+tracks/0/path = NodePath("sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -155,7 +197,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 11 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/path = NodePath("sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -167,7 +209,7 @@ tracks/1/keys = {
 "values": [ 5 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BookIdle:frame")
+tracks/2/path = NodePath("sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -182,7 +224,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("BookIdle:frame")
+tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -194,7 +236,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/path = NodePath("sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -206,7 +248,7 @@ tracks/1/keys = {
 "values": [ 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BookIdle:texture")
+tracks/2/path = NodePath("sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -217,6 +259,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [ ExtResource( 3 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape2D3:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape2D2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "WALK"
@@ -224,7 +290,7 @@ length = 0.8
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("BookIdle:frame")
+tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -236,7 +302,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("BookIdle:hframes")
+tracks/1/path = NodePath("sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -248,7 +314,7 @@ tracks/1/keys = {
 "values": [ 8 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("BookIdle:texture")
+tracks/2/path = NodePath("sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -265,6 +331,9 @@ animation = "FALL"
 
 [sub_resource type="AnimationNodeAnimation" id=26]
 animation = "FLY"
+
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "FLY_OUT"
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "IDLE"
@@ -300,33 +369,42 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=29]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=10]
 states/FALL/node = SubResource( 14 )
 states/FALL/position = Vector2( 673.667, 94.5556 )
 states/FLY/node = SubResource( 26 )
-states/FLY/position = Vector2( 563, 33.6667 )
+states/FLY/position = Vector2( 444.526, -23.2716 )
+states/FLY_OUT/node = SubResource( 37 )
+states/FLY_OUT/position = Vector2( 679, -23.3703 )
 states/IDLE/node = SubResource( 6 )
 states/IDLE/position = Vector2( 448.411, 214.704 )
 states/JUMP/node = SubResource( 15 )
 states/JUMP/position = Vector2( 449.206, 93.6667 )
 states/WALK/node = SubResource( 7 )
 states/WALK/position = Vector2( 672.333, 215.445 )
-transitions = [ "IDLE", "WALK", SubResource( 8 ), "WALK", "IDLE", SubResource( 9 ), "IDLE", "JUMP", SubResource( 16 ), "JUMP", "IDLE", SubResource( 17 ), "WALK", "JUMP", SubResource( 18 ), "JUMP", "FALL", SubResource( 19 ), "FALL", "IDLE", SubResource( 20 ), "FALL", "WALK", SubResource( 21 ), "IDLE", "FALL", SubResource( 22 ), "WALK", "FALL", SubResource( 23 ), "FALL", "JUMP", SubResource( 24 ), "FALL", "FLY", SubResource( 27 ), "FLY", "FALL", SubResource( 28 ), "JUMP", "FLY", SubResource( 29 ), "FLY", "JUMP", SubResource( 30 ), "FLY", "IDLE", SubResource( 31 ), "IDLE", "FLY", SubResource( 32 ), "FLY", "WALK", SubResource( 33 ), "WALK", "FLY", SubResource( 34 ) ]
+transitions = [ "IDLE", "WALK", SubResource( 8 ), "WALK", "IDLE", SubResource( 9 ), "IDLE", "JUMP", SubResource( 16 ), "JUMP", "IDLE", SubResource( 17 ), "WALK", "JUMP", SubResource( 18 ), "JUMP", "FALL", SubResource( 19 ), "FALL", "IDLE", SubResource( 20 ), "FALL", "WALK", SubResource( 21 ), "IDLE", "FALL", SubResource( 22 ), "WALK", "FALL", SubResource( 23 ), "FALL", "JUMP", SubResource( 24 ), "FALL", "FLY", SubResource( 27 ), "JUMP", "FLY", SubResource( 29 ), "IDLE", "FLY", SubResource( 32 ), "WALK", "FLY", SubResource( 34 ), "FLY", "FLY_OUT", SubResource( 38 ), "FLY_OUT", "FALL", SubResource( 39 ), "FLY_OUT", "IDLE", SubResource( 40 ), "FLY_OUT", "JUMP", SubResource( 41 ), "FLY_OUT", "WALK", SubResource( 42 ) ]
 start_node = "IDLE"
+graph_offset = Vector2( 0, -91.2539 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
@@ -360,7 +438,7 @@ script = ExtResource( 8 )
 [node name="FALL" type="Node" parent="StateMachine" index="4"]
 script = ExtResource( 9 )
 
-[node name="BookIdle" type="Sprite" parent="." index="16"]
+[node name="sprite" type="Sprite" parent="." index="16"]
 position = Vector2( 0, -40 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
@@ -376,6 +454,7 @@ shape = SubResource( 35 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="19"]
 anims/FALL = SubResource( 13 )
 anims/FLY = SubResource( 25 )
+anims/FLY_OUT = SubResource( 36 )
 anims/IDLE = SubResource( 3 )
 anims/JUMP = SubResource( 12 )
 anims/RESET = SubResource( 4 )
@@ -385,4 +464,5 @@ anims/WALK = SubResource( 5 )
 tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
+root_motion_track = NodePath("sprite:hframes")
 parameters/playback = SubResource( 11 )

@@ -7,4 +7,9 @@ func _physics_process(_delta):
 	move()
 	_coyoteTimer()
 	
-	$BookIdle.flip_h = fliped
+	$sprite.flip_h = fliped
+	
+	if not onFloor():
+		$sprite.rotation = lerp_angle($sprite.rotation, deg2rad(15) * (realMotion.x / MAXSPEED), 0.5)
+	else:
+		$sprite.rotation = lerp_angle($sprite.rotation, deg2rad(5) * (realMotion.x / MAXSPEED), 0.5)
