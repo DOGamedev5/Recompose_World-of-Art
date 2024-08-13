@@ -16,24 +16,27 @@ var savePath : String
 func _ready():
 	savePath = dirSavePath % saveID
 	
-	if not Global._dir.dir_exists(savePath):
-		var _1 := Global._dir.make_dir(savePath)
-	
-	if not Global.saveExist(savePath + "save.tres"):
-		Global.saveData(savePath + "save.tres", SaveGame.new())
-		Global.saveData(savePath + "roomData.tres", RoomData.new())
-		
-	elif not Global.saveExist(savePath + "roomData.tres"):
-		Global.saveData(savePath + "roomData.tres", RoomData.new())
+	Global.createFileData(savePath)
+#	if not Global._dir.dir_exists(savePath):
+#		var _1 := Global._dir.make_dir(savePath)
+#
+#	if not Global.saveExist(savePath + "save.tres"):
+#		Global.saveData(savePath + "save.tres", SaveGame.new())
+#		Global.saveData(savePath + "roomData.tres", RoomData.new())
+#
+#	elif not Global.saveExist(savePath + "roomData.tres"):
+#		Global.saveData(savePath + "roomData.tres", RoomData.new())
 	
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	
 	var _1 = $VBoxContainer/play.connect("pressed", self, "_on_Play_pressed")
 	var _2 = $VBoxContainer/erase.connect("pressed", self, "_on_Erase_pressed")
 	
-	var played = Global.loadData(savePath + "save.tres").played
+	var data : SaveGame = Global.loadData(savePath + "save.tres")
+	buttons[1].disatived = not data.played
+	$VBoxContainer/name.text = data.player["playerProperties"]["name"]
 	
-	buttons[1].disatived = not played
+	
 
 func _on_Play_pressed():
 	Global.loadGameData(savePath)

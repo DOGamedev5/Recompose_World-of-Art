@@ -29,13 +29,11 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
 func loadSave():
-	var room : String
-	
-	room = Global.currentRoom.roomPath
-	
 	player.active = false
 	
-	var currentRoomScene = LoadSystem.loadObject(room)
+	saveDataRoom()
+	
+	var currentRoomScene = LoadSystem.loadObject(Global.currentRoom.roomPath)
 	
 	var backgroundScene = LoadSystem.loadObject("{0}/background.tscn".format([Global.currentRoom.world]))
 	
@@ -61,7 +59,11 @@ func loadRoom(room : RoomData):
 	if currentRoom:
 		currentRoom.queue_free()
 	
+	saveDataRoom()
+	
 	Global.currentRoom = room
+	
+	saveDataRoom()
 	
 	if currentWorld != room.world:
 		currentWorld = room.world
@@ -81,3 +83,20 @@ func loadRoom(room : RoomData):
 	
 	player.transition.call_deferred("transitionOut")
 	player.resetParticles()
+
+func saveDataRoom():
+	if Global.currentRoom.world.get_base_dir() != "res://dimensions" and Global.currentRoom.category == "rooms":
+		var worldIndex = Global.currentRoom.world.find_last("/")
+		var worldPath = Global.savePath + "/worldRooms" + Global.currentRoom.world.substr(worldIndex)  + "/rooms"
+		var _1 = Global._dir.make_dir_recursive(worldPath)
+		if _1:
+			print_debug("making {world} path gives the error: {error}".format(
+				{"world" : Global.currentRoom.world.substr(worldIndex), "error" : _1})
+			)
+		
+		var roomPath : String = worldPath + "/room{index}.tres".format({"index" : Global.currentRoom.ID})
+		if Global.saveExist(roomPath):
+			Global.currentRoom.data = Global.loadData(roomPath).data
+		else:
+			Global.saveData(roomPath, Global.currentRoom)
+			

@@ -9,6 +9,11 @@ export(String) var warpType
 
 export var debugMode := false
 
+export var data := {
+	"destroiedBlocks" : [],
+	"collectedCoins" : []
+}
+
 func _init(roomID := 0, worldPath : String = "res://worlds/sandDesert", Category : String = "rooms", path := "res://worlds/sandDesert/especialRooms/welcome/welcome.tscn", WarpID := 0, WarpType := "warp", debug := false):
 	debugMode = debug
 	

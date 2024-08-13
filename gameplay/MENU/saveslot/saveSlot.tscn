@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://gameplay/MENU/scripts/saveSlot.gd" type="Script" id=1]
+[ext_resource path="res://gameplay/MENU/saveslot/saveSlot.gd" type="Script" id=1]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://gameplay/MENU/panel.pxo" type="Texture" id=4]
+[ext_resource path="res://gameplay/MENU/saveslot/panel.pxo" type="Texture" id=4]
 
 [sub_resource type="StyleBoxTexture" id=27]
 texture = ExtResource( 4 )
@@ -15,6 +15,13 @@ margin_bottom = 16.0
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
+outline_size = 2
+outline_color = Color( 0.341176, 0.180392, 0.345098, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=28]
+size = 32
 outline_size = 2
 outline_color = Color( 0.341176, 0.180392, 0.345098, 1 )
 extra_spacing_char = 4
@@ -50,31 +57,39 @@ custom_fonts/font = SubResource( 2 )
 text = "SAVE 1"
 align = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
+[node name="name" type="Label" parent="VBoxContainer"]
 margin_top = 55.0
 margin_right = 412.0
-margin_bottom = 275.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 28 )
+text = "NAME"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 85.0
+margin_right = 412.0
+margin_bottom = 305.0
 custom_constants/separation = 220
 
 [node name="play" parent="VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 279.0
+margin_top = 309.0
 margin_right = 412.0
-margin_bottom = 351.0
+margin_bottom = 381.0
 rect_min_size = Vector2( 170, 72 )
 text = "mn_start_play"
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 355.0
+margin_top = 385.0
 margin_right = 412.0
-margin_bottom = 359.0
+margin_bottom = 389.0
 custom_constants/separation = 4
 
 [node name="erase" parent="VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 363.0
+margin_top = 393.0
 margin_right = 412.0
-margin_bottom = 435.0
+margin_bottom = 465.0
 rect_min_size = Vector2( 200, 72 )
 text = "mn_start_erase"
 

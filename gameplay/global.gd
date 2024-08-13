@@ -80,6 +80,17 @@ func saveGameData():
 func saveData(dataPath, data : Resource):
 	var _1 = ResourceSaver.save(dataPath, data)
 
+func createFileData(path):
+	var _error := _dir.make_dir_recursive(path + "/worldRooms")
+	
+	if not saveExist(path + "save.tres"):
+		saveData(path + "save.tres", SaveGame.new())
+		saveData(path + "roomData.tres", RoomData.new())
+		
+	elif not saveExist(path + "roomData.tres"):
+		saveData(path + "roomData.tres", RoomData.new())
+	
+	
 func loadData(dataPath):
 	return ResourceLoader.load(dataPath, "", true)
 

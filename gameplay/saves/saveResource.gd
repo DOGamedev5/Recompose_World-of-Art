@@ -7,7 +7,7 @@ var version := "v1.2.1"
 export var player := {
 	"position" : Vector2(664, -64),
 	"playerProperties" : {
-		"name" : "Doe"
+		"name" : ""
 	}
 }
 

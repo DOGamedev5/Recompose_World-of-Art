@@ -5,7 +5,7 @@
 [ext_resource path="res://gameplay/MENU/scripts/options.gd" type="Script" id=3]
 [ext_resource path="res://gameplay/MENU/scripts/saves.gd" type="Script" id=4]
 [ext_resource path="res://gameplay/MENU/scripts/menu.gd" type="Script" id=5]
-[ext_resource path="res://gameplay/MENU/saveSlot.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gameplay/MENU/saveslot/saveSlot.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://gameplay/MENU/title.pxo" type="Texture" id=8]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=9]
@@ -20,7 +20,7 @@
 [ext_resource path="res://worlds/paintWorld/sprites/credits_images/6.png" type="Texture" id=18]
 [ext_resource path="res://worlds/paintWorld/sprites/credits_images/7.png" type="Texture" id=19]
 [ext_resource path="res://gameplay/MENU/scripts/Credits.gd" type="Script" id=20]
-[ext_resource path="res://gameplay/MENU/panel.pxo" type="Texture" id=21]
+[ext_resource path="res://gameplay/MENU/saveslot/panel.pxo" type="Texture" id=21]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.tscn" type="PackedScene" id=22]
 [ext_resource path="res://gameplay/MENU/sprites/slider.pxo" type="Texture" id=23]
 
@@ -449,8 +449,9 @@ text = "DOGael Arts:
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_left = 204.0
+margin_top = 6.0
 margin_right = 606.0
-margin_bottom = 63.0
+margin_bottom = 57.0
 custom_fonts/font = ExtResource( 10 )
 text = "most of Sprites, Tilesets
 and animations"
@@ -582,8 +583,9 @@ text = "DOGael Arts: "
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 218.0
+margin_top = 3.0
 margin_right = 430.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 10 )
 text = "Misael Victor"
 
@@ -624,8 +626,9 @@ text = "DOGael Arts: "
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer3"]
 margin_left = 218.0
+margin_top = 3.0
 margin_right = 430.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 10 )
 text = "Misael Victor"
 
@@ -666,8 +669,9 @@ text = "DOGael Arts: "
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer4"]
 margin_left = 218.0
+margin_top = 3.0
 margin_right = 430.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 10 )
 text = "Misael Victor"
 
@@ -708,8 +712,9 @@ text = "DOGael Arts: "
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer5"]
 margin_left = 218.0
+margin_top = 3.0
 margin_right = 430.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 10 )
 text = "Misael Victor"
 
@@ -751,8 +756,9 @@ text = "Berari, Nokio and biely:
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer6"]
 margin_left = 420.0
+margin_top = 6.0
 margin_right = 864.0
-margin_bottom = 63.0
+margin_bottom = 57.0
 custom_fonts/font = ExtResource( 10 )
 text = "helped me to improve in my
 programmer skills"
@@ -772,8 +778,9 @@ Brothers: "
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer7"]
 margin_left = 310.0
+margin_top = 6.0
 margin_right = 786.0
-margin_bottom = 63.0
+margin_bottom = 57.0
 custom_fonts/font = ExtResource( 10 )
 text = "helped to choose the name of
 the game"
@@ -794,8 +801,9 @@ text = "the GlentPixel Community:
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer8"]
 margin_left = 414.0
+margin_top = 9.0
 margin_right = 938.0
-margin_bottom = 96.0
+margin_bottom = 87.0
 custom_fonts/font = ExtResource( 10 )
 text = "helped to improve my pixel art
 skills and make a collab for the
@@ -815,8 +823,9 @@ text = "Maple: "
 
 [node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer9"]
 margin_left = 120.0
+margin_top = 3.0
 margin_right = 874.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 10 )
 text = "helped to fix the english mistakes that I made"
 
