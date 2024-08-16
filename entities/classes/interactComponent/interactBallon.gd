@@ -57,13 +57,16 @@ func enteredArea(area2D):
 func exitedArea(area2D):
 	if not area2D.is_in_group("player"): return
 	
-	
 	emit_signal("exitered")
 	player = null
-	
 	canInteract = false
+	
+	yield(get_tree().create_timer(0.8), "timeout")
+	if canInteract: return
+	
 	arrow.visible = showArroy
 	arrow.modulate.a8 = 111
+	
 	if tween.is_inside_tree():
 		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(0, 0), 0.8,
 		Tween.TRANS_EXPO, Tween.EASE_OUT)
@@ -81,5 +84,6 @@ func setSize():
 
 	$ballonContent/ballon.rect_position.x = -((size)/2) -8
 	$ballonContent/ballon.rect_size.x = size+8
-	
-	
+
+func _on_Timer_timeout():
+	pass # Replace with function body.

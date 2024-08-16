@@ -21,7 +21,6 @@ func loadScene(current, next : String, closeAfterLoad := false,currentPath := MA
 	
 	current.queue_free()
 	
-	
 	yield(get_tree().create_timer(0.5), "timeout")
 	
 	var label = loadSceneInstance.get_node("Control/Control/Label")

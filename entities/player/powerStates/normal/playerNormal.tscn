@@ -1729,28 +1729,32 @@ MAXFALL = 600
 JUMPFORCE = -850
 runningVelocity = 1000.0
 
-[node name="flooDetectBack" parent="." index="2"]
+[node name="flooDetectBack" parent="." index="1"]
 position = Vector2( -14, -8 )
 cast_to = Vector2( 0, 24 )
 
-[node name="floorDetect" parent="." index="3"]
+[node name="floorDetect" parent="." index="2"]
 position = Vector2( 0, -8 )
 z_index = 6
 cast_to = Vector2( 0, 32 )
 
-[node name="flooDetectFont" parent="." index="4"]
+[node name="flooDetectFont" parent="." index="3"]
 position = Vector2( 14, -8 )
 cast_to = Vector2( 0, 24 )
 
-[node name="Camera2D" parent="." index="5"]
+[node name="Camera2D" parent="." index="4"]
 position = Vector2( 0, -64 )
 
-[node name="onWallTop" parent="." index="9"]
+[node name="onWallTop" parent="." index="8"]
 position = Vector2( 0, -48 )
 
-[node name="onWallMid" parent="." index="10"]
+[node name="onWallMid" parent="." index="9"]
 position = Vector2( 0, -28 )
 enabled = false
+
+[node name="slopeDetect" parent="." index="11"]
+position = Vector2( 0, -16 )
+cast_to = Vector2( 0, 80 )
 
 [node name="topspeedParicle" type="CPUParticles2D" parent="." index="12"]
 material = SubResource( 193 )
@@ -1949,11 +1953,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="slopeDetect" parent="." index="26"]
-position = Vector2( 0, -16 )
-cast_to = Vector2( 0, 80 )
-
-[node name="HitboxComponent" parent="." index="27"]
+[node name="HitboxComponent" parent="." index="26"]
 visible = false
 collision_layer = 1536
 

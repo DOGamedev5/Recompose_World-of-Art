@@ -36,14 +36,14 @@ func _on_SImpleLight_toggled(button_pressed):
 
 func _on_close_pressed():
 	visible = false
-	$"../../HUD".visible = true
+	$"../".visible = true
 
 func _on_quit_pressed():
 	get_tree().quit()
 
 func _on_menu_pressed():
 	get_tree().paused = false
-	LoadSystem.loadScene($"../../../", LoadSystem.MAIN_SCENE, true)
+	LoadSystem.loadScene(Global.world, LoadSystem.MAIN_SCENE, true)
 
 func _on_configurations_visibility_changed():
 	get_tree().paused = visible

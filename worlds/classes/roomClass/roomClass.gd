@@ -25,7 +25,6 @@ func _ready():
 	
 	if blocks:
 		for n in Global.currentRoom.data["destroiedBlocks"]:
-			print(n)
 			blocks.get_node(n).queue_free()
 	
 	var _2 = Global.connect("simpleLightChanged", self, "_simplesLightToggled")

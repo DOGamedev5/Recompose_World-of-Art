@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://worlds/classes/pathBase/RoomData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+roomPath = "res://worlds/paintWorld/rooms/room4.tscn"
+world = "res://worlds/paintWorld"
+category = "rooms"
+ID = 4
+warpID = 0
+warpType = "warp"
+debugMode = false
+data = {
+"collectedCoins": [  ],
+"destroiedBlocks": [ "block21", "block19", "block17", "block15", "block13", "block11", "block9", "block7", "block5", "block3", "block1", "block25", "block2", "block4", "block6", "block8" ]
+}
+savePath = "res://worlds/paintWorld/room4.tres"
+saveWorldPath = "user://userData/saves/save2//worldRooms/paintWorld/rooms"

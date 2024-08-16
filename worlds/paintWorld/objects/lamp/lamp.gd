@@ -46,4 +46,4 @@ func _toggledSimpleLight(value):
 	light.enabled = !value
 
 func _toggledShadows(value):
-	light.shadow_enabled = !value
+	light.shadow_enabled = value

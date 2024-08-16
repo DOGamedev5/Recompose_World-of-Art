@@ -29,7 +29,7 @@ func _process(_delta):
 	DEBUGSetup()
 	
 func DEBUGSetup():
-	if not Global.player: return
+#	if not Global.player: return
 	if Global.player.stateMachine: proprietyLabels["currentState"].text = (
 		"current State: " + Global.player.stateMachine.currentState.name)
 

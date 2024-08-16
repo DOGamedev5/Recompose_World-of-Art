@@ -90,3 +90,8 @@ custom_styles/normal = SubResource( 2 )
 text = "EA"
 align = 1
 valign = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.4
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
