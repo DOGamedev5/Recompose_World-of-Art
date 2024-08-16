@@ -17,15 +17,6 @@ func _ready():
 	savePath = dirSavePath % saveID
 	
 	Global.createFileData(savePath)
-#	if not Global._dir.dir_exists(savePath):
-#		var _1 := Global._dir.make_dir(savePath)
-#
-#	if not Global.saveExist(savePath + "save.tres"):
-#		Global.saveData(savePath + "save.tres", SaveGame.new())
-#		Global.saveData(savePath + "roomData.tres", RoomData.new())
-#
-#	elif not Global.saveExist(savePath + "roomData.tres"):
-#		Global.saveData(savePath + "roomData.tres", RoomData.new())
 	
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	

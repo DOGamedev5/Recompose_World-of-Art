@@ -15,6 +15,7 @@ func _resistence_set(value):
 func _on_HitboxComponent_HitboxDamaged(damage, _area):
 	if damage >= resistence:
 		var particleInstance = particle.instance()
+		Global.addToRoomData(name, "destroiedBlocks")
 		
 		particleInstance.particlesAmount = particlesAmount
 		particleInstance.resistence = resistence

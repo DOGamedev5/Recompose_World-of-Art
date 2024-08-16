@@ -31,7 +31,7 @@ func _input(_event):
 				$"../".currentScreen = "HUD"
 
 func _on_SImpleLight_toggled(button_pressed):
-	Global.emit_signal("simpleLightChanged", button_pressed)
+	Global._setSimpleLight(button_pressed)
 	Global.saveData(Global.optionsSavePath, Global.options)
 
 func _on_close_pressed():
@@ -59,3 +59,6 @@ func _on_sound_value_changed(value):
 func _on_drag_ended(_value_changed):
 	Global.saveData(Global.optionsSavePath, Global.options)
 
+func _on_CheckButton_toggled(button_pressed):
+	Global._setShadow(button_pressed)
+	Global.saveData(Global.optionsSavePath, Global.options)

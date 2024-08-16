@@ -3,6 +3,8 @@ class_name RoomClass extends Node2D
 export(Array, NodePath) var warp = []
 export(Array, NodePath) var doors = []
 export(Array, NodePath) var tubes = []
+export(NodePath) var blocksPath
+var blocks
 
 export var limitsMin := Vector2(-10000000, -10000000)
 export var limitsMax := Vector2(10000000, 10000000)
@@ -19,7 +21,12 @@ func _init():
 
 func _ready():
 	call_deferred("_simplesLightToggled", Global.options.simpleLight)
+	blocks = get_node_or_null(blocksPath)
 	
+	if blocks:
+		for n in Global.currentRoom.data["destroiedBlocks"]:
+			print(n)
+			blocks.get_node(n).queue_free()
 	
 	var _2 = Global.connect("simpleLightChanged", self, "_simplesLightToggled")
 	
@@ -29,7 +36,6 @@ func _simplesLightToggled(value):
 	canvasModulate.visible = !value
 	if canvasModulate.visible:
 		canvasModulate.set_color(canvasModulateColor)
-
 
 func init(warpID, type := "warp"):
 	var path : NodePath

@@ -13,16 +13,15 @@ var _dir := Directory.new()
 var gamePaused := false setget setGamePause
 var currentRoom : RoomData
 var world : LevelClass
-var lightThread : Thread
+var roomsToSave := {}
 
 signal simpleLightChanged(value)
+signal shadowsChanged(value)
 signal gamePaused
 signal gameUnpaused
 
-
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
-	var _1 = connect("simpleLightChanged", self, "_setSimpleLight")
 	
 	if not _dir.dir_exists("user://userData"):
 		var _2 = _dir.make_dir("user://userData")
@@ -52,16 +51,16 @@ func setGamePause(value):
 	else:
 		emit_signal("gameUnpaused")
 
-func _setterSimpleLight(value):
-	options.options.simpleLight = value
-	emit_signal("simpleLightChanged", value)
-
 func compareFloats(a : float, b : float, tolerance := 0.000001):
 	return abs(a - b) < tolerance
 
 func _setSimpleLight(value):
-	
+	emit_signal("simpleLightChanged", value)
 	options.simpleLight = value
+
+func _setShadow(value):
+	emit_signal("shadowsChanged", value)
+	options.shadows = value
 
 func saveExist(dataPath):
 	return _file.file_exists(dataPath)
@@ -76,6 +75,9 @@ func loadGameData(dataPath):
 func saveGameData():
 	saveData(savePath + "save.tres", save)
 	saveData(savePath + "roomData.tres", currentRoom)
+	
+	for path in roomsToSave.keys():
+		saveData(path, roomsToSave[path])
 
 func saveData(dataPath, data : Resource):
 	var _1 = ResourceSaver.save(dataPath, data)
@@ -104,3 +106,6 @@ func changePlayer(powerUp):
 
 	world.player = Global.player
 
+func addToRoomData(obj_name : String, catergory : String):
+	if not obj_name in currentRoom.data[catergory]:
+		currentRoom.data[catergory].append(obj_name)

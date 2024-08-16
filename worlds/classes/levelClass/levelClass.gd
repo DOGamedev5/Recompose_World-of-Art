@@ -63,7 +63,7 @@ func loadRoom(room : RoomData):
 	
 	Global.currentRoom = room
 	
-	saveDataRoom()
+	loadDataRoom()
 	
 	if currentWorld != room.world:
 		currentWorld = room.world
@@ -84,19 +84,52 @@ func loadRoom(room : RoomData):
 	player.transition.call_deferred("transitionOut")
 	player.resetParticles()
 
-func saveDataRoom():
-	if Global.currentRoom.world.get_base_dir() != "res://dimensions" and Global.currentRoom.category == "rooms":
-		var worldIndex = Global.currentRoom.world.find_last("/")
-		var worldPath = Global.savePath + "/worldRooms" + Global.currentRoom.world.substr(worldIndex)  + "/rooms"
-		var _1 = Global._dir.make_dir_recursive(worldPath)
+func loadDataRoom():
+	if Global.currentRoom.savePath:
+		var _1 := 0
+		var _2 := 0
+		
+		if not Global._dir.dir_exists(Global.savePath + "/worldRooms"):
+			_1 = Global._dir.make_dir(Global.savePath + "/worldRooms")
+		
 		if _1:
 			print_debug("making {world} path gives the error: {error}".format(
-				{"world" : Global.currentRoom.world.substr(worldIndex), "error" : _1})
+				{"world" : Global.savePath + "/worldRooms", "error" : _1})
 			)
 		
-		var roomPath : String = worldPath + "/room{index}.tres".format({"index" : Global.currentRoom.ID})
-		if Global.saveExist(roomPath):
-			Global.currentRoom.data = Global.loadData(roomPath).data
+		if not Global._dir.dir_exists(Global.currentRoom.saveWorldPath):
+			_2 = Global._dir.make_dir(Global.currentRoom.saveWorldPath)
+		if _2:
+			print_debug("making {world} path gives the error: {error}".format(
+				{"world" : Global.currentRoom.world.substr(Global.currentRoom.saveWorldPath), "error" : _2})
+			)
+		
+		if Global.roomsToSave.has(Global.currentRoom.savePath):
+			Global.currentRoom.data = Global.roomsToSave[Global.currentRoom.savePath].data
+		elif Global.saveExist(Global.currentRoom.savePath):
+			Global.currentRoom.data = Global.loadData(Global.currentRoom.savePath).data
+		
+
+func saveDataRoom():
+	if Global.currentRoom.savePath:
+		var _1 := 0
+		var _2 := 0
+		
+		if not Global._dir.dir_exists(Global.savePath + "/worldRooms"):
+			_1 = Global._dir.make_dir(Global.savePath + "/worldRooms")
+		if _1:
+			print_debug("making {world} path gives the error: {error}".format(
+				{"world" : Global.savePath + "/worldRooms", "error" : _1})
+			)
+		
+		if not Global._dir.dir_exists(Global.currentRoom.saveWorldPath):
+			_2 = Global._dir.make_dir(Global.currentRoom.saveWorldPath)
+		if _2:
+			print_debug("making {world} path gives the error: {error}".format(
+				{"world" : Global.currentRoom.world.substr(Global.currentRoom.saveWorldPath), "error" : _2})
+			)
+		
+		if Global.roomsToSave.has(Global.currentRoom.savePath):
+			Global.roomsToSave[Global.currentRoom.savePath].data = Global.currentRoom.data
 		else:
-			Global.saveData(roomPath, Global.currentRoom)
-			
+			Global.roomsToSave[Global.currentRoom.savePath] = Global.currentRoom

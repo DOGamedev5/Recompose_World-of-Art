@@ -14,6 +14,9 @@ export var data := {
 	"collectedCoins" : []
 }
 
+export(String) var savePath 
+export(String) var saveWorldPath 
+
 func _init(roomID := 0, worldPath : String = "res://worlds/sandDesert", Category : String = "rooms", path := "res://worlds/sandDesert/especialRooms/welcome/welcome.tscn", WarpID := 0, WarpType := "warp", debug := false):
 	debugMode = debug
 	
@@ -30,3 +33,9 @@ func _init(roomID := 0, worldPath : String = "res://worlds/sandDesert", Category
 	ID = roomID
 	warpID = WarpID
 	warpType = WarpType
+	
+	if world.get_base_dir() != "res://dimensions" and category == "rooms":
+		var worldIndex = world.find_last("/")
+		saveWorldPath = Global.savePath + "/worldRooms" + world.substr(worldIndex)  + "/rooms"
+		
+		savePath = worldPath + "/room{index}.tres".format({"index" : ID})

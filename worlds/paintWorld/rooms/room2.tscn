@@ -15,6 +15,7 @@ extents = Vector2( 40, 174 )
 [node name="room1" type="Node2D"]
 script = ExtResource( 4 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
+blocksPath = NodePath("blocks")
 limitsMin = Vector2( -256, -736 )
 limitsMax = Vector2( 2520, 288 )
 canvasModulateColor = Color( 0.541176, 0.552941, 0.627451, 1 )
