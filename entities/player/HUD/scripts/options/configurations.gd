@@ -19,13 +19,13 @@ func _input(_event):
 		visible = not visible
 		
 		$"../HUD".visible = not visible
-		if $"../".player.cinematic:
+		if Global.player.cinematic:
 			$"../HUD".visible = false
 		
 		if visible:
 			$"../".currentScreen = "CONF"
 		else:
-			if $"../".player.cinematic:
+			if Global.player.cinematic:
 				$"../".currentScreen = "CINE"
 			else:
 				$"../".currentScreen = "HUD"

@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=2]
-[ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 28 )
@@ -88,8 +87,6 @@ tracks/0/keys = {
 [node name="playerBase" type="KinematicBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource( 1 )
-
-[node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="coyoteTimer" type="Timer" parent="."]
 wait_time = 0.2

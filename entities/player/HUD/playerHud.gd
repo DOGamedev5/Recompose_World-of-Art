@@ -9,11 +9,11 @@ onready var transition = $transition
 
 var currentScreen := "HUD"
 
-func _ready():
-	healthBarr.max_value = get_parent().MAXHEALTH
-	healthBarr.value = get_parent().health
+func init():
+	healthBarr.max_value = Global.player.MAXHEALTH
+	healthBarr.value = Global.player.health
 
-	var _1 = player.connect("damaged", self, "hitted")
+	var _1 = Global.player.connect("damaged", self, "hitted")
 
 func setHealthMax(healthMax):
 	healthBarr.max_value = healthMax

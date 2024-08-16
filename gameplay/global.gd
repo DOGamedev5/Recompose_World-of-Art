@@ -13,6 +13,7 @@ var _dir := Directory.new()
 var gamePaused := false setget setGamePause
 var currentRoom : RoomData
 var world : LevelClass
+var playerHud
 var roomsToSave := {}
 
 signal simpleLightChanged(value)
@@ -22,7 +23,7 @@ signal gameUnpaused
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
-	
+
 	if not _dir.dir_exists("user://userData"):
 		var _2 = _dir.make_dir("user://userData")
 	

@@ -15,21 +15,25 @@ var background
 func _ready():
 	Global.world = self
 	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/normal/playerNormal.tscn")
-#	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/book/playerBook.tscn")
+	var playerHudScene = LoadSystem.loadObject("res://entities/player/HUD/playerHud.tscn")
 	
-	player = playerScene.instance()
-	add_child(player)
+	Global.playerHud = playerHudScene.instance()
+	Global.get_parent().add_child(Global.playerHud)
+	Global.player = playerScene.instance()
+	add_child(Global.player)
 	
 	call_deferred("loadSave")
 	
 	AudioManager.playMusic("paintCaverns")
-	
-	
+
+func _exit_tree():
+	Global.playerHud.queue_free()
+
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
 func loadSave():
-	player.active = false
+	Global.player.active = false
 	
 	saveDataRoom()
 	
@@ -43,17 +47,17 @@ func loadSave():
 	add_child(background)
 	call_deferred("add_child", currentRoom)
 	
-	player.position = Global.save.player["position"]
+	Global.player.position = Global.save.player["position"]
 	
-	player.set_deferred("active", true)
+	Global.player.set_deferred("active", true)
 	
 	LoadSystem.closeLoad()
 
 
 func loadRoom(room : RoomData):
-	player.transition.transitionIn()
+	Global.player.transition.transitionIn()
 	
-	yield(player.transition, "transitionedIn")
+	yield(Global.player.transition, "transitionedIn")
 	emit_signal("changedRoom")
 	
 	if currentRoom:
@@ -81,8 +85,8 @@ func loadRoom(room : RoomData):
 	add_child(currentRoom)
 	currentRoom.init(room.warpID, room.warpType)
 	
-	player.transition.call_deferred("transitionOut")
-	player.resetParticles()
+	Global.player.transition.call_deferred("transitionOut")
+	Global.player.resetParticles()
 
 func loadDataRoom():
 	if Global.currentRoom.savePath:

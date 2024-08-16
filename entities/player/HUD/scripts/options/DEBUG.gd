@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var debugPanel := false
-onready var player = $"../../"
+
 
 onready var proprietyLabels := {
 	"currentState" : $PanelContainer/VBoxContainer/currentState,
@@ -29,32 +29,32 @@ func _process(_delta):
 	DEBUGSetup()
 	
 func DEBUGSetup():
-	
-	if player.stateMachine: proprietyLabels["currentState"].text = (
-		"current State: " + player.stateMachine.currentState.name)
+	if not Global.player: return
+	if Global.player.stateMachine: proprietyLabels["currentState"].text = (
+		"current State: " + Global.player.stateMachine.currentState.name)
 
 	proprietyLabels["motion"].text = (
-		"Motion: " + str(player.motion))
+		"Motion: " + str(Global.player.motion))
 		
 	proprietyLabels["onSlope"].text = (
-		"On slope: " + str(player.onSlope()))
+		"On slope: " + str(Global.player.onSlope()))
 		
 	proprietyLabels["snapDesatived"].text = (
-		"snap desatived: " + str(player.snapDesatived))
+		"snap desatived: " + str(Global.player.snapDesatived))
 	
 	proprietyLabels["snapLenght"].text = (
-		"snap lenght: " + str(player.currentSnapLength))
+		"snap lenght: " + str(Global.player.currentSnapLength))
 	
 	proprietyLabels["FPS"].text = (
 		"FPS: " + str(Engine.get_frames_per_second()))
 	
-	if not player.is_in_group("normal"): return
+	if not Global.player.is_in_group("normal"): return
 
 	proprietyLabels["running"].text = (
-		"Running: " + str(player.running))
+		"Running: " + str(Global.player.running))
 	
 func debugButtonPressed():
-	player.get_parent().loadRoom("res://debugRoom.tscn", 0)
+	Global.player.get_parent().loadRoom("res://debugRoom.tscn", 0)
 
 func simpleLightToggled():
 	var value = $PanelContainer/VBoxContainer/simpleLight.pressed
