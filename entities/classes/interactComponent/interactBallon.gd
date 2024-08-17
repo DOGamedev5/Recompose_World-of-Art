@@ -61,7 +61,7 @@ func exitedArea(area2D):
 	player = null
 	canInteract = false
 	
-	yield(get_tree().create_timer(0.8), "timeout")
+	if get_tree(): yield(get_tree().create_timer(0.8), "timeout")
 	if canInteract: return
 	
 	arrow.visible = showArroy

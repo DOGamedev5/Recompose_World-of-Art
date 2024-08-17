@@ -78,6 +78,7 @@ func saveGameData():
 	saveData(savePath + "roomData.tres", currentRoom)
 	
 	for path in roomsToSave.keys():
+		print(path)
 		saveData(path, roomsToSave[path])
 
 func saveData(dataPath, data : Resource):

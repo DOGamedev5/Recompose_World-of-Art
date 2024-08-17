@@ -35,7 +35,7 @@ func _init(roomID := 0, worldPath : String = "res://worlds/sandDesert", Category
 	warpType = WarpType
 	
 	if world.get_base_dir() != "res://dimensions" and category == "rooms":
-		var worldIndex = world.find_last("/")
-		saveWorldPath = Global.savePath + "/worldRooms" + world.substr(worldIndex)  + "/rooms"
+		print(world.substr(12))
+		saveWorldPath = Global.savePath + "worldRooms" + world.substr(12)  + "/rooms"
 		
-		savePath = worldPath + "/room{index}.tres".format({"index" : ID})
+		savePath = saveWorldPath + "/room{index}.tres".format({"index" : ID})
