@@ -415,6 +415,7 @@ ACCELERATION = 12
 DESACCELERATION = 100
 MAXSPEED = 600
 MAXFALL = 100
+JUMPFORCE = -500
 
 [node name="coyoteTimer" parent="." index="1"]
 wait_time = 0.5
