@@ -71,3 +71,4 @@ func _on_dialog_optionChosen(_question, option):
 		extended = true
 	else:
 		$AnimationPlayer._end()
+		Global.saveGameData()

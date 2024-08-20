@@ -76,13 +76,13 @@ motion_offset = Vector2( 0, -180 )
 motion_mirroring = Vector2( 2600, 0 )
 
 [node name="BackgroundDesert" type="Sprite" parent="ParallaxLayer"]
-position = Vector2( 650, 0 )
+position = Vector2( 650, 56 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 2
 
 [node name="BackgroundDesert2" type="Sprite" parent="ParallaxLayer"]
-position = Vector2( 1950, 0 )
+position = Vector2( 1950, 56 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 2

@@ -15,8 +15,6 @@
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookFly.pxo" type="Texture" id=13]
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookFlyOut.pxo" type="Texture" id=14]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
-
 [sub_resource type="CircleShape2D" id=35]
 radius = 28.0
 
@@ -408,6 +406,8 @@ graph_offset = Vector2( 0, -91.2539 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
 [node name="playerBook" instance=ExtResource( 1 )]
 script = ExtResource( 6 )
 stateMachinePath = NodePath("StateMachine")
@@ -416,10 +416,10 @@ DESACCELERATION = 100
 MAXSPEED = 600
 MAXFALL = 100
 
-[node name="AnimationTree" parent="shieldSystem" index="0"]
-parameters/playback = SubResource( 1 )
+[node name="coyoteTimer" parent="." index="1"]
+wait_time = 0.5
 
-[node name="StateMachine" type="Node" parent="." index="15"]
+[node name="StateMachine" type="Node" parent="." index="14"]
 script = ExtResource( 2 )
 startingState = NodePath("IDLE")
 
@@ -438,20 +438,20 @@ script = ExtResource( 8 )
 [node name="FALL" type="Node" parent="StateMachine" index="4"]
 script = ExtResource( 9 )
 
-[node name="sprite" type="Sprite" parent="." index="16"]
+[node name="sprite" type="Sprite" parent="." index="15"]
 position = Vector2( 0, -40 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="17"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="16"]
 position = Vector2( -6, -28 )
 shape = SubResource( 35 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="18"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="17"]
 position = Vector2( 6, -28 )
 shape = SubResource( 35 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="19"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="18"]
 anims/FALL = SubResource( 13 )
 anims/FLY = SubResource( 25 )
 anims/FLY_OUT = SubResource( 36 )
@@ -460,9 +460,12 @@ anims/JUMP = SubResource( 12 )
 anims/RESET = SubResource( 4 )
 anims/WALK = SubResource( 5 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="20"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="19"]
 tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 root_motion_track = NodePath("sprite:frame")
 parameters/playback = SubResource( 11 )
+
+[node name="AnimationTree" parent="shieldSystem" index="0"]
+parameters/playback = SubResource( 1 )

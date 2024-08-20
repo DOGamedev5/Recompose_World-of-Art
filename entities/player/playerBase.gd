@@ -1,8 +1,9 @@
 
 class_name PlayerBase extends KinematicBody2D
 
-onready var coyoteTimer = $coyoteTimer
-onready var onWallRayCast = [$onWallTop, $onWallMid, $onWallDown]
+onready var coyoteTimer := $coyoteTimer
+onready var jumpBufferTimer := $jumpBuffer
+onready var onWallRayCast := [$onWallTop, $onWallMid, $onWallDown]
 onready var collideUPCast = [$collideUpBack, $collideUp, $collideUpFront]
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
@@ -36,6 +37,7 @@ var realMotion := Vector2.ZERO
 var lastPosition := Vector2.ZERO
 var cinematic := false
 
+var jumpBuffer := false
 var canJump := true
 var coyote := true
 var fliped := false
@@ -50,14 +52,14 @@ var canLadder := false
 
 var health = MAXHEALTH
 
-var powers := {
-	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
-	"Fly" : "res://entities/player/powerStates/fly/playerFly.tscn"
-}
-
 var inputCord := {
 	"X" : ["ui_left", "ui_right"],
 	"Y" : ["ui_up", "ui_down"]
+}
+
+var powers := {
+	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
+	"Fly" : "res://entities/player/powerStates/fly/playerFly.tscn"
 }
 
 func _ready():
@@ -93,6 +95,10 @@ func _physics_process(delta):
 				ray.cast_to.x = 28 * sign(motion.x)
 			else:
 				ray.cast_to.x = 28 * Input.get_axis("ui_left", "ui_right")
+	
+	if Input.is_action_just_pressed("ui_jump"):
+		jumpBuffer = true
+		jumpBufferTimer.start()
 	
 	if not active: return
 	
@@ -350,3 +356,5 @@ func shieldTimeout():
 	animationShield.travel("RESET")
 	shieldActived = false
 
+func _on_jumpBuffer_timeout():
+	jumpBuffer = false

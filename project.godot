@@ -180,7 +180,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/godot_pixelorama_importer/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/nklbdev.tile_palette/plugin.cfg" )
 
 [gui]
 

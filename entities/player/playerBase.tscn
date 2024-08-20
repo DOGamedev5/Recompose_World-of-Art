@@ -88,6 +88,9 @@ tracks/0/keys = {
 collision_layer = 0
 script = ExtResource( 1 )
 
+[node name="jumpBuffer" type="Timer" parent="."]
+wait_time = 0.2
+
 [node name="coyoteTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -177,6 +180,7 @@ anims/shieldStoping = SubResource( 12 )
 wait_time = 3.5
 one_shot = true
 
+[connection signal="timeout" from="jumpBuffer" to="." method="_on_jumpBuffer_timeout"]
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="hitboxTriggered"]
 [connection signal="area_exited" from="HitboxComponent" to="." method="hitboxExited"]

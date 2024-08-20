@@ -61,16 +61,9 @@ func exitedArea(area2D):
 	player = null
 	canInteract = false
 	
-	if get_tree(): yield(get_tree().create_timer(0.8), "timeout")
-	if canInteract: return
 	
-	arrow.visible = showArroy
-	arrow.modulate.a8 = 111
-	
-	if tween.is_inside_tree():
-		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(0, 0), 0.8,
-		Tween.TRANS_EXPO, Tween.EASE_OUT)
-		tween.start()
+	if $Timer.is_inside_tree():
+		$Timer.start()
 	
 func changed(value):
 	text = value
@@ -86,4 +79,12 @@ func setSize():
 	$ballonContent/ballon.rect_size.x = size+8
 
 func _on_Timer_timeout():
-	pass # Replace with function body.
+	if canInteract: return
+	
+	arrow.visible = showArroy
+	arrow.modulate.a8 = 111
+	
+	if tween.is_inside_tree():
+		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(0, 0), 0.8,
+		Tween.TRANS_EXPO, Tween.EASE_OUT)
+		tween.start()

@@ -11,7 +11,7 @@ func process_state():
 	if parent.onWallRayCast[1].is_colliding() and abs(parent.motion.x) > 250:
 		return "WALL"
 	
-	if parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
+	if parent.canJump and parent.jumpBuffer and parent.couldUncounch():
 		return "JUMP"
 	
 	elif parent.onFloor():

@@ -1,8 +1,10 @@
 extends State
 
+func enter(_ls):
+	parent.MAXSPEED = 750
 
 func process_state():
-	if Input.is_action_just_pressed("ui_jump") or parent.is_on_wall():
+	if parent.jumpBuffer or parent.is_on_wall():
 		return "FALL"
 	
 	elif parent.onFloor():
@@ -18,3 +20,6 @@ func process_physics(_delta):
 		
 	parent.moveBase("X", parent.motion.x)
 	parent.playback.travel("FLY")
+
+func exit():
+	parent.MAXSPEED = 600

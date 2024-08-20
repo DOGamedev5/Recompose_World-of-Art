@@ -17,7 +17,7 @@ func process_state():
 		
 		return "WALK"
 
-	elif parent.canJump and not parent.cinematic and Input.is_action_pressed("ui_jump") and parent.couldUncounch(true):
+	elif parent.canJump and not parent.cinematic and parent.jumpBuffer and parent.couldUncounch(true):
 		return "JUMP"
 	
 	elif not parent.onFloor():

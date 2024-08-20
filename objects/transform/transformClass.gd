@@ -16,3 +16,4 @@ func areaEntered(area):
 	yield($AnimationPlayer, "animation_finished")
 	
 	area.get_parent().changePowerup(transformation)
+	Global.playerHud.cinematic.desactivaded()

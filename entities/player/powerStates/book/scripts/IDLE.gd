@@ -10,7 +10,7 @@ func process_state():
 	elif Input.get_axis("ui_left", "ui_right")and not parent.cinematic:
 		return "WALK"
 	
-	elif parent.canJump and not parent.cinematic and Input.is_action_pressed("ui_jump"):
+	elif parent.canJump and not parent.cinematic and parent.jumpBuffer:
 		return "JUMP"
 
 	return null

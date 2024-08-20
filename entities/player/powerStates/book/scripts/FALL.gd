@@ -5,6 +5,9 @@ func enter(_ls):
 
 func process_state():
 	if parent.onFloor():
+		if parent.canJump and not parent.cinematic and parent.jumpBuffer:
+			return "JUMP"
+		
 		if parent.motion.x == 0: return "IDLE"
 			
 		return "WALK"

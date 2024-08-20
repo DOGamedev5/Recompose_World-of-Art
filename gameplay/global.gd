@@ -73,7 +73,10 @@ func loadGameData(dataPath):
 	
 	savePath = dataPath
 
-func saveGameData():
+func saveGameData(position = null):
+	Global.save.player["position"] = position if position else player.global_position
+	Global.save.played = true
+	
 	saveData(savePath + "save.tres", save)
 	saveData(savePath + "roomData.tres", currentRoom)
 	
