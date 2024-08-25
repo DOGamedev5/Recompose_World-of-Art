@@ -195,7 +195,7 @@ func move(stopSlope = true):
 
 	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
 	
-	if abs(realMotion.x) < 10 and abs(motion.x) > 100:
+	if abs(realMotion.x) < 1 and abs(motion.x) > 100 and onWall():
 		motion.x = 0   
 	currentSnapLength = snap.y
 	
@@ -322,9 +322,7 @@ func coyoteTimerTimeout():
 	canJump = false
 
 func hitboxTriggered(_damage, area):
-	if not active: return
-	
-	if area is ChangeRoom:
+	if area is ChangeRoom and active:
 		active = false
 		area.changeRoom()
 	
@@ -337,7 +335,7 @@ func hitboxTriggered(_damage, area):
 	
 	elif area.is_in_group("ladder"):
 		enteredObjects.append(area)
-		canLadder = true	
+		canLadder = true
 		
 func hitboxExited(area):
 	
@@ -345,7 +343,7 @@ func hitboxExited(area):
 		enteredObjects.erase(area)
 	
 	var onLadder := false
-	
+
 	for obj in enteredObjects:
 		if obj.is_in_group("ladder"):
 			onLadder = true

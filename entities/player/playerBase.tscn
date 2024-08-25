@@ -153,6 +153,7 @@ cast_to = Vector2( 0, 56 )
 position = Vector2( 0, -2 )
 collision_layer = 0
 collision_mask = 1536
+priority = 1.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true,

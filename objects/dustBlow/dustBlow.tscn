@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://objects/dustBlow/dustBlow.gd" type="Script" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/effect1.pxo-e14b83f33bc5af2dbff6a39023222ec2.stex"
+
+[sub_resource type="Curve" id=3]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 119.325 ), 498.258, 0.0, 0, 0 ]
+
+[node name="runningParticle" type="CPUParticles2D"]
+material = SubResource( 1 )
+emitting = false
+amount = 12
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.87
+randomness = 0.24
+lifetime_randomness = 0.26
+local_coords = false
+draw_order = 1
+texture = SubResource( 2 )
+direction = Vector2( 0, -1 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.2
+linear_accel = 40.0
+linear_accel_curve = SubResource( 3 )
+angle_random = 0.4
+scale_amount = 2.0
+anim_speed = 0.9
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}

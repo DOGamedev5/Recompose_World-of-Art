@@ -18,6 +18,8 @@ func _getProps():
 		load("res://objects/ladder/ladder.tscn"),
 		load("res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn"),
 		load("res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn"),
+		load("res://objects/keyBlock/block/blockKey.tscn"),
+		load("res://objects/keyBlock/key/keyCollect.tscn")
 	]
 	
 	
@@ -52,10 +54,13 @@ func _getProps():
 				
 			if i in [0, 1, 3, 4]:
 				blocksParent.add_child(newProp)
-				blocksParent.set_owner(get_parent())
-			else:
+				newProp.set_owner(blocksParent)
+			elif i in [2]:
 				stairsParent.add_child(newProp)
-				stairsParent.set_owner(get_parent())
+				newProp.set_owner(stairsParent)
+			else:
+				get_parent().add_child(newProp)
+				newProp.set_owner(get_parent())
 
 func _set_setup(value):
 	setup = value

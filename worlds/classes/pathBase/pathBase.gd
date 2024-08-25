@@ -17,4 +17,4 @@ func _ready():
 	roomData = RoomData.new(roomID, world, category, roomPath, warpID, "warp")
 	
 func changeRoom():
-	get_parent().get_parent().loadRoom(roomData)
+	Global.world.loadRoom(roomData)

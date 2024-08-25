@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/flipPlataform.pxo-1f88e4647c440e31dc87230f3c54c5aa.stex"
+
+[deps]
+
+source_file="res://dimensions/literatureArt/objects/flipPlataform/flipPlataform.pxo"
+dest_files=[ "res://.import/flipPlataform.pxo-1f88e4647c440e31dc87230f3c54c5aa.stex" ]
+
+[params]
+

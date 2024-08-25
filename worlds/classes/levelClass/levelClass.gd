@@ -119,7 +119,6 @@ func saveDataRoom():
 		var _1 := 0
 		var _2 := 0
 		
-		print(Global.savePath + "worldRooms")
 		
 		if not Global._dir.dir_exists(Global.savePath + "worldRooms"):
 			_1 = Global._dir.make_dir(Global.savePath + "worldRooms")
@@ -142,7 +141,6 @@ func saveDataRoom():
 				{"world" : Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12) + "/rooms", "error" : _2, "ID" : Global.currentRoom.ID})
 			)
 		
-		print(Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12)  + "/rooms/room{0}.tres".format([Global.currentRoom.ID]))
 		if Global.roomsToSave.has(Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12)  + "/rooms/room{0}.tres".format([Global.currentRoom.ID])):
 			Global.roomsToSave[Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12)  + "/rooms/room{0}.tres".format([Global.currentRoom.ID])].data = Global.currentRoom.data
 		else:
