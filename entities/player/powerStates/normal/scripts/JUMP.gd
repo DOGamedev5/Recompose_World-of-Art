@@ -5,6 +5,10 @@ var lastState
 func enter(laststate):
 	parent.setParticle(0, false)
 	parent.setParticle(1, false)
+	var smoke = load("res://objects/dustBlow/dustBlow.tscn").instance()
+	smoke.amount = 6
+	Global.world.add_child(smoke)
+	smoke.global_position = parent.global_position
 	
 	lastState = laststate
 	
@@ -36,7 +40,6 @@ func process_state():
 
 func process_physics(_delta):
 	parent.stoppedRunning()
-	
 	
 	if abs(parent.motion.x) < 250 and int(parent.realMotion.x) == 0:
 		parent.motion.x = 0

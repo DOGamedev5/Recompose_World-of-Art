@@ -7,5 +7,4 @@ func collect(key):
 	
 	yield(key, "tree_exited")
 	if not get_children():
-		print("a")
 		emit_signal("keysCollected")

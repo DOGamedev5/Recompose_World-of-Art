@@ -32,8 +32,8 @@ func _ready():
 	
 	get_parent().setCameraLimits(limitsMin, limitsMax)
 	
-func _simplesLightToggled(value):
-	canvasModulate.visible = !value
+func _simplesLightToggled(value): 
+	canvasModulate.visible = value
 	if canvasModulate.visible:
 		canvasModulate.set_color(canvasModulateColor)
 

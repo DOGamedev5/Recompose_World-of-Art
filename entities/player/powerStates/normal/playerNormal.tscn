@@ -1729,6 +1729,9 @@ MAXFALL = 600
 JUMPFORCE = -850
 runningVelocity = 1000.0
 
+[node name="coyoteTimer" parent="." index="1"]
+wait_time = 0.15
+
 [node name="flooDetectBack" parent="." index="2"]
 position = Vector2( -14, -8 )
 cast_to = Vector2( 0, 24 )

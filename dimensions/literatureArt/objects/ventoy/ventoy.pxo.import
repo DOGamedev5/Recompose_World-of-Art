@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/ventoy.pxo-91771d4a0620e1db85a70141fec5bf3f.stex"
+
+[deps]
+
+source_file="res://dimensions/literatureArt/objects/ventoy/ventoy.pxo"
+dest_files=[ "res://.import/ventoy.pxo-91771d4a0620e1db85a70141fec5bf3f.stex" ]
+
+[params]
+

@@ -38,6 +38,7 @@ var lastPosition := Vector2.ZERO
 var cinematic := false
 
 var jumpBuffer := false
+var jumpReleased := false
 var canJump := true
 var coyote := true
 var fliped := false
@@ -84,6 +85,7 @@ func _physics_process(delta):
 			counched = true
 		else:
 			counched = false
+			
 		
 		if motion.x != 0:
 			fliped = motion.x < 0
@@ -98,6 +100,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("ui_jump"):
 		jumpBuffer = true
+		jumpReleased = false
 		jumpBufferTimer.start()
 	
 	if not active: return
@@ -212,19 +215,22 @@ func desaccelerate(MotionCord : float, input := .0):
 	return MotionCord
 
 func jumpBase(force = JUMPFORCE):
+	
+	
 	if canJump and couldUncounch():
 		snapDesatived = true
 		motion.y = force
 		coyote = false
 		canJump = false
 		
-	elif Input.is_action_just_released("ui_jump"):
+	elif not Input.is_action_pressed("ui_jump") and not jumpReleased:
 		motion.y /= 2
+		jumpReleased = true
 		snapDesatived = false
 
 func _coyoteTimer():
 	if onFloor()  and gravity:
-		canJump = true
+		canJump = true if collideUp() == -65 else false
 		coyote = true
 	elif canJump and coyote:
 		coyoteTimer.start()

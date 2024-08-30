@@ -19,7 +19,8 @@ lightPath = NodePath("Light2D")
 
 [node name="Light" type="Sprite" parent="."]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.109804 )
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+self_modulate = Color( 1, 1, 1, 0.196078 )
 show_behind_parent = true
 material = SubResource( 2 )
 position = Vector2( 20, -72 )
