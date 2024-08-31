@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://dimensions/literatureArt/objects/ventoy/ventoy.pxo" type="Texture" id=1]
 [ext_resource path="res://gameplay/effects/effect4.pxo" type="Texture" id=2]
+[ext_resource path="res://dimensions/literatureArt/objects/ventoy/ventoyArea.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -41,6 +42,18 @@ particles_animation = true
 particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 40, 52 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 40, 76 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 40, 96 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 40, 28 )
 
 [node name="ventoy" type="StaticBody2D"]
 
@@ -112,3 +125,47 @@ anim_speed = 1.0
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 48, -248 )
 scale = Vector2( 4.8, 24.8 )
+
+[node name="Area2D" type="Area2D" parent="." groups=["ventoy1"]]
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource( 3 )
+force = -800
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 48, -68 )
+shape = SubResource( 4 )
+
+[node name="Area2D2" type="Area2D" parent="." groups=["ventoy2"]]
+position = Vector2( 0, -104 )
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource( 3 )
+force = -700
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( 48, -92 )
+shape = SubResource( 5 )
+
+[node name="Area2D3" type="Area2D" parent="." groups=["ventoy3"]]
+position = Vector2( 0, -256 )
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource( 3 )
+force = -650
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2( 48, -112 )
+shape = SubResource( 6 )
+
+[node name="Area2D4" type="Area2D" parent="." groups=["ventoy4"]]
+position = Vector2( 0, -360 )
+collision_layer = 1024
+collision_mask = 1024
+script = ExtResource( 3 )
+force = -400
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
+self_modulate = Color( 100, 1, 1, 1 )
+position = Vector2( 48, -132 )
+shape = SubResource( 7 )

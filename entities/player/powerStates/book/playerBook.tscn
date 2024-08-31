@@ -408,7 +408,7 @@ graph_offset = Vector2( 0, -91.2539 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
-[node name="playerBook" instance=ExtResource( 1 )]
+[node name="playerBook" groups=["book"] instance=ExtResource( 1 )]
 script = ExtResource( 6 )
 stateMachinePath = NodePath("StateMachine")
 ACCELERATION = 12

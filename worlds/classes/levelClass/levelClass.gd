@@ -4,7 +4,7 @@ export(String, FILE, "*.tscn") var firstRoom := ""
 
 signal changedRoom
 
-var currentRoom
+var currentRoom : RoomClass
 var currentRoomID := 0
 var player
 

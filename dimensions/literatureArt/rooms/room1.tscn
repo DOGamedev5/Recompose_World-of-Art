@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=4]
 [ext_resource path="res://objects/savePoints/savepoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/tubeEnter/tubeEnter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/classes/tileProps/tileProps.gd" type="Script" id=7]
+[ext_resource path="res://worlds/classes/tileProps/tileProps.tres" type="TileSet" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 152 )
@@ -13,6 +15,7 @@ extents = Vector2( 28, 152 )
 [node name="RoomClass2" type="Node2D"]
 script = ExtResource( 4 )
 warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
+blocksPath = NodePath("/root/EditorNode/@@596/@@597/@@605/@@607/@@611/@@615/@@616/@@617/@@633/@@634/@@643/@@644/@@6618/@@6450/@@6451/@@6452/@@6453/@@6454/@@6455/RoomClass2/blocks")
 limitsMin = Vector2( -168, -1224 )
 limitsMax = Vector2( 1792, 16 )
 
@@ -50,3 +53,18 @@ position = Vector2( 1152, -144 )
 world = "res://dimensions/literatureArt"
 roomID = 5
 direction = 0
+
+[node name="coins" type="Node2D" parent="."]
+position = Vector2( -8, 0 )
+
+[node name="blocks" type="Node2D" parent="."]
+
+[node name="stairs" type="Node2D" parent="."]
+
+[node name="TileProps" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 8, 8 )
+format = 1
+script = ExtResource( 7 )
+setup = true

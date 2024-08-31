@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/coins.pxo-c8c2e48a15f212041ffdcfef2aa88d49.stex"
+
+[deps]
+
+source_file="res://objects/coins/coins.pxo"
+dest_files=[ "res://.import/coins.pxo-c8c2e48a15f212041ffdcfef2aa88d49.stex" ]
+
+[params]
+

@@ -5,6 +5,7 @@ export var setup = false setget _set_setup
 
 onready var blocksParent
 onready var stairsParent
+onready var coinsParent
 
 func _init():
 	scale = Vector2(2, 2)
@@ -19,9 +20,9 @@ func _getProps():
 		load("res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn"),
 		load("res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn"),
 		load("res://objects/keyBlock/block/blockKey.tscn"),
-		load("res://objects/keyBlock/key/keyCollect.tscn")
+		load("res://objects/keyBlock/key/keyCollect.tscn"),
+		load("res://objects/coins/coin.tscn")
 	]
-	
 	
 	
 	if get_parent().blocksPath:
@@ -34,6 +35,13 @@ func _getProps():
 			get_parent().add_child(blocksParent)
 			blocksParent.set_owner(get_parent())
 			get_parent().blocksPath = blocksParent.get_path()
+			
+	coinsParent = get_node_or_null("../coins")
+	if not coinsParent:
+		coinsParent = Node2D.new()
+		coinsParent.name = "coins"
+		get_parent().add_child(coinsParent)
+		coinsParent.set_owner(get_parent())
 	
 	stairsParent = get_node_or_null("../stairs")
 	if not stairsParent:
@@ -58,6 +66,9 @@ func _getProps():
 			elif i in [2]:
 				stairsParent.add_child(newProp)
 				newProp.set_owner(stairsParent)
+			elif i in [7]:
+				coinsParent.add_child(newProp)
+				newProp.set_owner(coinsParent)
 			else:
 				get_parent().add_child(newProp)
 				newProp.set_owner(get_parent())

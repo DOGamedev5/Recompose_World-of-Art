@@ -14,7 +14,7 @@ onready var camera = $Camera2D
 const SNAPLENGTH := 32
 
 export(NodePath) var stateMachinePath
-var stateMachine
+var stateMachine : StateMachine
 
 export(Array) var particles
 export(Array) var FlipObjects
@@ -66,6 +66,8 @@ var powers := {
 func _ready():
 	Global.player = self
 	Global.playerHud.init()
+	if Global.world.currentRoom:
+		setCameraLimits(Global.world.currentRoom.limitsMin, Global.world.currentRoom.limitsMax)
 	
 	lastPosition = position
 	if stateMachinePath: 
