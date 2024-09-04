@@ -96,7 +96,27 @@ func createFileData(path):
 		
 	elif not saveExist(path + "roomData.tres"):
 		saveData(path + "roomData.tres", RoomData.new())
-	
+
+func deleteFileData(path):
+	var _Dir := Directory.new()
+	deleteDirArchives(_Dir, path)
+
+func deleteDirArchives(dir : Directory, path, deleteItself := false):
+	if dir.open(path) == OK:
+		var _1 = dir.list_dir_begin(true)
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				deleteDirArchives(Directory.new(), path + file_name + "/", true) 
+			else:
+				var _2 = dir.remove(file_name)
+			
+			file_name = dir.get_next()
+		
+		if deleteItself:
+			var _2 = dir.remove(path)
+		
+
 	
 func loadData(dataPath):
 	return ResourceLoader.load(dataPath, "", true)

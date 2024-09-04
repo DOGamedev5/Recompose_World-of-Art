@@ -10,34 +10,33 @@ onready var buttons := [$VBoxContainer/play, $VBoxContainer/erase]
 export var menuPath : NodePath
 onready var menu = get_node(menuPath)
 
-var save
 var savePath : String
 
 func _ready():
 	savePath = dirSavePath % saveID
-	
-	Global.createFileData(savePath)
 	
 	$VBoxContainer/Label.text = "SAVE " + str(saveID)
 	
 	var _1 = $VBoxContainer/play.connect("pressed", self, "_on_Play_pressed")
 	var _2 = $VBoxContainer/erase.connect("pressed", self, "_on_Erase_pressed")
 	
-	var data : SaveGame = Global.loadData(savePath + "save.tres")
-	buttons[1].disatived = not data.played
-	$VBoxContainer/name.text = data.player["playerProperties"]["name"]
+	var _dir = Directory.new()
 	
-	
+	buttons[1].disatived = not _dir.file_exists(savePath + "save.tres")
+	if not buttons[1].disatived:
+		var data = Global.loadData(savePath+"save.tres")
+		$VBoxContainer/name.text = data.player["playerProperties"]["name"]
 
 func _on_Play_pressed():
+	Global.createFileData(savePath)
 	Global.loadGameData(savePath)
 	
 	LoadSystem.loadScene(menu, "res://worlds/main.tscn")
 
 func _on_Erase_pressed():
-	Global.saveData(savePath + "save.tres", SaveGame.new())
-	Global.saveData(savePath + "roomData.tres", RoomData.new())
+	Global.deleteFileData(savePath)
 	buttons[1].disatived = true
+	$VBoxContainer/name.text = ""
 
 func visibility_changed():
 	if self.visible:
