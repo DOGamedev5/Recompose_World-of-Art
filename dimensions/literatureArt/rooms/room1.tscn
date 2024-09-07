@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=4]
 [ext_resource path="res://objects/savePoints/savepoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/tubeEnter/tubeEnter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/chest/chest.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -50,7 +51,7 @@ position = Vector2( 1248, -480 )
 [node name="tube" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1152, -144 )
 world = "res://dimensions/literatureArt"
-roomID = 5
+roomID = 6
 direction = 0
 
 [node name="coins" type="Node2D" parent="."]
@@ -233,3 +234,6 @@ position = Vector2( 1688, -416 )
 [node name="blocks" type="Node2D" parent="."]
 
 [node name="stairs" type="Node2D" parent="."]
+
+[node name="chest" parent="." instance=ExtResource( 7 )]
+position = Vector2( 808, -112 )

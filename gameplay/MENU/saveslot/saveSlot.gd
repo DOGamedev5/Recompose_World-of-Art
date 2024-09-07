@@ -26,6 +26,8 @@ func _ready():
 	if not buttons[1].disatived:
 		var data = Global.loadData(savePath+"save.tres")
 		$VBoxContainer/name.text = data.player["playerProperties"]["name"]
+	else:
+		$VBoxContainer/name.text = ""
 
 func _on_Play_pressed():
 	Global.createFileData(savePath)

@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/chest.pxo-6e21a0f02954ff1816016e97b0618849.stex"
+
+[deps]
+
+source_file="res://objects/chest/chest.pxo"
+dest_files=[ "res://.import/chest.pxo-6e21a0f02954ff1816016e97b0618849.stex" ]
+
+[params]
+

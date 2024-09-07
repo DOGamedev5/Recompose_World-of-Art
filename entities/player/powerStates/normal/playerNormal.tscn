@@ -1876,6 +1876,10 @@ script = ExtResource( 10 )
 [node name="WALL" type="Node" parent="StateMachine" index="4"]
 script = ExtResource( 11 )
 
+[node name="Timer" type="Timer" parent="StateMachine/WALL" index="0"]
+wait_time = 0.3
+one_shot = true
+
 [node name="RUN" type="Node" parent="StateMachine" index="5"]
 script = ExtResource( 12 )
 

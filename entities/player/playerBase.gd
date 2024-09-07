@@ -316,7 +316,7 @@ func setCinematic(value : bool):
 	cinematic = value
 	moving = not value
 	if value:
-		HUD.cinematic.actived()
+		Global.playerHud.cinematic.actived()
 		motion.x = 0
 		if motion.y < 0:
 			motion.y /= 2
@@ -324,7 +324,7 @@ func setCinematic(value : bool):
 		stateMachine.changeState("IDLE")
 	
 	else:
-		HUD.cinematic.desactivaded()
+		Global.playerHud.cinematic.desactivaded()
 
 func coyoteTimerTimeout():
 	canJump = false

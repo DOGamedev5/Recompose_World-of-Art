@@ -48,6 +48,8 @@ func _physics_process(_delta):
 	
 	animation["parameters/NORMAL/NORMAL/WALK/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
+	
+	
 	if active:
 		move(!isRolling)
 	

@@ -27,17 +27,18 @@ func _getProps():
 		load("res://objects/coins/coin.tscn")
 	]
 	
+	var parent = get_tree().edited_scene_root
+	
+	if not parent: return
 	
 	for n in parentsKeys:
-		parents[n] = get_node_or_null("../" + n)
-		print("a")
+		parents[n] = parent.get_node_or_null(n)
 		if parents[n]: continue
 		
 		parents[n] = Node2D.new()
 		parents[n].name = n
-		get_parent().add_child(parents[n])
+		parent.add_child(parents[n])
 		parents[n].set_owner(get_parent())
-		print("b")
 	
 	for i in range(props.size()):
 		for cell in get_used_cells_by_id(i):
@@ -49,20 +50,19 @@ func _getProps():
 			if i in [1, 4]:
 				newProp.resistence = 2
 			
-			get_parent().add_child(newProp)
+			if i in [0, 1, 3, 4]:
+				parents["blocks"].add_child(newProp)
+				
+			elif i in [2]:
+				parents["stairs"].add_child(newProp)
+				
+			elif i in [7]:
+				parents["coins"].add_child(newProp)
+				
+			else:
+				parent.add_child(newProp)
+			
 			newProp.set_owner(get_parent())
-#			if i in [0, 1, 3, 4]:
-#				parents["blocks"].add_child(newProp)
-#				newProp.set_owner(parents["blocks"])
-#			elif i in [2]:
-#				parents["stairs"].add_child(newProp)
-#				newProp.set_owner(parents["stairs"])
-#			elif i in [7]:
-#				parents["coins"].add_child(newProp)
-#				newProp.set_owner(parents["coins"])
-#			else:
-#				get_parent().add_child(newProp)
-#				newProp.set_owner(get_parent())
 
 func _set_setup(value):
 	setup = value

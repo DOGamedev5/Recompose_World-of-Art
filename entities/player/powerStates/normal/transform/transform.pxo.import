@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/transform.pxo-980b75466c79c75fae2153a6a96934ed.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/transform/transform.pxo"
+dest_files=[ "res://.import/transform.pxo-980b75466c79c75fae2153a6a96934ed.stex" ]
+
+[params]
+

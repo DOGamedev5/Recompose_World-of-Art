@@ -8,6 +8,7 @@ func enter(lastState):
 	if not parent.onFloor() or ["TOP_SPEED", "ATTACK", "ROLL", "JUMP", "FALL"].has(lastState):
 		parent.walledPlayback.travel("SPLAT")
 		parent.stunned = true
+		$"Timer".start()
 		splat = true
 
 	elif parent.onFloor() and abs(parent.motion.x) <= parent.MAXSPEED:
@@ -32,7 +33,7 @@ func process_state():
 		elif not parent.onWall():
 			return "WALK"
 	
-	if parent.jumpBuffer:
+	if parent.jumpBuffer and $"Timer".is_stopped():
 		if parent.canJump and parent.couldUncounch():
 			return "JUMP"
 		
