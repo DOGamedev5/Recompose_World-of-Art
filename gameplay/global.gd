@@ -15,6 +15,7 @@ var currentRoom : RoomData
 var world : LevelClass
 var playerHud
 var roomsToSave := {}
+var dimensionsRooms := {}
 
 signal simpleLightChanged(value)
 signal shadowsChanged(value)
@@ -115,8 +116,6 @@ func deleteDirArchives(dir : Directory, path, deleteItself := false):
 		
 		if deleteItself:
 			var _2 = dir.remove(path)
-		
-
 	
 func loadData(dataPath):
 	return ResourceLoader.load(dataPath, "", true)

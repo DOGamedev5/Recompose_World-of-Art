@@ -65,5 +65,3 @@ region_rect = Rect2( 0, 0, 40, 8 )
 autoplay = "RESET"
 anims/RESET = SubResource( 2 )
 anims/idle = SubResource( 3 )
-
-[connection signal="area_entered" from="." to="." method="_on_coin_area_entered"]

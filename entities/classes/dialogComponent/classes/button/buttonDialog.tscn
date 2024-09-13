@@ -28,7 +28,7 @@ patch_margin_right = 20
 patch_margin_bottom = 28
 
 [node name="Label" type="Label" parent="."]
-anchor_left = 0.25
+anchor_left = 0.2
 anchor_top = 0.125
 anchor_right = 0.2
 anchor_bottom = 0.857143

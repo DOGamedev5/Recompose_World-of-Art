@@ -47,91 +47,69 @@ shape = SubResource( 1 )
 
 [node name="ladder" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2504, 64 )
-texture = "artificial"
 
 [node name="ladder2" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2504, 0 )
-texture = "artificial"
 
 [node name="ladder3" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2504, -64 )
-texture = "artificial"
 
 [node name="ladder4" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2504, -128 )
-texture = "artificial"
 
 [node name="ladder5" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2504, -192 )
-texture = "artificial"
 
 [node name="ladder6" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2504, -256 )
-texture = "artificial"
 
 [node name="ladder7" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2808, 64 )
-texture = "artificial"
 
 [node name="ladder8" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2808, 0 )
-texture = "artificial"
 
 [node name="ladder9" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2808, -64 )
-texture = "artificial"
 
 [node name="ladder10" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2808, -128 )
-texture = "artificial"
 
 [node name="ladder11" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2808, -192 )
-texture = "artificial"
 
 [node name="ladder12" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 2808, -256 )
-texture = "artificial"
 
 [node name="ladder13" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 576 )
-texture = "artificial"
 
 [node name="ladder14" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 640 )
-texture = "artificial"
 
 [node name="ladder15" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 704 )
-texture = "artificial"
 
 [node name="ladder16" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 768 )
-texture = "artificial"
 
 [node name="ladder17" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 832 )
-texture = "artificial"
 
 [node name="ladder18" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 896 )
-texture = "artificial"
 
 [node name="ladder19" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 960 )
-texture = "artificial"
 
 [node name="ladder20" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 1024 )
-texture = "artificial"
 
 [node name="ladder21" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 1088 )
-texture = "artificial"
 
 [node name="ladder22" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 1152 )
-texture = "artificial"
 
 [node name="blocks" type="Node2D" parent="."]
 

@@ -4,6 +4,8 @@ onready var tween = $Tween
 
 func _ready():
 	AudioManager.playMusic("recompose")
+	Global.roomsToSave.clear()
+	Global.dimensionsRooms.clear()
 
 func transition(show, hide : Array):
 	tween.interpolate_property(show, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.4,

@@ -975,7 +975,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="configurations" type="CanvasLayer" parent="."]
 pause_mode = 2
-layer = 5
+layer = 7
 visible = false
 script = ExtResource( 14 )
 

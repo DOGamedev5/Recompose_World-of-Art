@@ -35,7 +35,7 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 func loadSave():
 	Global.player.active = false
 	
-	saveDataRoom()
+	loadDataRoom()
 	
 	var currentRoomScene = LoadSystem.loadObject(Global.currentRoom.roomPath)
 	
@@ -65,7 +65,9 @@ func loadRoom(room : RoomData):
 	
 	saveDataRoom()
 	
+#	print(Global.currentRoom.data)
 	Global.currentRoom = room
+#	print(Global.currentRoom.data)
 	
 	loadDataRoom()
 	
@@ -89,59 +91,72 @@ func loadRoom(room : RoomData):
 	Global.player.resetParticles()
 
 func loadDataRoom():
-	if Global.currentRoom.savePath:
-		var _1 := 0
-		var _2 := 0
+	
+	var dir := Directory.new()
+	if dir.open(Global.savePath) != OK: return
+	
+	for item in ["worldRooms", Global.currentRoom.world.substr(13), "rooms"]:
+		if Global.currentRoom.world.get_base_dir() == "res://dimensions":
+			break
 		
-		if not Global._dir.dir_exists(Global.savePath + "worldRooms"):
-			_1 = Global._dir.make_dir(Global.savePath + "worldRooms")
+		if not dir.dir_exists(item):
+			var ERROR := dir.make_dir(item)
+			if ERROR:
+				print_debug("making {world} path gives the error: {error}".format(
+					{"world" : item, "error" : ERROR})
+				)
+				break
 		
-		if _1:
-			print_debug("making {world} path gives the error: {error}".format(
-				{"world" : Global.savePath + "worldRooms", "error" : _1})
-			)
+		dir.change_dir(item)
+	
+	if Global.currentRoom.world.get_base_dir() == "res://dimensions":
+		print("a")
+		if Global.dimensionsRooms.has(Global.currentRoom.ID):
+			Global.currentRoom.data = Global.dimensionsRooms[Global.currentRoom.ID].data
+		else:
+			Global.dimensionsRooms[Global.currentRoom.ID] = Global.currentRoom
 		
-		if not Global._dir.dir_exists(Global.currentRoom.saveWorldPath):
-			_2 = Global._dir.make_dir(Global.currentRoom.saveWorldPath)
-		if _2:
-			print_debug("making {world} path gives the error: {error}".format(
-				{"world" : Global.currentRoom.world.substr(Global.currentRoom.saveWorldPath), "error" : _2})
-			)
-		
-		if Global.roomsToSave.has(Global.currentRoom.savePath):
-			Global.currentRoom.data = Global.roomsToSave[Global.currentRoom.savePath].data
-		elif Global.saveExist(Global.currentRoom.savePath):
-			Global.currentRoom.data = Global.loadData(Global.currentRoom.savePath).data
+		return
+	
+	if Global.roomsToSave.has(Global.currentRoom.savePath):
+		Global.currentRoom.data = Global.roomsToSave[Global.currentRoom.savePath].data
+	elif Global.saveExist(Global.currentRoom.savePath):
+		Global.currentRoom.data = Global.loadData(Global.currentRoom.savePath).data
 		
 
 func saveDataRoom():
-	if Global.currentRoom.savePath:
-		var _1 := 0
-		var _2 := 0
+	
+	var dir := Directory.new()
+	if dir.open(Global.savePath) != OK:
+		print("a")
+		return
+	
+	for item in ["worldRooms", Global.currentRoom.world.substr(13), "rooms"]:
+		if Global.currentRoom.world.get_base_dir() == "res://dimensions":
+			break
 		
+		if not dir.dir_exists(item):
+			var ERROR := dir.make_dir(item)
+			if ERROR:
+				print_debug("making {world} path gives the error: {error}".format(
+					{"world" : item, "error" : ERROR})
+				)
+				break
 		
-		if not Global._dir.dir_exists(Global.savePath + "worldRooms"):
-			_1 = Global._dir.make_dir(Global.savePath + "worldRooms")
-		if _1:
-			print_debug("making {world} path gives the error: {error}".format(
-				{"world" : Global.savePath + "worldRooms", "error" : _1})
-			)
-		
-		if not Global._dir.dir_exists(Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12)):
-			_2 = Global._dir.make_dir(Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12))
-		if _2:
-			print_debug("making {world} path gives the error: {error}, roomID {ID}".format(
-				{"world" : Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12), "error" : _2, "ID" : Global.currentRoom.ID})
-			)
-		
-		if not Global._dir.dir_exists(Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12) + "/rooms"):
-			_2 = Global._dir.make_dir(Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12) + "/rooms")
-		if _2:
-			print_debug("making {world} path gives the error: {error}, roomID {ID}".format(
-				{"world" : Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12) + "/rooms", "error" : _2, "ID" : Global.currentRoom.ID})
-			)
-		
-		if Global.roomsToSave.has(Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12)  + "/rooms/room{0}.tres".format([Global.currentRoom.ID])):
-			Global.roomsToSave[Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12)  + "/rooms/room{0}.tres".format([Global.currentRoom.ID])].data = Global.currentRoom.data
+		dir.change_dir(item)
+	
+	if Global.currentRoom.world.get_base_dir() == "res://dimensions":
+		if Global.dimensionsRooms.has(Global.currentRoom.ID):
+			Global.dimensionsRooms[Global.currentRoom.ID].data = Global.currentRoom.data
 		else:
-			Global.roomsToSave[Global.savePath + "worldRooms" + Global.currentRoom.world.substr(12)  + "/rooms/room{0}.tres".format([Global.currentRoom.ID])] = Global.currentRoom
+			Global.dimensionsRooms[Global.currentRoom.ID] = Global.currentRoom
+		
+		return
+		
+	var savePath := dir.get_current_dir()
+	
+	if Global.roomsToSave.has(savePath + "room{0}.tres".format([Global.currentRoom.ID])):
+		Global.roomsToSave[savePath + "room{0}.tres".format([Global.currentRoom.ID])].data = Global.currentRoom.data
+	else:
+		Global.roomsToSave[savePath + "room{0}.tres".format([Global.currentRoom.ID])] = Global.currentRoom
+

@@ -8,8 +8,8 @@
 
 [sub_resource type="Gradient" id=5]
 interpolation_mode = 2
-offsets = PoolRealArray( 0.231788, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 0.0745098, 0.101961, 0.184314, 0.478431 )
+offsets = PoolRealArray( 0.461224, 0.987755, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.0714052, 0.0977124, 0.176634, 0.518628, 0.0745098, 0.101961, 0.184314, 0.541176 )
 
 [sub_resource type="GradientTexture" id=6]
 gradient = SubResource( 5 )
@@ -36,7 +36,7 @@ extra_spacing_char = 4
 font_data = ExtResource( 4 )
 
 [node name="dialog" type="CanvasLayer"]
-layer = 3
+layer = 4
 script = ExtResource( 3 )
 
 [node name="Control" type="Control" parent="."]

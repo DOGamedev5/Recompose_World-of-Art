@@ -21,17 +21,20 @@ func _init():
 
 func _ready():
 	call_deferred("_simplesLightToggled", Global.options.simpleLight)
-	blocks = get_node_or_null(blocksPath)
 	
-	if blocks:
-		for n in Global.currentRoom.data["destroiedBlocks"]:
-			var block = blocks.get_node_or_null(n)
-			if block: block.queue_free()
+	removeItens(get_node_or_null("blocks"), "destroiedBlocks")
+	removeItens(get_node_or_null("coins"), "collectedCoins")
 	
 	var _2 = Global.connect("simpleLightChanged", self, "_simplesLightToggled")
 	
 	get_parent().setCameraLimits(limitsMin, limitsMax)
-	
+
+func removeItens(manager, key):
+	if manager:
+		for n in Global.currentRoom.data[key]:
+			var obj = manager.get_node_or_null(n)
+			if obj: obj.queue_free()
+
 func _simplesLightToggled(value): 
 	canvasModulate.visible = value
 	if canvasModulate.visible:

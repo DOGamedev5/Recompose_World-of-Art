@@ -69,6 +69,7 @@ func addDialog(dialog : Array):
 func ativeded():
 	hasInteracted = true
 	Global.player.moving = false
+	visible = true
 	
 	tween.interpolate_property(rect, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.3,
 	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
@@ -97,6 +98,8 @@ func desactiveded():
 	tween.start()
 	
 	yield(tween, "tween_all_completed")
+	
+	visible = false
 	
 	for option in options.get_children():
 		option.queue_free()
