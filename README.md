@@ -2,16 +2,26 @@
 recompose its a game inspired in pizza tower and hollow knight, a frenetic metroidvania game
 
 ## Story
-you are lodrofo, one of the peoples who lives in the PaintWorld, some day the AIs have been created, with the ideia of being Tools to help to make art and for the ones that dont have habilities to make art have the possibility to share sentiments with the AIs, 
+You are Lodrofo, a person of the especie observanders in the artificial world Pangeart made by a Wizard(~~artist~~) that loves magic(~~art~~) of our world, you are hired by the Recompose Org. You have to collect the artfacts, you expect that objects is going to be in a museom exibition, but even the other employers dont know what they want with the artfacts...
 
-but because of a missing parâmeter the AIs start to steal the real artists, and start an conflict, and most of the peoples had to hide in the caverns, where they and you(lodrofo) live now,
-
-the king of the PaintWorlds start recruiting warriors to fight against the AIs and help the other worlds to deal and fix the error in the code of the AIs
+You will explore several civilizations of that world and Famous Artists of our World!
 
 ---
 
-some times in the adventure you will find others warriors and friendly AIs that dont have the error in the code
+Some times in the adventure you will find others employers and persons that can be interacted
 
+## Mechanics
+
+### Transformations
+  The transformations is like a power up with especial habilites that can help the player to pass certain obstacles (or make him choose or create a new path), that power ups exist to make the gameplay more flexible!
+
+  They only show at dimensions.
+
+### Dimensions
+  To get the fragments you have to find a dimension portal and enters, in that dimension you will have to search the fragments of the artfacts, its gonna have several enemies that you will have to defeat!
+  After Obtaining the fragments that you could find, you will have to destroy a cristal in the end of dimension, then you will have a limited time to go all the way back to escape form dimension, in that moment you can find a second lap and possibily a third lap if you wanna challenge youself.
+  If you miss or forget something or just wanna play the 2 and 3(if the dimension have) lap or just play again, you can also replay the game.
+ 
 ## Controls
 
 A and D to move
