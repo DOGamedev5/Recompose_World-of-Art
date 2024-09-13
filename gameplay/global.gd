@@ -132,4 +132,5 @@ func changePlayer(powerUp):
 
 func addToRoomData(obj_name : String, catergory : String):
 	if not obj_name in currentRoom.data[catergory]:
+		
 		currentRoom.data[catergory].append(obj_name)

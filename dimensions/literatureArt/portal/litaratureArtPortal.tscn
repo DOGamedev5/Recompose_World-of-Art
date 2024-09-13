@@ -89,4 +89,3 @@ showArroy = false
 
 [connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
 [connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]
-[connection signal="interacted" from="interactBallon" to="." method="_on_interactBallon_interacted"]

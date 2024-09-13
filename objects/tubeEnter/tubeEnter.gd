@@ -7,13 +7,16 @@ onready var camera := $Camera2D
 var enteredArea := false
 
 func _ready():
-	roomData.warpType = "tube"
+	warpType = "tube"
+	
 	var currentRoom = Global.world.currentRoom
+	
 	camera.limit_left = currentRoom.limitsMin.x
 	camera.limit_top = currentRoom.limitsMin.y
 	camera.limit_right = currentRoom.limitsMax.x
 	camera.limit_bottom = currentRoom.limitsMax.y
 	setDirection(direction)
+	
 	var textureName = Global.currentRoom.world.get_file()
 	$sprite.texture = load("res://objects/tubeEnter/sprites/%s.pxo" % (textureName))
 

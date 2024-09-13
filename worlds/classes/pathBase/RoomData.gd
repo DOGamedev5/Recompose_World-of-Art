@@ -3,7 +3,7 @@ class_name RoomData extends Resource
 export(String) var roomPath
 export(String) var world
 export(String) var category
-export(int) var ID
+export(int) var ID := 0
 export(int) var warpID
 export(String) var warpType
 
