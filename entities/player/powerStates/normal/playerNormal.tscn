@@ -1434,7 +1434,7 @@ nodes/Seek/position = Vector2( 400, 346.667 )
 nodes/StateMachine/node = SubResource( 190 )
 nodes/StateMachine/position = Vector2( 106.667, 373.333 )
 nodes/output/position = Vector2( 613.333, 346.667 )
-node_connections = [ "output", 0, "Seek", "Seek", 0, "StateMachine" ]
+node_connections = [ "Seek", 0, "StateMachine", "output", 0, "Seek" ]
 
 [sub_resource type="AnimationNodeAnimation" id=264]
 animation = "FALL"
@@ -1462,7 +1462,7 @@ nodes/Animation/position = Vector2( 240, 213.333 )
 nodes/TimeScale/node = SubResource( 302 )
 nodes/TimeScale/position = Vector2( 453.333, 186.667 )
 nodes/output/position = Vector2( 640, 186.667 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=271]
 switch_mode = 2

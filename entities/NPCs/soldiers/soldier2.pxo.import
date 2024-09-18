@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/soldier2.pxo-108a5c635a381a76925b5cd5a7aaed53.stex"
+
+[deps]
+
+source_file="res://entities/NPCs/soldiers/soldier2.pxo"
+dest_files=[ "res://.import/soldier2.pxo-108a5c635a381a76925b5cd5a7aaed53.stex" ]
+
+[params]
+

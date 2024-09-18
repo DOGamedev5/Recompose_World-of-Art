@@ -36,9 +36,11 @@ func setupRoom(room):
 	if currentRoom:
 		currentRoom.queue_free()
 	
-	saveDataRoom(Global.currentRoom.duplicate())
+	Global.currentRoom.saveDataRoom()
 	
-	Global.currentRoom = loadDataRoom(room).duplicate()
+	room.loadDataRoom()
+	
+	Global.currentRoom = room
 	
 	if currentWorld != room.world:
 		currentWorld = room.world
@@ -78,54 +80,3 @@ func loadRoom(room : RoomData):
 	
 	Global.player.transition.call_deferred("transitionOut")
 	Global.player.resetParticles()
-
-func saveDataRoom(room):
-	verifyDirs(room)
-
-	if room.world.get_base_dir() == "res://dimensions":
-		Global.dimensionsRooms[room.ID] = room
-		
-		return
-		
-	var savePath : String= "worldRooms/"+ room.world.substr(13) + "/rooms/"
-
-	Global.roomsToSave[savePath + "room{0}.tres".format([room.ID])] = room
-
-func loadDataRoom(room : RoomData):
-	
-	verifyDirs(room)
-	
-	if room.world.get_base_dir() == "res://dimensions":
-		if Global.dimensionsRooms.has(room.ID):
-			room = Global.dimensionsRooms[room.ID]
-		else:
-			print(room.data)
-		
-		return room
-	
-	if Global.roomsToSave.has(room.savePath):
-		room.data = Global.roomsToSave[room.savePath].data
-	elif Global.saveExist(room.savePath):
-		room.data = Global.loadData(room.savePath).data
-	
-	return room
-	
-
-func verifyDirs(room):
-	var dir := Directory.new()
-	if dir.open(Global.savePath) != OK:
-		return
-	
-	for item in ["worldRooms", Global.currentRoom.world.substr(13), "rooms"]:
-		if room.world.get_base_dir() == "res://dimensions":
-			break
-		
-		if not dir.dir_exists(item):
-			var ERROR := dir.make_dir(item)
-			if ERROR:
-				print_debug("making {world} path gives the error: {error}".format(
-					{"world" : item, "error" : ERROR})
-				)
-				break
-		
-		dir.change_dir(item)

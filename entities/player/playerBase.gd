@@ -217,8 +217,6 @@ func desaccelerate(MotionCord : float, input := .0):
 	return MotionCord
 
 func jumpBase(force = JUMPFORCE):
-	
-	
 	if canJump and couldUncounch():
 		snapDesatived = true
 		motion.y = force

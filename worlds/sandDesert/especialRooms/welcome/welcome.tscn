@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://worlds/sandDesert/especialRooms/welcome/welcome.gd" type="Script" id=1]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://worlds/sandDesert/especialRooms/welcome/sprites/contract.pxo" type="Texture" id=14]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=15]
 [ext_resource path="res://entities/NPCs/gledon/gledon.tscn" type="PackedScene" id=16]
+[ext_resource path="res://entities/NPCs/soldiers/Soldier1.tscn" type="PackedScene" id=17]
+[ext_resource path="res://entities/NPCs/soldiers/Soldier2.tscn" type="PackedScene" id=18]
 
 [sub_resource type="TileSet" id=1]
 0/name = "caveEnter.pxo 0"
@@ -217,6 +219,17 @@ texture = ExtResource( 10 )
 hframes = 4
 frame = 3
 
+[node name="Caban2" type="Sprite" parent="."]
+self_modulate = Color( 0.847059, 0.811765, 0.745098, 1 )
+position = Vector2( 2280, -120 )
+scale = Vector2( 2, 2 )
+z_index = -2
+z_as_relative = false
+texture = ExtResource( 10 )
+flip_h = true
+hframes = 4
+frame = 3
+
 [node name="literaturePortal" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1832, -134 )
 
@@ -303,8 +316,29 @@ align = 1
 
 [node name="Tween" type="Tween" parent="."]
 
+[node name="Soldier3" parent="." instance=ExtResource( 18 )]
+position = Vector2( 1632, -62 )
+spritePath = NodePath("../Soldier2/Soldier1")
+fliped = true
+
+[node name="Soldier4" parent="." instance=ExtResource( 18 )]
+position = Vector2( 432, -46 )
+spritePath = NodePath("../Soldier2/Soldier1")
+fliped = true
+
+[node name="Soldier5" parent="." instance=ExtResource( 18 )]
+position = Vector2( 2928, -46 )
+spritePath = NodePath("../Soldier2/Soldier1")
+
 [node name="NPCBase" parent="." instance=ExtResource( 16 )]
 position = Vector2( 1288, -46 )
+
+[node name="Soldier1" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1968, -62 )
+
+[node name="Soldier2" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1120, -30 )
+fliped = true
 
 [connection signal="dialogClosed" from="dialog" to="." method="_on_dialog_dialogClosed"]
 [connection signal="optionChosen" from="dialog" to="." method="_on_dialog_optionChosen"]

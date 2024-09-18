@@ -41,6 +41,8 @@ func enteredArea(area2D):
 	player = area2D.get_parent()
 	
 	emit_signal("entered")
+	if not $Timer.is_stopped():
+		$Timer.paused = true
 	
 	canInteract = true
 	arrow.visible = true
@@ -64,6 +66,7 @@ func exitedArea(area2D):
 	
 	if $Timer.is_inside_tree():
 		$Timer.start()
+		$Timer.paused = false
 	
 func changed(value):
 	text = value

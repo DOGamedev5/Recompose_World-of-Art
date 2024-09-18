@@ -53,3 +53,5 @@ func _playerEntered():
 
 func _playerExitered():
 	entered = false
+
+

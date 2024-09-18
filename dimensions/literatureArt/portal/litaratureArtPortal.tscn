@@ -71,18 +71,15 @@ anims/RESET = SubResource( 2 )
 anims/open = SubResource( 3 )
 
 [node name="hud" parent="." instance=ExtResource( 4 )]
-visible = true
 margin_top = -83.0
 margin_bottom = -83.0
 interactBallonPath = NodePath("../interactBallon")
 textName = "LiteratureArt"
 
 [node name="interactBallon" parent="." instance=ExtResource( 1 )]
-visible = false
 margin_left = 0.0
-margin_top = -107.0
+margin_top = 0.0
 margin_right = 0.0
-margin_bottom = -107.0
 areaInteractPath = NodePath("..")
 text = "E"
 showArroy = false

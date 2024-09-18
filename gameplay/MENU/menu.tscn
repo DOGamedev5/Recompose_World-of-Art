@@ -135,6 +135,10 @@ alignment = 1
 [node name="start" parent="initial/VBoxContainer" instance=ExtResource( 7 )]
 margin_left = 132.0
 margin_right = 451.0
+focus_neighbour_top = NodePath("../exit")
+focus_neighbour_bottom = NodePath("../options")
+focus_next = NodePath("../options")
+focus_previous = NodePath("../exit")
 size_flags_horizontal = 6
 text = "mn_start"
 
@@ -150,6 +154,10 @@ margin_left = 132.0
 margin_top = 92.0
 margin_right = 451.0
 margin_bottom = 164.0
+focus_neighbour_top = NodePath("../start")
+focus_neighbour_bottom = NodePath("../credits")
+focus_next = NodePath("../credits")
+focus_previous = NodePath("../start")
 size_flags_horizontal = 6
 text = "mn_opt"
 
@@ -179,6 +187,10 @@ custom_constants/separation = 12
 margin_top = 276.0
 margin_right = 584.0
 margin_bottom = 348.0
+focus_neighbour_top = NodePath("../credits")
+focus_neighbour_bottom = NodePath("../start")
+focus_next = NodePath("../start")
+focus_previous = NodePath("../credits")
 size_flags_horizontal = 6
 text = "player_hud_conf_quit"
 

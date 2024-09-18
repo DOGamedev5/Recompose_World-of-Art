@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/buttons.pxo-68740305fe9b39d08ce998549928f6b0.stex"
+
+[deps]
+
+source_file="res://worlds/classes/dimensionPortal/hud/buttons.pxo"
+dest_files=[ "res://.import/buttons.pxo-68740305fe9b39d08ce998549928f6b0.stex" ]
+
+[params]
+

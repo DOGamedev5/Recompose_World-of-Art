@@ -23,16 +23,29 @@ func interacted():
 	emit_signal("interacted")
 
 func entered():
-	visible = true
-	tween.interpolate_property(self, "rect_scale", rect_scale, Vector2(1, 1), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	if not $Timer.is_stopped():
+		$Timer.paused = true
+
+	tween.interpolate_property(self, "rect_scale", rect_scale, Vector2(1, 1), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 
 func exitered():
 	if not tween.is_inside_tree(): yield(tween, "tree_entered")
 	
-	tween.interpolate_property(self, "rect_scale", rect_scale, Vector2(0, 0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	tween.start()
 	
-	yield(tween, "tween_all_completed")
+	if $Timer.is_inside_tree():
+		$Timer.start()
+		$Timer.paused = false
+
+func _on_Timer_timeout():
+	if interactBallon.canInteract: 
+		return
 	
-	visible = false
+	if tween.is_inside_tree():
+		tween.interpolate_property(self, "rect_scale", rect_scale, Vector2(0, 0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		tween.start()
+		
+		yield(tween, "tween_all_completed")
+		
+#		visible = false
+	

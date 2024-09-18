@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/NPCs/NPCBase.gd" type="Script" id=1]
+[ext_resource path="res://entities/NPCs/soldiers/soldier1.pxo" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 28 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "IDLE"
+length = 1.6
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="Soldier1" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+spritePath = NodePath("Soldier1")
+
+[node name="Soldier1" type="Sprite" parent="."]
+position = Vector2( 0, -40 )
+scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 2 )
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -28 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "IDLE"
+anims/IDLE = SubResource( 2 )
+anims/RESET = SubResource( 3 )

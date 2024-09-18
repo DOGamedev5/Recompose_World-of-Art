@@ -20,7 +20,6 @@ margin_top = 14.0
 margin_bottom = 12.0
 
 [node name="Control" type="Control"]
-visible = false
 rect_scale = Vector2( 1e-05, 1e-05 )
 script = ExtResource( 3 )
 
@@ -41,3 +40,8 @@ align = 1
 valign = 1
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
