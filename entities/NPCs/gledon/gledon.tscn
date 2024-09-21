@@ -58,16 +58,9 @@ anims/IDLE = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -32 )
 shape = SubResource( 3 )
-
-[node name="Gledon" type="Sprite" parent="."]
-position = Vector2( 0, -48 )
-scale = Vector2( 2, 2 )
-z_index = -1
-z_as_relative = false
-texture = ExtResource( 1 )
-hframes = 4
 
 [node name="interactBallon" parent="." instance=ExtResource( 2 )]
 margin_left = 0.0
@@ -81,9 +74,18 @@ text = "E"
 interactBallonPath = NodePath("../interactBallon")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 1024
 collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, -40 )
 shape = SubResource( 4 )
+
+[node name="Gledon" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 1 )
+hframes = 4

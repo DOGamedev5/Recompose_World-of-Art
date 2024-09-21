@@ -3,8 +3,13 @@ mn_start,Jogar,Start
 mn_opt,Opções,Options
 mn_cre,Creditos,Credits
 mn_opt_sl,Luzes Simples,Simple Lights
+mn_opt_sh,Sombras,Shadows
 mn_back,Voltar,Back
 mn_start_play,Jogar,Play
 mn_start_erase,Apagar,Erase
 mn_opt_music,Musica,Music
 mn_opt_sfx,Sons,Sounds
+mn_vsync,Usar V-sync,Use V-sync
+mn_lang,Linguagem,Language
+lang_pt_BR,Português Brasileiro,Brazilian Portuguese
+lang_en,Inglês Americano,EUA Inglish

@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 onready var tween = $Tween
 onready var up = $up
