@@ -1,9 +1,8 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://worlds/sandDesert/especialRooms/welcome/welcome.gd" type="Script" id=1]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=2]
 [ext_resource path="res://gameplay/classes/cinematic/cinematicPlayer.gd" type="Script" id=3]
-[ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://dimensions/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://worlds/sandDesert/tilesets/sandDesert.tres" type="TileSet" id=6]
 [ext_resource path="res://worlds/sandDesert/objects/caveEnter/caveEnter.pxo" type="Texture" id=7]
@@ -243,13 +242,10 @@ anims/hello = SubResource( 4 )
 anims/hello1 = SubResource( 10 )
 anims/hello2 = SubResource( 11 )
 script = ExtResource( 3 )
-dialogPath = NodePath("../dialog")
-
-[node name="dialog" parent="." instance=ExtResource( 4 )]
 images = [ ExtResource( 12 ) ]
 
 [node name="contract" type="CanvasLayer" parent="."]
-layer = 5
+layer = 8
 visible = false
 
 [node name="Control" type="Control" parent="contract"]
@@ -340,6 +336,4 @@ position = Vector2( 1968, -62 )
 position = Vector2( 1120, -30 )
 fliped = true
 
-[connection signal="dialogClosed" from="dialog" to="." method="_on_dialog_dialogClosed"]
-[connection signal="optionChosen" from="dialog" to="." method="_on_dialog_optionChosen"]
 [connection signal="text_entered" from="contract/Control/TextureRect/LineEdit" to="." method="_on_LineEdit_text_entered"]

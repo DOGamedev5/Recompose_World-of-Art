@@ -13,7 +13,7 @@ var _dir := Directory.new()
 var gamePaused := false setget setGamePause
 var currentRoom : RoomData
 var world : LevelClass
-var playerHud
+var playerHud : PlayerHud
 var roomsToSave := {}
 var dimensionsRooms := {}
 
@@ -134,3 +134,16 @@ func addToRoomData(obj_name : String, catergory : String):
 	if not obj_name in currentRoom.data[catergory]:
 		
 		currentRoom.data[catergory].append(obj_name)
+
+func bin_array(n : int, size := 8):
+	var ret_array := []
+	
+	while n > 0:
+		ret_array.insert(0, n&1)
+		n = n>>1
+	
+	while ret_array.size() < size:
+		ret_array.insert(0, 0)
+	
+	print(ret_array)
+	return ret_array

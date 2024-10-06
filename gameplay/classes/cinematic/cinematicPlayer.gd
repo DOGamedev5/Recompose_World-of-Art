@@ -1,16 +1,9 @@
 class_name CutScene extends AnimationPlayer
 
-export var dialogPath : NodePath
-var dialog
-
+export(Array, Texture) var images
 var dialogs
 
-var onDialog : bool
-
-func _setup(Dialogs):
-	if dialogPath:
-		dialog = get_node(dialogPath)
-		
+func setup(Dialogs):
 	dialogs = Dialogs
 
 func _start():
@@ -20,15 +13,7 @@ func _end():
 	Global.player.setCinematic(false)
 
 func _setDialog(index := 0):
-	if not dialog.hasInteracted:
-		dialog.setup(dialogs[index])
-		dialog.interacted()
-		onDialog = true
-	
-func _input(_event):
-	if onDialog:
-		if Input.is_action_just_pressed("interact"):
-			dialog.interacted()
-			if not dialog.hasInteracted:
-				onDialog = false
+	if not Global.playerHud.dialog.opened:
+		Global.playerHud.dialog.open(dialogs[index], images)
+		
 

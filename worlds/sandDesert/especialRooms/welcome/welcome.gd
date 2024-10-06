@@ -4,23 +4,14 @@ onready var tween = $Tween
 
 var dialogs = [
 	[
-		{"name" : "Alex", "text" : "alex_1", "image": 0, "react" : 1},
-		{"name" : "Alex", "text" : "alex_2", "image": 0, "react" : 5},
-		{"name" : "Alex", "text" : "alex_3", "image": 0, "react" : 0}
+		TextDialog.new("histrorus_1-0", "histrorus", ["rodo", "lfo"],  0, 1),
+		TextDialog.new("histrorus_1-1", "histrorus", [],  0, 0),
 	],
 	[
-		{"name" : "Alex", "text" : "alex_4", "image": 0, "react" : 5},
-		{"name" : "Alex", "text" : "alex_5", "image": 0, "react" : 4},
-		{"name" : "Alex", "text" : "alex_6", "image": 0, "react" : 1},
-		{"name" : "Alex", "text" : "alex_7", "image": 0, "react" : 5},
-		Question.new("alex_8", ["alex_8_1", "alex_8_2"]),
-	],
-	[
-		{"name" : "Alex", "text" : "alex_9", "image": 0, "react" : 2},
-		{"name" : "Alex", "text" : "alex_10"},
-		{"name" : "Alex", "text" : "alex_11"},
-		{"name" : "Alex", "text" : "alex_12"}
-	],
+		TextDialog.new("histrorus_1-2", "histrorus", [],  0, 5),
+		TextDialog.new("histrorus_1-3", "histrorus", [],  0, 0),
+		TextDialog.new("histrorus_1-4", "histrorus", [],  0, 2),
+	]
 ]
 
 var currentHelloPart := 0
@@ -28,8 +19,9 @@ var extended := false
 
 func _ready():
 	if not Global.save.played:
-		$AnimationPlayer._setup(dialogs)
+		$AnimationPlayer.setup(dialogs)
 		$AnimationPlayer.play("hello")
+		Global.playerHud.dialog.connect("dialogClosed", self, "_on_dialog_dialogClosed")
 
 func _on_dialog_dialogClosed():
 	
@@ -39,13 +31,10 @@ func _on_dialog_dialogClosed():
 		$contract.visible = true
 		tween.start()
 		
-	elif currentHelloPart == 1 and not extended:
+	elif currentHelloPart == 1:
 		$AnimationPlayer._end()
 		Global.save.played = true
-	
-	elif currentHelloPart == 2:
-		$AnimationPlayer._end()
-		Global.save.played = true
+		Global.playerHud.dialog.disconnect("dialogClosed", self, "_on_dialog_dialogClosed")
 
 func _on_LineEdit_text_entered(new_text):
 	if not new_text: return
@@ -64,11 +53,3 @@ func _on_LineEdit_text_entered(new_text):
 	currentHelloPart += 1
 
 
-func _on_dialog_optionChosen(_question, option):
-	if option == "alex_8_1":
-		$dialog.addDialog(dialogs[2])
-		currentHelloPart += 1
-		extended = true
-	else:
-		$AnimationPlayer._end()
-		Global.saveGameData()
