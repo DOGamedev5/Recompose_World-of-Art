@@ -4,7 +4,7 @@ onready var tween = $Tween
 
 var dialogs = [
 	[
-		TextDialog.new("histrorus_1-0", "histrorus", ["rodo", "lfo"],  0, 1),
+		TextDialog.new("histrorus_1-0", "histrorus", [],  0, 1),
 		TextDialog.new("histrorus_1-1", "histrorus", [],  0, 0),
 	],
 	[
@@ -29,6 +29,7 @@ func _on_dialog_dialogClosed():
 		tween.interpolate_property($contract/Control/TextureRect, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.4, Tween.TRANS_CUBIC)
 		tween.interpolate_property($contract/Control/ColorRect, "self_modulate",Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.4, Tween.TRANS_CUBIC)
 		$contract.visible = true
+		$contract/Control/TextureRect/LineEdit.grab_focus()
 		tween.start()
 		
 	elif currentHelloPart == 1:

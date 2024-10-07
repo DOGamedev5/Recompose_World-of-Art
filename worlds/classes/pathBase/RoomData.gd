@@ -91,3 +91,7 @@ func verifyDirs():
 				break
 		
 		dir.change_dir(item)
+
+func getWorld():
+	var result : String = world
+	return result.replace(result.get_base_dir()+"/", "")

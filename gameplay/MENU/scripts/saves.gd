@@ -4,22 +4,32 @@ onready var options = $"../options"
 onready var initial = $"../initial"
 onready var parent = $"../"
 
-onready var buttons := [$buttonMenu]
-onready var saveSlots := [$HBoxContainer/saveSlot, $HBoxContainer/saveSlot2, $HBoxContainer/saveSlot3]
-
 var current := false
 
-func _on_ExitSaves_pressed():
-	parent.transition(initial, [self, options])
 
 func enter():
-	$buttonMenu.active = true
+	for child in $MarginContainer/VBoxContainer/HBoxContainer.get_children():
+		if child.pressed:
+			child.grab_focus()
+			return
 	
-	for save in saveSlots:
-		save.enter()
+	$MarginContainer/VBoxContainer/HBoxContainer/contract.grab_focus()
+	$MarginContainer/VBoxContainer/HBoxContainer/contract.pressed = true
 
 func changed():
-	$buttonMenu.active = false
-	
-	for save in saveSlots:
-		save.changed()
+	pass
+
+func _on_exit_pressed():
+	parent.transition(initial, [self, options])
+
+func _on_start_pressed():
+	for child in $MarginContainer/VBoxContainer/HBoxContainer.get_children():
+		if child.pressed:
+			child.confirmed()
+			return
+
+func _on_erase_pressed():
+	for child in $MarginContainer/VBoxContainer/HBoxContainer.get_children():
+		if child.pressed:
+			child.deleted()
+			return

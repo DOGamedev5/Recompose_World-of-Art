@@ -1012,6 +1012,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="dialog" type="CanvasLayer" parent="."]
 layer = 7
+visible = false
 script = ExtResource( 29 )
 
 [node name="Control" type="Control" parent="dialog"]

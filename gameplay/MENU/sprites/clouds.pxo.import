@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/clouds.pxo-98c976f9dc08a32c095d514049ecedea.stex"
+
+[deps]
+
+source_file="res://gameplay/MENU/sprites/clouds.pxo"
+dest_files=[ "res://.import/clouds.pxo-98c976f9dc08a32c095d514049ecedea.stex" ]
+
+[params]
+

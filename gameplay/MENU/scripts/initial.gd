@@ -5,9 +5,11 @@ onready var saves = $"../saves"
 onready var parent = $"../"
 onready var credits = $"../Credits"
 
-onready var buttons := [$VBoxContainer/start, $VBoxContainer/options, $VBoxContainer/credits]
-
 var current := true
+
+func _ready():
+
+	enter()
 
 func _on_start_pressed():
 	parent.transition(saves, [self, options, credits])
@@ -19,12 +21,12 @@ func _on_credits_pressed():
 	parent.transition(credits, [self, saves, options])
 
 func enter():
-	for button in buttons:
-		button.active = true
+	$MarginContainer/VBoxContainer2/VBoxContainer/start.grab_focus()
 
 func changed():
-	for button in buttons:
-		button.active = false
+	pass
 
 func _on_exit_pressed():
 	get_tree().quit()
+
+	

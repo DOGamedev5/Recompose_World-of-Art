@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/Confirm.pxo-aeac67e11ffba8661a057c32ab2a4a8d.stex"
+
+[deps]
+
+source_file="res://gameplay/MENU/saveslot/Confirm.pxo"
+dest_files=[ "res://.import/Confirm.pxo-aeac67e11ffba8661a057c32ab2a4a8d.stex" ]
+
+[params]
+
