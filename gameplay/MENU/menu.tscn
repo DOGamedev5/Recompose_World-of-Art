@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
@@ -94,9 +94,15 @@ outline_color = Color( 0.219608, 0.2, 0.439216, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 1 )
 
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 23 )
+region = Rect2( 32, 16, 16, 16 )
+margin = Rect2( 0, 0, 0, 2 )
+
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 23 )
-region = Rect2( 32, 0, 16, 18 )
+region = Rect2( 32, 0, 16, 16 )
+margin = Rect2( 0, 0, 0, 2 )
 
 [sub_resource type="StyleBoxTexture" id=10]
 texture = ExtResource( 23 )
@@ -117,6 +123,46 @@ margin_bottom = 12.0
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 23 )
 region = Rect2( 0, 36, 32, 18 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 23 )
+region = Rect2( 32, 0, 16, 16 )
+margin = Rect2( 0, 0, 0, 2 )
+
+[sub_resource type="Theme" id=49]
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0.984314, 1, 0.682353, 0.513726 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.0784314, 0.0431373, 0.121569, 0.686275 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 0.129412, 0.0980392, 0.239216, 0.337255 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
 
 [sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 21 )
@@ -610,8 +656,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.8 ),
-"transitions": PoolRealArray( 0.210224, 1 ),
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 0.732042, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 736 ), Vector2( 0, -900 ) ]
 }
@@ -622,10 +668,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 1.9 ),
-"transitions": PoolRealArray( 1, 0.353554, 1 ),
+"times": PoolRealArray( 0, 0.3, 1.1 ),
+"transitions": PoolRealArray( 1.6245, 0.482969, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 736 ), Vector2( 0, 736 ), Vector2( 0, -900 ) ]
+"values": [ Vector2( 0, 736 ), Vector2( 0, 536 ), Vector2( 0, -900 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("cloud1:visible")
@@ -634,7 +680,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -646,7 +692,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 1.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -658,17 +704,20 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.5, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "trigger"
+}, {
+"args": [  ],
+"method": "transitionFinish"
 } ]
 }
 
 [sub_resource type="Animation" id=34]
 resource_name = "options"
-length = 2.5
+length = 1.55
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("fragment1:rect_position")
@@ -701,11 +750,14 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.3, 1.05 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "trigger"
+}, {
+"args": [  ],
+"method": "transitionFinish"
 } ]
 }
 tracks/3/type = "value"
@@ -739,7 +791,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.5, 1.05 ),
+"times": PoolRealArray( 0, 0.45, 1.05 ),
 "transitions": PoolRealArray( 1, 0.378929, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 736 ), Vector2( 0, 736 ), Vector2( 0, 0 ) ]
@@ -755,11 +807,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.7 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 1.7, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "trigger"
+}, {
+"args": [  ],
+"method": "transitionFinish"
 } ]
 }
 tracks/1/type = "value"
@@ -862,6 +917,7 @@ script = ExtResource( 5 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="initial" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
@@ -964,10 +1020,9 @@ custom_styles/normal = SubResource( 16 )
 text = "player_hud_conf_quit"
 
 [node name="options" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -0.000976562
+margin_bottom = -0.000610352
 rect_pivot_offset = Vector2( 680.5, 368 )
 script = ExtResource( 3 )
 
@@ -988,30 +1043,31 @@ margin_top = 64.0
 margin_right = 1105.0
 margin_bottom = 671.0
 custom_constants/separation = 24
+alignment = 1
 
 [node name="Label" type="Label" parent="options/MarginContainer/VBoxContainer"]
-margin_right = 1169.0
-margin_bottom = 51.0
+margin_top = 132.0
+margin_right = 849.0
+margin_bottom = 183.0
 custom_fonts/font = SubResource( 2 )
 text = "mn_opt"
 align = 1
 valign = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="options/MarginContainer/VBoxContainer"]
-margin_top = 75.0
-margin_right = 1169.0
-margin_bottom = 499.0
-size_flags_vertical = 3
+margin_top = 207.0
+margin_right = 849.0
+margin_bottom = 367.0
 custom_constants/separation = 128
 
 [node name="VBoxContainer" type="VBoxContainer" parent="options/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 520.0
-margin_bottom = 424.0
+margin_right = 360.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 custom_constants/separation = 4
 
 [node name="Label3" type="Label" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
-margin_right = 520.0
+margin_right = 360.0
 margin_bottom = 26.0
 custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
 custom_fonts/font = SubResource( 7 )
@@ -1020,9 +1076,9 @@ valign = 1
 
 [node name="music" type="HSlider" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 30.0
-margin_right = 520.0
+margin_right = 360.0
 margin_bottom = 48.0
-custom_icons/grabber_highlight = SubResource( 9 )
+custom_icons/grabber_highlight = SubResource( 50 )
 custom_icons/grabber = SubResource( 9 )
 custom_styles/slider = SubResource( 10 )
 custom_styles/grabber_area_highlight = SubResource( 11 )
@@ -1044,7 +1100,7 @@ patch_margin_bottom = 6
 
 [node name="Label4" type="Label" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 52.0
-margin_right = 520.0
+margin_right = 360.0
 margin_bottom = 78.0
 custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
 custom_fonts/font = SubResource( 7 )
@@ -1053,10 +1109,10 @@ valign = 1
 
 [node name="sound" type="HSlider" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 margin_top = 82.0
-margin_right = 520.0
+margin_right = 360.0
 margin_bottom = 100.0
-custom_icons/grabber_highlight = SubResource( 9 )
-custom_icons/grabber = SubResource( 9 )
+custom_icons/grabber_highlight = SubResource( 50 )
+custom_icons/grabber = SubResource( 51 )
 custom_styles/slider = SubResource( 10 )
 custom_styles/grabber_area_highlight = SubResource( 11 )
 custom_styles/grabber_area = SubResource( 11 )
@@ -1075,18 +1131,42 @@ patch_margin_top = 4
 patch_margin_right = 10
 patch_margin_bottom = 6
 
+[node name="Label5" type="Label" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 104.0
+margin_right = 360.0
+margin_bottom = 130.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_lang"
+valign = 1
+
+[node name="languages" type="OptionButton" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 134.0
+margin_right = 360.0
+margin_bottom = 160.0
+theme = SubResource( 49 )
+custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 46 )
+custom_styles/pressed = SubResource( 47 )
+custom_styles/focus = SubResource( 46 )
+custom_styles/disabled = SubResource( 47 )
+custom_styles/normal = SubResource( 48 )
+text = "mn_lang"
+clip_text = true
+icon_align = 1
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="options/MarginContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 648.0
-margin_right = 1169.0
-margin_bottom = 424.0
+margin_left = 488.0
+margin_right = 849.0
+margin_bottom = 160.0
 size_flags_horizontal = 3
 custom_constants/separation = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
-margin_right = 521.0
+margin_right = 361.0
 margin_bottom = 42.0
 
-[node name="Label2" type="Label" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
+[node name="Label" type="Label" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
 margin_top = 8.0
 margin_right = 140.0
 margin_bottom = 34.0
@@ -1103,8 +1183,8 @@ margin_bottom = 42.0
 custom_constants/separation = 80
 
 [node name="simpleLight" type="CheckButton" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
-margin_left = 457.0
-margin_right = 521.0
+margin_left = 297.0
+margin_right = 361.0
 margin_bottom = 42.0
 size_flags_horizontal = 10
 size_flags_vertical = 5
@@ -1112,10 +1192,10 @@ theme = SubResource( 38 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 margin_top = 46.0
-margin_right = 521.0
+margin_right = 361.0
 margin_bottom = 88.0
 
-[node name="Label2" type="Label" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
+[node name="Label" type="Label" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
 margin_top = 8.0
 margin_right = 146.0
 margin_bottom = 34.0
@@ -1133,20 +1213,50 @@ margin_bottom = 42.0
 custom_constants/separation = 80
 
 [node name="shadow" type="CheckButton" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
-margin_left = 457.0
-margin_right = 521.0
+margin_left = 297.0
+margin_right = 361.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+theme = SubResource( 38 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 92.0
+margin_right = 361.0
+margin_bottom = 134.0
+
+[node name="Label" type="Label" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
+margin_top = 8.0
+margin_right = 134.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_vsync"
+align = 1
+valign = 1
+
+[node name="VSeparator" type="VSeparator" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 138.0
+margin_right = 218.0
+margin_bottom = 42.0
+custom_constants/separation = 80
+
+[node name="vsync" type="CheckButton" parent="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
+margin_left = 297.0
+margin_right = 361.0
 margin_bottom = 42.0
 size_flags_horizontal = 10
 theme = SubResource( 38 )
 
 [node name="exit" type="Button" parent="options/MarginContainer/VBoxContainer"]
-margin_left = 446.0
-margin_top = 523.0
-margin_right = 722.0
-margin_bottom = 607.0
+margin_left = 286.0
+margin_top = 391.0
+margin_right = 562.0
+margin_bottom = 475.0
 focus_neighbour_left = NodePath("../HBoxContainer3/VBoxContainer/music")
 focus_neighbour_right = NodePath("../HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight")
 size_flags_horizontal = 6
+size_flags_vertical = 0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
 custom_styles/hover = SubResource( 14 )
@@ -1846,10 +1956,13 @@ expand = true
 [connection signal="value_changed" from="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/music" to="options" method="_on_music_value_changed"]
 [connection signal="drag_ended" from="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/sound" to="options" method="_on_drag_ended"]
 [connection signal="value_changed" from="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/sound" to="options" method="_on_sound_value_changed"]
+[connection signal="item_selected" from="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/languages" to="options" method="_on_languages_item_selected"]
 [connection signal="toggled" from="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight" to="options" method="_on_simpleLight_toggled"]
 [connection signal="toggled" from="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/shadow" to="options" method="_on_shadow_toggled"]
+[connection signal="toggled" from="options/MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3/vsync" to="options" method="_on_vsync_toggled"]
 [connection signal="pressed" from="options/MarginContainer/VBoxContainer/exit" to="options" method="_on_exit_pressed"]
 [connection signal="pressed" from="saves/MarginContainer/VBoxContainer/HBoxContainer2/start" to="saves" method="_on_start_pressed"]
 [connection signal="pressed" from="saves/MarginContainer/VBoxContainer/HBoxContainer2/erase" to="saves" method="_on_erase_pressed"]
 [connection signal="pressed" from="saves/MarginContainer/VBoxContainer/exit" to="saves" method="_on_exit_pressed"]
 [connection signal="pressed" from="Credits/buttonMenu" to="Credits" method="_on_buttonMenu_pressed"]
+[connection signal="animation_started" from="transition/AnimationPlayer" to="transition" method="_on_AnimationPlayer_animation_started"]
