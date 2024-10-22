@@ -1967,4 +1967,9 @@ collision_layer = 1536
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )
 
+[node name="specialEffectTimer" type="Timer" parent="." index="29"]
+wait_time = 0.075
+autostart = true
+
 [connection signal="damaged" from="." to="StateMachine/DAMAGED" method="itsDamaged"]
+[connection signal="timeout" from="specialEffectTimer" to="." method="_on_specialEffectTimer_timeout"]

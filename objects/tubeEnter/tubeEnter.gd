@@ -22,9 +22,10 @@ func _ready():
 
 func _physics_process(_delta):
 	if enteredArea and detectEnter() and not $AnimationPlayer.is_playing():
+		Global.player.pause_mode = Node.PAUSE_MODE_STOP
+		Global.player.active = false
 		Global.player.motion = Vector2.ZERO
 		Global.player.visible = false
-		Global.player.pause_mode = Node.PAUSE_MODE_STOP
 		$Camera2D.current = true
 		$AnimationPlayer.play("enter")
 		yield($AnimationPlayer, "animation_finished")
@@ -83,7 +84,6 @@ func init():
 	$Camera2D.current = true
 	
 	Global.player.global_position = (global_position + directions[direction] * 86) + Vector2.DOWN*32
-
 	
 	$AnimationPlayer.play("enter")
 	yield($AnimationPlayer, "animation_finished")
@@ -91,6 +91,8 @@ func init():
 	Global.player.visible = true
 	Global.player.camera.current = true
 	Global.player.moving = true
+	Global.player.active = true
+	
 
 
 func _on_Node2D_area_entered(area):

@@ -6,7 +6,7 @@
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("Control/TextureRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -22,7 +22,7 @@ tracks/0/keys = {
 resource_name = "init"
 length = 7.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("Control/TextureRect:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -37,17 +37,25 @@ tracks/0/keys = {
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 5.0
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 5
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "init"
 anims/RESET = SubResource( 1 )
 anims/init = SubResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.101961, 0.145098, 0.211765, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 7
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

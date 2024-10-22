@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://worlds/paintWorld/sprites/credits_images/7.png" type="Texture" id=19]
 [ext_resource path="res://gameplay/MENU/scripts/Credits.gd" type="Script" id=20]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.pxo" type="Texture" id=21]
+[ext_resource path="res://gameplay/MENU/audio/paper1.mp3" type="AudioStream" id=22]
 [ext_resource path="res://gameplay/MENU/sprites/slider.pxo" type="Texture" id=23]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.pxo" type="Texture" id=24]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=25]
@@ -29,6 +30,7 @@
 [ext_resource path="res://gameplay/MENU/scripts/transition.gd" type="Script" id=28]
 [ext_resource path="res://gameplay/MENU/sprites/papers.pxo" type="Texture" id=29]
 [ext_resource path="res://gameplay/MENU/sprites/fragments.pxo" type="Texture" id=30]
+[ext_resource path="res://gameplay/MENU/audio/paper2.mp3" type="AudioStream" id=31]
 
 [sub_resource type="DynamicFont" id=13]
 size = 64
@@ -645,6 +647,42 @@ tracks/16/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/17/type = "value"
+tracks/17/path = NodePath("paperSound2:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("paperSound:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("paperSound3:playing")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=23]
 resource_name = "initial"
@@ -799,7 +837,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id=25]
 resource_name = "saves"
-length = 2.0
+length = 2.2
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -901,6 +939,42 @@ tracks/7/keys = {
 "update": 1,
 "values": [ false, true, false ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("paperSound2:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.1, 1.7, 2.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("paperSound:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.7, 1.2, 1.3, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("paperSound3:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.9, 1.3, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false ]
+}
 
 [sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 30 )
@@ -917,7 +991,6 @@ script = ExtResource( 5 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="initial" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
@@ -1020,9 +1093,9 @@ custom_styles/normal = SubResource( 16 )
 text = "player_hud_conf_quit"
 
 [node name="options" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -0.000610352
 rect_pivot_offset = Vector2( 680.5, 368 )
 script = ExtResource( 3 )
 
@@ -1041,7 +1114,7 @@ modulate = Color( 0.945098, 0.988235, 1, 1 )
 margin_left = 256.0
 margin_top = 64.0
 margin_right = 1105.0
-margin_bottom = 671.0
+margin_bottom = 672.0
 custom_constants/separation = 24
 alignment = 1
 
@@ -1835,8 +1908,8 @@ visible = false
 self_modulate = Color( 0.733333, 0.741176, 0.901961, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 2539.0
-margin_bottom = 664.0
+margin_right = 3900.0
+margin_bottom = 1400.0
 texture = ExtResource( 26 )
 stretch_mode = 2
 
@@ -1872,6 +1945,7 @@ margin_right = 1400.0
 margin_bottom = 800.0
 texture = SubResource( 27 )
 expand = true
+stretch_mode = 5
 
 [node name="paper5" type="TextureRect" parent="transition"]
 visible = false
@@ -1879,6 +1953,7 @@ margin_right = 1400.0
 margin_bottom = 800.0
 texture = SubResource( 32 )
 expand = true
+stretch_mode = 7
 
 [node name="paper4" type="TextureRect" parent="transition"]
 visible = false
@@ -1886,6 +1961,7 @@ margin_right = 1400.0
 margin_bottom = 800.0
 texture = SubResource( 28 )
 expand = true
+stretch_mode = 7
 
 [node name="paper3" type="TextureRect" parent="transition"]
 visible = false
@@ -1893,6 +1969,7 @@ margin_right = 1400.0
 margin_bottom = 800.0
 texture = SubResource( 29 )
 expand = true
+stretch_mode = 7
 
 [node name="paper2" type="TextureRect" parent="transition"]
 visible = false
@@ -1900,6 +1977,7 @@ margin_right = 1400.0
 margin_bottom = 800.0
 texture = SubResource( 30 )
 expand = true
+stretch_mode = 7
 
 [node name="paper1" type="TextureRect" parent="transition"]
 visible = false
@@ -1907,6 +1985,7 @@ margin_right = 1400.0
 margin_bottom = 800.0
 texture = SubResource( 31 )
 expand = true
+stretch_mode = 7
 
 [node name="cloud1" type="TextureRect" parent="transition"]
 visible = false
@@ -1915,6 +1994,7 @@ margin_right = 700.0
 margin_bottom = 1136.0
 rect_scale = Vector2( 2, 2 )
 texture = SubResource( 20 )
+stretch_mode = 7
 
 [node name="cloud2" type="TextureRect" parent="transition"]
 visible = false
@@ -1923,6 +2003,7 @@ margin_right = 700.0
 margin_bottom = 1136.0
 rect_scale = Vector2( 2, 2 )
 texture = SubResource( 21 )
+stretch_mode = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="transition"]
 anims/RESET = SubResource( 22 )
@@ -1938,6 +2019,7 @@ margin_bottom = 1736.0
 rect_min_size = Vector2( 1400, 1000 )
 texture = SubResource( 35 )
 expand = true
+stretch_mode = 7
 
 [node name="fragment2" type="TextureRect" parent="transition"]
 visible = false
@@ -1947,6 +2029,25 @@ margin_bottom = 1736.0
 rect_min_size = Vector2( 1400, 1000 )
 texture = SubResource( 36 )
 expand = true
+stretch_mode = 7
+
+[node name="paperSound" type="AudioStreamPlayer" parent="transition"]
+stream = ExtResource( 22 )
+volume_db = -2.286
+pitch_scale = 0.9
+bus = "SFX"
+
+[node name="paperSound2" type="AudioStreamPlayer" parent="transition"]
+stream = ExtResource( 31 )
+volume_db = -3.569
+pitch_scale = 1.3
+bus = "SFX"
+
+[node name="paperSound3" type="AudioStreamPlayer" parent="transition"]
+stream = ExtResource( 31 )
+volume_db = -2.286
+pitch_scale = 1.1
+bus = "SFX"
 
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/start" to="initial" method="_on_start_pressed"]
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/options" to="initial" method="_on_options_pressed"]

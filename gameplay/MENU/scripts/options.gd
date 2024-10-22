@@ -14,8 +14,10 @@ onready var slides := {
 }
 
 onready var languages := $MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/languages
+onready var languagensID := []
 
 var current := false
+
 
 func _ready():
 	buttons.simpleLight.pressed = Global.options.simpleLight
@@ -33,14 +35,15 @@ func _ready():
 		TranslationServer.set_locale(Global.options.lang)
 	
 	for locale in TranslationServer.get_loaded_locales():
-		var lang := TranslationServer.get_locale_name(locale)
-		if langs.has(lang): continue
+		if langs.has(locale): continue
 		
-		languages.add_item("{locale} / ({lang})".format({"locale" : locale, "lang" : lang}))
-		langs.append(lang)
+		languages.add_item("{lang}".format({"lang" : "lang_" + locale}))
+		langs.append(locale)
 		
 		if locale == Global.options.lang:
-			languages.select(languages.get_item_count())
+			languages.select(languages.get_item_count()-1)
+		
+		languagensID.append(locale) 
 
 func enter():
 	$MarginContainer/VBoxContainer/exit.grab_focus()
@@ -76,9 +79,8 @@ func _on_vsync_toggled(button_pressed):
 	Global.saveData(Global.optionsSavePath, Global.options)
 	
 func _on_languages_item_selected(index):
-	var lang : String = languages.get_item_text(languages.get_item_index(index))
-	var locale := lang.get_slice("/", 0)
-
+	var locale : String = languagensID[index]
+	
 	TranslationServer.set_locale(locale)
 	Global.options.lang = TranslationServer.get_locale()
 	Global.saveData(Global.optionsSavePath, Global.options)

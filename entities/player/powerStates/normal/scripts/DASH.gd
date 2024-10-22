@@ -11,6 +11,13 @@ func enter(_lastState):
 	parent.setParticle(0, false)
 	parent.setParticle(1, false)
 	
+	var smoke = load("res://objects/dustBlow/dustBlow.tscn").instance()
+	smoke.amount = 8
+	Global.world.add_child(smoke)
+	smoke.lifetime = 0.5
+	smoke.preprocess = 0.2
+	smoke.global_position = parent.global_position - Vector2(0, 32)
+	
 	parent.attackComponents[0].monitoring = true
 	attackTimer.start()
 	

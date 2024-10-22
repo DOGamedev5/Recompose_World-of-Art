@@ -3,7 +3,7 @@ extends CanvasLayer
 onready var menu = preload("res://gameplay/MENU/menu.tscn")
 
 func _input(_event):
-	if Input.is_key_pressed(KEY_ENTER):
+	if Input.is_action_just_pressed("ui_accept"):
 		var _1 = get_tree().change_scene_to(menu)
 
 func _on_AnimationPlayer_animation_finished(_anim_name):
