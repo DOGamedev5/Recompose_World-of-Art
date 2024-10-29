@@ -1,7 +1,11 @@
 extends State
 
+
+
 func enter(_ls):
+	AudioManager.playSFX(parent.stepSFX)
 	parent.MAXSPEED = 750
+	parent.snapDesatived = true
 
 func process_state():
 	if parent.jumpBuffer or parent.is_on_wall():
@@ -23,3 +27,5 @@ func process_physics(_delta):
 
 func exit():
 	parent.MAXSPEED = 600
+	parent.snapDesatived = false
+

@@ -23,12 +23,14 @@ func _on_exit_pressed():
 	parent.transition(initial, [self, options])
 
 func _on_start_pressed():
+	get_tree().root.set_disable_input(true)
 	for child in $MarginContainer/VBoxContainer/HBoxContainer.get_children():
 		if child.pressed:
 			child.confirmed()
 			return
 
 func _on_erase_pressed():
+
 	for child in $MarginContainer/VBoxContainer/HBoxContainer.get_children():
 		if child.pressed:
 			child.deleted()

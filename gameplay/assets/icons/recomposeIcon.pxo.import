@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/recomposeIcon.pxo-ab0d7c6b71303f8444f597d2383885ab.stex"
+
+[deps]
+
+source_file="res://gameplay/assets/icons/recomposeIcon.pxo"
+dest_files=[ "res://.import/recomposeIcon.pxo-ab0d7c6b71303f8444f597d2383885ab.stex" ]
+
+[params]
+

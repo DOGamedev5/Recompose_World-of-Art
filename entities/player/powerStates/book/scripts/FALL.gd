@@ -1,5 +1,7 @@
 extends State
 
+onready var fallSFX : AudioStream = preload("res://entities/player/powerStates/book/sfxs/closeBookSFX.ogg")
+
 func enter(_ls):
 	parent.MAXFALL = 600
 
@@ -21,3 +23,6 @@ func process_physics(_delta):
 
 func exit():
 	parent.MAXFALL = 100
+	
+	if parent.onFloor():
+		AudioManager.playSFX(fallSFX)

@@ -12,9 +12,9 @@ func _physics_process(delta):
 	if playerEntered:
 
 		if not Global.player.stateMachine.currentState.name in ["JUMP", "FLY"]:
-			Global.player.stateMachine.changeState("JUMP")
-			
-		Global.player.motion.y += force*delta
+			Global.player.stateMachine.changeState("FLY")
+		
+		Global.player.motion += Vector2(force*delta * sin(global_rotation)*8, force*delta * -cos(global_rotation))
 
 func _area_entered(area):
 	if area.is_in_group("player") and Global.player.is_in_group("book"):

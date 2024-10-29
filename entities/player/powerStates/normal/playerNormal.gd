@@ -35,8 +35,10 @@ onready var stepSFX = [
 	preload("res://entities/player/sfx/step.ogg")
 ]
 
+func _enter_tree():
+	$Sprite.hframes = 23
+
 func _ready():
-	
 	collisionShapes[0].shape.radius = 16
 	collisionShapes[0].shape.height = 23
 	collisionShapes[1].shape.radius = 15

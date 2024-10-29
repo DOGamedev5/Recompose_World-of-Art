@@ -10,6 +10,7 @@ signal finishedLoad()
 
 func loadScene(current, next : String, closeAfterLoad := false,currentPath := MAIN_SCENE):
 	loadSceneInstance = loadScreen.instance()
+
 	get_tree().get_root().call_deferred("add_child", loadSceneInstance)
 	
 	var loader := ResourceLoader.load_interactive(next)
@@ -31,7 +32,6 @@ func loadScene(current, next : String, closeAfterLoad := false,currentPath := MA
 		if error == OK:
 			label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
 
-		
 		elif error == ERR_FILE_EOF:
 			var scene = loader.get_resource().instance()
 			emit_signal("finishedLoad")

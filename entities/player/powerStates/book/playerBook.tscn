@@ -299,6 +299,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [ ExtResource( 10 ) ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_step"
+}, {
+"args": [  ],
+"method": "_step"
+} ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "FALL"
@@ -378,7 +395,7 @@ states/WALK/node = SubResource( 7 )
 states/WALK/position = Vector2( 672.333, 215.445 )
 transitions = [ "IDLE", "WALK", SubResource( 8 ), "WALK", "IDLE", SubResource( 9 ), "IDLE", "JUMP", SubResource( 16 ), "JUMP", "IDLE", SubResource( 17 ), "WALK", "JUMP", SubResource( 18 ), "JUMP", "FALL", SubResource( 19 ), "FALL", "IDLE", SubResource( 20 ), "FALL", "WALK", SubResource( 21 ), "IDLE", "FALL", SubResource( 22 ), "WALK", "FALL", SubResource( 23 ), "FALL", "JUMP", SubResource( 24 ), "FALL", "FLY", SubResource( 27 ), "JUMP", "FLY", SubResource( 29 ), "IDLE", "FLY", SubResource( 32 ), "WALK", "FLY", SubResource( 34 ), "FLY", "FLY_OUT", SubResource( 38 ), "FLY_OUT", "FALL", SubResource( 39 ), "FLY_OUT", "IDLE", SubResource( 40 ), "FLY_OUT", "JUMP", SubResource( 41 ), "FLY_OUT", "WALK", SubResource( 42 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 0, -91.2539 )
+graph_offset = Vector2( 0, 87.202 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 

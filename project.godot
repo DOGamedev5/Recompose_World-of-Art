@@ -175,7 +175,7 @@ run/main_scene="res://gameplay/intro/intro.tscn"
 boot_splash/show_image=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://recomposeIcon.png"
+config/icon="res://gameplay/assets/icons/recomposeIcon.png"
 config/windows_native_icon="res://recomposeIcon.ico"
 
 [audio]

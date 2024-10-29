@@ -5,6 +5,7 @@ export var saveID := 1
 onready var tween := $Tween
 
 const dirSavePath = "user://userData/saves/save%d/"
+const sfx := preload("res://gameplay/MENU/audio/contractSFX.ogg")
 
 var savePath : String
 var hovered := false
@@ -58,6 +59,8 @@ func confirmed():
 	Global.loadGameData(savePath)
 	
 	LoadSystem.loadScene(get_tree().current_scene, "res://worlds/main.tscn")
+	get_tree().root.set_disable_input(false)
+	
 
 func deleted():
 	clearContract()
@@ -108,6 +111,7 @@ func _on_contract_toggled(button_pressed):
 	else:
 		if not verifyDesselect():
 			pressed = true
+			$"../../HBoxContainer2/start".grab_focus()
 			return
 		
 		$texture/select.modulate = Color(1,1,1, 0.5)
@@ -124,3 +128,6 @@ func verifyDesselect():
 			return true
 	
 	return false
+
+func playSFX():
+	AudioManager.playSFX(sfx)

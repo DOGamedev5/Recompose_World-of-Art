@@ -3,7 +3,7 @@ extends Control
 onready var options = $"../options"
 onready var saves = $"../saves"
 onready var parent = $"../"
-onready var credits = $"../Credits"
+onready var credits = $"../credits"
 
 var current := true
 

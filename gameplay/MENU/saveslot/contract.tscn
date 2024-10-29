@@ -138,6 +138,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [ Rect2( 0, 0, 24, 224 ), Rect2( 24, 0, 24, 224 ), Rect2( 48, 0, 24, 224 ), Rect2( 72, 0, 24, 224 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "playSFX"
+} ]
+}
 
 [node name="contract" type="TextureButton"]
 rect_min_size = Vector2( 272, 406 )

@@ -12,6 +12,9 @@ func process_state():
 	
 	elif parent.canJump and not parent.cinematic and parent.jumpBuffer:
 		return "JUMP"
+	
+	elif parent.motion.y != 0 and parent.onSlope():
+		return "FLY"
 
 	return null
 	
