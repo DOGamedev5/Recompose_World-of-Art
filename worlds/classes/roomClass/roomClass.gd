@@ -31,9 +31,12 @@ func _ready():
 
 func removeItens(manager, key):
 	if manager:
-		for n in Global.currentRoom.data[key]:
+		for n in Global.currentRoom.data[key] as Array:
 			var obj = manager.get_node_or_null(n)
-			if obj: obj.queue_free()
+			if obj:
+				obj.queue_free()
+			else:
+				Global.currentRoom.data.erase(n)
 
 func _simplesLightToggled(value): 
 	canvasModulate.visible = value
