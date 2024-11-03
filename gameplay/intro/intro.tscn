@@ -19,7 +19,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-resource_name = "init"
 length = 7.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Control/TextureRect:modulate")

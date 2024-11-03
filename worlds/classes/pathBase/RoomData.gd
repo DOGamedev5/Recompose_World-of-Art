@@ -50,7 +50,9 @@ func saveDataRoom():
 		Global.dimensionsRooms[ID] = self.duplicate(true)
 		
 		return
-		
+	
+	if ID == 0: return
+	
 	var path : String= "worldRooms/"+ world.substr(13) + "/rooms/"
 
 	Global.roomsToSave[path + "room{0}.tres".format([ID])] = self

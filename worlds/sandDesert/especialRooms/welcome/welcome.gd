@@ -1,6 +1,7 @@
 extends RoomClass
 
 onready var tween = $Tween
+onready var cinemaitc := $cinematic
 
 var dialogs = [
 	[
@@ -19,9 +20,13 @@ var extended := false
 
 func _ready():
 	if not Global.save.played:
-		$AnimationPlayer.setup(dialogs)
-		$AnimationPlayer.play("hello")
+		cinemaitc.setup(dialogs)
+		cinemaitc.play("hello")
 		Global.playerHud.dialog.connect("dialogClosed", self, "_on_dialog_dialogClosed")
+		
+func _input(_event):
+	if Input.is_action_just_pressed("ui_accept") and $contract/Control/TextureRect/LineEdit.editable and $contract.visible:
+		_on_LineEdit_text_entered($contract/Control/TextureRect/LineEdit.text)
 
 func _on_dialog_dialogClosed():
 	
@@ -33,7 +38,7 @@ func _on_dialog_dialogClosed():
 		tween.start()
 		
 	elif currentHelloPart == 1:
-		$AnimationPlayer._end()
+		cinemaitc._end()
 		Global.save.played = true
 		Global.playerHud.dialog.disconnect("dialogClosed", self, "_on_dialog_dialogClosed")
 
@@ -50,7 +55,7 @@ func _on_LineEdit_text_entered(new_text):
 	yield(tween, "tween_completed")
 	
 	$contract.visible = false
-	$AnimationPlayer.play("hello1")
+	cinemaitc.play("hello1")
 	currentHelloPart += 1
 
 

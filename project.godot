@@ -198,7 +198,7 @@ window/stretch/aspect="keep_width"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg", "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/nklbdev.tile_palette/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg", "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/nklbdev.parallax/plugin.cfg", "res://addons/nklbdev.tile_palette/plugin.cfg" )
 
 [gui]
 

@@ -81,6 +81,11 @@ func _physics_process(delta):
 	realMotion = ((position - lastPosition) * Engine.get_frames_per_second())
 	set_deferred("lastPosition", position)
 	
+	if gravity:
+		gravityBase()
+	
+	if cinematic: return
+	
 	if not stunned and moving:
 		
 		if collideUp() > -34 or (Input.is_action_pressed("ui_down") and not cinematic):
@@ -109,9 +114,6 @@ func _physics_process(delta):
 	
 	if stateMachine:
 		stateMachine.processMachine(delta)
-	
-	if gravity:
-		gravityBase()
 
 func setParticle(index := 0, emitting := true):
 	var particle = get_node(particles[index])

@@ -41,15 +41,13 @@ func enteredArea(area2D):
 	player = area2D.get_parent()
 	
 	emit_signal("entered")
-	if not $Timer.is_stopped():
-		$Timer.paused = true
 	
 	canInteract = true
 	arrow.visible = true
 	arrow.modulate.a8 = 198
 	
 	if tween.is_inside_tree():
-		if tween.is_active(): tween.stop($ballonContent, "rect_scale")
+		tween.stop_all()
 		
 		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(1, 1), 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
@@ -63,10 +61,10 @@ func exitedArea(area2D):
 	player = null
 	canInteract = false
 	
-	
-	if $Timer.is_inside_tree():
-		$Timer.start()
-		$Timer.paused = false
+	if tween.is_inside_tree():
+		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(0, 0), 0.8,
+		Tween.TRANS_EXPO, Tween.EASE_OUT, 1.2)
+		tween.start()
 	
 func changed(value):
 	text = value
@@ -77,17 +75,5 @@ func setSize():
 	var lenghtText = tr($ballonContent/ballon/text.text).length()
 	var size = lenghtText * 14 + (lenghtText - 1) * 3
 	
-
 	$ballonContent/ballon.rect_position.x = -((size)/2) -8
 	$ballonContent/ballon.rect_size.x = size+8
-
-func _on_Timer_timeout():
-	if canInteract: return
-	
-	arrow.visible = showArroy
-	arrow.modulate.a8 = 111
-	
-	if tween.is_inside_tree():
-		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(0, 0), 0.8,
-		Tween.TRANS_EXPO, Tween.EASE_OUT)
-		tween.start()

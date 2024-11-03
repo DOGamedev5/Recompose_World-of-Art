@@ -1176,16 +1176,17 @@ text = "player_hud_conf_quit"
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1361.0
-margin_bottom = 736.0
+margin_right = 2722.0
+margin_bottom = 1472.0
 rect_pivot_offset = Vector2( 680.5, 368 )
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="options"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -2.0
-margin_bottom = -2.0
 custom_constants/margin_right = 256
 custom_constants/margin_top = 64
 custom_constants/margin_left = 256
@@ -1543,9 +1544,8 @@ visible = false
 self_modulate = Color( 0.733333, 0.741176, 0.901961, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -368.0
 margin_right = 9344.0
-margin_bottom = 4700.0
+margin_bottom = 5068.0
 texture = ExtResource( 26 )
 stretch_mode = 2
 

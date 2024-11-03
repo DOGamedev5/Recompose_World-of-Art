@@ -26,7 +26,7 @@ func areaEntered(area):
 	
 	if fixedY:
 		Global.player.global_position.y = global_position.y + offset.y
-#	Global.player.visible = false
+	Global.player.visible = false
 	if animationPlayer is AnimationPlayer:
 		animationPlayer.play(animation)
 		yield(animationPlayer, "animation_finished")

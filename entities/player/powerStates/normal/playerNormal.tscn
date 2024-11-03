@@ -62,7 +62,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=123]
-resource_name = "speedEffect"
 length = 0.25
 loop = true
 step = 0.05
@@ -80,7 +79,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=73]
-resource_name = "ATTACK"
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -147,7 +145,6 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=91]
-resource_name = "COUNCH"
 length = 1.5
 loop = true
 tracks/0/type = "value"
@@ -226,7 +223,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=127]
-resource_name = "COUNCHFALL"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -279,7 +275,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=124]
-resource_name = "COUNCHJUMP"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -345,7 +340,6 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=106]
-resource_name = "CRAWLING"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -428,7 +422,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=134]
-resource_name = "DAMAGED"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -467,7 +460,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=33]
-resource_name = "FALL"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -533,7 +525,6 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "IDLE"
 length = 12.0
 loop = true
 tracks/0/type = "value"
@@ -612,7 +603,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=41]
-resource_name = "JUMP"
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
@@ -679,7 +669,6 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=185]
-resource_name = "LADDERDOWN"
 length = 0.4
 loop = true
 step = 0.05
@@ -721,7 +710,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=162]
-resource_name = "LADDERUP"
 length = 0.4
 loop = true
 step = 0.05
@@ -850,7 +838,6 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=154]
-resource_name = "ROLL"
 length = 0.2
 loop = true
 step = 0.05
@@ -906,7 +893,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "RUN"
 length = 1.2
 loop = true
 tracks/0/type = "value"
@@ -990,7 +976,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=49]
-resource_name = "SPLAT"
 length = 0.8
 step = 0.05
 tracks/0/type = "value"
@@ -1043,7 +1028,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=64]
-resource_name = "STOPPING"
 length = 0.25
 step = 0.05
 tracks/0/type = "value"
@@ -1096,7 +1080,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=29]
-resource_name = "TOP_SPEED"
 length = 0.4
 loop = true
 step = 0.05
@@ -1181,7 +1164,6 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=196]
-resource_name = "ToRun1"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -1235,7 +1217,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=197]
-resource_name = "ToRun2"
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -1293,7 +1274,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=23]
-resource_name = "WALL"
 length = 0.8
 loop = true
 tracks/0/type = "value"
