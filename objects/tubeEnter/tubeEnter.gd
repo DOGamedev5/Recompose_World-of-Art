@@ -25,7 +25,7 @@ func _physics_process(_delta):
 		Global.player.pause_mode = Node.PAUSE_MODE_STOP
 		Global.player.active = false
 		Global.player.motion = Vector2.ZERO
-		Global.player.visible = false
+#		Global.player.visible = false
 		$Camera2D.current = true
 		$AnimationPlayer.play("enter")
 		yield($AnimationPlayer, "animation_finished")
@@ -88,7 +88,7 @@ func init():
 	$AnimationPlayer.play("enter")
 	yield($AnimationPlayer, "animation_finished")
 	
-	Global.player.visible = true
+#	Global.player.visible = true
 	Global.player.camera.current = true
 	Global.player.moving = true
 	Global.player.active = true

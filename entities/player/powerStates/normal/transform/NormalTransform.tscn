@@ -158,6 +158,8 @@ transformation = "res://entities/player/powerStates/normal/playerNormal.tscn"
 animation = "TRANSFORM"
 animationTime = 0.8
 animationPlayerPath = NodePath("AnimationTree")
+offset = Vector2( 0, 64 )
+fixedY = false
 normalFilter = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

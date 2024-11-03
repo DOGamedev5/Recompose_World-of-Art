@@ -5,6 +5,9 @@ export(String) var animation
 export(float) var animationTime
 export(NodePath) var animationPlayerPath
 export var offset := Vector2.ZERO
+export var fixedX := true
+export var fixedY := true
+
 export var normalFilter := true
 var animationPlayer
 
@@ -18,8 +21,12 @@ func areaEntered(area):
 		return
 	
 	Global.player.setCinematic(true)
-	Global.player.global_position = global_position + offset
-	Global.player.visible = false
+	if fixedX:
+		Global.player.global_position.x = global_position.x + offset.x
+	
+	if fixedY:
+		Global.player.global_position.y = global_position.y + offset.y
+#	Global.player.visible = false
 	if animationPlayer is AnimationPlayer:
 		animationPlayer.play(animation)
 		yield(animationPlayer, "animation_finished")
