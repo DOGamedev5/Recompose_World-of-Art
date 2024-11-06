@@ -140,7 +140,7 @@ _global_script_classes=[ {
 "path": "res://entities/player/HUD/classes/textDialog.gd"
 }, {
 "base": "TileMap",
-"class": "TileProps",
+"class": "TilepropsScene",
 "language": "GDScript",
 "path": "res://worlds/classes/tileProps/tileProps.gd"
 }, {
@@ -176,7 +176,7 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "TextDialog": "",
-"TileProps": "",
+"TilepropsScene": "",
 "TransformClass": ""
 }
 

@@ -95,6 +95,7 @@ script = ExtResource( 2 )
 transformation = "res://entities/player/powerStates/book/playerBook.tscn"
 animation = "transform"
 animationPlayerPath = NodePath("AnimationPlayer")
+cameraPath = NodePath("Camera2D")
 offset = Vector2( 0, -9 )
 
 [node name="BookTransform" type="Sprite" parent="."]
@@ -125,3 +126,6 @@ pitch_scale = 0.8
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 pitch_scale = 0.75
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -74 )

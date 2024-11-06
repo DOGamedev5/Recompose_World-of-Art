@@ -2,7 +2,6 @@ extends CanvasLayer
 
 var debugPanel := false
 
-
 onready var proprietyLabels := {
 	"currentState" : $PanelContainer/VBoxContainer/currentState,
 	"motion" : $PanelContainer/VBoxContainer/motion,
@@ -27,9 +26,10 @@ func _input(_event):
 	
 func _process(_delta):
 	DEBUGSetup()
-	
+
 func DEBUGSetup():
-#	if not Global.player: return
+	if not is_instance_valid(Global.player): return
+	
 	if Global.player.stateMachine: proprietyLabels["currentState"].text = (
 		"current State: " + Global.player.stateMachine.currentState.name)
 

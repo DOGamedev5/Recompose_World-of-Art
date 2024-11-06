@@ -4,16 +4,16 @@ export(String, FILE, "*.tscn") var transformation
 export(String) var animation
 export(float) var animationTime
 export(NodePath) var animationPlayerPath
+export(NodePath) var cameraPath
 export var offset := Vector2.ZERO
-export var fixedX := true
-export var fixedY := true
 
 export var normalFilter := true
 var animationPlayer
-
+var camera : Camera2D
 
 func _ready():
 	animationPlayer = get_node(animationPlayerPath)
+	camera = get_node(cameraPath)
 	var _1 = connect("area_entered", self, "areaEntered")
 
 func areaEntered(area):
@@ -21,12 +21,10 @@ func areaEntered(area):
 		return
 	
 	Global.player.setCinematic(true)
-	if fixedX:
-		Global.player.global_position.x = global_position.x + offset.x
 	
-	if fixedY:
-		Global.player.global_position.y = global_position.y + offset.y
-	Global.player.visible = false
+	camera.current = true
+	Global.player.queue_free()
+	
 	if animationPlayer is AnimationPlayer:
 		animationPlayer.play(animation)
 		yield(animationPlayer, "animation_finished")
@@ -35,5 +33,9 @@ func areaEntered(area):
 		playback.travel(animation)
 		yield(get_tree().create_timer(animationTime), "timeout")
 	
-	Global.player.changePowerup(transformation)
+	Global.player = load(transformation).instance()
+	Global.world.add_child(Global.player)
+	
+	Global.player.global_position = global_position + offset
+	
 	Global.playerHud.cinematic.desactivaded()

@@ -1,8 +1,9 @@
 extends State
 
-
+onready var flipSFX : AudioStream = preload("res://entities/player/powerStates/book/sfxs/bookStep2SFX.ogg")
 
 func enter(_ls):
+	
 	AudioManager.playSFX(parent.stepSFX)
 	parent.MAXSPEED = 750
 	parent.snapDesatived = true

@@ -10,6 +10,7 @@ onready var dialog := $dialog
 
 var currentScreen := "HUD"
 
+
 func init():
 	healthBarr.max_value = Global.player.MAXHEALTH
 	healthBarr.value = Global.player.health
