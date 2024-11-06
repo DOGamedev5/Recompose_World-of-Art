@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://entities/classes/dialogComponent/dialog.pxo" type="Texture" id=27]
 [ext_resource path="res://entities/classes/dialogComponent/reactBorder.pxo" type="Texture" id=28]
 [ext_resource path="res://entities/player/HUD/scripts/dialog/dialog.gd" type="Script" id=29]
+[ext_resource path="res://entities/player/HUD/sprites/backGroundEye.pxo" type="Texture" id=30]
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 24 )
@@ -38,23 +39,15 @@ region = Rect2( 62, 0, 62, 54 )
 atlas = ExtResource( 24 )
 region = Rect2( 0, 0, 62, 54 )
 
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 24, 32 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 3 )
-region = Rect2( 48, 0, 24, 32 )
-
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=57]
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 66, 66 )
+region = Rect2( 218.793, 0, 66, 66 )
 
 [sub_resource type="Animation" id=20]
 resource_name = "DAMAGED"
 length = 2.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect:texture:atlas")
+tracks/0/path = NodePath("eye:texture:atlas")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -66,13 +59,13 @@ tracks/0/keys = {
 "values": [ ExtResource( 7 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("TextureRect:texture:region")
+tracks/1/path = NodePath("eye:texture:region")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.101, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 0, 0, 66, 66 ), Rect2( 66, 0, 66, 66 ), Rect2( 132, 0, 66, 66 ), Rect2( 198, 0, 66, 66 ), Rect2( 264, 0, 66, 66 ), Rect2( 330, 0, 66, 66 ), Rect2( 396, 0, 66, 66 ), Rect2( 462, 0, 66, 66 ), Rect2( 528, 0, 66, 66 ), Rect2( 594, 0, 66, 66 ), Rect2( 660, 0, 66, 66 ), Rect2( 726, 0, 66, 66 ), Rect2( 792, 0, 66, 66 ), Rect2( 858, 0, 66, 66 ), Rect2( 924, 0, 66, 66 ), Rect2( 990, 0, 66, 66 ), Rect2( 1056, 0, 66, 66 ), Rect2( 1122, 0, 66, 66 ), Rect2( 1188, 0, 66, 66 ), Rect2( 1254, 0, 66, 66 ), Rect2( 1320, 0, 66, 66 ) ]
@@ -83,7 +76,7 @@ resource_name = "NORMAL"
 length = 19.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect:texture:region")
+tracks/0/path = NodePath("eye:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -95,7 +88,7 @@ tracks/0/keys = {
 "values": [ Rect2( 0, 0, 66, 66 ), Rect2( 66, 0, 66, 66 ), Rect2( 132, 0, 66, 66 ), Rect2( 198, 0, 66, 66 ), Rect2( 264, 0, 66, 66 ), Rect2( 330, 0, 66, 66 ), Rect2( 396, 0, 66, 66 ), Rect2( 462, 0, 66, 66 ), Rect2( 528, 0, 66, 66 ), Rect2( 594, 0, 66, 66 ), Rect2( 660, 0, 66, 66 ), Rect2( 726, 0, 66, 66 ), Rect2( 792, 0, 66, 66 ), Rect2( 858, 0, 66, 66 ), Rect2( 924, 0, 66, 66 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("TextureRect:texture:atlas")
+tracks/1/path = NodePath("eye:texture:atlas")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -110,7 +103,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=16]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect:texture:region")
+tracks/0/path = NodePath("eye:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -119,10 +112,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 0, 0, 66, 66 ) ]
+"values": [ Rect2( 218.793, 0, 66, 66 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("TextureRect:texture:atlas")
+tracks/1/path = NodePath("eye:texture:atlas")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -130,7 +123,7 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ ExtResource( 2 ) ]
 }
 
@@ -155,6 +148,14 @@ transitions = [ "NORMAL", "DAMAGED", SubResource( 25 ), "DAMAGED", "NORMAL", Sub
 start_node = "NORMAL"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 48, 66 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 48, 66 )
 
 [sub_resource type="DynamicFont" id=19]
 outline_size = 1
@@ -301,19 +302,30 @@ region = Rect2( 24, 0, 24, 27 )
 layer = 3
 script = ExtResource( 4 )
 
-[node name="HUD" type="Control" parent="."]
+[node name="container" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
 
-[node name="Control" type="Control" parent="HUD"]
+[node name="HUD" type="Control" parent="container"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1345.0
+margin_bottom = 720.0
+
+[node name="Control" type="Control" parent="container/HUD"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -145.0
 margin_bottom = 136.0
 mouse_filter = 1
 
-[node name="inventoryButton" type="TextureButton" parent="HUD/Control"]
+[node name="inventoryButton" type="TextureButton" parent="container/HUD/Control"]
 pause_mode = 2
+visible = false
 margin_left = -16.0
 margin_top = 40.0
 margin_right = 108.0
@@ -324,49 +336,64 @@ texture_pressed = SubResource( 50 )
 texture_hover = SubResource( 50 )
 expand = true
 
-[node name="health" type="Control" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="container/HUD"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 504.0
+margin_bottom = 176.0
+custom_constants/separation = -13
+alignment = 2
 
-[node name="TextureProgress" type="TextureProgress" parent="HUD/health"]
-margin_left = 144.0
-margin_top = 60.0
-margin_right = 296.0
-margin_bottom = 92.0
-rect_scale = Vector2( 2, 2 )
-value = 100.0
-texture_under = SubResource( 17 )
-texture_progress = SubResource( 18 )
-nine_patch_stretch = true
-stretch_margin_left = 8
-stretch_margin_top = 16
-stretch_margin_right = 8
-stretch_margin_bottom = 16
-
-[node name="eyeIcon" type="Control" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="HUD/eyeIcon"]
-anchor_right = 3.3
-anchor_bottom = 3.3
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 24.0
-margin_bottom = 24.0
-texture = SubResource( 14 )
+[node name="TextureRect2" type="TextureRect" parent="container/HUD/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 160, 160 )
+texture = ExtResource( 30 )
 expand = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/eyeIcon"]
+[node name="eye" type="TextureRect" parent="container/HUD/HBoxContainer/TextureRect2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.0
+margin_top = -66.0
+margin_right = 66.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 132, 132 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = SubResource( 57 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="container/HUD/HBoxContainer/TextureRect2"]
 anims/DAMAGED = SubResource( 20 )
 anims/NORMAL = SubResource( 15 )
 anims/RESET = SubResource( 16 )
 
-[node name="AnimationTree" type="AnimationTree" parent="HUD/eyeIcon"]
+[node name="AnimationTree" type="AnimationTree" parent="container/HUD/HBoxContainer/TextureRect2"]
 tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 23 )
+
+[node name="TextureProgress" type="TextureProgress" parent="container/HUD/HBoxContainer"]
+show_behind_parent = true
+margin_left = 147.0
+margin_top = 48.0
+margin_right = 496.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+texture_under = SubResource( 17 )
+texture_progress = SubResource( 18 )
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 16
+stretch_margin_right = 18
+stretch_margin_bottom = 16
 
 [node name="DEBUG" type="CanvasLayer" parent="."]
 layer = 5
@@ -1379,7 +1406,7 @@ grow_horizontal = 2
 rect_min_size = Vector2( 176, 72 )
 text = "player_hud_conf_exit"
 
-[connection signal="pressed" from="HUD/Control/inventoryButton" to="." method="_on_inventoryButton_pressed"]
+[connection signal="pressed" from="container/HUD/Control/inventoryButton" to="." method="_on_inventoryButton_pressed"]
 [connection signal="dir_selected" from="DEBUG/worldSelect" to="DEBUG" method="_on_worldSelect_dir_selected"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/debugButton" to="DEBUG" method="debugButtonPressed"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/world" to="DEBUG" method="_on_room_pressed"]

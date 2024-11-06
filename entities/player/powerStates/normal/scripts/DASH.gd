@@ -18,7 +18,7 @@ func enter(_lastState):
 	smoke.preprocess = 0.2
 	smoke.global_position = parent.global_position - Vector2(0, 32)
 	
-	parent.attackComponents[0].monitorable = true
+	parent.attackComponents[0].setDamage(1)
 	attackTimer.start()
 	
 	atkDirection = Input.get_axis("ui_left", "ui_right")
@@ -59,7 +59,7 @@ func process_physics(_delta):
 
 func exit():
 	parent.snapDesatived = false
-	parent.attackComponents[0].monitorable = false
+	parent.attackComponents[0].setDamage(0)
 	parent.gravity = true
 	parent.motion.y = 0
 	parent.attackDelay.start()

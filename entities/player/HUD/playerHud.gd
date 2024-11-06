@@ -1,15 +1,14 @@
 class_name PlayerHud extends CanvasLayer
 
-onready var healthBarr = $HUD/health/TextureProgress
-onready var animationTreeEye = $HUD/eyeIcon/AnimationTree
+onready var healthBarr = $container/HUD/HBoxContainer/TextureProgress
+onready var animationTreeEye = $container/HUD/HBoxContainer/TextureRect2/AnimationTree
 onready var playbackEye = animationTreeEye["parameters/playback"]
-onready var player = $"../"
 onready var cinematic := $cinematic
 onready var transition = $transition
 onready var dialog := $dialog
+onready var HUD := $container/HUD
 
 var currentScreen := "HUD"
-
 
 func init():
 	healthBarr.max_value = Global.player.MAXHEALTH

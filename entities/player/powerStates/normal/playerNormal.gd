@@ -58,8 +58,8 @@ func _physics_process(_delta):
 	
 	$a/Label.text = String(collideUp())
 
-	$speedEffect.visible = running
-	if running:
+	$speedEffect.visible = running and not isRolling
+	if running and not isRolling:
 		var velocity = abs(motion.x)
 		if onSlope():
 			velocity = abs(sqrt(pow(motion.x, 2) + pow(motion.y, 2)))
@@ -118,7 +118,6 @@ func setAttack():
 	else:		
 		attackComponents[1].setDamage(0)
 		
-	attackComponents[2].setDamage(int(isRolling))
 
 func setCollision(ID := 0):
 	active = false

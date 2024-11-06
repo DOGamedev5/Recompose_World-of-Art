@@ -3,10 +3,11 @@ extends State
 var direction := 1.0
 
 func enter(_lastState):
-	parent.attackComponents[0].setDamage(1)
-	parent.setParticle(0, true)
-	parent.setParticle(1, false)
+	parent.attackComponents[0].setDamage(2)
+	parent.setParticle(0, false)
+	parent.setParticle(1, true)
 	parent.snapDesatived = false
+#	particle.emitting = false
 
 	direction = sign(parent.getSlopeNormal().x)
 	if direction == 0 and parent.motion.x:
@@ -27,8 +28,8 @@ func process_state():
 	return null
 
 func process_physics(_delta):
-	parent.playback.travel("NORMAL")
-	parent.normalPlayback.travel("ROLL")
+	parent.playback.travel("RUN")
+	parent.topSpeedPlayback.travel("SUPERROLL")
 	
 	var detect = sign(parent.getSlopeNormal().x)
 	if detect and parent.onFloor():
@@ -36,11 +37,13 @@ func process_physics(_delta):
 	elif parent.onWallRayCast[2].is_colliding():
 		direction = sign(parent.onWallRayCast[2].get_collision_normal().x)
 		
-	parent.motion.x = parent.MAXSPEED * direction
+	parent.motion.x = parent.runningVelocity * direction
 	
-	parent.setParticle(0, parent.onFloor())
+	parent.setParticle(1, parent.onFloor())
+
 
 func exit():
+	parent.topSpeedPlayback.travel("RUN")
 	parent.attackComponents[0].setDamage(0)
 	parent.setParticle(0, false)
 	parent.setCollision(0)

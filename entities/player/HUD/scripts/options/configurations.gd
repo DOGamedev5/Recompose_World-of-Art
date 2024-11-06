@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+onready var parent := get_parent()
+
 onready var propertiesList = {
 	"simpleLight" : $Panel/VBoxContainer/HBoxContainer/CheckButton,
 	"music" : $Panel/VBoxContainer/music,
@@ -18,17 +20,17 @@ func _input(_event):
 	if Input.is_action_just_pressed("menu") and $"../".currentScreen in ["HUD", "CONF", "CINE"]:
 		visible = not visible
 		
-		$"../HUD".visible = not visible
+		parent.HUD.visible = not visible
 		if Global.player.cinematic:
-			$"../HUD".visible = false
+			parent.HUD.visible = false
 		
 		if visible:
-			$"../".currentScreen = "CONF"
+			parent.currentScreen = "CONF"
 		else:
 			if Global.player.cinematic:
-				$"../".currentScreen = "CINE"
+				parent.currentScreen = "CINE"
 			else:
-				$"../".currentScreen = "HUD"
+				parent.currentScreen = "HUD"
 
 func _on_SImpleLight_toggled(button_pressed):
 	Global._setSimpleLight(button_pressed)
@@ -36,7 +38,7 @@ func _on_SImpleLight_toggled(button_pressed):
 
 func _on_close_pressed():
 	visible = false
-	$"../".visible = true
+	parent.visible = true
 
 func _on_quit_pressed():
 	get_tree().quit()

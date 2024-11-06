@@ -3,11 +3,12 @@ extends CanvasLayer
 onready var tween = $Tween
 onready var up = $up
 onready var down = $down
+onready var parent := get_parent()
 
 func actived():
-	$"../".currentScreen = "CINE"
+	parent.currentScreen = "CINE"
 	visible = true
-	$"../HUD".visible = false
+	parent.HUD.visible = false
 	
 	
 	tween.interpolate_property(up, "rect_size", up["rect_size"], Vector2(up["rect_size"].x, 100), 0.3, Tween.TRANS_CUBIC)
@@ -17,9 +18,9 @@ func actived():
 	tween.start()
 
 func desactivaded():
-	$"../".currentScreen = "HUD"
+	parent.currentScreen = "HUD"
 	
-	$"../HUD".visible = true
+	parent.HUD.visible = true
 	
 	tween.interpolate_property(up, "rect_size", up["rect_size"], Vector2(up["rect_size"].x, 0), 0.3, Tween.TRANS_CUBIC)
 	tween.interpolate_property(down, "rect_size", down["rect_size"], Vector2(down["rect_size"].x, 0), 0.3, Tween.TRANS_CUBIC)

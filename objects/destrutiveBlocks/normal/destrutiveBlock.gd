@@ -10,7 +10,6 @@ func _resistence_set(value):
 	var frame = clamp(value -1, 0, 1)
 	$"%sprite".frame = frame
 	resistence = value
-		
 
 func _on_HitboxComponent_HitboxDamaged(damage, _area):
 	if damage >= resistence:

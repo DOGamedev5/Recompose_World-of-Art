@@ -1,4 +1,4 @@
-[gd_scene load_steps=177 format=2]
+[gd_scene load_steps=183 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -35,6 +35,8 @@
 [ext_resource path="res://gameplay/effects/effect2.pxo" type="Texture" id=33]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/DashParticle.pxo" type="Texture" id=34]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoToRun.pxo" type="Texture" id=35]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoSuperRoll.pxo" type="Texture" id=36]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/SUPERROLL.gd" type="Script" id=37]
 
 [sub_resource type="CanvasItemMaterial" id=193]
 particles_animation = true
@@ -1079,6 +1081,62 @@ tracks/3/keys = {
 "values": [ ExtResource( 17 ) ]
 }
 
+[sub_resource type="Animation" id=337]
+resource_name = "SUPERROLL"
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 1 ],
+"method": "setCollision"
+} ]
+}
+
 [sub_resource type="Animation" id=29]
 length = 0.4
 loop = true
@@ -1512,6 +1570,9 @@ node_connections = [ "output", 0, "NORMAL" ]
 [sub_resource type="AnimationNodeAnimation" id=198]
 animation = "TOP_SPEED"
 
+[sub_resource type="AnimationNodeAnimation" id=338]
+animation = "SUPERROLL"
+
 [sub_resource type="AnimationNodeAnimation" id=199]
 animation = "ToRun1"
 
@@ -1530,19 +1591,26 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=228]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=339]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=340]
+
 [sub_resource type="AnimationNodeStateMachine" id=205]
 states/RUN/node = SubResource( 198 )
 states/RUN/position = Vector2( 695, 208.333 )
+states/SUPERROLL/node = SubResource( 338 )
+states/SUPERROLL/position = Vector2( 939.501, 189.667 )
 states/ToRun1/node = SubResource( 199 )
 states/ToRun1/position = Vector2( 656.333, 376.333 )
 states/ToRun2/node = SubResource( 200 )
 states/ToRun2/position = Vector2( 925.667, 337.667 )
-transitions = [ "ToRun1", "ToRun2", SubResource( 201 ), "ToRun2", "ToRun1", SubResource( 202 ), "ToRun2", "RUN", SubResource( 203 ), "RUN", "ToRun1", SubResource( 204 ), "ToRun1", "RUN", SubResource( 228 ) ]
+transitions = [ "ToRun1", "ToRun2", SubResource( 201 ), "ToRun2", "ToRun1", SubResource( 202 ), "ToRun2", "RUN", SubResource( 203 ), "RUN", "ToRun1", SubResource( 204 ), "ToRun1", "RUN", SubResource( 228 ), "RUN", "SUPERROLL", SubResource( 339 ), "SUPERROLL", "RUN", SubResource( 340 ) ]
 start_node = "ToRun1"
 end_node = "RUN"
+graph_offset = Vector2( 377.834, 94.1769 )
 
 [sub_resource type="AnimationNodeBlendTree" id=206]
-graph_offset = Vector2( 774.754, 187.744 )
+graph_offset = Vector2( 1269.54, 821.45 )
 nodes/RUN/node = SubResource( 205 )
 nodes/RUN/position = Vector2( 800, 346.667 )
 nodes/output/position = Vector2( 1120, 346.667 )
@@ -1650,7 +1718,7 @@ states/WALLED/node = SubResource( 325 )
 states/WALLED/position = Vector2( 154.649, 350.401 )
 transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "RUN", "LADDER", SubResource( 207 ), "RUN", "DAMAGED", SubResource( 211 ), "DAMAGED", "RUN", SubResource( 212 ), "ATTACK", "RUN", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "RUN", "COUNCH", SubResource( 254 ), "COUNCH", "RUN", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "RUN", SubResource( 284 ), "RUN", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "RUN", "WALLED", SubResource( 327 ), "WALLED", "RUN", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ) ]
 start_node = "NORMAL"
-graph_offset = Vector2( -180.6, 92.5442 )
+graph_offset = Vector2( 26.3503, 92.5442 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=152]
 
@@ -1671,7 +1739,7 @@ extents = Vector2( 35, 10 )
 extents = Vector2( 40, 24 )
 
 [sub_resource type="RectangleShape2D" id=159]
-extents = Vector2( 35, 16 )
+extents = Vector2( 40, 16 )
 
 [sub_resource type="CanvasItemMaterial" id=88]
 particles_animation = true
@@ -1783,6 +1851,7 @@ anims/ROLL = SubResource( 154 )
 anims/RUN = SubResource( 5 )
 anims/SPLAT = SubResource( 49 )
 anims/STOPPING = SubResource( 64 )
+anims/SUPERROLL = SubResource( 337 )
 anims/TOP_SPEED = SubResource( 29 )
 anims/ToRun1 = SubResource( 196 )
 anims/ToRun2 = SubResource( 197 )
@@ -1818,7 +1887,7 @@ shape = SubResource( 86 )
 position = Vector2( 40, -23 )
 collision_layer = 256
 collision_mask = 256
-monitoring = false
+monitorable = false
 script = ExtResource( 20 )
 damage = 2
 
@@ -1827,9 +1896,10 @@ position = Vector2( 0, -5 )
 shape = SubResource( 85 )
 
 [node name="attackRoll" type="Area2D" parent="." index="20"]
-position = Vector2( 35, -19 )
+position = Vector2( 40, -23 )
 collision_layer = 256
 collision_mask = 256
+monitorable = false
 script = ExtResource( 20 )
 damage = 1
 
@@ -1881,6 +1951,9 @@ script = ExtResource( 30 )
 
 [node name="LADDER" type="Node" parent="StateMachine" index="9"]
 script = ExtResource( 31 )
+
+[node name="SUPERROLL" type="Node" parent="StateMachine" index="10"]
+script = ExtResource( 37 )
 
 [node name="a" type="Node2D" parent="." index="22"]
 z_index = 4
