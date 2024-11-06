@@ -5,24 +5,25 @@ extends HitboxComponent
 onready var tilePos : Vector2
 
 func _init():
-	for child in get_children():
-		if child.name == "shape" or child.name == "enable":
-			child.queue_free()
 	
-	var collision := CollisionShape2D.new()
-	var shape := RectangleShape2D.new()
-	shape.extents = Vector2(32, 18)
-	collision.shape = shape
-	collision.name = "shape"
+	if not get_node_or_null("shape"):
+		var collision := CollisionShape2D.new()
+		var shape := RectangleShape2D.new()
+		shape.extents = Vector2(32, 18)
+		collision.shape = shape
+		collision.name = "shape"
+		add_child(collision)
+		collision.owner = self
 	
-	add_child(collision)
-	var enable := VisibilityEnabler2D.new()
-	enable.process_parent = true
-	enable.physics_process_parent = true
-	enable.rect.position = Vector2(-9, -9)
-	enable.rect.size = Vector2(18, 18)
-	enable.name = "enable"
-	add_child(enable)
+	if not get_node_or_null("enable"):
+		var enable := VisibilityEnabler2D.new()
+		enable.process_parent = true
+		enable.physics_process_parent = true
+		enable.rect.position = Vector2(-9, -9)
+		enable.rect.size = Vector2(18, 18)
+		enable.name = "enable"
+		add_child(enable)
+		enable.owner = self
 	
 func _ready():
 	var _1 = connect("HitboxDamaged", self, "breakTile")

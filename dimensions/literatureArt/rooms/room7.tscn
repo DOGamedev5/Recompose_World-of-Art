@@ -1,11 +1,9 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=2]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=3]
 [ext_resource path="res://dimensions/literatureArt/tileset/pintedTiles.pxo" type="Texture" id=4]
-[ext_resource path="res://worlds/classes/tileProps/tileProps.tres" type="TileSet" id=5]
-[ext_resource path="res://worlds/classes/tileProps/tileProps.gd" type="Script" id=6]
 [ext_resource path="res://objects/keyBlock/key/keyManager.gd" type="Script" id=7]
 [ext_resource path="res://objects/ladder/ladder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/destrutiveBlocks/normal/32x32/destrutiveBlock.tscn" type="PackedScene" id=9]
@@ -13,7 +11,7 @@
 [ext_resource path="res://objects/keyBlock/block/blockKeyManager.gd" type="Script" id=11]
 [ext_resource path="res://dimensions/literatureArt/objects/ventoy/ventoy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/keyBlock/key/keyCollect.tscn" type="PackedScene" id=13]
-[ext_resource path="res://entities/player/powerStates/normal/transform/NormalTransform.tscn" type="PackedScene" id=14]
+[ext_resource path="res://entities/player/powerStates/normal/transform/transformNormal.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -648,14 +646,6 @@ warpID = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
 shape = SubResource( 61 )
-
-[node name="TileProps" type="TileMap" parent="."]
-scale = Vector2( 2, 2 )
-z_index = 3
-tile_set = ExtResource( 5 )
-cell_size = Vector2( 8, 8 )
-format = 1
-script = ExtResource( 6 )
 
 [node name="blocks" type="Node2D" parent="."]
 

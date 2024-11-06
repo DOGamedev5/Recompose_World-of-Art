@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/BreakableTiles.pxo-ee761a14df5d8e47c4fd1fea6b3c7ddd.stex"
+
+[deps]
+
+source_file="res://worlds/classes/breakableTiles/BreakableTiles.pxo"
+dest_files=[ "res://.import/BreakableTiles.pxo-ee761a14df5d8e47c4fd1fea6b3c7ddd.stex" ]
+
+[params]
+
