@@ -9,8 +9,12 @@ func _ready():
 	var _1 = connect("area_entered", self, "_enterHitbox")
 
 func _enterHitbox(area):
-	if area is HitboxComponent:
-		area.emit_signal("HitboxDamaged", damage, self)
+	pass
+#	if area is BreakableTiles:
+#		area.breakTile(damage, self)
+#
+#	if area is HitboxComponent:
+#		area.emit_signal("HitboxDamaged", damage, self)
 
 func setDamage(newDamage):
 	damage = newDamage

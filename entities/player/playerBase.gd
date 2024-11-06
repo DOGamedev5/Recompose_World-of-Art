@@ -194,6 +194,9 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 	else:
 		motion.y = MotionCord
 
+func _move_and_slide(snap, stopSlope):
+	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
+
 func move(stopSlope = true):
 	var snap := Vector2.ZERO
 	if not snapDesatived:
@@ -201,6 +204,7 @@ func move(stopSlope = true):
 		snap = Vector2.DOWN * SNAPLENGTH
 
 	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
+#	call_deferred("_move_and_slide", snap, stopSlope)
 	
 	if abs(realMotion.x) < 1 and abs(motion.x) > 100 and onWall():
 		motion.x = 0   

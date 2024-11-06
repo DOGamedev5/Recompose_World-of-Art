@@ -115,7 +115,7 @@ func setAttack():
 		else:
 			attackComponents[1].setDamage(2)
 	
-	else:
+	else:		
 		attackComponents[1].setDamage(0)
 		
 	attackComponents[2].setDamage(int(isRolling))

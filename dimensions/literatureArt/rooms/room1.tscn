@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://objects/savePoints/savepoint.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/tubeEnter/tubeEnter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/chest/chest.tscn" type="PackedScene" id=7]
+[ext_resource path="res://worlds/classes/breakableTiles/breakableTiles.gd" type="Script" id=8]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=9]
+[ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 152 )
@@ -237,3 +239,355 @@ position = Vector2( 1688, -416 )
 
 [node name="chest" parent="." instance=ExtResource( 7 )]
 position = Vector2( 808, -112 )
+
+[node name="BreakableTiles" type="Node2D" parent="."]
+script = ExtResource( 10 )
+tilemapPath = NodePath("../TileMap")
+
+[node name="BreakableTiles" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 344, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles2" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 344, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles3" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 344, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles4" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 344, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles5" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 328, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles6" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 328, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles7" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 328, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles8" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 328, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles9" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 328, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles10" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 312, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles11" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 312, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles12" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 312, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles13" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 312, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles14" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 312, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles15" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 296, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles16" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 296, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles17" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 296, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles18" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 296, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles19" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 296, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles20" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 279, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles21" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 279, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles22" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 279, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles23" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 279, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles24" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 279, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles25" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 263, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles26" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 263, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles27" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 263, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles28" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 263, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles29" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 263, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles30" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 249, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles31" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 249, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles32" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 249, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles33" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 249, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles34" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 233, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles35" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 233, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles36" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 233, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles37" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 233, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles38" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 233, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles39" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 217, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles40" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 217, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles41" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 217, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles42" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 217, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles43" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 217, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles44" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 201, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles45" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 201, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles46" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 201, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles47" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 201, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles48" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 201, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles49" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 184, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles50" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 184, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles51" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 184, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles52" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 184, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles53" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 184, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles54" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 168, -168 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles55" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 168, -152 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles56" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 168, -136 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles57" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 168, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )
+
+[node name="BreakableTiles58" type="Area2D" parent="BreakableTiles"]
+position = Vector2( 168, -120 )
+collision_layer = 512
+collision_mask = 512
+script = ExtResource( 8 )

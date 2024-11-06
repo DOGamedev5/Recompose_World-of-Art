@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://objects/destrutiveBlocks/normal/destrutiveBlock.gd"
 }, {
+"base": "HitboxComponent",
+"class": "BreakableTiles",
+"language": "GDScript",
+"path": "res://worlds/classes/breakableTiles/breakableTiles.gd"
+}, {
+"base": "Node2D",
+"class": "BreakableTilesManager",
+"language": "GDScript",
+"path": "res://worlds/classes/breakableTiles/breakableTilesManager.gd"
+}, {
 "base": "PathBase",
 "class": "ChangeRoom",
 "language": "GDScript",
@@ -142,6 +152,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AttackComponent": "",
 "Block": "",
+"BreakableTiles": "",
+"BreakableTilesManager": "",
 "ChangeRoom": "",
 "CutScene": "",
 "DialogManager": "",
@@ -198,7 +210,7 @@ window/stretch/aspect="keep_width"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/AsepriteWizard/plugin.cfg", "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/nklbdev.parallax/plugin.cfg", "res://addons/nklbdev.tile_palette/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/godot_pixelorama_importer/plugin.cfg", "res://addons/nklbdev.tile_palette/plugin.cfg" )
 
 [gui]
 

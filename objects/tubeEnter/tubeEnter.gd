@@ -88,7 +88,7 @@ func init():
 	$AnimationPlayer.play("enter")
 	yield($AnimationPlayer, "animation_finished")
 	
-#	Global.player.visible = true
+	Global.player.visible = true
 	Global.player.camera.current = true
 	Global.player.moving = true
 	Global.player.active = true

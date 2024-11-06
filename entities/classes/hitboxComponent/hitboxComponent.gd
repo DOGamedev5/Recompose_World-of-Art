@@ -7,6 +7,9 @@ func _ready():
 
 func _areaEntered(area):
 	var damage := 0
-
+	
+	if area is AttackComponent:
+		damage = area.damage
+	
 	emit_signal("HitboxDamaged", damage, area)
 
