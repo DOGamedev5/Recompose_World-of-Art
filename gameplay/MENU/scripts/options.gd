@@ -4,16 +4,16 @@ onready var initial = $"../initial"
 onready var saves = $"../saves"
 onready var parent = $"../"
 onready var buttons = {
-	exit = $MarginContainer/VBoxContainer/exit,
-	simpleLight = $MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight,
-	shadow = $MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/shadow
+	exit = $VBoxContainer/exit,
+	simpleLight = $VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight,
+	shadow = $VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/shadow
 }
 onready var slides := {
-	music = $MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/music,
-	sfx = $MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/sound
+	music = $VBoxContainer/HBoxContainer3/VBoxContainer/music,
+	sfx = $VBoxContainer/HBoxContainer3/VBoxContainer/sound
 }
 
-onready var languages := $MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/languages
+onready var languages := $VBoxContainer/HBoxContainer3/VBoxContainer/languages
 onready var languagensID := []
 
 var current := false
@@ -46,7 +46,7 @@ func _ready():
 		languagensID.append(locale) 
 
 func enter():
-	$MarginContainer/VBoxContainer/exit.grab_focus()
+	$VBoxContainer/exit.grab_focus()
 
 func changed():
 	pass

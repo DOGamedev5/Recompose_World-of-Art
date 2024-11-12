@@ -29,7 +29,6 @@ func _input(_event):
 		_on_LineEdit_text_entered($contract/Control/TextureRect/LineEdit.text)
 
 func _on_dialog_dialogClosed():
-	
 	if currentHelloPart == 0:
 		tween.interpolate_property($contract/Control/TextureRect, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.4, Tween.TRANS_CUBIC)
 		tween.interpolate_property($contract/Control/ColorRect, "self_modulate",Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.4, Tween.TRANS_CUBIC)

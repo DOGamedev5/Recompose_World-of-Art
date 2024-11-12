@@ -45,7 +45,7 @@ func open(dialogs : Array = dialogQueue, images : Array = icons):
 	pressText.visible = true
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("ui_accept"):
 		if opened:
 			interact()
 

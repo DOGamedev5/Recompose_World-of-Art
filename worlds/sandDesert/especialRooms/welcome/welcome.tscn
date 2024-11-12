@@ -338,5 +338,3 @@ position = Vector2( 1968, -62 )
 [node name="Soldier2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1120, -30 )
 fliped = true
-
-[connection signal="text_entered" from="contract/Control/TextureRect/LineEdit" to="." method="_on_LineEdit_text_entered"]
