@@ -22,7 +22,7 @@ func process_state():
 	if parent.onWall():
 		return "WALL"
 	
-	if (parent.onSlope() or abs(parent.motion.x) > 1000) and Input.is_action_just_pressed("ui_down"):
+	if (parent.onSlope() or abs(parent.motion.x) > 900) and Input.is_action_just_pressed("ui_down"):
 		return "SUPERROLL"
 			
 	if parent.motion.x == 0 and Input.get_axis("ui_left", "ui_right") == 0:

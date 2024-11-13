@@ -1,18 +1,30 @@
 extends CanvasLayer
 
 onready var parent := get_parent()
+onready var languages := $Panel/VBoxContainer/HBoxContainer2/VBoxContainer/languages
 
 onready var propertiesList = {
-	"simpleLight" : $Panel/VBoxContainer/HBoxContainer/CheckButton,
-	"music" : $Panel/VBoxContainer/music,
-	"sfx" : $Panel/VBoxContainer/sound
+	"simpleLight" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/simpleLight,
+	"shadows" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2/shadow,
+	"vsync" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3/vsync,
+	"music" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer/music,
+	"sfx" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer/sound
 }
 
 
 func _ready():
 	
+	for locale in Global.languagesID:
+		
+		languages.add_item("{lang}".format({"lang" : "lang_" + locale}))
+		
+		if locale == Global.options.lang:
+			languages.select(languages.get_item_count()-1)
+		
 	propertiesList["simpleLight"].pressed = Global.options.simpleLight
-	propertiesList["simpleLight"]._on_CheckButton_toggled()
+	propertiesList["shadows"].pressed = Global.options.shadows
+	propertiesList["vsync"].pressed = Global.options.vsync
+	
 	propertiesList["music"].value = Global.options.musicVolume
 	propertiesList["sfx"].value = Global.options.sfxVolume
 
@@ -31,10 +43,6 @@ func _input(_event):
 				parent.currentScreen = "CINE"
 			else:
 				parent.currentScreen = "HUD"
-
-func _on_SImpleLight_toggled(button_pressed):
-	Global._setSimpleLight(button_pressed)
-	Global.saveData(Global.optionsSavePath, Global.options)
 
 func _on_close_pressed():
 	visible = false
@@ -61,6 +69,18 @@ func _on_sound_value_changed(value):
 func _on_drag_ended(_value_changed):
 	Global.saveData(Global.optionsSavePath, Global.options)
 
-func _on_CheckButton_toggled(button_pressed):
+func _on_simpleLight_toggled(button_pressed):
+	Global._setSimpleLight(button_pressed)
+	Global.saveData(Global.optionsSavePath, Global.options)
+
+func _on_shadow_toggled(button_pressed):
 	Global._setShadow(button_pressed)
 	Global.saveData(Global.optionsSavePath, Global.options)
+
+func _on_vsync_toggled(button_pressed):
+	OS.vsync_enabled = button_pressed
+	Global.options.vsync = button_pressed
+	Global.saveData(Global.optionsSavePath, Global.options)
+
+func _on_languages_item_selected(index):
+	Global.set_languege(index)

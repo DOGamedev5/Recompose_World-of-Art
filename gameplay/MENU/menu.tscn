@@ -159,23 +159,23 @@ expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 anti_aliasing = false
 
-[sub_resource type="AtlasTexture" id=39]
+[sub_resource type="AtlasTexture" id=62]
 atlas = ExtResource( 21 )
 region = Rect2( 0, 0, 52, 34 )
 
-[sub_resource type="AtlasTexture" id=40]
+[sub_resource type="AtlasTexture" id=63]
 atlas = ExtResource( 21 )
 region = Rect2( 104, 0, 52, 34 )
 
-[sub_resource type="AtlasTexture" id=41]
+[sub_resource type="AtlasTexture" id=64]
 atlas = ExtResource( 21 )
 region = Rect2( 52, 0, 52, 34 )
 
-[sub_resource type="AtlasTexture" id=42]
+[sub_resource type="AtlasTexture" id=65]
 atlas = ExtResource( 21 )
 region = Rect2( 156, 0, 52, 34 )
 
-[sub_resource type="StyleBoxTexture" id=43]
+[sub_resource type="StyleBoxTexture" id=66]
 texture = ExtResource( 24 )
 region_rect = Rect2( 144, 0, 48, 64 )
 margin_left = 16.0
@@ -188,11 +188,11 @@ expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 
 [sub_resource type="Theme" id=38]
-CheckButton/icons/off = SubResource( 39 )
-CheckButton/icons/off_disabled = SubResource( 40 )
-CheckButton/icons/on = SubResource( 41 )
-CheckButton/icons/on_disabled = SubResource( 42 )
-CheckButton/styles/focus = SubResource( 43 )
+CheckButton/icons/off = SubResource( 62 )
+CheckButton/icons/off_disabled = SubResource( 63 )
+CheckButton/icons/on = SubResource( 64 )
+CheckButton/icons/on_disabled = SubResource( 65 )
+CheckButton/styles/focus = SubResource( 66 )
 
 [sub_resource type="InputEventAction" id=58]
 action = "ui_cancel"
@@ -718,6 +718,18 @@ tracks/20/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/21/type = "value"
+tracks/21/path = NodePath("../options:margin_top")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=52]
 resource_name = "credits"
@@ -931,12 +943,24 @@ tracks/5/path = NodePath("../options:rect_position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/keys = {
 "times": PoolRealArray( 0, 0.55, 0.95 ),
 "transitions": PoolRealArray( 1, 0.435275, 2.37841 ),
 "update": 0,
 "values": [ Vector2( 0, 730 ), Vector2( 0, 730 ), Vector2( 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../options:margin_top")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.55, 0.95 ),
+"transitions": PoolRealArray( 1, 0.450625, 1 ),
+"update": 0,
+"values": [ 700, 700, 0.0 ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -1175,9 +1199,9 @@ custom_styles/normal = SubResource( 16 )
 text = "mn_cre"
 
 [node name="exit" type="Button" parent="initial/MarginContainer/VBoxContainer2/VBoxContainer"]
-margin_left = 241.0
+margin_left = 313.0
 margin_top = 276.0
-margin_right = 927.0
+margin_right = 855.0
 margin_bottom = 360.0
 size_flags_horizontal = 6
 theme = SubResource( 45 )
@@ -1189,13 +1213,12 @@ custom_styles/focus = SubResource( 17 )
 custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 16 )
 shortcut = SubResource( 57 )
-text = "player_hud_conf_quit"
+text = "player_conf_quit"
 
 [node name="options" type="MarginContainer" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 0.00012207
 custom_constants/margin_right = 256
 custom_constants/margin_top = 64
 custom_constants/margin_left = 256
@@ -1341,13 +1364,6 @@ custom_fonts/font = SubResource( 7 )
 text = "mn_opt_sl"
 valign = 1
 
-[node name="VSeparator" type="VSeparator" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 144.0
-margin_right = 224.0
-margin_bottom = 42.0
-custom_constants/separation = 80
-
 [node name="simpleLight" type="CheckButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
 margin_left = 297.0
 margin_right = 361.0
@@ -1371,13 +1387,6 @@ text = "mn_opt_sh"
 align = 1
 valign = 1
 
-[node name="VSeparator" type="VSeparator" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 150.0
-margin_right = 230.0
-margin_bottom = 42.0
-custom_constants/separation = 80
-
 [node name="shadow" type="CheckButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
 margin_left = 297.0
 margin_right = 361.0
@@ -1399,13 +1408,6 @@ custom_fonts/font = SubResource( 7 )
 text = "mn_vsync"
 align = 1
 valign = 1
-
-[node name="VSeparator" type="VSeparator" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 138.0
-margin_right = 218.0
-margin_bottom = 42.0
-custom_constants/separation = 80
 
 [node name="vsync" type="CheckButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
 margin_left = 297.0

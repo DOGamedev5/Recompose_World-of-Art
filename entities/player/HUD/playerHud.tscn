@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
@@ -11,10 +11,10 @@
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/futile-pro-v1/FutilePro.otf" type="DynamicFontData" id=9]
 [ext_resource path="res://entities/player/HUD/sprites/fragmentsHud.pxo" type="Texture" id=10]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=11]
-[ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.tscn" type="PackedScene" id=12]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.pxo" type="Texture" id=12]
 [ext_resource path="res://entities/player/HUD/sprites/closeButton.pxo" type="Texture" id=13]
 [ext_resource path="res://entities/player/HUD/scripts/options/configurations.gd" type="Script" id=14]
-[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.tscn" type="PackedScene" id=15]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.pxo" type="Texture" id=15]
 [ext_resource path="res://gameplay/MENU/sprites/slider.pxo" type="Texture" id=16]
 [ext_resource path="res://entities/player/HUD/sprites/backgroundInventory.pxo" type="Texture" id=17]
 [ext_resource path="res://entities/player/HUD/simpleButton/simpleButton.tscn" type="PackedScene" id=18]
@@ -30,6 +30,7 @@
 [ext_resource path="res://entities/classes/dialogComponent/reactBorder.pxo" type="Texture" id=28]
 [ext_resource path="res://entities/player/HUD/scripts/dialog/dialog.gd" type="Script" id=29]
 [ext_resource path="res://entities/player/HUD/sprites/backGroundEye.pxo" type="Texture" id=30]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=31]
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 24 )
@@ -248,12 +249,17 @@ outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 9 )
 
-[sub_resource type="DynamicFont" id=29]
-size = 32
-outline_size = 2
-outline_color = Color( 0.403922, 0.592157, 0.529412, 1 )
-extra_spacing_char = 4
-font_data = ExtResource( 11 )
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 24, 27 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 13 )
+region = Rect2( 48, 0, 24, 27 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 13 )
+region = Rect2( 24, 0, 24, 27 )
 
 [sub_resource type="DynamicFont" id=33]
 size = 32
@@ -286,17 +292,134 @@ margin_bottom = 12.0
 atlas = ExtResource( 16 )
 region = Rect2( 0, 36, 32, 18 )
 
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 24, 27 )
+[sub_resource type="DynamicFont" id=63]
+size = 32
+outline_size = 2
+outline_color = Color( 0.219608, 0.2, 0.439216, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 11 )
 
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 13 )
-region = Rect2( 48, 0, 24, 27 )
+[sub_resource type="Theme" id=64]
 
-[sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 13 )
-region = Rect2( 24, 0, 24, 27 )
+[sub_resource type="StyleBoxFlat" id=65]
+bg_color = Color( 0.984314, 1, 0.682353, 0.513726 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=66]
+bg_color = Color( 0.0784314, 0.0431373, 0.121569, 0.686275 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=67]
+bg_color = Color( 0.129412, 0.0980392, 0.239216, 0.337255 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="DynamicFont" id=68]
+size = 32
+outline_size = 2
+outline_color = Color( 0.219608, 0.2, 0.439216, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 11 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 52, 34 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 12 )
+region = Rect2( 104, 0, 52, 34 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 12 )
+region = Rect2( 52, 0, 52, 34 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 12 )
+region = Rect2( 156, 0, 52, 34 )
+
+[sub_resource type="StyleBoxTexture" id=70]
+texture = ExtResource( 15 )
+region_rect = Rect2( 144, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="Theme" id=71]
+CheckButton/icons/off = SubResource( 69 )
+CheckButton/icons/off_disabled = SubResource( 40 )
+CheckButton/icons/on = SubResource( 41 )
+CheckButton/icons/on_disabled = SubResource( 42 )
+CheckButton/styles/focus = SubResource( 70 )
+
+[sub_resource type="DynamicFont" id=58]
+size = 64
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 31 )
+
+[sub_resource type="StyleBoxTexture" id=59]
+texture = ExtResource( 15 )
+region_rect = Rect2( 48, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=60]
+texture = ExtResource( 15 )
+region_rect = Rect2( 96, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 25.0
+margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id=61]
+texture = ExtResource( 15 )
+region_rect = Rect2( 144, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id=62]
+texture = ExtResource( 15 )
+region_rect = Rect2( 0, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
 
 [node name="HUD" type="CanvasLayer"]
 layer = 3
@@ -1185,7 +1308,6 @@ size_flags_horizontal = 11
 [node name="configurations" type="CanvasLayer" parent="."]
 pause_mode = 2
 layer = 9
-visible = false
 script = ExtResource( 14 )
 
 [node name="ColorRect" type="ColorRect" parent="configurations"]
@@ -1193,218 +1315,254 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
 
-[node name="Panel" type="Panel" parent="configurations"]
+[node name="Panel" type="PanelContainer" parent="configurations"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -288.5
-margin_top = -290.0
-margin_right = 295.5
-margin_bottom = 222.0
+margin_left = -550.5
+margin_top = -210.0
+margin_right = 565.5
+margin_bottom = 183.0
 custom_styles/panel = SubResource( 38 )
 
-[node name="Label" type="Label" parent="configurations/Panel"]
-margin_left = 27.5
-margin_top = 16.0
-margin_right = 315.5
-margin_bottom = 44.0
-custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
-custom_fonts/font = SubResource( 28 )
-text = "player_hud_conf"
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="VBoxContainer" type="VBoxContainer" parent="configurations/Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -254.0
-margin_top = -200.0
-margin_right = 254.0
-margin_bottom = 176.0
-
-[node name="HSeparator" type="HSeparator" parent="configurations/Panel/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_right = 508.0
-margin_bottom = 30.0
-custom_constants/separation = 30
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1100.0
+margin_bottom = 380.0
+custom_constants/separation = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="configurations/Panel/VBoxContainer"]
-margin_top = 34.0
-margin_right = 508.0
-margin_bottom = 68.0
-alignment = 1
+margin_right = 1084.0
+margin_bottom = 56.0
 
-[node name="Label2" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer"]
-margin_top = 4.0
-margin_right = 452.0
-margin_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
+[node name="Label" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer"]
+margin_top = 14.0
+margin_right = 220.0
+margin_bottom = 42.0
 custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
-custom_fonts/font = SubResource( 29 )
-text = "mn_opt_sl"
-valign = 1
+custom_fonts/font = SubResource( 28 )
+text = "player_conf"
 
-[node name="CheckButton" parent="configurations/Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 12 )]
-margin_left = 456.0
-margin_right = 508.0
-align = 2
-icon_align = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="configurations/Panel/VBoxContainer"]
-margin_top = 72.0
-margin_right = 508.0
-margin_bottom = 106.0
-alignment = 1
-
-[node name="Label2" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer2"]
-margin_top = 4.0
-margin_right = 452.0
-margin_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
-custom_fonts/font = SubResource( 29 )
-text = "mn_opt_sl"
-valign = 1
-
-[node name="CheckButton" parent="configurations/Panel/VBoxContainer/HBoxContainer2" instance=ExtResource( 12 )]
-margin_left = 456.0
-margin_right = 508.0
-align = 2
-icon_align = 2
-
-[node name="HSeparator2" type="HSeparator" parent="configurations/Panel/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 110.0
-margin_right = 508.0
-margin_bottom = 125.0
-custom_constants/separation = 15
-
-[node name="Label3" type="Label" parent="configurations/Panel/VBoxContainer"]
-margin_top = 129.0
-margin_right = 508.0
-margin_bottom = 155.0
-custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
-custom_fonts/font = SubResource( 33 )
-text = "mn_opt_music"
-valign = 1
-
-[node name="music" type="HSlider" parent="configurations/Panel/VBoxContainer"]
-margin_top = 159.0
-margin_right = 508.0
-margin_bottom = 177.0
-custom_icons/grabber_highlight = SubResource( 34 )
-custom_icons/grabber = SubResource( 34 )
-custom_styles/slider = SubResource( 35 )
-custom_styles/grabber_area_highlight = SubResource( 36 )
-custom_styles/grabber_area = SubResource( 36 )
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="configurations/Panel/VBoxContainer/music"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -2.0
-margin_right = 2.0
-texture = SubResource( 37 )
-patch_margin_left = 10
-patch_margin_top = 4
-patch_margin_right = 10
-patch_margin_bottom = 6
-
-[node name="HSeparator3" type="HSeparator" parent="configurations/Panel/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 181.0
-margin_right = 508.0
-margin_bottom = 196.0
-custom_constants/separation = 15
-
-[node name="Label4" type="Label" parent="configurations/Panel/VBoxContainer"]
-margin_top = 200.0
-margin_right = 508.0
-margin_bottom = 226.0
-custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
-custom_fonts/font = SubResource( 33 )
-text = "mn_opt_sfx"
-valign = 1
-
-[node name="sound" type="HSlider" parent="configurations/Panel/VBoxContainer"]
-margin_top = 230.0
-margin_right = 508.0
-margin_bottom = 248.0
-custom_icons/grabber_highlight = SubResource( 34 )
-custom_icons/grabber = SubResource( 34 )
-custom_styles/slider = SubResource( 35 )
-custom_styles/grabber_area_highlight = SubResource( 36 )
-custom_styles/grabber_area = SubResource( 36 )
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="configurations/Panel/VBoxContainer/sound"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -2.0
-margin_right = 2.0
-texture = SubResource( 37 )
-patch_margin_left = 10
-patch_margin_top = 4
-patch_margin_right = 10
-patch_margin_bottom = 6
-
-[node name="close" type="TextureButton" parent="configurations/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -60.5
-margin_top = 8.0
-margin_right = -12.5
-margin_bottom = 62.0
+[node name="close" type="TextureButton" parent="configurations/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 1028.0
+margin_right = 1084.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 56, 56 )
+size_flags_horizontal = 10
 texture_normal = SubResource( 30 )
 texture_pressed = SubResource( 31 )
 texture_hover = SubResource( 32 )
 expand = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="configurations/Panel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="HBoxContainer2" type="HBoxContainer" parent="configurations/Panel/VBoxContainer"]
+margin_top = 88.0
+margin_right = 1084.0
+margin_bottom = 248.0
+custom_constants/separation = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="configurations/Panel/VBoxContainer/HBoxContainer2"]
+margin_right = 526.0
+margin_bottom = 160.0
+rect_pivot_offset = Vector2( -537.5, -166 )
+size_flags_horizontal = 3
+
+[node name="Label3" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_right = 526.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 33 )
+text = "mn_opt_music"
+valign = 1
+
+[node name="music" type="HSlider" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 30.0
+margin_right = 526.0
+margin_bottom = 48.0
+custom_icons/grabber_highlight = SubResource( 34 )
+custom_icons/grabber = SubResource( 34 )
+custom_styles/slider = SubResource( 35 )
+custom_styles/grabber_area_highlight = SubResource( 36 )
+custom_styles/grabber_area = SubResource( 36 )
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/music"]
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -590.5
-margin_top = 23.0
-margin_right = 590.5
-margin_bottom = 95.0
+margin_left = -2.0
+margin_right = 2.0
+texture = SubResource( 37 )
+patch_margin_left = 10
+patch_margin_top = 4
+patch_margin_right = 10
+patch_margin_bottom = 6
+
+[node name="Label4" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 52.0
+margin_right = 526.0
+margin_bottom = 78.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 33 )
+text = "mn_opt_sfx"
+valign = 1
+
+[node name="sound" type="HSlider" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 82.0
+margin_right = 526.0
+margin_bottom = 100.0
+custom_icons/grabber_highlight = SubResource( 34 )
+custom_icons/grabber = SubResource( 34 )
+custom_styles/slider = SubResource( 35 )
+custom_styles/grabber_area_highlight = SubResource( 36 )
+custom_styles/grabber_area = SubResource( 36 )
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/sound"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_right = 2.0
+texture = SubResource( 37 )
+patch_margin_left = 10
+patch_margin_top = 4
+patch_margin_right = 10
+patch_margin_bottom = 6
+
+[node name="Label5" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 104.0
+margin_right = 526.0
+margin_bottom = 130.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 63 )
+text = "mn_lang"
+valign = 1
+
+[node name="languages" type="OptionButton" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 134.0
+margin_right = 526.0
+margin_bottom = 160.0
+theme = SubResource( 64 )
+custom_fonts/font = SubResource( 63 )
+custom_styles/hover = SubResource( 65 )
+custom_styles/pressed = SubResource( 66 )
+custom_styles/focus = SubResource( 65 )
+custom_styles/disabled = SubResource( 66 )
+custom_styles/normal = SubResource( 67 )
+clip_text = true
+icon_align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="configurations/Panel/VBoxContainer/HBoxContainer2"]
+margin_left = 558.0
+margin_right = 1084.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_right = 526.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+margin_top = 8.0
+margin_right = 140.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 68 )
+text = "mn_opt_sl"
+valign = 1
+
+[node name="simpleLight" type="CheckButton" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+margin_left = 462.0
+margin_right = 526.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+size_flags_vertical = 5
+theme = SubResource( 71 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 46.0
+margin_right = 526.0
+margin_bottom = 88.0
+
+[node name="Label" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
+margin_top = 8.0
+margin_right = 146.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 68 )
+text = "mn_opt_sh"
+align = 1
+valign = 1
+
+[node name="shadow" type="CheckButton" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
+margin_left = 462.0
+margin_right = 526.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+theme = SubResource( 71 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 92.0
+margin_right = 526.0
+margin_bottom = 134.0
+
+[node name="Label" type="Label" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
+margin_top = 8.0
+margin_right = 134.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 68 )
+text = "mn_vsync"
+align = 1
+valign = 1
+
+[node name="vsync" type="CheckButton" parent="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
+margin_left = 462.0
+margin_right = 526.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+theme = SubResource( 71 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="configurations/Panel/VBoxContainer"]
+margin_top = 280.0
+margin_right = 1084.0
+margin_bottom = 364.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_clip_content = true
+size_flags_vertical = 10
 alignment = 1
 
-[node name="quit" parent="configurations/Panel/HBoxContainer" instance=ExtResource( 15 )]
-margin_right = 584.0
-grow_horizontal = 2
-rect_min_size = Vector2( 297, 72 )
-text = "player_hud_conf_quit"
+[node name="quit" type="Button" parent="configurations/Panel/VBoxContainer/HBoxContainer3"]
+margin_right = 542.0
+margin_bottom = 84.0
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 58 )
+custom_styles/hover = SubResource( 59 )
+custom_styles/pressed = SubResource( 60 )
+custom_styles/focus = SubResource( 61 )
+custom_styles/disabled = SubResource( 60 )
+custom_styles/normal = SubResource( 62 )
+text = "player_conf_quit"
 
-[node name="VSeparator2" type="VSeparator" parent="configurations/Panel/HBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 588.0
-margin_right = 593.0
-margin_bottom = 72.0
-custom_constants/separation = 5
-
-[node name="menu" parent="configurations/Panel/HBoxContainer" instance=ExtResource( 15 )]
-margin_left = 597.0
-margin_right = 1181.0
-grow_horizontal = 2
-rect_min_size = Vector2( 176, 72 )
-text = "player_hud_conf_exit"
+[node name="menu" type="Button" parent="configurations/Panel/VBoxContainer/HBoxContainer3"]
+margin_left = 546.0
+margin_right = 1084.0
+margin_bottom = 84.0
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 58 )
+custom_styles/hover = SubResource( 59 )
+custom_styles/pressed = SubResource( 60 )
+custom_styles/focus = SubResource( 61 )
+custom_styles/disabled = SubResource( 60 )
+custom_styles/normal = SubResource( 62 )
+text = "player_conf_exit"
 
 [connection signal="pressed" from="container/HUD/Control/inventoryButton" to="." method="_on_inventoryButton_pressed"]
 [connection signal="dir_selected" from="DEBUG/worldSelect" to="DEBUG" method="_on_worldSelect_dir_selected"]
@@ -1415,12 +1573,14 @@ text = "player_hud_conf_exit"
 [connection signal="pressed" from="inventory/left" to="inventory" method="_on_left_pressed"]
 [connection signal="pressed" from="inventory/right" to="inventory" method="_on_right_pressed"]
 [connection signal="visibility_changed" from="configurations" to="configurations" method="_on_configurations_visibility_changed"]
-[connection signal="toggled" from="configurations/Panel/VBoxContainer/HBoxContainer/CheckButton" to="configurations" method="_on_SImpleLight_toggled"]
-[connection signal="toggled" from="configurations/Panel/VBoxContainer/HBoxContainer2/CheckButton" to="configurations" method="_on_CheckButton_toggled"]
-[connection signal="drag_ended" from="configurations/Panel/VBoxContainer/music" to="configurations" method="_on_drag_ended"]
-[connection signal="value_changed" from="configurations/Panel/VBoxContainer/music" to="configurations" method="_on_music_value_changed"]
-[connection signal="drag_ended" from="configurations/Panel/VBoxContainer/sound" to="configurations" method="_on_drag_ended"]
-[connection signal="value_changed" from="configurations/Panel/VBoxContainer/sound" to="configurations" method="_on_sound_value_changed"]
-[connection signal="pressed" from="configurations/Panel/close" to="configurations" method="_on_close_pressed"]
-[connection signal="pressed" from="configurations/Panel/HBoxContainer/quit" to="configurations" method="_on_quit_pressed"]
-[connection signal="pressed" from="configurations/Panel/HBoxContainer/menu" to="configurations" method="_on_menu_pressed"]
+[connection signal="pressed" from="configurations/Panel/VBoxContainer/HBoxContainer/close" to="configurations" method="_on_close_pressed"]
+[connection signal="drag_ended" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/music" to="configurations" method="_on_drag_ended"]
+[connection signal="value_changed" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/music" to="configurations" method="_on_music_value_changed"]
+[connection signal="drag_ended" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/sound" to="configurations" method="_on_drag_ended"]
+[connection signal="value_changed" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/sound" to="configurations" method="_on_sound_value_changed"]
+[connection signal="item_selected" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/languages" to="configurations" method="_on_languages_item_selected"]
+[connection signal="toggled" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/simpleLight" to="configurations" method="_on_simpleLight_toggled"]
+[connection signal="toggled" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2/shadow" to="configurations" method="_on_shadow_toggled"]
+[connection signal="toggled" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3/vsync" to="configurations" method="_on_vsync_toggled"]
+[connection signal="pressed" from="configurations/Panel/VBoxContainer/HBoxContainer3/quit" to="configurations" method="_on_quit_pressed"]
+[connection signal="pressed" from="configurations/Panel/VBoxContainer/HBoxContainer3/menu" to="configurations" method="_on_menu_pressed"]

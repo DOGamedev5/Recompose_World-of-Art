@@ -4,10 +4,10 @@ other_tutor_2,pressione K,press K
 other_tutor_3,pressione L para correr,press L to run
 other_tutor_4,pressione S,press S
 dialog_press,Pressione E para continuar...,Press E to continue...
-player_hud_conf,configurações.,configurations.
-player_hud_conf_quit,sair do jogo,quit game
-player_hud_conf_exit,menu,menu
-player_hud_items,inventario,imventory
-player_hud_stats,status,stats
-player_hud_map,mapa,map
+player_conf,configurações.,configurations.
+player_conf_quit,sair do jogo,quit game
+player_conf_exit,menu,menu
+player_items,inventario,imventory
+player_stats,status,stats
+player_map,mapa,map
 contract,pressione Enter para confirmar,press enter to confirm

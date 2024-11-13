@@ -8,7 +8,7 @@ func _ready():
 	tween.start()
 
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(object, _key):
 	if object.name == "ParallaxLayer3":
 		tween.interpolate_property($ParallaxLayer3, "motion_offset", Vector2.ZERO, -$ParallaxLayer3["motion_mirroring"], 50)
 	if object.name == "ParallaxLayer2":

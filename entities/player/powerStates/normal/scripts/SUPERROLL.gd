@@ -14,7 +14,10 @@ func enter(_lastState):
 		direction = sign(parent.motion.x)
 	elif direction == 0:
 		direction = 1 - (int(parent.fliped)*2)
-
+	
+	if parent.motion.y < 0:
+		parent.motion.y = 0
+	
 	parent.isRolling = true
 	parent.setCollision(1)
 

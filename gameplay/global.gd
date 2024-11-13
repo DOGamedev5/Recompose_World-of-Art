@@ -3,6 +3,7 @@ extends Node
 const optionsSavePath = "user://options.tres"
 
 onready var player :PlayerBase
+onready var languagesID : Array
 
 var options : OptionsSave
 
@@ -40,6 +41,8 @@ func _ready():
 		saveData(optionsSavePath, OptionsSave.new())
 	
 	options = loadData(Global.optionsSavePath)
+	
+	setup_langueges()
 	
 func _input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
@@ -133,6 +136,25 @@ func addToRoomData(obj_name : String, catergory : String):
 	if not obj_name in currentRoom.data[catergory]:
 		
 		currentRoom.data[catergory].append(obj_name)
+
+func setup_langueges():
+	if not options.lang:
+		options.lang = TranslationServer.get_locale()
+		saveData(Global.optionsSavePath, Global.options)
+	else:
+		TranslationServer.set_locale(options.lang)
+	
+	for locale in TranslationServer.get_loaded_locales():
+		if languagesID.has(locale): continue
+		
+		languagesID.append(locale) 
+
+func set_languege(index):
+	var locale : String = languagesID[index]
+	
+	TranslationServer.set_locale(locale)
+	options.lang = TranslationServer.get_locale()
+	saveData(optionsSavePath, options)
 
 func bin_array(n : int, size := 8):
 	var ret_array := []
