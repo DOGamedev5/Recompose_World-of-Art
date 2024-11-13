@@ -1733,7 +1733,7 @@ graph_offset = Vector2( 26.3503, 92.5442 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=334]
 
 [sub_resource type="RectangleShape2D" id=86]
-extents = Vector2( 35, 10 )
+extents = Vector2( 40, 24 )
 
 [sub_resource type="RectangleShape2D" id=85]
 extents = Vector2( 40, 24 )
@@ -1881,6 +1881,7 @@ script = ExtResource( 20 )
 damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
+position = Vector2( 5, 3 )
 shape = SubResource( 86 )
 
 [node name="attackSpeed" type="Area2D" parent="." index="19"]

@@ -56,7 +56,6 @@ func process_physics(_delta):
 	parent.motion.y = 0
 	parent.motion.x = parent.attackVelocity * atkDirection
 
-
 func exit():
 	parent.snapDesatived = false
 	parent.attackComponents[0].setDamage(0)

@@ -620,7 +620,7 @@ extents = Vector2( 32, 248 )
 
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 2 )
-warp = [ NodePath("RoomWarp") ]
+warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
 blocksPath = NodePath("/root/EditorNode/@@596/@@597/@@605/@@607/@@611/@@615/@@616/@@617/@@633/@@634/@@643/@@644/@@6618/@@6450/@@6451/@@6452/@@6453/@@6454/@@6455/RoomClass/blocks")
 limitsMin = Vector2( 0, -704 )
 limitsMax = Vector2( 3256, 1624 )
@@ -645,6 +645,15 @@ roomID = 6
 warpID = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
+shape = SubResource( 61 )
+
+[node name="ChangeRoom2" type="Area2D" parent="."]
+position = Vector2( -79, 1213 )
+script = ExtResource( 1 )
+world = "res://dimensions/literatureArt"
+roomID = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom2"]
 shape = SubResource( 61 )
 
 [node name="blocks" type="Node2D" parent="."]
@@ -760,7 +769,7 @@ position = Vector2( 2528, 752 )
 position = Vector2( 864, 1248 )
 
 [node name="RoomWarp2" type="Position2D" parent="."]
-position = Vector2( 64, 1296 )
+position = Vector2( -8, 1296 )
 script = ExtResource( 3 )
 fixed_Y = false
-offset_Y = 960.0
+offset_Y = 1632.0

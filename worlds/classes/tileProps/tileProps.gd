@@ -30,7 +30,7 @@ func _getpropsScene():
 		"res://objects/keyBlock/block/blockKey.tscn",
 		"res://objects/keyBlock/key/keyCollect.tscn",
 		"res://objects/coins/coin.tscn",
-		BreakableTiles
+		"res://worlds/classes/breakableTiles/breakableTiles.tscn"
 	]
 	
 	var parent = get_tree().edited_scene_root
@@ -87,6 +87,7 @@ func setProp(i, obj):
 		
 		elif i in [8]:
 			parents["BreakableTilesManager"].add_child(newProp)
+			newProp.position += Vector2(8, 8)
 		else:
 			parent.add_child(newProp)
 		

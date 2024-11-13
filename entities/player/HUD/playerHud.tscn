@@ -1308,6 +1308,7 @@ size_flags_horizontal = 11
 [node name="configurations" type="CanvasLayer" parent="."]
 pause_mode = 2
 layer = 9
+visible = false
 script = ExtResource( 14 )
 
 [node name="ColorRect" type="ColorRect" parent="configurations"]

@@ -184,5 +184,6 @@ one_shot = true
 [connection signal="timeout" from="jumpBuffer" to="." method="_on_jumpBuffer_timeout"]
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="hitboxTriggered"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_HitboxComponent_area_entered"]
 [connection signal="area_exited" from="HitboxComponent" to="." method="hitboxExited"]
 [connection signal="timeout" from="shieldSystem/shield" to="." method="shieldTimeout"]

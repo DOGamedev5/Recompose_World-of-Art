@@ -333,22 +333,24 @@ func setCinematic(value : bool):
 func coyoteTimerTimeout():
 	canJump = false
 
-func hitboxTriggered(_damage, area):
+func hitboxTriggered(damage, area):
+	if not (area.is_in_group("enemy") and not shieldActived): return
+	
+	var direction := sign(area.global_position.x - position.x)
+	emit_signal("damaged", direction)
+	health -= damage
+	HUD.setHealth(health)
+	shieldActived = true
+		
+func _on_HitboxComponent_area_entered(area):
 	if area is ChangeRoom and active:
 		active = false
 		area.changeRoom()
-	
-	elif area is AttackComponent and area.is_in_group("enemy") and not shieldActived:
-		var direction := sign(area.global_position.x - position.x)
-		emit_signal("damaged", direction)
-		health -= area.damage
-		HUD.setHealth(health)
-		shieldActived = true
-	
+		
 	elif area.is_in_group("ladder"):
 		enteredObjects.append(area)
 		canLadder = true
-		
+
 func hitboxExited(area):
 	
 	if area.is_in_group("ladder"):
@@ -362,6 +364,7 @@ func hitboxExited(area):
 			break
 	
 	canLadder = onLadder
+	
 
 func shieldTimeout():
 	animationShield.travel("RESET")
@@ -369,3 +372,5 @@ func shieldTimeout():
 
 func _on_jumpBuffer_timeout():
 	jumpBuffer = false
+
+

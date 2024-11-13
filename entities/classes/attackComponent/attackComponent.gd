@@ -1,7 +1,16 @@
 class_name AttackComponent extends Area2D
 
-export var damage := 0
+export var damage := 0 setget setDamage
+
+func _ready():
+	connect("area_entered", self, "_on_attackComponent_area_entered")
 
 func setDamage(newDamage):
 	damage = newDamage
-	monitorable = damage != 0 
+	monitoring = damage != 0 
+
+func _on_attackComponent_area_entered(area):
+	if not (area is HitboxComponent):
+		return
+	
+	area.hit(damage, area)

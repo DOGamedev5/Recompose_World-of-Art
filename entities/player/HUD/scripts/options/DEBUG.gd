@@ -15,12 +15,13 @@ onready var proprietyLabels := {
 var selectedWorld : String
 
 func _ready():
+	visible = false
 	$PanelContainer/VBoxContainer/simpleLight.pressed = Global.options.simpleLight
 	$PanelContainer/VBoxContainer/HBoxContainer2/ToolButton.add_item("rooms", 0)
 	$PanelContainer/VBoxContainer/HBoxContainer2/ToolButton.add_item("especialRooms", 1)
 
 func _input(_event):
-	if Input.is_action_just_pressed("Debug"):
+	if Input.is_action_just_pressed("Debug") and OS.is_debug_build():
 		debugPanel = !debugPanel
 		visible = debugPanel
 	

@@ -3,30 +3,8 @@ class_name BreakableTiles
 extends HitboxComponent
 
 onready var tilePos : Vector2
-
-func _init():
-	
-	if not get_node_or_null("shape"):
-		var collision := CollisionShape2D.new()
-		var shape := RectangleShape2D.new()
-		shape.extents = Vector2(32, 18)
-		collision.shape = shape
-		collision.name = "shape"
-		add_child(collision)
-		collision.owner = self
-	
-	if not get_node_or_null("enable"):
-		var enable := VisibilityEnabler2D.new()
-		enable.process_parent = true
-		enable.physics_process_parent = true
-		enable.rect.position = Vector2(-9, -9)
-		enable.rect.size = Vector2(18, 18)
-		enable.name = "enable"
-		add_child(enable)
-		enable.owner = self
 	
 func _ready():
-	var _1 = connect("HitboxDamaged", self, "breakTile")
 	set_collision_layer_bit(0, false)
 	set_collision_mask_bit(0, false)
 	set_collision_mask_bit(8, true)

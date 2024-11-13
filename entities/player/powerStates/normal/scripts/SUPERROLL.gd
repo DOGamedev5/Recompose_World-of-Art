@@ -7,7 +7,6 @@ func enter(_lastState):
 	parent.setParticle(0, false)
 	parent.setParticle(1, true)
 	parent.snapDesatived = false
-#	particle.emitting = false
 
 	direction = sign(parent.getSlopeNormal().x)
 	if direction == 0 and parent.motion.x:
