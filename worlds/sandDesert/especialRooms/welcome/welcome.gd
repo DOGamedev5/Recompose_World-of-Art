@@ -25,7 +25,7 @@ func _ready():
 		Global.playerHud.dialog.connect("dialogClosed", self, "_on_dialog_dialogClosed")
 		
 func _input(_event):
-	if Input.is_action_just_pressed("ui_accept") and $contract/Control/TextureRect/LineEdit.editable and $contract.visible:
+	if Input.is_action_just_pressed("ui_enter") and $contract/Control/TextureRect/LineEdit.editable and $contract.visible:
 		_on_LineEdit_text_entered($contract/Control/TextureRect/LineEdit.text)
 
 func _on_dialog_dialogClosed():

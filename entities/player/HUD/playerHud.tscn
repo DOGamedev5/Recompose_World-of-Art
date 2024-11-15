@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
@@ -31,6 +31,8 @@
 [ext_resource path="res://entities/player/HUD/scripts/dialog/dialog.gd" type="Script" id=29]
 [ext_resource path="res://entities/player/HUD/sprites/backGroundEye.pxo" type="Texture" id=30]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=31]
+[ext_resource path="res://addons/controller_icons/assets/key/e.png" type="Texture" id=32]
+[ext_resource path="res://addons/controller_icons/objects/TextureRect.gd" type="Script" id=33]
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 24 )
@@ -268,9 +270,15 @@ outline_color = Color( 0.403922, 0.592157, 0.529412, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 11 )
 
-[sub_resource type="AtlasTexture" id=34]
+[sub_resource type="AtlasTexture" id=72]
 atlas = ExtResource( 16 )
-region = Rect2( 32, 0, 16, 18 )
+region = Rect2( 32, 16, 16, 16 )
+margin = Rect2( 0, 0, 0, 2 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 16 )
+region = Rect2( 32, 0, 16, 16 )
+margin = Rect2( 0, 0, 0, 2 )
 
 [sub_resource type="StyleBoxTexture" id=35]
 texture = ExtResource( 16 )
@@ -781,8 +789,8 @@ theme = ExtResource( 23 )
 scroll_horizontal_enabled = false
 
 [node name="GridContainer" type="GridContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
-margin_right = 540.0
-margin_bottom = 336.0
+margin_right = 64.0
+margin_bottom = 64.0
 rect_clip_content = true
 columns = 8
 
@@ -791,267 +799,6 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 64.0
 margin_bottom = 64.0
-
-[node name="TextureRect2" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 68.0
-margin_right = 132.0
-margin_bottom = 64.0
-
-[node name="TextureRect3" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 136.0
-margin_right = 200.0
-margin_bottom = 64.0
-
-[node name="TextureRect4" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 204.0
-margin_right = 268.0
-margin_bottom = 64.0
-
-[node name="TextureRect5" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 272.0
-margin_right = 336.0
-margin_bottom = 64.0
-
-[node name="TextureRect6" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 340.0
-margin_right = 404.0
-margin_bottom = 64.0
-
-[node name="TextureRect7" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 408.0
-margin_right = 472.0
-margin_bottom = 64.0
-
-[node name="TextureRect8" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 476.0
-margin_right = 540.0
-margin_bottom = 64.0
-
-[node name="TextureRect9" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 68.0
-margin_right = 64.0
-margin_bottom = 132.0
-
-[node name="TextureRect10" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 68.0
-margin_top = 68.0
-margin_right = 132.0
-margin_bottom = 132.0
-
-[node name="TextureRect11" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 136.0
-margin_top = 68.0
-margin_right = 200.0
-margin_bottom = 132.0
-
-[node name="TextureRect12" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 204.0
-margin_top = 68.0
-margin_right = 268.0
-margin_bottom = 132.0
-
-[node name="TextureRect13" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 272.0
-margin_top = 68.0
-margin_right = 336.0
-margin_bottom = 132.0
-
-[node name="TextureRect14" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 340.0
-margin_top = 68.0
-margin_right = 404.0
-margin_bottom = 132.0
-
-[node name="TextureRect15" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 408.0
-margin_top = 68.0
-margin_right = 472.0
-margin_bottom = 132.0
-
-[node name="TextureRect16" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 476.0
-margin_top = 68.0
-margin_right = 540.0
-margin_bottom = 132.0
-
-[node name="TextureRect17" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 136.0
-margin_right = 64.0
-margin_bottom = 200.0
-
-[node name="TextureRect18" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 68.0
-margin_top = 136.0
-margin_right = 132.0
-margin_bottom = 200.0
-
-[node name="TextureRect19" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 136.0
-margin_top = 136.0
-margin_right = 200.0
-margin_bottom = 200.0
-
-[node name="TextureRect20" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 204.0
-margin_top = 136.0
-margin_right = 268.0
-margin_bottom = 200.0
-
-[node name="TextureRect21" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 272.0
-margin_top = 136.0
-margin_right = 336.0
-margin_bottom = 200.0
-
-[node name="TextureRect22" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 340.0
-margin_top = 136.0
-margin_right = 404.0
-margin_bottom = 200.0
-
-[node name="TextureRect23" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 408.0
-margin_top = 136.0
-margin_right = 472.0
-margin_bottom = 200.0
-
-[node name="TextureRect24" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 476.0
-margin_top = 136.0
-margin_right = 540.0
-margin_bottom = 200.0
-
-[node name="TextureRect25" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 204.0
-margin_right = 64.0
-margin_bottom = 268.0
-
-[node name="TextureRect26" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 68.0
-margin_top = 204.0
-margin_right = 132.0
-margin_bottom = 268.0
-
-[node name="TextureRect27" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 136.0
-margin_top = 204.0
-margin_right = 200.0
-margin_bottom = 268.0
-
-[node name="TextureRect28" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 204.0
-margin_top = 204.0
-margin_right = 268.0
-margin_bottom = 268.0
-
-[node name="TextureRect29" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 272.0
-margin_top = 204.0
-margin_right = 336.0
-margin_bottom = 268.0
-
-[node name="TextureRect30" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 340.0
-margin_top = 204.0
-margin_right = 404.0
-margin_bottom = 268.0
-
-[node name="TextureRect31" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 408.0
-margin_top = 204.0
-margin_right = 472.0
-margin_bottom = 268.0
-
-[node name="TextureRect32" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 476.0
-margin_top = 204.0
-margin_right = 540.0
-margin_bottom = 268.0
-
-[node name="TextureRect33" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 272.0
-margin_right = 64.0
-margin_bottom = 336.0
-
-[node name="TextureRect34" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 68.0
-margin_top = 272.0
-margin_right = 132.0
-margin_bottom = 336.0
-
-[node name="TextureRect35" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 136.0
-margin_top = 272.0
-margin_right = 200.0
-margin_bottom = 336.0
 
 [node name="MarginContainer" type="MarginContainer" parent="inventory/items/MarginContainer/VBoxContainer"]
 margin_top = 290.0
@@ -1193,13 +940,39 @@ margin_bottom = 629.0
 size_flags_vertical = 10
 custom_constants/margin_right = 32
 
-[node name="Label" type="Label" parent="dialog/Control/VBoxContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="dialog/Control/VBoxContainer/MarginContainer2"]
+margin_right = 1329.0
+margin_bottom = 30.0
+alignment = 2
+
+[node name="Label" type="Label" parent="dialog/Control/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 851.0
+margin_right = 1071.0
+margin_bottom = 30.0
+size_flags_vertical = 10
+custom_colors/font_color = Color( 0.65098, 0.721569, 0.890196, 1 )
+custom_fonts/font = SubResource( 56 )
+text = "dialog_press1"
+align = 2
+
+[node name="ControllerTextureRect" type="TextureRect" parent="dialog/Control/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 1075.0
+margin_right = 1105.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 32 )
+expand = true
+script = ExtResource( 33 )
+path = "ui_accept"
+
+[node name="Label2" type="Label" parent="dialog/Control/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 1109.0
 margin_right = 1329.0
 margin_bottom = 30.0
 size_flags_vertical = 10
 custom_colors/font_color = Color( 0.65098, 0.721569, 0.890196, 1 )
 custom_fonts/font = SubResource( 56 )
-text = "Press \"E\" to continue."
+text = "dialog_press2"
 align = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="dialog/Control/VBoxContainer"]
@@ -1317,6 +1090,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
 
 [node name="Panel" type="PanelContainer" parent="configurations"]
+self_modulate = Color( 0.529412, 0.505882, 0.588235, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1355,6 +1129,7 @@ size_flags_horizontal = 10
 texture_normal = SubResource( 30 )
 texture_pressed = SubResource( 31 )
 texture_hover = SubResource( 32 )
+texture_focused = SubResource( 32 )
 expand = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="configurations/Panel/VBoxContainer"]
@@ -1381,8 +1156,8 @@ valign = 1
 margin_top = 30.0
 margin_right = 526.0
 margin_bottom = 48.0
-custom_icons/grabber_highlight = SubResource( 34 )
-custom_icons/grabber = SubResource( 34 )
+custom_icons/grabber_highlight = SubResource( 72 )
+custom_icons/grabber = SubResource( 9 )
 custom_styles/slider = SubResource( 35 )
 custom_styles/grabber_area_highlight = SubResource( 36 )
 custom_styles/grabber_area = SubResource( 36 )
@@ -1414,8 +1189,8 @@ valign = 1
 margin_top = 82.0
 margin_right = 526.0
 margin_bottom = 100.0
-custom_icons/grabber_highlight = SubResource( 34 )
-custom_icons/grabber = SubResource( 34 )
+custom_icons/grabber_highlight = SubResource( 72 )
+custom_icons/grabber = SubResource( 9 )
 custom_styles/slider = SubResource( 35 )
 custom_styles/grabber_area_highlight = SubResource( 36 )
 custom_styles/grabber_area = SubResource( 36 )
@@ -1534,7 +1309,6 @@ margin_right = 1084.0
 margin_bottom = 364.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_clip_content = true
 size_flags_vertical = 10
 alignment = 1
 
@@ -1555,6 +1329,7 @@ text = "player_conf_quit"
 margin_left = 546.0
 margin_right = 1084.0
 margin_bottom = 84.0
+focus_neighbour_left = NodePath("../quit")
 size_flags_horizontal = 6
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 58 )

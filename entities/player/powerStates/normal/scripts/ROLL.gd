@@ -3,7 +3,7 @@ extends State
 var direction := 1.0
 
 func enter(_lastState):
-	parent.attackComponents[0].setDamage(1)
+	parent.attackComponents[2].setDamage(1)
 	parent.setParticle(0, true)
 	parent.setParticle(1, false)
 	parent.snapDesatived = false
@@ -41,7 +41,7 @@ func process_physics(_delta):
 	parent.setParticle(0, parent.onFloor())
 
 func exit():
-	parent.attackComponents[0].setDamage(0)
+	parent.attackComponents[2].setDamage(0)
 	parent.setParticle(0, false)
 	parent.setCollision(0)
 	parent.isRolling = false

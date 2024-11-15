@@ -38,6 +38,7 @@ func _input(_event):
 		
 		if visible:
 			parent.currentScreen = "CONF"
+			$Panel/VBoxContainer/HBoxContainer/close.grab_focus()
 		else:
 			if Global.player.cinematic:
 				parent.currentScreen = "CINE"

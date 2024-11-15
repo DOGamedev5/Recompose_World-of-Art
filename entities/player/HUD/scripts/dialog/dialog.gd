@@ -6,7 +6,7 @@ onready var speakerImage := $Control/VBoxContainer/MarginContainer/panel/HBoxCon
 onready var speakerName := $Control/VBoxContainer/MarginContainer/panel/HBoxContainer/MarginContainer/VBoxContainer/name
 onready var speakerText := $Control/VBoxContainer/MarginContainer/panel/HBoxContainer/MarginContainer/VBoxContainer/RichTextLabel
 onready var speakerOptions := $Control/VBoxContainer/MarginContainer/panel/HBoxContainer/MarginContainer/VBoxContainer/options
-onready var pressText := $Control/VBoxContainer/MarginContainer2/Label
+onready var pressText := $Control/VBoxContainer/MarginContainer2/HBoxContainer
 
 onready var tween := $Tween
 

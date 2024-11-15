@@ -3,6 +3,7 @@ class_name InteractBallon extends Control
 
 export(NodePath) var areaInteractPath
 export var text := "EA" setget changed
+export(Array, String) var content = []
 export var showArroy := true
 
 onready var ballon = $ballonContent/ballon

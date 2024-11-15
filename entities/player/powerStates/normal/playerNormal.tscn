@@ -1872,13 +1872,11 @@ parameters/RUN/RUN/playback = SubResource( 335 )
 parameters/WALLED/WALLED/playback = SubResource( 334 )
 
 [node name="attackPunch" type="Area2D" parent="." index="18"]
-visible = false
 position = Vector2( 35, -31 )
 collision_layer = 256
 collision_mask = 256
 monitorable = false
 script = ExtResource( 20 )
-damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
 position = Vector2( 5, 3 )
@@ -1900,9 +1898,7 @@ shape = SubResource( 85 )
 position = Vector2( 40, -23 )
 collision_layer = 256
 collision_mask = 256
-monitorable = false
 script = ExtResource( 20 )
-damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackRoll" index="0"]
 shape = SubResource( 159 )

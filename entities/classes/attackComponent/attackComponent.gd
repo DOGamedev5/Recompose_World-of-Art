@@ -13,4 +13,4 @@ func _on_attackComponent_area_entered(area):
 	if not (area is HitboxComponent):
 		return
 	
-	area.hit(damage, area)
+	area.hit(damage, self)
