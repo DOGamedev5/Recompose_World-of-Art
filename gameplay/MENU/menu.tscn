@@ -695,7 +695,7 @@ tracks/18/keys = {
 "values": [ 1.0 ]
 }
 tracks/19/type = "value"
-tracks/19/path = NodePath("../options:rect_position")
+tracks/19/path = NodePath("../options:visible")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
@@ -703,28 +703,16 @@ tracks/19/enabled = true
 tracks/19/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/20/type = "value"
-tracks/20/path = NodePath("../options:visible")
+tracks/20/path = NodePath("../options:margin_top")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
 tracks/20/enabled = true
 tracks/20/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/21/type = "value"
-tracks/21/path = NodePath("../options:margin_top")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -939,24 +927,12 @@ tracks/4/keys = {
 "values": [ true, false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../options:rect_position")
+tracks/5/path = NodePath("../options:margin_top")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
-tracks/5/enabled = false
+tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.55, 0.95 ),
-"transitions": PoolRealArray( 1, 0.435275, 2.37841 ),
-"update": 0,
-"values": [ Vector2( 0, 730 ), Vector2( 0, 730 ), Vector2( 0, 0 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("../options:margin_top")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
 "times": PoolRealArray( 0, 0.55, 0.95 ),
 "transitions": PoolRealArray( 1, 0.450625, 1 ),
 "update": 0,
@@ -1219,8 +1195,6 @@ text = "player_conf_quit"
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 5444.0
-margin_bottom = 2944.0
 custom_constants/margin_right = 256
 custom_constants/margin_top = 64
 custom_constants/margin_left = 256
@@ -1231,24 +1205,23 @@ script = ExtResource( 3 )
 modulate = Color( 0.945098, 0.988235, 1, 1 )
 margin_left = 256.0
 margin_top = 64.0
-margin_right = 6549.0
-margin_bottom = 3616.0
+margin_right = 1105.0
+margin_bottom = 407.0
 custom_constants/separation = 24
 alignment = 1
 
 [node name="Label" type="Label" parent="options/VBoxContainer"]
-margin_top = 132.0
 margin_right = 849.0
-margin_bottom = 183.0
+margin_bottom = 51.0
 custom_fonts/font = SubResource( 2 )
 text = "mn_opt"
 align = 1
 valign = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="options/VBoxContainer"]
-margin_top = 207.0
+margin_top = 75.0
 margin_right = 849.0
-margin_bottom = 367.0
+margin_bottom = 235.0
 custom_constants/separation = 128
 
 [node name="VBoxContainer" type="VBoxContainer" parent="options/VBoxContainer/HBoxContainer3"]
@@ -1420,9 +1393,9 @@ theme = SubResource( 38 )
 
 [node name="exit" type="Button" parent="options/VBoxContainer"]
 margin_left = 286.0
-margin_top = 391.0
+margin_top = 259.0
 margin_right = 562.0
-margin_bottom = 475.0
+margin_bottom = 343.0
 focus_neighbour_left = NodePath("../HBoxContainer3/VBoxContainer/music")
 focus_neighbour_right = NodePath("../HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight")
 size_flags_horizontal = 6
