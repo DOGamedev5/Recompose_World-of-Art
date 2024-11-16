@@ -21,12 +21,14 @@ func _on_credits_pressed():
 	parent.transition(credits, [self, saves, options])
 
 func enter():
+	parent.current = self
 	$MarginContainer/VBoxContainer2/VBoxContainer/start.grab_focus()
 
 func changed():
 	pass
 
 func _on_exit_pressed():
-	get_tree().quit()
+
+	$"../confirmExit".trigger()
 
 	

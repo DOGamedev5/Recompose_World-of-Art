@@ -15,6 +15,7 @@ func enter():
 	
 	$MarginContainer/VBoxContainer/HBoxContainer/contract.grab_focus()
 	$MarginContainer/VBoxContainer/HBoxContainer/contract.pressed = true
+	parent.current = self
 
 func changed():
 	pass

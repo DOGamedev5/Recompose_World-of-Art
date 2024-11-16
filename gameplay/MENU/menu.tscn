@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://gameplay/MENU/credits.tscn" type="PackedScene" id=7]
 [ext_resource path="res://gameplay/MENU/title.pxo" type="Texture" id=8]
 [ext_resource path="res://gameplay/MENU/audio/paperSFX.ogg" type="AudioStream" id=9]
+[ext_resource path="res://gameplay/MENU/scripts/confirmExit.gd" type="Script" id=10]
+[ext_resource path="res://gameplay/themes/panel.tres" type="StyleBox" id=11]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.pxo" type="Texture" id=21]
 [ext_resource path="res://gameplay/MENU/sprites/slider.pxo" type="Texture" id=23]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.pxo" type="Texture" id=24]
@@ -1082,6 +1084,15 @@ void fragment(){
 shader = SubResource( 53 )
 shader_param/circle_size = 1.0
 
+[sub_resource type="DynamicFont" id=73]
+size = 64
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 25 )
+
 [node name="menu" type="CanvasLayer"]
 layer = 2
 script = ExtResource( 5 )
@@ -1211,17 +1222,18 @@ custom_constants/separation = 24
 alignment = 1
 
 [node name="Label" type="Label" parent="options/VBoxContainer"]
+margin_top = 132.0
 margin_right = 849.0
-margin_bottom = 51.0
+margin_bottom = 183.0
 custom_fonts/font = SubResource( 2 )
 text = "mn_opt"
 align = 1
 valign = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="options/VBoxContainer"]
-margin_top = 75.0
+margin_top = 207.0
 margin_right = 849.0
-margin_bottom = 235.0
+margin_bottom = 367.0
 custom_constants/separation = 128
 
 [node name="VBoxContainer" type="VBoxContainer" parent="options/VBoxContainer/HBoxContainer3"]
@@ -1393,9 +1405,9 @@ theme = SubResource( 38 )
 
 [node name="exit" type="Button" parent="options/VBoxContainer"]
 margin_left = 286.0
-margin_top = 259.0
+margin_top = 391.0
 margin_right = 562.0
-margin_bottom = 343.0
+margin_bottom = 475.0
 focus_neighbour_left = NodePath("../HBoxContainer3/VBoxContainer/music")
 focus_neighbour_right = NodePath("../HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight")
 size_flags_horizontal = 6
@@ -1533,8 +1545,9 @@ visible = false
 self_modulate = Color( 0.733333, 0.741176, 0.901961, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
+margin_top = -368.0
 margin_right = 9344.0
-margin_bottom = 5068.0
+margin_bottom = 4700.0
 texture = ExtResource( 26 )
 stretch_mode = 2
 
@@ -1675,6 +1688,77 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0862745, 0.0156863, 0.0156863, 1 )
 
+[node name="confirmExit" type="CanvasLayer" parent="."]
+layer = 4
+visible = false
+script = ExtResource( 10 )
+
+[node name="ColorRect" type="ColorRect" parent="confirmExit"]
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0941176, 0.027451, 0.121569, 1 )
+
+[node name="Panel" type="PanelContainer" parent="confirmExit"]
+self_modulate = Color( 0.529412, 0.505882, 0.588235, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -359.0
+margin_top = -40.0
+margin_right = 359.0
+margin_bottom = 40.0
+custom_styles/panel = ExtResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="confirmExit/Panel"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 702.0
+margin_bottom = 168.0
+custom_constants/separation = 32
+
+[node name="Label" type="Label" parent="confirmExit/Panel/VBoxContainer"]
+margin_right = 686.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 73 )
+text = "Sure you want to exit?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="confirmExit/Panel/VBoxContainer"]
+margin_top = 68.0
+margin_right = 686.0
+margin_bottom = 152.0
+
+[node name="no" type="Button" parent="confirmExit/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 123.0
+margin_right = 217.0
+margin_bottom = 84.0
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "no"
+
+[node name="yes" type="Button" parent="confirmExit/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 453.0
+margin_right = 577.0
+margin_bottom = 84.0
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "yes"
+
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/start" to="initial" method="_on_start_pressed"]
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/options" to="initial" method="_on_options_pressed"]
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/credits" to="initial" method="_on_credits_pressed"]
@@ -1692,3 +1776,5 @@ color = Color( 0.0862745, 0.0156863, 0.0156863, 1 )
 [connection signal="pressed" from="saves/MarginContainer/VBoxContainer/HBoxContainer2/erase" to="saves" method="_on_erase_pressed"]
 [connection signal="pressed" from="saves/MarginContainer/VBoxContainer/exit" to="saves" method="_on_exit_pressed"]
 [connection signal="animation_started" from="transition/AnimationPlayer" to="transition" method="_on_AnimationPlayer_animation_started"]
+[connection signal="pressed" from="confirmExit/Panel/VBoxContainer/HBoxContainer/no" to="confirmExit" method="_on_no_pressed"]
+[connection signal="pressed" from="confirmExit/Panel/VBoxContainer/HBoxContainer/yes" to="confirmExit" method="_on_yes_pressed"]

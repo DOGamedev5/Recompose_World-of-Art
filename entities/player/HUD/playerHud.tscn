@@ -942,7 +942,7 @@ custom_constants/margin_right = 32
 
 [node name="HBoxContainer" type="HBoxContainer" parent="dialog/Control/VBoxContainer/MarginContainer2"]
 margin_right = 1329.0
-margin_bottom = 30.0
+margin_bottom = 40.0
 alignment = 2
 
 [node name="Label" type="Label" parent="dialog/Control/VBoxContainer/MarginContainer2/HBoxContainer"]
@@ -959,7 +959,7 @@ align = 2
 margin_left = 1075.0
 margin_right = 1105.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+rect_min_size = Vector2( 40, 40 )
 texture = ExtResource( 32 )
 expand = true
 script = ExtResource( 33 )

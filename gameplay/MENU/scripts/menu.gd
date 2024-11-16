@@ -3,15 +3,12 @@ extends CanvasLayer
 onready var tween = $Tween
 onready var transitionPlayer := $transition/AnimationPlayer
 onready var backgroundPlayer := $background/AnimationPlayer
+onready var current := $initial
 
 func _ready():
 	AudioManager.playMusic("recompose")
 	Global.roomsToSave.clear()
 	Global.dimensionsRooms.clear()
-
-func _input(_event):
-	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().quit()
 
 func transition(show, hide : Array):
 	show.current = true

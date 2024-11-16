@@ -261,10 +261,6 @@ grow_vertical = 2
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -416.0
-margin_top = -32.0
-margin_right = -416.0
-margin_bottom = -32.0
 color = Color( 0.0627451, 0.0196078, 0.101961, 0.505882 )
 
 [node name="TextureRect" type="TextureRect" parent="contract/Control"]

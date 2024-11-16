@@ -32,6 +32,7 @@ func _ready():
 			languages.select(languages.get_item_count()-1)
 
 func enter():
+	parent.current = self
 	$VBoxContainer/exit.grab_focus()
 
 func changed():
