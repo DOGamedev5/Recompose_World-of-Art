@@ -1,3 +1,3 @@
 extends Node2D
 
-func saveData(): Global.saveGameData()
+func saveData(): FileSystemHandler.saveGameData()

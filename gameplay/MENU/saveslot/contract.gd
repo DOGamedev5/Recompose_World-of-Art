@@ -16,7 +16,7 @@ func _ready():
 	var _dir = Directory.new()
 	
 	if _dir.file_exists(savePath + "save.tres"):
-		var dataPlayer = Global.loadData(savePath+"save.tres")
+		var dataPlayer = FileSystemHandler.loadDataResource(savePath+"save.tres")
 		if not dataPlayer.played:
 			clearContract()
 		else:
@@ -25,14 +25,14 @@ func _ready():
 		clearContract()
 
 func fillContract():
-	Global.createFileData(savePath)
+	FileSystemHandler.createFileData(savePath)
 		
-	var dataPlayer = Global.loadData(savePath+"save.tres")
+	var dataPlayer = FileSystemHandler.loadDataResource(savePath+"save.tres")
 	
 	$texture/name.text = dataPlayer.player["playerProperties"]["name"]
 	
-	var dataWorld = Global.loadData(savePath+"roomData.tres")
-	$texture/world.text = dataWorld.getWorld()
+	var dataWorld = FileSystemHandler.loadDataJSON(savePath+"roomData.json")
+	$texture/world.text = dataWorld.world.replace(dataWorld.world.get_base_dir()+"/", "")
 	
 	$texture.modulate = Color.white
 
@@ -55,8 +55,8 @@ func confirmed():
 	$AnimationPlayer.play("confirmed")
 	yield($AnimationPlayer, "animation_finished")
 	
-	Global.createFileData(savePath)
-	Global.loadGameData(savePath)
+	FileSystemHandler.createFileData(savePath)
+	FileSystemHandler.loadGameData(savePath)
 	
 	LoadSystem.loadScene(get_tree().current_scene, "res://worlds/main.tscn")
 	get_tree().root.set_disable_input(false)
@@ -64,7 +64,7 @@ func confirmed():
 
 func deleted():
 	clearContract()
-	Global.deleteFileData(savePath)
+	FileSystemHandler.deleteFileData(savePath)
 
 func _on_contract_focus_entered():
 	hovered = true
@@ -103,7 +103,7 @@ func _on_contract_toggled(button_pressed):
 		var _dir = Directory.new()
 	
 		if _dir.file_exists(savePath + "save.tres"):
-			var dataPlayer = Global.loadData(savePath+"save.tres")
+			var dataPlayer = FileSystemHandler.loadDataResource(savePath+"save.tres")
 			$"../../HBoxContainer2/erase".disabled = not dataPlayer.played
 		else:
 			$"../../HBoxContainer2/erase".disabled = true

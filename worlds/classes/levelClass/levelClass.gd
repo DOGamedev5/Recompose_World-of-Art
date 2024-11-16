@@ -36,13 +36,14 @@ func setupRoom(room):
 	if currentRoom:
 		currentRoom.queue_free()
 	
-	Global.currentRoom.saveDataRoom()
+		Global.saveDataRoom(Global.currentRoom)
 	
-	room.loadDataRoom()
+	room = Global.loadDataRoom(room)
 	
 	Global.currentRoom = room
 	
 	if currentWorld != room.world:
+		
 		currentWorld = room.world
 		
 		var backgroundScene = LoadSystem.loadObject("{0}/background.tscn".format([room.world]), false)
@@ -68,7 +69,7 @@ func loadSave():
 	LoadSystem.closeLoad()
 
 
-func loadRoom(room : RoomData):
+func loadRoom(room):
 	Global.player.transition.transitionIn()
 	
 	yield(Global.player.transition, "transitionedIn")

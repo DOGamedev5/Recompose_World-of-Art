@@ -4,6 +4,7 @@ func enter(_lastState):
 	parent.setParticle(0, false)
 	parent.setParticle(1, true)
 	parent.playback.travel("RUN")
+	parent.setCollision(0)
 	
 	if abs(parent.motion.x) < 120:
 		parent.motion.x = 120 * sign(parent.motion.x)

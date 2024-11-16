@@ -71,5 +71,7 @@ func _on_worldSelect_dir_selected(dir):
 func _on_go_to_room_pressed():
 	var roomID = $PanelContainer/VBoxContainer/HBoxContainer/SpinBox.value
 	var category = $PanelContainer/VBoxContainer/HBoxContainer2/ToolButton.text
-	var room := RoomData.new(roomID, selectedWorld, category, "", 0, "warp", true)
+	
+
+	var room = Global.generateRoomData(roomID, selectedWorld, category, "", 0, "warp", true)
 	Global.world.loadRoom(room)

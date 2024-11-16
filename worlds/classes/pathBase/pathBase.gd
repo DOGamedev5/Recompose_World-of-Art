@@ -14,4 +14,4 @@ func _ready():
 	set_collision_layer_bit(0, false)
 	
 func changeRoom():
-	Global.world.loadRoom(RoomData.new(roomID, world, category, roomPath, warpID, warpType))
+	Global.world.loadRoom(Global.generateRoomData(roomID, world, category, roomPath, warpID, warpType))

@@ -68,20 +68,20 @@ func _on_sound_value_changed(value):
 	Global.options.sfxVolume = value
 
 func _on_drag_ended(_value_changed):
-	Global.saveData(Global.optionsSavePath, Global.options)
+	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
 
 func _on_simpleLight_toggled(button_pressed):
 	Global._setSimpleLight(button_pressed)
-	Global.saveData(Global.optionsSavePath, Global.options)
+	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
 
 func _on_shadow_toggled(button_pressed):
 	Global._setShadow(button_pressed)
-	Global.saveData(Global.optionsSavePath, Global.options)
+	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
 
 func _on_vsync_toggled(button_pressed):
 	OS.vsync_enabled = button_pressed
 	Global.options.vsync = button_pressed
-	Global.saveData(Global.optionsSavePath, Global.options)
+	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
 
 func _on_languages_item_selected(index):
 	Global.set_languege(index)

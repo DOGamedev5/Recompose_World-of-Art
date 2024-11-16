@@ -13,7 +13,7 @@ func _start():
 func _end():
 	Global.player.setCinematic(false)
 	if saveGameAfter:
-		Global.saveGameData()
+		FileSystemHandler.saveGameData()
 
 func _setDialog(index := 0):
 	if not Global.playerHud.dialog.opened:
