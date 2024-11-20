@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=5]
 [ext_resource path="res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/ladder/ladder.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/enemies/bugouth/bugouth.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 204 )
@@ -215,3 +216,6 @@ roomID = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom2"]
 position = Vector2( 32, -68 )
 shape = SubResource( 2 )
+
+[node name="bugouth" parent="." instance=ExtResource( 8 )]
+position = Vector2( 2792, -400 )
