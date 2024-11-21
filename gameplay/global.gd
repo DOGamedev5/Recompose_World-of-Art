@@ -136,7 +136,6 @@ func generateRoomData(roomID := 0, worldPath : String = "res://worlds/sandDesert
 	return room
 
 func loadDataRoom(room):
-	
 	if room.world.get_base_dir() == "res://dimensions":
 		if dimensionsRooms.has(room.ID):
 			for key in dimensionsRooms[room.ID].data.keys():

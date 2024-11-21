@@ -35,7 +35,6 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 func setupRoom(room):
 	if currentRoom:
 		currentRoom.queue_free()
-	
 		Global.saveDataRoom(Global.currentRoom)
 	
 	room = Global.loadDataRoom(room)
@@ -43,7 +42,6 @@ func setupRoom(room):
 	Global.currentRoom = room
 	
 	if currentWorld != room.world:
-		
 		currentWorld = room.world
 		
 		var backgroundScene = LoadSystem.loadObject("{0}/background.tscn".format([room.world]), false)
@@ -76,7 +74,7 @@ func loadRoom(room):
 	emit_signal("changedRoom")
 	
 	setupRoom(room)
-	
+
 	currentRoom.init(room.warpID, room.warpType)
 	
 	Global.player.transition.call_deferred("transitionOut")

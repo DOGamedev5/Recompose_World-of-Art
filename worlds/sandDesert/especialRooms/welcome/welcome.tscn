@@ -312,9 +312,9 @@ alignment = 1
 
 [node name="Label" type="Label" parent="contract/Control/TextureRect/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.803922 )
-margin_left = 522.0
+margin_left = 526.0
 margin_top = 7.0
-margin_right = 656.0
+margin_right = 660.0
 margin_bottom = 37.0
 custom_colors/font_color = Color( 0.258824, 0.227451, 0.372549, 1 )
 custom_fonts/font = SubResource( 9 )
@@ -322,10 +322,13 @@ text = "contract1"
 align = 1
 
 [node name="ControllerTextureRect" type="TextureRect" parent="contract/Control/TextureRect/HBoxContainer"]
-margin_left = 660.0
-margin_right = 700.0
-margin_bottom = 44.0
-rect_min_size = Vector2( 40, 40 )
+margin_left = 664.0
+margin_top = 6.0
+margin_right = 696.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource( 4 )
 expand = true
 script = ExtResource( 19 )
@@ -333,23 +336,14 @@ path = "ui_enter"
 
 [node name="Label2" type="Label" parent="contract/Control/TextureRect/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.803922 )
-margin_left = 704.0
+margin_left = 700.0
 margin_top = 7.0
-margin_right = 838.0
+margin_right = 834.0
 margin_bottom = 37.0
 custom_colors/font_color = Color( 0.258824, 0.227451, 0.372549, 1 )
 custom_fonts/font = SubResource( 9 )
 text = "contract2"
 align = 1
-
-[node name="ControllerTextureRect" type="TextureRect" parent="contract"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-texture = ExtResource( 4 )
-expand = true
-script = ExtResource( 19 )
-path = "ui_enter"
 
 [node name="Tween" type="Tween" parent="."]
 

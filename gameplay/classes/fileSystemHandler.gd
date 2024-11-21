@@ -22,8 +22,9 @@ func saveDataJSON(datapath : String, data):
 
 func loadDataJSON(datapath : String):
 	_file.open(datapath, File.READ)
+	var text := _file.get_as_text() 
 	
-	var result := JSON.parse(_file.get_as_text())
+	var result := JSON.parse(text)
 	if result.error != OK:
 		print_debug("error loading JSON: {name} at line {line}".format({"name" : result.error_string, "line" : result.error_line}))
 		push_error("error loading JSON: {name} at line {line}".format({"name" : result.error_string, "line" : result.error_line}))

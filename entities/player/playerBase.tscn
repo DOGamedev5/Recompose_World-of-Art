@@ -85,7 +85,7 @@ tracks/0/keys = {
 }
 
 [node name="playerBase" type="KinematicBody2D" groups=["player"]]
-collision_layer = 0
+collision_layer = 1024
 script = ExtResource( 1 )
 
 [node name="jumpBuffer" type="Timer" parent="."]

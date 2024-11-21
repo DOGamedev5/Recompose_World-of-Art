@@ -4,8 +4,10 @@ export(NodePath) var visionArea
 export(Array, NodePath) var attackAreaArray 
 export(NodePath) var stateMachinePath
 export(NodePath) var hitboxArea
+export(NodePath) var spritePath
 
 var stateMachine
+var sprite
 
 export var maxHealth := 20
 export var health := 20
@@ -19,10 +21,10 @@ export var MAXSPEED := 350
 export var MAXFALL := 300
 export var gravity := true
 export var unlimitedVision  := false
+export var fliped := false
 
 var motion := Vector2.ZERO
 var player = null
-var fliped := false
 var flipLock := false
 
 signal enteredVision(body)
@@ -42,6 +44,9 @@ func _ready():
 	if stateMachinePath:
 		stateMachine = get_node(stateMachinePath)
 		stateMachine.init(self)
+	
+	if spritePath:
+		sprite = get_node(spritePath)
 
 func gravityProcess():
 	if not onFloor():
@@ -63,16 +68,19 @@ func _physics_process(delta):
 		else:
 			fliped = player.global_position.x < global_position.x
 	
+	sprite.flip_h = fliped
+	
 	if attackAreaArray and flipArea:
 		var direction := (1 - 2 * int(fliped))
 		
 		for attackPath in attackAreaArray:
 			var attack = get_node(attackPath)
 			attack.position.x *= sign(attack.position.x) * direction
+	
+	motion = move_and_slide(motion, Vector2.UP, true, 4, deg2rad(80), true)
 
 func _enteredVision(body):
 	if body.is_in_group("player"):
-		player = body
 		emit_signal("enteredVision", body)
 
 func _exitedVision(body):

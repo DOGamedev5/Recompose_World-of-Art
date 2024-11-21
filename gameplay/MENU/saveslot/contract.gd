@@ -24,14 +24,27 @@ func _ready():
 	else:
 		clearContract()
 
+func oldVersionHandler(playerData, worldData):
+	if playerData.version != "v0.8.9":
+		FileSystemHandler.deleteFileData(savePath)
+		playerData = SaveGame.new()
+		worldData = Global.generateRoomData()
+		FileSystemHandler.saveDataResource(savePath + "save.tres", playerData)
+		FileSystemHandler.saveDataJSON(savePath + "roomData.json", worldData)
+	
+	return [playerData, worldData]
+
 func fillContract():
 	FileSystemHandler.createFileData(savePath)
 		
 	var dataPlayer = FileSystemHandler.loadDataResource(savePath+"save.tres")
+	var dataWorld = FileSystemHandler.loadDataJSON(savePath+"roomData.json")
+	
+	var handledData = oldVersionHandler(dataPlayer, dataWorld)
+	dataPlayer = handledData[0]
+	dataWorld = handledData[1]
 	
 	$texture/name.text = dataPlayer.player["playerProperties"]["name"]
-	
-	var dataWorld = FileSystemHandler.loadDataJSON(savePath+"roomData.json")
 	$texture/world.text = dataWorld.world.replace(dataWorld.world.get_base_dir()+"/", "")
 	
 	$texture.modulate = Color.white
@@ -55,7 +68,7 @@ func confirmed():
 	$AnimationPlayer.play("confirmed")
 	yield($AnimationPlayer, "animation_finished")
 	
-	FileSystemHandler.createFileData(savePath)
+	
 	FileSystemHandler.loadGameData(savePath)
 	
 	LoadSystem.loadScene(get_tree().current_scene, "res://worlds/main.tscn")

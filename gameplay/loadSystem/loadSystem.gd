@@ -9,6 +9,7 @@ var loadSceneInstance
 signal finishedLoad()
 
 func loadScene(current, next : String, closeAfterLoad := false,currentPath := MAIN_SCENE):
+#	get_tree().paused = true
 	loadSceneInstance = loadScreen.instance()
 
 	get_tree().get_root().call_deferred("add_child", loadSceneInstance)
@@ -51,6 +52,7 @@ func loadScene(current, next : String, closeAfterLoad := false,currentPath := MA
 			return
 
 func loadObject(object, screen := true):
+#	get_tree().paused = true
 	var label
 	var loader := ResourceLoader.load_interactive(object)
 	
@@ -79,4 +81,5 @@ func loadObject(object, screen := true):
 			return
 
 func closeLoad():
+#	get_tree().paused = false
 	loadSceneInstance.queue_free()

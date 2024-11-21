@@ -47,7 +47,7 @@ motion_mirroring = Vector2( 0.05, 0 )
 [node name="Sun" type="Sprite" parent="ParallaxLayer5"]
 self_modulate = Color( 1.5, 1.5, 1.5, 1 )
 material = SubResource( 3 )
-position = Vector2( 112, -368 )
+position = Vector2( 953, -371 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 

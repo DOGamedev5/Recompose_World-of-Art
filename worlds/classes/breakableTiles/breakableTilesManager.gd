@@ -6,6 +6,9 @@ export(NodePath) var tilemapPath
 onready var tilemap : TileMap
 
 func _ready():
+	if not tilemapPath:
+		
+		return
 	
 	if not get_node_or_null(tilemapPath) is TileMap:
 		tilemap = null

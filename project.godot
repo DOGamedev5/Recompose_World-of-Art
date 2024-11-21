@@ -248,6 +248,12 @@ enabled=PoolStringArray( "res://addons/controller_icons/plugin.cfg", "res://addo
 
 common/drop_mouse_on_gui_input_disabled=true
 
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
 [input]
 
 ui_accept={
