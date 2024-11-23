@@ -10,7 +10,11 @@ func setDamage(newDamage):
 	monitoring = damage != 0 
 
 func _on_attackComponent_area_entered(area):
-	if not (area is HitboxComponent):
-		return
+	if not (area is HitboxComponent): return
 	
-	area.hit(damage, self)
+	var attack := DamageAttack.new()
+	attack.damage = damage
+	attack.direction = (area.get_parent().global_position - get_parent().global_position).normalized()
+	attack.objectGroup = get_parent().get_groups()
+	
+	area.hit(attack)

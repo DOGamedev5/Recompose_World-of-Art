@@ -18,5 +18,5 @@ func _physics_process(_delta):
 
 func _step():
 	
-	AudioManager.playSFX(stepSFX)
+	AudioManager.playSFX(stepSFX, {"volume_db" : -7.5})
 	

@@ -11,10 +11,10 @@ func _ready():
 	set_collision_mask_bit(0, false)
 	set_collision_mask_bit(8, true)
 
-func breakTile(damage, area : Area2D):
+func breakTile(damage : DamageAttack):
 
 	tilePos = get_parent().tilemap.world_to_map(global_position/2)
-	if area.get_parent().is_in_group("player") and damage > 0:
+	if "player" in damage.objectGroup and damage.damage > 0:
 		get_parent().tilemap.set_cellv(tilePos, -1)
 		
 

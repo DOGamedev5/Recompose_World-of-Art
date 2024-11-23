@@ -30,7 +30,7 @@ func _setMusic(music : String):
 func stop():
 	musicPlayer.playing = false
 
-func playSFX(SFX : AudioStream, positional := false, position = Vector2.ZERO, distance = .0, maskArea = 0):
+func playSFX(SFX : AudioStream, properties := {"volume_db" : 0}, positional := false, position = Vector2.ZERO, distance = .0, maskArea = 0):
 	var newSfx
 	
 	if positional:
@@ -42,6 +42,9 @@ func playSFX(SFX : AudioStream, positional := false, position = Vector2.ZERO, di
 		newSfx = AudioStreamPlayer.new()
 	
 	newSfx.stream = SFX
+	for key in properties:
+		newSfx[key] = properties[key]
+	
 	newSfx.set_bus("SFX")
 	newSfx.connect("finished", newSfx, "queue_free")
 	

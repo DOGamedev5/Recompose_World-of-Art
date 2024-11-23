@@ -4,7 +4,7 @@ onready var flipSFX : AudioStream = preload("res://entities/player/powerStates/b
 
 func enter(_ls):
 	
-	AudioManager.playSFX(parent.stepSFX)
+	AudioManager.playSFX(parent.stepSFX, {"volume_db" : -5})
 	parent.MAXSPEED = 750
 	parent.snapDesatived = true
 

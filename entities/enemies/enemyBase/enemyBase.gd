@@ -5,6 +5,7 @@ export(Array, NodePath) var attackAreaArray
 export(NodePath) var stateMachinePath
 export(NodePath) var hitboxArea
 export(NodePath) var spritePath
+export(Texture) var deathSprite
 
 var stateMachine
 var sprite
@@ -22,6 +23,8 @@ export var MAXFALL := 300
 export var gravity := true
 export var unlimitedVision  := false
 export var fliped := false
+
+onready var enemyDeath := preload("res://entities/enemies/enemyDeath/enemyDead.tscn")
 
 var motion := Vector2.ZERO
 var player = null
@@ -116,15 +119,27 @@ func onFloor():
 	if !gravity: return true
 	return is_on_floor()
 
-func hitted(damage, _area):
-	if damage <= 0 or health <= 0:
+func hitted(damage : DamageAttack):
+	if damage.damage <= 0 or health <= 0:
 		return
 	modulate = Color(4, 4, 4, 1)
-	health -= damage
+	health -= damage.damage
 	
 	yield(get_tree().create_timer(0.25), "timeout")
 	modulate = Color(1, 1, 1, 1)
 	
 	if health <= 0:
 		emit_signal("defeated", self)
+		
+		var death = enemyDeath.instance()
+		death.texture = deathSprite
+		death.flip_h = sprite.flip_h
+		death.direction = sign(damage.direction.x)
+		
+		Global.world.add_child(death)
+		death.global_position = global_position
+		
+		queue_free()
+		
+		
 		

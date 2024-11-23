@@ -333,12 +333,13 @@ func setCinematic(value : bool):
 func coyoteTimerTimeout():
 	canJump = false
 
-func hitboxTriggered(damage, area):
-	if not (area.is_in_group("enemy") and not shieldActived): return
+func hitboxTriggered(damage : DamageAttack):
+	if not ("enemy" in damage.objectGroup and not shieldActived):
+		return
 	
-	var direction := sign(area.global_position.x - position.x)
+	var direction : int = damage.direction.x
 	emit_signal("damaged", direction)
-	health -= damage
+	health -= damage.damage
 	HUD.setHealth(health)
 	shieldActived = true
 		

@@ -17,6 +17,8 @@ extents = Vector2( 25.5, 131 )
 [node name="room8" type="Node2D"]
 script = ExtResource( 1 )
 warp = [ NodePath("RoomWarp") ]
+limitsMin = Vector2( -816, -1448 )
+limitsMax = Vector2( 1304, 1248 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -45,8 +47,11 @@ position = Vector2( -448, -592 )
 [node name="TransformClass" parent="." instance=ExtResource( 4 )]
 position = Vector2( 256, -208 )
 
+[node name="TransformClass2" parent="." instance=ExtResource( 4 )]
+position = Vector2( -336, -1088 )
+
 [node name="RoomWarp" type="Position2D" parent="."]
-position = Vector2( 1249, -336 )
+position = Vector2( 1280, -336 )
 script = ExtResource( 8 )
 fixed_Y = false
 offset_Y = -1632.0
