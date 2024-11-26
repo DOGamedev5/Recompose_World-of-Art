@@ -60,7 +60,7 @@
 3/z_index = 0
 4/name = "block16.pxo 4"
 4/texture = ExtResource( 2 )
-4/tex_offset = Vector2( 0, 0 )
+4/tex_offset = Vector2( -8, -16 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 16, 0, 16, 16 )
 4/tile_mode = 0

@@ -14,6 +14,12 @@ var camera : Camera2D
 func _ready():
 	animationPlayer = get_node(animationPlayerPath)
 	camera = get_node(cameraPath)
+	
+	camera["limit_left"] = get_parent().limitsMin.x
+	camera["limit_top"] = get_parent().limitsMin.y
+	camera["limit_right"] = get_parent().limitsMax.x
+	camera["limit_bottom"] = get_parent().limitsMax.y
+	
 	var _1 = connect("area_entered", self, "areaEntered")
 
 func areaEntered(area):

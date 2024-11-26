@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/timerBackground.pxo-78c72627606ac77e61eab6da5d40f451.stex"
+
+[deps]
+
+source_file="res://entities/player/HUD/sprites/timerBackground.pxo"
+dest_files=[ "res://.import/timerBackground.pxo-78c72627606ac77e61eab6da5d40f451.stex" ]
+
+[params]
+

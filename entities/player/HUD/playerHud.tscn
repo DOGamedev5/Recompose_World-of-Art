@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
@@ -33,6 +33,8 @@
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=31]
 [ext_resource path="res://addons/controller_icons/assets/key/e.png" type="Texture" id=32]
 [ext_resource path="res://addons/controller_icons/objects/TextureRect.gd" type="Script" id=33]
+[ext_resource path="res://entities/player/HUD/sprites/timerBackground.pxo" type="Texture" id=34]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.otf" type="DynamicFontData" id=35]
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 24 )
@@ -159,6 +161,13 @@ region = Rect2( 0, 0, 48, 66 )
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 3 )
 region = Rect2( 48, 0, 48, 66 )
+
+[sub_resource type="DynamicFont" id=73]
+size = 64
+outline_size = 4
+outline_color = Color( 0.254902, 0.333333, 0.545098, 1 )
+extra_spacing_char = 6
+font_data = ExtResource( 35 )
 
 [sub_resource type="DynamicFont" id=19]
 outline_size = 1
@@ -526,6 +535,42 @@ stretch_margin_top = 16
 stretch_margin_right = 18
 stretch_margin_bottom = 16
 
+[node name="Control2" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -19.5
+margin_top = -61.0
+margin_right = 76.5
+
+[node name="TextureRect" type="TextureRect" parent="Control2"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -96.0
+margin_top = -128.0
+margin_right = 96.0
+rect_min_size = Vector2( 192, 128 )
+texture = ExtResource( 34 )
+expand = true
+
+[node name="Label" type="Label" parent="Control2/TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.0
+margin_top = -25.5
+margin_right = 66.0
+margin_bottom = 25.5
+custom_colors/font_color = Color( 0.85098, 0.909804, 0.843137, 1 )
+custom_fonts/font = SubResource( 73 )
+text = "99:99"
+align = 1
+valign = 2
+
 [node name="DEBUG" type="CanvasLayer" parent="."]
 layer = 5
 visible = false
@@ -873,6 +918,7 @@ flipGrowDirecion = true
 shortcut = SubResource( 47 )
 
 [node name="transition" type="CanvasLayer" parent="."]
+pause_mode = 2
 layer = 6
 visible = false
 script = ExtResource( 1 )

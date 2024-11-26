@@ -16,6 +16,28 @@ func init():
 
 	var _1 = Global.player.connect("damaged", self, "hitted")
 
+func _process(_delta):
+	if Global.world.clock:
+		$Control2.visible = true
+		
+		var text := ""
+		
+		if Global.world.timer.time_left / 60 > 0:
+			text += String(int(Global.world.timer.time_left / 60))
+			text += ":"
+			$Control2/TextureRect/Label["custom_colors/font_color"] = Color8(217, 232, 215)
+			$Control2/TextureRect/Label["custom_fonts/font"]["outline_color"] = Color8(65, 85, 139)
+		else:
+			text += "0:"
+			$Control2/TextureRect/Label["custom_colors/font_color"] = Color.red
+			$Control2/TextureRect/Label["custom_fonts/font"]["outline_color"] = Color(0.5, 0.05, 0.2)
+		
+		text += "%02d" % (int(floor(Global.world.timer.time_left)) % 60)
+		$Control2/TextureRect/Label.text = text
+		
+	else:
+		$Control2.visible = false
+
 func setHealthMax(healthMax):
 	healthBarr.max_value = healthMax
 

@@ -36,7 +36,7 @@ func oldVersionHandler(playerData, worldData):
 
 func fillContract():
 	FileSystemHandler.createFileData(savePath)
-		
+	
 	var dataPlayer = FileSystemHandler.loadDataResource(savePath+"save.tres")
 	var dataWorld = FileSystemHandler.loadDataJSON(savePath+"roomData.json")
 	

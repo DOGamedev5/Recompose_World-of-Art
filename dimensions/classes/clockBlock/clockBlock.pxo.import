@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/clockBlock.pxo-844e65fdb7c2904fda731afd79344d1c.stex"
+
+[deps]
+
+source_file="res://dimensions/classes/clockBlock/clockBlock.pxo"
+dest_files=[ "res://.import/clockBlock.pxo-844e65fdb7c2904fda731afd79344d1c.stex" ]
+
+[params]
+

@@ -10,7 +10,7 @@ func setDamage(newDamage):
 	monitoring = damage != 0 
 
 func _on_attackComponent_area_entered(area):
-	if not (area is HitboxComponent): return
+	if (not (area is HitboxComponent)) or damage <= 0: return
 	
 	var attack := DamageAttack.new()
 	attack.damage = damage

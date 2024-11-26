@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/bugouthAttack.pxo-f39c34d7d4ae40473644b1a3abf4f800.stex"
+
+[deps]
+
+source_file="res://entities/enemies/bugouth/sprites/bugouthAttack.pxo"
+dest_files=[ "res://.import/bugouthAttack.pxo-f39c34d7d4ae40473644b1a3abf4f800.stex" ]
+
+[params]
+

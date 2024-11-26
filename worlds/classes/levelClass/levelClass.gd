@@ -10,9 +10,15 @@ var player
 
 var currentWorld := "sandDesert"
 
+var isOnDimension := false
+var clock := false
+onready var timer := Timer.new()
+
 var background
 
 func _ready():
+	timer.one_shot = true
+	add_child(timer)
 	Global.world = self
 	var playerScene = LoadSystem.loadObject("res://entities/player/powerStates/normal/playerNormal.tscn")
 	var playerHudScene = LoadSystem.loadObject("res://entities/player/HUD/playerHud.tscn")
@@ -53,7 +59,9 @@ func setupRoom(room):
 	
 	var currentRoomScene  = LoadSystem.loadObject(room.roomPath, false)
 	currentRoom = currentRoomScene.instance()
-
+	
+	isOnDimension = room.world.get_base_dir() == "res://dimensions"
+	
 	add_child(currentRoom)
 
 func loadSave():
@@ -76,6 +84,11 @@ func loadRoom(room):
 	setupRoom(room)
 
 	currentRoom.init(room.warpID, room.warpType)
-	
+
 	Global.player.transition.call_deferred("transitionOut")
 	Global.player.resetParticles()
+
+func setupTimer(time):
+	clock = true
+	timer.wait_time = time
+	timer.start()

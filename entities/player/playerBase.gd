@@ -336,7 +336,7 @@ func coyoteTimerTimeout():
 func hitboxTriggered(damage : DamageAttack):
 	if not ("enemy" in damage.objectGroup and not shieldActived):
 		return
-	
+
 	var direction : int = damage.direction.x
 	emit_signal("damaged", direction)
 	health -= damage.damage
@@ -351,10 +351,16 @@ func _on_HitboxComponent_area_entered(area):
 	elif area.is_in_group("ladder"):
 		enteredObjects.append(area)
 		canLadder = true
+	
+	elif area.is_in_group("enemyVision"):
+		area.get_parent().player = self
 
 func hitboxExited(area):
+	if area.is_in_group("enemyVision"):
+		if area.get_parent().canUnwatch:
+			area.get_parent().player = null
 	
-	if area.is_in_group("ladder"):
+	elif area.is_in_group("ladder"):
 		enteredObjects.erase(area)
 	
 	var onLadder := false

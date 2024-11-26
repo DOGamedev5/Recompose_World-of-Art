@@ -29,6 +29,8 @@ func loadDataJSON(datapath : String):
 		print_debug("error loading JSON: {name} at line {line}".format({"name" : result.error_string, "line" : result.error_line}))
 		push_error("error loading JSON: {name} at line {line}".format({"name" : result.error_string, "line" : result.error_line}))
 	
+	_file.close()
+	
 	return result.result
 
 func createFileData(path):
@@ -36,12 +38,13 @@ func createFileData(path):
 	
 	if not fileExist(path + "save.tres"):
 		saveDataResource(path + "save.tres", SaveGame.new())
-		saveDataResource(path + "roomData.json", Global.generateRoomData())
+		saveDataJSON(path + "roomData.json", Global.generateRoomData())
 		
 	elif not fileExist(path + "roomData.json"):
 		var roomData : Dictionary = Global.generateRoomData()
 		
 		saveDataJSON(path + "roomData.json", roomData)
+
 
 func saveGameData(position = null):
 	Global.save.player["position"] = position if position else Global.player.global_position
@@ -58,7 +61,6 @@ func loadGameData(dataPath):
 	Global.currentRoom = loadDataJSON(dataPath + "roomData.json")
 	
 	Global.savePath = dataPath
-
 
 func deleteFileData(path):
 	var _Dir := Directory.new()
@@ -78,4 +80,5 @@ func deleteDirArchives(dir : Directory, path, deleteItself := false):
 		
 		if deleteItself:
 			var _2 = dir.remove(path)
+	
 	
