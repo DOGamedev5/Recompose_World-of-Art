@@ -193,3 +193,8 @@ func verifyDirsRoom(room):
 				break
 		
 		dir.change_dir(item)
+
+func getPlayer():
+	if not player:
+		pass
+	return player

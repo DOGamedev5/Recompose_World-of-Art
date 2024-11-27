@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://objects/tubeEnter/tubeEnter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://entities/player/powerStates/normal/transform/transformNormal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/destrutiveBlocks/normal/32x32/destrutiveBlock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=9]
+[ext_resource path="res://entities/enemies/bugouth/bugouth.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=12]
 [ext_resource path="res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn" type="PackedScene" id=14]
 
@@ -1941,3 +1942,18 @@ position = Vector2( 5696, -448 )
 [node name="BreakableTilesManager" type="Node2D" parent="."]
 script = ExtResource( 9 )
 tilemapPath = null
+
+[node name="bugouth" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3512, 184 )
+
+[node name="bugouth2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3992, -432 )
+
+[node name="bugouth3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 2184, -264 )
+
+[node name="bugouth4" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3344, -1112 )
+
+[node name="bugouth5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1096, -264 )

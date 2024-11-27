@@ -52,12 +52,12 @@ func _physics_process(_delta):
 	
 	animation["parameters/NORMAL/NORMAL/WALK/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
 	
-	
 	if active:
 		move(!isRolling)
 	
-	$a/Label.text = String(collideUp())
-
+	if OS.is_debug_build(): $a/Label.text = String(collideUp())
+	elif get_node_or_null("a"): $a.queue_free()
+	
 	$speedEffect.visible = running and not isRolling
 	if running and not isRolling:
 		var velocity = abs(motion.x)

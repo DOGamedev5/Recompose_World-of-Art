@@ -1,13 +1,19 @@
 tool
 extends Node2D
 
-export var information := "?" setget informationSet
+export(Array, String) var content = ["?"] 
 export var fliped := false setget flipedSet
 
+func _ready():
+	informationSet(content)
+
 func informationSet(value):
-	information = value
+	content = value
+	if not is_inside_tree(): return
 	$interactBallon.changed(value)
 
 func flipedSet(value):
 	fliped = value
+	if not is_inside_tree():
+		return
 	$Plate.flip_h = value

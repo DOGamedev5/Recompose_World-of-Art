@@ -29,7 +29,8 @@ func areaEntered(area):
 	Global.player.setCinematic(true)
 	
 	camera.current = true
-	Global.player.queue_free()
+	var oldPlayer = Global.player
+	oldPlayer.visible = false
 	
 	if animationPlayer is AnimationPlayer:
 		animationPlayer.play(animation)
@@ -40,6 +41,7 @@ func areaEntered(area):
 		yield(get_tree().create_timer(animationTime), "timeout")
 	
 	Global.player = load(transformation).instance()
+	oldPlayer.queue_free()
 	Global.world.add_child(Global.player)
 	
 	Global.player.global_position = global_position + offset

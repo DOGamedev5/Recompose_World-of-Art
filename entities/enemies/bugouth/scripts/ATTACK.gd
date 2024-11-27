@@ -11,7 +11,7 @@ func enter(_ls):
 
 func process_physics(_delta):
 	$"../../Bugouth".rotation = direction.angle() + (PI * int(parent.fliped))
-	parent.motion = direction * 800
+	parent.motion = direction * 600
 
 func process_state():
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://dimensions/literatureArt/tileset/literatureArt.tres" type="TileSet" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=6]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=7]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=8]
+[ext_resource path="res://entities/enemies/bugouth/bugouth.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 220 )
@@ -685,3 +686,9 @@ position = Vector2( -432, 464 )
 
 [node name="BreakableTilesManager" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="bugouth" parent="." instance=ExtResource( 9 )]
+position = Vector2( -600, 312 )
+
+[node name="bugouth2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 176, -288 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://entities/enemies/bugouth/bugouth.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=9]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://entities/placa/plate.tscn" type="PackedScene" id=11]
+[ext_resource path="res://dimensions/classes/clockBlock/clockBlock.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 204 )
@@ -1273,3 +1275,95 @@ position = Vector2( 3744, 1168 )
 
 [node name="BreakableTilesManager" type="Node2D" parent="."]
 script = ExtResource( 9 )
+
+[node name="plate" parent="." instance=ExtResource( 11 )]
+position = Vector2( 552, -96 )
+rotation = 0.657989
+content = [ "/btn:ui_down" ]
+
+[node name="plate2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 2408, 64 )
+content = [ "/btn:ui_up" ]
+
+[node name="plate3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 3824, 1200 )
+content = [ "/btn:attack", "+", "/btn:run" ]
+fliped = true
+
+[node name="clockBlocks" type="Node2D" parent="."]
+
+[node name="clockBlock" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 848, 1152 )
+solid = false
+
+[node name="clockBlock2" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 880, 1152 )
+solid = false
+
+[node name="clockBlock3" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 912, 1152 )
+solid = false
+
+[node name="clockBlock4" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 944, 1152 )
+solid = false
+
+[node name="clockBlock5" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 976, 1152 )
+solid = false
+
+[node name="clockBlock6" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1008, 1152 )
+solid = false
+
+[node name="clockBlock7" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1040, 1152 )
+solid = false
+
+[node name="clockBlock8" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1072, 1152 )
+solid = false
+
+[node name="clockBlock9" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1104, 1152 )
+solid = false
+
+[node name="clockBlock10" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1136, 1152 )
+solid = false
+
+[node name="clockBlock11" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1168, 1152 )
+solid = false
+
+[node name="clockBlock12" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1200, 1152 )
+solid = false
+
+[node name="clockBlock13" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1232, 1152 )
+solid = false
+
+[node name="clockBlock14" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1264, 1152 )
+solid = false
+
+[node name="clockBlock15" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1296, 1152 )
+solid = false
+
+[node name="clockBlock16" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1328, 1152 )
+solid = false
+
+[node name="clockBlock17" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1360, 1152 )
+solid = false
+
+[node name="clockBlock18" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1392, 1152 )
+solid = false
+
+[node name="clockBlock19" parent="clockBlocks" instance=ExtResource( 12 )]
+position = Vector2( 1424, 1152 )
+solid = false

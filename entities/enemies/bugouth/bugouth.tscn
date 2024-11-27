@@ -228,10 +228,10 @@ hitboxAreaPath = NodePath("HitboxComponent")
 spritePath = NodePath("Bugouth")
 deathSprite = ExtResource( 7 )
 animationTreePath = NodePath("AnimationTree")
-maxHealth = 1
-health = 1
+maxHealth = 2
+health = 2
 flipArea = true
-MAXSPEED = 150
+MAXSPEED = 200
 gravity = false
 
 [node name="Bugouth" type="Sprite" parent="."]
@@ -264,6 +264,10 @@ startingState = NodePath("IDLE")
 
 [node name="IDLE" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="StateMachine/IDLE"]
+wait_time = 0.4
+one_shot = true
 
 [node name="SEEK" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )

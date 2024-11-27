@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=2]
 [ext_resource path="res://dimensions/literatureArt/tileset/literatureArt.tres" type="TileSet" id=3]
 [ext_resource path="res://objects/destrutiveBlocks/normal/32x32/destrutiveBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=5]
+[ext_resource path="res://entities/placa/plate.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 192 )
@@ -147,3 +148,12 @@ roomID = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom2"]
 position = Vector2( -8, 0 )
 shape = SubResource( 2 )
+
+[node name="plate" parent="." instance=ExtResource( 6 )]
+position = Vector2( 248, -384 )
+content = [ "/btn:attack" ]
+
+[node name="plate2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 720, -176 )
+content = [ "/btn:run", "+", "/btn:ui_right" ]
+fliped = true

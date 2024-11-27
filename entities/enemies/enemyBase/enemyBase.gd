@@ -70,8 +70,8 @@ func _physics_process(delta):
 		
 		if motion.x:
 			fliped = motion.x < 0
-		else:
-			fliped = player.global_position.x < global_position.x
+		elif Global.player:
+			fliped = Global.player.global_position.x < global_position.x
 	
 	sprite.flip_h = fliped
 	
@@ -119,10 +119,14 @@ func hitted(damage : DamageAttack):
 	modulate = Color(4, 4, 4, 1)
 	health -= damage.damage
 	
-	yield(get_tree().create_timer(0.25), "timeout")
-	modulate = Color(1, 1, 1, 1)
-	
 	if health <= 0:
+		var smoke = load("res://objects/dustBlow/dustBlow.tscn").instance()
+		smoke.amount = 12
+		Global.world.add_child(smoke)
+		smoke.lifetime = 0.8
+		smoke.preprocess = 0.4
+		smoke.global_position = global_position
+		
 		emit_signal("defeated", self)
 		
 		var death = enemyDeath.instance()
@@ -134,6 +138,10 @@ func hitted(damage : DamageAttack):
 		death.flip_h = sprite.flip_h
 		
 		queue_free()
-		
-		
-		
+		return
+	
+	else:
+		yield(get_tree().create_timer(0.25), "timeout")
+	
+		modulate = Color(1, 1, 1, 1)
+	

@@ -29,6 +29,8 @@ func _process(_delta):
 			$Control2/TextureRect/Label["custom_fonts/font"]["outline_color"] = Color8(65, 85, 139)
 		else:
 			text += "0:"
+		
+		if int(Global.world.timer.time_left / 60) == 0:
 			$Control2/TextureRect/Label["custom_colors/font_color"] = Color.red
 			$Control2/TextureRect/Label["custom_fonts/font"]["outline_color"] = Color(0.5, 0.05, 0.2)
 		

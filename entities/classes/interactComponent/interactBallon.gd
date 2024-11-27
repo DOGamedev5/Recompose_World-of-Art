@@ -2,13 +2,11 @@ tool
 class_name InteractBallon extends Control
 
 export(NodePath) var areaInteractPath
-export var text := "EA" setget changed
-export(Array, String) var content = []
+export(Array, String) var content = [] setget changed
 export var showArroy := true
 
 onready var ballon = $ballonContent/ballon
 onready var arrow = $arrow
-onready var ballonText = $ballonContent/ballon/text
 onready var tween = $Tween
 
 var areaInteract : Area2D
@@ -21,16 +19,17 @@ signal interacted()
 signal exitered()
 signal entered()
 
+onready var font := preload("res://entities/classes/interactComponent/text.tscn")
+
 func _ready():
-	
-	areaInteract = get_node(areaInteractPath)
+	areaInteract = get_node_or_null(areaInteractPath)
 	
 	arrow.visible = showArroy
 	
 	var _1 = areaInteract.connect("area_entered", self, "enteredArea")
 	var _2 = areaInteract.connect("area_exited", self, "exitedArea")
-
-	setSize()
+	
+	
 
 func _input(_event):
 	if Input.is_action_just_pressed("interact") and canInteract:
@@ -68,13 +67,15 @@ func exitedArea(area2D):
 		tween.start()
 	
 func changed(value):
-	text = value
-	$ballonContent/ballon/text.set_deferred("text", value)
-	call_deferred("setSize")
+	content = value
 	
-func setSize():
-	var lenghtText = tr($ballonContent/ballon/text.text).length()
-	var size = lenghtText * 14 + (lenghtText - 1) * 3
+	for item in content:
+		if item.begins_with("/btn:"):
+			var newButton := ControllerTextureRect.new()
+			newButton.path = item.substr(5)
+			$ballonContent/ballon/MarginContainer/HBoxContainer.add_child(newButton)
+		else:
+			var newLabel = load("res://entities/classes/interactComponent/text.tscn").instance()
+			newLabel.text = item
+			$ballonContent/ballon/MarginContainer/HBoxContainer.add_child(newLabel)
 	
-	$ballonContent/ballon.rect_position.x = -((size)/2) -8
-	$ballonContent/ballon.rect_size.x = size+8

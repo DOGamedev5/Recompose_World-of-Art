@@ -9,6 +9,7 @@ extents = Vector2( 64, 32 )
 
 [node name="plate" type="Node2D"]
 script = ExtResource( 3 )
+content = [  ]
 
 [node name="Plate" type="Sprite" parent="."]
 position = Vector2( 0, -30 )

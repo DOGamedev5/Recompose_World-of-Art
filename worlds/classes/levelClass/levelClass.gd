@@ -45,8 +45,6 @@ func setupRoom(room):
 	
 	room = Global.loadDataRoom(room)
 	
-	Global.currentRoom = room
-	
 	if currentWorld != room.world:
 		currentWorld = room.world
 		
@@ -63,6 +61,8 @@ func setupRoom(room):
 	isOnDimension = room.world.get_base_dir() == "res://dimensions"
 	
 	add_child(currentRoom)
+	
+	Global.currentRoom = room
 
 func loadSave():
 	Global.player.active = false
