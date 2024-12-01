@@ -55,6 +55,7 @@ func DEBUGSetup():
 		"Running: " + str(Global.player.running))
 	
 func debugButtonPressed():
+	print("AAAAA")
 	Global.player.get_parent().loadRoom("res://debugRoom.tscn", 0)
 
 func simpleLightToggled():

@@ -74,7 +74,7 @@ func _ready():
 		stateMachine = get_node(stateMachinePath)
 		stateMachine.init(self)
 
-func _physics_process(delta):
+func physics_process(delta):
 	if not moving:
 		motion.x = 0
 	
@@ -346,6 +346,7 @@ func hitboxTriggered(damage : DamageAttack):
 func _on_HitboxComponent_area_entered(area):
 	if area is ChangeRoom and active:
 		active = false
+		$HitboxComponent.set_deferred("monitoring", false)
 		area.changeRoom()
 		
 	elif area.is_in_group("ladder"):

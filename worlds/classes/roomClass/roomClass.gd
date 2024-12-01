@@ -12,22 +12,17 @@ export(Color) var canvasModulateColor = Color(1, 1, 1, 1)
 
 onready var canvasModulate = $"../CanvasModulate"
 
-func _init():
-	var tilemap : TileMap = TileMap.new()
-	add_child(tilemap)
-	tilemap.owner = self
-	tilemap.scale = Vector2(2, 2)
-	tilemap.cell_size = Vector2(8, 8)
-
 func _ready():
 	call_deferred("_simplesLightToggled", Global.options.simpleLight)
-	
-	removeItens(get_node_or_null("blocks"), "destroiedBlocks")
-	removeItens(get_node_or_null("coins"), "collectedCoins")
+#	removeItens(get_node_or_null("blocks"), "destroiedBlocks")
+#	removeItens(get_node_or_null("coins"), "collectedCoins")
 	
 	var _2 = Global.connect("simpleLightChanged", self, "_simplesLightToggled")
 	
 	get_parent().setCameraLimits(limitsMin, limitsMax)
+
+func _exit_tree():
+	Global.player.get_node("HitboxComponent").set_deferred("monitoring", true)
 
 func removeItens(manager, key):
 	if manager:
@@ -52,6 +47,5 @@ func init(warpID, type := "warp"):
 		path = doors[warpID]
 	else:
 		path = tubes[warpID]
-	
 	
 	get_node(path).init()

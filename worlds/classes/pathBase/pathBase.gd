@@ -9,9 +9,10 @@ export var warpID := 0
 var warpType := "warp"
 
 func _ready():
-	set_collision_layer_bit(10, true)
-	set_collision_mask_bit(0, false)
-	set_collision_layer_bit(0, false)
+	collision_layer = 1024
+	collision_mask = 0
 	
 func changeRoom():
-	Global.world.loadRoom(Global.generateRoomData(roomID, world, category, roomPath, warpID, warpType))
+	get_parent().set_process(false)
+	var room : Dictionary = Global.world.generateRoomData(roomID, world, category, roomPath, warpID, warpType)
+	Global.world.loadRoom(room)
