@@ -58,7 +58,7 @@ func saveGameData(position = null):
 
 func loadGameData(dataPath):
 	Global.save = loadDataResource(dataPath + "save.tres")
-	Global.currentRoom = loadDataJSON(dataPath + "roomData.json")
+	Global.worldData = loadDataJSON(dataPath + "roomData.json")
 	
 	Global.savePath = dataPath
 

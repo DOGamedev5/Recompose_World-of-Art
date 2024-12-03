@@ -7,8 +7,8 @@ onready var onWallRayCast := [$onWallTop, $onWallMid, $onWallDown]
 onready var collideUPCast = [$collideUpBack, $collideUp, $collideUpFront]
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
-onready var transition = Global.playerHud.get_node("transition")
-onready var HUD = Global.playerHud
+onready var transition = $"../HUD".get_node("transition")
+onready var HUD = $"../HUD"
 onready var camera = $Camera2D
 
 const SNAPLENGTH := 32
@@ -65,9 +65,9 @@ var powers := {
 
 func _ready():
 	Global.player = self
-	Global.playerHud.init()
-	if Global.world.currentRoom:
-		setCameraLimits(Global.world.currentRoom.limitsMin, Global.world.currentRoom.limitsMax)
+	$"../HUD".call_deferred("init")
+#	if Global.world.currentRoom:
+#		setCameraLimits(Global.world.currentRoom.limitsMin, Global.world.currentRoom.limitsMax)
 	
 	lastPosition = position
 	if stateMachinePath: 

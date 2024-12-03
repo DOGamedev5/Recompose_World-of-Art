@@ -1,0 +1,33 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://dimensions/literatureArt/rooms/room3.tscn" type="PackedScene" id=1]
+[ext_resource path="res://dimensions/literatureArt/rooms/room1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://dimensions/literatureArt/rooms/room2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/player/powerStates/normal/playerNormal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=5]
+[ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=6]
+[ext_resource path="res://dimensions/literatureArt/background.tscn" type="PackedScene" id=7]
+[ext_resource path="res://dimensions/literatureArt/rooms/room4.tscn" type="PackedScene" id=8]
+
+[node name="world" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="RoomClass2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -504, 672 )
+
+[node name="RoomClass" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1368, 672 )
+
+[node name="RoomClass3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 4200, 672 )
+warp = [ NodePath("../RoomClass/RoomWarp"), NodePath("../RoomClass/RoomWarp2") ]
+
+[node name="RoomClass4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 3384, 1920 )
+
+[node name="playerNormal" parent="." instance=ExtResource( 4 )]
+position = Vector2( -392, 384 )
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 7 )]

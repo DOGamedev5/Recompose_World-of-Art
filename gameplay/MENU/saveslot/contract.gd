@@ -25,10 +25,11 @@ func _ready():
 		clearContract()
 
 func oldVersionHandler(playerData, worldData):
-	if playerData.version != "v0.8.9":
+	if playerData.version != "v0.9.4":
 		FileSystemHandler.deleteFileData(savePath)
+		
 		playerData = SaveGame.new()
-		worldData = Global.generateRoomData()
+		worldData = {world = "SandDesert"}
 		FileSystemHandler.saveDataResource(savePath + "save.tres", playerData)
 		FileSystemHandler.saveDataJSON(savePath + "roomData.json", worldData)
 	
@@ -45,7 +46,7 @@ func fillContract():
 	dataWorld = handledData[1]
 	
 	$texture/name.text = dataPlayer.player["playerProperties"]["name"]
-	$texture/world.text = dataWorld.world.replace(dataWorld.world.get_base_dir()+"/", "")
+	$texture/world.text = dataWorld.world 
 	
 	$texture.modulate = Color.white
 
@@ -71,7 +72,7 @@ func confirmed():
 	
 	FileSystemHandler.loadGameData(savePath)
 	
-	LoadSystem.loadScene(get_tree().current_scene, "res://worlds/main.tscn")
+	LoadSystem.loadScene(get_tree().current_scene, "res://dimensions/literatureArt/world.tscn")
 	get_tree().root.set_disable_input(false)
 	
 

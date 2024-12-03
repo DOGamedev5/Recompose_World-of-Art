@@ -11,17 +11,12 @@ var save : SaveGame
 var savePath : String
 var _file := File.new()
 var _dir := Directory.new()
-var gamePaused := false setget setGamePause
-var currentRoom 
-var world : LevelClass
-var playerHud : PlayerHud
-var roomsToSave := {}
-var dimensionsRooms := {}
+
+var world : Node
+var worldData : Dictionary
 
 signal simpleLightChanged(value)
 signal shadowsChanged(value)
-signal gamePaused
-signal gameUnpaused
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
@@ -42,14 +37,6 @@ func _ready():
 func _input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen
-
-func setGamePause(value):
-	gamePaused = value
-	
-	if value == true:
-		emit_signal("gamePaused")
-	else:
-		emit_signal("gameUnpaused")
 
 func compareFloats(a : float, b : float, tolerance := 0.000001):
 	return abs(a - b) < tolerance
@@ -72,10 +59,11 @@ func changePlayer(powerUp):
 
 	world.player = Global.player
 
-func addToRoomData(obj_name : String, catergory : String):
-	if not obj_name in currentRoom.data[catergory]:
-		
-		currentRoom.data[catergory].append(obj_name)
+func addToRoomData(_obj_name : String, _catergory : String):
+	pass
+#	if not obj_name in currentRoom.data[catergory]:
+#
+#		currentRoom.data[catergory].append(obj_name)
 
 func setup_langueges():
 	if not options.lang:
@@ -109,92 +97,51 @@ func bin_array(n : int, size := 8):
 	print(ret_array)
 	return ret_array
 
-func generateRoomData(roomID := 0, worldPath : String = "res://worlds/sandDesert", Category : String = "rooms", path := "res://worlds/sandDesert/especialRooms/welcome/welcome.tscn", WarpID := 0, WarpType := "warp", debug := false):
-	if roomID != 0:
-		path = "{world}/{category}/room{room}.tscn".format({
-			"world" : worldPath,
-			"category" : Category,
-			"room" : roomID
-		})
-	
-	var room := {
-		ID = roomID,
-		world = worldPath,
-		category = Category,
-		roomPath = path,
-		warpID = WarpID,
-		warpType = WarpType,
-		debugMode = debug,
-		data = {
-			"destroiedBlocks" : [],
-			"collectedCoins" : []
-		}
-	}
-	
-	room = loadDataRoom(room)
-	
-	return room
-
-func loadDataRoom(room):
-	if room.world.get_base_dir() == "res://dimensions":
-		if dimensionsRooms.has(room.ID):
-			for key in dimensionsRooms[room.ID].data.keys():
-				room.data[key] = Global.dimensionsRooms[room.ID].data[key]
-		
-	elif room.ID != 0:
-		var roomPath : String = getRoomSave(room)
-		
-		if roomsToSave.has(savePath):
-			room.data = Global.roomsToSave[roomPath].data
-			
-		elif FileSystemHandler.fileExist(savePath):
-			var data : Dictionary = FileSystemHandler.loadDataJSON(roomPath).data
-			
-			for key in data.keys():
-				room.data[key] = data[key]
-	
-	return room
+#func loadDataRoom(room):
+#	if room.world.get_base_dir() == "res://dimensions":
+#		if dimensionsRooms.has(room.ID):
+#			for key in dimensionsRooms[room.ID].data.keys():
+#				room.data[key] = Global.dimensionsRooms[room.ID].data[key]
+#
+#	elif room.ID != 0:
+#		var roomPath : String = getRoomSave(room)
+#
+#		if roomsToSave.has(savePath):
+#			room.data = Global.roomsToSave[roomPath].data
+#
+#		elif FileSystemHandler.fileExist(savePath):
+#			var data : Dictionary = FileSystemHandler.loadDataJSON(roomPath).data
+#
+#			for key in data.keys():
+#				room.data[key] = data[key]
+#
+#	return room
 
 func saveDataRoom(room):
 	verifyDirsRoom(room)
 
-	if room.world.get_base_dir() == "res://dimensions":
-		Global.dimensionsRooms[room.ID] = room
-		
-		return
-	
-	if room.ID == 0: return
-	
-	var path : String = "worldRooms/"+ room.world.substr(13) + "/rooms/"
+#func getRoomSave(room : Dictionary):
+#	if room.world.get_base_dir() != "res://dimensions" and room.category == "rooms":
+#		var saveWorldPath = Global.savePath + "worldRooms" + room.world.substr(12)  + "/rooms"
+#
+#		return saveWorldPath + "/room{index}.tres".format({"index" : room.ID})
 
-	roomsToSave[path + "room{0}.tres".format([room.ID])] = room
+func verifyDirsRoom(_room): pass
+#	var dir := Directory.new()
+#	if dir.open(savePath) != OK:
+#		return
+#
+#	for item in ["worldRooms", room.world.substr(13), "rooms"]:
+#		if room.world.get_base_dir() == "res://dimensions":
+#			break
+#
+#		if not dir.dir_exists(item):
+#			var ERROR := dir.make_dir(item)
+#			if ERROR:
+#				print_debug("making {world} path gives the error: {error}".format(
+#					{"world" : item, "error" : ERROR})
+#				)
+#				break
+#
+#		dir.change_dir(item)
 
-func getRoomSave(room : Dictionary):
-	if room.world.get_base_dir() != "res://dimensions" and room.category == "rooms":
-		var saveWorldPath = Global.savePath + "worldRooms" + room.world.substr(12)  + "/rooms"
-		
-		return saveWorldPath + "/room{index}.tres".format({"index" : room.ID})
-
-func verifyDirsRoom(room):
-	var dir := Directory.new()
-	if dir.open(savePath) != OK:
-		return
-	
-	for item in ["worldRooms", room.world.substr(13), "rooms"]:
-		if room.world.get_base_dir() == "res://dimensions":
-			break
-		
-		if not dir.dir_exists(item):
-			var ERROR := dir.make_dir(item)
-			if ERROR:
-				print_debug("making {world} path gives the error: {error}".format(
-					{"world" : item, "error" : ERROR})
-				)
-				break
-		
-		dir.change_dir(item)
-
-func getPlayer():
-	if not player:
-		pass
-	return player

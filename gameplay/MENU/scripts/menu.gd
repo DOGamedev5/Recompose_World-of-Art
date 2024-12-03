@@ -7,8 +7,6 @@ onready var current := $initial
 
 func _ready():
 	AudioManager.playMusic("recompose")
-	Global.roomsToSave.clear()
-	Global.dimensionsRooms.clear()
 
 func transition(show, hide : Array):
 	show.current = true

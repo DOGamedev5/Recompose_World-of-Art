@@ -110,7 +110,7 @@ enabled = true
 cast_to = Vector2( 0, 12 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -63 )
+position = Vector2( 0, -96 )
 current = true
 editor_draw_limits = true
 

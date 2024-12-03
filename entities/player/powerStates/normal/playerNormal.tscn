@@ -1793,9 +1793,6 @@ cast_to = Vector2( 0, 32 )
 position = Vector2( 14, -8 )
 cast_to = Vector2( 0, 24 )
 
-[node name="Camera2D" parent="." index="5"]
-position = Vector2( 0, -64 )
-
 [node name="onWallTop" parent="." index="9"]
 position = Vector2( 0, -48 )
 

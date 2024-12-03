@@ -10,7 +10,7 @@ export var limitsMin := Vector2(-10000000, -10000000)
 export var limitsMax := Vector2(10000000, 10000000)
 export(Color) var canvasModulateColor = Color(1, 1, 1, 1)
 
-onready var canvasModulate = $"../CanvasModulate"
+#onready var canvasModulate = $"../CanvasModulate"
 
 func _ready():
 	call_deferred("_simplesLightToggled", Global.options.simpleLight)
@@ -19,7 +19,7 @@ func _ready():
 	
 	var _2 = Global.connect("simpleLightChanged", self, "_simplesLightToggled")
 	
-	get_parent().setCameraLimits(limitsMin, limitsMax)
+#	get_parent().setCameraLimits(limitsMin, limitsMax)
 
 func _exit_tree():
 	Global.player.get_node("HitboxComponent").set_deferred("monitoring", true)
@@ -34,9 +34,10 @@ func removeItens(manager, key):
 				Global.currentRoom.data.erase(n)
 
 func _simplesLightToggled(value): 
-	canvasModulate.visible = value
-	if canvasModulate.visible:
-		canvasModulate.set_color(canvasModulateColor)
+	pass
+#	canvasModulate.visible = value
+#	if canvasModulate.visible:
+#		canvasModulate.set_color(canvasModulateColor)
 
 func init(warpID, type := "warp"):
 	var path : NodePath
