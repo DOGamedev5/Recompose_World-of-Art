@@ -10,6 +10,9 @@ onready var HUD := $container/HUD
 
 var currentScreen := "HUD"
 
+#func _ready():
+#	Global.player.playerHud = self
+
 func init():
 	healthBarr.max_value = Global.player.MAXHEALTH
 	healthBarr.value = Global.player.health

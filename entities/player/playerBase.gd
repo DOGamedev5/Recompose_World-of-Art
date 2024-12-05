@@ -7,8 +7,8 @@ onready var onWallRayCast := [$onWallTop, $onWallMid, $onWallDown]
 onready var collideUPCast = [$collideUpBack, $collideUp, $collideUpFront]
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
-onready var transition = $"../HUD".get_node("transition")
-onready var HUD = $"../HUD"
+onready var transition = Global.playerHud.get_node("transition")
+onready var HUD = Global.playerHud
 onready var camera = $Camera2D
 
 const SNAPLENGTH := 32

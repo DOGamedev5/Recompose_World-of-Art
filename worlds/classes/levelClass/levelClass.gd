@@ -1,5 +1,7 @@
 class_name LevelClass extends Node2D
 
+export var canvasModulateColor := Color.white
+
 var isOnDimension := false
 var clock := false
 onready var timer := Timer.new()
@@ -9,17 +11,26 @@ func _ready():
 	add_child(timer)
 	Global.world = self
 	
-	call_deferred("loadSave")
-	
 #	AudioManager.playMusic("paintCaverns")
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 
+func _simplesLightToggled(value): 
+	Global.canvasModulate.visible = value
+	if Global.canvasModulate.visible:
+		Global.canvasModulate.set_color(canvasModulateColor)
+
+func setCanvasModulate(color : Color):
+	canvasModulateColor = color
+	if Global.canvasModulate.visible:
+		Global.canvasModulate.set_color(canvasModulateColor)
+
 func loadSave():
 	Global.player.active = false
 	
-#	Global.player.position = Global.save.player["position"]
+	position = Global.save.worldPosition
+	Global.player.position = Global.save.player["position"]
 	Global.player.set_deferred("active", true)
 	
 	LoadSystem.closeLoad()

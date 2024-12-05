@@ -2,16 +2,15 @@ extends Node
 
 const optionsSavePath = "user://options.tres"
 
-onready var player :PlayerBase
+onready var player : PlayerBase
+onready var playerHud : PlayerHud
 onready var languagesID : Array
+onready var canvasModulate := CanvasModulate.new()
 
 var options : OptionsSave
 
 var save : SaveGame
 var savePath : String
-var _file := File.new()
-var _dir := Directory.new()
-
 var world : Node
 var worldData : Dictionary
 
@@ -20,7 +19,10 @@ signal shadowsChanged(value)
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
-
+	get_parent().call_deferred("add_child", canvasModulate)
+	
+	var _dir := Directory.new()
+	
 	if not _dir.dir_exists("user://userData"):
 		var _2 = _dir.make_dir("user://userData")
 	
@@ -96,52 +98,3 @@ func bin_array(n : int, size := 8):
 	
 	print(ret_array)
 	return ret_array
-
-#func loadDataRoom(room):
-#	if room.world.get_base_dir() == "res://dimensions":
-#		if dimensionsRooms.has(room.ID):
-#			for key in dimensionsRooms[room.ID].data.keys():
-#				room.data[key] = Global.dimensionsRooms[room.ID].data[key]
-#
-#	elif room.ID != 0:
-#		var roomPath : String = getRoomSave(room)
-#
-#		if roomsToSave.has(savePath):
-#			room.data = Global.roomsToSave[roomPath].data
-#
-#		elif FileSystemHandler.fileExist(savePath):
-#			var data : Dictionary = FileSystemHandler.loadDataJSON(roomPath).data
-#
-#			for key in data.keys():
-#				room.data[key] = data[key]
-#
-#	return room
-
-func saveDataRoom(room):
-	verifyDirsRoom(room)
-
-#func getRoomSave(room : Dictionary):
-#	if room.world.get_base_dir() != "res://dimensions" and room.category == "rooms":
-#		var saveWorldPath = Global.savePath + "worldRooms" + room.world.substr(12)  + "/rooms"
-#
-#		return saveWorldPath + "/room{index}.tres".format({"index" : room.ID})
-
-func verifyDirsRoom(_room): pass
-#	var dir := Directory.new()
-#	if dir.open(savePath) != OK:
-#		return
-#
-#	for item in ["worldRooms", room.world.substr(13), "rooms"]:
-#		if room.world.get_base_dir() == "res://dimensions":
-#			break
-#
-#		if not dir.dir_exists(item):
-#			var ERROR := dir.make_dir(item)
-#			if ERROR:
-#				print_debug("making {world} path gives the error: {error}".format(
-#					{"world" : item, "error" : ERROR})
-#				)
-#				break
-#
-#		dir.change_dir(item)
-

@@ -29,12 +29,6 @@ func _ready():
 	
 	if animationPath:
 		animationNode = get_node(animationPath)
-	
-	var _1 = Global.connect("gamePaused", self, "pause")
-	var _2 = Global.connect("gameUnpaused", self, "unpause")
-
-func unpause():
-	set_process(true)
 
 func _physics_process(_delta):
 	if entered and canFlip and not cinematic:

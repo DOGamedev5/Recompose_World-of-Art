@@ -15,8 +15,8 @@ func _ready():
 	
 	var _dir = Directory.new()
 	
-	if _dir.file_exists(savePath + "save.tres"):
-		var dataPlayer = FileSystemHandler.loadDataResource(savePath+"save.tres")
+	if _dir.file_exists(savePath + FileSystemHandler.gameSaveFile):
+		var dataPlayer = FileSystemHandler.loadDataResource(savePath+FileSystemHandler.gameSaveFile)
 		if not dataPlayer.played:
 			clearContract()
 		else:
@@ -25,28 +25,28 @@ func _ready():
 		clearContract()
 
 func oldVersionHandler(playerData, worldData):
-	if playerData.version != "v0.9.4":
-		FileSystemHandler.deleteFileData(savePath)
+	if playerData.version != "v0.9.5":
+		FileSystemHandler.deleteDirArchives(savePath)
 		
 		playerData = SaveGame.new()
-		worldData = {world = "SandDesert"}
-		FileSystemHandler.saveDataResource(savePath + "save.tres", playerData)
-		FileSystemHandler.saveDataJSON(savePath + "roomData.json", worldData)
+		worldData = FileSystemHandler.generateWorldData()
+		FileSystemHandler.saveDataResource(savePath + FileSystemHandler.gameSaveFile, playerData)
+		FileSystemHandler.saveDataJSON(savePath + FileSystemHandler.worldSaveFile, worldData)
 	
 	return [playerData, worldData]
 
 func fillContract():
 	FileSystemHandler.createFileData(savePath)
 	
-	var dataPlayer = FileSystemHandler.loadDataResource(savePath+"save.tres")
-	var dataWorld = FileSystemHandler.loadDataJSON(savePath+"roomData.json")
+	var dataPlayer = FileSystemHandler.loadDataResource(savePath + FileSystemHandler.gameSaveFile)
+	var dataWorld = FileSystemHandler.loadDataJSON(savePath + FileSystemHandler.worldSaveFile)
 	
 	var handledData = oldVersionHandler(dataPlayer, dataWorld)
 	dataPlayer = handledData[0]
 	dataWorld = handledData[1]
 	
 	$texture/name.text = dataPlayer.player["playerProperties"]["name"]
-	$texture/world.text = dataWorld.world 
+	$texture/world.text = dataPlayer.currentWorld
 	
 	$texture.modulate = Color.white
 
@@ -69,16 +69,22 @@ func confirmed():
 	$AnimationPlayer.play("confirmed")
 	yield($AnimationPlayer, "animation_finished")
 	
-	
 	FileSystemHandler.loadGameData(savePath)
+	loadGame()
 	
-	LoadSystem.loadScene(get_tree().current_scene, "res://dimensions/literatureArt/world.tscn")
 	get_tree().root.set_disable_input(false)
 	
 
+func loadGame():
+	LoadSystem.openScreen()
+	LoadSystem.addToQueueAddScene("res://entities/player/HUD/playerHud.tscn", Global, false, {property = "playerHud", receiver = Global})
+	LoadSystem.addToQueueAddScene(Global.save.player["player"], Global, false, {property = "player", receiver = Global})
+	
+	LoadSystem.addToQueueChangeScene("res://worlds/" + Global.save.currentWorld + "/world.tscn")
+
 func deleted():
 	clearContract()
-	FileSystemHandler.deleteFileData(savePath)
+	FileSystemHandler.deleteDirArchives(savePath)
 
 func _on_contract_focus_entered():
 	hovered = true
@@ -116,8 +122,8 @@ func _on_contract_toggled(button_pressed):
 		
 		var _dir = Directory.new()
 	
-		if _dir.file_exists(savePath + "save.tres"):
-			var dataPlayer = FileSystemHandler.loadDataResource(savePath+"save.tres")
+		if _dir.file_exists(savePath + FileSystemHandler.gameSaveFile):
+			var dataPlayer = FileSystemHandler.loadDataResource(savePath + FileSystemHandler.gameSaveFile)
 			$"../../HBoxContainer2/erase".disabled = not dataPlayer.played
 		else:
 			$"../../HBoxContainer2/erase".disabled = true
