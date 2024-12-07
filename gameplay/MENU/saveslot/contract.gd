@@ -77,8 +77,8 @@ func confirmed():
 
 func loadGame():
 	LoadSystem.openScreen()
-	LoadSystem.addToQueueAddScene("res://entities/player/HUD/playerHud.tscn", Global, false, {property = "playerHud", receiver = Global})
-	LoadSystem.addToQueueAddScene(Global.save.player["player"], Global, false, {property = "player", receiver = Global})
+	LoadSystem.addToQueueAddScene("res://entities/player/HUD/playerHud.tscn", Global, false, "playerHud", Global)
+	LoadSystem.addToQueueAddScene(Global.save.player["player"], Global, false, "player", Global)
 	
 	LoadSystem.addToQueueChangeScene("res://worlds/" + Global.save.currentWorld + "/world.tscn")
 

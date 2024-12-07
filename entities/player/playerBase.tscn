@@ -95,20 +95,6 @@ wait_time = 0.2
 wait_time = 0.2
 one_shot = true
 
-[node name="flooDetectBack" type="RayCast2D" parent="."]
-position = Vector2( -6, 0 )
-enabled = true
-cast_to = Vector2( 0, 12 )
-
-[node name="floorDetect" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 0, 12 )
-
-[node name="flooDetectFont" type="RayCast2D" parent="."]
-position = Vector2( 6, 0 )
-enabled = true
-cast_to = Vector2( 0, 12 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -96 )
 current = true
@@ -148,6 +134,16 @@ cast_to = Vector2( 28, 0 )
 position = Vector2( 0, -32 )
 enabled = true
 cast_to = Vector2( 0, 56 )
+
+[node name="slopeDetectLeft" type="RayCast2D" parent="."]
+position = Vector2( -8, -16 )
+enabled = true
+cast_to = Vector2( 0, 32 )
+
+[node name="slopeDetectRight" type="RayCast2D" parent="."]
+position = Vector2( 8, -16 )
+enabled = true
+cast_to = Vector2( 0, 32 )
 
 [node name="HitboxComponent" type="Area2D" parent="." groups=["player"]]
 position = Vector2( 0, -2 )

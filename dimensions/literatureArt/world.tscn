@@ -20,7 +20,6 @@ position = Vector2( 1368, 672 )
 
 [node name="RoomClass3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 4200, 672 )
-warp = [ NodePath("../RoomClass/RoomWarp"), NodePath("../RoomClass/RoomWarp2") ]
 
 [node name="RoomClass4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 3384, 1920 )

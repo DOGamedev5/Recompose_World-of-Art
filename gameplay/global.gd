@@ -13,6 +13,7 @@ var save : SaveGame
 var savePath : String
 var world : Node
 var worldData : Dictionary
+var worldDataSetup := false
 
 signal simpleLightChanged(value)
 signal shadowsChanged(value)
@@ -50,16 +51,6 @@ func _setSimpleLight(value):
 func _setShadow(value):
 	emit_signal("shadowsChanged", value)
 	options.shadows = value
-
-func changePlayer(powerUp):
-	var position : Vector2 = Global.player.global_position
-	player.queue_free()
-	player = load(powerUp).instance()
-
-	world.call_deferred("add_child", Global.player)
-	player.set_deferred("global_position", position)
-
-	world.player = Global.player
 
 func addToRoomData(_obj_name : String, _catergory : String):
 	pass

@@ -53,6 +53,8 @@ func process_physics(_delta):
 			parent.normalPlayback.travel("STOPPING")
 		elif input != 0:
 			parent.normalPlayback.travel("WALK")
+	
+	parent.animation["parameters/NORMAL/NORMAL/WALK/TimeScale/scale"] = max(0.5, (abs(parent.motion.x) / parent.MAXSPEED) * 3)
 
 func exit():
 	parent.setParticle(0, false)

@@ -13,8 +13,10 @@ onready var camera = $Camera2D
 
 const SNAPLENGTH := 32
 
+export(NodePath) var spriteGizmoPath : NodePath
+onready var spriteGizmo := get_node_or_null(spriteGizmoPath)
 export(NodePath) var stateMachinePath
-var stateMachine : StateMachine
+onready var stateMachine = get_node_or_null(stateMachinePath) as StateMachine
 
 export(Array) var particles
 export(Array) var FlipObjects
@@ -58,11 +60,6 @@ var inputCord := {
 	"Y" : ["ui_up", "ui_down"]
 }
 
-var powers := {
-	"Normal" : "res://entities/player/powerStates/normal/playerNormal.tscn",
-	"Fly" : "res://entities/player/powerStates/fly/playerFly.tscn"
-}
-
 func _ready():
 	Global.player = self
 	$"../HUD".call_deferred("init")
@@ -70,9 +67,7 @@ func _ready():
 #		setCameraLimits(Global.world.currentRoom.limitsMin, Global.world.currentRoom.limitsMax)
 	
 	lastPosition = position
-	if stateMachinePath: 
-		stateMachine = get_node(stateMachinePath)
-		stateMachine.init(self)
+	if stateMachine: stateMachine.init(self)
 
 func physics_process(delta):
 	if not moving:
@@ -115,6 +110,29 @@ func physics_process(delta):
 	if stateMachine:
 		stateMachine.processMachine(delta)
 
+func rotateNormal():
+	var floorNormal : Vector2 = getSlopeNormal()
+	
+	if not onFloor():
+		floorNormal.x = clamp((motion.x / (MAXSPEED)), -0.2, 0.2)
+		floorNormal.y = -(1 - abs(floorNormal.x))
+		if motion.y > 0: floorNormal.x *= -1
+	
+	return floorNormal
+
+func rotateSprite():
+	if not spriteGizmo: return
+	
+	var floorNormal : Vector2 = rotateNormal()
+	var weight := 0.2
+	
+	if not onFloor():
+		weight = 0.1
+	
+	var angle : float = atan2(float(floorNormal.x), -float(floorNormal.y))
+	
+	$sprite.rotation = lerp_angle($sprite.rotation, angle, weight)
+
 func setParticle(index := 0, emitting := true):
 	var particle = get_node(particles[index])
 	
@@ -125,6 +143,19 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	camera.set("limit_top", limitsMin.y - 10)
 	camera.set("limit_right", limitsMax.x + 10)
 	camera.set("limit_bottom", limitsMax.y + 10)
+
+func setCinematic(value : bool):
+	cinematic = value
+	moving = not value
+	if value:
+		Global.playerHud.cinematic.actived()
+		motion.x = 0
+		if motion.y < 0: motion.y /= 2
+	
+		stateMachine.changeState("IDLE")
+	
+	else:
+		Global.playerHud.cinematic.desactivaded()
 
 func flipObject(objects):
 	for obj in objects:
@@ -143,22 +174,12 @@ func resetParticles():
 		else:
 			push_warning("warning: " + node.name + " its not a CPUParticles2D or Particles2D")
 			
-
 func gravityBase():
 	if not onFloor():
 		
 		motion.y += GRAVITY
 		if motion.y > MAXFALL:
 			motion.y = MAXFALL
-	
-
-func init(powerUp := "Normal"):
-	var newPlayer = load(powers[powerUp]).instance()
-
-	return newPlayer
-
-func changePowerup(powerUp):
-	Global.changePlayer(powerUp)
 
 func idleBase():
 	var isOnFloor = is_on_floor()
@@ -197,21 +218,14 @@ func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEE
 func _move_and_slide(snap, stopSlope):
 	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
 
-func move(stopSlope = true):
+func move():
 	var snap := Vector2.ZERO
 	if not snapDesatived:
 		
 		snap = Vector2.DOWN * SNAPLENGTH
 
-	motion.y = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, stopSlope, 4, deg2rad(46)).y
-#	call_deferred("_move_and_slide", snap, stopSlope)
-	
-	if abs(realMotion.x) < 1 and abs(motion.x) > 100 and onWall():
-		motion.x = 0   
+	motion = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP) 
 	currentSnapLength = snap.y
-	
-	if onFloor() and motion.y != 0 and not Input.is_action_pressed("ui_jump") and not onSlope() and !snapDesatived:
-		motion.y = 0
 
 func desaccelerate(MotionCord : float, input := .0):
 	if sign(MotionCord) != input:
@@ -250,49 +264,55 @@ func onSlope():
 	
 	return is_on_floor() and  get_floor_normal().x != 0
 
-
-func getSlopeNormal():
-	var normal := Vector2.UP
-	if $slopeDetect.is_colliding():
-		normal = $slopeDetect.get_collision_normal()
-	
-	return normal
-
 func onWall():
 	var distance := 28
-	var rayDirection
+	var rayDirection := 0.0
 	
 	for ray in onWallRayCast:
 		if !ray.is_colliding(): continue
 		
 		var normal = ray.get_collision_normal()
-		
 		if abs(normal.y) > 0.5: continue
 		
 		var point = abs(to_local(ray.get_collision_point()).x)
-		
-		if point < distance:
-			distance = point
+		if point < distance: distance = point
 		
 		rayDirection = sign(ray.cast_to.x)
 	
 	var result = distance < 16.8 and distance >= 15
 	
+	if not result: return false
+	
 	if result and  rayDirection != Input.get_axis("ui_left", "ui_right") and active:
 		if Input.get_axis("ui_left", "ui_right") != 0 and motion.x:
-			
 			motion.x = 0
 			return true
 		
 	if result:
 		if rayDirection == sign(motion.x):
-			
 			motion.x = 0
 			
 		global_position.x += (distance - 16) * rayDirection
 		return true
 
-	return false
+func getSlopeNormal():
+	var finalNormal := Vector2.ZERO
+	var normals := []
+	
+	if $slopeDetect.is_colliding(): normals.append($slopeDetect.get_collision_normal())
+	if $slopeDetectLeft.is_colliding(): normals.append($slopeDetectLeft.get_collision_normal())
+	if $slopeDetectRight.is_colliding(): normals.append($slopeDetectRight.get_collision_normal())
+	
+	for i in normals:
+		finalNormal += i
+	
+	if normals:
+		finalNormal.x /= normals.size()
+		finalNormal.y /= normals.size()
+		
+		return finalNormal
+	
+	return Vector2.UP
 
 func collideUp():
 	var collision := -65.0
@@ -316,22 +336,7 @@ func shield():
 	shieldTimer.start()
 	animationShield.travel("shield")
 
-func setCinematic(value : bool):
-	cinematic = value
-	moving = not value
-	if value:
-		Global.playerHud.cinematic.actived()
-		motion.x = 0
-		if motion.y < 0:
-			motion.y /= 2
-	
-		stateMachine.changeState("IDLE")
-	
-	else:
-		Global.playerHud.cinematic.desactivaded()
 
-func coyoteTimerTimeout():
-	canJump = false
 
 func hitboxTriggered(damage : DamageAttack):
 	if not ("enemy" in damage.objectGroup and not shieldActived):
@@ -342,6 +347,9 @@ func hitboxTriggered(damage : DamageAttack):
 	health -= damage.damage
 	HUD.setHealth(health)
 	shieldActived = true
+
+func coyoteTimerTimeout():
+	canJump = false
 		
 func _on_HitboxComponent_area_entered(area):
 	if area is ChangeRoom and active:
@@ -373,12 +381,9 @@ func hitboxExited(area):
 	
 	canLadder = onLadder
 	
-
 func shieldTimeout():
 	animationShield.travel("RESET")
 	shieldActived = false
 
 func _on_jumpBuffer_timeout():
 	jumpBuffer = false
-
-

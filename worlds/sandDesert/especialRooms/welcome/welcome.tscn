@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://worlds/sandDesert/especialRooms/welcome/welcome.gd" type="Script" id=1]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://entities/NPCs/soldiers/Soldier1.tscn" type="PackedScene" id=17]
 [ext_resource path="res://entities/NPCs/soldiers/Soldier2.tscn" type="PackedScene" id=18]
 [ext_resource path="res://addons/controller_icons/objects/TextureRect.gd" type="Script" id=19]
+[ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=20]
 
 [sub_resource type="TileSet" id=1]
 0/name = "caveEnter.pxo 0"
@@ -163,7 +164,6 @@ font_data = ExtResource( 15 )
 
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 1 )
-doors = [ NodePath("caveEnter") ]
 limitsMin = Vector2( 10, -1e+07 )
 limitsMax = Vector2( 5216, 256 )
 
@@ -312,9 +312,9 @@ alignment = 1
 
 [node name="Label" type="Label" parent="contract/Control/TextureRect/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.803922 )
-margin_left = 526.0
+margin_left = 522.0
 margin_top = 7.0
-margin_right = 660.0
+margin_right = 656.0
 margin_bottom = 37.0
 custom_colors/font_color = Color( 0.258824, 0.227451, 0.372549, 1 )
 custom_fonts/font = SubResource( 9 )
@@ -322,11 +322,11 @@ text = "contract1"
 align = 1
 
 [node name="ControllerTextureRect" type="TextureRect" parent="contract/Control/TextureRect/HBoxContainer"]
-margin_left = 664.0
-margin_top = 6.0
-margin_right = 696.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 660.0
+margin_top = 2.0
+margin_right = 700.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 4 )
@@ -336,9 +336,9 @@ path = "ui_enter"
 
 [node name="Label2" type="Label" parent="contract/Control/TextureRect/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.803922 )
-margin_left = 700.0
+margin_left = 704.0
 margin_top = 7.0
-margin_right = 834.0
+margin_right = 838.0
 margin_bottom = 37.0
 custom_colors/font_color = Color( 0.258824, 0.227451, 0.372549, 1 )
 custom_fonts/font = SubResource( 9 )
@@ -370,3 +370,7 @@ position = Vector2( 1968, -62 )
 [node name="Soldier2" parent="." instance=ExtResource( 17 )]
 position = Vector2( 1120, -30 )
 fliped = true
+
+[node name="RoomWarp" type="Position2D" parent="."]
+position = Vector2( 1736, -64 )
+script = ExtResource( 20 )

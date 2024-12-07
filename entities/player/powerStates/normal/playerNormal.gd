@@ -1,6 +1,6 @@
 extends PlayerBase
 
-onready var sprite = $Sprite
+onready var sprite = $sprite/Sprite
 onready var animation = $AnimationTree
 
 onready var playback = animation["parameters/playback"]
@@ -25,10 +25,9 @@ var attackVelocity := 800.0
 var isRolling := false
 var canAttack := true
 
-
 onready var collisionShapes := [
-	{shape = CapsuleShape2D.new(), position = Vector2(0, -28), onWall = [true, true, true]},
-	{shape = CircleShape2D.new(), position = Vector2(0, -16), onWall = [false, true, true]}
+	{obj = $CollisionShape2D, onWall = [true, true, true]},
+	{obj = $CollisionShape2D3, onWall = [false, true, true]}
 ]
 
 onready var stepSFX = [
@@ -36,12 +35,7 @@ onready var stepSFX = [
 ]
 
 func _enter_tree():
-	$Sprite.hframes = 23
-
-func _ready():
-	collisionShapes[0].shape.radius = 16
-	collisionShapes[0].shape.height = 23
-	collisionShapes[1].shape.radius = 15
+	$sprite/Sprite.hframes = 23
 	
 func _physics_process(delta):
 	if not active: return
@@ -51,15 +45,16 @@ func _physics_process(delta):
 	setFlipConfig()
 	setAttack()
 	
-	animation["parameters/NORMAL/NORMAL/WALK/TimeScale/scale"] = max(0.5, (abs(motion.x) / MAXSPEED) * 3)
+	rotateSprite()
 	
-	if active:
-		move(!isRolling)
 	
-	if OS.is_debug_build(): $a/Label.text = String(collideUp())
+	
+	if active: move()
+	
+	if OS.is_debug_build(): $a/Label.text = String($sprite.rotation)
 	elif get_node_or_null("a"): $a.queue_free()
 	
-	$speedEffect.visible = running and not isRolling
+	$sprite/speedEffect.visible = running and not isRolling
 	if running and not isRolling:
 		var velocity = abs(motion.x)
 		if onSlope():
@@ -67,14 +62,21 @@ func _physics_process(delta):
 		
 		var value = max((velocity - MAXSPEED) / (runningVelocity - MAXSPEED-100), 0.65) 
 		
-		$speedEffect.modulate.a = value
-		$speedEffect.modulate.r = 1 + value * 0.5
-		$speedEffect.modulate.g = 1 + value * 0.5
+		$sprite/speedEffect.modulate.a = value
+		$sprite/speedEffect.modulate.r = 1 + value * 0.5
+		$sprite/speedEffect.modulate.g = 1 + value * 0.5
 		
 	if attackDelay.is_stopped():
 		canAttack = true
 	else:
 		canAttack = false
+
+func rotateNormal():
+	var floorNormal : Vector2 = .rotateNormal()
+	
+	if not onFloor()and running: floorNormal.x *= -1
+	
+	return floorNormal
 
 func stoppedRunning():
 	var velocity = motion.x
@@ -104,8 +106,8 @@ func setFlipConfig():
 	
 	flipObject(attackComponents)
 	
-	$speedEffect.position.x = 28 * (1 - 2 * int(fliped))
-	$speedEffect.flip_h = fliped
+	$sprite/speedEffect.position.x = 28 * (1 - 2 * int(fliped))
+	$sprite/speedEffect.flip_h = fliped
 	
 	sprite.flip_h = fliped
 
@@ -119,22 +121,15 @@ func setAttack():
 	else:		
 		attackComponents[1].setDamage(0)
 		
-
 func setCollision(ID := 0):
-	active = false
-	currentCollision.set_deferred("position", collisionShapes[ID].position)
-	currentCollision.set_deferred("shape", collisionShapes[ID].shape)
-	currentCollision.set_deferred("custom_solver_bias", 0.2)
+	collisionShapes[ID].obj.disabled = false
 	
+	for obj in range(collisionShapes.size()):
+		if obj == ID: continue
+		collisionShapes[obj].obj.disabled = true
+
 	for ray in range(3):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
-	
-	active = true
-
-func _stepSfx():
-	var sfx = stepSFX[0]
-	if is_on_floor():
-		AudioManager.playSFX(sfx)
 	
 func _on_specialEffectTimer_timeout():
 	if running:
@@ -142,4 +137,9 @@ func _on_specialEffectTimer_timeout():
 		newEffect.currentSprite = sprite
 		get_parent().add_child(newEffect)
 		newEffect.position = position - Vector2(0, 32)
+		newEffect.rotation = spriteGizmo.rotation
 		
+func _stepSfx():
+	var sfx = stepSFX[0]
+	if is_on_floor():
+		AudioManager.playSFX(sfx)

@@ -536,6 +536,7 @@ stretch_margin_right = 18
 stretch_margin_bottom = 16
 
 [node name="Control2" type="Control" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5

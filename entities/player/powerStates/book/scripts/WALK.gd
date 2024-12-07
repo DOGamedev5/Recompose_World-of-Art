@@ -13,6 +13,6 @@ func process_state():
 	return null
 
 func process_physics(_delta):
+
 	parent.moveBase("X", parent.motion.x)
 	parent.playback.travel("WALK")
-

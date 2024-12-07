@@ -62,10 +62,7 @@ func saveGameData(position = null):
 	Global.save.played = true
 	
 	saveDataResource(Global.savePath + gameSaveFile, Global.save)
-	saveDataJSON(Global.savePath + worldSaveFile, Global.currentRoom)
-	
-	for path in Global.roomsToSave.keys():
-		saveDataJSON(path, Global.roomsToSave[path])
+	saveDataJSON(Global.savePath + worldSaveFile, Global.worldData)
 
 func loadGameData(dataPath):
 	Global.save = loadDataResource(dataPath + gameSaveFile)
@@ -100,6 +97,7 @@ func deleteDirArchives(path, deleteItself := false):
 	while file_name != "":
 		if dir.current_is_dir():
 			deleteDirArchives(path + file_name + "/", true)
+			file_name = dir.get_next()
 			continue
 		
 		var error3 = dir.remove(file_name)

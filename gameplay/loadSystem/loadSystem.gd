@@ -27,7 +27,8 @@ class QueueObject:
 	var loader : ResourceInteractiveLoader
 	var deffered := false
 	var tree 
-	var aditionalFlags := {}
+	var propertyReference : String
+	var referenceReceiver : Node
 	
 	func _init(objectPath, flags := {}):
 		path = objectPath
@@ -40,7 +41,8 @@ class QueueObject:
 		elif type == ADDSCENE:
 			receive = flags.receiver
 			deffered = flags.deffered
-			aditionalFlags = flags.addFlags
+			propertyReference = flags.propertyReference
+			referenceReceiver = flags.referenceReceiver
 			
 		else:
 			receive = flags.receiver
@@ -64,8 +66,8 @@ class QueueObject:
 			else:
 				receive.add_child(result)
 			
-			if aditionalFlags.property:
-				aditionalFlags.receiver.set(aditionalFlags.property, result)
+			if propertyReference:
+				referenceReceiver.set(propertyReference, result)
 				
 
 func _init():
@@ -73,7 +75,7 @@ func _init():
 
 func openScreen():
 	if loadSceneInstance: return
-	
+
 	loadSceneInstance = loadScreen.instance()
 	get_tree().get_root().call_deferred("add_child", loadSceneInstance)
 	set_process(true)
@@ -85,13 +87,27 @@ func closeLoad():
 	set_process(false)
 
 func addToQueueProperty(path, object, objectProperty):
-	queueLoad.append(QueueObject.new(path, {type = 0, receiver = object, property = objectProperty}))
+	queueLoad.append(QueueObject.new(path, {
+		type = 0,
+		receiver = object,
+		property = objectProperty
+	}))
 
 func addToQueueChangeScene(path):
-	queueLoad.append(QueueObject.new(path, {type = 1, receiver = get_tree().get_root(), tree = get_tree()}))
+	queueLoad.append(QueueObject.new(path, {
+		type = 1,
+		receiver = get_tree().get_root(),
+		tree = get_tree()
+	}))
 
-func addToQueueAddScene(path, object, addDeffered := false, flags := {property = null, propertyReceiver = null}):
-	queueLoad.append(QueueObject.new(path, {type = 2, receiver = object, deffered = addDeffered, addFlags = flags}))
+func addToQueueAddScene(path, object, addDeffered := false, property = null, propertyReceiver = null):
+	queueLoad.append(QueueObject.new(path, {
+		type = 2,
+		receiver = object,
+		deffered = addDeffered,
+		referenceReceiver = propertyReceiver,
+		propertyReference = property
+	}))
 
 func _process(_delta):
 	if not queueLoad:
