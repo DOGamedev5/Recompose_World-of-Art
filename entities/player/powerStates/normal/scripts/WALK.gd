@@ -5,6 +5,9 @@ func enter(_laststate):
 	parent.setParticle(0, true)
 	parent.setParticle(1, false)
 	parent.running = false
+	
+	if abs(parent.motion.x) < 150:
+		parent.motion.x = 150 * Input.get_axis("ui_left", "ui_right")
 
 func process_state():
 	if parent.motion.x == 0 and (Input.get_axis("ui_left", "ui_right") == 0 or not parent.moving) :
@@ -36,6 +39,8 @@ func process_state():
 
 func process_physics(_delta):
 	var input := Input.get_axis("ui_left", "ui_right")
+	
+	
 	
 	if parent.counched:
 		parent.moveBase("X", parent.motion.x, 180)

@@ -16,6 +16,11 @@ var entered := false
 
 var direction
 
+func _init():
+	collision_layer = 0
+	collision_mask = 0
+
+
 func _ready():
 	direction = 1 - (int(fliped) * 2)
 	

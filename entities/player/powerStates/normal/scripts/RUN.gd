@@ -1,6 +1,10 @@
 extends State
 
 func enter(_lastState):
+	
+	if abs(parent.motion.x) < 250:
+		parent.motion.x = 250 * Input.get_axis("ui_left", "ui_right")
+		
 	parent.setParticle(0, false)
 	parent.setParticle(1, true)
 	parent.playback.travel("RUN")
@@ -15,7 +19,7 @@ func enter(_lastState):
 		smoke.amount = 12
 		smoke.lifetime = 0.6
 		smoke.preprocess = 0.2
-		Global.world.add_child(smoke)
+		parent.get_parent().add_child(smoke)
 		smoke.global_position = parent.global_position - Vector2(0, 32)
 		parent.topSpeedPlayback.travel("RUN")
 

@@ -6,7 +6,7 @@ func enter(_ls):
 	parent.animationPlayback.travel("DASH")
 	$"../../AttackComponent".setDamage(10)
 	$Timer.start()
-	direction = (Global.player.global_position - parent.global_position).normalized()
+	direction = (owner.player.global_position - parent.global_position).normalized()
 	
 
 func process_physics(_delta):

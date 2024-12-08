@@ -7,8 +7,6 @@ onready var onWallRayCast := [$onWallTop, $onWallMid, $onWallDown]
 onready var collideUPCast = [$collideUpBack, $collideUp, $collideUpFront]
 onready var shieldTimer = $shieldSystem/shield
 onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
-onready var transition = Global.playerHud.get_node("transition")
-onready var HUD = Global.playerHud
 onready var camera = $Camera2D
 
 const SNAPLENGTH := 32
@@ -61,8 +59,9 @@ var inputCord := {
 }
 
 func _ready():
+	get_parent().player = self
 	Global.player = self
-	$"../HUD".call_deferred("init")
+	$"../HUD".call_deferred("init", self)
 #	if Global.world.currentRoom:
 #		setCameraLimits(Global.world.currentRoom.limitsMin, Global.world.currentRoom.limitsMax)
 	
@@ -148,7 +147,7 @@ func setCinematic(value : bool):
 	cinematic = value
 	moving = not value
 	if value:
-		Global.playerHud.cinematic.actived()
+		$"../HUD".cinematic.actived()
 		motion.x = 0
 		if motion.y < 0: motion.y /= 2
 	
@@ -261,8 +260,10 @@ func onFloor():
 	return is_on_floor()
 	
 func onSlope():
+
 	
-	return is_on_floor() and  get_floor_normal().x != 0
+	
+	return onFloor() and abs(spriteGizmo.rotation) >= 0.4
 
 func onWall():
 	var distance := 28
@@ -336,8 +337,6 @@ func shield():
 	shieldTimer.start()
 	animationShield.travel("shield")
 
-
-
 func hitboxTriggered(damage : DamageAttack):
 	if not ("enemy" in damage.objectGroup and not shieldActived):
 		return
@@ -345,7 +344,7 @@ func hitboxTriggered(damage : DamageAttack):
 	var direction : int = damage.direction.x
 	emit_signal("damaged", direction)
 	health -= damage.damage
-	HUD.setHealth(health)
+	$"../HUD".setHealth(health)
 	shieldActived = true
 
 func coyoteTimerTimeout():

@@ -5,22 +5,24 @@ const optionsSavePath = "user://options.tres"
 onready var player : PlayerBase
 onready var playerHud : PlayerHud
 onready var languagesID : Array
-onready var canvasModulate := CanvasModulate.new()
+onready var in_game := false
 
 var options : OptionsSave
 
 var save : SaveGame
 var savePath : String
-var world : Node
+var world : LevelClass
 var worldData : Dictionary
+var currentWorldName := "sandDesert"
 var worldDataSetup := false
+var waintingToChange := false
+var changingInfo := {}
 
 signal simpleLightChanged(value)
 signal shadowsChanged(value)
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
-	get_parent().call_deferred("add_child", canvasModulate)
 	
 	var _dir := Directory.new()
 	
@@ -36,10 +38,26 @@ func _ready():
 	options = FileSystemHandler.loadDataResource(Global.optionsSavePath)
 	
 	setup_langueges()
-	
+
 func _input(_event):
+	
 	if Input.is_action_just_pressed("fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen
+
+func changeWorld(catergory : String, newWorld : String, warpID := -1, warpType := ""):
+#	get_tree().paused = true
+	waintingToChange = true
+	LoadSystem.openScreen()
+	currentWorldName = newWorld
+	
+	if warpID >= 0:
+		changingInfo.warpID = warpID
+		changingInfo.warpType = warpType
+	
+	LoadSystem.addToQueueChangeScene("res://{catergory}/{world}/world.tscn".format({
+		"catergory" : catergory,
+		"world" : newWorld
+	}))
 
 func compareFloats(a : float, b : float, tolerance := 0.000001):
 	return abs(a - b) < tolerance
@@ -52,11 +70,17 @@ func _setShadow(value):
 	emit_signal("shadowsChanged", value)
 	options.shadows = value
 
-func addToRoomData(_obj_name : String, _catergory : String):
-	pass
-#	if not obj_name in currentRoom.data[catergory]:
-#
-#		currentRoom.data[catergory].append(obj_name)
+func addToRoomData(roomID : int, obj_name : String, catergory : String):
+	if not worldData.has(currentWorldName):
+		worldData[currentWorldName] = {}
+	
+	if not worldData[currentWorldName].has(str(roomID)):
+		worldData[currentWorldName][str(roomID)] = {}
+	
+	if not worldData[currentWorldName][str(roomID)].has(catergory):
+		worldData[currentWorldName][str(roomID)][catergory] = []
+	
+	worldData[currentWorldName][str(roomID)][catergory].append(obj_name)
 
 func setup_langueges():
 	if not options.lang:
@@ -89,3 +113,5 @@ func bin_array(n : int, size := 8):
 	
 	print(ret_array)
 	return ret_array
+	
+	

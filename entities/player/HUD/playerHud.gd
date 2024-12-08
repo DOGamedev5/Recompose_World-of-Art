@@ -10,14 +10,14 @@ onready var HUD := $container/HUD
 
 var currentScreen := "HUD"
 
-#func _ready():
-#	Global.player.playerHud = self
+func _ready():
+	Global.playerHud = self
 
-func init():
-	healthBarr.max_value = Global.player.MAXHEALTH
-	healthBarr.value = Global.player.health
+func init(player):
+	healthBarr.max_value = player.MAXHEALTH
+	healthBarr.value = player.health
 
-	var _1 = Global.player.connect("damaged", self, "hitted")
+	var _1 = player.connect("damaged", self, "hitted")
 
 func _process(_delta):
 	pass
@@ -48,7 +48,6 @@ func setHealthMax(healthMax):
 	healthBarr.max_value = healthMax
 
 func hitted(_direction):
-
 	playbackEye.travel("DAMAGED")
 
 func setHealth(currentValue):

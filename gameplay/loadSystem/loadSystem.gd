@@ -1,15 +1,13 @@
 extends CanvasLayer
 
-onready var loadScreen := preload("res://gameplay/loadSystem/loadSystem.tscn")
-
 const MAIN_SCENE := "res://gameplay/MENU/menu.tscn"
 
-var loadSceneInstance
 var time_max = 100 
 
 onready var queueLoad := []
 
 signal finishedLoad()
+signal objectLoaded(object)
 
 class QueueObject:
 	extends Node
@@ -21,92 +19,78 @@ class QueueObject:
 	}
 	
 	var path : String
-	var receive : Object
+	var propertyReceiver : Object
+	var sceneReceiver : Object
 	var type := PROPERTY
 	var property : String
+	var scene
 	var loader : ResourceInteractiveLoader
 	var deffered := false
-	var tree 
-	var propertyReference : String
-	var referenceReceiver : Node
 	
 	func _init(objectPath, flags := {}):
 		path = objectPath
 		type = flags.type
 		
-		if type == PROPERTY:
+		if flags.has("property"):
 			property = flags.property
-			receive = flags.receiver
+			propertyReceiver = flags.propertyReceiver
 			
-		elif type == ADDSCENE:
-			receive = flags.receiver
+		if flags.has("sceneReceiver"):
+			sceneReceiver = flags.sceneReceiver
 			deffered = flags.deffered
-			propertyReference = flags.propertyReference
-			referenceReceiver = flags.referenceReceiver
-			
-		else:
-			receive = flags.receiver
-			tree = flags.tree
 		
-		loader = ResourceLoader.load_interactive(objectPath)
+		createLoader()
+		
+	func createLoader():
+		loader = ResourceLoader.load_interactive(path)
 	
 	func end(result):
-		if type == PROPERTY:
-			receive.set(property, result)
+		if sceneReceiver:
+			if type == 1:
+				propertyReceiver.current_scene.queue_free()
 			
-		elif type == SCENECHANGE:
-			tree.current_scene.queue_free()
-			receive.call_deferred("add_child", result)
-			tree.set_deferred("current_scene", result)
-			
-		else:
 			if deffered:
-				receive.call_deferred("add_child", result)
+				sceneReceiver.call_deferred("add_child", result)
 				
 			else:
-				receive.add_child(result)
+				sceneReceiver.add_child(result)
 			
-			if propertyReference:
-				referenceReceiver.set(propertyReference, result)
-				
+		if propertyReceiver: propertyReceiver.set(property, result)
 
 func _init():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 
 func openScreen():
-	if loadSceneInstance: return
-
-	loadSceneInstance = loadScreen.instance()
-	get_tree().get_root().call_deferred("add_child", loadSceneInstance)
 	set_process(true)
+	LoadScreen.visible = true
 
 func closeLoad():
-	if loadSceneInstance:
-		loadSceneInstance.queue_free()
+	LoadScreen.visible = false
 	emit_signal("finishedLoad")
 	set_process(false)
 
 func addToQueueProperty(path, object, objectProperty):
 	queueLoad.append(QueueObject.new(path, {
 		type = 0,
-		receiver = object,
+		propertyReceiver = object,
 		property = objectProperty
 	}))
 
 func addToQueueChangeScene(path):
+	
 	queueLoad.append(QueueObject.new(path, {
 		type = 1,
-		receiver = get_tree().get_root(),
-		tree = get_tree()
+		property = "current_scene",
+		propertyReceiver = get_tree(),
 	}))
 
-func addToQueueAddScene(path, object, addDeffered := false, property = null, propertyReceiver = null):
+func addToQueueAddScene(path : String, objectReceiver : Object, addDeffered := false, property := "", propertyReceiver : Object = null):
 	queueLoad.append(QueueObject.new(path, {
 		type = 2,
-		receiver = object,
-		deffered = addDeffered,
-		referenceReceiver = propertyReceiver,
-		propertyReference = property
+		sceneReceiver = objectReceiver,
+		property = property,
+		propertyReceiver = propertyReceiver,
+		deffered = addDeffered
 	}))
 
 func _process(_delta):
@@ -117,11 +101,16 @@ func _process(_delta):
 	var loader : ResourceInteractiveLoader = queueLoad[0].loader
 	
 	if loader == null:
-		emit_signal("finishedLoad")
-		printerr("failed to load, null loader")
+		if not FileSystemHandler.fileExist(queueLoad[0].path):
+			printerr("failed to load, '%s' do not exist" % queueLoad[0].path)
+		else:
+			printerr("failed to load, null loader")
+			
+		queueLoad[0].createLoader()
 		return
 	
-	var label = loadSceneInstance.get_node("Control/Control/Label")
+	var label : Label
+	label = LoadScreen.get_node("Control/Control/Label")
 	
 	var t = OS.get_ticks_msec()
 
@@ -129,54 +118,23 @@ func _process(_delta):
 		var error = loader.poll()
 		
 		if error == OK:
-			label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
+			if label: label.text = "%0d%%" % (float(loader.get_stage()) / loader.get_stage_count() * 100)
 
 		elif error == ERR_FILE_EOF:
-			var scene = loader.get_resource().instance()
-			queueLoad[0].end(scene)
+			var result = loader.get_resource()
+			
+			if queueLoad[0].type == 1:
+				get_tree().change_scene_to(result)
+			else: 
+				queueLoad[0].end(result.instance())
+			
+			queueLoad[0].queue_free()
 			queueLoad.pop_front()
 			
+			emit_signal("objectLoaded", result)
 			break
 			
 		else:
 			push_error("erro when loading '{0}', error {1}".format([queueLoad[0].path, error]))
 	
-	pass
-
-func loadScene(current, next : String, closeAfterLoad := false,currentPath := MAIN_SCENE):
-	openScreen()
 	
-	var loader := ResourceLoader.load_interactive(next)
-	
-	if loader == null:
-		emit_signal("finishedLoad")
-		printerr("failed to load")
-		return
-	
-	current.queue_free()
-	
-	var label = loadSceneInstance.get_node("Control/Control/Label")
-	
-	while true:
-		var error = loader.poll()
-		
-		if error == OK:
-			label.text = str(float(loader.get_stage()) / loader.get_stage_count() * 100) + "%"
-
-		elif error == ERR_FILE_EOF:
-			var scene = loader.get_resource().instance()
-			emit_signal("finishedLoad")
-			get_tree().get_root().call_deferred("add_child", scene)
-			get_tree().set_deferred("current_scene", scene)
-			
-			if closeAfterLoad:
-				closeLoad()
-			
-			return
-		
-		else:
-			get_tree().get_root().call_deferred("add_child", load(currentPath))
-			emit_signal("finishedLoad")
-			closeLoad()
-			
-			return

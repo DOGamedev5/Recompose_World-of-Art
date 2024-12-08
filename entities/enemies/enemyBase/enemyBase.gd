@@ -122,7 +122,7 @@ func hitted(damage : DamageAttack):
 	if health <= 0:
 		var smoke = load("res://objects/dustBlow/dustBlow.tscn").instance()
 		smoke.amount = 12
-		Global.world.add_child(smoke)
+		owner.add_child(smoke)
 		smoke.lifetime = 0.8
 		smoke.preprocess = 0.4
 		smoke.global_position = global_position
@@ -133,7 +133,7 @@ func hitted(damage : DamageAttack):
 		death.texture = deathSprite
 		death.direction = sign(damage.direction.x)
 		
-		Global.world.add_child(death)
+		get_parent().get_parent().add_child(death)
 		death.global_position = global_position
 		death.flip_h = sprite.flip_h
 		

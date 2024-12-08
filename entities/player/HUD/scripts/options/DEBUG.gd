@@ -25,38 +25,34 @@ func _input(_event):
 		debugPanel = !debugPanel
 		visible = debugPanel
 	
-func _process(_delta):
-	DEBUGSetup()
-
-func DEBUGSetup():
-	if not is_instance_valid(Global.player): return
+func DEBUGSetup(player):
 	
-	if Global.player.stateMachine: proprietyLabels["currentState"].text = (
-		"current State: " + Global.player.stateMachine.currentState.name)
+	if player.stateMachine: proprietyLabels["currentState"].text = (
+		"current State: " + player.stateMachine.currentState.name)
 
 	proprietyLabels["motion"].text = (
-		"Motion: " + str(Global.player.motion))
+		"Motion: " + str(player.motion))
 		
 	proprietyLabels["onSlope"].text = (
-		"On slope: " + str(Global.player.onSlope()))
+		"On slope: " + str(player.onSlope()))
 		
 	proprietyLabels["snapDesatived"].text = (
-		"snap desatived: " + str(Global.player.snapDesatived))
+		"snap desatived: " + str(player.snapDesatived))
 	
 	proprietyLabels["snapLenght"].text = (
-		"snap lenght: " + str(Global.player.currentSnapLength))
+		"snap lenght: " + str(player.currentSnapLength))
 	
 	proprietyLabels["FPS"].text = (
 		"FPS: " + str(Engine.get_frames_per_second()))
 	
-	if not Global.player.is_in_group("normal"): return
+	if not player.is_in_group("normal"): return
 
 	proprietyLabels["running"].text = (
-		"Running: " + str(Global.player.running))
+		"Running: " + str(player.running))
 	
-func debugButtonPressed():
-	print("AAAAA")
-	Global.player.get_parent().loadRoom("res://debugRoom.tscn", 0)
+#func debugButtonPressed():
+#	print("AAAAA")
+#	Global.player.get_parent().loadRoom("res://debugRoom.tscn", 0)
 
 func simpleLightToggled():
 	var value = $PanelContainer/VBoxContainer/simpleLight.pressed

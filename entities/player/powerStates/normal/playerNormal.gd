@@ -47,8 +47,6 @@ func _physics_process(delta):
 	
 	rotateSprite()
 	
-	
-	
 	if active: move()
 	
 	if OS.is_debug_build(): $a/Label.text = String($sprite.rotation)
@@ -96,7 +94,7 @@ func detectRunning():
 		smoke.amount = 12
 		smoke.lifetime = 0.6
 		smoke.preprocess = 0.2
-		Global.world.add_child(smoke)
+		owner.add_child(smoke)
 		smoke.global_position = global_position - Vector2(0, 32)
 	
 	running = abs(velocity) > MAXSPEED
@@ -117,7 +115,6 @@ func setAttack():
 			attackComponents[1].setDamage(1)
 		else:
 			attackComponents[1].setDamage(2)
-	
 	else:		
 		attackComponents[1].setDamage(0)
 		

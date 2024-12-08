@@ -45,8 +45,7 @@ tracks/0/keys = {
 
 [node name="literaturePortal" type="Area2D"]
 script = ExtResource( 2 )
-world = "res://dimensions/literatureArt"
-roomID = 1
+worldName = "literatureArt"
 hudPortalPath = NodePath("hud")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -81,7 +80,6 @@ margin_left = 0.0
 margin_top = 0.0
 margin_right = 0.0
 areaInteractPath = NodePath("..")
-text = "E"
 showArroy = false
 
 [connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]

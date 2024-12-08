@@ -75,11 +75,8 @@ func confirmed():
 	get_tree().root.set_disable_input(false)
 	
 
-func loadGame():
+func loadGame(): # what
 	LoadSystem.openScreen()
-	LoadSystem.addToQueueAddScene("res://entities/player/HUD/playerHud.tscn", Global, false, "playerHud", Global)
-	LoadSystem.addToQueueAddScene(Global.save.player["player"], Global, false, "player", Global)
-	
 	LoadSystem.addToQueueChangeScene("res://worlds/" + Global.save.currentWorld + "/world.tscn")
 
 func deleted():

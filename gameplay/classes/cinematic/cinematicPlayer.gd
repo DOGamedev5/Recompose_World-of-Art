@@ -8,7 +8,7 @@ func setup(Dialogs):
 	dialogs = Dialogs
 
 func _start():
-	Global.player.setCinematic(true)
+	get_tree().current_scene.player.setCinematic(true)
 
 func _end():
 	Global.player.setCinematic(false)

@@ -239,10 +239,11 @@ default_bus_layout="res://audio/default_bus_layout.tres"
 [autoload]
 
 Global="*res://gameplay/global.gd"
-AudioManager="*res://audio/audioSystem/audioSystem.tscn"
-LoadSystem="*res://gameplay/loadSystem/loadSystem.gd"
-ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 FileSystemHandler="*res://gameplay/classes/fileSystemHandler.gd"
+LoadScreen="*res://gameplay/loadSystem/loadScreen.tscn"
+LoadSystem="*res://gameplay/loadSystem/loadSystem.gd"
+AudioManager="*res://audio/audioSystem/audioSystem.tscn"
+ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 
 [display]
 

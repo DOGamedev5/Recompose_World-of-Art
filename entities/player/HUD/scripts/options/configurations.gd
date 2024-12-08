@@ -33,7 +33,7 @@ func _input(_event):
 		visible = not visible
 		
 		parent.HUD.visible = not visible
-		if Global.player.cinematic:
+		if get_tree().current_scene.player.cinematic:
 			parent.HUD.visible = false
 		
 		if visible:
@@ -54,7 +54,9 @@ func _on_quit_pressed():
 
 func _on_menu_pressed():
 	get_tree().paused = false
-	LoadSystem.loadScene(Global.world, LoadSystem.MAIN_SCENE, true)
+	Global.in_game = false
+	LoadSystem.openScreen()
+	LoadSystem.addToQueueChangeScene("res://gameplay/MENU/menu.tscn")
 
 func _on_configurations_visibility_changed():
 	get_tree().paused = visible

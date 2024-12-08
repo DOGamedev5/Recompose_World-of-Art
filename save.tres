@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://gameplay/saves/saveResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+played = true
+version = "v0.9.5"
+currentWorld = "sandDesert"
+worldPosition = Vector2( 0, 0 )
+player = {
+"player": "res://entities/player/powerStates/normal/playerNormal.tscn",
+"playerProperties": {
+"name": "rodolfo"
+},
+"position": Vector2( 664, -62.7 )
+}

@@ -438,7 +438,7 @@ margin_right = 16.0
 margin_top = 16.0
 margin_bottom = 32.0
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" groups=["playerHUD"]]
 layer = 3
 script = ExtResource( 4 )
 
@@ -1389,7 +1389,6 @@ text = "player_conf_exit"
 
 [connection signal="pressed" from="container/HUD/Control/inventoryButton" to="." method="_on_inventoryButton_pressed"]
 [connection signal="dir_selected" from="DEBUG/worldSelect" to="DEBUG" method="_on_worldSelect_dir_selected"]
-[connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/debugButton" to="DEBUG" method="debugButtonPressed"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/world" to="DEBUG" method="_on_room_pressed"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/go to room" to="DEBUG" method="_on_go_to_room_pressed"]
 [connection signal="visibility_changed" from="inventory" to="inventory" method="_on_inventory_visibility_changed"]

@@ -8,6 +8,6 @@ func _ready():
 
 func _on_coin_area_entered(area):
 	if not area.is_in_group("player"): return
-	Global.addToRoomData(name, "collectedCoins")
+	Global.addToRoomData(owner.ID, name, "collectedCoins")
 	
 	queue_free()

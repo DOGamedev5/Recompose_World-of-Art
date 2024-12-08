@@ -19,10 +19,11 @@ var currentHelloPart := 0
 var extended := false
 
 func _ready():
+	Global.save = SaveGame.new() if not Global.save else Global.save
 	if not Global.save.played:
 		cinemaitc.setup(dialogs)
 		cinemaitc.play("hello")
-		Global.playerHud.dialog.connect("dialogClosed", self, "_on_dialog_dialogClosed")
+		$"../HUD".dialog.connect("dialogClosed", self, "_on_dialog_dialogClosed")
 		
 func _input(_event):
 	if Input.is_action_just_pressed("ui_enter") and $contract/Control/TextureRect/LineEdit.editable and $contract.visible:

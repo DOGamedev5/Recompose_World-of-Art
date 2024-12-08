@@ -7,7 +7,7 @@ func enter(_ls):
 
 func process_physics(_delta):
 	
-	var direction : Vector2 = (Global.player.global_position - parent.global_position).normalized()
+	var direction : Vector2 = (owner.player.global_position - parent.global_position).normalized()
 	
 	parent.motion = direction * parent.MAXSPEED
 
