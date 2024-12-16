@@ -1,4 +1,4 @@
-extends PathBase
+extends TeleportBase
 
 export(int, "left", "right", "up", "down") var direction := 1 setget setDirection
 
@@ -6,22 +6,26 @@ onready var camera := $Camera2D
 
 var enteredArea := false
 
+func teleport():
+	destination.init()
+
 func _ready():
 	warpType = "tube"
 	
-	var currentRoom = Global.world.currentRoom
-	
-	camera.limit_left = currentRoom.limitsMin.x
-	camera.limit_top = currentRoom.limitsMin.y
-	camera.limit_right = currentRoom.limitsMax.x
-	camera.limit_bottom = currentRoom.limitsMax.y
+
 	setDirection(direction)
 	
-	var textureName = Global.currentRoom.world.get_file()
-	$sprite.texture = load("res://objects/tubeEnter/sprites/%s.pxo" % (textureName))
+#	var textureName = Global.currentWorldName
+#	$sprite.texture = load("res://objects/tubeEnter/sprites/%s.pxo" % (textureName))
 
 func _physics_process(_delta):
 	if enteredArea and detectEnter() and not $AnimationPlayer.is_playing():
+		Global.player.resetParticles()
+		camera.limit_left = Global.world.cameraLimitsMin.x
+		camera.limit_top = Global.world.cameraLimitsMin.y
+		camera.limit_right = Global.world.cameraLimitsMax.x
+		camera.limit_bottom = Global.world.cameraLimitsMax.y
+		
 		Global.player.pause_mode = Node.PAUSE_MODE_STOP
 		Global.player.active = false
 		Global.player.motion = Vector2.ZERO
@@ -29,7 +33,10 @@ func _physics_process(_delta):
 		$Camera2D.current = true
 		$AnimationPlayer.play("enter")
 		yield($AnimationPlayer, "animation_finished")
-		changeRoom()
+		Global.playerHud.transition.transitionIn()
+		yield(Global.playerHud.transition, "transitionedIn")
+		
+		teleport()
 
 func detectEnter():
 	match direction:
@@ -53,14 +60,12 @@ func setDirection(value):
 			
 			rect.position = Vector2(-40, 0)
 			
-			
 		1:
 			sprite.flip_h = false
 			sprite.flip_v = false			
 			sprite.rotation_degrees = 0
 			
 			rect.position = Vector2(40, 0)
-		
 			
 		2:
 			sprite.flip_h = false
@@ -76,8 +81,8 @@ func setDirection(value):
 			
 			rect.position = Vector2(0, 40)
 
-
 func init():
+	
 	var directions := [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 	
 	Global.player.moving = false
@@ -87,13 +92,13 @@ func init():
 	
 	$AnimationPlayer.play("enter")
 	yield($AnimationPlayer, "animation_finished")
+	Global.playerHud.transition.transitionOut()
+	yield(Global.playerHud.transition, "transitionedOut")
 	
 	Global.player.visible = true
 	Global.player.camera.current = true
 	Global.player.moving = true
 	Global.player.active = true
-	
-
 
 func _on_Node2D_area_entered(area):
 	var object = area.get_parent()

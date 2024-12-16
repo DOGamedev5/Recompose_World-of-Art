@@ -112,29 +112,26 @@ func _process(_delta):
 	var label : Label
 	label = LoadScreen.get_node("Control/Control/Label")
 	
-	var t = OS.get_ticks_msec()
+	var error = loader.poll()
+	
+	if error == OK:
+		if label: label.text = "%0d%%" % (float(loader.get_stage()) / loader.get_stage_count() * 100)
 
-	while OS.get_ticks_msec() < t + time_max:
-		var error = loader.poll()
+	elif error == ERR_FILE_EOF:
+		var result = loader.get_resource()
 		
-		if error == OK:
-			if label: label.text = "%0d%%" % (float(loader.get_stage()) / loader.get_stage_count() * 100)
-
-		elif error == ERR_FILE_EOF:
-			var result = loader.get_resource()
-			
-			if queueLoad[0].type == 1:
-				get_tree().change_scene_to(result)
-			else: 
-				queueLoad[0].end(result.instance())
-			
-			queueLoad[0].queue_free()
-			queueLoad.pop_front()
-			
-			emit_signal("objectLoaded", result)
-			break
-			
-		else:
-			push_error("erro when loading '{0}', error {1}".format([queueLoad[0].path, error]))
+		if queueLoad[0].type == 1:
+			get_tree().change_scene_to(result)
+		else: 
+			queueLoad[0].end(result.instance())
+		
+		queueLoad[0].queue_free()
+		queueLoad.pop_front()
+		
+		emit_signal("objectLoaded", result)
+#		break
+		
+	else:
+		push_error("erro when loading '{0}', error {1}".format([queueLoad[0].path, error]))
 	
 	

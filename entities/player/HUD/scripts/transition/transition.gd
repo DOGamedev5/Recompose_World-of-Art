@@ -5,9 +5,9 @@ onready var colorRect = $ColorRect
 onready var timer = $Timer
 
 signal transitionedIn
+signal transitionedOut
 
 func transitionIn():
-	Global.player.active = false
 	visible = true
 	timer.start()
 	tween.interpolate_property(
@@ -26,7 +26,6 @@ func transitionIn():
 
 
 func transitionOut():
-	
 	if not timer.is_stopped():
 		yield(timer, "timeout")
 	
@@ -42,6 +41,6 @@ func transitionOut():
 	tween.start()
 	
 	yield(tween, "tween_all_completed")
+	emit_signal("transitionedOut")
 	
-	Global.player.active = true
 	visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://dimensions/literatureArt/rooms/room3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://dimensions/literatureArt/rooms/room1.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://dimensions/literatureArt/background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://dimensions/literatureArt/rooms/room4.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=9]
+[ext_resource path="res://objects/tubeEnter/tubeEnter.tscn" type="PackedScene" id=10]
 
 [node name="world" type="Node2D"]
 script = ExtResource( 6 )
@@ -41,3 +42,12 @@ ID = 4
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( -344, 384 )
 script = ExtResource( 9 )
+
+[node name="tube" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3328, 1768 )
+destinationPath = NodePath("../tube2")
+
+[node name="tube2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 608, 520 )
+destinationPath = NodePath("../tube")
+direction = 0

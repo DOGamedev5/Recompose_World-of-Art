@@ -13,9 +13,13 @@ var clock := false
 onready var timer := Timer.new()
 var player
 
+onready var cameraLimitsMin := Vector2(-10000000, -10000000)
+onready var cameraLimitsMax := Vector2(10000000, 10000000)
+
 func _ready():
 	Global.save = SaveGame.new() if not Global.save else Global.save
 	Global.in_game = true
+	Global.world = self
 	timer.one_shot = true
 	add_child(timer)
 	
@@ -39,6 +43,8 @@ func _ready():
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
+	cameraLimitsMin = limitsMin
+	cameraLimitsMax = limitsMax
 
 func _simplesLightToggled(value): 
 	canvasModulate.visible = value

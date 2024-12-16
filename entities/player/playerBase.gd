@@ -223,7 +223,7 @@ func move():
 		
 		snap = Vector2.DOWN * SNAPLENGTH
 
-	motion = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP) 
+	motion = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true) 
 	currentSnapLength = snap.y
 
 func desaccelerate(MotionCord : float, input := .0):
@@ -260,9 +260,6 @@ func onFloor():
 	return is_on_floor()
 	
 func onSlope():
-
-	
-	
 	return onFloor() and abs(spriteGizmo.rotation) >= 0.4
 
 func onWall():
