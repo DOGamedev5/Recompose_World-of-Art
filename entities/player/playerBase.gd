@@ -189,7 +189,7 @@ func idleBase():
 	motion.x = desaccelerate(motion.x)
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
-	var input := Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1])
+	var input := sign(Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1]))
 	if cinematic:
 		input = 0
 

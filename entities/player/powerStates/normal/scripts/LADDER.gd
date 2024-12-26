@@ -30,7 +30,7 @@ func process_state():
 	return null
 
 func process_physics(_delta):
-	var input := Input.get_axis("ui_up", "ui_down")
+	var input := sign(Input.get_axis("ui_up", "ui_down"))
 	parent.motion.y = input * 400
 	if input == 0:
 		parent.ladderPlayback.stop()

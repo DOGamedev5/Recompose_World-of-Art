@@ -21,7 +21,7 @@ func enter(_lastState):
 	parent.attackComponents[0].setDamage(1)
 	attackTimer.start()
 	
-	atkDirection = Input.get_axis("ui_left", "ui_right")
+	atkDirection = sign(Input.get_axis("ui_left", "ui_right"))
 	if atkDirection == 0:
 		atkDirection = (1 - (2 * int(parent.fliped)))
 	
