@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
+[ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=1]
 [ext_resource path="res://objects/destrutiveBlocks/normal/32x32/destrutiveBlock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://dimensions/literatureArt/tileset/literatureArt.tres" type="TileSet" id=4]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=5]
@@ -11,9 +12,17 @@
 [ext_resource path="res://entities/placa/plate.tscn" type="PackedScene" id=11]
 [ext_resource path="res://dimensions/classes/clockBlock/clockBlock.tscn" type="PackedScene" id=12]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1885, 380 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 652, 936 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1904, 392 )
+
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 5 )
-warp = [ NodePath(""), NodePath("") ]
 limitsMin = Vector2( 0, -1200 )
 limitsMax = Vector2( 5760, 1992 )
 
@@ -1331,3 +1340,23 @@ solid = false
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 2868, 392 )
 scale = Vector2( 298, 167.2 )
+
+[node name="CameraLimitsArea" type="Area2D" parent="."]
+script = ExtResource( 1 )
+limitsMax = Vector2( 1e+07, 248 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]
+position = Vector2( 1875, -268 )
+shape = SubResource( 1 )
+
+[node name="CameraLimitsArea2" type="Area2D" parent="."]
+script = ExtResource( 1 )
+limitsMax = Vector2( 5384, 1920 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea2"]
+position = Vector2( 4412, 360 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraLimitsArea2"]
+position = Vector2( 1856, 1088 )
+shape = SubResource( 3 )

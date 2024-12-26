@@ -15,8 +15,6 @@ region = Rect2( 72, 32, 112, 64 )
 collision_layer = 1024
 collision_mask = 0
 script = ExtResource( 3 )
-roomPath = "res://worlds/paintWorld/especialRooms/room1/room1.tscn"
-category = "especialRooms"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -44 )
@@ -35,6 +33,6 @@ margin_top = -128.0
 margin_right = 0.0
 margin_bottom = -128.0
 areaInteractPath = NodePath("..")
-text = "E"
+content = [ "/btn:interact" ]
 
 [connection signal="interacted" from="interactBallon" to="." method="changeRoom"]

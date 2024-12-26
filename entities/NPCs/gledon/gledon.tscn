@@ -67,7 +67,7 @@ margin_top = -80.0
 margin_right = 0.0
 margin_bottom = -80.0
 areaInteractPath = NodePath("../Area2D")
-text = "E"
+content = [ "/btn:interact" ]
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

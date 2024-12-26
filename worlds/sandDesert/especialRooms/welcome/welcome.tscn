@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://worlds/sandDesert/especialRooms/welcome/welcome.gd" type="Script" id=1]
 [ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://entities/NPCs/soldiers/Soldier2.tscn" type="PackedScene" id=18]
 [ext_resource path="res://addons/controller_icons/objects/TextureRect.gd" type="Script" id=19]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=20]
+[ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=21]
 
 [sub_resource type="TileSet" id=1]
 0/name = "caveEnter.pxo 0"
@@ -161,6 +162,9 @@ outline_size = 2
 outline_color = Color( 0.784314, 0.886275, 0.898039, 1 )
 extra_spacing_char = 2
 font_data = ExtResource( 15 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 2632, 448 )
 
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 1 )
@@ -374,3 +378,13 @@ fliped = true
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( 1736, -64 )
 script = ExtResource( 20 )
+
+[node name="CameraLimitsArea" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 21 )
+limitsMin = Vector2( 8, -1e+07 )
+limitsMax = Vector2( 5232, 2720 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]
+position = Vector2( 2616, -160 )
+shape = SubResource( 13 )

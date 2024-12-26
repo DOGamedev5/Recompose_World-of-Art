@@ -24,11 +24,8 @@ extents = Vector2( 112, 48 )
 
 [node name="room1" type="Node2D"]
 script = ExtResource( 4 )
-warp = [ NodePath("RoomWarp"), NodePath("RoomWarp2") ]
-doors = [ NodePath("door") ]
 limitsMin = Vector2( -240, -736 )
 limitsMax = Vector2( 1664, 208 )
-canvasModulateColor = Color( 0.541176, 0.552941, 0.627451, 1 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -50,7 +47,6 @@ collision_layer = 1024
 collision_mask = 0
 monitoring = false
 script = ExtResource( 3 )
-roomID = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom"]
 position = Vector2( 32, 8 )
@@ -62,7 +58,6 @@ collision_layer = 1024
 collision_mask = 0
 monitoring = false
 script = ExtResource( 3 )
-roomID = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeRoom2"]
 position = Vector2( 72, 12 )
@@ -138,12 +133,9 @@ position = Vector2( 352, -224 )
 
 [node name="plate" parent="." instance=ExtResource( 10 )]
 position = Vector2( 288, 64 )
-information = "other_tutor_1"
 
 [node name="door" parent="." instance=ExtResource( 11 )]
 position = Vector2( -32, -96 )
-roomPath = "res://worlds/paintWorld/especialRooms/room1/room1.tscn"
-category = "especialRooms"
 
 [node name="Guardaint" parent="." instance=ExtResource( 12 )]
 position = Vector2( -192, -96 )
