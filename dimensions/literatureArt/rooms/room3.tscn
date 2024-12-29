@@ -13,13 +13,13 @@
 [ext_resource path="res://dimensions/classes/clockBlock/clockBlock.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1885, 380 )
+extents = Vector2( 257, 380 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 652, 936 )
+extents = Vector2( 2208, 596 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 1904, 392 )
+extents = Vector2( 2520, 392 )
 
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 5 )
@@ -1343,10 +1343,10 @@ scale = Vector2( 298, 167.2 )
 
 [node name="CameraLimitsArea" type="Area2D" parent="."]
 script = ExtResource( 1 )
-limitsMax = Vector2( 1e+07, 248 )
+limitsMax = Vector2( 1e+07, 96 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]
-position = Vector2( 1875, -268 )
+position = Vector2( 247, -268 )
 shape = SubResource( 1 )
 
 [node name="CameraLimitsArea2" type="Area2D" parent="."]
@@ -1354,9 +1354,9 @@ script = ExtResource( 1 )
 limitsMax = Vector2( 5384, 1920 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea2"]
-position = Vector2( 4412, 360 )
+position = Vector2( 2736, 92 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraLimitsArea2"]
-position = Vector2( 1856, 1088 )
+position = Vector2( 2472, 1088 )
 shape = SubResource( 3 )

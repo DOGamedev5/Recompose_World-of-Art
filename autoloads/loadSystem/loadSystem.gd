@@ -81,7 +81,7 @@ func addToQueueChangeScene(path):
 	queueLoad.append(QueueObject.new(path, {
 		type = 1,
 		property = "current_scene",
-		propertyReceiver = get_tree(),
+		propertyReceiver = Global.tree,
 	}))
 
 func addToQueueAddScene(path : String, objectReceiver : Object, addDeffered := false, property := "", propertyReceiver : Object = null):
@@ -121,7 +121,7 @@ func _process(_delta):
 		var result = loader.get_resource()
 		
 		if queueLoad[0].type == 1:
-			get_tree().change_scene_to(result)
+			Global.tree.change_scene_to(result)
 		else: 
 			queueLoad[0].end(result.instance())
 		

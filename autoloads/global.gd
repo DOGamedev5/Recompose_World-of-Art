@@ -2,6 +2,7 @@ extends Node
 
 const optionsSavePath = "user://options.tres"
 
+onready var tree := get_tree()
 onready var player : PlayerBase
 onready var playerHud : PlayerHud
 onready var languagesID : Array
@@ -111,7 +112,6 @@ func bin_array(n : int, size := 8):
 	while ret_array.size() < size:
 		ret_array.insert(0, 0)
 	
-	print(ret_array)
 	return ret_array
 	
 	

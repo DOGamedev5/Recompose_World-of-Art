@@ -15,6 +15,8 @@
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookFly.pxo" type="Texture" id=13]
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookFlyOut.pxo" type="Texture" id=14]
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
 [sub_resource type="CircleShape2D" id=35]
 radius = 28.0
 
@@ -399,8 +401,6 @@ graph_offset = Vector2( 0, 87.202 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
-
 [node name="playerBook" groups=["book"] instance=ExtResource( 1 )]
 script = ExtResource( 6 )
 stateMachinePath = NodePath("StateMachine")
@@ -412,6 +412,9 @@ JUMPFORCE = -500
 
 [node name="coyoteTimer" parent="." index="1"]
 wait_time = 0.5
+
+[node name="AnimationTree" parent="shieldSystem" index="0"]
+parameters/playback = SubResource( 1 )
 
 [node name="StateMachine" type="Node" parent="." index="14"]
 script = ExtResource( 2 )
@@ -461,6 +464,3 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 root_motion_track = NodePath("sprite:frame")
 parameters/playback = SubResource( 11 )
-
-[node name="AnimationTree" parent="shieldSystem" index="0"]
-parameters/playback = SubResource( 1 )

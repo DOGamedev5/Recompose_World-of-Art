@@ -250,12 +250,13 @@ default_bus_layout="res://audio/default_bus_layout.tres"
 
 [autoload]
 
-Global="*res://gameplay/global.gd"
-FileSystemHandler="*res://gameplay/classes/fileSystemHandler.gd"
-LoadScreen="*res://gameplay/loadSystem/loadScreen.tscn"
-LoadSystem="*res://gameplay/loadSystem/loadSystem.gd"
+Global="*res://autoloads/global.gd"
+FileSystemHandler="*res://autoloads/fileSystemHandler.gd"
+LoadScreen="*res://autoloads/loadSystem/loadScreen.tscn"
+LoadSystem="*res://autoloads/loadSystem/loadSystem.gd"
 AudioManager="*res://audio/audioSystem/audioSystem.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
+InputHandler="*res://autoloads/inputHandler.gd"
 
 [display]
 
@@ -393,6 +394,10 @@ inventory={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":73,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[input_devices]
+
+buffering/agile_event_flushing=true
 
 [layer_names]
 

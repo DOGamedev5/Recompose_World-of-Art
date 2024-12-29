@@ -12,7 +12,6 @@ func itsDamaged(dir):
 	parent.motion.x = 600 * direction
 	parent.shield()
 
-
 func process_state():
 	if parent.motion.x == 0:
 		if not parent.onFloor():

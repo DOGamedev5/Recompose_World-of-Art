@@ -9,7 +9,6 @@ var warpType := "warp"
 func teleport():
 	if not destination: return
 	destination.init()
-	print("B")
 
 func init():
 	Global.player.global_position = global_position
