@@ -26,7 +26,7 @@ func process_state():
 	elif Input.is_action_just_pressed("attack") and parent.canAttack:
 		return "ATTACK"
 	
-	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
+	elif Input.get_axis("ui_up", "ui_down") and parent.canLadder:
 		return "LADDER"
 	
 	return null
