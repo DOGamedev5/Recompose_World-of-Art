@@ -82,23 +82,20 @@ func setDirection(value):
 			rect.position = Vector2(0, 40)
 
 func init():
-	
 	var directions := [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 	
 	Global.player.moving = false
 	$Camera2D.current = true
 	
 	Global.player.global_position = (global_position + directions[direction] * 86) + Vector2.DOWN*32
+	Global.world.setCameraLimits(limitsMin + global_position, limitsMax + global_position)
 	
 	$AnimationPlayer.play("enter")
 	yield($AnimationPlayer, "animation_finished")
 	Global.playerHud.transition.transitionOut()
 	yield(Global.playerHud.transition, "transitionedOut")
 	
-	Global.player.visible = true
-	Global.player.camera.current = true
-	Global.player.moving = true
-	Global.player.active = true
+	teleportFinish()
 
 func _on_Node2D_area_entered(area):
 	var object = area.get_parent()

@@ -4,10 +4,11 @@ class_name PlayerBase extends KinematicBody2D
 onready var coyoteTimer := $coyoteTimer
 onready var jumpBufferTimer := $jumpBuffer
 onready var onWallRayCast := [$onWallTop, $onWallMid, $onWallDown]
-onready var collideUPCast = [$collideUpBack, $collideUp, $collideUpFront]
-onready var shieldTimer = $shieldSystem/shield
-onready var animationShield = $shieldSystem/AnimationTree["parameters/playback"]
-onready var camera = $Camera2D
+onready var collideUPCast := [$collideUpBack, $collideUp, $collideUpFront]
+onready var shieldTimer := $shieldSystem/shield
+onready var animationShield : AnimationNodeStateMachinePlayback = $shieldSystem/AnimationTree["parameters/playback"]
+onready var camera := $Camera2D
+onready var hitbox := $HitboxComponent
 
 const SNAPLENGTH := 32
 

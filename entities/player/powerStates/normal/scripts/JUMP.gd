@@ -34,7 +34,7 @@ func process_state():
 		return "ATTACK"
 	
 #	elif (InputHandler.InputPressed("ui_up") or InputHandler.InputPressed("ui_down")) and parent.canLadder:
-	elif (Input.get_axis("ui_up", "ui_down") and parent.canLadder:
+	elif Input.get_axis("ui_up", "ui_down") and parent.canLadder:
 		return "LADDER"
 	
 	return null

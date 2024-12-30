@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://dimensions/literatureArt/rooms/room3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://dimensions/literatureArt/rooms/room1.tscn" type="PackedScene" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=9]
 [ext_resource path="res://objects/tubeEnter/tubeEnter.tscn" type="PackedScene" id=10]
 [ext_resource path="res://dimensions/literatureArt/rooms/room5.tscn" type="PackedScene" id=11]
+[ext_resource path="res://dimensions/literatureArt/rooms/room6.tscn" type="PackedScene" id=12]
+[ext_resource path="res://dimensions/literatureArt/rooms/room7.tscn" type="PackedScene" id=13]
+[ext_resource path="res://dimensions/literatureArt/rooms/room8.tscn" type="PackedScene" id=14]
 
 [node name="world" type="Node2D"]
 script = ExtResource( 6 )
@@ -26,32 +29,68 @@ motion/sync_to_physics = false
 
 [node name="RoomClass2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -504, 672 )
+__meta__ = {
+"_edit_lock_": true
+}
 ID = 1
 
 [node name="RoomClass" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1368, 672 )
+__meta__ = {
+"_edit_lock_": true
+}
 ID = 2
 
 [node name="RoomClass3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 4200, 672 )
+__meta__ = {
+"_edit_lock_": true
+}
 ID = 3
 
 [node name="RoomClass4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 3384, 1920 )
-ID = 4
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="RoomClass5" parent="." instance=ExtResource( 11 )]
-position = Vector2( 4328, 4272 )
+position = Vector2( -664, 4592 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RoomClass6" parent="." instance=ExtResource( 12 )]
+position = Vector2( 5512, 4384 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RoomClass7" parent="." instance=ExtResource( 13 )]
+position = Vector2( 7688, 4384 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="room8" parent="." instance=ExtResource( 14 )]
+position = Vector2( 5640, 6832 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( -344, 384 )
 script = ExtResource( 9 )
 
 [node name="tube" parent="." instance=ExtResource( 10 )]
-position = Vector2( 4440, 4192 )
+position = Vector2( -552, 4512 )
 destinationPath = NodePath("../tube2")
+limitsMin = Vector2( -280, -1408 )
+limitsMax = Vector2( 6520, 616 )
 
 [node name="tube2" parent="." instance=ExtResource( 10 )]
 position = Vector2( 4024, 2496 )
 destinationPath = NodePath("../tube")
+limitsMin = Vector2( -1e+07, -816 )
+limitsMax = Vector2( 736, 928 )
 direction = 0

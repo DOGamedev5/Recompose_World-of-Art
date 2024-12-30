@@ -14,8 +14,6 @@ extents = Vector2( 956, 552 )
 
 [node name="RoomClass2" type="Node2D"]
 script = ExtResource( 4 )
-limitsMin = Vector2( -168, -1224 )
-limitsMax = Vector2( 1792, 16 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -222,12 +220,14 @@ position = Vector2( 216, -288 )
 content = [ "/btn:ui_jump" ]
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 position = Vector2( 824, -592 )
 scale = Vector2( 106.4, 68.8 )
 process_parent = true
 physics_process_parent = true
 
 [node name="CameraLimitsArea" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 1 )
 limitsMin = Vector2( -168, -1224 )
 limitsMax = Vector2( 1e+07, 32 )

@@ -256,7 +256,6 @@ LoadScreen="*res://autoloads/loadSystem/loadScreen.tscn"
 LoadSystem="*res://autoloads/loadSystem/loadSystem.gd"
 AudioManager="*res://audio/audioSystem/audioSystem.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
-InputHandler="*res://autoloads/inputHandler.gd"
 
 [display]
 

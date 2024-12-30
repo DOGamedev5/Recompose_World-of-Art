@@ -11,8 +11,6 @@ extents = Vector2( 1380, 392 )
 
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 1 )
-limitsMin = Vector2( 0, -1168 )
-limitsMax = Vector2( 2736, 80 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -123,10 +121,12 @@ content = [ "/btn:run", "+", "/btn:ui_right" ]
 fliped = true
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 position = Vector2( 1368, -552 )
 scale = Vector2( 144.8, 71.2 )
 
 [node name="CameraLimitsArea" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 2 )
 limitsMin = Vector2( -1e+07, -1200 )
 limitsMax = Vector2( 1e+07, 96 )

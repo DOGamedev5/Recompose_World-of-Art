@@ -20,8 +20,7 @@ extents = Vector2( 536, 240 )
 
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 1 )
-limitsMin = Vector2( -1664, -776 )
-limitsMax = Vector2( 728, 848 )
+ID = 4
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -631,12 +630,14 @@ position = Vector2( -624, 560 )
 position = Vector2( 176, -288 )
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 position = Vector2( -464, 7.99997 )
 scale = Vector2( 126.4, 92 )
 process_parent = true
 physics_process_parent = true
 
 [node name="CameraLimitsArea" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 7 )
 limitsMin = Vector2( -1880, -816 )
 limitsMax = Vector2( 1e+07, 928 )
@@ -650,6 +651,7 @@ position = Vector2( -1020, 472 )
 shape = SubResource( 2 )
 
 [node name="CameraLimitsArea2" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 7 )
 limitsMin = Vector2( -1e+07, -816 )
 limitsMax = Vector2( 736, 928 )
