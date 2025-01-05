@@ -17,6 +17,9 @@
 
 [node name="world" type="Node2D"]
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_vertical_guides_": [ 2704.0 ]
+}
 portalWarps = [ NodePath("RoomWarp") ]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 7 )]

@@ -11,7 +11,7 @@ worldPosition = Vector2( 0, 0 )
 player = {
 "player": "res://entities/player/powerStates/normal/playerNormal.tscn",
 "playerProperties": {
-"name": "rodolfo"
+"name": "e"
 },
-"position": Vector2( 664, -62.7 )
+"position": Vector2( 664, 105.981 )
 }

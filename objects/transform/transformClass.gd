@@ -18,10 +18,10 @@ func _ready():
 	animationPlayer = get_node(animationPlayerPath)
 	camera = get_node(cameraPath)
 	
-	camera["limit_left"] = limitsMin.x + int(global_position.x)
-	camera["limit_top"] = limitsMin.y + int(global_position.y)
-	camera["limit_right"] = limitsMax.x + int(global_position.x)
-	camera["limit_bottom"] = limitsMax.y + int(global_position.y)
+	camera["limit_left"] = int(limitsMin.x + global_position.x)
+	camera["limit_top"] = int(limitsMin.y + global_position.y)
+	camera["limit_right"] = int(limitsMax.x + global_position.x)
+	camera["limit_bottom"] = int(limitsMax.y + global_position.y)
 	
 	var _1 = connect("area_entered", self, "areaEntered")
 

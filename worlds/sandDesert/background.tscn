@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://worlds/sandDesert/tilesets/backgroundDesert.pxo" type="Texture" id=1]
 [ext_resource path="res://worlds/sandDesert/tilesets/cloud.pxo" type="Texture" id=2]
@@ -12,6 +12,14 @@ colors = PoolColorArray( 0.345098, 0.603922, 0.823529, 1, 0.854902, 1, 0.752941,
 gradient = SubResource( 1 )
 
 [sub_resource type="CanvasItemMaterial" id=3]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.622857, 0.788571, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.298039, 0.0627451, 0.172549, 1, 0.941176, 0.811765, 0.498039, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+width = 1040
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 script = ExtResource( 5 )
@@ -88,6 +96,12 @@ position = Vector2( 1950, 56 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 2
+
+[node name="degrade" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 2600, 860 )
+rotation = -1.5708
+scale = Vector2( 1, 2600 )
+texture = SubResource( 5 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
 modulate = Color( 0.976562, 0.976562, 0.976562, 0.752941 )
