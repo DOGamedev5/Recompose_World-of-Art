@@ -6,6 +6,7 @@ func enter(_ls):
 	$Timer.start()
 
 func process_physics(_delta):
+	if not owner.player: return
 	
 	var direction : Vector2 = (owner.player.global_position - parent.global_position).normalized()
 	
@@ -15,5 +16,7 @@ func process_state():
 
 	if $Timer.is_stopped():
 		return "ATTACK"
+	if not owner.player:
+		return "IDLE"
 
 

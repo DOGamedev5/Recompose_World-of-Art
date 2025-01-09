@@ -13,7 +13,7 @@ script = ExtResource( 3 )
 [node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
 
 [node name="playerNormal" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3050, 552 )
+position = Vector2( 1024, 212 )
 motion/sync_to_physics = false
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]

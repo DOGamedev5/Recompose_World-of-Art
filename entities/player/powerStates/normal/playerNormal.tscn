@@ -1785,37 +1785,21 @@ position = Vector2( -13, -28 )
 [node name="rayShapeRight" parent="." index="4"]
 position = Vector2( 13, -28 )
 
-[node name="collideUp" parent="." index="5"]
-visible = false
-
-[node name="collideUpFront" parent="." index="6"]
-visible = false
-
-[node name="collideUpBack" parent="." index="7"]
-visible = false
-
 [node name="onWallTop" parent="." index="8"]
-visible = false
 position = Vector2( 0, -48 )
 
 [node name="onWallMid" parent="." index="9"]
-visible = false
 position = Vector2( 0, -28 )
 enabled = false
-
-[node name="onWallDown" parent="." index="10"]
-visible = false
 
 [node name="slopeDetect" parent="." index="11"]
 position = Vector2( 0, -16 )
 cast_to = Vector2( 0, 40 )
 
 [node name="slopeDetectLeft" parent="." index="12"]
-visible = false
 position = Vector2( -16, -16 )
 
 [node name="slopeDetectRight" parent="." index="13"]
-visible = false
 position = Vector2( 16, -16 )
 
 [node name="insideDetectLeft" parent="." index="14"]
@@ -1865,6 +1849,7 @@ position = Vector2( 0, -24 )
 shape = SubResource( 341 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="20"]
+visible = false
 position = Vector2( 0, -26 )
 shape = SubResource( 342 )
 disabled = true
@@ -2042,7 +2027,6 @@ position = Vector2( 0, 5 )
 cast_to = Vector2( 17, 0 )
 
 [node name="HitboxComponent" parent="." index="33"]
-visible = false
 collision_layer = 1536
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]

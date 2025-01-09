@@ -15,3 +15,5 @@ func process_physics(_delta):
 	if parent.player and $Timer.is_stopped() and not delay:
 		$Timer.start()
 		delay = true
+	elif not parent.player:
+		delay = false
