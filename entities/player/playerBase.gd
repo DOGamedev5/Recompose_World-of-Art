@@ -4,6 +4,7 @@ class_name PlayerBase extends KinematicBody2D
 onready var coyoteTimer := $coyoteTimer
 onready var jumpBufferTimer := $jumpBuffer
 onready var onWallRayCast := [$onWallTop, $onWallMid, $onWallDown]
+onready var insideDetect := [$insideDetectLeft, $insideDetectRight, $insideDetectLeft2, $insideDetectRight2]
 onready var collideUPCast := [$collideUpBack, $collideUp, $collideUpFront]
 onready var shieldTimer := $shieldSystem/shield
 onready var animationShield : AnimationNodeStateMachinePlayback = $shieldSystem/AnimationTree["parameters/playback"]
@@ -51,10 +52,11 @@ var shieldActived := false
 var currentSnapLength := .0
 var snapDesatived := false
 var canLadder := false
+var lockRotate := false
 
 var health = MAXHEALTH
 
-var inputCord := {
+const inputCord := {
 	"X" : ["ui_left", "ui_right"],
 	"Y" : ["ui_up", "ui_down"]
 }
@@ -63,13 +65,13 @@ func _ready():
 	get_parent().player = self
 	Global.player = self
 	$"../HUD".call_deferred("init", self)
-#	if Global.world.currentRoom:
-#		setCameraLimits(Global.world.currentRoom.limitsMin, Global.world.currentRoom.limitsMax)
 	
 	lastPosition = position
+	
 	if stateMachine: stateMachine.init(self)
 
 func physics_process(delta):
+	detectInside()
 	if not moving:
 		motion.x = 0
 	
@@ -110,6 +112,34 @@ func physics_process(delta):
 	if stateMachine:
 		stateMachine.processMachine(delta)
 
+func detectInside():
+	var normalMin := 0.8
+	
+	if not $rayShapeLeft.disabled:
+		if insideDetect[2].is_colliding():
+			$rayShapeLeft.disabled = (not abs(insideDetect[2].get_collision_normal().x) >= normalMin) #or not $slopeDetect.is_colliding()
+
+		else:
+			$rayShapeLeft.disabled = true
+	else:
+		if insideDetect[0].is_colliding():
+			$rayShapeLeft.disabled = not abs(insideDetect[0].get_collision_normal().x) >= normalMin
+
+		else:
+			$rayShapeLeft.disabled = true
+	
+	if not $rayShapeRight.disabled:
+		if insideDetect[3].is_colliding():
+			$rayShapeRight.disabled = (not abs(insideDetect[3].get_collision_normal().x) >= normalMin) #or not $slopeDetect.is_colliding()
+		else:
+			$rayShapeRight.disabled = true
+	else:
+		if insideDetect[1].is_colliding():
+			$rayShapeRight.disabled = abs(insideDetect[1].get_collision_normal().x) >= normalMin
+		else:
+			$rayShapeRight.disabled = true
+	
+
 func rotateNormal():
 	var floorNormal : Vector2 = getSlopeNormal()
 	
@@ -122,6 +152,10 @@ func rotateNormal():
 
 func rotateSprite():
 	if not spriteGizmo: return
+	
+	if lockRotate:
+		$sprite.rotation = 0
+		return
 	
 	var floorNormal : Vector2 = rotateNormal()
 	var weight := 0.2
@@ -224,6 +258,8 @@ func move():
 		
 		snap = Vector2.DOWN * SNAPLENGTH
 
+	if motion: detectInside()
+	
 	motion = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true) 
 	currentSnapLength = snap.y
 

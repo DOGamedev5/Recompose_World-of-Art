@@ -9,6 +9,7 @@ func _init():
 	
 	var _1 := connect("area_entered", self, "entered")
 	
+
 func entered(area):
 	
 	if area.get_parent().is_in_group("player"):

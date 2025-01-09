@@ -210,7 +210,7 @@ start_node = "IDLE"
 radius = 24.0
 
 [sub_resource type="CircleShape2D" id=7]
-radius = 216.0
+radius = 576.888
 
 [sub_resource type="CircleShape2D" id=8]
 radius = 32.9848
@@ -233,6 +233,7 @@ health = 2
 flipArea = true
 MAXSPEED = 200
 gravity = false
+canUnwatch = true
 
 [node name="Bugouth" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
@@ -307,3 +308,5 @@ script = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
 shape = SubResource( 9 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]

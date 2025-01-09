@@ -1779,42 +1779,52 @@ runningVelocity = 1000.0
 [node name="coyoteTimer" parent="." index="1"]
 wait_time = 0.15
 
-[node name="collideUp" parent="." index="3"]
+[node name="rayShapeLeft" parent="." index="3"]
+position = Vector2( -13, -28 )
+
+[node name="rayShapeRight" parent="." index="4"]
+position = Vector2( 13, -28 )
+
+[node name="collideUp" parent="." index="5"]
 visible = false
 
-[node name="collideUpFront" parent="." index="4"]
+[node name="collideUpFront" parent="." index="6"]
 visible = false
 
-[node name="collideUpBack" parent="." index="5"]
+[node name="collideUpBack" parent="." index="7"]
 visible = false
 
-[node name="onWallTop" parent="." index="6"]
+[node name="onWallTop" parent="." index="8"]
 visible = false
 position = Vector2( 0, -48 )
 
-[node name="onWallMid" parent="." index="7"]
+[node name="onWallMid" parent="." index="9"]
 visible = false
 position = Vector2( 0, -28 )
 enabled = false
 
-[node name="onWallDown" parent="." index="8"]
+[node name="onWallDown" parent="." index="10"]
 visible = false
 
-[node name="slopeDetect" parent="." index="9"]
+[node name="slopeDetect" parent="." index="11"]
 position = Vector2( 0, -16 )
-cast_to = Vector2( 0, 80 )
+cast_to = Vector2( 0, 40 )
 
-[node name="slopeDetectLeft" parent="." index="10"]
+[node name="slopeDetectLeft" parent="." index="12"]
+visible = false
 position = Vector2( -16, -16 )
 
-[node name="slopeDetectRight" parent="." index="11"]
+[node name="slopeDetectRight" parent="." index="13"]
+visible = false
 position = Vector2( 16, -16 )
 
-[node name="HitboxComponent" parent="." index="12"]
-visible = false
-collision_layer = 1536
+[node name="insideDetectLeft" parent="." index="14"]
+cast_to = Vector2( -17, 0 )
 
-[node name="topspeedParicle" type="CPUParticles2D" parent="." index="13"]
+[node name="insideDetectRight" parent="." index="15"]
+cast_to = Vector2( 17, 0 )
+
+[node name="topspeedParicle" type="CPUParticles2D" parent="." index="16"]
 material = SubResource( 193 )
 emitting = false
 amount = 12
@@ -1829,50 +1839,43 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="sprite" type="Node2D" parent="." index="14"]
-position = Vector2( 0, -32 )
+[node name="sprite" type="Node2D" parent="." index="17"]
+position = Vector2( 0, -2 )
 
 [node name="Sprite" type="Sprite" parent="sprite" index="0"]
+position = Vector2( 0, -30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="speedEffect" type="Sprite" parent="sprite" index="1"]
 self_modulate = Color( 1, 1, 1, 0.79 )
-position = Vector2( 28, 0 )
+position = Vector2( 28, -30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 21 )
 hframes = 5
 frame = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="15"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="18"]
 position = Vector2( 0, -44 )
 shape = SubResource( 336 )
 
-[node name="rayShape" type="CollisionShape2D" parent="." index="16"]
+[node name="rayShape" type="CollisionShape2D" parent="." index="19"]
 position = Vector2( 0, -24 )
 shape = SubResource( 341 )
 
-[node name="rayShape2" type="CollisionShape2D" parent="." index="17"]
-position = Vector2( -16, -28 )
-shape = SubResource( 341 )
-
-[node name="rayShape3" type="CollisionShape2D" parent="." index="18"]
-position = Vector2( 16, -28 )
-shape = SubResource( 341 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="19"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="20"]
 position = Vector2( 0, -26 )
 shape = SubResource( 342 )
 disabled = true
 
-[node name="speedAnimation" type="AnimationPlayer" parent="." index="20"]
+[node name="speedAnimation" type="AnimationPlayer" parent="." index="21"]
 root_node = NodePath("../CollisionShape2D")
 autoplay = "speedEffect"
 anims/RESET = SubResource( 122 )
 anims/speedEffect = SubResource( 123 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="21"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="22"]
 anims/ATTACK = SubResource( 73 )
 anims/COUNCH = SubResource( 91 )
 anims/COUNCHFALL = SubResource( 127 )
@@ -1895,7 +1898,7 @@ anims/ToRun1 = SubResource( 196 )
 anims/ToRun2 = SubResource( 197 )
 anims/WALL = SubResource( 23 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="22"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="23"]
 tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
@@ -1909,7 +1912,7 @@ parameters/NORMAL/NORMAL/WALK/TimeScale/scale = 1.0
 parameters/RUN/RUN/playback = SubResource( 335 )
 parameters/WALLED/WALLED/playback = SubResource( 334 )
 
-[node name="attackPunch" type="Area2D" parent="." index="23"]
+[node name="attackPunch" type="Area2D" parent="." index="24"]
 visible = false
 position = Vector2( 35, -31 )
 collision_layer = 256
@@ -1921,7 +1924,7 @@ script = ExtResource( 20 )
 position = Vector2( 5, 3 )
 shape = SubResource( 86 )
 
-[node name="attackSpeed" type="Area2D" parent="." index="24"]
+[node name="attackSpeed" type="Area2D" parent="." index="25"]
 visible = false
 position = Vector2( 40, -23 )
 collision_layer = 256
@@ -1934,7 +1937,7 @@ damage = 2
 position = Vector2( 0, -5 )
 shape = SubResource( 85 )
 
-[node name="attackRoll" type="Area2D" parent="." index="25"]
+[node name="attackRoll" type="Area2D" parent="." index="26"]
 visible = false
 position = Vector2( 40, -23 )
 collision_layer = 256
@@ -1944,7 +1947,7 @@ script = ExtResource( 20 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackRoll" index="0"]
 shape = SubResource( 159 )
 
-[node name="StateMachine" type="Node" parent="." index="26"]
+[node name="StateMachine" type="Node" parent="." index="27"]
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
@@ -1993,7 +1996,7 @@ script = ExtResource( 31 )
 [node name="SUPERROLL" type="Node" parent="StateMachine" index="10"]
 script = ExtResource( 37 )
 
-[node name="a" type="Node2D" parent="." index="27"]
+[node name="a" type="Node2D" parent="." index="28"]
 z_index = 4
 
 [node name="Label" type="Label" parent="a" index="0"]
@@ -2005,7 +2008,7 @@ text = "a"
 align = 1
 valign = 1
 
-[node name="runningParticle" type="CPUParticles2D" parent="." index="28"]
+[node name="runningParticle" type="CPUParticles2D" parent="." index="29"]
 material = SubResource( 88 )
 emitting = false
 amount = 6
@@ -2024,9 +2027,23 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="specialEffectTimer" type="Timer" parent="." index="29"]
+[node name="specialEffectTimer" type="Timer" parent="." index="30"]
 wait_time = 0.075
 autostart = true
+
+[node name="insideDetectLeft2" parent="." index="31"]
+modulate = Color( 100, 0, 10, 1 )
+position = Vector2( 0, 5 )
+cast_to = Vector2( -17, 0 )
+
+[node name="insideDetectRight2" parent="." index="32"]
+modulate = Color( 100, 0, 10, 1 )
+position = Vector2( 0, 5 )
+cast_to = Vector2( 17, 0 )
+
+[node name="HitboxComponent" parent="." index="33"]
+visible = false
+collision_layer = 1536
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )

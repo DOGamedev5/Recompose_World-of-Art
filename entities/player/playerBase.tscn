@@ -1,7 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=2]
+
+[sub_resource type="RayShape2D" id=13]
+custom_solver_bias = 0.2
+length = 24.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 28 )
@@ -101,6 +105,16 @@ position = Vector2( 0, -96 )
 current = true
 editor_draw_limits = true
 
+[node name="rayShapeLeft" type="CollisionShape2D" parent="."]
+position = Vector2( -16, -28 )
+shape = SubResource( 13 )
+disabled = true
+
+[node name="rayShapeRight" type="CollisionShape2D" parent="."]
+position = Vector2( 16, -28 )
+shape = SubResource( 13 )
+disabled = true
+
 [node name="collideUp" type="RayCast2D" parent="."]
 position = Vector2( 0, -8 )
 enabled = true
@@ -145,6 +159,26 @@ cast_to = Vector2( 0, 32 )
 position = Vector2( 8, -16 )
 enabled = true
 cast_to = Vector2( 0, 32 )
+
+[node name="insideDetectLeft" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
+enabled = true
+cast_to = Vector2( -16, 0 )
+
+[node name="insideDetectRight" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+
+[node name="insideDetectLeft2" type="RayCast2D" parent="."]
+position = Vector2( 0, 8 )
+enabled = true
+cast_to = Vector2( -16, 0 )
+
+[node name="insideDetectRight2" type="RayCast2D" parent="."]
+position = Vector2( 0, 8 )
+enabled = true
+cast_to = Vector2( 16, 0 )
 
 [node name="HitboxComponent" type="Area2D" parent="." groups=["player"]]
 position = Vector2( 0, -2 )

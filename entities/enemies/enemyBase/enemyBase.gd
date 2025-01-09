@@ -38,6 +38,7 @@ var flipLock := false
 signal defeated(enemy)
 
 func _ready():
+	
 	add_to_group("enemy")
 	if visionArea:
 		
@@ -67,6 +68,7 @@ func _physics_process(delta):
 	gravityProcess()
 	
 	if player and not flipLock:
+		
 		
 		if motion.x:
 			fliped = motion.x < 0

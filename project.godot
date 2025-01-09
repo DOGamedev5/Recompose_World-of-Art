@@ -425,3 +425,7 @@ vram_compression/import_etc2=false
 2d/options/ninepatch_mode=0
 batching/lights/scissor_area_threshold=0.1
 environment/default_environment="res://default_env.tres"
+
+[tiled_importer]
+
+enable_json_format=true

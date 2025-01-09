@@ -7,6 +7,7 @@ func enter(lastState):
 	
 	if not parent.onFloor() or ["TOP_SPEED", "ATTACK", "ROLL", "JUMP", "FALL"].has(lastState):
 		parent.walledPlayback.travel("SPLAT")
+		parent.lockRotate = true
 		parent.stunned = true
 		$"Timer".start()
 		splat = true
@@ -55,6 +56,6 @@ func process_physics(_delta):
 		parent.stunned = false
 	
 func exit():
-		
+	parent.lockRotate = false
 	parent.stunned = false
 
