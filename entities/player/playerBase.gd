@@ -117,25 +117,25 @@ func detectInside():
 	
 	if not $rayShapeLeft.disabled:
 		if insideDetect[2].is_colliding():
-			$rayShapeLeft.disabled = (not abs(insideDetect[2].get_collision_normal().x) >= normalMin) #or not $slopeDetect.is_colliding()
+			$rayShapeLeft.disabled = (not abs(insideDetect[2].get_collision_normal().x) >= normalMin) and $slopeDetect.is_colliding()
 
 		else:
 			$rayShapeLeft.disabled = true
 	else:
 		if insideDetect[0].is_colliding():
-			$rayShapeLeft.disabled = not abs(insideDetect[0].get_collision_normal().x) >= normalMin
+			$rayShapeLeft.disabled = (not abs(insideDetect[0].get_collision_normal().x) >= normalMin) and $slopeDetect.is_colliding()
 
 		else:
 			$rayShapeLeft.disabled = true
 	
 	if not $rayShapeRight.disabled:
 		if insideDetect[3].is_colliding():
-			$rayShapeRight.disabled = (not abs(insideDetect[3].get_collision_normal().x) >= normalMin) #or not $slopeDetect.is_colliding()
+			$rayShapeRight.disabled = (not abs(insideDetect[3].get_collision_normal().x) >= normalMin) and $slopeDetect.is_colliding()
 		else:
 			$rayShapeRight.disabled = true
 	else:
 		if insideDetect[1].is_colliding():
-			$rayShapeRight.disabled = abs(insideDetect[1].get_collision_normal().x) >= normalMin
+			$rayShapeRight.disabled = (not abs(insideDetect[1].get_collision_normal().x) >= normalMin) and $slopeDetect.is_colliding()
 		else:
 			$rayShapeRight.disabled = true
 	
