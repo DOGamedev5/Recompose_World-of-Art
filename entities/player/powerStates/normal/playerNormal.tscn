@@ -1833,6 +1833,7 @@ texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="speedEffect" type="Sprite" parent="sprite" index="1"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.79 )
 position = Vector2( 28, -30 )
 scale = Vector2( 2, 2 )
@@ -1982,6 +1983,7 @@ script = ExtResource( 31 )
 script = ExtResource( 37 )
 
 [node name="a" type="Node2D" parent="." index="28"]
+visible = false
 z_index = 4
 
 [node name="Label" type="Label" parent="a" index="0"]
@@ -2017,12 +2019,10 @@ wait_time = 0.075
 autostart = true
 
 [node name="insideDetectLeft2" parent="." index="31"]
-modulate = Color( 100, 0, 10, 1 )
 position = Vector2( 0, 5 )
 cast_to = Vector2( -17, 0 )
 
 [node name="insideDetectRight2" parent="." index="32"]
-modulate = Color( 100, 0, 10, 1 )
 position = Vector2( 0, 5 )
 cast_to = Vector2( 17, 0 )
 

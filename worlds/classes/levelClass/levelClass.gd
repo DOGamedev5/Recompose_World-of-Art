@@ -24,6 +24,7 @@ func _ready():
 	add_child(timer)
 	
 	add_child(canvasModulate)
+	canvasModulate.color = canvasModulateColor
 	
 	if not Global.worldDataSetup:
 		Global.worldDataSetup = true
