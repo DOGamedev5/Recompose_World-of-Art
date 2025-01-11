@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://objects/cameraLimitsArea/cameraLimitsArea.gd"
 }, {
+"base": "Area2D",
+"class": "CanvasModulaterChanger",
+"language": "GDScript",
+"path": "res://worlds/classes/canvasModulateChanger/CanvasModulteChanger.gd"
+}, {
 "base": "PathBase",
 "class": "ChangeRoom",
 "language": "GDScript",
@@ -200,6 +205,7 @@ _global_script_class_icons={
 "BreakableTiles": "",
 "BreakableTilesManager": "",
 "CameraLimitsArea": "",
+"CanvasModulaterChanger": "",
 "ChangeRoom": "",
 "ControllerButton": "",
 "ControllerMapper": "",

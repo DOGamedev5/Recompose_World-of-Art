@@ -1,6 +1,7 @@
 class_name LevelClass extends Node2D
 
 export var canvasModulateColor := Color.white
+onready var currentColor : Color
 export(Array, NodePath) var doorWarps
 export(Array, NodePath) var normalWarps
 export(Array, NodePath) var tubeWarps
@@ -17,7 +18,8 @@ onready var cameraLimitsMin := Vector2(-10000000, -10000000)
 onready var cameraLimitsMax := Vector2(10000000, 10000000)
 
 func _ready():
-	Global.save = SaveGame.new() if not Global.save else Global.save
+	Global.save = SaveGame.new().set("played", true) if not Global.save else Global.save
+#	Global.save.played = true
 	Global.in_game = true
 	Global.world = self
 	timer.one_shot = true
@@ -25,6 +27,8 @@ func _ready():
 	
 	add_child(canvasModulate)
 	canvasModulate.color = canvasModulateColor
+	setCanvasModulate()
+	get_tree().call_group("canvasChanger", "set_color", currentColor)
 	
 	if not Global.worldDataSetup:
 		Global.worldDataSetup = true
@@ -41,6 +45,12 @@ func _ready():
 				get_node(portalWarps[Global.changingInfo.warpID]).init()
 	
 #	AudioManager.playMusic("paintCaverns")
+func _process(delta):
+	if canvasModulate.color != currentColor and canvasModulate.visible:
+
+		canvasModulate.color = lerp(canvasModulate.color, currentColor, 1.5*delta)
+		get_tree().call_group("canvasChanger", "set_color", canvasModulate.color)
+
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
@@ -52,10 +62,9 @@ func _simplesLightToggled(value):
 	if canvasModulate.visible:
 		canvasModulate.set_color(canvasModulateColor)
 
-func setCanvasModulate(color : Color):
-	canvasModulateColor = color
-	if canvasModulate.visible:
-		canvasModulate.set_color(canvasModulateColor)
+func setCanvasModulate(color : Color = canvasModulateColor):
+	currentColor = color
+	
 
 func loadSave():
 #	Global.player.active = false

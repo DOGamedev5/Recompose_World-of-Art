@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://worlds/sandDesert/especialRooms/welcome/welcome.tscn" type="PackedScene" id=1]
 [ext_resource path="res://worlds/sandDesert/background.tscn" type="PackedScene" id=2]
@@ -7,10 +7,18 @@
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://worlds/sandDesert/rooms/room1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://worlds/sandDesert/rooms/room2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://worlds/sandDesert/rooms/room3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://worlds/classes/canvasModulateChanger/CanvasModulteChanger.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1064, 148 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 168, 92 )
 
 [node name="world" type="Node2D"]
 script = ExtResource( 3 )
-canvasModulateColor = Color( 1.2, 1.2, 0.97, 1 )
+canvasModulateColor = Color( 1.3, 1.2, 0.97, 1 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
 
@@ -21,10 +29,27 @@ motion/sync_to_physics = false
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [node name="RoomClass" parent="." instance=ExtResource( 1 )]
-position = Vector2( 3016, 1136 )
+position = Vector2( 4336, 336 )
 
 [node name="room1" parent="." instance=ExtResource( 6 )]
 position = Vector2( 464, 128 )
 
 [node name="room2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2320, 0 )
+
+[node name="room3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 3632, 128 )
+
+[node name="CanvasModulteChanger" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2440, -160 )
+collision_layer = 0
+collision_mask = 256
+colorChange = Color( 0.564706, 0.423529, 0.235294, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasModulteChanger"]
+position = Vector2( 544, 140 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CanvasModulteChanger"]
+position = Vector2( 1552, -100 )
+shape = SubResource( 2 )
