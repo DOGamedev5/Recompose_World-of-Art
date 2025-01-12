@@ -24,3 +24,6 @@ func ative():
 func _toggledSimpleLight(value):
 	$lamp/Light.visible = value
 	light.enabled = !value
+
+func _toggledShadow(value):
+	light.shadow_enabled = value

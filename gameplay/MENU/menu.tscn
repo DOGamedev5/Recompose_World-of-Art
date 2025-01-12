@@ -1222,23 +1222,23 @@ custom_constants/separation = 24
 alignment = 1
 
 [node name="Label" type="Label" parent="options/VBoxContainer"]
-margin_top = 132.0
+margin_top = 122.0
 margin_right = 849.0
-margin_bottom = 183.0
+margin_bottom = 173.0
 custom_fonts/font = SubResource( 2 )
 text = "mn_opt"
 align = 1
 valign = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="options/VBoxContainer"]
-margin_top = 207.0
+margin_top = 197.0
 margin_right = 849.0
-margin_bottom = 367.0
+margin_bottom = 377.0
 custom_constants/separation = 128
 
 [node name="VBoxContainer" type="VBoxContainer" parent="options/VBoxContainer/HBoxContainer3"]
 margin_right = 360.0
-margin_bottom = 160.0
+margin_bottom = 180.0
 size_flags_horizontal = 3
 custom_constants/separation = 4
 
@@ -1334,7 +1334,7 @@ icon_align = 1
 [node name="VBoxContainer2" type="VBoxContainer" parent="options/VBoxContainer/HBoxContainer3"]
 margin_left = 488.0
 margin_right = 849.0
-margin_bottom = 160.0
+margin_bottom = 180.0
 size_flags_horizontal = 3
 custom_constants/separation = 4
 
@@ -1403,11 +1403,33 @@ margin_bottom = 42.0
 size_flags_horizontal = 10
 theme = SubResource( 38 )
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 138.0
+margin_right = 361.0
+margin_bottom = 180.0
+
+[node name="Label" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4"]
+margin_top = 8.0
+margin_right = 140.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_opt_cl"
+align = 1
+valign = 1
+
+[node name="color" type="CheckButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4"]
+margin_left = 297.0
+margin_right = 361.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+theme = SubResource( 38 )
+
 [node name="exit" type="Button" parent="options/VBoxContainer"]
 margin_left = 286.0
-margin_top = 391.0
+margin_top = 401.0
 margin_right = 562.0
-margin_bottom = 475.0
+margin_bottom = 485.0
 focus_neighbour_left = NodePath("../HBoxContainer3/VBoxContainer/music")
 focus_neighbour_right = NodePath("../HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight")
 size_flags_horizontal = 6
@@ -1770,6 +1792,7 @@ text = "yes"
 [connection signal="toggled" from="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight" to="options" method="_on_simpleLight_toggled"]
 [connection signal="toggled" from="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/shadow" to="options" method="_on_shadow_toggled"]
 [connection signal="toggled" from="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3/vsync" to="options" method="_on_vsync_toggled"]
+[connection signal="toggled" from="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4/color" to="options" method="_on_color_toggled"]
 [connection signal="pressed" from="options/VBoxContainer/exit" to="options" method="_on_exit_pressed"]
 [connection signal="pressed" from="saves/MarginContainer/VBoxContainer/HBoxContainer2/start" to="saves" method="_on_start_pressed"]
 [connection signal="pressed" from="saves/MarginContainer/VBoxContainer/HBoxContainer2/erase" to="saves" method="_on_erase_pressed"]

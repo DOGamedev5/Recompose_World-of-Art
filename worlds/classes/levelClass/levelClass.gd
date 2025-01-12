@@ -25,8 +25,10 @@ func _ready():
 	timer.one_shot = true
 	add_child(timer)
 	
+	canvasModulate.add_to_group("color")
 	add_child(canvasModulate)
 	canvasModulate.color = canvasModulateColor
+	canvasModulate.visible = Global.options.colorEffect
 	setCanvasModulate()
 	get_tree().call_group("canvasChanger", "set_color", currentColor)
 	
@@ -48,19 +50,14 @@ func _ready():
 func _process(delta):
 	if canvasModulate.color != currentColor and canvasModulate.visible:
 
-		canvasModulate.color = lerp(canvasModulate.color, currentColor, 1.5*delta)
-		get_tree().call_group("canvasChanger", "set_color", canvasModulate.color)
+		canvasModulate.color = lerp(canvasModulate.color, currentColor, 1.3*delta)
+		Global.tree.call_group("canvasChanger", "set_color", canvasModulate.color)
 
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
 	cameraLimitsMin = limitsMin
 	cameraLimitsMax = limitsMax
-
-func _simplesLightToggled(value): 
-	canvasModulate.visible = value
-	if canvasModulate.visible:
-		canvasModulate.set_color(canvasModulateColor)
 
 func setCanvasModulate(color : Color = canvasModulateColor):
 	currentColor = color

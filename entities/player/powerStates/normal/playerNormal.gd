@@ -45,7 +45,7 @@ func _physics_process(delta):
 	setFlipConfig()
 	setAttack()
 	
-	rotateSprite()
+	rotateSprite(delta)
 	
 	if active: move()
 	
@@ -69,8 +69,8 @@ func _physics_process(delta):
 	else:
 		canAttack = false
 
-func rotateNormal():
-	var floorNormal : Vector2 = .rotateNormal()
+func rotateNormal(delta):
+	var floorNormal : Vector2 = .rotateNormal(delta)
 	
 	if not onFloor()and running: floorNormal.x *= -1
 	

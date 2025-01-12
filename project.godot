@@ -410,7 +410,7 @@ buffering/agile_event_flushing=true
 2d_physics/layer_9="playerAttack"
 2d_physics/layer_10="enemyAttack"
 2d_physics/layer_11="anyAttack"
-2d_physics/layer_12="enemyVision"
+2d_physics/layer_12="playerDetect"
 
 [locale]
 

@@ -10,7 +10,7 @@ blend_mode = 1
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 4, 8, -4, 8, -8, 6, -8, 0, 8, 0, 8, 6 )
 
-[node name="lampaint3" type="Node2D"]
+[node name="lampaint3" type="Node2D" groups=["light", "shadow"]]
 script = ExtResource( 3 )
 visiblility = NodePath("VisibilityEnabler2D")
 lightPath = NodePath("Light2D")

@@ -8,7 +8,8 @@ onready var propertiesList = {
 	"shadows" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2/shadow,
 	"vsync" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3/vsync,
 	"music" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer/music,
-	"sfx" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer/sound
+	"sfx" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer/sound,
+	"color" : $Panel/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer4/color
 }
 
 
@@ -24,6 +25,7 @@ func _ready():
 	propertiesList["simpleLight"].pressed = Global.options.simpleLight
 	propertiesList["shadows"].pressed = Global.options.shadows
 	propertiesList["vsync"].pressed = Global.options.vsync
+	propertiesList["color"].pressed = Global.options.colorEffect
 	
 	propertiesList["music"].value = Global.options.musicVolume
 	propertiesList["sfx"].value = Global.options.sfxVolume
@@ -87,3 +89,7 @@ func _on_vsync_toggled(button_pressed):
 
 func _on_languages_item_selected(index):
 	Global.set_languege(index)
+
+func _on_color_toggled(button_pressed):
+	Global._setColorEffect(button_pressed)
+	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)

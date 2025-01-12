@@ -19,9 +19,6 @@ var worldDataSetup := false
 var waintingToChange := false
 var changingInfo := {}
 
-signal simpleLightChanged(value)
-signal shadowsChanged(value)
-
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
 	
@@ -64,12 +61,16 @@ func compareFloats(a : float, b : float, tolerance := 0.000001):
 	return abs(a - b) < tolerance
 
 func _setSimpleLight(value):
-	emit_signal("simpleLightChanged", value)
 	options.simpleLight = value
+	tree.call_group("light", "_toggledSimpleLight", value)
 
 func _setShadow(value):
-	emit_signal("shadowsChanged", value)
 	options.shadows = value
+	tree.call_group("shadow", "_toggledShadow", value)
+
+func _setColorEffect(value):
+	options.colorEffect = value
+	tree.set_group("color", "visible", value)
 
 func addToRoomData(roomID : int, obj_name : String, catergory : String):
 	if not worldData.has(currentWorldName):

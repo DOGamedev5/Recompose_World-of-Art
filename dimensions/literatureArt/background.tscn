@@ -13,3 +13,5 @@ margin_top = -448.0
 margin_right = 1816.0
 margin_bottom = 452.0
 color = Color( 0.313726, 0.294118, 0.482353, 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["canvasChanger", "color"]]

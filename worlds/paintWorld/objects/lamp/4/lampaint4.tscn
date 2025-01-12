@@ -12,7 +12,7 @@ polygon = PoolVector2Array( 4, 8, -4, 8, -8, 6, -8, 0, 8, 0, 8, 6 )
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 
-[node name="lampaint4" type="Node2D"]
+[node name="lampaint4" type="Node2D" groups=["light", "shadow"]]
 script = ExtResource( 1 )
 lightPath = NodePath("lamp/Light2D")
 

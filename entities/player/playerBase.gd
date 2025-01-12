@@ -140,24 +140,24 @@ func detectInside():
 			$rayShapeRight.disabled = true
 	
 
-func rotateNormal():
+func rotateNormal(delta):
 	var floorNormal : Vector2 = getSlopeNormal()
 	
 	if not onFloor():
-		floorNormal.x = clamp((motion.x / (MAXSPEED)), -0.2, 0.2)
+		floorNormal.x = clamp((motion.x / (MAXSPEED)), -0.2, 2 * delta)
 		floorNormal.y = -(1 - abs(floorNormal.x))
 		if motion.y > 0: floorNormal.x *= -1
 	
 	return floorNormal
 
-func rotateSprite():
+func rotateSprite(delta):
 	if not spriteGizmo: return
 	
 	if lockRotate:
 		$sprite.rotation = 0
 		return
 	
-	var floorNormal : Vector2 = rotateNormal()
+	var floorNormal : Vector2 = rotateNormal(delta)
 	var weight := 0.2
 	
 	if not onFloor():

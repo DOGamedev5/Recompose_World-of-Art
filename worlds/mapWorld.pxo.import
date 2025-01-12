@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/mapWorld.pxo-3c64a3a02af1613970a419262bec9d9d.stex"
+
+[deps]
+
+source_file="res://worlds/mapWorld.pxo"
+dest_files=[ "res://.import/mapWorld.pxo-3c64a3a02af1613970a419262bec9d9d.stex" ]
+
+[params]
+

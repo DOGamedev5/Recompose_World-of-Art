@@ -10,7 +10,7 @@ blend_mode = 1
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -21, -6, 21, -6, 21, 0, -21, 0 )
 
-[node name="lampaint1" type="Node2D"]
+[node name="lampaint1" type="Node2D" groups=["light", "shadow"]]
 z_index = -2
 z_as_relative = false
 script = ExtResource( 3 )
@@ -19,8 +19,8 @@ lightPath = NodePath("Light2D")
 
 [node name="Light" type="Sprite" parent="."]
 visible = false
-modulate = Color( 1.2, 1.2, 1.2, 1 )
-self_modulate = Color( 1, 1, 1, 0.196078 )
+modulate = Color( 1.4, 1.4, 1.4, 0.678431 )
+self_modulate = Color( 1, 1, 1, 0.282353 )
 show_behind_parent = true
 material = SubResource( 2 )
 position = Vector2( 20, -72 )

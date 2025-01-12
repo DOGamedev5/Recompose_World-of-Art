@@ -10,7 +10,7 @@ blend_mode = 1
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -22, -22, 22, -22, 22, -16, -22, -16 )
 
-[node name="lampaint2" type="Node2D"]
+[node name="lampaint2" type="Node2D" groups=["light", "shadow"]]
 z_index = -2
 z_as_relative = false
 script = ExtResource( 3 )

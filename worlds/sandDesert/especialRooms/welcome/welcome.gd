@@ -22,7 +22,7 @@ func _ready():
 	Global.save = SaveGame.new() if not Global.save else Global.save
 	if not Global.save.played:
 		cinemaitc.setup(dialogs)
-		cinemaitc.play("hello")
+#		cinemaitc.play("hello")
 		$"../HUD".dialog.connect("dialogClosed", self, "_on_dialog_dialogClosed")
 		
 func _input(_event):

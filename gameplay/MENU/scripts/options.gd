@@ -6,7 +6,9 @@ onready var parent = $"../"
 onready var buttons = {
 	exit = $VBoxContainer/exit,
 	simpleLight = $VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight,
-	shadow = $VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/shadow
+	shadow = $VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/shadow,
+	vsync = $VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3/vsync,
+	color = $VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4/color
 }
 onready var slides := {
 	music = $VBoxContainer/HBoxContainer3/VBoxContainer/music,
@@ -20,6 +22,9 @@ var current := false
 func _ready():
 	buttons.simpleLight.pressed = Global.options.simpleLight
 	buttons.shadow.pressed = Global.options.shadows
+	buttons.vsync.pressed = Global.options.vsync
+	buttons.color.pressed = Global.options.colorEffect
+	
 	
 	slides.music.set_value(Global.options.musicVolume)
 	slides.sfx.set_value(Global.options.sfxVolume)
@@ -49,6 +54,10 @@ func _on_shadow_toggled(button_pressed):
 	Global._setShadow(button_pressed)
 	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
 
+func _on_color_toggled(button_pressed):
+	Global._setColorEffect(button_pressed)
+	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
+
 func _on_music_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear2db(value))
 	Global.options.musicVolume = value
@@ -67,5 +76,4 @@ func _on_vsync_toggled(button_pressed):
 	
 func _on_languages_item_selected(index):
 	Global.set_languege(index)
-	
 
