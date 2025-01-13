@@ -1,22 +1,28 @@
 # Contributors
 
-Here's a list of people who contributed to the plugin with source code changes.
-In chronological order based on the first contribution.
+People that helped to make this game, with issues, help and teach me
+or test the game, also the puglins that are used in the final product.
 
-## Maintainer
+##  Maintainer
 
-- [George Marques (vnen)](https://github.com/vnen)
+- [Misael VIctor(DOGael](https://github.com/DOGamedev5)
 
 ## Contributors
 
-- [Billy Everyteen (SleepProgger)](https://github.com/SleepProgger)
-- [Thomas Fernandses (Wildos)](https://github.com/Wildos)
-- [Oliver Gutiérrez (olivergs)](https://github.com/olivergs)
-- [Jonathan Marchand (jonathlela)](https://github.com/jonathlela)
-- [Arron Washington (radicaled)](https://github.com/radicaled)
-- [Jeff Olson (olsonjeffery)](https://github.com/olsonjeffery)
-- [Christian Flach (cmfcmf)](https://github.com/cmfcmf)
-- [Fahd El Ouataoui (elouataoui)](https://github.com/elouataoui)
-- [Ross Hadden (rosshadden)](https://github.com/rosshadden)
-- [Tim van Oosterhout (Tubeliar)](https://github.com/Tubeliar)
-- [SirRamEsq](https://github.com/SirRamEsq)
+### Godot Brasil Discord Server
+- [Matheus (Berari)](https://github.com/matheus-s-arruda)
+- [Gabriel (Nokio)](https://github.com/BielMaxBR)
+- [Gabriel (Biely)](https://github.com/BielyDev)
+- [Lazaro Menezes (Lalão)](https://github.com/lazaromenezes)
+- [mago magão](https://www.magomagao.itch.io)
+- [Gabriela (Hensley)](https://elsenyh.itch.io/)
+- [Raf Bolacha](https://www.rafbolacha.itch.io)
+- [Bisnaguinha](https://x.com/995164031B)
+- [Cafezinho](https://github.com/Cafezinhu)
+
+### Ciência Discord Server
+
+
+## Puglins
+
+- [Tiled Importer](https://github.com/vnen/godot-tiled-importer)
