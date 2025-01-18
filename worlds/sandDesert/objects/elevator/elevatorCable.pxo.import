@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/elevatorCable.pxo-6d48ec01346892986ab665c4c32009a0.stex"
+
+[deps]
+
+source_file="res://worlds/sandDesert/objects/elevator/elevatorCable.pxo"
+dest_files=[ "res://.import/elevatorCable.pxo-6d48ec01346892986ab665c4c32009a0.stex" ]
+
+[params]
+

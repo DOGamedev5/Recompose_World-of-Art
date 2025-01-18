@@ -18,7 +18,7 @@ onready var cameraLimitsMin := Vector2(-10000000, -10000000)
 onready var cameraLimitsMax := Vector2(10000000, 10000000)
 
 func _ready():
-	Global.save = SaveGame.new().set("played", true) if not Global.save else Global.save
+	Global.save = SaveGame.new() if not Global.save else Global.save
 #	Global.save.played = true
 	Global.in_game = true
 	Global.world = self
