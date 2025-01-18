@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://worlds/sandDesert/rooms/room4.tscn" type="PackedScene" id=1]
 [ext_resource path="res://worlds/sandDesert/background.tscn" type="PackedScene" id=2]
@@ -17,7 +17,10 @@ extents = Vector2( 1080, 148 )
 extents = Vector2( 240, 92 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 212, 284 )
+extents = Vector2( 216, 584 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 156, 356 )
 
 [node name="world" type="Node2D"]
 script = ExtResource( 3 )
@@ -58,5 +61,15 @@ position = Vector2( 1480, -100 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="CanvasModulteChanger"]
-position = Vector2( 3548, 356 )
+position = Vector2( 3552, 656 )
 shape = SubResource( 3 )
+
+[node name="CanvasModulteChanger2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2440, -160 )
+collision_layer = 0
+collision_mask = 256
+colorChange = Color( 0.215686, 0.0705882, 0.152941, 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="CanvasModulteChanger2"]
+position = Vector2( 3620, 892 )
+shape = SubResource( 4 )
