@@ -5,7 +5,9 @@ export var fliped := false setget _setFliped
 export(NodePath) var visiblility
 export(Vector2) var lightPosition
 export(NodePath) var lightPath
+export(NodePath) var simpleLightPath
 onready var light : Light2D = get_node(lightPath)
+onready var simpleLight : Sprite = get_node(simpleLightPath)
 
 func _ready():
 	
@@ -17,6 +19,7 @@ func _ready():
 	
 	if Global.is_inside_tree():
 		light.enabled = !Global.options.simpleLight
+		simpleLight.visible = Global.options.simpleLight
 		light.shadow_enabled = Global.options.shadows
 
 func _setFliped(value):
@@ -39,7 +42,7 @@ func ative():
 		light.enabled = true
 
 func _toggledSimpleLight(value):
-	$Light.visible = value
+	simpleLight.visible = value
 	light.enabled = !value
 
 func _toggledShadow(value):

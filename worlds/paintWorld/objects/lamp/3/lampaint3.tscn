@@ -14,13 +14,16 @@ polygon = PoolVector2Array( 4, 8, -4, 8, -8, 6, -8, 0, 8, 0, 8, 6 )
 script = ExtResource( 3 )
 visiblility = NodePath("VisibilityEnabler2D")
 lightPath = NodePath("Light2D")
+simpleLightPath = NodePath("Light")
 
 [node name="Light" type="Sprite" parent="."]
 visible = false
+modulate = Color( 1.4, 1.4, 1.4, 0.678431 )
 self_modulate = Color( 1, 1, 1, 0.109804 )
 material = SubResource( 1 )
 position = Vector2( 0, 36 )
 scale = Vector2( 2, 2 )
+z_index = 2
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -52,6 +55,7 @@ __meta__ = {
 }
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 position = Vector2( 5.34057e-06, 32 )
 scale = Vector2( 17.6, 17.6 )
 process_parent = true

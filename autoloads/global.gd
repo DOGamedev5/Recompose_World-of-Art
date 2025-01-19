@@ -20,6 +20,7 @@ var waintingToChange := false
 var changingInfo := {}
 
 func _ready():
+	
 	pause_mode = PAUSE_MODE_PROCESS
 	
 	var _dir := Directory.new()
@@ -37,6 +38,26 @@ func _ready():
 	
 	setup_langueges()
 
+func _process(_delta):
+	Global.updateActivity()
+
+func updateActivity() -> void:
+	var activity = Discord.Activity.new()
+	activity.set_type(Discord.ActivityType.Playing)
+	activity.set_state("playing")
+
+	var assets = activity.get_assets()
+	assets.set_large_image("large")
+	assets.set_large_text("RECOMPOSE: World of Art")
+
+	var timestamps = activity.get_timestamps()
+	timestamps.set_start(OS.get_unix_time() + 100)
+	timestamps.set_end(OS.get_unix_time() + 500)
+
+	var result = yield(Discord.activity_manager.update_activity(activity), "result").result
+	if result != Discord.Result.Ok:
+		push_error(str(result))
+		
 func _input(_event):
 	
 	if Input.is_action_just_pressed("fullscreen"):
@@ -115,4 +136,4 @@ func bin_array(n : int, size := 8):
 	
 	return ret_array
 	
-	
+

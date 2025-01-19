@@ -10,6 +10,7 @@ light_mode = 1
 [sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 1
 light_mode = 1
 
 [node name="interactBallon" type="Control"]

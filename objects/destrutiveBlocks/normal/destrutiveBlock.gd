@@ -22,3 +22,11 @@ func _on_HitboxComponent_HitboxDamaged(damage):
 		particleInstance.position = position
 		
 		queue_free()
+
+func _on_VisibilityEnabler2D_screen_entered():
+	$CollisionShape2D.disabled = false
+	$HitboxComponent/CollisionShape2D.disabled = false
+
+func _on_VisibilityEnabler2D_screen_exited():
+	$CollisionShape2D.disabled = true
+	$HitboxComponent/CollisionShape2D.disabled = true

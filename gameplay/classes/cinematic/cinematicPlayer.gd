@@ -1,16 +1,18 @@
 class_name CutScene extends AnimationPlayer
 
 export(Array, Texture) var images
-export var saveGameAfter := true
+export var saveGameAfter := false
 var dialogs
 
 func setup(Dialogs):
 	dialogs = Dialogs
 
 func _start():
-	get_tree().current_scene.player.setCinematic(true)
+#	Global.player.set_process_input(false)
+	Global.player.setCinematic(true)
 
 func _end():
+#	Global.player.set_process_input(true)
 	Global.player.setCinematic(false)
 	if saveGameAfter:
 		FileSystemHandler.saveGameData()

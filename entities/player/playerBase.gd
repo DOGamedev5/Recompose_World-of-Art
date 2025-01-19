@@ -180,7 +180,7 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 
 func setCinematic(value : bool):
 	cinematic = value
-	moving = not value
+	set_process_input(not value)
 	if value:
 		$"../HUD".cinematic.actived()
 		motion.x = 0

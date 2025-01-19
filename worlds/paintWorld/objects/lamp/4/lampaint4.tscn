@@ -14,7 +14,9 @@ blend_mode = 1
 
 [node name="lampaint4" type="Node2D" groups=["light", "shadow"]]
 script = ExtResource( 1 )
+visiblility = NodePath("lamp/VisibilityEnabler2D")
 lightPath = NodePath("lamp/Light2D")
+simpleLightPath = NodePath("lamp/Light")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 2 )
@@ -53,6 +55,7 @@ __meta__ = {
 
 [node name="Light" type="Sprite" parent="lamp"]
 visible = false
+modulate = Color( 1.4, 1.4, 1.4, 0.678431 )
 self_modulate = Color( 1, 1, 1, 0.109804 )
 material = SubResource( 1 )
 texture = ExtResource( 2 )

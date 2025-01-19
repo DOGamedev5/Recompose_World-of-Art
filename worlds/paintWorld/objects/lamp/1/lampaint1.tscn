@@ -16,11 +16,11 @@ z_as_relative = false
 script = ExtResource( 3 )
 visiblility = NodePath("VisibilityEnabler2D")
 lightPath = NodePath("Light2D")
+simpleLightPath = NodePath("Light")
 
 [node name="Light" type="Sprite" parent="."]
-visible = false
 modulate = Color( 1.4, 1.4, 1.4, 0.678431 )
-self_modulate = Color( 1, 1, 1, 0.282353 )
+self_modulate = Color( 1, 1, 1, 0.109804 )
 show_behind_parent = true
 material = SubResource( 2 )
 position = Vector2( 20, -72 )

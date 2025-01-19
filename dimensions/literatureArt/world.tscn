@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://dimensions/literatureArt/rooms/room3.tscn" type="PackedScene" id=1]
-[ext_resource path="res://dimensions/literatureArt/rooms/room1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://autoloads/loadSystem/enableplaceholder/enablePlaceholder.gd" type="Script" id=2]
 [ext_resource path="res://dimensions/literatureArt/rooms/room2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=5]
@@ -30,12 +30,23 @@ motion/sync_to_physics = false
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
-[node name="RoomClass2" parent="." instance=ExtResource( 2 )]
+[node name="enablePlaceholder" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 328, 92 )
+scale = Vector2( 104, 65.2 )
+script = ExtResource( 2 )
+placeholderPath = NodePath("../room1")
+
+[node name="room1" parent="." instance_placeholder="res://dimensions/literatureArt/rooms/room1.tscn"]
 position = Vector2( -504, 672 )
 __meta__ = {
 "_edit_lock_": true
 }
 ID = 1
+
+[node name="enablePlaceholder2" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 2771.36, 73.0169 )
+scale = Vector2( -143.445, 87.4376 )
+script = ExtResource( 2 )
 
 [node name="RoomClass" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1368, 672 )

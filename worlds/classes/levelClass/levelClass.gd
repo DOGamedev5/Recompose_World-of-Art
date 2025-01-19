@@ -18,6 +18,18 @@ onready var cameraLimitsMin := Vector2(-10000000, -10000000)
 onready var cameraLimitsMax := Vector2(10000000, 10000000)
 
 func _ready():
+	
+#	Discord.set_presence({
+#			status = "playing", 
+#			afk = false,
+#
+#			activity = {
+#				type = "game", 
+#				name = "RECOMPOSE World of Art",
+#				url = "http://localhost" ,
+#				created_at = 0, 
+#			}
+#		})
 	Global.save = SaveGame.new() if not Global.save else Global.save
 #	Global.save.played = true
 	Global.in_game = true
