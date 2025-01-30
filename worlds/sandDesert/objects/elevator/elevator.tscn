@@ -107,6 +107,7 @@ transitions = [ "lever", "elevator", SubResource( 12 ) ]
 
 [node name="elevator" type="KinematicBody2D"]
 collision_mask = 0
+collision/safe_margin = 0.001
 script = ExtResource( 4 )
 
 [node name="Elevator" type="Sprite" parent="."]

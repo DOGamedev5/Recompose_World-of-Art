@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://autoloads/loadSystem/enableplaceholder/enablePlaceholder.gd" type="Script" id=1]
 [ext_resource path="res://worlds/sandDesert/background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=3]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=4]
-[ext_resource path="res://entities/player/powerStates/normal/playerNormal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://worlds/classes/canvasModulateChanger/CanvasModulteChanger.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -24,10 +23,6 @@ script = ExtResource( 3 )
 canvasModulateColor = Color( 1.3, 1.2, 0.97, 1 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
-
-[node name="playerNormal" parent="." instance=ExtResource( 5 )]
-position = Vector2( 744, -32 )
-motion/sync_to_physics = false
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 

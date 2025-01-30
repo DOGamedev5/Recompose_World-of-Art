@@ -68,7 +68,7 @@ tile_data = PoolIntArray( -982991, 8, 8, -982990, 8, 10, -982989, 8, 10, -982988
 
 [node name="elevator" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1728, -224 )
-lineStart = Vector2( 1729, -448 )
+lineStart = Vector2( -64, -64 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )

@@ -14,14 +14,12 @@ func _physics_process(_delta):
 			var colorA : Color = get_parent().canvasModulate.color
 			var colorB : Color = get_parent().currentColor
 			
-			
-			
 			if (
 				abs(colorA.r - colorB.r) < 0.1 and
 				abs(colorA.g - colorB.g) < 0.1 and
 				abs(colorA.b - colorB.b) < 0.1
 			):
-				Global.changeWorld("dimensions", "literatureArt", 0, "portal")
+				Global.changeWorld("worlds", "paintWorld", 0, "warp")
 				playing = false
 
 	

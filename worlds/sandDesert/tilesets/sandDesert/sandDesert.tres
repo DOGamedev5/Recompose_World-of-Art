@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=139 format=2]
+[gd_resource type="TileSet" load_steps=141 format=2]
 
 [ext_resource path="res://worlds/sandDesert/tilesets/sandDesert/sandDesert.pxo" type="Texture" id=1]
 
@@ -208,6 +208,12 @@ points = PoolVector2Array( 0, 4, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=69]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
+
+[sub_resource type="OccluderPolygon2D" id=138]
+polygon = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
+
+[sub_resource type="OccluderPolygon2D" id=139]
+polygon = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=74]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -929,7 +935,7 @@ points = PoolVector2Array( 0, 0, 8, 0, 0, 8 )
 4/autotile/icon_coordinate = Vector2( 0, 0 )
 4/autotile/tile_size = Vector2( 8, 8 )
 4/autotile/spacing = 0
-4/autotile/occluder_map = [  ]
+4/autotile/occluder_map = [ Vector2( 10, 0 ), SubResource( 138 ), Vector2( 10, 2 ), SubResource( 139 ) ]
 4/autotile/navpoly_map = [  ]
 4/autotile/priority_map = [ Vector3( 10, 2, 43 ) ]
 4/autotile/z_index_map = [  ]

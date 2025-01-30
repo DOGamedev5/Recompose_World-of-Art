@@ -35,7 +35,7 @@ func _input(_event):
 		visible = not visible
 		
 		parent.HUD.visible = not visible
-		if get_tree().current_scene.player.cinematic:
+		if Global.player.cinematic:
 			parent.HUD.visible = false
 		
 		if visible:

@@ -12,25 +12,13 @@ onready var canvasModulate := CanvasModulate.new()
 var isOnDimension := false
 var clock := false
 onready var timer := Timer.new()
-var player
 
 onready var cameraLimitsMin := Vector2(-10000000, -10000000)
 onready var cameraLimitsMax := Vector2(10000000, 10000000)
 
 func _ready():
-	
-#	Discord.set_presence({
-#			status = "playing", 
-#			afk = false,
-#
-#			activity = {
-#				type = "game", 
-#				name = "RECOMPOSE World of Art",
-#				url = "http://localhost" ,
-#				created_at = 0, 
-#			}
-#		})
 	Global.save = SaveGame.new() if not Global.save else Global.save
+	
 #	Global.save.played = true
 	Global.in_game = true
 	Global.world = self
@@ -42,10 +30,21 @@ func _ready():
 	canvasModulate.color = canvasModulateColor
 	canvasModulate.visible = Global.options.colorEffect
 	setCanvasModulate()
-	get_tree().call_group("canvasChanger", "set_color", currentColor)
+	Global.tree.call_group("canvasChanger", "set_color", currentColor)
+	setup()
+	
+func setup():
+	if not Global.packedPlayer:
+		Global.player = load(Global.save.player["player"]).instance()
+	else:
+		Global.player = Global.packedPlayer.instance()
+	
+	Global.player.owner = self
+	add_child(Global.player)
 	
 	if not Global.worldDataSetup:
 		Global.worldDataSetup = true
+		if ProjectSettings["global/testing"]: return
 		loadSave()
 	elif Global.waintingToChange:
 		match Global.changingInfo.warpType:
@@ -57,6 +56,7 @@ func _ready():
 				get_node(doorWarps[Global.changingInfo.warpID]).init()
 			"portal":
 				get_node(portalWarps[Global.changingInfo.warpID]).init()
+	
 	
 #	AudioManager.playMusic("paintCaverns")
 func _process(delta):
@@ -79,7 +79,7 @@ func loadSave():
 #	Global.player.active = false
 	
 	position = Global.save.worldPosition
-	player.position = Global.save.player["position"]
+	Global.player.position = Global.save.player["position"]
 #	Global.player.set_deferred("active", true)
 	
 	LoadSystem.closeLoad()

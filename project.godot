@@ -394,6 +394,11 @@ enabled=PoolStringArray( "res://addons/controller_icons/plugin.cfg", "res://addo
 
 singletons=[  ]
 
+[global]
+
+testing=false
+testing.release=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

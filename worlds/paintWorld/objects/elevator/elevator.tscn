@@ -1,15 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://worlds/paintWorld/objects/elevator/elevator.pxo" type="Texture" id=1]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/3/lampaint3.tscn" type="PackedScene" id=2]
 [ext_resource path="res://worlds/paintWorld/objects/elevator/elevatorCable.pxo" type="Texture" id=3]
 [ext_resource path="res://worlds/paintWorld/objects/elevator/elevator.gd" type="Script" id=4]
+[ext_resource path="res://worlds/paintWorld/objects/elevator/lever.pxo" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 120, 32 )
+extents = Vector2( 128, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 120, 8 )
+extents = Vector2( 128, 8 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 48, 8 )
@@ -20,7 +21,95 @@ polygon = PoolVector2Array( -118, 0, -118, -16, 118, -16, 118, 0 )
 [sub_resource type="OccluderPolygon2D" id=5]
 polygon = PoolVector2Array( -118, -9, -118, -17, 118, -17, 118, -9 )
 
-[node name="elevator" type="Node2D"]
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Elevator:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lever:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "elevator"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Elevator:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "lever"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lever:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.35, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "RESET"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "elevator"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "lever"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachine" id=17]
+states/RESET/node = SubResource( 12 )
+states/RESET/position = Vector2( 532.333, 223 )
+states/elevator/node = SubResource( 10 )
+states/elevator/position = Vector2( 752.333, 84.3333 )
+states/lever/node = SubResource( 13 )
+states/lever/position = Vector2( 359, 84.7777 )
+transitions = [ "lever", "elevator", SubResource( 14 ), "elevator", "RESET", SubResource( 15 ), "RESET", "lever", SubResource( 16 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+
+[node name="elevator" type="KinematicBody2D"]
 script = ExtResource( 4 )
 
 [node name="Elevator" type="Sprite" parent="."]
@@ -29,19 +118,17 @@ scale = Vector2( 2, 2 )
 z_index = -1
 z_as_relative = false
 texture = ExtResource( 1 )
+hframes = 3
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 32 )
 shape = SubResource( 1 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -152 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -168 )
 shape = SubResource( 3 )
 
@@ -74,3 +161,29 @@ occluder = SubResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="lampaint4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -144 )
+z_index = 1
+z_as_relative = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Lever" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 5 )
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/elevator = SubResource( 7 )
+anims/lever = SubResource( 11 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 17 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 18 )

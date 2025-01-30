@@ -72,9 +72,33 @@ func _physics_process(delta):
 func rotateNormal(delta):
 	var floorNormal : Vector2 = .rotateNormal(delta)
 	
-	if not onFloor()and running: floorNormal.x *= -1
+	if not onFloor()and running:
+		floorNormal = Vector2(sin(motion.angle()), cos(motion.angle()))
+		
+#		floorNormal.x *= -1
 	
 	return floorNormal
+
+func rotateSprite(delta):
+	if not spriteGizmo: return
+	
+	if lockRotate:
+		$sprite.rotation = 0
+		return
+	
+	var floorNormal : Vector2 = rotateNormal(delta)
+	var weight := 20
+	
+	var angle : float = max(min(atan2(float(floorNormal.x), -float(floorNormal.y)), deg2rad(45)), deg2rad(-45))
+	if not onFloor():
+		weight = 10
+	
+		if running:
+			angle = motion.angle()
+			if motion.x < 0:
+				angle += PI
+	
+	$sprite.rotation = lerp_angle($sprite.rotation, angle, weight * delta)
 
 func stoppedRunning():
 	var velocity = motion.x

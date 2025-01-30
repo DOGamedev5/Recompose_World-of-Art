@@ -4,9 +4,11 @@ const optionsSavePath = "user://options.tres"
 
 onready var tree := get_tree()
 onready var player : PlayerBase
+onready var packedPlayer : PackedScene
 onready var playerHud : PlayerHud
 onready var languagesID : Array
 onready var in_game := false
+onready var inputEnabled := true
 
 var options : OptionsSave
 
@@ -17,7 +19,12 @@ var worldData : Dictionary
 var currentWorldName := "sandDesert"
 var worldDataSetup := false
 var waintingToChange := false
-var changingInfo := {}
+var changingInfo := {
+	warpType = "warp",
+	warpID = 0
+}
+
+var time := OS.get_unix_time()
 
 func _ready():
 	
@@ -37,9 +44,7 @@ func _ready():
 	options = FileSystemHandler.loadDataResource(Global.optionsSavePath)
 	
 	setup_langueges()
-
-func _process(_delta):
-	Global.updateActivity()
+	call_deferred("updateActivity")
 
 func updateActivity() -> void:
 	var activity = Discord.Activity.new()
@@ -51,9 +56,8 @@ func updateActivity() -> void:
 	assets.set_large_text("RECOMPOSE: World of Art")
 
 	var timestamps = activity.get_timestamps()
-	timestamps.set_start(OS.get_unix_time() + 100)
-	timestamps.set_end(OS.get_unix_time() + 500)
-
+	timestamps.set_start(time)
+	
 	var result = yield(Discord.activity_manager.update_activity(activity), "result").result
 	if result != Discord.Result.Ok:
 		push_error(str(result))
@@ -63,8 +67,24 @@ func _input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen
 
+func handInput(action : String, pressed := false) -> bool:
+	if not inputEnabled:
+		return false
+	elif pressed:
+		return Input.is_action_pressed(action)
+
+	return Input.is_action_just_pressed(action)
+
+func handInputAxis(actionA, actionB) -> float:
+	if not inputEnabled:
+		return 0.0
+	
+	return Input.get_axis(actionA, actionB)
+
 func changeWorld(catergory : String, newWorld : String, warpID := -1, warpType := ""):
-#	get_tree().paused = true
+	
+	packedPlayer = PackedScene.new()
+	packedPlayer.pack(player) 
 	waintingToChange = true
 	LoadSystem.openScreen()
 	currentWorldName = newWorld
@@ -135,5 +155,8 @@ func bin_array(n : int, size := 8):
 		ret_array.insert(0, 0)
 	
 	return ret_array
+
+func disableInput(value):
+	tree.call_group("input", "set_process_input", value)
 	
 

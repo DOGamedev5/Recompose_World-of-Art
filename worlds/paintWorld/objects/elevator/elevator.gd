@@ -1,17 +1,19 @@
 extends KinematicBody2D
 
+onready var animationTree := $AnimationTree
+
 export var linePosition := Vector2(-1433, -1697)
 
 export var lineStart := Vector2.ZERO
 
 export var motion := 0
-var actualMotion := 0
+export var actualMotion := 0
 
 signal elevatorInteracted
 
 func _physics_process(delta):
 	var pos := to_local(lineStart)
-	
+
 	$Line2D.points[1].y = pos.y
 	
 	if actualMotion != motion:
@@ -19,10 +21,8 @@ func _physics_process(delta):
 	
 	position.y += actualMotion*delta
 
-
-
 func _on_interactBallon_interacted():
-	$AnimationTree["parameters/playback"].start("lever")
+	animationTree["parameters/playback"].start("lever")
 	
 	emit_signal("elevatorInteracted")
 

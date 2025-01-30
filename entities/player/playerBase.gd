@@ -62,7 +62,7 @@ const inputCord := {
 }
 
 func _ready():
-	get_parent().player = self
+	
 	Global.player = self
 	$"../HUD".call_deferred("init", self)
 	
@@ -85,7 +85,7 @@ func physics_process(delta):
 	
 	if not stunned and moving:
 		
-		if collideUp() > -34 or (Input.is_action_pressed("ui_down") and not cinematic):
+		if collideUp() > -34 or (Global.handInput("ui_down", true) and not cinematic):
 			counched = true
 		else:
 			counched = false
@@ -93,16 +93,16 @@ func physics_process(delta):
 		
 		if motion.x != 0:
 			fliped = motion.x < 0
-		elif Input.get_axis("ui_left", "ui_right") and not cinematic:
-			fliped = Input.get_axis("ui_left", "ui_right") < 0
+		elif Global.handInputAxis("ui_left", "ui_right") and not cinematic:
+			fliped = Global.handInputAxis("ui_left", "ui_right") < 0
 			
 		for ray in onWallRayCast: 
 			if motion.x:
 				ray.cast_to.x = 28 * sign(motion.x)
 			else:
-				ray.cast_to.x = 28 * Input.get_axis("ui_left", "ui_right")
+				ray.cast_to.x = 28 * Global.handInputAxis("ui_left", "ui_right")
 	
-	if Input.is_action_just_pressed("ui_jump"):
+	if Global.handInput("ui_jump"):
 		jumpBuffer = true
 		jumpReleased = false
 		jumpBufferTimer.start()
@@ -140,11 +140,11 @@ func detectInside():
 			$rayShapeRight.disabled = true
 	
 
-func rotateNormal(delta):
+func rotateNormal(_delta):
 	var floorNormal : Vector2 = getSlopeNormal()
 	
 	if not onFloor():
-		floorNormal.x = clamp((motion.x / (MAXSPEED)), -0.2, 2 * delta)
+		floorNormal.x = clamp((motion.x / (MAXSPEED)), -0.2, 0.2)
 		floorNormal.y = -(1 - abs(floorNormal.x))
 		if motion.y > 0: floorNormal.x *= -1
 	
@@ -158,14 +158,14 @@ func rotateSprite(delta):
 		return
 	
 	var floorNormal : Vector2 = rotateNormal(delta)
-	var weight := 0.2
+	var weight := 20
 	
 	if not onFloor():
-		weight = 0.1
+		weight = 10
 	
-	var angle : float = atan2(float(floorNormal.x), -float(floorNormal.y))
+	var angle : float = max(min(atan2(float(floorNormal.x), -float(floorNormal.y)), deg2rad(45)), deg2rad(-45))
 	
-	$sprite.rotation = lerp_angle($sprite.rotation, angle, weight)
+	$sprite.rotation = lerp_angle($sprite.rotation, angle, weight * delta)
 
 func setParticle(index := 0, emitting := true):
 	var particle = get_node(particles[index])
@@ -179,8 +179,8 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	camera.set("limit_bottom", limitsMax.y + 10)
 
 func setCinematic(value : bool):
-	cinematic = value
-	set_process_input(not value)
+#	cinematic = value
+	Global.inputEnabled = not value
 	if value:
 		$"../HUD".cinematic.actived()
 		motion.x = 0
@@ -224,7 +224,7 @@ func idleBase():
 	motion.x = desaccelerate(motion.x)
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
-	var input := sign(Input.get_axis(inputCord[inputAxis][0], inputCord[inputAxis][1]))
+	var input := sign(Global.handInputAxis(inputCord[inputAxis][0], inputCord[inputAxis][1]))
 	if cinematic:
 		input = 0
 
@@ -279,7 +279,7 @@ func jumpBase(force = JUMPFORCE):
 		coyote = false
 		canJump = false
 		
-	elif not Input.is_action_pressed("ui_jump") and not jumpReleased:
+	elif not Global.handInput("ui_jump", true) and not jumpReleased:
 		motion.y /= 2
 		jumpReleased = true
 		snapDesatived = false
@@ -318,7 +318,7 @@ func onWall():
 	
 	if not result: return false
 	
-	if result and  rayDirection != Input.get_axis("ui_left", "ui_right") and active:
+	if result and  rayDirection != Global.handInputAxis("ui_left", "ui_right") and active:
 		if Input.get_axis("ui_left", "ui_right") != 0 and motion.x:
 			motion.x = 0
 			return true

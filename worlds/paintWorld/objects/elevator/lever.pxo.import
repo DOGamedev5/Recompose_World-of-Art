@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lever.pxo-54f975133a814915c50d883e388eaf4f.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/objects/elevator/lever.pxo"
+dest_files=[ "res://.import/lever.pxo-54f975133a814915c50d883e388eaf4f.stex" ]
+
+[params]
+

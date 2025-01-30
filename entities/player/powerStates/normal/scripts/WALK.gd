@@ -7,13 +7,13 @@ func enter(_laststate):
 	parent.running = false
 	
 	if abs(parent.motion.x) < 150:
-		parent.motion.x = 150 * Input.get_axis("ui_left", "ui_right")
+		parent.motion.x = 150 * Global.handInputAxis("ui_left", "ui_right")
 
 func process_state():
-	if parent.motion.x == 0 and (Input.get_axis("ui_left", "ui_right") == 0 or not parent.moving) :
+	if parent.motion.x == 0 and (Global.handInputAxis("ui_left", "ui_right") == 0 or not parent.moving) :
 		return "IDLE"
 		
-	if (parent.onSlope() or abs(parent.motion.x) > 500) and Input.is_action_just_pressed("ui_down"):
+	if (parent.onSlope() or abs(parent.motion.x) > 500) and Global.handInput("ui_down"):
 		return "ROLL"
 	
 	if parent.onWall():
@@ -25,20 +25,20 @@ func process_state():
 	elif not parent.onFloor():
 		return "FALL"
 	
-	elif Input.is_action_pressed("run") and parent.couldUncounch(true):
+	elif Global.handInput("run", true) and parent.couldUncounch(true):
 		return "RUN"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttack and parent.couldUncounch(true):
+	elif Global.handInput("attack") and parent.canAttack and parent.couldUncounch(true):
 		return "ATTACK"
 	
-	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
+	elif (Global.handInput("ui_up") or Global.handInput("ui_down")) and parent.canLadder:
 		return "LADDER"
 
 	
 	return null
 
 func process_physics(_delta):
-	var input := Input.get_axis("ui_left", "ui_right")
+	var input := Global.handInputAxis("ui_left", "ui_right")
 	
 	if parent.counched:
 		parent.moveBase("X", parent.motion.x, 180)

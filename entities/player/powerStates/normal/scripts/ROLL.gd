@@ -21,7 +21,7 @@ func process_state():
 	if parent.onWall():
 		return "WALL"
 		
-	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
+	elif parent.canJump and Global.handInput("ui_jump", true) and parent.couldUncounch():
 		return "JUMP"
 
 	return null

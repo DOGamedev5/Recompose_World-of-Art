@@ -1762,7 +1762,7 @@ _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
-[node name="playerNormal" groups=["normal"] instance=ExtResource( 2 )]
+[node name="playerNormal" groups=["input", "normal"] instance=ExtResource( 2 )]
 collision/safe_margin = 1.0
 script = ExtResource( 1 )
 spriteGizmoPath = NodePath("sprite")
@@ -1937,29 +1937,29 @@ shape = SubResource( 159 )
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
-[node name="IDLE" type="Node" parent="StateMachine" index="0"]
+[node name="IDLE" type="Node" parent="StateMachine" index="0" groups=["input"]]
 script = ExtResource( 6 )
 
-[node name="WALK" type="Node" parent="StateMachine" index="1"]
+[node name="WALK" type="Node" parent="StateMachine" index="1" groups=["input"]]
 script = ExtResource( 8 )
 
-[node name="JUMP" type="Node" parent="StateMachine" index="2"]
+[node name="JUMP" type="Node" parent="StateMachine" index="2" groups=["input"]]
 script = ExtResource( 9 )
 
-[node name="FALL" type="Node" parent="StateMachine" index="3"]
+[node name="FALL" type="Node" parent="StateMachine" index="3" groups=["input"]]
 script = ExtResource( 10 )
 
-[node name="WALL" type="Node" parent="StateMachine" index="4"]
+[node name="WALL" type="Node" parent="StateMachine" index="4" groups=["input"]]
 script = ExtResource( 11 )
 
 [node name="Timer" type="Timer" parent="StateMachine/WALL" index="0"]
 wait_time = 0.3
 one_shot = true
 
-[node name="RUN" type="Node" parent="StateMachine" index="5"]
+[node name="RUN" type="Node" parent="StateMachine" index="5" groups=["input"]]
 script = ExtResource( 12 )
 
-[node name="ATTACK" type="Node" parent="StateMachine" index="6"]
+[node name="ATTACK" type="Node" parent="StateMachine" index="6" groups=["input"]]
 script = ExtResource( 18 )
 
 [node name="attackTimer" type="Timer" parent="StateMachine/ATTACK" index="0"]
@@ -1970,16 +1970,16 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[node name="DAMAGED" type="Node" parent="StateMachine" index="7"]
+[node name="DAMAGED" type="Node" parent="StateMachine" index="7" groups=["input"]]
 script = ExtResource( 28 )
 
-[node name="ROLL" type="Node" parent="StateMachine" index="8"]
+[node name="ROLL" type="Node" parent="StateMachine" index="8" groups=["input"]]
 script = ExtResource( 30 )
 
-[node name="LADDER" type="Node" parent="StateMachine" index="9"]
+[node name="LADDER" type="Node" parent="StateMachine" index="9" groups=["input"]]
 script = ExtResource( 31 )
 
-[node name="SUPERROLL" type="Node" parent="StateMachine" index="10"]
+[node name="SUPERROLL" type="Node" parent="StateMachine" index="10" groups=["input"]]
 script = ExtResource( 37 )
 
 [node name="a" type="Node2D" parent="." index="28"]

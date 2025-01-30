@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/recomposeXastercys.pxo-42279651c5405d819da5b5937a02e656.stex"
+
+[deps]
+
+source_file="res://entities/player/sprites/recomposeXastercys.pxo"
+dest_files=[ "res://.import/recomposeXastercys.pxo-42279651c5405d819da5b5937a02e656.stex" ]
+
+[params]
+
