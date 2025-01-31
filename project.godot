@@ -396,7 +396,7 @@ singletons=[  ]
 
 [global]
 
-testing=false
+testing=true
 testing.release=false
 
 [gui]

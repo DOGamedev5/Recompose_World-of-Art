@@ -8,11 +8,9 @@ func setup(Dialogs):
 	dialogs = Dialogs
 
 func _start():
-#	Global.player.set_process_input(false)
 	Global.player.setCinematic(true)
 
 func _end():
-#	Global.player.set_process_input(true)
 	Global.player.setCinematic(false)
 	if saveGameAfter:
 		FileSystemHandler.saveGameData()

@@ -1341,6 +1341,7 @@ custom_constants/separation = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 margin_right = 361.0
 margin_bottom = 42.0
+hint_tooltip = "uses simple light to improve performance."
 
 [node name="Label" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
 margin_top = 8.0
@@ -1567,8 +1568,9 @@ visible = false
 self_modulate = Color( 0.733333, 0.741176, 0.901961, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
+margin_top = -368.0
 margin_right = 9344.0
-margin_bottom = 5068.0
+margin_bottom = 4700.0
 texture = ExtResource( 26 )
 stretch_mode = 2
 

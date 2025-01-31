@@ -2,8 +2,8 @@
 
 [ext_resource path="res://worlds/paintWorld/especialRooms/room1/room1.gd" type="Script" id=1]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4.tscn" type="PackedScene" id=2]
-[ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=3]
-[ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=4]
+[ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=3]
+[ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=4]
 [ext_resource path="res://worlds/paintWorld/objects/elevator/elevator.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/doors/door.tscn" type="PackedScene" id=6]
 

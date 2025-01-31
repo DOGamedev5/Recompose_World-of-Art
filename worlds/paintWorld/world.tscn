@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://worlds/paintWorld/world.gd" type="Script" id=1]
+[ext_resource path="res://worlds/classes/teleportBase/door/doorEnter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
 [ext_resource path="res://worlds/paintWorld/rooms/room1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
 [ext_resource path="res://worlds/paintWorld/background.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/paintWorld/rooms/room2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://worlds/classes/canvasModulateChanger/CanvasModulteChanger.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 488, 168 )
 
 [node name="world" type="Node2D"]
 position = Vector2( -11, -36 )
@@ -24,4 +30,29 @@ script = ExtResource( 5 )
 [node name="room1" parent="." instance=ExtResource( 4 )]
 position = Vector2( -5, -652 )
 
+[node name="room2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 579, -2060 )
+
 [node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
+
+[node name="doorEnter" parent="." instance=ExtResource( 2 )]
+position = Vector2( 499, -940 )
+destinationPath = NodePath("../doorEnter2")
+limitsMin = Vector2( -544, -768 )
+frame = 1
+
+[node name="doorEnter2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 523, -2156 )
+destinationPath = NodePath("../doorEnter")
+limitsMin = Vector2( -408, -784 )
+limitsMax = Vector2( 935, 144 )
+areasToUpdate = [ NodePath("../CanvasModulaterChanger") ]
+
+[node name="CanvasModulaterChanger" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 8 )
+colorChange = Color( 0.729412, 0.65098, 0.611765, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasModulaterChanger"]
+position = Vector2( 795, -2284 )
+shape = SubResource( 1 )

@@ -31,6 +31,7 @@ func _ready():
 	canvasModulate.visible = Global.options.colorEffect
 	setCanvasModulate()
 	Global.tree.call_group("canvasChanger", "set_color", currentColor)
+	
 	setup()
 	
 func setup():
@@ -39,23 +40,25 @@ func setup():
 	else:
 		Global.player = Global.packedPlayer.instance()
 	
-	Global.player.owner = self
 	add_child(Global.player)
+	Global.player.owner = self
 	
-	if not Global.worldDataSetup:
+	if ProjectSettings["global/testing"]:
 		Global.worldDataSetup = true
-		if ProjectSettings["global/testing"]: return
+		Global.waintingToChange = true
+		
+	if not Global.worldDataSetup:
 		loadSave()
 	elif Global.waintingToChange:
 		match Global.changingInfo.warpType:
 			"warp":
-				get_node(normalWarps[Global.changingInfo.warpID]).init()
+				if (normalWarps.size() - 1) >= Global.changingInfo.warpID: get_node(normalWarps[Global.changingInfo.warpID]).init()
 			"tube":
-				get_node(tubeWarps[Global.changingInfo.warpID]).init()
+				if (tubeWarps.size() - 1) >= Global.changingInfo.warpID: get_node(tubeWarps[Global.changingInfo.warpID]).init()
 			"door":
-				get_node(doorWarps[Global.changingInfo.warpID]).init()
+				if (doorWarps.size() - 1) >= Global.changingInfo.warpID: get_node(doorWarps[Global.changingInfo.warpID]).init()
 			"portal":
-				get_node(portalWarps[Global.changingInfo.warpID]).init()
+				if (portalWarps.size() - 1) >= Global.changingInfo.warpID: get_node(portalWarps[Global.changingInfo.warpID]).init()
 	
 	
 #	AudioManager.playMusic("paintCaverns")

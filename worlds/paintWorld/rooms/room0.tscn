@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
-[ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=2]
-[ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=3]
+[ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=2]
+[ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=3]
 [ext_resource path="res://worlds/paintWorld/objects/elevator/elevator.tscn" type="PackedScene" id=4]
 
 [node name="room0" type="Node2D"]

@@ -28,8 +28,6 @@ func _ready():
 	
 	var _1 = areaInteract.connect("area_entered", self, "enteredArea")
 	var _2 = areaInteract.connect("area_exited", self, "exitedArea")
-	
-	
 
 func _input(_event):
 	if Input.is_action_just_pressed("interact") and canInteract:
@@ -37,6 +35,10 @@ func _input(_event):
 
 func enteredArea(area2D):
 	if not area2D.is_in_group("player"): return
+	if Global.options.colorEffect:
+		$ballonContent/ballon.modulate.a = 0.77
+	else:
+		$ballonContent/ballon.modulate.a = 0.9
 	
 	player = area2D.get_parent()
 	
@@ -52,7 +54,6 @@ func enteredArea(area2D):
 		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(1, 1), 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 		tween.start()
-	
 
 func exitedArea(area2D):
 	if not area2D.is_in_group("player"): return

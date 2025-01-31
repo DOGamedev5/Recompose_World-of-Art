@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/literatureArt.pxo-e04ee24ac9e9107d0a9129006c3c093d.stex"
+
+[deps]
+
+source_file="res://worlds/classes/teleportBase/tube/sprites/literatureArt.pxo"
+dest_files=[ "res://.import/literatureArt.pxo-e04ee24ac9e9107d0a9129006c3c093d.stex" ]
+
+[params]
+

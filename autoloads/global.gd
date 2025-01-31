@@ -9,6 +9,10 @@ onready var playerHud : PlayerHud
 onready var languagesID : Array
 onready var in_game := false
 onready var inputEnabled := true
+onready var changingInfo := {
+	warpType = "warp",
+	warpID = 0
+}
 
 var options : OptionsSave
 
@@ -19,10 +23,6 @@ var worldData : Dictionary
 var currentWorldName := "sandDesert"
 var worldDataSetup := false
 var waintingToChange := false
-var changingInfo := {
-	warpType = "warp",
-	warpID = 0
-}
 
 var time := OS.get_unix_time()
 

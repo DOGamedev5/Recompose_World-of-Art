@@ -179,7 +179,6 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	camera.set("limit_bottom", limitsMax.y + 10)
 
 func setCinematic(value : bool):
-#	cinematic = value
 	Global.inputEnabled = not value
 	if value:
 		$"../HUD".cinematic.actived()
@@ -189,7 +188,7 @@ func setCinematic(value : bool):
 		stateMachine.changeState("IDLE")
 	
 	else:
-		Global.playerHud.cinematic.desactivaded()
+		$"../HUD".cinematic.desactivaded()
 
 func flipObject(objects):
 	for obj in objects:

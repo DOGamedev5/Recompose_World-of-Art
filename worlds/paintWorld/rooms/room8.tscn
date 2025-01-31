@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://worlds/paintWorld/tilesets/paintWorld.tres" type="TileSet" id=1]
+[ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/classes/ChangeRoom/ChangeRoom.gd" type="Script" id=2]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=4]
@@ -11,7 +11,7 @@
 [ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/savePoints/savepoint.tscn" type="PackedScene" id=11]
-[ext_resource path="res://worlds/paintWorld/tilesets/paintWordlBack.tres" type="TileSet" id=12]
+[ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 192, 48 )
