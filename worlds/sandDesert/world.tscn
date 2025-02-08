@@ -27,6 +27,7 @@ normalWarps = [ NodePath("RoomWarp") ]
 [node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [node name="enablePlaceholder" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 1163, 24.0001 )

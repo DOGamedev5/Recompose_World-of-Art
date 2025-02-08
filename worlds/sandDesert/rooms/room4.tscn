@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://gameplay/classes/cinematic/cinematicPlayer.gd" type="Script" id=1]
 [ext_resource path="res://worlds/sandDesert/tilesets/sandDesert/sandDesert.tres" type="TileSet" id=2]
 [ext_resource path="res://worlds/sandDesert/objects/elevator/elevator.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=4]
 [ext_resource path="res://worlds/sandDesert/roomScripts/room4.gd" type="Script" id=5]
+[ext_resource path="res://worlds/sandDesert/objects/light/light.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 2
@@ -101,5 +102,11 @@ shape = SubResource( 2 )
 anims/RESET = SubResource( 4 )
 anims/elevator = SubResource( 3 )
 script = ExtResource( 1 )
+
+[node name="light" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1634, 96 )
+
+[node name="light2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1826, 96 )
 
 [connection signal="elevatorInteracted" from="elevator" to="." method="_on_elevator_elevatorInteracted"]

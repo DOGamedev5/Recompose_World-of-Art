@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/light.pxo-1fe3eacfe50a63577d357c32d9f012dc.stex"
+
+[deps]
+
+source_file="res://worlds/sandDesert/objects/light/light.pxo"
+dest_files=[ "res://.import/light.pxo-1fe3eacfe50a63577d357c32d9f012dc.stex" ]
+
+[params]
+

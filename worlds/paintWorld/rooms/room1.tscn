@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/paintWorld/objects/elevator/elevator.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://worlds/paintWorld/roomScripts/room1.gd" type="Script" id=4]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=5]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/sandDesert/objects/light/light.tscn" type="PackedScene" id=7]
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=9]
 
 [sub_resource type="Animation" id=1]
@@ -74,6 +75,27 @@ tracks/2/keys = {
 "values": [ 450 ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "walk"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("CutScene")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "ui_right", 0.5 ],
+"method": "setInput"
+}, {
+"args": [ "ui_right", 0.0 ],
+"method": "setInput"
+} ]
+}
+
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 968.5, 456.5 )
 
@@ -103,6 +125,7 @@ actualMotion = 450
 [node name="CutScene" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/enter = SubResource( 2 )
+anims/walk = SubResource( 4 )
 script = ExtResource( 3 )
 
 [node name="CameraLimitsArea" type="Area2D" parent="."]
@@ -120,3 +143,27 @@ position = Vector2( 256, -288 )
 [node name="lampaint2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 801, -304 )
 fliped = true
+
+[node name="light" parent="." instance=ExtResource( 7 )]
+position = Vector2( -160, -896 )
+
+[node name="light2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 32, -896 )
+
+[node name="light3" parent="." instance=ExtResource( 7 )]
+position = Vector2( -160, -704 )
+
+[node name="light4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 32, -704 )
+
+[node name="light5" parent="." instance=ExtResource( 7 )]
+position = Vector2( -160, -512 )
+
+[node name="light6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 32, -512 )
+
+[node name="light7" parent="." instance=ExtResource( 7 )]
+position = Vector2( -160, -1088 )
+
+[node name="light8" parent="." instance=ExtResource( 7 )]
+position = Vector2( 32, -1088 )

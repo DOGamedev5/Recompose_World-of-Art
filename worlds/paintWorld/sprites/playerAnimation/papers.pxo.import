@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/papers.pxo-12ac1d4efd5e0d1ddb263bb03d3a1ec6.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/sprites/playerAnimation/papers.pxo"
+dest_files=[ "res://.import/papers.pxo-12ac1d4efd5e0d1ddb263bb03d3a1ec6.stex" ]
+
+[params]
+

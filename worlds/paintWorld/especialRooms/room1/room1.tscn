@@ -12,8 +12,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ -192.0 ]
 }
-limitsMin = Vector2( -144, -677 )
-limitsMax = Vector2( 1648, 128 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -46,5 +44,4 @@ ropeLenght = 150
 
 [node name="elevator" parent="." instance=ExtResource( 5 )]
 position = Vector2( 168, -112 )
-lineDistante = 24
 linePosition = Vector2( 168, -336 )

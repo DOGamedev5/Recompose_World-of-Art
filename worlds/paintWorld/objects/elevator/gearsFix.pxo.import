@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/gearsFix.pxo-6af7dc02da8f80e6855b6b13663771de.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/objects/elevator/gearsFix.pxo"
+dest_files=[ "res://.import/gearsFix.pxo-6af7dc02da8f80e6855b6b13663771de.stex" ]
+
+[params]
+

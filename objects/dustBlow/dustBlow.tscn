@@ -3,6 +3,7 @@
 [ext_resource path="res://objects/dustBlow/dustBlow.gd" type="Script" id=1]
 
 [sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
 particles_animation = true
 particles_anim_h_frames = 7
 particles_anim_v_frames = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.pxo" type="Texture" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://addons/controller_icons/objects/TextureRect.gd" type="Script" id=33]
 [ext_resource path="res://entities/player/HUD/sprites/timerBackground.pxo" type="Texture" id=34]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.otf" type="DynamicFontData" id=35]
+[ext_resource path="res://worlds/sandDesert/map.pxo" type="Texture" id=36]
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 24 )
@@ -745,6 +746,18 @@ __meta__ = {
 [node name="map" type="Control" parent="inventory"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="Map" type="TextureRect" parent="inventory/map"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -160.0
+margin_right = 400.0
+margin_bottom = 160.0
+texture = ExtResource( 36 )
+expand = true
 
 [node name="items" type="Control" parent="inventory"]
 visible = false

@@ -13,6 +13,19 @@ onready var changingInfo := {
 	warpType = "warp",
 	warpID = 0
 }
+onready var inputAction := {
+	"ui_left" : 0.0,
+	"ui_right" : 0.0,
+	"ui_up" : 0.0,
+	"ui_down" : 0.0,
+	"interact" : 0.0,
+	"ui_accept" : 0.0,
+	"ui_jump" : 0.0,
+	"ui_enter" : 0.0,
+	"run" : 0.0,
+	"attack" : 0.0,
+	"confirm" : 0.0
+}
 
 var options : OptionsSave
 
@@ -46,6 +59,7 @@ func _ready():
 	setup_langueges()
 	call_deferred("updateActivity")
 
+
 func updateActivity() -> void:
 	var activity = Discord.Activity.new()
 	activity.set_type(Discord.ActivityType.Playing)
@@ -69,17 +83,39 @@ func _input(_event):
 
 func handInput(action : String, pressed := false) -> bool:
 	if not inputEnabled:
+		if inputAction.has(action):
+			return inputAction[action] != 0
+		
 		return false
-	elif pressed:
-		return Input.is_action_pressed(action)
+	else:
+		if inputAction.has(action):
+			inputAction[action] = 0.0
+			
+	if pressed: return Input.is_action_pressed(action)
 
 	return Input.is_action_just_pressed(action)
 
-func handInputAxis(actionA, actionB) -> float:
+func handInputAxis(actionA : String, actionB : String) -> float:
 	if not inputEnabled:
-		return 0.0
+		var result := 0.0
+		if inputAction.has(actionA):
+			result -= inputAction[actionA]
+			
+		if inputAction.has(actionB):
+			result += inputAction[actionB]
+		
+		return result
+	else:
+		if inputAction.has(actionA):
+			inputAction[actionA] = 0.0
+		if inputAction.has(actionB):
+			inputAction[actionB] = 0.0
 	
 	return Input.get_axis(actionA, actionB)
+
+func setInput(action : String, press : float):
+	if inputAction.has(action):
+		inputAction[action] = press
 
 func changeWorld(catergory : String, newWorld : String, warpID := -1, warpType := ""):
 	

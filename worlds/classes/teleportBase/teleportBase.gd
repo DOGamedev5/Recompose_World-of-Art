@@ -12,6 +12,10 @@ export(Array, NodePath) var areasToUpdate := []
 
 func teleport():
 	if not destination: return
+	for areaPath in areasToUpdate:
+		var area = get_node_or_null(areaPath) as Area2D
+		if area:
+			area.emit_signal("area_exited", Global.player.hitbox)
 	destination.init()
 
 func init():

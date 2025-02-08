@@ -1,4 +1,4 @@
-class_name enablePlaceholder extends VisibilityNotifier2D
+class_name EnablePlaceholder extends VisibilityNotifier2D
 
 export var placeholderPath : NodePath
 onready var placeholder := get_node(placeholderPath) as InstancePlaceholder

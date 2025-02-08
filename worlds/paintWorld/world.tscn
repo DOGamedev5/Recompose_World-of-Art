@@ -1,16 +1,19 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://worlds/paintWorld/world.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/teleportBase/door/doorEnter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
-[ext_resource path="res://worlds/paintWorld/rooms/room1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
 [ext_resource path="res://worlds/paintWorld/background.tscn" type="PackedScene" id=6]
-[ext_resource path="res://worlds/paintWorld/rooms/room2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://autoloads/loadSystem/enableplaceholder/enablePlaceholder.gd" type="Script" id=7]
 [ext_resource path="res://worlds/classes/canvasModulateChanger/CanvasModulteChanger.gd" type="Script" id=8]
+[ext_resource path="res://worlds/classes/areaTrigger/areaTrigger.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 488, 168 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 33 )
 
 [node name="world" type="Node2D"]
 position = Vector2( -11, -36 )
@@ -27,11 +30,23 @@ normalWarps = [ NodePath("RoomWarp") ]
 position = Vector2( -67, -1546 )
 script = ExtResource( 5 )
 
-[node name="room1" parent="." instance=ExtResource( 4 )]
+[node name="room1" parent="." instance_placeholder="res://worlds/paintWorld/rooms/room1.tscn"]
 position = Vector2( -5, -652 )
 
-[node name="room2" parent="." instance=ExtResource( 7 )]
+[node name="EnablePlaceholder" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 615, -1084 )
+scale = Vector2( 121.2, -62.4 )
+script = ExtResource( 7 )
+placeholderPath = NodePath("../room1")
+
+[node name="room2" parent="." instance_placeholder="res://worlds/paintWorld/rooms/room2.tscn"]
 position = Vector2( 579, -2060 )
+
+[node name="EnablePlaceholder2" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 811, -2316 )
+scale = Vector2( 93.6, 58.4 )
+script = ExtResource( 7 )
+placeholderPath = NodePath("../room2")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
 
@@ -56,3 +71,13 @@ colorChange = Color( 0.729412, 0.65098, 0.611765, 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasModulaterChanger"]
 position = Vector2( 795, -2284 )
 shape = SubResource( 1 )
+
+[node name="AreaTrigger" type="Area2D" parent="."]
+position = Vector2( 523, -2156 )
+script = ExtResource( 9 )
+objectPath = NodePath("../EnablePlaceholder")
+methodName = "play"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTrigger"]
+position = Vector2( 0, -32 )
+shape = SubResource( 2 )

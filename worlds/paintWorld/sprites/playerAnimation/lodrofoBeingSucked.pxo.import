@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoBeingSucked.pxo-fa614a8fc94d04bfd4684115cf8996d1.stex"
+
+[deps]
+
+source_file="res://worlds/paintWorld/sprites/playerAnimation/lodrofoBeingSucked.pxo"
+dest_files=[ "res://.import/lodrofoBeingSucked.pxo-fa614a8fc94d04bfd4684115cf8996d1.stex" ]
+
+[params]
+
