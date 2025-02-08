@@ -34,7 +34,7 @@ script = ExtResource( 5 )
 position = Vector2( -5, -652 )
 
 [node name="EnablePlaceholder" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 615, -1084 )
+position = Vector2( 629, -1068 )
 scale = Vector2( 121.2, -62.4 )
 script = ExtResource( 7 )
 placeholderPath = NodePath("../room1")
