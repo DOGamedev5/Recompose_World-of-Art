@@ -1,0 +1,13 @@
+[remap]
+
+importer="com.technohacker.pixelorama"
+type="StreamTexture"
+path="res://.import/lodrofoEnterExit.pxo-b594e5de22cb90a73e354a87d871b4e6.stex"
+
+[deps]
+
+source_file="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoEnterExit.pxo"
+dest_files=[ "res://.import/lodrofoEnterExit.pxo-b594e5de22cb90a73e354a87d871b4e6.stex" ]
+
+[params]
+

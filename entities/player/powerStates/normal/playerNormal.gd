@@ -8,6 +8,7 @@ onready var counchPlayback = animation["parameters/COUNCH/COUNCH/playback"]
 onready var normalPlayback = animation["parameters/NORMAL/NORMAL/playback"]
 onready var walledPlayback = animation["parameters/WALLED/WALLED/playback"]
 onready var ladderPlayback = animation["parameters/LADDER/StateMachine/playback"]
+onready var tauntPlayback = animation["parameters/TAUNT/StateMachine/playback"]
 onready var topSpeedPlayback = animation["parameters/RUN/RUN/playback"]
 
 onready var attackComponents = [$attackPunch, $attackSpeed, $attackRoll]
@@ -164,3 +165,10 @@ func _stepSfx():
 	var sfx = stepSFX[0]
 	if is_on_floor():
 		AudioManager.playSFX(sfx, {"pitch_scale" : rand_range(0.9, 1)})
+
+func taunt(tauntName):
+	$StateMachine/TAUNT.currentTaunt = tauntName
+	$StateMachine/TAUNT.update()
+	stateMachine.changeState("TAUNT")
+	
+	

@@ -35,10 +35,10 @@ func _input(_event):
 
 func enteredArea(area2D):
 	if not area2D.is_in_group("player"): return
-	if Global.options.colorEffect:
-		$ballonContent/ballon.modulate.a = 0.77
-	else:
-		$ballonContent/ballon.modulate.a = 0.9
+#	if Global.options.colorEffect:
+	$ballonContent/ballon.modulate.a = 0.77
+#	else:
+#		$ballonContent/ballon.modulate.a = 0.9
 	
 	player = area2D.get_parent()
 	

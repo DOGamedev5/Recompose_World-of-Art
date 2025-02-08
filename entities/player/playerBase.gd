@@ -16,7 +16,7 @@ const SNAPLENGTH := 32
 export(NodePath) var spriteGizmoPath : NodePath
 onready var spriteGizmo := get_node_or_null(spriteGizmoPath)
 export(NodePath) var stateMachinePath
-onready var stateMachine = get_node_or_null(stateMachinePath) as StateMachine
+onready var stateMachine : StateMachine = get_node_or_null(stateMachinePath) as StateMachine
 
 export(Array) var particles
 export(Array) var FlipObjects
@@ -419,3 +419,7 @@ func shieldTimeout():
 
 func _on_jumpBuffer_timeout():
 	jumpBuffer = false
+
+func taunt(_tauntName):
+	pass
+

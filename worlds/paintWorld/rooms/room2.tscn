@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/3/lampaint3.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://entities/placa/plate.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dimensions/literatureArt/portal/literatureArtPortal.pxo" type="Texture" id=9]
 [ext_resource path="res://worlds/paintWorld/sprites/playerAnimation/papers.pxo" type="Texture" id=10]
+[ext_resource path="res://worlds/classes/areaTrigger/areaTrigger.gd" type="Script" id=11]
 
 [sub_resource type="CanvasItemMaterial" id=5]
 particles_animation = true
@@ -150,6 +151,9 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 8 ]
 }
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 64, 25 )
+
 [node name="room2" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -203,7 +207,7 @@ content = [ "" ]
 fliped = true
 
 [node name="lampaint3" parent="." instance=ExtResource( 2 )]
-position = Vector2( -80, -304 )
+position = Vector2( -88, -304 )
 
 [node name="lampaint4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 248, -368 )
@@ -235,3 +239,13 @@ z_index = -1
 z_as_relative = false
 texture = ExtResource( 9 )
 hframes = 6
+
+[node name="AreaTrigger" type="Area2D" parent="."]
+position = Vector2( -80, -104 )
+script = ExtResource( 11 )
+objectPath = NodePath("..")
+methodName = "play"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTrigger"]
+position = Vector2( 24, -15 )
+shape = SubResource( 6 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=182 format=2]
+[gd_scene load_steps=197 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -33,9 +33,11 @@
 [ext_resource path="res://entities/player/powerStates/normal/scripts/LADDER.gd" type="Script" id=31]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoLadder.pxo" type="Texture" id=32]
 [ext_resource path="res://gameplay/effects/effect2.pxo" type="Texture" id=33]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoEnterExit.pxo" type="Texture" id=34]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoToRun.pxo" type="Texture" id=35]
 [ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoSuperRoll.pxo" type="Texture" id=36]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/SUPERROLL.gd" type="Script" id=37]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/TAUNT.gd" type="Script" id=38]
 
 [sub_resource type="CanvasItemMaterial" id=193]
 particles_animation = true
@@ -467,6 +469,84 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=343]
+resource_name = "ENTER"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 34 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=344]
+resource_name = "EXIT"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 34 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
 }
 
 [sub_resource type="Animation" id=33]
@@ -1566,10 +1646,10 @@ states/WALK/node = SubResource( 303 )
 states/WALK/position = Vector2( 626.457, 236.778 )
 transitions = [ "JUMP", "FALL", SubResource( 271 ), "STOPPING", "IDLE", SubResource( 277 ), "IDLE", "JUMP", SubResource( 278 ), "FALL", "IDLE", SubResource( 279 ), "IDLE", "FALL", SubResource( 280 ), "STOPPING", "WALK", SubResource( 304 ), "WALK", "STOPPING", SubResource( 305 ), "WALK", "IDLE", SubResource( 306 ), "IDLE", "WALK", SubResource( 307 ), "WALK", "JUMP", SubResource( 308 ), "JUMP", "WALK", SubResource( 309 ), "WALK", "FALL", SubResource( 310 ), "FALL", "WALK", SubResource( 311 ), "WALK", "ROLL", SubResource( 313 ), "ROLL", "JUMP", SubResource( 314 ), "FALL", "ROLL", SubResource( 315 ), "STOPPING", "ROLL", SubResource( 316 ), "IDLE", "ROLL", SubResource( 317 ), "ROLL", "IDLE", SubResource( 318 ), "ROLL", "WALK", SubResource( 319 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 0, 279.218 )
+graph_offset = Vector2( 0, 454.75 )
 
 [sub_resource type="AnimationNodeBlendTree" id=283]
-graph_offset = Vector2( 320.276, 101.525 )
+graph_offset = Vector2( -324.835, -101.48 )
 nodes/NORMAL/node = SubResource( 282 )
 nodes/NORMAL/position = Vector2( 720, 240 )
 nodes/output/position = Vector2( 1066.67, 320 )
@@ -1618,11 +1698,36 @@ end_node = "RUN"
 graph_offset = Vector2( 377.834, 94.1769 )
 
 [sub_resource type="AnimationNodeBlendTree" id=206]
-graph_offset = Vector2( 1269.54, 821.45 )
+graph_offset = Vector2( 415.692, 176.86 )
 nodes/RUN/node = SubResource( 205 )
 nodes/RUN/position = Vector2( 800, 346.667 )
 nodes/output/position = Vector2( 1120, 346.667 )
 node_connections = [ "output", 0, "RUN" ]
+
+[sub_resource type="AnimationNodeAnimation" id=345]
+animation = "ENTER"
+
+[sub_resource type="AnimationNodeAnimation" id=346]
+animation = "EXIT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=347]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=348]
+
+[sub_resource type="AnimationNodeStateMachine" id=349]
+states/ENTER/node = SubResource( 345 )
+states/ENTER/position = Vector2( 387, 80.7778 )
+states/EXIT/node = SubResource( 346 )
+states/EXIT/position = Vector2( 596.333, 80.3333 )
+transitions = [ "EXIT", "ENTER", SubResource( 347 ), "ENTER", "EXIT", SubResource( 348 ) ]
+start_node = "ENTER"
+
+[sub_resource type="AnimationNodeBlendTree" id=350]
+graph_offset = Vector2( 386.966, 313.193 )
+nodes/StateMachine/node = SubResource( 349 )
+nodes/StateMachine/position = Vector2( 346.667, 160 )
+nodes/output/position = Vector2( 586.667, 160 )
+node_connections = [ "output", 0, "StateMachine" ]
 
 [sub_resource type="AnimationNodeAnimation" id=320]
 animation = "SPLAT"
@@ -1709,6 +1814,14 @@ node_connections = [ "output", 0, "WALLED" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=333]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=351]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=352]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=353]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=354]
+
 [sub_resource type="AnimationNodeStateMachine" id=13]
 states/ATTACK/node = SubResource( 74 )
 states/ATTACK/position = Vector2( 728.811, 550.975 )
@@ -1722,11 +1835,13 @@ states/NORMAL/node = SubResource( 283 )
 states/NORMAL/position = Vector2( 731.791, 197.77 )
 states/RUN/node = SubResource( 206 )
 states/RUN/position = Vector2( 258.308, 197.02 )
+states/TAUNT/node = SubResource( 350 )
+states/TAUNT/position = Vector2( 494.684, 92.5305 )
 states/WALLED/node = SubResource( 325 )
 states/WALLED/position = Vector2( 154.649, 350.401 )
-transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "RUN", "LADDER", SubResource( 207 ), "RUN", "DAMAGED", SubResource( 211 ), "DAMAGED", "RUN", SubResource( 212 ), "ATTACK", "RUN", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "RUN", "COUNCH", SubResource( 254 ), "COUNCH", "RUN", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "RUN", SubResource( 284 ), "RUN", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "RUN", "WALLED", SubResource( 327 ), "WALLED", "RUN", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ) ]
+transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "RUN", "LADDER", SubResource( 207 ), "RUN", "DAMAGED", SubResource( 211 ), "DAMAGED", "RUN", SubResource( 212 ), "ATTACK", "RUN", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "RUN", "COUNCH", SubResource( 254 ), "COUNCH", "RUN", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "RUN", SubResource( 284 ), "RUN", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "RUN", "WALLED", SubResource( 327 ), "WALLED", "RUN", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ), "RUN", "TAUNT", SubResource( 351 ), "TAUNT", "RUN", SubResource( 352 ), "TAUNT", "NORMAL", SubResource( 353 ), "NORMAL", "TAUNT", SubResource( 354 ) ]
 start_node = "NORMAL"
-graph_offset = Vector2( 26.3503, 92.5442 )
+graph_offset = Vector2( 26.3503, 6.86387 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=152]
 
@@ -1737,6 +1852,8 @@ graph_offset = Vector2( 26.3503, 92.5442 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=300]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=335]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=355]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=334]
 
@@ -1868,6 +1985,8 @@ anims/COUNCHFALL = SubResource( 127 )
 anims/COUNCHJUMP = SubResource( 124 )
 anims/CRAWLING = SubResource( 106 )
 anims/DAMAGED = SubResource( 134 )
+anims/ENTER = SubResource( 343 )
+anims/EXIT = SubResource( 344 )
 anims/FALL = SubResource( 33 )
 anims/IDLE = SubResource( 3 )
 anims/JUMP = SubResource( 41 )
@@ -1896,6 +2015,7 @@ parameters/LADDER/StateMachine/playback = SubResource( 191 )
 parameters/NORMAL/NORMAL/playback = SubResource( 300 )
 parameters/NORMAL/NORMAL/WALK/TimeScale/scale = 1.0
 parameters/RUN/RUN/playback = SubResource( 335 )
+parameters/TAUNT/StateMachine/playback = SubResource( 355 )
 parameters/WALLED/WALLED/playback = SubResource( 334 )
 
 [node name="attackPunch" type="Area2D" parent="." index="24"]
@@ -1981,6 +2101,12 @@ script = ExtResource( 31 )
 
 [node name="SUPERROLL" type="Node" parent="StateMachine" index="10" groups=["input"]]
 script = ExtResource( 37 )
+
+[node name="TAUNT" type="Node" parent="StateMachine" index="11"]
+script = ExtResource( 38 )
+
+[node name="Timer" type="Timer" parent="StateMachine/TAUNT" index="0"]
+one_shot = true
 
 [node name="a" type="Node2D" parent="." index="28"]
 visible = false

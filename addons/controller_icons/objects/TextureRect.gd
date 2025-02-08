@@ -8,6 +8,9 @@ export(int, "None", "Keyboard/Mouse", "Controller") var force_type : int = 0 set
 export(int) var max_width : int = 40 setget set_max_width
 
 func _ready():
+	material = CanvasItemMaterial.new()
+	material.light_mode = 1
+	
 	ControllerIcons.connect("input_type_changed", self, "_on_input_type_changed")
 	set_path(path)
 	set_max_width(max_width)
