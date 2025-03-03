@@ -119,7 +119,7 @@ tile_data = PoolIntArray( -4259876, 0, 8, -4259875, 0, 10, -4259874, 0, 10, -425
 [node name="elevator" parent="." instance=ExtResource( 2 )]
 position = Vector2( -64, -288 )
 lineStart = Vector2( 0, -1264 )
-motion = 450
+motion = 10
 actualMotion = 450
 
 [node name="CutScene" type="AnimationPlayer" parent="."]

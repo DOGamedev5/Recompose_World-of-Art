@@ -17,10 +17,7 @@ texture = ExtResource( 1 )
 hframes = 2
 
 [node name="interactBallon" parent="." instance=ExtResource( 2 )]
-margin_left = 0.0
-margin_top = -104.0
-margin_right = 0.0
-margin_bottom = -104.0
+position = Vector2( 0, -96 )
 areaInteractPath = NodePath("..")
 content = [ "/btn:ui_accept" ]
 

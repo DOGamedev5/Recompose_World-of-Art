@@ -1646,10 +1646,10 @@ states/WALK/node = SubResource( 303 )
 states/WALK/position = Vector2( 626.457, 236.778 )
 transitions = [ "JUMP", "FALL", SubResource( 271 ), "STOPPING", "IDLE", SubResource( 277 ), "IDLE", "JUMP", SubResource( 278 ), "FALL", "IDLE", SubResource( 279 ), "IDLE", "FALL", SubResource( 280 ), "STOPPING", "WALK", SubResource( 304 ), "WALK", "STOPPING", SubResource( 305 ), "WALK", "IDLE", SubResource( 306 ), "IDLE", "WALK", SubResource( 307 ), "WALK", "JUMP", SubResource( 308 ), "JUMP", "WALK", SubResource( 309 ), "WALK", "FALL", SubResource( 310 ), "FALL", "WALK", SubResource( 311 ), "WALK", "ROLL", SubResource( 313 ), "ROLL", "JUMP", SubResource( 314 ), "FALL", "ROLL", SubResource( 315 ), "STOPPING", "ROLL", SubResource( 316 ), "IDLE", "ROLL", SubResource( 317 ), "ROLL", "IDLE", SubResource( 318 ), "ROLL", "WALK", SubResource( 319 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 0, 454.75 )
+graph_offset = Vector2( 0, 60.8075 )
 
 [sub_resource type="AnimationNodeBlendTree" id=283]
-graph_offset = Vector2( -324.835, -101.48 )
+graph_offset = Vector2( 1391.18, 556.533 )
 nodes/NORMAL/node = SubResource( 282 )
 nodes/NORMAL/position = Vector2( 720, 240 )
 nodes/output/position = Vector2( 1066.67, 320 )

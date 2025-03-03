@@ -1,5 +1,5 @@
 tool
-class_name InteractBallon extends Control
+class_name InteractBallon extends Node2D
 
 export(NodePath) var areaInteractPath
 export(Array, String) var content = [] setget changed
@@ -30,7 +30,7 @@ func _ready():
 	var _2 = areaInteract.connect("area_exited", self, "exitedArea")
 
 func _input(_event):
-	if Input.is_action_just_pressed("interact") and canInteract:
+	if Input.is_action_just_pressed("interact") and canInteract and not Global.playerHud.dialog.opened:
 		emit_signal("interacted")
 
 func enteredArea(area2D):

@@ -195,4 +195,10 @@ func bin_array(n : int, size := 8):
 func disableInput(value):
 	tree.call_group("input", "set_process_input", value)
 	
+func setTimeMultiply(multiply : float, time = 0.2):
+	Engine.time_scale = multiply
+	print(multiply)
+	if multiply != 1:
+		tree.create_timer(time*multiply).connect("timeout", self, "setTimeMultiply", [1.0])
+	
 

@@ -199,7 +199,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/classes/hitboxComponent/hitboxComponent.gd"
 }, {
-"base": "Control",
+"base": "Node2D",
 "class": "InteractBallon",
 "language": "GDScript",
 "path": "res://entities/classes/interactComponent/interactBallon.gd"
