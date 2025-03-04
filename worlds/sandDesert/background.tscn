@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://worlds/sandDesert/tilesets/backgroundDesert.pxo" type="Texture" id=1]
-[ext_resource path="res://worlds/sandDesert/tilesets/cloud.pxo" type="Texture" id=2]
-[ext_resource path="res://worlds/sandDesert/objects/sun.pxo" type="Texture" id=3]
+[ext_resource path="res://worlds/sandDesert/tilesets/backgroundDesert.png" type="Texture" id=1]
+[ext_resource path="res://worlds/sandDesert/tilesets/cloud.png" type="Texture" id=2]
+[ext_resource path="res://worlds/sandDesert/objects/sun.png" type="Texture" id=3]
 [ext_resource path="res://worlds/sandDesert/background.gd" type="Script" id=5]
 
 [sub_resource type="Gradient" id=1]

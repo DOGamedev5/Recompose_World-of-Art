@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://worlds/paintWorld/objects/lamp/light.pxo" type="Texture" id=1]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/light.png" type="Texture" id=1]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/lamp.gd" type="Script" id=2]
-[ext_resource path="res://worlds/sandDesert/objects/light/light.pxo" type="Texture" id=3]
+[ext_resource path="res://worlds/sandDesert/objects/light/light.png" type="Texture" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1

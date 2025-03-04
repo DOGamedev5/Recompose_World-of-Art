@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://objects/chest/chest.pxo" type="Texture" id=1]
+[ext_resource path="res://objects/chest/chest.png" type="Texture" id=1]
 
 [node name="chest" type="Node2D"]
 

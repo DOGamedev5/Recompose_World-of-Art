@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://dimensions/literatureArt/objects/flipPlataform/flipPlataform.gd" type="Script" id=1]
-[ext_resource path="res://dimensions/literatureArt/objects/flipPlataform/flipPlataform.pxo" type="Texture" id=2]
+[ext_resource path="res://dimensions/literatureArt/objects/flipPlataform/flipPlataform.png" type="Texture" id=2]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]

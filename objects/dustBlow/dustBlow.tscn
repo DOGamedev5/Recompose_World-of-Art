@@ -10,7 +10,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = true
 
 [sub_resource type="StreamTexture" id=2]
-load_path = "res://.import/effect1.pxo-e14b83f33bc5af2dbff6a39023222ec2.stex"
+load_path = "res://.import/effect1.png-e14b83f33bc5af2dbff6a39023222ec2.stex"
 
 [sub_resource type="Curve" id=3]
 min_value = -200.0

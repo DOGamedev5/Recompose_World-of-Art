@@ -7,9 +7,9 @@
 [ext_resource path="res://gameplay/classes/cinematic/cinematicPlayer.gd" type="Script" id=5]
 [ext_resource path="res://dimensions/literatureArt/portal/literatureArtPortal.png" type="Texture" id=6]
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=7]
-[ext_resource path="res://worlds/paintWorld/sprites/monument.pxo" type="Texture" id=8]
+[ext_resource path="res://worlds/paintWorld/sprites/monument.png" type="Texture" id=8]
 [ext_resource path="res://objects/dustBlow/dustBlow.tscn" type="PackedScene" id=9]
-[ext_resource path="res://worlds/paintWorld/sprites/playerAnimation/papers.pxo" type="Texture" id=10]
+[ext_resource path="res://worlds/paintWorld/sprites/playerAnimation/papers.png" type="Texture" id=10]
 [ext_resource path="res://worlds/classes/areaTrigger/areaTrigger.gd" type="Script" id=11]
 [ext_resource path="res://worlds/paintWorld/sprites/playerAnimation/lodrofoBeingSucked.png" type="Texture" id=12]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://worlds/classes/dimensionPortal/hud/title.pxo" type="Texture" id=1]
+[ext_resource path="res://worlds/classes/dimensionPortal/hud/title.png" type="Texture" id=1]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://worlds/classes/dimensionPortal/hud/hudPortal.gd" type="Script" id=3]
 

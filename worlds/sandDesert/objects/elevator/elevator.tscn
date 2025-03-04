@@ -1,11 +1,11 @@
 [gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://worlds/sandDesert/objects/elevator/elevator.pxo" type="Texture" id=1]
+[ext_resource path="res://worlds/sandDesert/objects/elevator/elevator.png" type="Texture" id=1]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/3/lampaint3.tscn" type="PackedScene" id=2]
-[ext_resource path="res://worlds/paintWorld/objects/elevator/elevatorCable.pxo" type="Texture" id=3]
+[ext_resource path="res://worlds/paintWorld/objects/elevator/elevatorCable.png" type="Texture" id=3]
 [ext_resource path="res://worlds/paintWorld/objects/elevator/elevator.gd" type="Script" id=4]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=5]
-[ext_resource path="res://worlds/sandDesert/objects/elevator/lever.pxo" type="Texture" id=6]
+[ext_resource path="res://worlds/sandDesert/objects/elevator/lever.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 128, 32 )

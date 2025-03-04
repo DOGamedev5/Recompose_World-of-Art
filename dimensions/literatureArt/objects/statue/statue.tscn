@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://dimensions/literatureArt/objects/statue/statueBook.pxo" type="Texture" id=1]
+[ext_resource path="res://dimensions/literatureArt/objects/statue/statueBook.png" type="Texture" id=1]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=2]
 [ext_resource path="res://dimensions/classes/statue/statue.gd" type="Script" id=3]
 

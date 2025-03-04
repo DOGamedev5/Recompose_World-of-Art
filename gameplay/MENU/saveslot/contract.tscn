@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://gameplay/MENU/saveslot/contract.pxo" type="Texture" id=1]
+[ext_resource path="res://gameplay/MENU/saveslot/contract.png" type="Texture" id=1]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/expression-pro-v1.1/ExpressionPro.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://gameplay/MENU/saveslot/Confirm.pxo" type="Texture" id=3]
+[ext_resource path="res://gameplay/MENU/saveslot/Confirm.png" type="Texture" id=3]
 [ext_resource path="res://gameplay/MENU/saveslot/contract.gd" type="Script" id=4]
-[ext_resource path="res://gameplay/MENU/saveslot/pressConfirm.pxo" type="Texture" id=5]
-[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.pxo" type="Texture" id=6]
+[ext_resource path="res://gameplay/MENU/saveslot/pressConfirm.png" type="Texture" id=5]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 6 )

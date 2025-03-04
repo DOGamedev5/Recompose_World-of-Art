@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://entities/NPCs/soldiers/Soldier2.gd" type="Script" id=1]
-[ext_resource path="res://entities/NPCs/soldiers/soldier2.pxo" type="Texture" id=2]
+[ext_resource path="res://entities/NPCs/soldiers/soldier2.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 28 )

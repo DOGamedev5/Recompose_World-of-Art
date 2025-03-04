@@ -2,7 +2,7 @@
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=2]
-[ext_resource path="res://worlds/sandDesert/objects/car/car.pxo" type="Texture" id=3]
+[ext_resource path="res://worlds/sandDesert/objects/car/car.png" type="Texture" id=3]
 [ext_resource path="res://worlds/sandDesert/tilesets/sandDesert/sandDesert.tres" type="TileSet" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=3]

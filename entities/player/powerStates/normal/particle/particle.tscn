@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoTopSpeed.pxo" type="Texture" id=1]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoTopSpeed.png" type="Texture" id=1]
 [ext_resource path="res://entities/player/powerStates/normal/particle/particle.gd" type="Script" id=2]
 
 [sub_resource type="CanvasItemMaterial" id=1]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://objects/coins/coins.pxo" type="Texture" id=1]
+[ext_resource path="res://objects/coins/coins.png" type="Texture" id=1]
 [ext_resource path="res://objects/coins/coin.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]

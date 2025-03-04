@@ -38,6 +38,7 @@ var worldDataSetup := false
 var waintingToChange := false
 
 var time := OS.get_unix_time()
+onready var converFIle := File.new()
 
 func _ready():
 	
@@ -56,8 +57,43 @@ func _ready():
 		
 	options = FileSystemHandler.loadDataResource(Global.optionsSavePath)
 	
+	converFIle.open("res://convertPxo", File.WRITE)
+	
 	setup_langueges()
 	call_deferred("updateActivity")
+	convertsPxoFiles("res://")
+
+func convertsPxoFiles(path):
+	var dir := Directory.new()
+	var file := File.new()
+#	print(path)
+	
+	if dir.open(path) == OK:
+		dir.list_dir_begin(true, true)
+		
+		var file_name := dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir() and file_name != "addons":
+				convertsPxoFiles(path+file_name+"/")
+			elif file_name.ends_with(".tres"):
+				var output := file_name
+				
+				if not file.file_exists(path+output):
+					file.open(path+file_name, 1)
+					var item := file.get_path_absolute().replace("/home/misael", "$HOME")
+#					totalPixelorama.append(OS.execute("~/Dev/tools/pixelorama/Pixelorama.x86_64", ["\""+file.get_path_absolute().replace("/home/misael", "$HOME")+"\"", "-s", "--headless"]))
+#					print("~/Dev/tools/pixelorama/Pixelorama.x86_64 {file} --headless  -s --quit -- --output {output}".format({"file" : item, "output" : output}))
+#					OS.execute("~/Dev/tools/pixelorama/Pixelorama.x86_64 {file} --headless  -s --quit -- --output {output}".format({"file" : item, "output" : output}), [])
+					converFIle.store_line(item)
+					
+			file_name = dir.get_next()
+	else:
+		print("fail")
+	
+	if path == "res://":
+		converFIle.close()
+
+
 
 
 func updateActivity() -> void:

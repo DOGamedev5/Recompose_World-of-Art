@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4.gd" type="Script" id=1]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/light.pxo" type="Texture" id=2]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4-base.pxo" type="Texture" id=3]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint3-rope.pxo" type="Texture" id=4]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4-lamp.pxo" type="Texture" id=5]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/light.png" type="Texture" id=2]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4-base.png" type="Texture" id=3]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint3-rope.png" type="Texture" id=4]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4-lamp.png" type="Texture" id=5]
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 4, 8, -4, 8, -8, 6, -8, 0, 8, 0, 8, 6 )

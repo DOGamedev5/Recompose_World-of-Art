@@ -1,16 +1,16 @@
 [gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://entities/enemies/enemyBase/enemyBase.gd" type="Script" id=1]
-[ext_resource path="res://entities/enemies/bugouth/sprites/bugouth.pxo" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/bugouth/sprites/bugouth.png" type="Texture" id=2]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=3]
 [ext_resource path="res://entities/enemies/bugouth/scripts/ATTACK.gd" type="Script" id=4]
 [ext_resource path="res://entities/enemies/bugouth/scripts/IDLE.gd" type="Script" id=5]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=6]
-[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthDeath.pxo" type="Texture" id=7]
+[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthDeath.png" type="Texture" id=7]
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=9]
 [ext_resource path="res://entities/enemies/bugouth/scripts/SEEK.gd" type="Script" id=10]
-[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthAttack.pxo" type="Texture" id=11]
-[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthBite.pxo" type="Texture" id=12]
+[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthAttack.png" type="Texture" id=11]
+[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthBite.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=10]
 resource_name = "BITE"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=1]
-[ext_resource path="res://gameplay/MENU/title.pxo" type="Texture" id=2]
+[ext_resource path="res://gameplay/MENU/title.png" type="Texture" id=2]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://worlds/paintWorld/sprites/credits_images/0.png" type="Texture" id=6]
 [ext_resource path="res://worlds/paintWorld/sprites/credits_images/1.png" type="Texture" id=7]

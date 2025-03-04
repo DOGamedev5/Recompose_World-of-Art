@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=2 format=2]
 
-[ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintCavernsBack.pxo" type="Texture" id=1]
+[ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintCavernsBack.png" type="Texture" id=1]
 
 [resource]
 0/name = "paintCavernsBack.pxo 0"

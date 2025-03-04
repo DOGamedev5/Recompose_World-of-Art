@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=141 format=2]
 
-[ext_resource path="res://worlds/sandDesert/tilesets/sandDesert/sandDesert.pxo" type="Texture" id=1]
+[ext_resource path="res://worlds/sandDesert/tilesets/sandDesert/sandDesert.png" type="Texture" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 1, 8, 1, 8, 8, 0, 8 )

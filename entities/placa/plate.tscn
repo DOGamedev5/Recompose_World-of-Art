@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://entities/placa/plate.pxo" type="Texture" id=1]
+[ext_resource path="res://entities/placa/plate.png" type="Texture" id=1]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/placa/plate.gd" type="Script" id=3]
 

@@ -5,14 +5,14 @@
 [ext_resource path="res://addons/controller_icons/assets/key/enter_alt.png" type="Texture" id=4]
 [ext_resource path="res://dimensions/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://worlds/sandDesert/tilesets/sandDesert/sandDesert.tres" type="TileSet" id=6]
-[ext_resource path="res://worlds/sandDesert/objects/caveEnter/caveEnter.pxo" type="Texture" id=7]
-[ext_resource path="res://worlds/sandDesert/objects/car/car.pxo" type="Texture" id=8]
+[ext_resource path="res://worlds/sandDesert/objects/caveEnter/caveEnter.png" type="Texture" id=7]
+[ext_resource path="res://worlds/sandDesert/objects/car/car.png" type="Texture" id=8]
 [ext_resource path="res://worlds/sandDesert/objects/caveEnter/cave.tscn" type="PackedScene" id=9]
-[ext_resource path="res://worlds/sandDesert/objects/caban/caban.pxo" type="Texture" id=10]
+[ext_resource path="res://worlds/sandDesert/objects/caban/caban.png" type="Texture" id=10]
 [ext_resource path="res://entities/NPCs/alex/alex.tscn" type="PackedScene" id=11]
-[ext_resource path="res://entities/NPCs/alex/alexIcon.pxo" type="Texture" id=12]
+[ext_resource path="res://entities/NPCs/alex/alexIcon.png" type="Texture" id=12]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/expression-pro-v1.1/ExpressionPro.otf" type="DynamicFontData" id=13]
-[ext_resource path="res://worlds/sandDesert/especialRooms/welcome/sprites/contract.pxo" type="Texture" id=14]
+[ext_resource path="res://worlds/sandDesert/especialRooms/welcome/sprites/contract.png" type="Texture" id=14]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=15]
 [ext_resource path="res://entities/NPCs/gledon/gledon.tscn" type="PackedScene" id=16]
 [ext_resource path="res://entities/NPCs/soldiers/Soldier1.tscn" type="PackedScene" id=17]
@@ -22,7 +22,7 @@
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=21]
 
 [sub_resource type="TileSet" id=1]
-0/name = "caveEnter.pxo 0"
+0/name = "caveEnter.png 0"
 0/texture = ExtResource( 7 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )

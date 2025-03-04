@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://worlds/sandDesert/objects/caveEnter/caveEnter.pxo" type="Texture" id=1]
+[ext_resource path="res://worlds/sandDesert/objects/caveEnter/caveEnter.png" type="Texture" id=1]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/doors/door.gd" type="Script" id=3]
 

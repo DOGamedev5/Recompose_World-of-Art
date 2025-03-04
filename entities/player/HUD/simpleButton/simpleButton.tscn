@@ -2,7 +2,7 @@
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/equipment-pro-v1.1/EquipmentPro.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://entities/player/HUD/simpleButton/simpleButton.gd" type="Script" id=2]
-[ext_resource path="res://entities/player/HUD/simpleButton/simpleButton.pxo" type="Texture" id=3]
+[ext_resource path="res://entities/player/HUD/simpleButton/simpleButton.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32

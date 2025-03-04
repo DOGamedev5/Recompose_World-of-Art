@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://entities/player/HUD/classes/button/ButtonDialog.pxo" type="Texture" id=1]
+[ext_resource path="res://entities/player/HUD/classes/button/ButtonDialog.png" type="Texture" id=1]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
