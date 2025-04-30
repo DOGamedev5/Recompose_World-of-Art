@@ -3,7 +3,6 @@
 [ext_resource path="res://gameplay/MENU/sprites/slider.png" type="Texture" id=1]
 
 [sub_resource type="StreamTexture" id=43]
-load_path = "res://.import/slider.pxo-d5235a68e04b1c71d4dd3611b3619373.stex"
 
 [sub_resource type="StyleBoxTexture" id=40]
 texture = SubResource( 43 )

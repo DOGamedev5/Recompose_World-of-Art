@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.png" type="Texture" id=2]
@@ -9,20 +9,12 @@
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeDamaged.png" type="Texture" id=7]
 [ext_resource path="res://gameplay/MENU/saveslot/panel.png" type="Texture" id=8]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/futile-pro-v1/FutilePro.otf" type="DynamicFontData" id=9]
-[ext_resource path="res://entities/player/HUD/sprites/fragmentsHud.png" type="Texture" id=10]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.png" type="Texture" id=12]
 [ext_resource path="res://entities/player/HUD/sprites/closeButton.png" type="Texture" id=13]
 [ext_resource path="res://entities/player/HUD/scripts/options/configurations.gd" type="Script" id=14]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=15]
 [ext_resource path="res://gameplay/MENU/sprites/slider.png" type="Texture" id=16]
-[ext_resource path="res://entities/player/HUD/sprites/backgroundInventory.png" type="Texture" id=17]
-[ext_resource path="res://entities/player/HUD/simpleButton/simpleButton.tscn" type="PackedScene" id=18]
-[ext_resource path="res://entities/player/HUD/scripts/options/inventory.gd" type="Script" id=19]
-[ext_resource path="res://entities/player/HUD/inventory/slot/slot.tscn" type="PackedScene" id=20]
-[ext_resource path="res://gameplay/themes/panel.tres" type="StyleBox" id=21]
-[ext_resource path="res://gameplay/effects/theme.tres" type="Theme" id=22]
-[ext_resource path="res://gameplay/themes/scroll.tres" type="Theme" id=23]
 [ext_resource path="res://entities/player/HUD/inventory/inventoryIcon.png" type="Texture" id=24]
 [ext_resource path="res://entities/player/HUD/scripts/cinematic/cinematic.gd" type="Script" id=25]
 [ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=26]
@@ -35,7 +27,6 @@
 [ext_resource path="res://addons/controller_icons/objects/TextureRect.gd" type="Script" id=33]
 [ext_resource path="res://entities/player/HUD/sprites/timerBackground.png" type="Texture" id=34]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.otf" type="DynamicFontData" id=35]
-[ext_resource path="res://worlds/sandDesert/map.png" type="Texture" id=36]
 
 [sub_resource type="AtlasTexture" id=49]
 atlas = ExtResource( 24 )
@@ -174,40 +165,6 @@ font_data = ExtResource( 35 )
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )
-
-[sub_resource type="Theme" id=39]
-
-[sub_resource type="DynamicFont" id=43]
-size = 32
-outline_size = 2
-outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
-extra_spacing_char = 4
-font_data = ExtResource( 6 )
-
-[sub_resource type="StyleBoxTexture" id=48]
-texture = ExtResource( 8 )
-region_rect = Rect2( 128, 0, 128, 128 )
-margin_left = 16.0
-margin_right = 16.0
-margin_top = 16.0
-margin_bottom = 16.0
-
-[sub_resource type="DynamicFont" id=45]
-size = 32
-outline_size = 2
-outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
-extra_spacing_char = 4
-font_data = ExtResource( 6 )
-
-[sub_resource type="InputEventAction" id=46]
-action = "ui_left"
-pressed = true
-strength = 0.2
-
-[sub_resource type="InputEventAction" id=47]
-action = "ui_right"
-pressed = true
-strength = 0.2
 
 [sub_resource type="Gradient" id=5]
 interpolation_mode = 2
@@ -726,214 +683,6 @@ margin_bottom = 303.0
 custom_fonts/font = SubResource( 19 )
 text = "Go to Room"
 
-[node name="inventory" type="Control" parent="."]
-pause_mode = 2
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 19 )
-
-[node name="NinePatchRect" type="NinePatchRect" parent="inventory"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 17 )
-region_rect = Rect2( 0, 0, 1120, 432 )
-patch_margin_left = 136
-patch_margin_top = 156
-patch_margin_right = 465
-patch_margin_bottom = 203
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="map" type="Control" parent="inventory"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Map" type="TextureRect" parent="inventory/map"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -400.0
-margin_top = -160.0
-margin_right = 400.0
-margin_bottom = 160.0
-texture = ExtResource( 36 )
-expand = true
-
-[node name="items" type="Control" parent="inventory"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = SubResource( 39 )
-
-[node name="MarginContainer" type="MarginContainer" parent="inventory/items"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 160
-custom_constants/margin_top = 128
-custom_constants/margin_left = 128
-custom_constants/margin_bottom = 64
-
-[node name="VBoxContainer" type="VBoxContainer" parent="inventory/items/MarginContainer"]
-margin_left = 128.0
-margin_top = 128.0
-margin_right = 1201.0
-margin_bottom = 672.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="inventory/items/MarginContainer/VBoxContainer"]
-margin_right = 1073.0
-margin_bottom = 286.0
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 470.0
-margin_bottom = 286.0
-rect_min_size = Vector2( 470, 0 )
-custom_constants/margin_right = 96
-
-[node name="PanelContainer" type="PanelContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
-margin_right = 374.0
-margin_bottom = 286.0
-custom_styles/panel = ExtResource( 21 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 358.0
-margin_bottom = 270.0
-
-[node name="Label" type="Label" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
-margin_right = 342.0
-margin_bottom = 30.0
-custom_fonts/font = SubResource( 43 )
-text = "repellendus"
-
-[node name="Label2" type="Label" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 34.0
-margin_right = 342.0
-margin_bottom = 64.0
-custom_fonts/font = SubResource( 43 )
-text = "magni "
-
-[node name="Label3" type="Label" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
-margin_top = 68.0
-margin_right = 342.0
-margin_bottom = 98.0
-custom_fonts/font = SubResource( 43 )
-text = "cupiditate"
-
-[node name="Panel" type="Panel" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 474.0
-margin_right = 1073.0
-margin_bottom = 286.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = SubResource( 48 )
-
-[node name="MarginContainer" type="MarginContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 22 )
-custom_constants/margin_right = 16
-custom_constants/margin_top = 16
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
-
-[node name="ScrollContainer" type="ScrollContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 583.0
-margin_bottom = 270.0
-theme = ExtResource( 23 )
-scroll_horizontal_enabled = false
-
-[node name="GridContainer" type="GridContainer" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer"]
-margin_right = 64.0
-margin_bottom = 64.0
-rect_clip_content = true
-columns = 8
-
-[node name="TextureRect" parent="inventory/items/MarginContainer/VBoxContainer/HBoxContainer/Panel/MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 20 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 64.0
-margin_bottom = 64.0
-
-[node name="MarginContainer" type="MarginContainer" parent="inventory/items/MarginContainer/VBoxContainer"]
-margin_top = 290.0
-margin_right = 1073.0
-margin_bottom = 544.0
-rect_min_size = Vector2( 0, 254 )
-custom_constants/margin_top = 32
-
-[node name="PanelContainer" type="PanelContainer" parent="inventory/items/MarginContainer/VBoxContainer/MarginContainer"]
-margin_top = 32.0
-margin_right = 1073.0
-margin_bottom = 254.0
-size_flags_vertical = 3
-custom_styles/panel = SubResource( 48 )
-
-[node name="RichTextLabel" type="RichTextLabel" parent="inventory/items/MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 1057.0
-margin_bottom = 206.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 23 )
-custom_fonts/normal_font = SubResource( 45 )
-text = "loreeeem pixeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee da arteeeeeee
-assssss
-rodolfo
-memes
-[color=red]rodolfomenes + 50"
-
-[node name="stats" type="Control" parent="inventory"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="TextureRect" type="TextureRect" parent="inventory/stats"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -432.0
-margin_top = -278.0
-margin_right = 432.0
-margin_bottom = 278.0
-rect_min_size = Vector2( 432, 278 )
-texture = ExtResource( 10 )
-expand = true
-
-[node name="left" parent="inventory" instance=ExtResource( 18 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 64.0
-margin_top = 56.0
-margin_right = 115.0
-margin_bottom = 96.0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-buttonText = "< left"
-shortcut = SubResource( 46 )
-
-[node name="right" parent="inventory" instance=ExtResource( 18 )]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -77.0
-margin_top = 56.0
-margin_right = -65.0
-margin_bottom = 88.0
-size_flags_horizontal = 10
-size_flags_vertical = 2
-buttonText = "right >"
-flipGrowDirecion = true
-shortcut = SubResource( 47 )
-
 [node name="transition" type="CanvasLayer" parent="."]
 pause_mode = 2
 layer = 6
@@ -1432,9 +1181,6 @@ text = "player_conf_exit"
 [connection signal="dir_selected" from="DEBUG/worldSelect" to="DEBUG" method="_on_worldSelect_dir_selected"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/world" to="DEBUG" method="_on_room_pressed"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/go to room" to="DEBUG" method="_on_go_to_room_pressed"]
-[connection signal="visibility_changed" from="inventory" to="inventory" method="_on_inventory_visibility_changed"]
-[connection signal="pressed" from="inventory/left" to="inventory" method="_on_left_pressed"]
-[connection signal="pressed" from="inventory/right" to="inventory" method="_on_right_pressed"]
 [connection signal="visibility_changed" from="configurations" to="configurations" method="_on_configurations_visibility_changed"]
 [connection signal="pressed" from="configurations/Panel/VBoxContainer/HBoxContainer/close" to="configurations" method="_on_close_pressed"]
 [connection signal="drag_ended" from="configurations/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/music" to="configurations" method="_on_drag_ended"]
