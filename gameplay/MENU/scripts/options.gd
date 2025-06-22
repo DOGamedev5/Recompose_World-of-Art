@@ -20,6 +20,7 @@ onready var languages := $VBoxContainer/HBoxContainer3/VBoxContainer/languages
 var current := false
 
 func _ready():
+	hide()
 	buttons.simpleLight.pressed = Global.options.simpleLight
 	buttons.shadow.pressed = Global.options.shadows
 	buttons.vsync.pressed = Global.options.vsync
@@ -39,9 +40,6 @@ func _ready():
 func enter():
 	parent.current = self
 	$VBoxContainer/exit.grab_focus()
-
-func changed():
-	pass
 
 func _on_exit_pressed():
 	parent.transition(initial, [self, saves])

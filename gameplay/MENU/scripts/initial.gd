@@ -8,6 +8,10 @@ onready var credits = $"../credits"
 var current := true
 
 func _ready():
+	if not Global.cmdargs.connectLobby:
+		show()
+	else:
+		hide()
 
 	enter()
 
@@ -24,8 +28,6 @@ func enter():
 	parent.current = self
 	$MarginContainer/VBoxContainer2/VBoxContainer/start.grab_focus()
 
-func changed():
-	pass
 
 func _on_exit_pressed():
 

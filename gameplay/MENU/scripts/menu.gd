@@ -7,6 +7,9 @@ onready var current := $initial
 
 func _ready():
 	AudioManager.playMusic("recompose")
+	
+	
+	
 
 func transition(show, hide : Array):
 	show.current = true
@@ -16,7 +19,6 @@ func transition(show, hide : Array):
 	
 	for obj in hide:
 		obj.current = false
-		obj.changed()
 		obj.visible = false
 	
 	backgroundPlayer.play(show.name)

@@ -5,7 +5,7 @@ var lastState
 func enter(laststate):
 	parent.setParticle(0, false)
 	parent.setParticle(1, false)
-	var smoke = load("res://objects/dustBlow/dustBlow.tscn").instance()
+	var smoke = parent.effects[0].instance()
 	smoke.amount = 6
 	parent.get_parent().add_child(smoke)
 	smoke.global_position = parent.global_position

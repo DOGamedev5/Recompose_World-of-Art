@@ -35,6 +35,7 @@ signal damaged(direction)
 var enteredObjects := []
 
 var motion := Vector2.ZERO
+puppet var puppetMotion := Vector2.ZERO
 var realMotion := Vector2.ZERO
 var lastPosition := Vector2.ZERO
 var cinematic := false
@@ -63,7 +64,8 @@ const inputCord := {
 
 func _ready():
 	
-	Global.player = self
+	
+	
 	$"../HUD".call_deferred("init", self)
 	
 	lastPosition = position
@@ -71,12 +73,17 @@ func _ready():
 	if stateMachine: stateMachine.init(self)
 
 func physics_process(delta):
-	detectInside()
-	if not moving:
-		motion.x = 0
-	
 	realMotion = ((position - lastPosition) * Engine.get_frames_per_second())
 	set_deferred("lastPosition", position)
+	
+	detectInside()
+	
+	if not is_network_master():
+		
+		return
+	
+	if not moving:
+		motion.x = 0
 	
 	if gravity:
 		gravityBase()

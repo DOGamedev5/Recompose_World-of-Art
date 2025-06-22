@@ -3,9 +3,9 @@ extends Node
 const optionsSavePath = "user://options.tres"
 
 onready var tree := get_tree()
-onready var player : PlayerBase
+onready var player : Node
 onready var packedPlayer : PackedScene
-onready var playerHud : PlayerHud
+onready var playerHud : Node
 onready var languagesID : Array
 onready var in_game := false
 onready var inputEnabled := true
@@ -27,20 +27,39 @@ onready var inputAction := {
 	"confirm" : 0.0
 }
 
+enum plataforms {
+	STEAM,
+	ITCHIO
+}
+
 var options : OptionsSave
 
 var save : SaveGame
 var savePath : String
-var world : LevelClass
+var world : Node
 var worldData : Dictionary
 var currentWorldName := "sandDesert"
 var worldDataSetup := false
 var waintingToChange := false
+# STEAM Variables
+var steamName := "Player Name"
+var steamID : int
+var online := false
+# LOBBY Variables
+var lobbyMenbers = []
+var lobbyInviteArg := false
+var lobbyID : int
 
 var time := OS.get_unix_time()
-onready var converFIle := File.new()
+
+onready var cmdargs := {
+	connectLobby = false
+}
+
+puppetsync var chat := PoolStringArray([])
 
 func _ready():
+	setup()
 	
 	pause_mode = PAUSE_MODE_PROCESS
 	
@@ -55,46 +74,46 @@ func _ready():
 	if not FileSystemHandler.fileExist(optionsSavePath):
 		FileSystemHandler.saveDataResource(optionsSavePath, OptionsSave.new())
 		
-	options = FileSystemHandler.loadDataResource(Global.optionsSavePath)
-	
-	converFIle.open("res://convertPxo", File.WRITE)
+	options = FileSystemHandler.loadDataResource(optionsSavePath)
 	
 	setup_langueges()
 	call_deferred("updateActivity")
-	convertsPxoFiles("res://")
-
-func convertsPxoFiles(path):
-	var dir := Directory.new()
-	var file := File.new()
-#	print(path)
 	
-	if dir.open(path) == OK:
-		dir.list_dir_begin(true, true)
-		
-		var file_name := dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir() and file_name != "addons":
-				convertsPxoFiles(path+file_name+"/")
-			elif file_name.ends_with(".tres"):
-				var output := file_name
-				
-				if not file.file_exists(path+output):
-					file.open(path+file_name, 1)
-					var item := file.get_path_absolute().replace("/home/misael", "$HOME")
-#					totalPixelorama.append(OS.execute("~/Dev/tools/pixelorama/Pixelorama.x86_64", ["\""+file.get_path_absolute().replace("/home/misael", "$HOME")+"\"", "-s", "--headless"]))
-#					print("~/Dev/tools/pixelorama/Pixelorama.x86_64 {file} --headless  -s --quit -- --output {output}".format({"file" : item, "output" : output}))
-#					OS.execute("~/Dev/tools/pixelorama/Pixelorama.x86_64 {file} --headless  -s --quit -- --output {output}".format({"file" : item, "output" : output}), [])
-					converFIle.store_line(item)
-					
-			file_name = dir.get_next()
+	checkCommandLine()
+
+func _process(_delta):
+	Steam.run_callbacks()
+
+func checkCommandLine() -> void:
+	for ARG in OS.get_cmdline_args():
+		if ARG == "+connect_lobby":
+			cmdargs.connectLobby = true
+
+func setup():
+	var initialize_response: Dictionary = Steam.steamInitEx(480, false)
+	print("Did Steam initialize?: %s" % initialize_response)
+
+	if initialize_response['status'] > Steam.STEAM_API_INIT_RESULT_OK:
+		push_error("Failed to initialize Steam, shutting down: %s" % initialize_response)
+		if ProjectSettings["global/plataform"] == plataforms.STEAM:
+			get_tree().quit()
+		return
+	
+	steamName = Steam.getPersonaName()
+	steamID = Steam.getSteamID()
+
+remote func sendMessagge(message : String, sender : int = -1):
+	if not message.ends_with("\n"):
+		message += "\n"
+	
+	if sender == -1:
+		chat.append(message)
 	else:
-		print("fail")
+		message = message.replace("[", "[lb]")
+		chat.append("[color=yellow]{id}:[/color] {message}".format({"message" : message, "id" : "{"+str(sender)+"}"}))
 	
-	if path == "res://":
-		converFIle.close()
-
-
-
+	if chat.size() > 40:
+		chat.remove(0)
 
 func updateActivity() -> void:
 	var activity = Discord.Activity.new()
@@ -103,10 +122,10 @@ func updateActivity() -> void:
 
 	var assets = activity.get_assets()
 	assets.set_large_image("large")
-	assets.set_large_text("RECOMPOSE: World of Art")
 
 	var timestamps = activity.get_timestamps()
 	timestamps.set_start(time)
+	assets.set_large_text("RECOMPOSE: World of Art")
 	
 	var result = yield(Discord.activity_manager.update_activity(activity), "result").result
 	if result != Discord.Result.Ok:
@@ -200,7 +219,7 @@ func addToRoomData(roomID : int, obj_name : String, catergory : String):
 func setup_langueges():
 	if not options.lang:
 		options.lang = TranslationServer.get_locale()
-		FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
+		FileSystemHandler.saveDataResource(optionsSavePath, options)
 	else:
 		TranslationServer.set_locale(options.lang)
 	
@@ -231,10 +250,10 @@ func bin_array(n : int, size := 8):
 func disableInput(value):
 	tree.call_group("input", "set_process_input", value)
 	
-func setTimeMultiply(multiply : float, time = 0.2):
+func setTimeMultiply(multiply : float, timer = 0.2):
 	Engine.time_scale = multiply
-	print(multiply)
+
 	if multiply != 1:
-		tree.create_timer(time*multiply).connect("timeout", self, "setTimeMultiply", [1.0])
+		tree.create_timer(timer*multiply).connect("timeout", self, "setTimeMultiply", [1.0])
 	
 

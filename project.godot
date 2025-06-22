@@ -239,6 +239,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/player/HUD/playerHud.gd"
 }, {
+"base": "Node",
+"class": "PlayerInfo",
+"language": "GDScript",
+"path": "res://autoloads/playerLister/playerInfo.gd"
+}, {
 "base": "Resource",
 "class": "Question",
 "language": "GDScript",
@@ -346,6 +351,7 @@ _global_script_class_icons={
 "PathBase": "",
 "PlayerBase": "",
 "PlayerHud": "",
+"PlayerInfo": "",
 "Question": "",
 "RoomClass": "",
 "RoomWarp": "",
@@ -377,12 +383,15 @@ default_bus_layout="res://audio/default_bus_layout.tres"
 [autoload]
 
 Global="*res://autoloads/global.gd"
+SteamMultiplayer="*res://autoloads/steamMultiplayer.gd"
+Network="*res://autoloads/network.gd"
 FileSystemHandler="*res://autoloads/fileSystemHandler.gd"
 LoadScreen="*res://autoloads/loadSystem/loadScreen.tscn"
 LoadSystem="*res://autoloads/loadSystem/loadSystem.gd"
 AudioManager="*res://audio/audioSystem/audioSystem.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 Discord="*res://addons/discord_game_sdk/discord.gd"
+Players="*res://autoloads/playerLister/Players.tscn"
 
 [display]
 
@@ -402,8 +411,7 @@ singletons=[  ]
 
 [global]
 
-testing=true
-testing.release=false
+plataform=0
 
 [gui]
 
@@ -542,6 +550,10 @@ buffering/agile_event_flushing=true
 
 translations=PoolStringArray( "res://translations/menu/menuTranslation.en.translation", "res://translations/menu/menuTranslation.pt_BR.translation", "res://translations/NPC/npcTranslation.en.translation", "res://translations/NPC/npcTranslation.pt_BR.translation", "res://translations/other/otherTranslation.en.translation", "res://translations/other/otherTranslation.pt_BR.translation", "res://translations/bosses/bosses.en.translation", "res://translations/bosses/bosses.pt_BR.translation", "res://translations/names/namesTranslation.en.translation", "res://translations/names/namesTranslation.pt_BR.translation" )
 locale_filter=[ 0, [ "en", "pt_BR" ] ]
+
+[logging]
+
+file_logging/enable_file_logging=true
 
 [physics]
 

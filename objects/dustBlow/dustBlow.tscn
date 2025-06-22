@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://objects/dustBlow/dustBlow.gd" type="Script" id=1]
+[ext_resource path="res://gameplay/effects/effect1.png" type="Texture" id=2]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 light_mode = 1
@@ -8,9 +9,6 @@ particles_animation = true
 particles_anim_h_frames = 7
 particles_anim_v_frames = 1
 particles_anim_loop = true
-
-[sub_resource type="StreamTexture" id=2]
-load_path = "res://.import/effect1.png-e14b83f33bc5af2dbff6a39023222ec2.stex"
 
 [sub_resource type="Curve" id=3]
 min_value = -200.0
@@ -28,7 +26,7 @@ randomness = 0.24
 lifetime_randomness = 0.26
 local_coords = false
 draw_order = 1
-texture = SubResource( 2 )
+texture = ExtResource( 2 )
 direction = Vector2( 0, -1 )
 spread = 180.0
 gravity = Vector2( 0, 0 )

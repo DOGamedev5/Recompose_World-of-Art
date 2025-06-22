@@ -16,6 +16,8 @@ onready var currentCollision = $CollisionShape2D
 onready var attackDelay = $StateMachine/ATTACK/attackDelay
 
 onready var specialEffect := preload("res://entities/player/powerStates/normal/particle/particle.tscn")
+onready var effects := [preload("res://objects/dustBlow/dustBlow.tscn")]
+
 
 export(float) var runningVelocity := 550.0
 
