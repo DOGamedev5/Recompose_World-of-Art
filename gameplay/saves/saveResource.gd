@@ -6,10 +6,3 @@ export var version := "v0.9.5"
 
 export var currentWorld := "sandDesert"
 export var worldPosition := Vector2.ZERO
-export var player := {
-	"player" : "res://entities/player/powerStates/normal/playerNormal.tscn",
-	"position" : Vector2(680, 80),
-	"playerProperties" : {
-		"name" : ""
-	}
-}

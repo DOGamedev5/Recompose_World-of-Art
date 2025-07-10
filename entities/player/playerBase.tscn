@@ -101,7 +101,6 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -96 )
-current = true
 editor_draw_limits = true
 
 [node name="rayShapeLeft" type="CollisionShape2D" parent="."]

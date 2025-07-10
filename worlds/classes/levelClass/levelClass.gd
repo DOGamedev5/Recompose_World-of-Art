@@ -2,6 +2,7 @@ class_name LevelClass extends Node2D
 
 export var canvasModulateColor := Color.white
 onready var currentColor : Color
+export var portalPath : NodePath
 export(Array, NodePath) var doorWarps
 export(Array, NodePath) var normalWarps
 export(Array, NodePath) var tubeWarps
@@ -15,6 +16,7 @@ onready var timer := Timer.new()
 
 onready var cameraLimitsMin := Vector2(-10000000, -10000000)
 onready var cameraLimitsMax := Vector2(10000000, 10000000)
+onready var playerNormalScene := preload("res://entities/player/powerStates/normal/playerNormal.tscn")
 
 func _ready():
 	Global.save = SaveGame.new() if not Global.save else Global.save
@@ -35,31 +37,25 @@ func _ready():
 	setup()
 	
 func setup():
-	if not Global.packedPlayer:
-		Global.player = load(Global.save.player["player"]).instance()
-	else:
-		Global.player = Global.packedPlayer.instance()
+#	if not Global.packedPlayer:
+#		Global.player = load(Global.save.player["player"]).instance()
+#	else:
+#		Global.player = Global.packedPlayer.instance()
 	
-	add_child(Global.player)
-	Global.player.owner = self
+	var portal : Node2D = get_node(portalPath)
 	
-	if ProjectSettings["global/testing"]:
-		Global.worldDataSetup = true
-		Global.waintingToChange = true
+
+	for member in Network.lobbyMembers:
+		var player : PlayerBase = playerNormalScene.instance()
+		if Network.steamID == member["ID"]:
+			Global.player = player
 		
-	if not Global.worldDataSetup:
-		loadSave()
-	elif Global.waintingToChange:
-		match Global.changingInfo.warpType:
-			"warp":
-				if (normalWarps.size() - 1) >= Global.changingInfo.warpID: get_node(normalWarps[Global.changingInfo.warpID]).init()
-			"tube":
-				if (tubeWarps.size() - 1) >= Global.changingInfo.warpID: get_node(tubeWarps[Global.changingInfo.warpID]).init()
-			"door":
-				if (doorWarps.size() - 1) >= Global.changingInfo.warpID: get_node(doorWarps[Global.changingInfo.warpID]).init()
-			"portal":
-				if (portalWarps.size() - 1) >= Global.changingInfo.warpID: get_node(portalWarps[Global.changingInfo.warpID]).init()
-	
+		player.OwnerID = member["ID"]
+		add_child(player)
+		player.owner = self
+		
+		Players.playerList[member["ID"]].reference = player
+		player.global_position = portal.global_position
 	
 #	AudioManager.playMusic("paintCaverns")
 func _process(delta):
@@ -77,7 +73,6 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 func setCanvasModulate(color : Color = canvasModulateColor):
 	currentColor = color
 	
-
 func loadSave():
 #	Global.player.active = false
 	

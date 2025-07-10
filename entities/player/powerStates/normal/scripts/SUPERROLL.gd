@@ -24,14 +24,14 @@ func process_state():
 	if parent.onWall():
 		return "WALL"
 		
-	elif parent.canJump and Global.handInput("ui_jump", true) and parent.couldUncounch():
+	elif parent.canJump and Global.handInput("ui_jump", true, parent.OwnerID) and parent.couldUncounch():
 		return "JUMP"
 
 	return null
 
 func process_physics(_delta):
 	parent.playback.travel("RUN")
-	parent.topSpeedPlayback.travel("SUPERROLL")
+	parent.topSpeedPlayback.travel("SUPERROLL", parent.OwnerID)
 	
 	parent.motion.x = parent.runningVelocity * direction
 	

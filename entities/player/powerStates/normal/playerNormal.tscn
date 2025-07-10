@@ -1533,8 +1533,6 @@ node_connections = [ "output", 0, "COUNCH" ]
 [sub_resource type="AnimationNodeAnimation" id=135]
 animation = "DAMAGED"
 
-[sub_resource type="AnimationNodeTimeSeek" id=192]
-
 [sub_resource type="AnimationNodeAnimation" id=186]
 animation = "LADDERDOWN"
 
@@ -1553,14 +1551,16 @@ states/LADDERUP/position = Vector2( 176.333, 137.666 )
 transitions = [ "LADDERUP", "LADDERDOWN", SubResource( 188 ), "LADDERDOWN", "LADDERUP", SubResource( 189 ) ]
 graph_offset = Vector2( -137.913, -35 )
 
+[sub_resource type="AnimationNodeTimeSeek" id=192]
+
 [sub_resource type="AnimationNodeBlendTree" id=174]
-graph_offset = Vector2( -270.038, 308.038 )
+graph_offset = Vector2( -448.352, 105.165 )
+nodes/LADDER/node = SubResource( 190 )
+nodes/LADDER/position = Vector2( 106.667, 373.333 )
 nodes/Seek/node = SubResource( 192 )
 nodes/Seek/position = Vector2( 400, 346.667 )
-nodes/StateMachine/node = SubResource( 190 )
-nodes/StateMachine/position = Vector2( 106.667, 373.333 )
 nodes/output/position = Vector2( 613.333, 346.667 )
-node_connections = [ "Seek", 0, "StateMachine", "output", 0, "Seek" ]
+node_connections = [ "Seek", 0, "LADDER", "output", 0, "Seek" ]
 
 [sub_resource type="AnimationNodeAnimation" id=264]
 animation = "FALL"
@@ -1646,10 +1646,10 @@ states/WALK/node = SubResource( 303 )
 states/WALK/position = Vector2( 626.457, 236.778 )
 transitions = [ "JUMP", "FALL", SubResource( 271 ), "STOPPING", "IDLE", SubResource( 277 ), "IDLE", "JUMP", SubResource( 278 ), "FALL", "IDLE", SubResource( 279 ), "IDLE", "FALL", SubResource( 280 ), "STOPPING", "WALK", SubResource( 304 ), "WALK", "STOPPING", SubResource( 305 ), "WALK", "IDLE", SubResource( 306 ), "IDLE", "WALK", SubResource( 307 ), "WALK", "JUMP", SubResource( 308 ), "JUMP", "WALK", SubResource( 309 ), "WALK", "FALL", SubResource( 310 ), "FALL", "WALK", SubResource( 311 ), "WALK", "ROLL", SubResource( 313 ), "ROLL", "JUMP", SubResource( 314 ), "FALL", "ROLL", SubResource( 315 ), "STOPPING", "ROLL", SubResource( 316 ), "IDLE", "ROLL", SubResource( 317 ), "ROLL", "IDLE", SubResource( 318 ), "ROLL", "WALK", SubResource( 319 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 0, 60.8075 )
+graph_offset = Vector2( 0, -16.1698 )
 
 [sub_resource type="AnimationNodeBlendTree" id=283]
-graph_offset = Vector2( 1391.18, 556.533 )
+graph_offset = Vector2( 241.18, 180.673 )
 nodes/NORMAL/node = SubResource( 282 )
 nodes/NORMAL/position = Vector2( 720, 240 )
 nodes/output/position = Vector2( 1066.67, 320 )
@@ -1698,7 +1698,7 @@ end_node = "RUN"
 graph_offset = Vector2( 377.834, 94.1769 )
 
 [sub_resource type="AnimationNodeBlendTree" id=206]
-graph_offset = Vector2( 415.692, 176.86 )
+graph_offset = Vector2( 1108.15, 346.382 )
 nodes/RUN/node = SubResource( 205 )
 nodes/RUN/position = Vector2( 800, 346.667 )
 nodes/output/position = Vector2( 1120, 346.667 )
@@ -1723,11 +1723,11 @@ transitions = [ "EXIT", "ENTER", SubResource( 347 ), "ENTER", "EXIT", SubResourc
 start_node = "ENTER"
 
 [sub_resource type="AnimationNodeBlendTree" id=350]
-graph_offset = Vector2( 386.966, 313.193 )
-nodes/StateMachine/node = SubResource( 349 )
-nodes/StateMachine/position = Vector2( 346.667, 160 )
+graph_offset = Vector2( 415.115, 217.8 )
+nodes/TAUNT/node = SubResource( 349 )
+nodes/TAUNT/position = Vector2( 346.667, 160 )
 nodes/output/position = Vector2( 586.667, 160 )
-node_connections = [ "output", 0, "StateMachine" ]
+node_connections = [ "output", 0, "TAUNT" ]
 
 [sub_resource type="AnimationNodeAnimation" id=320]
 animation = "SPLAT"
@@ -1841,7 +1841,7 @@ states/WALLED/node = SubResource( 325 )
 states/WALLED/position = Vector2( 154.649, 350.401 )
 transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "RUN", "LADDER", SubResource( 207 ), "RUN", "DAMAGED", SubResource( 211 ), "DAMAGED", "RUN", SubResource( 212 ), "ATTACK", "RUN", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "RUN", "COUNCH", SubResource( 254 ), "COUNCH", "RUN", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "RUN", SubResource( 284 ), "RUN", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "RUN", "WALLED", SubResource( 327 ), "WALLED", "RUN", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ), "RUN", "TAUNT", SubResource( 351 ), "TAUNT", "RUN", SubResource( 352 ), "TAUNT", "NORMAL", SubResource( 353 ), "NORMAL", "TAUNT", SubResource( 354 ) ]
 start_node = "NORMAL"
-graph_offset = Vector2( 26.3503, 6.86387 )
+graph_offset = Vector2( 26.3503, 0.344169 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=152]
 
@@ -2010,12 +2010,12 @@ active = true
 root_motion_track = NodePath("Sprite:frame")
 parameters/playback = SubResource( 152 )
 parameters/COUNCH/COUNCH/playback = SubResource( 263 )
+parameters/LADDER/LADDER/playback = SubResource( 191 )
 parameters/LADDER/Seek/seek_position = -1.0
-parameters/LADDER/StateMachine/playback = SubResource( 191 )
 parameters/NORMAL/NORMAL/playback = SubResource( 300 )
 parameters/NORMAL/NORMAL/WALK/TimeScale/scale = 1.0
 parameters/RUN/RUN/playback = SubResource( 335 )
-parameters/TAUNT/StateMachine/playback = SubResource( 355 )
+parameters/TAUNT/TAUNT/playback = SubResource( 355 )
 parameters/WALLED/WALLED/playback = SubResource( 334 )
 
 [node name="attackPunch" type="Area2D" parent="." index="24"]
@@ -2109,7 +2109,6 @@ script = ExtResource( 38 )
 one_shot = true
 
 [node name="a" type="Node2D" parent="." index="28"]
-visible = false
 z_index = 4
 
 [node name="Label" type="Label" parent="a" index="0"]

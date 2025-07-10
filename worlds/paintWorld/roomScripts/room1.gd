@@ -2,7 +2,7 @@ extends RoomClass
 
 onready var elevator := $elevator
 onready var playing := 0
-onready var playback : AnimationNodeStateMachinePlayback = elevator.animationTree["parameters/playback"]
+
 
 func play():
 	playing = 1

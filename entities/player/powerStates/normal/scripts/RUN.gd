@@ -3,7 +3,7 @@ extends State
 func enter(_lastState):
 	
 	if abs(parent.motion.x) < 250:
-		parent.motion.x = 250 * Global.handInputAxis("ui_left", "ui_right")
+		parent.motion.x = 250 * Global.handInputAxis("ui_left", "ui_right", parent.OwnerID)
 		
 	parent.setParticle(0, false)
 	parent.setParticle(1, true)
@@ -27,10 +27,10 @@ func process_state():
 	if parent.onWall():
 		return "WALL"
 	
-	if (parent.onSlope() or abs(parent.motion.x) > 900) and Global.handInput("ui_down"):
+	if (parent.onSlope() or abs(parent.motion.x) > 900) and Global.handInput("ui_down", parent.OwnerID):
 		return "SUPERROLL"
 			
-	if parent.motion.x == 0 and Global.handInputAxis("ui_left", "ui_right") == 0:
+	if parent.motion.x == 0 and Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) == 0:
 		return "IDLE"
 		
 	elif parent.canJump and parent.jumpBuffer and parent.couldUncounch():
@@ -42,7 +42,7 @@ func process_state():
 	elif not Global.handInput("run", true):
 		return "WALK"
 	
-	elif Global.handInputAxis("ui_up", "ui_down") and parent.canLadder:
+	elif Global.handInputAxis("ui_up", "ui_down", parent.OwnerID) and parent.canLadder:
 		return "LADDER"
 	
 	return null
@@ -52,7 +52,7 @@ func process_physics(_delta):
 	parent.moveBase("X", parent.motion.x, parent.runningVelocity)
 	parent.detectRunning()
 	
-	if sign(parent.motion.x) != sign(Global.handInputAxis("ui_left", "ui_right")) and parent.motion.x != 0:
+	if sign(parent.motion.x) != sign(Global.handInputAxis("ui_left", "ui_right", parent.OwnerID)) and parent.motion.x != 0:
 		parent.playback.travel("NORMAL")
 		parent.normalPlayback.travel("STOPPING")
 	else:

@@ -29,13 +29,13 @@ export var MAXSPEED := 350
 export var MAXFALL := 300
 export var JUMPFORCE := -400
 export var MAXHEALTH := 400
+export var OwnerID := -1
  
 signal damaged(direction)
 
 var enteredObjects := []
 
 var motion := Vector2.ZERO
-puppet var puppetMotion := Vector2.ZERO
 var realMotion := Vector2.ZERO
 var lastPosition := Vector2.ZERO
 var cinematic := false
@@ -63,8 +63,14 @@ const inputCord := {
 }
 
 func _ready():
+	if Network.is_owned(OwnerID):
+		var timer = Timer.new()
+		timer.wait_time = 0.05
+		timer.connect("timeout", self, "_networkUpdate")
+		add_child(timer)
+		timer.start()
 	
-	
+	if Network.is_owned(OwnerID): camera.current = true
 	
 	$"../HUD".call_deferred("init", self)
 	
@@ -78,10 +84,6 @@ func physics_process(delta):
 	
 	detectInside()
 	
-	if not is_network_master():
-		
-		return
-	
 	if not moving:
 		motion.x = 0
 	
@@ -90,7 +92,7 @@ func physics_process(delta):
 	
 	if cinematic: return
 	
-	if not stunned and moving:
+	if not stunned and moving and Network.is_owned(OwnerID):
 		
 		if collideUp() > -34 or (Global.handInput("ui_down", true) and not cinematic):
 			counched = true
@@ -109,7 +111,7 @@ func physics_process(delta):
 			else:
 				ray.cast_to.x = 28 * Global.handInputAxis("ui_left", "ui_right")
 	
-	if Global.handInput("ui_jump"):
+	if Global.handInput("ui_jump") and Network.is_owned(OwnerID):
 		jumpBuffer = true
 		jumpReleased = false
 		jumpBufferTimer.start()
@@ -118,6 +120,12 @@ func physics_process(delta):
 	
 	if stateMachine:
 		stateMachine.processMachine(delta)
+
+func _networkUpdate():
+	pass
+
+func receivePacket(_packet):
+	pass
 
 func detectInside():
 	var normalMin := 0.8
@@ -180,12 +188,14 @@ func setParticle(index := 0, emitting := true):
 	particle.emitting = emitting
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
+	if not Network.is_owned(OwnerID): return
 	camera.set("limit_left", limitsMin.x - 10)
 	camera.set("limit_top", limitsMin.y - 10)
 	camera.set("limit_right", limitsMax.x + 10)
 	camera.set("limit_bottom", limitsMax.y + 10)
 
 func setCinematic(value : bool):
+	if not Network.is_owned(OwnerID): return	
 	Global.inputEnabled = not value
 	if value:
 		$"../HUD".cinematic.actived()
@@ -230,7 +240,8 @@ func idleBase():
 	motion.x = desaccelerate(motion.x)
 
 func moveBase(inputAxis : String, MotionCord : float, maxSpeed : float = MAXSPEED):
-	var input := sign(Global.handInputAxis(inputCord[inputAxis][0], inputCord[inputAxis][1]))
+	if not Network.is_owned(OwnerID): return
+	var input := sign(Global.handInputAxis(inputCord[inputAxis][0], inputCord[inputAxis][1], OwnerID))
 	if cinematic:
 		input = 0
 
@@ -270,6 +281,7 @@ func move():
 	currentSnapLength = snap.y
 
 func desaccelerate(MotionCord : float, input := .0):
+	if not Network.is_owned(OwnerID): return MotionCord
 	if sign(MotionCord) != input:
 		var saveSign = sign(MotionCord)
 		MotionCord -=  DESACCELERATION * saveSign
@@ -291,6 +303,7 @@ func jumpBase(force = JUMPFORCE):
 		snapDesatived = false
 
 func _coyoteTimer():
+	if not Network.is_owned(OwnerID): return
 	if onFloor()  and gravity:
 		canJump = true if collideUp() == -65 else false
 		coyote = true
@@ -412,6 +425,7 @@ func hitboxExited(area):
 		enteredObjects.erase(area)
 	
 	var onLadder := false
+	
 
 	for obj in enteredObjects:
 		if obj.is_in_group("ladder"):

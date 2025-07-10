@@ -8,10 +8,10 @@ func process_state():
 	if not parent.moving:
 		return null
 		
-	if parent.onSlope() and Global.handInput("ui_down"):
+	if parent.onSlope() and Global.handInput("ui_down", parent.OwnerID):
 		return "ROLL"
 		
-	elif Global.handInputAxis("ui_left", "ui_right") != 0 and not parent.cinematic:
+	elif Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) != 0 and not parent.cinematic:
 		if Input.is_action_pressed("run") and parent.couldUncounch(true):
 			return "RUN"
 		
@@ -23,10 +23,10 @@ func process_state():
 	elif not parent.onFloor():
 		return "FALL"
 	
-	elif Global.handInput("attack") and parent.canAttack and parent.couldUncounch(true):
+	elif Global.handInput("attack", parent.OwnerID) and parent.canAttack and parent.couldUncounch(true):
 		return "ATTACK"
 	
-	if Global.handInputAxis("ui_up", "ui_down") and parent.canLadder:
+	if Global.handInputAxis("ui_up", "ui_down", parent.OwnerID) and parent.canLadder:
 		return "LADDER"
 
 	return null

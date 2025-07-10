@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://worlds/paintWorld/world.gd" type="Script" id=1]
+[ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/teleportBase/door/doorEnter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
@@ -20,13 +20,16 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-canvasModulateColor = Color( 0.447059, 0.345098, 0.494118, 1 )
-normalWarps = [ NodePath("RoomWarp") ]
+portalPath = NodePath("portal")
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="RoomWarp" type="Position2D" parent="."]
 position = Vector2( -67, -1546 )
+script = ExtResource( 5 )
+
+[node name="portal" type="Position2D" parent="."]
+position = Vector2( 219, -940 )
 script = ExtResource( 5 )
 
 [node name="room1" parent="." instance_placeholder="res://worlds/paintWorld/rooms/room1.tscn"]

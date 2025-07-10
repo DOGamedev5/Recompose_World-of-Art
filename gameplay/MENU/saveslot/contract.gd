@@ -45,7 +45,7 @@ func fillContract():
 	dataPlayer = handledData[0]
 	dataWorld = handledData[1]
 	
-	$texture/name.text = dataPlayer.player["playerProperties"]["name"]
+	$texture/name.text = Network.personaName
 	$texture/world.text = dataPlayer.currentWorld
 	
 	$texture.modulate = Color.white
@@ -69,15 +69,11 @@ func confirmed():
 	$AnimationPlayer.play("confirmed")
 	yield($AnimationPlayer, "animation_finished")
 	
-	FileSystemHandler.loadGameData(savePath)
-	loadGame()
-	
+		
+	$"../../../..".loadWorldSelect(savePath)
+
 	get_tree().root.set_disable_input(false)
 	
-
-func loadGame(): # what
-	LoadSystem.openScreen()
-	LoadSystem.addToQueueChangeScene("res://worlds/" + Global.save.currentWorld + "/world.tscn")
 
 func deleted():
 	clearContract()
@@ -128,7 +124,7 @@ func _on_contract_toggled(button_pressed):
 	else:
 		if not verifyDesselect():
 			pressed = true
-			$"../../HBoxContainer2/start".grab_focus()
+			$"../../HBoxContainer2/create".grab_focus()
 			return
 		
 		$texture/select.modulate = Color(1,1,1, 0.5)

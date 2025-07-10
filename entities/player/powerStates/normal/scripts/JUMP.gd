@@ -26,15 +26,15 @@ func process_state():
 	elif parent.onFloor():
 		if parent.motion.x == 0: return "IDLE"
 			
-		if Global.handInput("run", true): return "RUN"
+		if Global.handInput("run", true, parent.OwnerID): return "RUN"
 			
 		return "WALK"
 	
-	elif Global.handInput("attack") and parent.canAttack:
+	elif Global.handInput("attack", parent.OwnerID) and parent.canAttack:
 		return "ATTACK"
 	
 #	elif (InputHandler.InputPressed("ui_up") or InputHandler.InputPressed("ui_down")) and parent.canLadder:
-	elif Global.handInputAxis("ui_up", "ui_down") and parent.canLadder:
+	elif Global.handInputAxis("ui_up", "ui_down", parent.OwnerID) and parent.canLadder:
 		return "LADDER"
 	
 	return null

@@ -28,7 +28,7 @@ func process_state():
 			return "FALL"
 
 	if parent.onFloor():
-		if Global.handInputAxis("ui_left", "ui_right") == 0:
+		if Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) == 0:
 			return "IDLE"
 			
 		elif not parent.onWall():

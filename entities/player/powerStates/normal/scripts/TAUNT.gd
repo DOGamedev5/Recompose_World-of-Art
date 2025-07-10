@@ -24,14 +24,14 @@ func process_state():
 		
 		if parent.isRolling: return "ROLL"
 		
-		if Global.handInput("run", true): return "RUN"
+		if Global.handInput("run", true, parent.OwnerID): return "RUN"
 		
 		return "WALK"
 	
-	elif Global.handInput("attack") and parent.canAttack:
+	elif Global.handInput("attack", parent.OwnerID) and parent.canAttack:
 		return "ATTACK"
 	
-	elif Global.handInputAxis("ui_up", "ui_down") and parent.canLadder:
+	elif Global.handInputAxis("ui_up", "ui_down", parent.OwnerID) and parent.canLadder:
 		return "LADDER"
 	
 	return null

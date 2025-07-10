@@ -3,13 +3,13 @@ extends PlayerBase
 onready var sprite = $sprite/Sprite
 onready var animation = $AnimationTree
 
-onready var playback = animation["parameters/playback"]
-onready var counchPlayback = animation["parameters/COUNCH/COUNCH/playback"]
-onready var normalPlayback = animation["parameters/NORMAL/NORMAL/playback"]
-onready var walledPlayback = animation["parameters/WALLED/WALLED/playback"]
-onready var ladderPlayback = animation["parameters/LADDER/StateMachine/playback"]
-onready var tauntPlayback = animation["parameters/TAUNT/StateMachine/playback"]
-onready var topSpeedPlayback = animation["parameters/RUN/RUN/playback"]
+onready var playback : AnimationNodeStateMachinePlayback= animation["parameters/playback"]
+onready var counchPlayback : AnimationNodeStateMachinePlayback = animation["parameters/COUNCH/COUNCH/playback"]
+onready var normalPlayback : AnimationNodeStateMachinePlayback = animation["parameters/NORMAL/NORMAL/playback"]
+onready var walledPlayback : AnimationNodeStateMachinePlayback = animation["parameters/WALLED/WALLED/playback"]
+onready var ladderPlayback : AnimationNodeStateMachinePlayback = animation["parameters/LADDER/LADDER/playback"]
+onready var tauntPlayback : AnimationNodeStateMachinePlayback = animation["parameters/TAUNT/TAUNT/playback"]
+onready var topSpeedPlayback : AnimationNodeStateMachinePlayback = animation["parameters/RUN/RUN/playback"]
 
 onready var attackComponents = [$attackPunch, $attackSpeed, $attackRoll]
 onready var currentCollision = $CollisionShape2D
@@ -17,7 +17,6 @@ onready var attackDelay = $StateMachine/ATTACK/attackDelay
 
 onready var specialEffect := preload("res://entities/player/powerStates/normal/particle/particle.tscn")
 onready var effects := [preload("res://objects/dustBlow/dustBlow.tscn")]
-
 
 export(float) var runningVelocity := 550.0
 
@@ -51,8 +50,8 @@ func _physics_process(delta):
 	rotateSprite(delta)
 	
 	if active: move()
-	
-	if OS.is_debug_build(): $a/Label.text = String($sprite.rotation)
+
+	if OS.is_debug_build(): $a/Label.text = String("A")
 	elif get_node_or_null("a"): $a.queue_free()
 	
 	$sprite/speedEffect.visible = running and not isRolling
@@ -71,6 +70,35 @@ func _physics_process(delta):
 		canAttack = true
 	else:
 		canAttack = false
+
+func _networkUpdate():
+	if Steam.getNumLobbyMembers(Network.lobbyID) <= 1: return
+	var animationTreePlay := playback.get_current_node()
+	var currentAnimation : String = ""
+	
+	if not animationTreePlay in ["ATTACK", "DAMAGE"]:
+		currentAnimation = animation["parameters/{n}/{n}/playback".format({"n" : animationTreePlay})].get_current_node()
+	
+	Network.sendP2PPacket(-1, {"type" : "playerUpdate",
+		"sender" : [Network.steamID, Network.conectionType, Network.connectionOwner],
+		"animationsPlaying" : animationTreePlay,
+		"animationName" : currentAnimation,
+		"motion" : motion,
+		"sprite_rotation" : $sprite.rotation,
+		"global_position" : global_position,
+		"currentState" : stateMachine.currentState
+	}, Steam.P2P_SEND_RELIABLE)
+
+func receivePacket(packet):
+	playback.travel(packet["animationsPlaying"])
+	if packet["animationName"]:
+		animation["parameters/{n}/{n}/playback".format({"n" : packet["animationsPlaying"]})].travel(packet["animationName"])
+	
+	global_position = packet["global_position"]
+	stateMachine.changeState(packet["currentState"])
+	motion = packet["motion"]
+	$sprite.rotation = packet["sprite_rotation"]
+
 
 func rotateNormal(delta):
 	var floorNormal : Vector2 = .rotateNormal(delta)

@@ -24,13 +24,13 @@ func process_state():
 	if Input.is_action_pressed("ui_jump") and parent.couldUncounch():
 		return "JUMP"
 	
-	if not parent.canLadder or (Global.handInput("ui_left") or Global.handInput("ui_right")):
+	if not parent.canLadder or (Global.handInput("ui_left", parent.OwnerID) or Global.handInput("ui_right", parent.OwnerID)):
 		return "FALL"
 	
 	return null
 
 func process_physics(_delta):
-	var input := sign(Global.handInputAxis("ui_up", "ui_down"))
+	var input := sign(Global.handInputAxis("ui_up", "ui_down", parent.OwnerID))
 	parent.motion.y = input * 400
 	if input == 0:
 		parent.ladderPlayback.stop()

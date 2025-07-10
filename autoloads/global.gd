@@ -41,14 +41,6 @@ var worldData : Dictionary
 var currentWorldName := "sandDesert"
 var worldDataSetup := false
 var waintingToChange := false
-# STEAM Variables
-var steamName := "Player Name"
-var steamID : int
-var online := false
-# LOBBY Variables
-var lobbyMenbers = []
-var lobbyInviteArg := false
-var lobbyID : int
 
 var time := OS.get_unix_time()
 
@@ -98,11 +90,8 @@ func setup():
 		if ProjectSettings["global/plataform"] == plataforms.STEAM:
 			get_tree().quit()
 		return
-	
-	steamName = Steam.getPersonaName()
-	steamID = Steam.getSteamID()
 
-remote func sendMessagge(message : String, sender : int = -1):
+func sendMessagge(message : String, sender : int = -1):
 	if not message.ends_with("\n"):
 		message += "\n"
 	
@@ -136,7 +125,8 @@ func _input(_event):
 	if Input.is_action_just_pressed("fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen
 
-func handInput(action : String, pressed := false) -> bool:
+func handInput(action : String, pressed := false, ownerID := Network.steamID) -> bool:
+	if not Network.is_owned(ownerID): return false
 	if not inputEnabled:
 		if inputAction.has(action):
 			return inputAction[action] != 0
@@ -150,7 +140,8 @@ func handInput(action : String, pressed := false) -> bool:
 
 	return Input.is_action_just_pressed(action)
 
-func handInputAxis(actionA : String, actionB : String) -> float:
+func handInputAxis(actionA : String, actionB : String, ownerID := Network.steamID) -> float:
+	if not Network.is_owned(ownerID): return 0.0
 	if not inputEnabled:
 		var result := 0.0
 		if inputAction.has(actionA):
@@ -168,7 +159,8 @@ func handInputAxis(actionA : String, actionB : String) -> float:
 	
 	return Input.get_axis(actionA, actionB)
 
-func setInput(action : String, press : float):
+func setInput(action : String, press : float, ownerID := Network.steamID):
+	if not Network.is_owned(ownerID): return
 	if inputAction.has(action):
 		inputAction[action] = press
 
@@ -255,5 +247,4 @@ func setTimeMultiply(multiply : float, timer = 0.2):
 
 	if multiply != 1:
 		tree.create_timer(timer*multiply).connect("timeout", self, "setTimeMultiply", [1.0])
-	
 

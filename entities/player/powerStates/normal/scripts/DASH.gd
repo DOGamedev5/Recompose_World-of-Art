@@ -21,7 +21,7 @@ func enter(_lastState):
 	parent.attackComponents[0].setDamage(1)
 	attackTimer.start()
 	
-	atkDirection = sign(Global.handInputAxis("ui_left", "ui_right"))
+	atkDirection = sign(Global.handInputAxis("ui_left", "ui_right", parent.OwnerID))
 	if atkDirection == 0:
 		atkDirection = (1 - (2 * int(parent.fliped)))
 	
@@ -40,14 +40,14 @@ func process_state():
 		if not parent.onFloor():
 			return "FALL"
 		
-		if Global.handInputAxis("ui_left", "ui_right") != 0 or parent.motion.x != 0:
+		if Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) != 0 or parent.motion.x != 0:
 			
 			if Global.handInput("run", true):
 				return "RUN"
 		
 			return "WALK"
 		
-		elif parent.motion.x == 0 and Global.handInputAxis("ui_left", "ui_right") == 0 :
+		elif parent.motion.x == 0 and Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) == 0 :
 			return "IDLE"
 
 	return null
@@ -62,7 +62,7 @@ func exit():
 	parent.gravity = true
 	parent.motion.y = 0
 	parent.attackDelay.start()
-	if not (Global.handInput("run",true) and Global.handInputAxis("ui_left", "ui_right") != 0):
+	if not (Global.handInput("run",true) and Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) != 0):
 		parent.motion.x /= 2
 	else:
 		parent.motion.x *= 0.85

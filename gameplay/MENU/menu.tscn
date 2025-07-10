@@ -240,17 +240,12 @@ font_data = ExtResource( 1 )
 content_margin_left = 4.0
 content_margin_right = 6.0
 
-[sub_resource type="StyleBoxTexture" id=86]
-texture = ExtResource( 14 )
-region_rect = Rect2( 128, 0, 128, 128 )
-margin_left = 16.0
-margin_right = 16.0
-margin_top = 16.0
-margin_bottom = 16.0
-modulate_color = Color( 1.2, 1.2, 1.2, 1 )
+[sub_resource type="StyleBoxEmpty" id=92]
+
+[sub_resource type="StyleBoxEmpty" id=93]
 
 [sub_resource type="DynamicFont" id=77]
-size = 64
+size = 48
 outline_size = 2
 outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
 extra_spacing_top = -4
@@ -267,16 +262,7 @@ extra_spacing_bottom = -2
 extra_spacing_char = 4
 font_data = ExtResource( 13 )
 
-[sub_resource type="DynamicFont" id=84]
-size = 48
-outline_size = 2
-outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
-extra_spacing_top = -4
-extra_spacing_bottom = -2
-extra_spacing_char = 4
-font_data = ExtResource( 13 )
-
-[sub_resource type="DynamicFont" id=89]
+[sub_resource type="DynamicFont" id=85]
 size = 64
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -285,16 +271,8 @@ extra_spacing_bottom = -8
 extra_spacing_char = 6
 font_data = ExtResource( 25 )
 
-[sub_resource type="StyleBoxTexture" id=87]
-texture = ExtResource( 14 )
-region_rect = Rect2( 128, 0, 128, 128 )
-margin_left = 16.0
-margin_right = 16.0
-margin_top = 16.0
-margin_bottom = 16.0
-
-[sub_resource type="DynamicFont" id=85]
-size = 32
+[sub_resource type="DynamicFont" id=89]
+size = 64
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_top = -16
@@ -319,6 +297,14 @@ extra_spacing_top = -4
 extra_spacing_bottom = -2
 extra_spacing_char = 4
 font_data = ExtResource( 13 )
+
+[sub_resource type="StyleBoxTexture" id=87]
+texture = ExtResource( 14 )
+region_rect = Rect2( 128, 0, 128, 128 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 16.0
 
 [sub_resource type="DynamicFont" id=90]
 size = 64
@@ -1642,7 +1628,7 @@ alignment = 1
 margin_right = 328.0
 margin_bottom = 84.0
 rect_pivot_offset = Vector2( -290, 68 )
-focus_neighbour_left = NodePath("../erase")
+focus_neighbour_left = NodePath("../enter")
 focus_neighbour_top = NodePath("../../HBoxContainer/contract")
 focus_neighbour_right = NodePath("../erase")
 focus_neighbour_bottom = NodePath("../../exit")
@@ -1661,7 +1647,9 @@ margin_left = 378.0
 margin_right = 860.0
 margin_bottom = 84.0
 rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../create")
 focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../enter")
 size_flags_horizontal = 6
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 13 )
@@ -1679,7 +1667,7 @@ margin_bottom = 84.0
 rect_pivot_offset = Vector2( -290, 68 )
 focus_neighbour_left = NodePath("../erase")
 focus_neighbour_top = NodePath("../../HBoxContainer/contract")
-focus_neighbour_right = NodePath("../erase")
+focus_neighbour_right = NodePath("../create")
 focus_neighbour_bottom = NodePath("../../exit")
 size_flags_horizontal = 6
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -1731,20 +1719,21 @@ margin_bottom = 704.0
 custom_constants/separation = 32
 
 [node name="ColorRect" type="PanelContainer" parent="saves/enter/MarginContainer/lobby"]
-margin_right = 632.0
+margin_right = 504.0
 margin_bottom = 672.0
-size_flags_horizontal = 3
+rect_min_size = Vector2( 504, 0 )
+size_flags_horizontal = 0
 custom_styles/panel = SubResource( 78 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby/ColorRect"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 624.0
+margin_right = 496.0
 margin_bottom = 664.0
 theme = SubResource( 79 )
 
 [node name="Label" type="Label" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
-margin_right = 616.0
+margin_right = 488.0
 margin_bottom = 51.0
 custom_fonts/font = ExtResource( 12 )
 text = "Your IP: 128.128.128
@@ -1752,7 +1741,7 @@ Chat:"
 
 [node name="chat" type="RichTextLabel" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
 margin_top = 55.0
-margin_right = 616.0
+margin_right = 488.0
 margin_bottom = 580.0
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 82 )
@@ -1762,58 +1751,87 @@ bbcode_enabled = true
 
 [node name="send" type="LineEdit" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
 margin_top = 584.0
-margin_right = 616.0
+margin_right = 488.0
 margin_bottom = 656.0
 rect_min_size = Vector2( 0, 72 )
 custom_fonts/font = ExtResource( 12 )
-custom_styles/focus = SubResource( 86 )
+custom_styles/read_only = SubResource( 92 )
+custom_styles/focus = SubResource( 93 )
 custom_styles/normal = ExtResource( 11 )
 placeholder_text = "Text chat"
 placeholder_alpha = 0.691
 
-[node name="playerList" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby"]
-margin_left = 664.0
+[node name="info" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby"]
+margin_left = 536.0
 margin_right = 1297.0
 margin_bottom = 672.0
 size_flags_horizontal = 3
+custom_constants/separation = 96
 
-[node name="Label" type="Label" parent="saves/enter/MarginContainer/lobby/playerList"]
-margin_right = 633.0
-margin_bottom = 54.0
+[node name="a" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
+margin_right = 761.0
+margin_bottom = 67.0
+size_flags_vertical = 0
+
+[node name="playerList" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby/info/a"]
+margin_right = 235.0
+margin_bottom = 67.0
+
+[node name="Label" type="Label" parent="saves/enter/MarginContainer/lobby/info/a/playerList"]
+margin_right = 235.0
+margin_bottom = 39.0
 custom_fonts/font = SubResource( 77 )
 text = "Player list"
 
-[node name="playerList" type="Label" parent="saves/enter/MarginContainer/lobby/playerList"]
-margin_top = 58.0
-margin_right = 633.0
-margin_bottom = 82.0
+[node name="list" type="Label" parent="saves/enter/MarginContainer/lobby/info/a/playerList"]
+margin_top = 43.0
+margin_right = 235.0
+margin_bottom = 67.0
 size_flags_vertical = 2
 custom_fonts/font = SubResource( 88 )
 text = "Players"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/playerList"]
-margin_top = 512.0
-margin_right = 633.0
-margin_bottom = 596.0
+[node name="characters" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
+margin_top = 163.0
+margin_right = 761.0
+margin_bottom = 492.0
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="saves/enter/MarginContainer/lobby/playerList/HBoxContainer2"]
-margin_top = 22.0
-margin_right = 449.0
-margin_bottom = 61.0
-size_flags_horizontal = 3
-custom_fonts/font = SubResource( 84 )
-text = "Name:"
+[node name="buttons" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
+margin_top = 588.0
+margin_right = 761.0
+margin_bottom = 672.0
+alignment = 1
 
-[node name="logout" type="Button" parent="saves/enter/MarginContainer/lobby/playerList/HBoxContainer2"]
-margin_left = 453.0
-margin_right = 633.0
+[node name="Logout" type="Button" parent="saves/enter/MarginContainer/lobby/info/buttons"]
+margin_right = 150.0
 margin_bottom = 84.0
 rect_pivot_offset = Vector2( -290, 68 )
 focus_neighbour_left = NodePath("../erase")
 focus_neighbour_top = NodePath("../../HBoxContainer/contract")
 focus_neighbour_right = NodePath("../erase")
 focus_neighbour_bottom = NodePath("../../exit")
-size_flags_horizontal = 8
+size_flags_horizontal = 2
+size_flags_vertical = 5
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 85 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "Exit"
+
+[node name="Start" type="Button" parent="saves/enter/MarginContainer/lobby/info/buttons"]
+margin_left = 581.0
+margin_right = 761.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../erase")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../erase")
+focus_neighbour_bottom = NodePath("../../exit")
+size_flags_horizontal = 10
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 89 )
 custom_styles/hover = SubResource( 14 )
@@ -1822,39 +1840,6 @@ custom_styles/focus = SubResource( 17 )
 custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 16 )
 text = "Start"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/playerList"]
-margin_top = 600.0
-margin_right = 633.0
-margin_bottom = 672.0
-
-[node name="playerName" type="Label" parent="saves/enter/MarginContainer/lobby/playerList/HBoxContainer"]
-margin_right = 493.0
-margin_bottom = 72.0
-rect_min_size = Vector2( 0, 72 )
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 12 )
-custom_styles/normal = SubResource( 87 )
-text = "AAAAAAAAAAAAAAAAAA"
-
-[node name="logout" type="Button" parent="saves/enter/MarginContainer/lobby/playerList/HBoxContainer"]
-margin_left = 497.0
-margin_right = 633.0
-margin_bottom = 72.0
-rect_pivot_offset = Vector2( -290, 68 )
-focus_neighbour_left = NodePath("../erase")
-focus_neighbour_top = NodePath("../../HBoxContainer/contract")
-focus_neighbour_right = NodePath("../erase")
-focus_neighbour_bottom = NodePath("../../exit")
-size_flags_horizontal = 8
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 85 )
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 17 )
-custom_styles/disabled = SubResource( 15 )
-custom_styles/normal = SubResource( 16 )
-text = "logout"
 
 [node name="findParty" type="VBoxContainer" parent="saves/enter/MarginContainer"]
 margin_left = 32.0
@@ -1874,9 +1859,10 @@ valign = 1
 margin_top = 73.0
 margin_right = 1297.0
 margin_bottom = 169.0
+custom_constants/separation = 48
 
 [node name="IPenter" type="LineEdit" parent="saves/enter/MarginContainer/findParty/HBoxContainer"]
-margin_right = 761.0
+margin_right = 673.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 0, 72 )
 size_flags_horizontal = 3
@@ -1885,8 +1871,8 @@ custom_styles/normal = SubResource( 87 )
 placeholder_text = "Enter LobbyID"
 
 [node name="enter" type="Button" parent="saves/enter/MarginContainer/findParty/HBoxContainer"]
-margin_left = 765.0
-margin_right = 953.0
+margin_left = 721.0
+margin_right = 909.0
 margin_bottom = 96.0
 rect_pivot_offset = Vector2( -290, 68 )
 focus_neighbour_left = NodePath("../erase")
@@ -1965,7 +1951,6 @@ text = "Exit"
 
 [node name="RefleshLobbies" type="Timer" parent="saves/enter"]
 wait_time = 2.0
-one_shot = true
 
 [node name="updateNetwork" type="Timer" parent="saves"]
 wait_time = 0.05
@@ -1980,9 +1965,8 @@ visible = false
 self_modulate = Color( 0.733333, 0.741176, 0.901961, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -368.0
 margin_right = 9344.0
-margin_bottom = 4700.0
+margin_bottom = 5068.0
 texture = ExtResource( 26 )
 stretch_mode = 2
 
@@ -2213,7 +2197,8 @@ text = "yes"
 [connection signal="pressed" from="saves/saves/VBoxContainer/HBoxContainer2/enter" to="saves" method="enterServer"]
 [connection signal="pressed" from="saves/saves/VBoxContainer/exit" to="saves" method="_on_exit_pressed"]
 [connection signal="text_entered" from="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/send" to="saves" method="_on_send_pressed"]
-[connection signal="pressed" from="saves/enter/MarginContainer/lobby/playerList/HBoxContainer/logout" to="saves" method="_on_logout"]
+[connection signal="pressed" from="saves/enter/MarginContainer/lobby/info/buttons/Logout" to="saves" method="_on_logout"]
+[connection signal="pressed" from="saves/enter/MarginContainer/lobby/info/buttons/Start" to="saves" method="_on_Start_pressed"]
 [connection signal="pressed" from="saves/enter/MarginContainer/findParty/HBoxContainer/enter" to="saves" method="_on_enter_pressed"]
 [connection signal="value_changed" from="saves/enter/MarginContainer/findParty/HBoxContainer/SpinBox" to="saves" method="_on_SpinBox_value_changed"]
 [connection signal="pressed" from="saves/enter/MarginContainer/findParty/exit" to="saves" method="_on_exitFindLobby_pressed"]

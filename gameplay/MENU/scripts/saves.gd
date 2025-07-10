@@ -7,6 +7,7 @@ onready var parent = $"../"
 var current := false
 
 onready var serverFound := preload("res://gameplay/MENU/serverFound/serverFound.tscn")
+onready var worldSelect := preload("res://worlds/worldSelect/WorldSelect.tscn")
 
 onready var saves := $saves
 onready var enterUi := $enter
@@ -16,17 +17,17 @@ onready var chat := $enter/MarginContainer/lobby/ColorRect/VBoxContainer/chat
 onready var chatSender := $enter/MarginContainer/lobby/ColorRect/VBoxContainer/send
 onready var lobby := $enter/MarginContainer/lobby
 onready var findParty := $enter/MarginContainer/findParty
-onready var playerName := $enter/MarginContainer/lobby/playerList/HBoxContainer/playerName
 onready var updateNetwork := $updateNetwork
-onready var playerList := $enter/MarginContainer/lobby/playerList/playerList
+onready var playerList := $enter/MarginContainer/lobby/info/a/playerList/list
 onready var lobbiesList := $enter/MarginContainer/findParty/Panel/VBoxContainer2/lobbies
 onready var refleshLobbies := $enter/RefleshLobbies
+onready var start := $enter/MarginContainer/lobby/info/buttons/Start
+
 
 enum lobbyStatus {Private, Friends, Public, Invisible}
 enum searchDistance {Close, Default, Far, Worldwide}
 
 func _ready():
-	
 
 	if not Global.cmdargs.connectLobby:
 		hide()
@@ -41,20 +42,15 @@ func _ready():
 	
 #	info.text = "Your IP: {IP}\nChat:".format({"IP" : Network.IP_address})
 	
-	playerName.text = Global.steamName
+	
 #	var tree := get_tree()
 	
-#	get_tree().connect("network_peer_connected", self, "_playerConnected")
-#	get_tree().connect("network_peer_disconnected", self, "_playerDisconnected")
-#	get_tree().connect("connected_to_server", self, "_connected_to_server")
-#	get_tree().connect("server_disconnected", self, "_on_logout")
-	Steam.connect("lobby_created", self, "_lobby_created")
-	Steam.connect("lobby_match_list", self, "_lobby_match_list")
-	Steam.connect("lobby_joined", self, "_lobby_joined")
-	Steam.connect("lobby_chat_update", self, "_lobby_chat_update")
-#	Steam.connect("lobby_message", self, "_lobby_messsage")
+	Steam.connect("lobby_message", self, "_lobby_messsage")
 #	Steam.connect("lobby_data_update", self, "_lobby_data_update")
 	Steam.connect("join_requested", self, "_lobby_join_request")
+	Network.connect("lobbyMatchList", self, "_lobby_match_list")
+	Network.connect("enteredLobby", self, "_lobby_joined")
+	print(Network.connect("startedGame", self, "loadWorldSelect"))
 
 
 func enter():
@@ -75,17 +71,9 @@ func _on_createLobby_pressed():
 	enterUi.show()
 	lobby.show()
 	findParty.hide()
+	start.grab_focus()
 	
-	_create_lobby()
-#	Network.createServer()
-#	Players.addPlayer(get_tree().get_network_unique_id())
-	
-#	updateNetwork.start()
-#	get_tree().root.set_disable_input(true)
-#	for child in $saves/VBoxContainer/HBoxContainer.get_children():
-#		if child.pressed:
-#			child.confirmed()
-#			return
+	Network.createLobby()
 
 func _on_erase_pressed():
 	for child in $saves/VBoxContainer/HBoxContainer.get_children():
@@ -98,45 +86,29 @@ func enterServer():
 	enterUi.show()
 	lobby.hide()
 	findParty.show()
+	$enter/MarginContainer/findParty/HBoxContainer/enter.grab_focus()
 	
-	Steam.addRequestLobbyListDistanceFilter(searchDistance.Worldwide)
-	Steam.requestLobbyList()
+	Network.findLobbies()
 	refleshLobbies.start()
 
 func _on_enter_pressed():
 	if IPenter.text:
 		_join_lobby(int(IPenter.text))
-#
-#		Network.IP_address = IPenter.text
-#		var error := Network.enterServer()
-#		if error: return
-#
-#		Players.addPlayer(get_tree().get_network_unique_id())
 	
 		updateNetwork.start()
 		lobby.show()
 		findParty.hide()
 
 
-func _on_send_pressed(_text := ""):
-#	if text:
-#		Global.sendMessagge(text, get_tree().get_network_unique_id())
-#		Global.rpc_unreliable("sendMessagge", text, get_tree().get_network_unique_id())
-		
-#	elif $enter/MarginContainer/lobby/ColorRect/VBoxContainer/send.text:
-#		chat.text += $enter/MarginContainer/lobby/ColorRect/VBoxContainer/send.text + "\n"
+func _on_send_pressed(text := ""):
+	if text:
+		Network.sendP2PPacket(-1, {"type" : "message", "text" : text}, 2)
+		Global.sendMessagge(text, Network.steamID)
+
+	elif $enter/MarginContainer/lobby/ColorRect/VBoxContainer/send.text:
+		chat.text += $enter/MarginContainer/lobby/ColorRect/VBoxContainer/send.text + "\n"
 		
 	$enter/MarginContainer/lobby/ColorRect/VBoxContainer/send.text = ""
-
-func _playerConnected(id):
-	Players.addPlayer(id)
-	Global.sendMessagge("{id} just entered!\n".format({"id" : Players.getPlayerName(id)}))
-	
-	updateNetwork.start()
-
-func _playerDisconnected(id):
-	Global.sendMessagge("good bye [color=yellow]{id}[/color], we'll miss you!\n".format({"id" : Players.getPlayerName(id)}))
-	Players.removePlayer(id)
 
 func _connected_to_server():
 	updateNetwork.start()
@@ -146,30 +118,34 @@ func _on_logout():
 	lobby.hide()
 	findParty.show()
 	Players.clearPlayers()
-	Global.lobbyMenbers.clear()
+	Network.leaveLobby()
 	
-	if Global.lobbyID:
-		Steam.leaveLobby(Global.lobbyID)
-		Global.lobbyID = 0
-
+	Global.chat.clear()
+	
 func _on_updateNetwork_timeout():
 	var playersNames := {}
 	playerList.text = ""
 
-	for player in Global.lobbyMenbers:
+	for player in Network.lobbyMembers:
+		var pName : String = player["NAME"].replace("[", "[lb]")
+		if player["ID"] == Steam.getLobbyOwner(Network.lobbyID):
+			pName += "(Host)"
+		if Network.is_owned(player["ID"]):
+			pName += " <- YOU"
 
-		playerList.text += player["NAME"].replace("[", "[lb]") + "\n"
-		playersNames[player] = player["NAME"].replace("[", "[lb]")
+		playerList.text += pName + "\n"
+		playersNames[player["ID"]] = player["NAME"].replace("[", "[lb]")
 	
 	chat.bbcode_text = ""
 	for text in Global.chat:
 		chat.bbcode_text += text.format(playersNames)
-
-func _on_RefleshLobbies_timeout():
-	Steam.requestLobbyList()
+	
+	
+		
+func _on_RefleshLobbies_timeout(): Network.findLobbies()
 
 func _on_SpinBox_value_changed(_value):
-	Steam.requestLobbyList()
+	Network.findLobbies()
 	refleshLobbies.start()
 
 func _on_exitFindLobby_pressed():
@@ -182,50 +158,22 @@ func _on_exitFindLobby_pressed():
 ### Steam functions ###
 #######################
 func _create_lobby():
-	if not Global.lobbyID:
-		Steam.createLobby(lobbyStatus.Public, 4)
+	Network.createLobby()
 
 func _join_lobby(lobbyID):
-#	if not Steam.getLobbyData(lobbyID, "game") == "LastMinuteRepair": return
-	
-	Steam.joinLobby(lobbyID)
-
-func _get_lobby_menbers():
-	Global.lobbyMenbers.clear()
-	
-	for men in range(Steam.getNumLobbyMembers(Global.lobbyID)):
-		var ID := Steam.getLobbyMemberByIndex(Global.lobbyID, men)
-		var NAME := Steam.getFriendPersonaName(ID)
-		Global.lobbyMenbers.append({"ID" : ID, "NAME" : NAME})
-		print(NAME)
+	Network.joinLobby(lobbyID)
 		
 #####################
 ### Steam signals ###
 #####################
-func _lobby_created(connect, lobbyID):
-	if connect == 1:
-		Global.lobbyID = lobbyID
-		print(lobbyID)
-		$enter/MarginContainer/lobby/ColorRect/VBoxContainer/Label.text = str(Global.lobbyID)		
-		
-		Steam.setLobbyData(lobbyID, "name", Global.steamName)
-		Steam.setLobbyData(lobbyID, "game", "LastMinuteRepair")
-		
-		updateNetwork.start()
-		
-		
-	else:
-		print(connect)
-
-func _lobby_joined(lobbyID, _permissions, _locked, _response):
-	Global.lobbyID = lobbyID
 	
+func _lobby_joined():
 	updateNetwork.start()
 	lobby.show()
 	findParty.hide()
 	
-	_get_lobby_menbers()
-	
+	start.visible = Network.is_host()
+
 	updateNetwork.start()
 
 func _lobby_match_list(lobbies):
@@ -237,13 +185,9 @@ func _lobby_match_list(lobbies):
 	var MAXPAGE := 4.0
 	spinBox.max_value = ceil(float(lobbies.size()) / MAXPAGE)
 	
-	var i = 1
+	
 	for lobbyFoundID in range((spinBox.value-1)*MAXPAGE, lobbies.size()):
 		var lobbyFound : int = lobbies[lobbyFoundID]
-		
-#		if Steam.getLobbyData(lobbyFound, "game") != "LastMinuteRepair":
-#			i -= 1
-#			continue
 		
 		var instance := serverFound.instance()
 		instance.lobbyID = lobbyFound
@@ -251,32 +195,9 @@ func _lobby_match_list(lobbies):
 		instance.name = lobbyName if lobbyName else "no name found" + str(lobbyFoundID)
 		lobbiesList.add_child(instance)
 		instance.connect("enterLobby", self, "_join_lobby")
-		i += 1
-
-		if i >= MAXPAGE+1: break
-
-func _lobby_chat_update(_lobbyID, _changedID, makingChangeID, chatState):
-	
-	var changer := Steam.getFriendPersonaName(makingChangeID)
-#	var changed := Steam.getFriendPersonaName(changedID)
-	
-#	match chatState:
-#		1: Global.sendMessagge("{n} has entered the lobby! welcome!".format({"n" : changer})) 
-#		2: Global.sendMessagge("{n} has left the lobby. We'll miss you!!".format({"n" : changer})) 
-#		8: Global.sendMessagge("{n} has been kicked! Maybe you'll learn this time...".format({"n" : changer})) 
-#		16: Global.sendMessagge("{n} has been banned! You are not welcome here!".format({"n" : changer}))
-#		_: Global.sendMessagge("{n} has... did something?".format({"n" : changer}))
-	match chatState:
-		1: print("{n} has entered the lobby! welcome!".format({"n" : changer})) 
-		2: print("{n} has left the lobby. We'll miss you!!".format({"n" : changer})) 
-		8: print("{n} has been kicked! Maybe you'll learn this time...".format({"n" : changer})) 
-		16: print("{n} has been banned! You are not welcome here!".format({"n" : changer}))
-		_: print("{n} has... did something?".format({"n" : changer}))
-	
-	_get_lobby_menbers()
 
 func _lobby_message():
-	pass
+	$enter/MarginContainer/lobby/playerList/HBoxContainer2/Start.visible = Network.is_host()
 
 func _lobby_data_update(success, lobbyID, menberID, key):
 	print("sucess: {success}, lobbyID: {lobbyID}, menberID: {menberID}, key: {key}".format(
@@ -290,5 +211,22 @@ func _lobby_join_request(lobbyID, _friendID):
 
 func _exit_tree():
 	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
-	Global.options.playerName = playerName.text
+	Global.options.playerName = Network.personaName
 
+func loadWorldSelect(savePath := ""):
+	if Network.is_host():
+		FileSystemHandler.loadGameData(savePath)
+	
+	print("B")
+
+	get_tree().change_scene_to(worldSelect)
+
+func _on_Start_pressed():
+	get_tree().root.set_disable_input(true)
+	if not Network.is_host():
+		return
+	for child in $saves/VBoxContainer/HBoxContainer.get_children():
+		if child.pressed:
+			child.confirmed()
+			
+			return
