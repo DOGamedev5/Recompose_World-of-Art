@@ -49,6 +49,7 @@ onready var cmdargs := {
 }
 
 puppetsync var chat := PoolStringArray([])
+signal chatUpdated
 
 func _ready():
 	setup()
@@ -92,6 +93,7 @@ func setup():
 		return
 
 func sendMessagge(message : String, sender : int = -1):
+	emit_signal("chatUpdated")
 	if not message.ends_with("\n"):
 		message += "\n"
 	

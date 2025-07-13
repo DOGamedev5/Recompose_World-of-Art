@@ -92,7 +92,7 @@ func physics_process(delta):
 	
 	if cinematic: return
 	
-	if not stunned and moving and Network.is_owned(OwnerID):
+	if not stunned and moving:
 		
 		if collideUp() > -34 or (Global.handInput("ui_down", true) and not cinematic):
 			counched = true
@@ -104,12 +104,13 @@ func physics_process(delta):
 			fliped = motion.x < 0
 		elif Global.handInputAxis("ui_left", "ui_right") and not cinematic:
 			fliped = Global.handInputAxis("ui_left", "ui_right") < 0
-			
-		for ray in onWallRayCast: 
-			if motion.x:
-				ray.cast_to.x = 28 * sign(motion.x)
-			else:
-				ray.cast_to.x = 28 * Global.handInputAxis("ui_left", "ui_right")
+		
+		if Network.is_owned(OwnerID):
+			for ray in onWallRayCast: 
+				if motion.x:
+					ray.cast_to.x = 28 * sign(motion.x)
+				else:
+					ray.cast_to.x = 28 * Global.handInputAxis("ui_left", "ui_right", OwnerID)
 	
 	if Global.handInput("ui_jump") and Network.is_owned(OwnerID):
 		jumpBuffer = true

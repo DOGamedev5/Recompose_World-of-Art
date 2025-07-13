@@ -31,7 +31,7 @@ func process_state():
 
 func process_physics(_delta):
 	parent.playback.travel("RUN")
-	parent.topSpeedPlayback.travel("SUPERROLL", parent.OwnerID)
+	parent.topSpeedPlayback.travel("SUPERROLL")
 	
 	parent.motion.x = parent.runningVelocity * direction
 	

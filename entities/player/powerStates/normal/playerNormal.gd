@@ -86,7 +86,7 @@ func _networkUpdate():
 		"motion" : motion,
 		"sprite_rotation" : $sprite.rotation,
 		"global_position" : global_position,
-		"currentState" : stateMachine.currentState
+		"currentState" : stateMachine.currentState.name
 	}, Steam.P2P_SEND_RELIABLE)
 
 func receivePacket(packet):

@@ -50,8 +50,8 @@ func _ready():
 	Steam.connect("join_requested", self, "_lobby_join_request")
 	Network.connect("lobbyMatchList", self, "_lobby_match_list")
 	Network.connect("enteredLobby", self, "_lobby_joined")
-	print(Network.connect("startedGame", self, "loadWorldSelect"))
-
+	Network.connect("startedGame", self, "loadWorldSelect")
+	Global.connect("chatUpdated", self, "_on_updateNetwork_timeout")
 
 func enter():
 	for child in $saves/VBoxContainer/HBoxContainer.get_children():
@@ -139,7 +139,6 @@ func _on_updateNetwork_timeout():
 	chat.bbcode_text = ""
 	for text in Global.chat:
 		chat.bbcode_text += text.format(playersNames)
-	
 	
 		
 func _on_RefleshLobbies_timeout(): Network.findLobbies()

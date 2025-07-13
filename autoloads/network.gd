@@ -88,6 +88,7 @@ func readP2PPacket():
 				emit_signal("startedGame")
 			"selectedWorld":
 				emit_signal("worldSelected", packet["world"])
+				print(packet["world"])
 			"playerUpdate":
 				if Players.playerList.has(packet["sender"][0]):
 					if Players.playerList[packet["sender"][0]].reference:

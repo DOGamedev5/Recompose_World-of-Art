@@ -1711,7 +1711,6 @@ custom_constants/margin_left = 32
 custom_constants/margin_bottom = 32
 
 [node name="lobby" type="HBoxContainer" parent="saves/enter/MarginContainer"]
-visible = false
 margin_left = 32.0
 margin_top = 32.0
 margin_right = 1329.0
@@ -1842,6 +1841,7 @@ custom_styles/normal = SubResource( 16 )
 text = "Start"
 
 [node name="findParty" type="VBoxContainer" parent="saves/enter/MarginContainer"]
+visible = false
 margin_left = 32.0
 margin_top = 32.0
 margin_right = 1329.0
@@ -1965,8 +1965,9 @@ visible = false
 self_modulate = Color( 0.733333, 0.741176, 0.901961, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
+margin_top = -368.0
 margin_right = 9344.0
-margin_bottom = 5068.0
+margin_bottom = 4700.0
 texture = ExtResource( 26 )
 stretch_mode = 2
 
