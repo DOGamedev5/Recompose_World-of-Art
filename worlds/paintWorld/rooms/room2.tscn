@@ -3,7 +3,7 @@
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/3/lampaint3.tscn" type="PackedScene" id=2]
 [ext_resource path="res://dimensions/literatureArt/portal/litaratureArtPortal.tscn" type="PackedScene" id=3]
-[ext_resource path="res://worlds/paintWorld/roomScripts/room2.gd" type="Script" id=4]
+[ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=4]
 [ext_resource path="res://gameplay/classes/cinematic/cinematicPlayer.gd" type="Script" id=5]
 [ext_resource path="res://dimensions/literatureArt/portal/literatureArtPortal.png" type="Texture" id=6]
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=7]
@@ -449,5 +449,3 @@ lifetime = 0.6
 speed_scale = 1.5
 explosiveness = 1.0
 randomness = 1.0
-
-[connection signal="animation_finished" from="CutScene" to="." method="_on_CutScene_animation_finished"]

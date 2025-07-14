@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
-[ext_resource path="res://worlds/classes/teleportBase/door/doorEnter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
 [ext_resource path="res://worlds/paintWorld/background.tscn" type="PackedScene" id=6]
@@ -9,6 +8,11 @@
 [ext_resource path="res://worlds/classes/canvasModulateChanger/CanvasModulteChanger.gd" type="Script" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1616, 720 )
+
+[sub_resource type="RectangleShape2D" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 488, 168 )
@@ -29,41 +33,36 @@ position = Vector2( -67, -1546 )
 script = ExtResource( 5 )
 
 [node name="portal" type="Position2D" parent="."]
-position = Vector2( 219, -940 )
+position = Vector2( 171, -1036 )
 script = ExtResource( 5 )
 
 [node name="room1" parent="." instance_placeholder="res://worlds/paintWorld/rooms/room1.tscn"]
 position = Vector2( -5, -652 )
 
-[node name="EnablePlaceholder" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 629, -1068 )
-scale = Vector2( 121.2, -62.4 )
+[node name="EnablePlaceholder" type="Area2D" parent="."]
+position = Vector2( 1035, -1212 )
+collision_layer = 0
+collision_mask = 2048
 script = ExtResource( 7 )
 placeholderPath = NodePath("../room1")
+collisionShapePath = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnablePlaceholder"]
+shape = SubResource( 3 )
 
 [node name="room2" parent="." instance_placeholder="res://worlds/paintWorld/rooms/room2.tscn"]
-position = Vector2( 579, -2060 )
+position = Vector2( 4348, -388 )
 
-[node name="EnablePlaceholder2" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 811, -2316 )
-scale = Vector2( 93.6, 58.4 )
+[node name="EnablePlaceholder2" type="Area2D" parent="."]
+position = Vector2( 4580, -644 )
 script = ExtResource( 7 )
 placeholderPath = NodePath("../room2")
+collisionShapePath = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnablePlaceholder2"]
+shape = SubResource( 4 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
-
-[node name="doorEnter" parent="." instance=ExtResource( 2 )]
-position = Vector2( 499, -940 )
-destinationPath = NodePath("../doorEnter2")
-limitsMin = Vector2( -544, -768 )
-frame = 1
-
-[node name="doorEnter2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 523, -2156 )
-destinationPath = NodePath("../doorEnter")
-limitsMin = Vector2( -408, -784 )
-limitsMax = Vector2( 935, 144 )
-areasToUpdate = [ NodePath("../CanvasModulaterChanger") ]
 
 [node name="CanvasModulaterChanger" type="Area2D" parent="."]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=197 format=2]
+[gd_scene load_steps=199 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -38,12 +38,17 @@
 [ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoSuperRoll.png" type="Texture" id=36]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/SUPERROLL.gd" type="Script" id=37]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/TAUNT.gd" type="Script" id=38]
+[ext_resource path="res://entities/player/shaders/hueShifter.gdshader" type="Shader" id=39]
 
 [sub_resource type="CanvasItemMaterial" id=193]
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
+
+[sub_resource type="ShaderMaterial" id=362]
+shader = ExtResource( 39 )
+shader_param/hue_shift = 0.0
 
 [sub_resource type="CapsuleShape2D" id=336]
 custom_solver_bias = 0.5
@@ -1896,34 +1901,31 @@ runningVelocity = 1000.0
 [node name="coyoteTimer" parent="." index="1"]
 wait_time = 0.15
 
-[node name="rayShapeLeft" parent="." index="3"]
+[node name="rayShapeLeft" parent="." index="4"]
 position = Vector2( -13, -28 )
 
-[node name="rayShapeRight" parent="." index="4"]
+[node name="rayShapeRight" parent="." index="5"]
 position = Vector2( 13, -28 )
 
-[node name="onWallTop" parent="." index="8"]
+[node name="onWallTop" parent="." index="9"]
 position = Vector2( 0, -48 )
 
-[node name="onWallMid" parent="." index="9"]
+[node name="onWallMid" parent="." index="10"]
 position = Vector2( 0, -28 )
 enabled = false
 
-[node name="slopeDetect" parent="." index="11"]
+[node name="slopeDetect" parent="." index="12"]
 position = Vector2( 0, -16 )
 cast_to = Vector2( 0, 40 )
 
-[node name="slopeDetectLeft" parent="." index="12"]
+[node name="slopeDetectLeft" parent="." index="13"]
 position = Vector2( -16, -16 )
 
-[node name="slopeDetectRight" parent="." index="13"]
+[node name="slopeDetectRight" parent="." index="14"]
 position = Vector2( 16, -16 )
 
-[node name="insideDetectLeft" parent="." index="14"]
+[node name="insideDetectLeft" parent="." index="15"]
 cast_to = Vector2( -17, 0 )
-
-[node name="insideDetectRight" parent="." index="15"]
-cast_to = Vector2( 17, 0 )
 
 [node name="topspeedParicle" type="CPUParticles2D" parent="." index="16"]
 material = SubResource( 193 )
@@ -1944,13 +1946,13 @@ __meta__ = {
 position = Vector2( 0, -2 )
 
 [node name="Sprite" type="Sprite" parent="sprite" index="0"]
+material = SubResource( 362 )
 position = Vector2( 0, -30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="speedEffect" type="Sprite" parent="sprite" index="1"]
-visible = false
 self_modulate = Color( 1, 1, 1, 0.79 )
 position = Vector2( 28, -30 )
 scale = Vector2( 2, 2 )
@@ -2109,6 +2111,7 @@ script = ExtResource( 38 )
 one_shot = true
 
 [node name="a" type="Node2D" parent="." index="28"]
+visible = false
 z_index = 4
 
 [node name="Label" type="Label" parent="a" index="0"]
@@ -2143,16 +2146,16 @@ __meta__ = {
 wait_time = 0.075
 autostart = true
 
-[node name="insideDetectLeft2" parent="." index="31"]
+[node name="insideDetectRight" parent="." index="31"]
+cast_to = Vector2( 17, 0 )
+
+[node name="insideDetectLeft2" parent="." index="32"]
 position = Vector2( 0, 5 )
 cast_to = Vector2( -17, 0 )
 
-[node name="insideDetectRight2" parent="." index="32"]
+[node name="insideDetectRight2" parent="." index="33"]
 position = Vector2( 0, 5 )
 cast_to = Vector2( 17, 0 )
-
-[node name="HitboxComponent" parent="." index="33"]
-collision_layer = 1536
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )

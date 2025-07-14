@@ -194,7 +194,7 @@ func _on_specialEffectTimer_timeout():
 func _stepSfx():
 	var sfx = stepSFX[0]
 	if is_on_floor():
-		AudioManager.playSFX(sfx, {"pitch_scale" : rand_range(0.9, 1)})
+		AudioManager.playSFX(sfx, {"pitch_scale" : rand_range(0.9, 1)}, true, global_position, 256)
 
 func taunt(tauntName):
 	$StateMachine/TAUNT.currentTaunt = tauntName

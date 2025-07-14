@@ -9,6 +9,7 @@ onready var collideUPCast := [$collideUpBack, $collideUp, $collideUpFront]
 onready var shieldTimer := $shieldSystem/shield
 onready var animationShield : AnimationNodeStateMachinePlayback = $shieldSystem/AnimationTree["parameters/playback"]
 onready var camera := $Camera2D
+onready var listener := $Listener2D
 onready var hitbox := $HitboxComponent
 
 const SNAPLENGTH := 32
@@ -70,7 +71,9 @@ func _ready():
 		add_child(timer)
 		timer.start()
 	
-	if Network.is_owned(OwnerID): camera.current = true
+	if Network.is_owned(OwnerID):
+		listener.current = true
+		camera.current = true
 	
 	$"../HUD".call_deferred("init", self)
 	

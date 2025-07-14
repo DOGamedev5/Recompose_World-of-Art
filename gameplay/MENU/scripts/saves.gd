@@ -50,6 +50,7 @@ func _ready():
 	Steam.connect("join_requested", self, "_lobby_join_request")
 	Network.connect("lobbyMatchList", self, "_lobby_match_list")
 	Network.connect("enteredLobby", self, "_lobby_joined")
+	Network.connect("createdLobby", self, "_lobby_created")
 	Network.connect("startedGame", self, "loadWorldSelect")
 	Global.connect("chatUpdated", self, "_on_updateNetwork_timeout")
 
@@ -120,6 +121,8 @@ func _on_logout():
 	Players.clearPlayers()
 	Network.leaveLobby()
 	
+	$enter/MarginContainer/lobby/info/buttons/Start.disabled = true
+	chat.text = ""
 	Global.chat.clear()
 	
 func _on_updateNetwork_timeout():
@@ -174,6 +177,9 @@ func _lobby_joined():
 	start.visible = Network.is_host()
 
 	updateNetwork.start()
+
+func _lobby_created():
+	$enter/MarginContainer/lobby/info/buttons/Start.disabled = false
 
 func _lobby_match_list(lobbies):
 	for child in lobbiesList.get_children():

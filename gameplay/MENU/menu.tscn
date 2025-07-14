@@ -1838,6 +1838,7 @@ custom_styles/pressed = SubResource( 15 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 16 )
+disabled = true
 text = "Start"
 
 [node name="findParty" type="VBoxContainer" parent="saves/enter/MarginContainer"]
@@ -1965,9 +1966,8 @@ visible = false
 self_modulate = Color( 0.733333, 0.741176, 0.901961, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -368.0
 margin_right = 9344.0
-margin_bottom = 4700.0
+margin_bottom = 5068.0
 texture = ExtResource( 26 )
 stretch_mode = 2
 

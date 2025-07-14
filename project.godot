@@ -179,7 +179,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://objects/doors/door.gd"
 }, {
-"base": "VisibilityNotifier2D",
+"base": "Area2D",
 "class": "EnablePlaceholder",
 "language": "GDScript",
 "path": "res://autoloads/loadSystem/enableplaceholder/enablePlaceholder.gd"
@@ -551,6 +551,7 @@ buffering/agile_event_flushing=true
 2d_physics/layer_10="enemyAttack"
 2d_physics/layer_11="anyAttack"
 2d_physics/layer_12="playerDetect"
+2d_physics/layer_13="playerExist"
 
 [locale]
 
