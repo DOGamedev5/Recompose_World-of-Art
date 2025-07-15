@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://worlds/worldSelect/objects/custumizer/custumizer.gd" type="Script" id=1]
+[ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://worlds/worldSelect/objects/custumizer/custumizer.png" type="Texture" id=3]
+[ext_resource path="res://entities/player/shaders/hueShifter.gdshader" type="Shader" id=4]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoIdle.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 72, 16 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 4 )
+shader_param/hue_shift = 126.643
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 34, 32 )
+
+[node name="custumizer" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -16 )
+shape = SubResource( 1 )
+
+[node name="Custumizer" type="Sprite" parent="."]
+position = Vector2( 0, -40 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+hframes = 2
+
+[node name="interactBallon" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -80 )
+areaInteractPath = NodePath("..")
+content = [ "E" ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="margin" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 64
+custom_constants/margin_top = 64
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 64
+
+[node name="hbox" type="HBoxContainer" parent="CanvasLayer/margin"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 1297.0
+margin_bottom = 672.0
+
+[node name="options" type="VBoxContainer" parent="CanvasLayer/margin/hbox"]
+margin_bottom = 608.0
+
+[node name="Pallete" type="HBoxContainer" parent="CanvasLayer/margin/hbox/options"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/margin/hbox/options"]
+margin_top = 4.0
+margin_bottom = 4.0
+
+[node name="background" type="ColorRect" parent="CanvasLayer/margin/hbox"]
+margin_left = 721.0
+margin_right = 1233.0
+margin_bottom = 608.0
+rect_min_size = Vector2( 512, 0 )
+size_flags_horizontal = 10
+color = Color( 0, 0, 0, 0.298039 )
+
+[node name="sprite" type="TextureRect" parent="CanvasLayer/margin/hbox/background"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 3 )
+stretch_mode = 6
+
+[connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
+[connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]
+[connection signal="interacted" from="interactBallon" to="." method="_on_interactBallon_interacted"]
