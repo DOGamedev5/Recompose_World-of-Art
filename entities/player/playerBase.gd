@@ -75,7 +75,9 @@ func _ready():
 		listener.current = true
 		camera.current = true
 	
-	$"../HUD".call_deferred("init", self)
+	var hud := get_node_or_null("../HUD")
+	if hud: hud.call_deferred("init", self)
+	else: print("there's no hud!")
 	
 	lastPosition = position
 	
@@ -97,7 +99,7 @@ func physics_process(delta):
 	
 	if not stunned and moving:
 		
-		if collideUp() > -34 or (Global.handInput("ui_down", true) and not cinematic):
+		if collideUp() > -34 or (Global.handInput("ui_down", true, OwnerID) and not cinematic):
 			counched = true
 		else:
 			counched = false
@@ -105,8 +107,8 @@ func physics_process(delta):
 		
 		if motion.x != 0:
 			fliped = motion.x < 0
-		elif Global.handInputAxis("ui_left", "ui_right") and not cinematic:
-			fliped = Global.handInputAxis("ui_left", "ui_right") < 0
+		elif Global.handInputAxis("ui_left", "ui_right", OwnerID) and not cinematic:
+			fliped = Global.handInputAxis("ui_left", "ui_right", OwnerID) < 0
 		
 		if Network.is_owned(OwnerID):
 			for ray in onWallRayCast: 
@@ -115,7 +117,7 @@ func physics_process(delta):
 				else:
 					ray.cast_to.x = 28 * Global.handInputAxis("ui_left", "ui_right", OwnerID)
 	
-	if Global.handInput("ui_jump") and Network.is_owned(OwnerID):
+	if Global.handInput("ui_jump", OwnerID):
 		jumpBuffer = true
 		jumpReleased = false
 		jumpBufferTimer.start()
@@ -279,7 +281,7 @@ func move():
 		
 		snap = Vector2.DOWN * SNAPLENGTH
 
-	if motion: detectInside()
+	if motion: detectInside()	
 	
 	motion = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true) 
 	currentSnapLength = snap.y

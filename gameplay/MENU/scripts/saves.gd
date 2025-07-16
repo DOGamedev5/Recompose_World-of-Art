@@ -7,7 +7,7 @@ onready var parent = $"../"
 var current := false
 
 onready var serverFound := preload("res://gameplay/MENU/serverFound/serverFound.tscn")
-onready var worldSelect := preload("res://worlds/worldSelect/WorldSelect.tscn")
+onready var worldSelect := preload("res://worlds/worldSelect/WaitingRoom.tscn")
 
 onready var saves := $saves
 onready var enterUi := $enter

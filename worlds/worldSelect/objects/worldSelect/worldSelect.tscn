@@ -56,9 +56,17 @@ content = [ "E" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
-[node name="margin" type="MarginContainer" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="background" type="ColorRect" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.611765 )
+
+[node name="margin" type="MarginContainer" parent="CanvasLayer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 128
@@ -66,14 +74,14 @@ custom_constants/margin_top = 160
 custom_constants/margin_left = 128
 custom_constants/margin_bottom = 160
 
-[node name="panel" type="PanelContainer" parent="CanvasLayer/margin"]
+[node name="panel" type="PanelContainer" parent="CanvasLayer/Control/margin"]
 margin_left = 128.0
 margin_top = 160.0
 margin_right = 1233.0
 margin_bottom = 576.0
 custom_styles/panel = SubResource( 2 )
 
-[node name="list" type="HBoxContainer" parent="CanvasLayer/margin/panel"]
+[node name="list" type="HBoxContainer" parent="CanvasLayer/Control/margin/panel"]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1089.0
@@ -81,7 +89,7 @@ margin_bottom = 400.0
 custom_constants/separation = 32
 alignment = 1
 
-[node name="caveWorld" type="TextureButton" parent="CanvasLayer/margin/panel/list"]
+[node name="caveWorld" type="TextureButton" parent="CanvasLayer/Control/margin/panel/list"]
 margin_left = 472.0
 margin_top = 128.0
 margin_right = 600.0
@@ -92,7 +100,7 @@ size_flags_vertical = 6
 texture_normal = ExtResource( 4 )
 expand = true
 
-[node name="close" type="TextureButton" parent="CanvasLayer/margin"]
+[node name="close" type="TextureButton" parent="CanvasLayer/Control/margin"]
 margin_left = 1185.0
 margin_top = 160.0
 margin_right = 1233.0
@@ -106,7 +114,7 @@ texture_hover = SubResource( 5 )
 texture_disabled = SubResource( 3 )
 expand = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -117,5 +125,5 @@ color = Color( 0, 0, 0, 1 )
 [connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
 [connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]
 [connection signal="interacted" from="interactBallon" to="." method="_on_interactBallon_interacted"]
-[connection signal="pressed" from="CanvasLayer/margin/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/margin/close" to="." method="_on_close_pressed"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

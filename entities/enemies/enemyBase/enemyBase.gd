@@ -50,9 +50,6 @@ func _ready():
 	if hitboxArea:
 		hitboxArea.connect("HitboxDamaged", self, "hitted")
 	
-	if stateMachine:
-		stateMachine.init(self)
-
 
 func gravityProcess():
 	if not onFloor():
@@ -62,8 +59,8 @@ func gravityProcess():
 			motion.y = MAXFALL
 
 func _physics_process(delta):
-	if stateMachine:
-		stateMachine.processMachine(delta)
+#	if stateMachine:
+#		stateMachine.processMachine(delta)
 	
 	gravityProcess()
 	
@@ -72,8 +69,8 @@ func _physics_process(delta):
 		
 		if motion.x:
 			fliped = motion.x < 0
-		elif Global.player:
-			fliped = Global.player.global_position.x < global_position.x
+#		elif Global.player and visionArea:
+#			fliped = Global.player.global_position.x < global_position.x
 	
 	sprite.flip_h = fliped
 	
@@ -84,7 +81,8 @@ func _physics_process(delta):
 			var attack = get_node(attackPath)
 			attack.position.x *= sign(attack.position.x) * direction
 		
-		visionArea.position.x *= sign(visionArea.position.x) * direction
+		if visionArea:
+			visionArea.position.x *= sign(visionArea.position.x) * direction
 	
 	motion = move_and_slide(motion, Vector2.UP, true, 4, deg2rad(80), true)
 
@@ -141,9 +139,4 @@ func hitted(damage : DamageAttack):
 		
 		queue_free()
 		return
-	
-	else:
-		yield(get_tree().create_timer(0.25), "timeout")
-	
-		modulate = Color(1, 1, 1, 1)
 	

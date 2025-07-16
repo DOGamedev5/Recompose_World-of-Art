@@ -76,7 +76,7 @@ func changed(value):
 			newButton.path = item.substr(5)
 			$ballonContent/ballon/MarginContainer/HBoxContainer.add_child(newButton)
 		else:
-			var newLabel = load("res://entities/classes/interactComponent/text.tscn").instance()
+			var newLabel = font.instance() if font else load("res://entities/classes/interactComponent/text.tscn").instance()
 			newLabel.text = item
 			$ballonContent/ballon/MarginContainer/HBoxContainer.add_child(newLabel)
 	
