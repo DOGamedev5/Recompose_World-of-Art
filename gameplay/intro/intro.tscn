@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://gameplay/intro/logo.png" type="Texture" id=1]
 [ext_resource path="res://gameplay/intro/intro.gd" type="Script" id=2]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/expression-pro-v1.1/ExpressionPro.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -21,7 +22,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 length = 7.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Control/TextureRect:modulate")
+tracks/0/path = NodePath("Control:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -32,6 +33,12 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ) ]
 }
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -45,6 +52,7 @@ anims/RESET = SubResource( 1 )
 anims/init = SubResource( 2 )
 
 [node name="Control" type="Control" parent="."]
+modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -59,5 +67,38 @@ anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 32.0
+margin_top = 676.0
+margin_right = 1329.0
+margin_bottom = 704.0
+size_flags_vertical = 8
+
+[node name="file" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_right = 290.0
+margin_bottom = 28.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 3 )
+text = "Loading Textures... 0/0"
+
+[node name="total" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 1007.0
+margin_right = 1297.0
+margin_bottom = 28.0
+size_flags_horizontal = 10
+custom_fonts/font = SubResource( 3 )
+text = "Loading Textures... 0/0"
+align = 2
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

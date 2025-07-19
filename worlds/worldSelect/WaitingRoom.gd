@@ -11,7 +11,7 @@ func _ready():
 
 func exit(world := selectedWorld):
 	if Network.is_host():
-		Network.sendP2PPacket(-1, {"type" : "selectedWorld", "world" : selectedWorld}, 2)
+		Network.sendP2PPacket(-1, {"type" : "selectedWorld", "world" : world}, 2)
 	
 	$CanvasLayer.visible = true
 	tween.interpolate_property($CanvasLayer/ColorRect, "modulate", Color(1, 1, 1, 0), Color.white, 0.6, Tween.TRANS_CUBIC)

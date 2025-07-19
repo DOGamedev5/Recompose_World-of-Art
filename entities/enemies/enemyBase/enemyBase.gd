@@ -1,10 +1,8 @@
-class_name EnemyBase extends KinematicBody2D
+class_name EnemyBase extends EntityBase
 
 export(NodePath) var visionAreaPath
 onready var visionArea := get_node_or_null(visionAreaPath)
 export(Array, NodePath) var attackAreaArray 
-export(NodePath) var stateMachinePath
-onready var stateMachine := get_node_or_null(stateMachinePath)
 export(NodePath) var hitboxAreaPath
 onready var hitboxArea := get_node_or_null(hitboxAreaPath)
 export(NodePath) var spritePath
@@ -19,25 +17,19 @@ export var health := 20
 
 export var flipArea := false
 
-export var ACCELERATION := 3
-export var DESACCELERATION := 20
-export var GravityForce := 10
-export var MAXSPEED := 350
-export var MAXFALL := 300
-export var gravity := true
 export var unlimitedVision  := false
 export var fliped := false
 export var canUnwatch := false 
 
 onready var enemyDeath := preload("res://entities/enemies/enemyDeath/enemyDead.tscn")
 
-var motion := Vector2.ZERO
 var player = null
 var flipLock := false
 
 signal defeated(enemy)
 
 func _ready():
+	OwnerID = Network.steamID
 	
 	add_to_group("enemy")
 	if visionArea:
@@ -54,11 +46,11 @@ func _ready():
 func gravityProcess():
 	if not onFloor():
 		
-		motion.y += GravityForce
+		motion.y += GRAVITY
 		if motion.y > MAXFALL:
 			motion.y = MAXFALL
 
-func _physics_process(delta):
+func _physics_process(_delta):
 #	if stateMachine:
 #		stateMachine.processMachine(delta)
 	

@@ -1,6 +1,5 @@
 
-class_name PlayerBase extends KinematicBody2D
-
+class_name PlayerBase extends EntityBase
 onready var coyoteTimer := $coyoteTimer
 onready var jumpBufferTimer := $jumpBuffer
 onready var onWallRayCast := [$onWallTop, $onWallMid, $onWallDown]
@@ -15,28 +14,17 @@ onready var hitbox := $HitboxComponent
 const SNAPLENGTH := 32
 
 export(NodePath) var spriteGizmoPath : NodePath
-onready var spriteGizmo := get_node_or_null(spriteGizmoPath)
-export(NodePath) var stateMachinePath
-onready var stateMachine : StateMachine = get_node_or_null(stateMachinePath) as StateMachine
+onready var spriteGizmo : Node2D = get_node_or_null(spriteGizmoPath)
 
 export(Array) var particles
 export(Array) var FlipObjects
 
-export var gravity := true
-export var ACCELERATION := 3
-export var DESACCELERATION := 10
-export var GRAVITY := 10
-export var MAXSPEED := 350
-export var MAXFALL := 300
-export var JUMPFORCE := -400
-export var MAXHEALTH := 400
-export var OwnerID := -1
- 
+export(String, DIR) var spritesPath := "res://entities/player/powerStates/"
+
 signal damaged(direction)
 
 var enteredObjects := []
 
-var motion := Vector2.ZERO
 var realMotion := Vector2.ZERO
 var lastPosition := Vector2.ZERO
 var cinematic := false
@@ -84,6 +72,7 @@ func _ready():
 	if stateMachine: stateMachine.init(self)
 
 func physics_process(delta):
+	
 	realMotion = ((position - lastPosition) * Engine.get_frames_per_second())
 	set_deferred("lastPosition", position)
 	
@@ -127,11 +116,7 @@ func physics_process(delta):
 	if stateMachine:
 		stateMachine.processMachine(delta)
 
-func _networkUpdate():
-	pass
 
-func receivePacket(_packet):
-	pass
 
 func detectInside():
 	var normalMin := 0.8
@@ -449,4 +434,8 @@ func _on_jumpBuffer_timeout():
 
 func taunt(_tauntName):
 	pass
+
+func getSprite(spriteKey : String, spriteNode : NodePath):
+	get_node(spriteNode).texture = LoadedObjects.textures[spriteKey % Players.playerList[OwnerID].character]
+	
 

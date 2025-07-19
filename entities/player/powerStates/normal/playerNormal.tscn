@@ -2,9 +2,9 @@
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoIdle.png" type="Texture" id=3]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoRun.png" type="Texture" id=4]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoWall.png" type="Texture" id=5]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoIdle.png" type="Texture" id=3]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoRun.png" type="Texture" id=4]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoWall.png" type="Texture" id=5]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/IDLE.gd" type="Script" id=6]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/WALK.gd" type="Script" id=8]
@@ -12,30 +12,30 @@
 [ext_resource path="res://entities/player/powerStates/normal/scripts/FALL.gd" type="Script" id=10]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/WALL.gd" type="Script" id=11]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/RUN.gd" type="Script" id=12]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoTopSpeed.png" type="Texture" id=13]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/AIR/lodrofoFall.png" type="Texture" id=14]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/AIR/lodrofoJump.png" type="Texture" id=15]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoSplat.png" type="Texture" id=16]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoStop.png" type="Texture" id=17]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoTopSpeed.png" type="Texture" id=13]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoFall.png" type="Texture" id=14]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoJump.png" type="Texture" id=15]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoSplat.png" type="Texture" id=16]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoStop.png" type="Texture" id=17]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/DASH.gd" type="Script" id=18]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoAttack.png" type="Texture" id=19]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/lodrofoAttack.png" type="Texture" id=19]
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=20]
 [ext_resource path="res://entities/player/sprites/top_speedEffect.png" type="Texture" id=21]
 [ext_resource path="res://gameplay/effects/effect1.png" type="Texture" id=22]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoDamaged.png" type="Texture" id=23]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoCounch.png" type="Texture" id=24]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoCrawling.png" type="Texture" id=25]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/AIR/lodrofoCounchJump.png" type="Texture" id=26]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/AIR/lodrofoCounchFall.png" type="Texture" id=27]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoDamaged.png" type="Texture" id=23]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoCounch.png" type="Texture" id=24]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoCrawling.png" type="Texture" id=25]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoCounchJump.png" type="Texture" id=26]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoCounchFall.png" type="Texture" id=27]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/DAMAGED.gd" type="Script" id=28]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoRoll.png" type="Texture" id=29]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoRoll.png" type="Texture" id=29]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/ROLL.gd" type="Script" id=30]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/LADDER.gd" type="Script" id=31]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoLadder.png" type="Texture" id=32]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoLadder.png" type="Texture" id=32]
 [ext_resource path="res://gameplay/effects/effect2.png" type="Texture" id=33]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoEnterExit.png" type="Texture" id=34]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoToRun.png" type="Texture" id=35]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoSuperRoll.png" type="Texture" id=36]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoEnterExit.png" type="Texture" id=34]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoToRun.png" type="Texture" id=35]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoSuperRoll.png" type="Texture" id=36]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/SUPERROLL.gd" type="Script" id=37]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/TAUNT.gd" type="Script" id=38]
 [ext_resource path="res://entities/player/shaders/hueShifter.gdshader" type="Shader" id=39]
@@ -139,7 +139,7 @@ tracks/3/path = NodePath("sprite/Sprite:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -160,6 +160,20 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/lodrofoAttack.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=91]
 length = 1.5
@@ -169,7 +183,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -238,6 +252,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoCounch.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=127]
 tracks/0/type = "value"
@@ -245,7 +273,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -290,6 +318,20 @@ tracks/3/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/AIR/lodrofoCounchFall.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=124]
 length = 0.3
@@ -298,7 +340,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -355,6 +397,20 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/AIR/lodrofoCounchJump.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=106]
 loop = true
@@ -363,7 +419,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -427,9 +483,12 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.4, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoCrawling.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
 "args": [  ],
 "method": "_stepSfx"
 }, {
@@ -444,7 +503,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -475,6 +534,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoDamaged.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=343]
 resource_name = "ENTER"
@@ -483,7 +556,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -514,6 +587,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoEnterExit.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=344]
 resource_name = "EXIT"
@@ -522,7 +609,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -553,6 +640,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 1 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoEnterExit.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=33]
 length = 0.2
@@ -561,7 +662,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -618,6 +719,20 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/AIR/lodrofoFall.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 12.0
@@ -627,7 +742,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -696,6 +811,20 @@ tracks/5/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoIdle.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=41]
 length = 0.3
@@ -741,7 +870,7 @@ tracks/3/path = NodePath("sprite/Sprite:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -760,6 +889,20 @@ tracks/4/keys = {
 "values": [ {
 "args": [ 0 ],
 "method": "setCollision"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/AIR/lodrofoJump.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
 } ]
 }
 
@@ -796,12 +939,26 @@ tracks/2/path = NodePath("sprite/Sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 32 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoLadder.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="Animation" id=162]
@@ -837,12 +994,26 @@ tracks/2/path = NodePath("sprite/Sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 2,
 "values": [ ExtResource( 32 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoLadder.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -941,7 +1112,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -979,11 +1150,25 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.05 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 1 ],
 "method": "setCollision"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoRoll.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
 } ]
 }
 
@@ -995,7 +1180,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1059,9 +1244,12 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.4, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoRun.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
 "args": [  ],
 "method": "_stepSfx"
 }, {
@@ -1078,7 +1266,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1120,6 +1308,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoSplat.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="Animation" id=64]
@@ -1166,12 +1368,26 @@ tracks/3/path = NodePath("sprite/Sprite:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 17 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoStop.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="Animation" id=337]
@@ -1184,7 +1400,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1222,9 +1438,12 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.05 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoSuperRoll.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
 "args": [ 1 ],
 "method": "setCollision"
 } ]
@@ -1239,7 +1458,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1303,9 +1522,12 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.1, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoTopSpeed.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
 "args": [  ],
 "method": "_stepSfx"
 }, {
@@ -1321,7 +1543,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1366,6 +1588,20 @@ tracks/3/keys = {
 "method": "_stepSfx"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoToRun.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=197]
 length = 0.6
@@ -1375,7 +1611,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1413,9 +1649,12 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoToRun.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
 "args": [  ],
 "method": "_stepSfx"
 }, {
@@ -1432,7 +1671,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1474,6 +1713,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoWall.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=74]
@@ -1887,15 +2140,16 @@ _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 
 [node name="playerNormal" groups=["input", "normal"] instance=ExtResource( 2 )]
 collision/safe_margin = 1.0
 script = ExtResource( 1 )
-spriteGizmoPath = NodePath("sprite")
 stateMachinePath = NodePath("StateMachine")
-particles = [ NodePath("runningParticle"), NodePath("topspeedParicle") ]
 ACCELERATION = 6
 DESACCELERATION = 16
 GRAVITY = 26
 MAXSPEED = 600
 MAXFALL = 600
 JUMPFORCE = -850
+spriteGizmoPath = NodePath("sprite")
+particles = [ NodePath("runningParticle"), NodePath("topspeedParicle") ]
+spritesPath = "res://entities/player/powerStates/normal/sprites"
 runningVelocity = 1000.0
 
 [node name="coyoteTimer" parent="." index="1"]

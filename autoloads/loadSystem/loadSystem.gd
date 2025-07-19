@@ -16,6 +16,7 @@ class QueueObject:
 		PROPERTY
 		SCENECHANGE
 		ADDSCENE
+		DICTIONARY
 	}
 	
 	var path : String
@@ -23,6 +24,7 @@ class QueueObject:
 	var sceneReceiver : Object
 	var type := PROPERTY
 	var property : String
+	var propertyKey : String
 	var scene
 	var loader : ResourceInteractiveLoader
 	var deffered := false
@@ -39,6 +41,9 @@ class QueueObject:
 			sceneReceiver = flags.sceneReceiver
 			deffered = flags.deffered
 		
+		if flags.has("propertyKey"):
+			propertyKey = flags.propertyKey
+		
 		createLoader()
 		
 	func createLoader():
@@ -48,6 +53,8 @@ class QueueObject:
 		if sceneReceiver:
 			if type == 1:
 				propertyReceiver.current_scene.queue_free()
+			elif type == 3:
+				propertyReceiver.loadedObject(propertyKey, result)
 			
 			if deffered:
 				sceneReceiver.call_deferred("add_child", result)
@@ -122,7 +129,7 @@ func _process(_delta):
 		
 		if queueLoad[0].type == 1:
 			Global.tree.change_scene_to(result)
-		else: 
+		else:
 			queueLoad[0].end(result.instance())
 		
 		queueLoad[0].queue_free()

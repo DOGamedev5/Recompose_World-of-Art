@@ -142,13 +142,13 @@ extents = Vector2( 72, 12 )
 [node name="mole" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 3 )
-attackAreaArray = [ NodePath("AreaTrigger") ]
 stateMachinePath = NodePath("StateMachine")
+ACCELERATION = 10
+MAXSPEED = 25
+attackAreaArray = [ NodePath("AreaTrigger") ]
 spritePath = NodePath("Mole")
 animationTreePath = NodePath("AnimationTree")
 flipArea = true
-ACCELERATION = 10
-MAXSPEED = 25
 
 [node name="Mole" type="Sprite" parent="."]
 position = Vector2( 0, -48 )

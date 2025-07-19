@@ -73,6 +73,7 @@ func _ready():
 	call_deferred("updateActivity")
 	
 	checkCommandLine()
+	
 
 func _process(_delta):
 	Steam.run_callbacks()

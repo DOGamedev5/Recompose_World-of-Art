@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lodrofoTopSpeed.png-fc4e26b72337febde59aa202b6778edf.stex"
+path="res://.import/lodrofoToRun.png-b9dca3bf2e0b04e74808cd18efb329d9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/powerStates/normal/sprites/lodrofoTopSpeed.png"
-dest_files=[ "res://.import/lodrofoTopSpeed.png-fc4e26b72337febde59aa202b6778edf.stex" ]
+source_file="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoToRun.png"
+dest_files=[ "res://.import/lodrofoToRun.png-b9dca3bf2e0b04e74808cd18efb329d9.stex" ]
 
 [params]
 

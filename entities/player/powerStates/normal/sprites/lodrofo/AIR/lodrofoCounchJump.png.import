@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lodrofoIdle.png-9b3e6feb6483b9594a36f2bec29cdf2b.stex"
+path="res://.import/lodrofoCounchJump.png-c5e301b5b2e6362972e306a52c772c69.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoIdle.png"
-dest_files=[ "res://.import/lodrofoIdle.png-9b3e6feb6483b9594a36f2bec29cdf2b.stex" ]
+source_file="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoCounchJump.png"
+dest_files=[ "res://.import/lodrofoCounchJump.png-c5e301b5b2e6362972e306a52c772c69.stex" ]
 
 [params]
 

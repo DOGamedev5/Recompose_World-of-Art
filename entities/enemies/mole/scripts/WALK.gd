@@ -14,5 +14,5 @@ func process_state():
 	if parent.timer.is_stopped():
 		return "IDLE"
 
-func process_physics(delta):
+func process_physics(_delta):
 	parent.motion.x = -parent.MAXSPEED if parent.fliped else parent.MAXSPEED

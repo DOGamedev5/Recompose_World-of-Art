@@ -5,7 +5,7 @@
 [ext_resource path="res://entities/NPCs/cientists/sprites/cien1.png" type="Texture" id=3]
 [ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/classes/dialogComponent/textIcon.png" type="Texture" id=5]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoReaction.png" type="Texture" id=6]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/lodrofoReaction.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 40 )

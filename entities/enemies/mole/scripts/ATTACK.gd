@@ -13,7 +13,7 @@ func process_state():
 	if parent.timer.is_stopped():
 		return "IDLE"
 
-func process_physics(delta):
+func process_physics(_delta):
 	if parent.raycast.is_colliding():
 		parent.motion.x = 0
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lodrofoAttack.png-deb796f6e140fa7cf47ed8c033238f62.stex"
+path="res://.import/lodrofoEnterExit.png-2b6250a0cda3a0203589b532f38bfae3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/powerStates/normal/sprites/lodrofoAttack.png"
-dest_files=[ "res://.import/lodrofoAttack.png-deb796f6e140fa7cf47ed8c033238f62.stex" ]
+source_file="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoEnterExit.png"
+dest_files=[ "res://.import/lodrofoEnterExit.png-2b6250a0cda3a0203589b532f38bfae3.stex" ]
 
 [params]
 
