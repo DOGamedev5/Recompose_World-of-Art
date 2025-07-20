@@ -36,9 +36,14 @@ onready var stepSFX = [
 	preload("res://entities/player/sfx/step.ogg")
 ]
 
+
+	
 func _enter_tree():
 	$sprite/Sprite.hframes = 23
 	
+func _ready():
+	$sprite/Sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
+
 func _physics_process(delta):
 	if not active: return
 	
@@ -200,5 +205,8 @@ func taunt(tauntName):
 	$StateMachine/TAUNT.currentTaunt = tauntName
 	$StateMachine/TAUNT.update()
 	stateMachine.changeState("TAUNT")
-	
-	
+
+func updateHueshift(newShift : int):
+	.updateHueshift(newShift)
+	$sprite/Sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
+

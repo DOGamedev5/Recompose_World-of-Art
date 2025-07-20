@@ -12,8 +12,6 @@ func _ready():
 	hud.hide()
 	for color in pallete.get_children():
 		color.connect("selected", self, "selected")
-		if color.hueShift == 0:
-			color.toggled = true
 
 func selected(hueValue):
 	playerExample.material["shader_param/hue_shift"] = hueValue
@@ -29,7 +27,10 @@ func _on_interactBallon_interacted():
 	close.disabled = false
 	Global.player.moving = false
 	Global.player.motion = Vector2.ZERO
-	
+	for color in pallete.get_children():
+		if color.hueShift == Players.playerList[Network.steamID].colorShift:
+			color.toggled = true
+			
 	hud.visible = true
 	tween.interpolate_property(hudControl, "modulate", hudControl.modulate, Color.white, 0.2, Tween.TRANS_QUAD, Tween.EASE_IN)
 	tween.start()
@@ -45,3 +46,7 @@ func _on_close_pressed():
 func _on_Tween_tween_completed(object, _key):
 	if object == hudControl and object.modulate == Color.transparent:
 		hud.visible = false
+
+func selectedColor(hueValue):
+	if hueValue == Players.playerList[Network.steamID].colorShift: return
+	Global.player.updateHueshift(hueValue)

@@ -1,4 +1,3 @@
-tool
 class_name InteractBallon extends Node2D
 
 export(NodePath) var areaInteractPath
@@ -36,8 +35,6 @@ func _input(_event):
 func enteredArea(area2D):
 	if not area2D.is_in_group("player"): return
 	if not Network.is_owned(area2D.get_parent().OwnerID): return
-	
-	$ballonContent/ballon.modulate.a = 0.77
 	
 	player = area2D.get_parent()
 	
@@ -78,5 +75,6 @@ func changed(value):
 		else:
 			var newLabel = font.instance() if font else load("res://entities/classes/interactComponent/text.tscn").instance()
 			newLabel.text = item
+			newLabel["custom_colors/font_color"] = Color.black
 			$ballonContent/ballon/MarginContainer/HBoxContainer.add_child(newLabel)
 	

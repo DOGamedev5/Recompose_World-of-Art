@@ -87,7 +87,7 @@ hframes = 2
 position = Vector2( 0, -80 )
 z_index = 0
 areaInteractPath = NodePath("..")
-content = [ "E" ]
+content = [ "/btn:interact" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -196,5 +196,9 @@ expand = true
 [connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
 [connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]
 [connection signal="interacted" from="interactBallon" to="." method="_on_interactBallon_interacted"]
+[connection signal="selected" from="CanvasLayer/Control/margin/hbox/options/Pallete/colorButton" to="." method="selectedColor"]
+[connection signal="selected" from="CanvasLayer/Control/margin/hbox/options/Pallete/colorButton2" to="." method="selectedColor"]
+[connection signal="selected" from="CanvasLayer/Control/margin/hbox/options/Pallete/colorButton4" to="." method="selectedColor"]
+[connection signal="selected" from="CanvasLayer/Control/margin/hbox/options/Pallete/colorButton3" to="." method="selectedColor"]
 [connection signal="pressed" from="CanvasLayer/Control/margin/hbox/close" to="." method="_on_close_pressed"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

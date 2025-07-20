@@ -38,16 +38,15 @@ expand = true
 
 [node name="ballonContent" type="Control" parent="."]
 use_parent_material = true
-rect_scale = Vector2( 1e-05, 1e-05 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="ballon" type="PanelContainer" parent="ballonContent"]
-modulate = Color( 1, 1, 1, 0.776471 )
+modulate = Color( 1, 1, 1, 0.901961 )
 material = SubResource( 7 )
 margin_left = -16.0
-margin_top = -55.0
+margin_top = -59.0
 margin_right = 16.0
 margin_bottom = -23.0
 grow_horizontal = 2
@@ -59,7 +58,7 @@ light_mask = 0
 material = SubResource( 4 )
 use_parent_material = true
 margin_right = 32.0
-margin_bottom = 32.0
+margin_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource( 1 )
@@ -70,7 +69,8 @@ patch_margin_bottom = 16
 
 [node name="MarginContainer" type="MarginContainer" parent="ballonContent/ballon"]
 margin_right = 32.0
-margin_bottom = 32.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
 custom_constants/margin_right = 4
 custom_constants/margin_top = 4
 custom_constants/margin_left = 4
@@ -80,4 +80,6 @@ custom_constants/margin_bottom = 8
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 28.0
-margin_bottom = 24.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+alignment = 1
