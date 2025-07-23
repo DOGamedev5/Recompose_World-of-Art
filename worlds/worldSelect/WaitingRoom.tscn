@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://worlds/worldSelect/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://worlds/worldSelect/tileset/WaitingRoom.tres" type="TileSet" id=5]
 [ext_resource path="res://worlds/worldSelect/objects/worldSelect/worldSelect.tscn" type="PackedScene" id=6]
 [ext_resource path="res://worlds/worldSelect/objects/custumizer/custumizer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gameplay/classes/chat/chat.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=9]
+[ext_resource path="res://worlds/worldSelect/objects/door/exitDoor.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 584, 284 )
@@ -74,5 +76,30 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="chat" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="chat"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="Control" type="Control" parent="chat/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 1329.0
+margin_bottom = 704.0
+
+[node name="PanelContainer" parent="chat/MarginContainer/Control" instance=ExtResource( 8 )]
+visible = false
+margin_bottom = 344.0
+canvasLayerPath = NodePath("../../..")
+
+[node name="exitDoor" parent="." instance=ExtResource( 10 )]
+position = Vector2( -256, 0 )
 
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

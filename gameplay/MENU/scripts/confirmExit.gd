@@ -7,7 +7,7 @@ func trigger():
 	
 	oldFocusOwner = get_parent().current.get_focus_owner()
 	
-	$Panel/VBoxContainer/HBoxContainer/no.grab_focus()
+	$Panel/margin/VBoxContainer/HBoxContainer/no.grab_focus()
 
 func _on_no_pressed():
 	visible = false

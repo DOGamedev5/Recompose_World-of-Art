@@ -52,10 +52,11 @@ vframes = 2
 [node name="interactBallon" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -56 )
 areaInteractPath = NodePath("..")
-content = [ "E" ]
+content = [ "/btn:interact" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0

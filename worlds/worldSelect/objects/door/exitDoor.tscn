@@ -1,0 +1,235 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://worlds/worldSelect/objects/door/door.png" type="Texture" id=1]
+[ext_resource path="res://worlds/worldSelect/objects/door/exitDoor.gd" type="Script" id=2]
+[ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=4]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://gameplay/themes/panel.tres" type="StyleBox" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 20 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "doorOpen"
+length = 0.9
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.15, 0.25, 0.3, 0.35, 0.4, 0.75, 0.8, 0.85, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ 0 ],
+"method": "_animationStep"
+}, {
+"args": [ 1 ],
+"method": "_animationStep"
+}, {
+"args": [ 2 ],
+"method": "_animationStep"
+}, {
+"args": [ 3 ],
+"method": "_animationStep"
+}, {
+"args": [ 4 ],
+"method": "_animationStep"
+}, {
+"args": [ 5 ],
+"method": "_animationStep"
+}, {
+"args": [ 6 ],
+"method": "_animationStep"
+}, {
+"args": [ 7 ],
+"method": "_animationStep"
+}, {
+"args": [ 8 ],
+"method": "_animationStep"
+}, {
+"args": [ 0 ],
+"method": "_animationStep"
+} ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 4 )
+region_rect = Rect2( 48, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 4 )
+region_rect = Rect2( 96, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 25.0
+margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 4 )
+region_rect = Rect2( 144, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+
+[node name="exitDoor" type="Area2D"]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Door" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 9
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -20 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "doorOpen"
+anims/RESET = SubResource( 2 )
+anims/doorOpen = SubResource( 3 )
+
+[node name="interactBallon" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -96 )
+areaInteractPath = NodePath("..")
+content = [ "/btn:interact" ]
+
+[node name="confirmExit" type="CanvasLayer" parent="."]
+layer = 4
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="confirmExit"]
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0941176, 0.027451, 0.121569, 1 )
+
+[node name="Panel" type="PanelContainer" parent="confirmExit"]
+self_modulate = Color( 0.529412, 0.505882, 0.588235, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -359.0
+margin_top = -40.0
+margin_right = 359.0
+margin_bottom = 40.0
+custom_styles/panel = ExtResource( 6 )
+
+[node name="margin" type="MarginContainer" parent="confirmExit/Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="confirmExit/Panel/margin"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 484.0
+margin_bottom = 160.0
+custom_constants/separation = 32
+
+[node name="Label" type="Label" parent="confirmExit/Panel/margin/VBoxContainer"]
+margin_right = 686.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 4 )
+text = "mn_exitQuestion"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="confirmExit/Panel/margin/VBoxContainer"]
+margin_top = 68.0
+margin_right = 686.0
+margin_bottom = 152.0
+
+[node name="no" type="Button" parent="confirmExit/Panel/margin/VBoxContainer/HBoxContainer"]
+margin_left = 123.0
+margin_right = 217.0
+margin_bottom = 84.0
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 9 )
+text = "_no"
+
+[node name="yes" type="Button" parent="confirmExit/Panel/margin/VBoxContainer/HBoxContainer"]
+margin_left = 453.0
+margin_right = 577.0
+margin_bottom = 84.0
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 9 )
+text = "_yes"
+
+[connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
+[connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]
+[connection signal="pressed" from="confirmExit/Panel/margin/VBoxContainer/HBoxContainer/no" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="confirmExit/Panel/margin/VBoxContainer/HBoxContainer/yes" to="." method="_on_yes_pressed"]

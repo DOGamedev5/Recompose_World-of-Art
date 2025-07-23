@@ -14,7 +14,7 @@ onready var enterUi := $enter
 onready var info := $enter/MarginContainer/lobby/ColorRect/VBoxContainer/Label
 onready var IPenter := $enter/MarginContainer/findParty/HBoxContainer/IPenter
 onready var chat := $enter/MarginContainer/lobby/ColorRect/VBoxContainer/chat
-onready var chatSender := $enter/MarginContainer/lobby/ColorRect/VBoxContainer/send
+onready var chatSender := $enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer/send
 onready var lobby := $enter/MarginContainer/lobby
 onready var findParty := $enter/MarginContainer/findParty
 onready var updateNetwork := $updateNetwork
@@ -40,13 +40,7 @@ func _ready():
 		lobby.show()
 		findParty.hide()
 	
-#	info.text = "Your IP: {IP}\nChat:".format({"IP" : Network.IP_address})
-	
-	
-#	var tree := get_tree()
-	
 	Steam.connect("lobby_message", self, "_lobby_messsage")
-#	Steam.connect("lobby_data_update", self, "_lobby_data_update")
 	Steam.connect("join_requested", self, "_lobby_join_request")
 	Network.connect("lobbyMatchList", self, "_lobby_match_list")
 	Network.connect("enteredLobby", self, "_lobby_joined")
@@ -68,12 +62,12 @@ func _on_exit_pressed():
 	parent.transition(initial, [self, options])
 
 func _on_createLobby_pressed():
-	saves.hide()
-	enterUi.show()
-	lobby.show()
-	findParty.hide()
-	start.grab_focus()
-	
+#	saves.hide()
+#	enterUi.show()
+#	lobby.show()
+#	findParty.hide()
+#	start.grab_focus()
+#
 	Network.createLobby()
 
 func _on_erase_pressed():
@@ -100,19 +94,13 @@ func _on_enter_pressed():
 		lobby.show()
 		findParty.hide()
 
-
-func _on_send_pressed(text := ""):
-	if text:
-		Network.sendP2PPacket(-1, {"type" : "message", "text" : text}, 2)
-		Global.sendMessagge(text, Network.steamID)
-
-	elif $enter/MarginContainer/lobby/ColorRect/VBoxContainer/send.text:
-		chat.text += $enter/MarginContainer/lobby/ColorRect/VBoxContainer/send.text + "\n"
-		
-	$enter/MarginContainer/lobby/ColorRect/VBoxContainer/send.text = ""
-
-func _connected_to_server():
-	updateNetwork.start()
+func _on_send_pressed(_text := ""):
+	var textToSend : String = chatSender.text
+	
+	Network.sendP2PPacket(-1, {"type" : "message", "text" : textToSend}, 2)
+	Global.sendMessagge(textToSend, Network.steamID)
+	
+	chatSender.text = ""
 
 func _on_logout():
 	updateNetwork.stop()
@@ -170,16 +158,21 @@ func _join_lobby(lobbyID):
 #####################
 	
 func _lobby_joined():
-	updateNetwork.start()
-	lobby.show()
-	findParty.hide()
+	get_tree().change_scene_to(worldSelect)
 	
-	start.visible = Network.is_host()
-
-	updateNetwork.start()
+#	updateNetwork.start()
+#	lobby.show()
+#	findParty.hide()
+#
+#	start.visible = Network.is_host()
 
 func _lobby_created():
-	$enter/MarginContainer/lobby/info/buttons/Start.disabled = false
+	for child in $saves/VBoxContainer/HBoxContainer.get_children():
+		if child.pressed:
+			FileSystemHandler.loadGameData(child.savePath)
+			break
+#	$enter/MarginContainer/lobby/info/buttons/Start.disabled = false
+	get_tree().change_scene_to(worldSelect)
 
 func _lobby_match_list(lobbies):
 	for child in lobbiesList.get_children():
@@ -218,13 +211,8 @@ func _exit_tree():
 	FileSystemHandler.saveDataResource(Global.optionsSavePath, Global.options)
 	Global.options.playerName = Network.personaName
 
-func loadWorldSelect(savePath := ""):
-	if Network.is_host():
-		FileSystemHandler.loadGameData(savePath)
-	
-	print("B")
-
-	get_tree().change_scene_to(worldSelect)
+func loadWorldSelect(_savePath := ""):
+	pass
 
 func _on_Start_pressed():
 	get_tree().root.set_disable_input(true)

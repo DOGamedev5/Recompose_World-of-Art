@@ -102,7 +102,7 @@ func sendMessagge(message : String, sender : int = -1):
 		chat.append(message)
 	else:
 		message = message.replace("[", "[lb]")
-		chat.append("[color=yellow]{id}:[/color] {message}".format({"message" : message, "id" : "{"+str(sender)+"}"}))
+		chat.append("[color=yellow]{id}: [/color]{message}".format({"message" : message, "id" : "{"+str(sender)+"}"}))
 	
 	if chat.size() > 40:
 		chat.remove(0)

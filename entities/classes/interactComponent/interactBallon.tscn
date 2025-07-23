@@ -83,3 +83,9 @@ margin_right = 28.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

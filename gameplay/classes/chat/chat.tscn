@@ -1,0 +1,148 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://gameplay/classes/chat/chat.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gameplay/classes/chat/chat.gd" type="Script" id=2]
+[ext_resource path="res://gameplay/themes/panel.tres" type="StyleBox" id=3]
+[ext_resource path="res://gameplay/classes/chat/send.png" type="Texture" id=4]
+[ext_resource path="res://gameplay/MENU/sprites/slider.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0980392, 0.0588235, 0.133333, 0.419608 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 0.752941 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 2
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 5 )
+region_rect = Rect2( 32, 0, 16, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 12.0
+margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 5 )
+region_rect = Rect2( 32, 16, 16, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 10.0
+margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id=8]
+content_margin_top = 2.0
+content_margin_bottom = 4.0
+texture = ExtResource( 5 )
+region_rect = Rect2( 64, 18, 16, 36 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 12.0
+margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 5 )
+region_rect = Rect2( 48, 18, 16, 36 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 12.0
+margin_bottom = 14.0
+
+[sub_resource type="Theme" id=10]
+VScrollBar/styles/grabber = SubResource( 7 )
+VScrollBar/styles/grabber_highlight = SubResource( 11 )
+VScrollBar/styles/grabber_pressed = SubResource( 11 )
+VScrollBar/styles/scroll = SubResource( 8 )
+VScrollBar/styles/scroll_focus = SubResource( 9 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 72, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 36, 0, 36, 36 )
+
+[node name="chat" type="PanelContainer"]
+margin_right = 432.0
+margin_bottom = 368.0
+rect_min_size = Vector2( 432, 0 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="margin" type="MarginContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 428.0
+margin_bottom = 364.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 12
+
+[node name="vbox" type="VBoxContainer" parent="margin"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 416.0
+margin_bottom = 348.0
+
+[node name="text" type="RichTextLabel" parent="margin/vbox"]
+margin_right = 408.0
+margin_bottom = 264.0
+size_flags_vertical = 3
+theme = SubResource( 10 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "
+"
+text = "
+"
+scroll_active = false
+scroll_following = true
+
+[node name="hbox" type="HBoxContainer" parent="margin/vbox"]
+margin_top = 268.0
+margin_right = 408.0
+margin_bottom = 340.0
+custom_constants/separation = 8
+
+[node name="send" type="LineEdit" parent="margin/vbox/hbox"]
+margin_right = 328.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+custom_styles/read_only = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+placeholder_alpha = 0.691
+
+[node name="sendButton" type="TextureButton" parent="margin/vbox/hbox"]
+margin_left = 336.0
+margin_right = 408.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture_normal = SubResource( 4 )
+texture_pressed = SubResource( 5 )
+texture_hover = SubResource( 6 )
+expand = true
+
+[node name="update" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="text_entered" from="margin/vbox/hbox/send" to="." method="_on_send_pressed"]
+[connection signal="pressed" from="margin/vbox/hbox/sendButton" to="." method="_on_send_pressed"]
+[connection signal="timeout" from="update" to="." method="_on_update_timeout"]

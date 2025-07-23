@@ -43,9 +43,10 @@ func enteredArea(area2D):
 	canInteract = true
 	arrow.visible = true
 	arrow.modulate.a8 = 198
+	$Timer.stop()
 	
 	if tween.is_inside_tree():
-		tween.stop_all()
+		tween.remove_all()
 		
 		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(1, 1), 0.5,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
@@ -59,10 +60,7 @@ func exitedArea(area2D):
 	player = null
 	canInteract = false
 	
-	if tween.is_inside_tree():
-		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(0, 0), 0.8,
-		Tween.TRANS_EXPO, Tween.EASE_OUT, 1.2)
-		tween.start()
+	$Timer.start()
 	
 func changed(value):
 	content = value
@@ -78,3 +76,8 @@ func changed(value):
 			newLabel["custom_colors/font_color"] = Color.black
 			$ballonContent/ballon/MarginContainer/HBoxContainer.add_child(newLabel)
 	
+func _on_Timer_timeout():
+	if tween.is_inside_tree():
+		tween.interpolate_property($ballonContent, "rect_scale", $ballonContent["rect_scale"], Vector2(0, 0), 0.8,
+		Tween.TRANS_EXPO, Tween.EASE_OUT)
+		tween.start()

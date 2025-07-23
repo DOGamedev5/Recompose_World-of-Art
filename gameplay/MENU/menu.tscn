@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://gameplay/MENU/saveslot/panel.png" type="Texture" id=14]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/equipment-pro-v1.1/EquipmentPro.otf" type="DynamicFontData" id=15]
 [ext_resource path="res://gameplay/MENU/sprites/SpinNumber.png" type="Texture" id=16]
+[ext_resource path="res://gameplay/classes/chat/send.png" type="Texture" id=17]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.png" type="Texture" id=21]
 [ext_resource path="res://gameplay/MENU/sprites/slider.png" type="Texture" id=23]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=24]
@@ -243,6 +244,18 @@ content_margin_right = 6.0
 [sub_resource type="StyleBoxEmpty" id=92]
 
 [sub_resource type="StyleBoxEmpty" id=93]
+
+[sub_resource type="AtlasTexture" id=94]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=95]
+atlas = ExtResource( 17 )
+region = Rect2( 72, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=96]
+atlas = ExtResource( 17 )
+region = Rect2( 36, 0, 36, 36 )
 
 [sub_resource type="DynamicFont" id=77]
 size = 48
@@ -1564,13 +1577,13 @@ shortcut = SubResource( 59 )
 text = "mn_back"
 
 [node name="saves" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
 script = ExtResource( 4 )
 
 [node name="saves" type="MarginContainer" parent="saves"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 96
@@ -1697,6 +1710,7 @@ shortcut = SubResource( 61 )
 text = "mn_back"
 
 [node name="enter" type="ColorRect" parent="saves"]
+visible = false
 material = SubResource( 76 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1748,17 +1762,33 @@ custom_styles/focus = SubResource( 83 )
 custom_styles/normal = SubResource( 83 )
 bbcode_enabled = true
 
-[node name="send" type="LineEdit" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
 margin_top = 584.0
 margin_right = 488.0
 margin_bottom = 656.0
+custom_constants/separation = 8
+
+[node name="send" type="LineEdit" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer"]
+margin_right = 408.0
+margin_bottom = 72.0
 rect_min_size = Vector2( 0, 72 )
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 12 )
 custom_styles/read_only = SubResource( 92 )
 custom_styles/focus = SubResource( 93 )
 custom_styles/normal = ExtResource( 11 )
 placeholder_text = "Text chat"
 placeholder_alpha = 0.691
+
+[node name="sendButton" type="TextureButton" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 416.0
+margin_right = 488.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture_normal = SubResource( 94 )
+texture_pressed = SubResource( 95 )
+texture_hover = SubResource( 96 )
+expand = true
 
 [node name="info" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby"]
 margin_left = 536.0
@@ -2131,25 +2161,33 @@ margin_right = 359.0
 margin_bottom = 40.0
 custom_styles/panel = ExtResource( 11 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="confirmExit/Panel"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 702.0
-margin_bottom = 168.0
+[node name="margin" type="MarginContainer" parent="confirmExit/Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="confirmExit/Panel/margin"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 484.0
+margin_bottom = 160.0
 custom_constants/separation = 32
 
-[node name="Label" type="Label" parent="confirmExit/Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="confirmExit/Panel/margin/VBoxContainer"]
 margin_right = 686.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 73 )
-text = "Sure you want to exit?"
+text = "mn_exitQuestion"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="confirmExit/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="confirmExit/Panel/margin/VBoxContainer"]
 margin_top = 68.0
 margin_right = 686.0
 margin_bottom = 152.0
 
-[node name="no" type="Button" parent="confirmExit/Panel/VBoxContainer/HBoxContainer"]
+[node name="no" type="Button" parent="confirmExit/Panel/margin/VBoxContainer/HBoxContainer"]
 margin_left = 123.0
 margin_right = 217.0
 margin_bottom = 84.0
@@ -2162,9 +2200,9 @@ custom_styles/pressed = SubResource( 15 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 16 )
-text = "no"
+text = "_no"
 
-[node name="yes" type="Button" parent="confirmExit/Panel/VBoxContainer/HBoxContainer"]
+[node name="yes" type="Button" parent="confirmExit/Panel/margin/VBoxContainer/HBoxContainer"]
 margin_left = 453.0
 margin_right = 577.0
 margin_bottom = 84.0
@@ -2177,7 +2215,7 @@ custom_styles/pressed = SubResource( 15 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 16 )
-text = "yes"
+text = "_yes"
 
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/start" to="initial" method="_on_start_pressed"]
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/options" to="initial" method="_on_options_pressed"]
@@ -2197,7 +2235,8 @@ text = "yes"
 [connection signal="pressed" from="saves/saves/VBoxContainer/HBoxContainer2/erase" to="saves" method="_on_erase_pressed"]
 [connection signal="pressed" from="saves/saves/VBoxContainer/HBoxContainer2/enter" to="saves" method="enterServer"]
 [connection signal="pressed" from="saves/saves/VBoxContainer/exit" to="saves" method="_on_exit_pressed"]
-[connection signal="text_entered" from="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/send" to="saves" method="_on_send_pressed"]
+[connection signal="text_entered" from="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer/send" to="saves" method="_on_send_pressed"]
+[connection signal="pressed" from="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer/sendButton" to="saves" method="_on_send_pressed"]
 [connection signal="pressed" from="saves/enter/MarginContainer/lobby/info/buttons/Logout" to="saves" method="_on_logout"]
 [connection signal="pressed" from="saves/enter/MarginContainer/lobby/info/buttons/Start" to="saves" method="_on_Start_pressed"]
 [connection signal="pressed" from="saves/enter/MarginContainer/findParty/HBoxContainer/enter" to="saves" method="_on_enter_pressed"]
@@ -2206,5 +2245,5 @@ text = "yes"
 [connection signal="timeout" from="saves/enter/RefleshLobbies" to="saves" method="_on_RefleshLobbies_timeout"]
 [connection signal="timeout" from="saves/updateNetwork" to="saves" method="_on_updateNetwork_timeout"]
 [connection signal="animation_started" from="transition/AnimationPlayer" to="transition" method="_on_AnimationPlayer_animation_started"]
-[connection signal="pressed" from="confirmExit/Panel/VBoxContainer/HBoxContainer/no" to="confirmExit" method="_on_no_pressed"]
-[connection signal="pressed" from="confirmExit/Panel/VBoxContainer/HBoxContainer/yes" to="confirmExit" method="_on_yes_pressed"]
+[connection signal="pressed" from="confirmExit/Panel/margin/VBoxContainer/HBoxContainer/no" to="confirmExit" method="_on_no_pressed"]
+[connection signal="pressed" from="confirmExit/Panel/margin/VBoxContainer/HBoxContainer/yes" to="confirmExit" method="_on_yes_pressed"]

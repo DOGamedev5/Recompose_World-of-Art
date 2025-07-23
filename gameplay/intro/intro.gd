@@ -27,8 +27,10 @@ func _process(_delta):
 	else:
 		file.text = "Done!"
 
-		
-	
+func _input(event):
+	if event.is_action_pressed("interact") and allLoaded:
+		var _1 = get_tree().change_scene_to(menu)
+
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	if allLoaded:
 		var _1 = get_tree().change_scene_to(menu)
