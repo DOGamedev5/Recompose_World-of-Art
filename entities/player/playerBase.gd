@@ -72,7 +72,6 @@ func _ready():
 	if stateMachine: stateMachine.init(self)
 
 func physics_process(delta):
-	
 	realMotion = ((position - lastPosition) * Engine.get_frames_per_second())
 	set_deferred("lastPosition", position)
 	

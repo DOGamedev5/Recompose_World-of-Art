@@ -12,6 +12,8 @@ export(NodePath) var animationTreePath
 onready var animationTree = get_node(animationTreePath)
 onready var animationPlayback = animationTree["parameters/playback"]
 
+onready var scenePath : String
+
 export var maxHealth := 20
 export var health := 20
 
@@ -30,6 +32,14 @@ signal defeated(enemy)
 
 func _ready():
 	OwnerID = Network.steamID
+	scenePath = get_path()
+	
+	if Network.is_host():
+		var timer = Timer.new()
+		timer.wait_time = 0.05
+		timer.connect("timeout", self, "_networkUpdate")
+		add_child(timer)
+		timer.start()
 	
 	add_to_group("enemy")
 	if visionArea:
@@ -131,4 +141,14 @@ func hitted(damage : DamageAttack):
 		
 		queue_free()
 		return
-	
+
+func sendPacket(data : Dictionary):
+	Network.sendP2PPacket(-1, {
+		"type" : "enemyUpdate",
+		"path" : scenePath,
+		"data" : data
+	},
+	Steam.NETWORKING_SEND_UNRELIABLE)
+
+func _networkUpdate():
+	pass

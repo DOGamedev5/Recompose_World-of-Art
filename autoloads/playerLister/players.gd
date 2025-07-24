@@ -6,7 +6,7 @@ enum {
 	netEnet
 }
 
-func addPlayer(id, type := netSteam, netOwner := -1):
+func addPlayer(id, reference = null, type := netSteam, netOwner := -1):
 	if playerList.has(id): return
 	
 	playerList[id] = PlayerInfo.new()
@@ -14,6 +14,8 @@ func addPlayer(id, type := netSteam, netOwner := -1):
 
 	playerList[id].type = type
 	if netOwner == netEnet: playerList[id].netOwner = netOwner
+	if reference:
+		playerList[id].reference = reference
 	
 	add_child(playerList[id])
 

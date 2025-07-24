@@ -6,6 +6,7 @@ var screenShow := false
 
 func _ready():
 	Network.connect("newMemberJoined", self, "doorOpen")
+	Network.connect("memberLeft", self, "doorOpen")
 
 func doorOpen(_id):
 	$AnimationPlayer.play("doorOpen")

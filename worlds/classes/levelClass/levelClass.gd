@@ -19,6 +19,7 @@ onready var cameraLimitsMax := Vector2(10000000, 10000000)
 onready var playerNormalScene := preload("res://entities/player/powerStates/normal/playerNormal.tscn")
 
 func _ready():
+	Network.connect("memberLeft", self, "_memberLeft")
 	Global.save = SaveGame.new() if not Global.save else Global.save
 	
 #	Global.save.played = true
@@ -72,7 +73,11 @@ func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 
 func setCanvasModulate(color : Color = canvasModulateColor):
 	currentColor = color
-	
+
+func _memberLeft(id):
+	Players.playerList[id].reference.queue_free()
+	Players.playerList.remove(id)
+
 func loadSave():
 #	Global.player.active = false
 	

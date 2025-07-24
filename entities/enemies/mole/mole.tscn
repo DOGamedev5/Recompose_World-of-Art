@@ -23,6 +23,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mole:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
@@ -34,10 +46,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 8, 9 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotationTarget")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -10, 10 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -149,11 +173,12 @@ attackAreaArray = [ NodePath("AreaTrigger") ]
 spritePath = NodePath("Mole")
 animationTreePath = NodePath("AnimationTree")
 flipArea = true
+rotationTarget = 10
 
 [node name="Mole" type="Sprite" parent="."]
-position = Vector2( 0, -48 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
+offset = Vector2( 0, -32 )
 hframes = 5
 vframes = 2
 

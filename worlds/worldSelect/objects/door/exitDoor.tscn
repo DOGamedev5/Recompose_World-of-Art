@@ -231,5 +231,6 @@ text = "_yes"
 
 [connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
 [connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]
+[connection signal="interacted" from="interactBallon" to="." method="_on_interactBallon_interacted"]
 [connection signal="pressed" from="confirmExit/Panel/margin/VBoxContainer/HBoxContainer/no" to="." method="_on_no_pressed"]
 [connection signal="pressed" from="confirmExit/Panel/margin/VBoxContainer/HBoxContainer/yes" to="." method="_on_yes_pressed"]

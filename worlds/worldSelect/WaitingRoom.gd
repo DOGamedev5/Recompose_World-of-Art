@@ -25,6 +25,7 @@ func _newPlayer(id):
 	newPlayer.OwnerID = id
 	newPlayer.global_position = $RoomWarp.global_position
 	add_child(newPlayer)
+	Players.addPlayer(id, newPlayer)
 
 func worldSelect(world):
 	LoadSystem.addToQueueChangeScene(worlds[world])

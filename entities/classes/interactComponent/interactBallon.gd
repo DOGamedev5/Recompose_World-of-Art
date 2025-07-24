@@ -4,6 +4,7 @@ export(NodePath) var areaInteractPath
 export(Array, String) var content = [] setget changed
 export var showArroy := true
 
+
 onready var ballon = $ballonContent/ballon
 onready var arrow = $arrow
 onready var tween = $Tween

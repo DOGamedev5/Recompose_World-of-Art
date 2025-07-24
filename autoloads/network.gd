@@ -23,6 +23,8 @@ signal createdLobby()
 signal startedGame()
 signal worldSelected(world)
 signal newMemberJoined(id)
+signal memberLeft(id)
+
 
 func _ready():
 	Steam.connect("p2p_session_request", self, "p2p_request")
@@ -177,12 +179,29 @@ func _lobby_chat_update(_lobbyID, changedID, makingChangeID, chatState):
 	
 	match chatState:
 		1:
+			get_lobby_menbers()
 			emit_signal("newMemberJoined", changer)
+			
 			Global.sendMessagge("{n} has entered the lobby! welcome!".format({"n" : changer})) 
 			
-		2: Global.sendMessagge("{n} has left the lobby. We'll miss you!!".format({"n" : changer})) 
-		8: Global.sendMessagge("{n} has been kicked! Maybe you'll learn this time...".format({"n" : changer})) 
-		16: Global.sendMessagge("{n} has been banned! You are not welcome here!".format({"n" : changer}))
+		2:
+			get_lobby_menbers()
+			emit_signal("memberLeft", changer)
+			
+			Global.sendMessagge("{n} has left the lobby. We'll miss you!!".format({"n" : changer})) 
+		
+		8:
+			get_lobby_menbers()
+			emit_signal("memberLeft", changer)
+			
+			Global.sendMessagge("{n} has been kicked! Maybe you'll learn this time...".format({"n" : changer})) 
+		
+		16:
+			get_lobby_menbers()
+			emit_signal("memberLeft", changer)
+			
+			Global.sendMessagge("{n} has been banned! You are not welcome here!".format({"n" : changer}))
+		
 		_: Global.sendMessagge("{n} has... did something?".format({"n" : changer}))
 	match chatState:
 		1: print("{n} has entered the lobby! welcome!".format({"n" : changer})) 

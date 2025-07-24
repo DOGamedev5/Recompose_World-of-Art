@@ -38,6 +38,7 @@ expand = true
 
 [node name="ballonContent" type="Control" parent="."]
 use_parent_material = true
+rect_scale = Vector2( 1e-05, 1e-05 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -85,7 +86,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.2
+wait_time = 0.8
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
