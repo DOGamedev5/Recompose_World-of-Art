@@ -1,4 +1,4 @@
-[gd_scene load_steps=199 format=2]
+[gd_scene load_steps=200 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -39,6 +39,7 @@
 [ext_resource path="res://entities/player/powerStates/normal/scripts/SUPERROLL.gd" type="Script" id=37]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/TAUNT.gd" type="Script" id=38]
 [ext_resource path="res://entities/player/shaders/hueShifter.gdshader" type="Shader" id=39]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/alexandry/sword.png" type="Texture" id=40]
 
 [sub_resource type="CanvasItemMaterial" id=193]
 particles_animation = true
@@ -56,7 +57,7 @@ radius = 16.0
 height = 8.0
 
 [sub_resource type="RayShape2D" id=341]
-custom_solver_bias = 0.2
+custom_solver_bias = 0.01
 length = 24.0
 
 [sub_resource type="RectangleShape2D" id=342]
@@ -1023,7 +1024,7 @@ tracks/0/path = NodePath("sprite/Sprite:texture:load_path")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1035,7 +1036,7 @@ tracks/1/path = NodePath("sprite/Sprite:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -2199,20 +2200,39 @@ __meta__ = {
 [node name="sprite" type="Node2D" parent="." index="17"]
 position = Vector2( 0, -2 )
 
-[node name="Sprite" type="Sprite" parent="sprite" index="0"]
+[node name="Sword" type="Sprite" parent="sprite" index="0"]
+position = Vector2( 24, 2 )
+rotation = 0.0349066
+scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 40 )
+offset = Vector2( 0, -8 )
+
+[node name="Sprite" type="Sprite" parent="sprite" index="1"]
 material = SubResource( 356 )
 position = Vector2( 0, -30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="speedEffect" type="Sprite" parent="sprite" index="1"]
+[node name="speedEffect" type="Sprite" parent="sprite" index="2"]
 self_modulate = Color( 1, 1, 1, 0.79 )
 position = Vector2( 28, -30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 21 )
 hframes = 5
 frame = 4
+
+[node name="swordFloor" type="RayCast2D" parent="sprite" index="3"]
+position = Vector2( -32, -22 )
+enabled = true
+cast_to = Vector2( 0, 32 )
+
+[node name="swordFloor2" type="RayCast2D" parent="sprite" index="4"]
+position = Vector2( 24, -22 )
+enabled = true
+cast_to = Vector2( 0, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="18"]
 position = Vector2( 0, -44 )

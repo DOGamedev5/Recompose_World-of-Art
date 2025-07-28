@@ -52,9 +52,11 @@ func _on_close_pressed():
 	parent.visible = true
 
 func _on_quit_pressed():
+	Network.leaveLobby()
 	get_tree().quit()
 
 func _on_menu_pressed():
+	Network.leaveLobby()	
 	get_tree().paused = false
 	Global.in_game = false
 	LoadSystem.openScreen()

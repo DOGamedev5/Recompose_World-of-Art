@@ -38,5 +38,11 @@ func setPlayerName(id, newName):
 func getPlayer(id):
 	return playerList[id]
 
+func getPlayerCharater(id : int):
+	return playerList[id].character
+
+func setPlayerCharater(id : int, character : String):
+	playerList[id].character = character
+
 func getUserPlayer(id):
 	return playerList[id]
