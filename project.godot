@@ -566,6 +566,7 @@ buffering/agile_event_flushing=true
 [layer_names]
 
 2d_physics/layer_1="solido"
+2d_physics/layer_2="special"
 2d_physics/layer_9="playerAttack"
 2d_physics/layer_10="enemyAttack"
 2d_physics/layer_11="anyAttack"

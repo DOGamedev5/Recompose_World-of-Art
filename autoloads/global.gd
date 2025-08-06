@@ -251,3 +251,5 @@ func setTimeMultiply(multiply : float, timer = 0.2):
 	if multiply != 1:
 		tree.create_timer(timer*multiply).connect("timeout", self, "setTimeMultiply", [1.0])
 
+func _exit_tree():
+	Network.leaveLobby()

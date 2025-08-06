@@ -41,11 +41,16 @@ func activaded(area : Area2D):
 		if not is_instance_valid(obj): obj = placeholder.create_instance(false, scene)
 
 func enteredScreen():
-	if not is_instance_valid(obj): obj = placeholder.create_instance(false, scene)
+	if not is_instance_valid(obj):
+		obj = placeholder.create_instance(false, scene)
+		
+		get_parent().roomLoaded(placeholder.name)
+		print(get_parent().loadedRooms)
 	
 func exited(area : Area2D):
 	if is_instance_valid(obj) and not area.is_in_group("player"): return
 	if playersInside.has(area): playersInside.erase(area)
+	get_parent().roomUnloaded(placeholder.name)
 	
 	if playersInside.size() == 0 and not vision.is_on_screen():
 		scene = PackedScene.new()

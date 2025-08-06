@@ -56,7 +56,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "shield"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("..:modulate")
@@ -72,7 +71,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=12]
-resource_name = "shieldStoping"
 length = 0.4
 loop = true
 tracks/0/type = "value"

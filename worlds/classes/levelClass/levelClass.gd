@@ -18,6 +18,8 @@ onready var cameraLimitsMin := Vector2(-10000000, -10000000)
 onready var cameraLimitsMax := Vector2(10000000, 10000000)
 onready var playerNormalScene := preload("res://entities/player/powerStates/normal/playerNormal.tscn")
 
+onready var loadedRooms := []
+
 func _ready():
 	Network.connect("memberLeft", self, "_memberLeft")
 	Global.save = SaveGame.new() if not Global.save else Global.save
@@ -86,6 +88,29 @@ func loadSave():
 #	Global.player.set_deferred("active", true)
 	
 	LoadSystem.closeLoad()
+
+func roomLoaded(room : String):
+	if not room in loadedRooms:
+		if not loadedRooms.has(room):
+			loadedRooms.append(room)
+		Players.playerList[Network.steamID].loadedRooms.append(room)
+	
+	Network.sendP2PPacket(-1, {"type" : "loadedRoomsUpdated", "rooms" : Players.playerList[Network.steamID].loadedRooms}, Steam.P2P_SEND_RELIABLE)
+
+func roomUnloaded(room : String):
+	if not Players.playerList.has(Network.steamID): return
+	Players.playerList[Network.steamID].loadedRooms.erase(room)
+	
+	Network.sendP2PPacket(-1, {"type" : "loadedRoomsUpdated", "rooms" : Players.playerList[Network.steamID].loadedRooms}, Steam.P2P_SEND_RELIABLE)
+
+func setupRooms():
+	var newToLoad := []
+	for p in Players.playerList:
+		newToLoad.append_array(p.loadedRooms)
+		newToLoad
+	
+	
+	pass
 
 func setupTimer(time):
 	clock = true

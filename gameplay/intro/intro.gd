@@ -25,7 +25,7 @@ func _process(_delta):
 
 		file.text = text
 	else:
-		file.text = "Done!"
+		file.text = "Done!(press E to skip intro)"
 
 func _input(event):
 	if event.is_action_pressed("interact") and allLoaded:
