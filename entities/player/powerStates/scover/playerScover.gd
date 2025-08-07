@@ -1,4 +1,7 @@
-extends KinematicBody2D
+extends PlayerBase
+
+onready var animation := $AnimationTree
+onready var playback : AnimationNodeStateMachinePlayback= animation["parameters/playback"] 
 
 onready var insideDigable := []
 const detectDig := [
@@ -36,3 +39,9 @@ func _on_inside_body_exited(body):
 	if body.is_in_group("digable") and body.get_parent() is TileMap:
 		if insideDigable.has(body.get_parent()):
 			insideDigable.erase(body)
+
+func _on_inside_area_entered(area):
+	pass # Replace with function body.
+
+func _on_inside_area_exited(area):
+	pass # Replace with function body.

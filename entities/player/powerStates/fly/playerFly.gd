@@ -13,8 +13,8 @@ func _physics_process(_delta):
 		if input:
 			currentState = states.FLY
 		
-		elif Input.is_action_just_pressed("ui_accept"):
-			changePowerup("Normal")
+#		elif Input.is_action_just_pressed("ui_accept"):
+#			changePowerup("Normal")
 	
 	elif currentState == states.FLY:
 		var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -22,8 +22,8 @@ func _physics_process(_delta):
 		if not input and motion == Vector2.ZERO:
 			currentState = states.IDLE
 		
-		elif Input.is_action_just_pressed("ui_accept"):
-			changePowerup("Normal")
+#		elif Input.is_action_just_pressed("ui_accept"):
+#			changePowerup("Normal")
 	
 	match currentState:
 		states.IDLE:
@@ -32,7 +32,7 @@ func _physics_process(_delta):
 		states.FLY:
 			var input := Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis( "ui_up", "ui_down"))
 			
-			motion = Vector2(moveBase(input.x, motion.x), moveBase(input.y, motion.y))
+#			motion = Vector2(moveBase(input.x, motion.x), moveBase(input.y, motion.y))
 			
 			
 		

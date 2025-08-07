@@ -8,7 +8,7 @@ onready var currentSegments := 0
 
 signal allTexturesLoaded
 
-func loadTexturesOnDirectory(DirPath : String, texturesReference : String):
+func loadDirectory(DirPath : String, texturesReference : String, extension := ".png", deep := -1):
 	var dir := Directory.new()
 	texturesToLoad[texturesReference] = {}
 	
@@ -21,9 +21,9 @@ func loadTexturesOnDirectory(DirPath : String, texturesReference : String):
 		push_error("Error when opening \"{dir}\": {error}".format({"dir" : DirPath, "error" : error}))
 		return
 	
-	call_deferred("_loadTextures", DirPath, texturesReference)
+	call_deferred("_load", DirPath, texturesReference, extension, deep)
 
-func _loadTextures(DirPath : String, reference : String):
+func _load(DirPath : String, reference : String, extension : String, deep : int, step := -1):
 	var dir := Directory.new()
 	
 	var error := dir.open(DirPath)
@@ -38,22 +38,23 @@ func _loadTextures(DirPath : String, reference : String):
 	var file_name := dir.get_next()
 	
 	while file_name != "":
-		if dir.current_is_dir():
+		if dir.current_is_dir() and not (deep != -1 and deep < step):
 			var newPath := DirPath
 			if not DirPath.ends_with("/"): newPath += "/"
 			newPath += file_name + "/"
-			_loadTextures(newPath, reference)
+			_load(newPath, reference, extension, deep, step+1)
 			file_name = dir.get_next()
 			
 			continue
 		
-		if not file_name.ends_with(".png"):
+		if not file_name.ends_with(extension):
 			file_name = dir.get_next()
 			continue
 		
 		texturesToLoad[reference][DirPath + file_name] = DirPath + file_name
 		
 		file_name = dir.get_next()
+	
 
 func process():
 	if texturesToLoad.size() > 0:

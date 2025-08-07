@@ -1,15 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://entities/player/powerStates/scover/playerScover.gd" type="Script" id=1]
-[ext_resource path="res://entities/classes/statemachinee/state.gd" type="Script" id=2]
+[ext_resource path="res://entities/player/powerStates/scover/scripts/IDLE.gd" type="Script" id=2]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://entities/player/powerStates/scover/sprites/lodrofo/scoveyDrive.png" type="Texture" id=5]
+[ext_resource path="res://entities/player/powerStates/scover/scripts/WALK.gd" type="Script" id=6]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 20 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 32, 28 )
@@ -17,11 +15,202 @@ extents = Vector2( 32, 28 )
 [sub_resource type="CircleShape2D" id=4]
 radius = 16.0
 
-[node name="playerBase" instance=ExtResource( 3 )]
-script = ExtResource( 1 )
+[sub_resource type="RayShape2D" id=20]
+length = 16.0
 
-[node name="rayShapeRight" parent="." index="5"]
-position = Vector2( 16, 64 )
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "DRIVE"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "WALK"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/DRIVE/node = SubResource( 12 )
+states/DRIVE/position = Vector2( 613.667, 84.3333 )
+states/IDLE/node = SubResource( 6 )
+states/IDLE/position = Vector2( 468.333, 75 )
+states/WALK/node = SubResource( 13 )
+states/WALK/position = Vector2( 541.667, 167 )
+transitions = [ "IDLE", "DRIVE", SubResource( 14 ), "IDLE", "WALK", SubResource( 15 ), "WALK", "DRIVE", SubResource( 16 ), "DRIVE", "WALK", SubResource( 17 ), "WALK", "IDLE", SubResource( 18 ), "DRIVE", "IDLE", SubResource( 19 ) ]
+start_node = "IDLE"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="Animation" id=9]
+resource_name = "DRIVE"
+length = 0.2
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/scover/sprites/%s/scoveyDrive.png", NodePath("sprite/sprite") ],
+"method": "getSprite"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "IDLE"
+length = 0.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/scover/sprites/%s/scoveyIdle.png", NodePath("sprite/sprite") ],
+"method": "getSprite"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite/sprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "WALK"
+length = 0.6
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/scover/sprites/%s/scoveyWalk.png", NodePath("sprite/sprite") ],
+"method": "getSprite"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[node name="playerScover" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+stateMachinePath = NodePath("StateMachine")
+GRAVITY = 36
+spriteGizmoPath = NodePath("sprite")
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 2 )
@@ -33,24 +222,17 @@ startingState = NodePath("IDLE")
 [node name="IDLE" type="Node" parent="StateMachine" index="0"]
 script = ExtResource( 2 )
 
+[node name="WALK" type="Node" parent="StateMachine" index="1"]
+script = ExtResource( 6 )
+
 [node name="sprite" type="Node2D" parent="." index="22"]
 
-[node name="destroy" type="Area2D" parent="sprite" index="0"]
-position = Vector2( 0, 16 )
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sprite/destroy" index="0"]
-position = Vector2( 0, -8 )
-shape = SubResource( 1 )
-
-[node name="sprite" type="Sprite" parent="sprite" index="1"]
+[node name="sprite" type="Sprite" parent="sprite" index="0"]
 position = Vector2( 0, -8 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
-hframes = 2
 
-[node name="inside" type="Area2D" parent="sprite" index="2"]
+[node name="inside" type="Area2D" parent="sprite" index="1"]
 position = Vector2( 0, -8 )
 collision_layer = 0
 collision_mask = 2
@@ -63,6 +245,21 @@ shape = SubResource( 3 )
 position = Vector2( 0, -32 )
 shape = SubResource( 4 )
 
-[connection signal="body_entered" from="sprite/destroy" to="." method="_on_destroy_body_entered"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="24"]
+position = Vector2( 0, -16 )
+shape = SubResource( 20 )
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="25"]
+tree_root = SubResource( 7 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="26"]
+anims/DRIVE = SubResource( 9 )
+anims/IDLE = SubResource( 5 )
+anims/RESET = SubResource( 10 )
+anims/WALK = SubResource( 11 )
+
 [connection signal="area_entered" from="sprite/inside" to="." method="_on_inside_area_entered"]
 [connection signal="area_exited" from="sprite/inside" to="." method="_on_inside_area_exited"]

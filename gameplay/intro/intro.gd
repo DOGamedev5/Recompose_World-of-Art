@@ -8,7 +8,8 @@ var allLoaded := false
 
 func _ready():
 	LoadedObjects.connect("allTexturesLoaded", self, "exit")
-	LoadedObjects.loadTexturesOnDirectory("res://entities/player/powerStates/", "player")
+	LoadedObjects.loadDirectory("res://entities/player/powerStates/", "player", ".png")
+	LoadedObjects.loadDirectory("res://entities/player/powerStates/", "powerPlayers", ".tscn", 0)
 
 func _process(_delta):
 	LoadedObjects.process()

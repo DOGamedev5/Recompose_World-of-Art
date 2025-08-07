@@ -39,3 +39,9 @@ func _networkUpdate():
 		"position" : global_position,
 		"rotation" : global_rotation
 	})
+
+func _on_attack_area_entered(area):
+	if not (area.is_in_group("player") and area.get_parent().is_in_group("normal")):
+		return
+	
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://entities/enemies/mole/scripts/ATTACK.gd" type="Script" id=1]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=2]
@@ -163,6 +163,9 @@ radius = 24.0
 [sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 72, 12 )
 
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 20, 20 )
+
 [node name="mole" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 3 )
@@ -240,4 +243,13 @@ shape = SubResource( 20 )
 wait_time = 3.0
 one_shot = true
 
+[node name="attack" type="Area2D" parent="."]
+position = Vector2( 32, -32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+position = Vector2( -4, -4 )
+shape = SubResource( 21 )
+disabled = true
+
 [connection signal="area_exited" from="AreaTrigger" to="." method="_on_AreaTrigger_area_exited"]
+[connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]
