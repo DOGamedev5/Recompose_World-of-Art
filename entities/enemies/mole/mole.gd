@@ -3,6 +3,7 @@ extends EnemyBase
 onready var timer := $Timer
 onready var cooldown := $AttackCooldown
 onready var raycast := $RayCast2D
+onready var attackHitbox := $attack/CollisionShape2D
 #onready var stateMachine := $StateMachine
 
 var playerInArea := false
@@ -43,5 +44,13 @@ func _networkUpdate():
 func _on_attack_area_entered(area):
 	if not (area.is_in_group("player") and area.get_parent().is_in_group("normal")):
 		return
+		
+	var oldPlayer : PlayerBase = Global.player
+	var playerPos : Vector2 = oldPlayer.global_position
+	Global.player = LoadedObjects.loaded["res://entities/player/powerStates/scover/playerScover.tscn"].instance()
+	Global.player.OwnerID = oldPlayer.OwnerID
 	
+	oldPlayer.queue_free()
+	Global.world.add_child(Global.player)
 	
+	Global.player.global_position = playerPos

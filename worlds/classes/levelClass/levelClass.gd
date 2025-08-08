@@ -16,7 +16,7 @@ onready var timer := Timer.new()
 
 onready var cameraLimitsMin := Vector2(-10000000, -10000000)
 onready var cameraLimitsMax := Vector2(10000000, 10000000)
-onready var playerNormalScene := preload("res://entities/player/powerStates/normal/playerNormal.tscn")
+#onready var playerNormalScene := preload("res://entities/player/powerStates/normal/playerNormal.tscn")
 
 onready var loadedRooms := []
 
@@ -40,16 +40,10 @@ func _ready():
 	setup()
 	
 func setup():
-#	if not Global.packedPlayer:
-#		Global.player = load(Global.save.player["player"]).instance()
-#	else:
-#		Global.player = Global.packedPlayer.instance()
-	
 	var portal : Node2D = get_node(portalPath)
 	
-
 	for member in Network.lobbyMembers:
-		var player : PlayerBase = playerNormalScene.instance()
+		var player : PlayerBase = LoadedObjects.loaded["res://entities/player/powerStates/normal/playerNormal.tscn"].instance()
 		if Network.steamID == member["ID"]:
 			Global.player = player
 		
@@ -107,7 +101,7 @@ func setupRooms():
 	var newToLoad := []
 	for p in Players.playerList:
 		newToLoad.append_array(p.loadedRooms)
-		newToLoad
+#		newToLoad
 	
 	
 	pass

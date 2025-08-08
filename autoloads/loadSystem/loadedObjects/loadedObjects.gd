@@ -1,7 +1,7 @@
 extends Node
 
-onready var textures := {}
-onready var texturesToLoad := {}
+onready var loaded := {}
+onready var toLoad := {}
 onready var loaders := []
 onready var totalSegments := 0
 onready var currentSegments := 0
@@ -10,7 +10,7 @@ signal allTexturesLoaded
 
 func loadDirectory(DirPath : String, texturesReference : String, extension := ".png", deep := -1):
 	var dir := Directory.new()
-	texturesToLoad[texturesReference] = {}
+	toLoad[texturesReference] = {}
 	
 	if not dir.dir_exists(DirPath):
 		push_error("Invalid path: {%s}" % DirPath)
@@ -51,19 +51,19 @@ func _load(DirPath : String, reference : String, extension : String, deep : int,
 			file_name = dir.get_next()
 			continue
 		
-		texturesToLoad[reference][DirPath + file_name] = DirPath + file_name
+		toLoad[reference][DirPath + file_name] = DirPath + file_name
 		
 		file_name = dir.get_next()
 	
 
 func process():
-	if texturesToLoad.size() > 0:
-		for item in texturesToLoad.keys():
-			for path in texturesToLoad[item].keys():
+	if toLoad.size() > 0:
+		for item in toLoad.keys():
+			for path in toLoad[item].keys():
 				loaders.append({"path" : path, "load" : ResourceLoader.load_interactive(path)})
 				totalSegments += loaders[0]["load"].get_stage_count()
 				
-		texturesToLoad.clear()
+		toLoad.clear()
 	
 	elif loaders.size() > 0:
 		var error = loaders[0]["load"].poll()
@@ -75,7 +75,7 @@ func process():
 		elif error == ERR_FILE_EOF:
 			currentSegments += 1
 			var result = loaders[0]["load"].get_resource()
-			textures[loaders[0]["path"]] = result
+			loaded[loaders[0]["path"]] = result
 			loaders.remove(0)
 			if loaders.size() == 0:
 				emit_signal("allTexturesLoaded")

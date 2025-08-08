@@ -245,6 +245,8 @@ one_shot = true
 
 [node name="attack" type="Area2D" parent="."]
 position = Vector2( 32, -32 )
+collision_layer = 0
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
 position = Vector2( -4, -4 )

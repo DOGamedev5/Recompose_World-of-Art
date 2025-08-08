@@ -1,9 +1,8 @@
 extends State 
 
 ## innitil call
-func enter(_lastState):
-	parent.playback.travel("IDLE")
-	$"../../CollisionShape2D2".disabled = false
+#func enter(_lastState):
+#	$"../../CollisionShape2D2".disabled = false
 
 ## exit call
 func exit():
@@ -19,4 +18,5 @@ func process_state():
 	
 ## process_physics its called in _physics_process
 func process_physics(_delta):
+	parent.playback.travel("IDLE")
 	pass

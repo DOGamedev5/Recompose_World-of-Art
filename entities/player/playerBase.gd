@@ -436,10 +436,10 @@ func taunt(_tauntName):
 
 func getSprite(spriteKey : String, spriteNode : NodePath):
 	var path : String = spriteKey % Players.playerList[OwnerID].character
-	if not LoadedObjects.textures.has(path):
+	if not LoadedObjects.loaded.has(path):
 		path = spriteKey % "lodrofo"
 	
-	get_node(spriteNode).texture = LoadedObjects.textures[path]
+	get_node(spriteNode).texture = LoadedObjects.loaded[path]
 	
 func updateHueshift(newShift : int):
 	Players.playerList[OwnerID].colorShift = newShift

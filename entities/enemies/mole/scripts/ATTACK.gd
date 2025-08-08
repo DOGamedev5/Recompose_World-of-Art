@@ -8,6 +8,7 @@ func enter(_ls):
 	parent.motion.y = -125
 	parent.cooldown.wait_time = rand_range(2.5, 3.8)
 	parent.cooldown.start()
+	parent.attackHitbox.disabled = false
 	
 func process_state():
 	if parent.timer.is_stopped():
@@ -17,3 +18,5 @@ func process_physics(_delta):
 	if parent.raycast.is_colliding():
 		parent.motion.x = 0
 
+func exit():
+	parent.attackHitbox.disabled = true

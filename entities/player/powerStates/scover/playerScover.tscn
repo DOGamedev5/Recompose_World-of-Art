@@ -245,7 +245,7 @@ shape = SubResource( 3 )
 position = Vector2( 0, -32 )
 shape = SubResource( 4 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="24"]
+[node name="raycast" type="CollisionShape2D" parent="." index="24"]
 position = Vector2( 0, -16 )
 shape = SubResource( 20 )
 
@@ -261,5 +261,5 @@ anims/IDLE = SubResource( 5 )
 anims/RESET = SubResource( 10 )
 anims/WALK = SubResource( 11 )
 
-[connection signal="area_entered" from="sprite/inside" to="." method="_on_inside_area_entered"]
-[connection signal="area_exited" from="sprite/inside" to="." method="_on_inside_area_exited"]
+[connection signal="body_entered" from="sprite/inside" to="." method="_on_inside_body_entered"]
+[connection signal="body_exited" from="sprite/inside" to="." method="_on_inside_body_exited"]
