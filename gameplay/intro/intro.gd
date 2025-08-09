@@ -3,6 +3,7 @@ extends CanvasLayer
 onready var menu = preload("res://gameplay/MENU/menu.tscn")
 onready var total = $MarginContainer/HBoxContainer/total
 onready var file := $MarginContainer/HBoxContainer/file
+onready var totalLoaders := 0
 
 var allLoaded := false
 
@@ -13,9 +14,10 @@ func _ready():
 
 func _process(_delta):
 	LoadedObjects.process()
+	if LoadedObjects.loaders.size() > totalLoaders: totalLoaders = LoadedObjects.loaders.size()
 	
 	if LoadedObjects.currentSegments != LoadedObjects.totalSegments:
-		total.text = "Loading Textures... Segments: {current}/{total}".format({"current" : LoadedObjects.currentSegments, "total" : LoadedObjects.totalSegments})
+		total.text = "Loading Textures... Segments: {current}/{total}".format({"current" : LoadedObjects.alreadyLoaded, "total" : totalLoaders})
 	else:
 		total.text = "All textures are loaded."
 	

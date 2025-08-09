@@ -5,6 +5,7 @@ onready var toLoad := {}
 onready var loaders := []
 onready var totalSegments := 0
 onready var currentSegments := 0
+onready var alreadyLoaded := 0
 
 signal allTexturesLoaded
 
@@ -73,6 +74,7 @@ func process():
 #			if label: label.text = "%0d%%" % (float(loader.get_stage()) / loader.get_stage_count() * 100)
 #
 		elif error == ERR_FILE_EOF:
+			alreadyLoaded += 1
 			currentSegments += 1
 			var result = loaders[0]["load"].get_resource()
 			loaded[loaders[0]["path"]] = result

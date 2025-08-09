@@ -35,8 +35,6 @@ onready var collisionShapes := [
 onready var stepSFX = [
 	preload("res://entities/player/sfx/step.ogg")
 ]
-
-
 	
 func _enter_tree():
 	$sprite/Sprite.hframes = 23

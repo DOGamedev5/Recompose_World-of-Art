@@ -51,6 +51,6 @@ func _on_attack_area_entered(area):
 	Global.player.OwnerID = oldPlayer.OwnerID
 	
 	oldPlayer.queue_free()
-	Global.world.add_child(Global.player)
+	Global.world.call_deferred("add_child", Global.player)
 	
 	Global.player.global_position = playerPos

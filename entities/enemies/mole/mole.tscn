@@ -227,7 +227,7 @@ position = Vector2( 0, -24 )
 shape = SubResource( 19 )
 
 [node name="AreaTrigger" type="Area2D" parent="."]
-position = Vector2( 80, -16 )
+position = Vector2( 80, -48 )
 collision_layer = 0
 collision_mask = 1024
 monitorable = false

@@ -58,14 +58,12 @@ func _ready():
 		timer.connect("timeout", self, "_networkUpdate")
 		add_child(timer)
 		timer.start()
-	
-	if Network.is_owned(OwnerID):
+		
 		listener.current = true
 		camera.current = true
 	
-	var hud := get_node_or_null("../HUD")
-	if hud: hud.call_deferred("init", self)
-	else: print("there's no hud!")
+		var hud := get_node_or_null("../HUD")
+		if hud: hud.call_deferred("init", self)
 	
 	lastPosition = position
 	
@@ -92,7 +90,6 @@ func physics_process(delta):
 		else:
 			counched = false
 			
-		
 		if motion.x != 0:
 			fliped = motion.x < 0
 		elif Global.handInputAxis("ui_left", "ui_right", OwnerID) and not cinematic:
@@ -114,8 +111,6 @@ func physics_process(delta):
 	
 	if stateMachine:
 		stateMachine.processMachine(delta)
-
-
 
 func detectInside():
 	var normalMin := 0.8
