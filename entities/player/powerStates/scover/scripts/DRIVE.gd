@@ -5,7 +5,7 @@ onready var driveTimer := $driveTimer
 func enter(_ls):
 	parent.snapDesatived = true
 	parent.raycastShape.disabled = true
-	
+
 	var smoke = load("res://objects/dustBlow/dustBlow.tscn").instance()
 	smoke.amount = 8
 	parent.get_parent().add_child(smoke)
@@ -29,14 +29,13 @@ func process_state():
 	if parent.canDig:
 		return "DIGGING"
 	
-	if parent.motion.y > 0:
+	if not parent.onFloor():
 		return "FALL"
 
 	elif parent.onFloor():
 		if parent.motion.x == 0: return "IDLE"
 			
 		return "WALK"
-	
 	
 	return null
 
@@ -47,3 +46,5 @@ func process_physics(_delta):
 func exit():
 	parent.snapDesatived = false
 	parent.raycastShape.disabled = false
+	parent.gravity = true
+	

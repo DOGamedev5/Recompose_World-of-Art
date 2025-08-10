@@ -19,6 +19,9 @@ func process_state():
 	
 	if parent.canJump and parent.jumpBuffer:
 		return "JUMP"
+	
+	if not parent.onFloor():
+		return "FALL"
 		
 	return null
 	

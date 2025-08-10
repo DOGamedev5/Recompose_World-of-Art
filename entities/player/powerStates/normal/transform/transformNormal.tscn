@@ -181,3 +181,9 @@ active = true
 parameters/playback = SubResource( 10 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -2.38419e-06, 0 )
+scale = Vector2( 4.8, 4.8 )
+process_parent = true
+physics_process_parent = true

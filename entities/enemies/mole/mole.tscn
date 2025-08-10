@@ -168,10 +168,13 @@ extents = Vector2( 20, 20 )
 
 [node name="mole" type="KinematicBody2D"]
 collision_layer = 0
+collision_mask = 3
 script = ExtResource( 3 )
 stateMachinePath = NodePath("StateMachine")
 ACCELERATION = 10
+GRAVITY = 20
 MAXSPEED = 25
+MAXFALL = 500
 attackAreaArray = [ NodePath("AreaTrigger") ]
 spritePath = NodePath("Mole")
 animationTreePath = NodePath("AnimationTree")
@@ -252,6 +255,12 @@ collision_mask = 1024
 position = Vector2( -4, -4 )
 shape = SubResource( 21 )
 disabled = true
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0, -44 )
+scale = Vector2( 3.2, 4.4 )
+process_parent = true
+physics_process_parent = true
 
 [connection signal="area_exited" from="AreaTrigger" to="." method="_on_AreaTrigger_area_exited"]
 [connection signal="area_entered" from="attack" to="." method="_on_attack_area_entered"]

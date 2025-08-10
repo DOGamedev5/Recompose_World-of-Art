@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://entities/player/powerStates/scover/playerScover.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/powerStates/scover/scripts/IDLE.gd" type="Script" id=2]
@@ -14,13 +14,16 @@
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 40, 32 )
+extents = Vector2( 24, 32 )
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 16.0
+radius = 20.0
 
 [sub_resource type="RayShape2D" id=20]
 length = 16.0
+
+[sub_resource type="CircleShape2D" id=36]
+radius = 20.0
 
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "DRIVE"
@@ -333,10 +336,10 @@ tracks/2/keys = {
 [node name="playerScover" instance=ExtResource( 3 )]
 script = ExtResource( 1 )
 stateMachinePath = NodePath("StateMachine")
-GRAVITY = 36
+GRAVITY = 40
 MAXSPEED = 320
-MAXFALL = 800
-JUMPFORCE = -600
+MAXFALL = 1000
+JUMPFORCE = -900
 spriteGizmoPath = NodePath("sprite")
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
@@ -362,6 +365,7 @@ script = ExtResource( 9 )
 script = ExtResource( 8 )
 
 [node name="driveTimer" type="Timer" parent="StateMachine/DRIVE" index="0"]
+wait_time = 0.4
 one_shot = true
 
 [node name="DIGGING" type="Node" parent="StateMachine" index="5"]
@@ -387,7 +391,7 @@ shape = SubResource( 3 )
 enabled = true
 cast_to = Vector2( 0, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="23"]
+[node name="cicle" type="CollisionShape2D" parent="." index="23"]
 position = Vector2( 0, -32 )
 shape = SubResource( 4 )
 
@@ -395,13 +399,17 @@ shape = SubResource( 4 )
 position = Vector2( 0, -16 )
 shape = SubResource( 20 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="25"]
+[node name="raycastDirectional" type="CollisionShape2D" parent="." index="25"]
+shape = SubResource( 36 )
+disabled = true
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="26"]
 tree_root = SubResource( 7 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 8 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="26"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="27"]
 anims/DRIVE = SubResource( 9 )
 anims/FALL = SubResource( 28 )
 anims/IDLE = SubResource( 5 )
@@ -409,5 +417,5 @@ anims/JUMP = SubResource( 21 )
 anims/RESET = SubResource( 10 )
 anims/WALK = SubResource( 11 )
 
-[connection signal="body_entered" from="sprite/inside" to="." method="_on_inside_body_entered"]
-[connection signal="body_exited" from="sprite/inside" to="." method="_on_inside_body_exited"]
+[connection signal="area_entered" from="sprite/inside" to="." method="_on_inside_area_entered"]
+[connection signal="area_exited" from="sprite/inside" to="." method="_on_inside_area_exited"]

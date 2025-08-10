@@ -1,13 +1,32 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=2]
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=3]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=4]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=5]
+[ext_resource path="res://entities/player/powerStates/scover/objects/DigableArea.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 560, 568 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 264, 440 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 216, 136 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 72, 304 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 296, 64 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 160, 116 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 56, 188 )
 
 [node name="room3" type="Node2D"]
 script = ExtResource( 4 )
@@ -53,3 +72,32 @@ limitsMax = Vector2( 1520, 1e+07 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]
 position = Vector2( 832, 576 )
 shape = SubResource( 1 )
+
+[node name="digable2" type="Area2D" parent="."]
+position = Vector2( 848, 136 )
+script = ExtResource( 6 )
+tilemapPath = NodePath("../digable")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="digable2"]
+position = Vector2( -152, 256 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="digable2"]
+position = Vector2( 328, 560 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="digable2"]
+position = Vector2( -488, 520 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="digable2"]
+position = Vector2( -120, 760 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="digable2"]
+position = Vector2( 272, -68 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="digable2"]
+position = Vector2( 376, 236 )
+shape = SubResource( 7 )

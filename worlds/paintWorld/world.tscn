@@ -1,22 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
+[ext_resource path="res://worlds/paintWorld/rooms/room3.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://worlds/paintWorld/rooms/room1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
 [ext_resource path="res://worlds/paintWorld/background.tscn" type="PackedScene" id=6]
-[ext_resource path="res://autoloads/loadSystem/enableplaceholder/enablePlaceholder.gd" type="Script" id=7]
+[ext_resource path="res://worlds/paintWorld/rooms/room2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://worlds/classes/canvasModulateChanger/CanvasModulteChanger.gd" type="Script" id=8]
+[ext_resource path="res://worlds/paintWorld/rooms/room4.tscn" type="PackedScene" id=9]
+[ext_resource path="res://worlds/paintWorld/rooms/room5.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CanvasItemMaterial" id=2]
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 1552, 764 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 768, 836 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 768, 568 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 488, 168 )
@@ -40,54 +35,41 @@ script = ExtResource( 5 )
 position = Vector2( 171, -1036 )
 script = ExtResource( 5 )
 
-[node name="room1" parent="." instance_placeholder="res://worlds/paintWorld/rooms/room1.tscn"]
+[node name="room1" parent="." instance=ExtResource( 4 )]
 position = Vector2( -5, -652 )
 
-[node name="EnablePlaceholder" type="Area2D" parent="."]
-visible = false
-position = Vector2( 1035, -1212 )
-collision_layer = 0
-collision_mask = 2048
-script = ExtResource( 7 )
-placeholderPath = NodePath("../room1")
-collisionShapePath = NodePath("CollisionShape2D")
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="room1"]
+position = Vector2( 984, -784 )
+scale = Vector2( 154.4, 94.4 )
+freeze_bodies = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnablePlaceholder"]
-position = Vector2( -64, -44 )
-shape = SubResource( 3 )
-
-[node name="room2" parent="." instance_placeholder="res://worlds/paintWorld/rooms/room2.tscn"]
+[node name="room2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2523, -652 )
 
-[node name="EnablePlaceholder2" type="Area2D" parent="."]
-visible = false
-position = Vector2( 3315, -548 )
-script = ExtResource( 7 )
-placeholderPath = NodePath("../room2")
-collisionShapePath = NodePath("CollisionShape2D")
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="room2"]
+position = Vector2( 763, -784 )
+scale = Vector2( 77.3, 94.4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnablePlaceholder2"]
-position = Vector2( -24, -780 )
-shape = SubResource( 4 )
-
-[node name="room3" parent="." instance_placeholder="res://worlds/paintWorld/rooms/room3.tscn"]
+[node name="room3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2523, -492 )
 
-[node name="EnablePlaceholder3" type="Area2D" parent="."]
-visible = false
-position = Vector2( 3387, 68 )
-script = ExtResource( 7 )
-placeholderPath = NodePath("../room3")
-collisionShapePath = NodePath("CollisionShape2D")
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="room3"]
+position = Vector2( 496, 576 )
+scale = Vector2( 104, 57.6 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnablePlaceholder3"]
-position = Vector2( -96, 8 )
-shape = SubResource( 5 )
+[node name="room4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2523, 660 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="room4"]
+position = Vector2( 496, 416 )
+scale = Vector2( 104, 41.6 )
+
+[node name="room5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 4059, 660 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
 
 [node name="CanvasModulaterChanger" type="Area2D" parent="."]
-visible = false
 script = ExtResource( 8 )
 colorChange = Color( 0.729412, 0.65098, 0.611765, 1 )
 

@@ -19,6 +19,12 @@ onready var cameraLimitsMax := Vector2(10000000, 10000000)
 #onready var playerNormalScene := preload("res://entities/player/powerStates/normal/playerNormal.tscn")
 
 onready var loadedRooms := []
+onready var objects : Node2D
+
+func _init():
+	objects = Node2D.new()
+	objects.name = "objects"
+	add_child(objects)
 
 func _ready():
 	Network.connect("memberLeft", self, "_memberLeft")

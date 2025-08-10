@@ -9,6 +9,8 @@ onready var queueLoad := []
 signal finishedLoad()
 signal objectLoaded(object)
 
+#var addToScene := Thread.new()
+
 class QueueObject:
 	extends Node
 	

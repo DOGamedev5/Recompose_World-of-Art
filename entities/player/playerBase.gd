@@ -7,7 +7,7 @@ onready var insideDetect := [$insideDetectLeft, $insideDetectRight, $insideDetec
 onready var collideUPCast := [$collideUpBack, $collideUp, $collideUpFront]
 onready var shieldTimer := $shieldSystem/shield
 onready var animationShield : AnimationNodeStateMachinePlayback = $shieldSystem/AnimationTree["parameters/playback"]
-onready var camera := $Camera2D
+onready var camera : Camera2D = $Camera2D
 onready var listener := $Listener2D
 onready var hitbox := $HitboxComponent
 

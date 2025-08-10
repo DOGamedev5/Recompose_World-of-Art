@@ -46,9 +46,20 @@ func _on_attack_area_entered(area):
 		return
 		
 	var oldPlayer : PlayerBase = Global.player
+	var oldCameraLimits := {
+		"min" : Vector2(
+			oldPlayer.camera.limit_left,
+			oldPlayer.camera.limit_top
+		),
+		"max" : Vector2(
+			oldPlayer.camera.limit_right,
+			oldPlayer.camera.limit_bottom
+		)
+	}
 	var playerPos : Vector2 = oldPlayer.global_position
 	Global.player = LoadedObjects.loaded["res://entities/player/powerStates/scover/playerScover.tscn"].instance()
 	Global.player.OwnerID = oldPlayer.OwnerID
+	Global.player.setCameraLimits(oldCameraLimits["min"], oldCameraLimits["max"])
 	
 	oldPlayer.queue_free()
 	Global.world.call_deferred("add_child", Global.player)

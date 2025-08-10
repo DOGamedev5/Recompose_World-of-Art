@@ -53,6 +53,7 @@ signal chatUpdated
 
 func _ready():
 	setup()
+	randomize()
 	
 	pause_mode = PAUSE_MODE_PROCESS
 	
