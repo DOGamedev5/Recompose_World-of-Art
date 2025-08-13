@@ -12,11 +12,11 @@ func _ready():
 	set_collision_mask_bit(8, true)
 
 func breakTile(damage : DamageAttack):
+	
+	tilePos = get_parent().tilemap.world_to_map(position/2)
 
-	tilePos = get_parent().tilemap.world_to_map(global_position/2)
 	if "player" in damage.objectGroup and damage.damage > 0:
 		get_parent().tilemap.set_cellv(tilePos, -1)
 		
-
 		queue_free()
 	

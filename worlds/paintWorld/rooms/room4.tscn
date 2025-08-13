@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://entities/player/powerStates/normal/transform/transformNormal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/chest/chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=6]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/2/lampaint2.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 637, 249 )
@@ -34,7 +36,6 @@ position = Vector2( 1288, 416 )
 visible = false
 position = Vector2( 272, 16 )
 script = ExtResource( 3 )
-limitsMin = Vector2( -536, -1e+07 )
 limitsMax = Vector2( 1e+07, 784 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]
@@ -43,3 +44,16 @@ shape = SubResource( 1 )
 
 [node name="chest" parent="." instance=ExtResource( 5 )]
 position = Vector2( 360, 464 )
+
+[node name="lampaint1" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1040, 464 )
+
+[node name="lampaint2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1512, 464 )
+fliped = true
+
+[node name="lampaint3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 608, 176 )
+
+[node name="lampaint4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 288, 312 )

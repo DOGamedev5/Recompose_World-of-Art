@@ -53,8 +53,8 @@ shader_param/hue_shift = 0.0
 
 [sub_resource type="CapsuleShape2D" id=336]
 custom_solver_bias = 0.5
-radius = 16.0
-height = 8.0
+radius = 15.0
+height = 7.0
 
 [sub_resource type="RayShape2D" id=341]
 custom_solver_bias = 0.01
@@ -2235,7 +2235,7 @@ enabled = true
 cast_to = Vector2( 0, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="18"]
-position = Vector2( 0, -44 )
+position = Vector2( 0, -42 )
 shape = SubResource( 336 )
 
 [node name="rayShape" type="CollisionShape2D" parent="." index="19"]
@@ -2301,6 +2301,8 @@ collision_layer = 256
 collision_mask = 256
 monitorable = false
 script = ExtResource( 20 )
+damage = 1
+hasOwnerID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
 position = Vector2( 5, 3 )
@@ -2314,6 +2316,7 @@ collision_mask = 256
 monitorable = false
 script = ExtResource( 20 )
 damage = 2
+hasOwnerID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
 position = Vector2( 0, -5 )
@@ -2325,6 +2328,8 @@ position = Vector2( 40, -23 )
 collision_layer = 256
 collision_mask = 256
 script = ExtResource( 20 )
+damage = 1
+hasOwnerID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackRoll" index="0"]
 shape = SubResource( 159 )

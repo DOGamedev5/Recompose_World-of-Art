@@ -13,4 +13,6 @@ func _init():
 func entered(area):
 	
 	if area.get_parent().is_in_group("player"):
+		if not Network.is_owned(area.get_parent().OwnerID): return
+		
 		Global.world.setCameraLimits(limitsMin + global_position, limitsMax + global_position)

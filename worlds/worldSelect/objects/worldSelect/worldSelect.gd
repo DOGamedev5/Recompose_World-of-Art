@@ -3,15 +3,18 @@ extends Area2D
 onready var sprite := $WorldSelect
 onready var tween := $Tween
 onready var CaveWorldButton := $CanvasLayer/Control/margin/panel/list/caveWorld
+onready var literatureArtButton := $CanvasLayer/Control/margin/panel/list/literatureWorld
 onready var hud := $CanvasLayer
 onready var hudControl := $CanvasLayer/Control
 onready var close := $CanvasLayer/Control/margin/close
 
 enum {
+	literatureArt
 	CaveWorld
 }
 
 func _ready():
+	literatureArtButton.connect("pressed", self, "selected", [literatureArt])
 	CaveWorldButton.connect("pressed", self, "selected", [CaveWorld])
 	hudControl.modulate = Color.transparent
 	hud.visible = false
@@ -46,6 +49,8 @@ func _on_interactBallon_interacted():
 	hud.visible = true
 	tween.interpolate_property(hudControl, "modulate", hudControl.modulate, Color.white, 0.3, Tween.TRANS_QUAD, Tween.EASE_IN)
 	tween.start()
+	yield(tween, "tween_completed")
+	literatureArtButton.grab_focus()
 	
 func _on_close_pressed():
 	if not hud.visible: return
@@ -54,3 +59,6 @@ func _on_close_pressed():
 	
 	tween.interpolate_property(hudControl, "modulate", hudControl.modulate, Color.transparent, 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	tween.start()
+	literatureArtButton.release_focus()
+
+

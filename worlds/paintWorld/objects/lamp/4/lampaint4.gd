@@ -18,7 +18,7 @@ func desative():
 	light.enabled = false
 
 func ative():
-	if not Global.simpleLight:
+	if not Global.options.simpleLight:
 		light.enabled = true
 
 func _toggledSimpleLight(value):

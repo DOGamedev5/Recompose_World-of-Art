@@ -30,6 +30,8 @@ func process_physics(_delta):
 	
 	if input:
 		parent.spriteGizmo.rotation = input.angle() - PI/2
+	else:
+		input = Vector2(cos(parent.spriteGizmo.rotation + PI/2), sin(parent.spriteGizmo.rotation + PI/2))
 	
 	parent.motion = input * parent.diggingVelocity
 	

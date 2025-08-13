@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn" type="PackedScene" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://entities/enemies/mole/mole.tscn" type="PackedScene" id=7]
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=8]
 [ext_resource path="res://entities/player/powerStates/scover/objects/DigableArea.gd" type="Script" id=9]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/3/lampaint3.tscn" type="PackedScene" id=10]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4.tscn" type="PackedScene" id=11]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 158, 58 )
@@ -98,3 +101,31 @@ position = Vector2( 600, 96 )
 
 [node name="mole2" parent="enemies" instance=ExtResource( 7 )]
 position = Vector2( 976, 96 )
+
+[node name="lampaint1" parent="." instance=ExtResource( 12 )]
+position = Vector2( 1336, -1152 )
+
+[node name="lampaint2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 984, -1152 )
+fliped = true
+
+[node name="lampaint3" parent="." instance=ExtResource( 12 )]
+position = Vector2( 320, -720 )
+fliped = true
+
+[node name="lampaint4" parent="." instance=ExtResource( 12 )]
+position = Vector2( 680, -496 )
+fliped = true
+
+[node name="lampaint5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 872, -752 )
+
+[node name="lampaint6" parent="." instance=ExtResource( 10 )]
+position = Vector2( 688, -192 )
+
+[node name="lampaint7" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1096, -128 )
+
+[node name="lampaint8" parent="." instance=ExtResource( 11 )]
+position = Vector2( 328, -1360 )
+ropeLenght = 160

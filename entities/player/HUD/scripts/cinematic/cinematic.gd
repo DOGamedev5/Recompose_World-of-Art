@@ -18,6 +18,7 @@ func actived():
 func desactivaded():
 	parent.currentScreen = "HUD"
 	
+	Global.inputEnabled = true
 	parent.HUD.visible = true
 	
 	tween.interpolate_property(up, "rect_size", up["rect_size"], Vector2(up["rect_size"].x, 0), 0.3, Tween.TRANS_CUBIC)

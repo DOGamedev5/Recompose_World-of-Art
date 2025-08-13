@@ -7,7 +7,7 @@ func process_state():
 	if not parent.moving:
 		return null
 		
-	elif Input.get_axis("ui_left", "ui_right")and not parent.cinematic:
+	elif Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) and not parent.cinematic:
 		return "WALK"
 	
 	elif parent.canJump and not parent.cinematic and parent.jumpBuffer:

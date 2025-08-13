@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWorld.tres" type="TileSet" id=1]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=2]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/3/lampaint3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=5]
 [ext_resource path="res://worlds/paintWorld/tilesets/caverns/paintWordlBack.tres" type="TileSet" id=9]
 
@@ -40,3 +42,16 @@ limitsMin = Vector2( -560, -1472 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]
 position = Vector2( 1278.5, -686.5 )
 shape = SubResource( 3 )
+
+[node name="lampaint1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 776, -288 )
+
+[node name="lampaint2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1552, -352 )
+fliped = true
+
+[node name="lampaint3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2384, -496 )
+
+[node name="lampaint4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1192, -688 )

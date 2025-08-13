@@ -1,0 +1,68 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
+[ext_resource path="res://worlds/literatureArt/rooms/room1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://worlds/literatureArt/rooms/room2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://worlds/literatureArt/rooms/room3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://worlds/literatureArt/rooms/room4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://worlds/literatureArt/rooms/room6.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/literatureArt/rooms/room5.tscn" type="PackedScene" id=7]
+[ext_resource path="res://worlds/literatureArt/rooms/room9.tscn" type="PackedScene" id=8]
+[ext_resource path="res://worlds/literatureArt/rooms/room7.tscn" type="PackedScene" id=9]
+[ext_resource path="res://worlds/literatureArt/rooms/room8.tscn" type="PackedScene" id=10]
+[ext_resource path="res://worlds/classes/teleportBase/tube/tubeEnter.tscn" type="PackedScene" id=11]
+[ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=12]
+[ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=13]
+[ext_resource path="res://worlds/literatureArt/background.tscn" type="PackedScene" id=14]
+
+[node name="world" type="Node2D"]
+script = ExtResource( 1 )
+portalPath = NodePath("portal")
+
+[node name="room1" parent="." instance=ExtResource( 2 )]
+position = Vector2( -448, 16 )
+
+[node name="room2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1424, 16 )
+
+[node name="room3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 4256, 16 )
+
+[node name="room4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3440, 1264 )
+
+[node name="room5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 4256, 3488 )
+
+[node name="room6" parent="." instance=ExtResource( 6 )]
+position = Vector2( 10432, 3280 )
+
+[node name="room7" parent="." instance=ExtResource( 9 )]
+position = Vector2( 12608, 3280 )
+
+[node name="room8" parent="." instance=ExtResource( 10 )]
+position = Vector2( 10576, 5728 )
+
+[node name="room9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 8944, 4752 )
+
+[node name="tube" parent="." instance=ExtResource( 11 )]
+position = Vector2( 4080, 1840 )
+destinationPath = NodePath("../tube2")
+limitsMin = Vector2( -1e+07, -816 )
+limitsMax = Vector2( 736, 928 )
+direction = 0
+
+[node name="tube2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 4368, 3408 )
+destinationPath = NodePath("../tube")
+limitsMin = Vector2( -408, -1408 )
+limitsMax = Vector2( 1e+07, 632 )
+
+[node name="portal" type="Position2D" parent="."]
+position = Vector2( -336, -272 )
+script = ExtResource( 12 )
+
+[node name="HUD" parent="." instance=ExtResource( 13 )]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 14 )]

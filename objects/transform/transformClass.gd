@@ -31,9 +31,20 @@ func areaEntered(area):
 	
 	Global.player.setCinematic(true)
 	
-	camera.current = true
+#	camera.current = true
 	var oldPlayer = Global.player
 	oldPlayer.visible = false
+	
+	var oldCameraLimits := {
+		"min" : Vector2(
+			oldPlayer.camera.limit_left,
+			oldPlayer.camera.limit_top
+		),
+		"max" : Vector2(
+			oldPlayer.camera.limit_right,
+			oldPlayer.camera.limit_bottom
+		)
+	}
 	
 	if animationPlayer is AnimationPlayer:
 		animationPlayer.play(animation)
@@ -43,10 +54,12 @@ func areaEntered(area):
 		playback.travel(animation)
 		yield(get_tree().create_timer(animationTime), "timeout")
 	
-	Global.player = load(transformation).instance()
+	Global.player = LoadedObjects.loaded[transformation].instance()
+	Global.player.OwnerID = oldPlayer.OwnerID
 	oldPlayer.queue_free()
-	Global.world.add_child(Global.player)
-	
 	Global.player.global_position = global_position + offset
+	
+	Global.world.call_deferred("add_child", Global.player)
+	Global.world.call_deferred("setCameraLimits", oldCameraLimits["min"], oldCameraLimits["max"])
 	
 	Global.playerHud.cinematic.desactivaded()

@@ -89,10 +89,11 @@ func physics_process(delta):
 			counched = true
 		else:
 			counched = false
-			
+		
 		if motion.x != 0:
 			fliped = motion.x < 0
 		elif Global.handInputAxis("ui_left", "ui_right", OwnerID) and not cinematic:
+			
 			fliped = Global.handInputAxis("ui_left", "ui_right", OwnerID) < 0
 		
 		if Network.is_owned(OwnerID):
@@ -260,7 +261,7 @@ func move():
 		
 		snap = Vector2.DOWN * SNAPLENGTH
 
-	if motion: detectInside()	
+	if motion: detectInside()
 	
 	motion = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true) 
 	currentSnapLength = snap.y
@@ -282,7 +283,7 @@ func jumpBase(force = JUMPFORCE):
 		coyote = false
 		canJump = false
 		
-	elif not Global.handInput("ui_jump", true) and not jumpReleased:
+	elif not Global.handInput("ui_jump", true, OwnerID) and not jumpReleased:
 		motion.y /= 2
 		jumpReleased = true
 		snapDesatived = false

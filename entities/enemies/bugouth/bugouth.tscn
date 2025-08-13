@@ -1,14 +1,10 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://entities/enemies/enemyBase/enemyBase.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/bugouth/sprites/bugouth.png" type="Texture" id=2]
-[ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=3]
-[ext_resource path="res://entities/enemies/bugouth/scripts/ATTACK.gd" type="Script" id=4]
-[ext_resource path="res://entities/enemies/bugouth/scripts/IDLE.gd" type="Script" id=5]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=6]
 [ext_resource path="res://entities/enemies/bugouth/sprites/bugouthDeath.png" type="Texture" id=7]
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=9]
-[ext_resource path="res://entities/enemies/bugouth/scripts/SEEK.gd" type="Script" id=10]
 [ext_resource path="res://entities/enemies/bugouth/sprites/bugouthAttack.png" type="Texture" id=11]
 [ext_resource path="res://entities/enemies/bugouth/sprites/bugouthBite.png" type="Texture" id=12]
 
@@ -209,21 +205,18 @@ start_node = "IDLE"
 [sub_resource type="CircleShape2D" id=6]
 radius = 24.0
 
-[sub_resource type="CircleShape2D" id=7]
-radius = 576.888
-
 [sub_resource type="CircleShape2D" id=8]
-radius = 32.9848
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id=9]
-radius = 8.0
+radius = 24.0
 
 [node name="bugouth" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 1 )
-visionAreaPath = NodePath("Area2D")
+gravity = false
+MAXSPEED = 200
 attackAreaArray = [ NodePath("AttackComponent") ]
-stateMachinePath = NodePath("StateMachine")
 hitboxAreaPath = NodePath("HitboxComponent")
 spritePath = NodePath("Bugouth")
 deathSprite = ExtResource( 7 )
@@ -231,8 +224,6 @@ animationTreePath = NodePath("AnimationTree")
 maxHealth = 2
 health = 2
 flipArea = true
-MAXSPEED = 200
-gravity = false
 canUnwatch = true
 
 [node name="Bugouth" type="Sprite" parent="."]
@@ -259,38 +250,6 @@ shape = SubResource( 6 )
 position = Vector2( 4.76837e-07, 4.76837e-07 )
 scale = Vector2( 2.4, 2.4 )
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource( 3 )
-startingState = NodePath("IDLE")
-
-[node name="IDLE" type="Node" parent="StateMachine"]
-script = ExtResource( 5 )
-
-[node name="Timer" type="Timer" parent="StateMachine/IDLE"]
-wait_time = 0.4
-one_shot = true
-
-[node name="SEEK" type="Node" parent="StateMachine"]
-script = ExtResource( 10 )
-
-[node name="Timer" type="Timer" parent="StateMachine/SEEK"]
-wait_time = 0.7
-one_shot = true
-
-[node name="ATTACK" type="Node" parent="StateMachine"]
-script = ExtResource( 4 )
-
-[node name="Timer" type="Timer" parent="StateMachine/ATTACK"]
-wait_time = 0.4
-one_shot = true
-
-[node name="Area2D" type="Area2D" parent="." groups=["enemyVision"]]
-collision_layer = 2048
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 7 )
-
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 1280
 collision_mask = 0
@@ -307,6 +266,7 @@ collision_mask = 0
 script = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+position = Vector2( -16, 0 )
 shape = SubResource( 9 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]

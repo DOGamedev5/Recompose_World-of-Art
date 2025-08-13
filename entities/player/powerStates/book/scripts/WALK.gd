@@ -4,7 +4,7 @@ func process_state():
 	if not parent.onFloor():
 		return "FLY"
 		
-	if not parent.motion.x and Input.get_axis("ui_left", "ui_right") == 0 and not parent.cinematic:
+	if not parent.motion.x and Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) == 0 and not parent.cinematic:
 		return "IDLE"
 	
 	elif parent.canJump and not parent.cinematic and parent.jumpBuffer:

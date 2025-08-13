@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://worlds/worldSelect/objects/worldSelect/worldSelect.gd" type="Script" id=1]
 [ext_resource path="res://worlds/worldSelect/objects/worldSelect/worldSelect.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://gameplay/MENU/saveslot/panel.png" type="Texture" id=5]
 [ext_resource path="res://entities/player/HUD/sprites/closeButton.png" type="Texture" id=6]
+[ext_resource path="res://worlds/worldSelect/objects/worldSelect/sprites/literatureArtPortal.png" type="Texture" id=7]
+[ext_resource path="res://worlds/worldSelect/objects/worldSelect/scripts/literatureWorld.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 200, 48 )
@@ -21,6 +23,54 @@ expand_margin_left = 16.0
 expand_margin_right = 16.0
 expand_margin_top = 16.0
 expand_margin_bottom = 8.0
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 64, 96 )
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("texture:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 64, 96 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "open"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("texture:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 0, 0, 64, 96 ), Rect2( 64, 0, 64, 96 ), Rect2( 128, 0, 64, 96 ), Rect2( 192, 0, 64, 96 ), Rect2( 256, 0, 64, 96 ), Rect2( 320, 0, 64, 96 ) ]
+}
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 6 )
@@ -56,7 +106,6 @@ content = [ "/btn:interact" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -90,10 +139,32 @@ margin_bottom = 400.0
 custom_constants/separation = 32
 alignment = 1
 
+[node name="literatureWorld" type="TextureButton" parent="CanvasLayer/Control/margin/panel/list"]
+margin_left = 344.0
+margin_right = 728.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 384, 384 )
+size_flags_horizontal = 4
+size_flags_vertical = 6
+expand = true
+script = ExtResource( 8 )
+
+[node name="texture" type="TextureRect" parent="CanvasLayer/Control/margin/panel/list/literatureWorld"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 6 )
+expand = true
+stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/margin/panel/list/literatureWorld"]
+anims/RESET = SubResource( 7 )
+anims/open = SubResource( 8 )
+
 [node name="caveWorld" type="TextureButton" parent="CanvasLayer/Control/margin/panel/list"]
-margin_left = 472.0
+visible = false
+margin_left = 552.0
 margin_top = 128.0
-margin_right = 600.0
+margin_right = 680.0
 margin_bottom = 256.0
 rect_min_size = Vector2( 128, 128 )
 size_flags_horizontal = 4
@@ -126,5 +197,9 @@ color = Color( 0, 0, 0, 1 )
 [connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
 [connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]
 [connection signal="interacted" from="interactBallon" to="." method="_on_interactBallon_interacted"]
+[connection signal="focus_entered" from="CanvasLayer/Control/margin/panel/list/literatureWorld" to="CanvasLayer/Control/margin/panel/list/literatureWorld" method="_focus_entered"]
+[connection signal="focus_exited" from="CanvasLayer/Control/margin/panel/list/literatureWorld" to="CanvasLayer/Control/margin/panel/list/literatureWorld" method="_focus_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Control/margin/panel/list/literatureWorld" to="CanvasLayer/Control/margin/panel/list/literatureWorld" method="_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Control/margin/panel/list/literatureWorld" to="CanvasLayer/Control/margin/panel/list/literatureWorld" method="_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Control/margin/close" to="." method="_on_close_pressed"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

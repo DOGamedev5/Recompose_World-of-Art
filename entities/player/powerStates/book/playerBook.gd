@@ -5,16 +5,33 @@ onready var playback = animationTree["parameters/playback"]
 
 onready var stepSFX : AudioStream = preload("res://entities/player/powerStates/book/sfxs/bookStep2SFX.ogg")
 
-func _physics_process(_delta):
+var onVentoy := false
+
+func _physics_process(delta):
+	physics_process(delta)
+	snapDesatived = onVentoy or snapDesatived
 	move()
 	_coyoteTimer()
+#	rotateSprite(delta)
 	
-	$sprite.flip_h = fliped
+	$sprite/sprite.flip_h = fliped
 	
 	if not onFloor():
-		$sprite.rotation = lerp_angle($sprite.rotation, deg2rad(15) * (realMotion.x / MAXSPEED), 0.5)
+		$sprite/sprite.rotation = lerp_angle($sprite.rotation, deg2rad(15) * (realMotion.x / MAXSPEED), 0.5)
 	else:
-		$sprite.rotation = lerp_angle($sprite.rotation, deg2rad(5) * (realMotion.x / MAXSPEED), 0.5)
+		$sprite/sprite.rotation = lerp_angle($sprite.rotation, deg2rad(5) * (realMotion.x / MAXSPEED), 0.5)
+
+#func jumpBase(force = JUMPFORCE):
+#	if canJump and couldUncounch():
+#		snapDesatived = true 
+#		motion.y = force
+#		coyote = false
+#		canJump = false
+#
+#	elif not Global.handInput("ui_jump", true, OwnerID) and not jumpReleased:
+#		motion.y /= 2
+#		jumpReleased = true
+#		snapDesatived = false or onVentoy
 
 func _step():
 	

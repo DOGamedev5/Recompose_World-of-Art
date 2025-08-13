@@ -21,8 +21,7 @@ const detectDig := [
 ]
 
 var driveVelocity := 500
-var diggingVelocity := 300
-
+var diggingVelocity := 400
 
 func _physics_process(delta):
 	physics_process(delta)

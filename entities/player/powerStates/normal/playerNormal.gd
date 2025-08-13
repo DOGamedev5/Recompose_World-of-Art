@@ -152,7 +152,7 @@ func detectRunning():
 		smoke.amount = 12
 		smoke.lifetime = 0.6
 		smoke.preprocess = 0.2
-		owner.add_child(smoke)
+		get_parent().add_child(smoke)
 		smoke.global_position = global_position - Vector2(0, 32)
 	
 	running = abs(velocity) > MAXSPEED

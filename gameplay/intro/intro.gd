@@ -17,7 +17,11 @@ func _process(_delta):
 	if LoadedObjects.loaders.size() > totalLoaders: totalLoaders = LoadedObjects.loaders.size()
 	
 	if LoadedObjects.currentSegments != LoadedObjects.totalSegments:
-		total.text = "Loading Textures... Segments: {current}/{total}".format({"current" : LoadedObjects.alreadyLoaded, "total" : totalLoaders})
+		total.text = "Loading Textures... {percent} total: {current}/{total}".format({
+			"current" : LoadedObjects.alreadyLoaded,
+			"total" : totalLoaders,
+			"percent" : get_percent()
+		})
 	else:
 		total.text = "All textures are loaded."
 	
@@ -37,6 +41,15 @@ func _input(event):
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	if allLoaded:
 		var _1 = get_tree().change_scene_to(menu)
+
+func get_percent():
+	var percent : String
+	if LoadedObjects.loaders:
+		percent = String("%.2f%%" % (float(LoadedObjects.loaders[0]["load"].get_stage()) / float(LoadedObjects.loaders[0]["load"].get_stage_count()) * 100))
+	else:
+		percent = "100%"
+	
+	return percent
 
 func exit():
 	$Tween.interpolate_property($MarginContainer, "modulate", Color.white, Color.transparent, 0.3, Tween.TRANS_CUBIC, Tween.EASE_OUT, 1.5)

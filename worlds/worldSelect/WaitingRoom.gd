@@ -1,7 +1,10 @@
 extends LevelClass
 
 onready var tween := $Tween
-onready var worlds := ["res://worlds/paintWorld/world.tscn"]
+onready var worlds := [
+	"res://worlds/literatureArt/world.tscn",
+	"res://worlds/paintWorld/world.tscn"
+]
 onready var playerScene := preload("res://entities/player/powerStates/normal/playerNormal.tscn")
 
 var selectedWorld : int

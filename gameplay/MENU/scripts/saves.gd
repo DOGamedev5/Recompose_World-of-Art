@@ -17,7 +17,6 @@ onready var chat := $enter/MarginContainer/lobby/ColorRect/VBoxContainer/chat
 onready var chatSender := $enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer/send
 onready var lobby := $enter/MarginContainer/lobby
 onready var findParty := $enter/MarginContainer/findParty
-onready var updateNetwork := $updateNetwork
 onready var playerList := $enter/MarginContainer/lobby/info/a/playerList/list
 onready var lobbiesList := $enter/MarginContainer/findParty/Panel/VBoxContainer2/lobbies
 onready var refleshLobbies := $enter/RefleshLobbies
@@ -62,12 +61,6 @@ func _on_exit_pressed():
 	parent.transition(initial, [self, options])
 
 func _on_createLobby_pressed():
-#	saves.hide()
-#	enterUi.show()
-#	lobby.show()
-#	findParty.hide()
-#	start.grab_focus()
-#
 	Network.createLobby()
 
 func _on_erase_pressed():
@@ -89,8 +82,7 @@ func enterServer():
 func _on_enter_pressed():
 	if IPenter.text:
 		_join_lobby(int(IPenter.text))
-	
-		updateNetwork.start()
+
 		lobby.show()
 		findParty.hide()
 
@@ -103,7 +95,6 @@ func _on_send_pressed(_text := ""):
 	chatSender.text = ""
 
 func _on_logout():
-	updateNetwork.stop()
 	lobby.hide()
 	findParty.show()
 	Players.clearPlayers()
@@ -112,24 +103,6 @@ func _on_logout():
 	$enter/MarginContainer/lobby/info/buttons/Start.disabled = true
 	chat.text = ""
 	Global.chat.clear()
-	
-func _on_updateNetwork_timeout():
-	var playersNames := {}
-	playerList.text = ""
-
-	for player in Network.lobbyMembers:
-		var pName : String = player["NAME"].replace("[", "[lb]")
-		if player["ID"] == Steam.getLobbyOwner(Network.lobbyID):
-			pName += "(Host)"
-		if Network.is_owned(player["ID"]):
-			pName += " <- YOU"
-
-		playerList.text += pName + "\n"
-		playersNames[player["ID"]] = player["NAME"].replace("[", "[lb]")
-	
-	chat.bbcode_text = ""
-	for text in Global.chat:
-		chat.bbcode_text += text.format(playersNames)
 	
 		
 func _on_RefleshLobbies_timeout(): Network.findLobbies()

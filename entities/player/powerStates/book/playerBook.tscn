@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=2]
@@ -16,13 +16,13 @@
 [ext_resource path="res://entities/player/powerStates/book/sprites/bookFlyOut.png" type="Texture" id=14]
 
 [sub_resource type="CircleShape2D" id=35]
-radius = 28.0
+radius = 16.0
 
 [sub_resource type="Animation" id=13]
 resource_name = "FALL"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("sprite/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 12 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("sprite/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -46,7 +46,7 @@ tracks/1/keys = {
 "values": [ 5 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("sprite/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -62,7 +62,7 @@ tracks/2/keys = {
 resource_name = "FLY"
 length = 0.7
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("sprite/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -74,7 +74,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 13 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("sprite/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -86,7 +86,7 @@ tracks/1/keys = {
 "values": [ 7 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("sprite/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -103,7 +103,7 @@ resource_name = "FLY_OUT"
 length = 0.35
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("sprite/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -115,7 +115,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 14 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("sprite/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -127,7 +127,7 @@ tracks/1/keys = {
 "values": [ 7 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("sprite/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -143,7 +143,7 @@ tracks/2/keys = {
 resource_name = "IDLE"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:frame")
+tracks/0/path = NodePath("sprite/sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -155,7 +155,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("sprite/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -167,7 +167,7 @@ tracks/1/keys = {
 "values": [ 3 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("sprite:texture")
+tracks/2/path = NodePath("sprite/sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -183,7 +183,7 @@ tracks/2/keys = {
 resource_name = "JUMP"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:texture")
+tracks/0/path = NodePath("sprite/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -195,7 +195,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 11 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("sprite/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -207,7 +207,7 @@ tracks/1/keys = {
 "values": [ 5 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("sprite:frame")
+tracks/2/path = NodePath("sprite/sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -222,7 +222,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:frame")
+tracks/0/path = NodePath("sprite/sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -234,7 +234,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("sprite/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -246,7 +246,7 @@ tracks/1/keys = {
 "values": [ 3 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("sprite:texture")
+tracks/2/path = NodePath("sprite/sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -264,7 +264,7 @@ length = 0.8
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite:frame")
+tracks/0/path = NodePath("sprite/sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -276,7 +276,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("sprite:hframes")
+tracks/1/path = NodePath("sprite/sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -288,7 +288,7 @@ tracks/1/keys = {
 "values": [ 8 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("sprite:texture")
+tracks/2/path = NodePath("sprite/sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -401,8 +401,10 @@ graph_offset = Vector2( 0, 87.202 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
+[sub_resource type="RayShape2D" id=43]
+length = 24.0
+
 [node name="playerBook" groups=["book"] instance=ExtResource( 1 )]
-motion/sync_to_physics = false
 script = ExtResource( 6 )
 stateMachinePath = NodePath("StateMachine")
 ACCELERATION = 15
@@ -410,6 +412,7 @@ DESACCELERATION = 100
 MAXSPEED = 800
 MAXFALL = 100
 JUMPFORCE = -500
+spriteGizmoPath = NodePath("sprite")
 
 [node name="coyoteTimer" parent="." index="1"]
 wait_time = 0.5
@@ -433,18 +436,20 @@ script = ExtResource( 8 )
 [node name="FALL" type="Node" parent="StateMachine" index="4"]
 script = ExtResource( 9 )
 
-[node name="sprite" type="Sprite" parent="." index="15"]
+[node name="sprite" type="Node2D" parent="." index="15"]
+
+[node name="sprite" type="Sprite" parent="sprite" index="0"]
 position = Vector2( 0, -40 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="16"]
-position = Vector2( -6, -28 )
+position = Vector2( -8, -40 )
 shape = SubResource( 35 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="17"]
-position = Vector2( 6, -28 )
+position = Vector2( 8, -40 )
 shape = SubResource( 35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="18"]
@@ -465,3 +470,7 @@ parameters/playback = SubResource( 11 )
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="27"]
+position = Vector2( 0, -25 )
+shape = SubResource( 43 )
