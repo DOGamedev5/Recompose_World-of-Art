@@ -14,6 +14,7 @@ func enter(_lastState):
 	parent.snapDesatived = true
 	parent.gravity = false
 	parent.running = false
+	parent.lockRotate = true
 	
 	for obj in parent.enteredObjects:
 		if obj.is_in_group("ladder"):
@@ -21,16 +22,26 @@ func enter(_lastState):
 			break
 
 func process_state():
-	if Input.is_action_pressed("ui_jump") and parent.couldUncounch():
+	if Global.handInput("ui_jump", false, parent.OwnerID) and parent.couldUncounch():
 		return "JUMP"
 	
-	if not parent.canLadder or (Global.handInput("ui_left", parent.OwnerID) or Global.handInput("ui_right", parent.OwnerID)):
+	var input := Global.handInputAxis("ui_left", "ui_right", parent.OwnerID)
+	
+	var exitLadder := false
+	if input:
+		exitLadder = Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_left") 
+	
+	if not parent.canLadder or (Global.handInput("ui_left", false, parent.OwnerID) or Global.handInput("ui_right", false, parent.OwnerID)):
 		return "FALL"
+
+		
 	
 	return null
 
 func process_physics(_delta):
 	var input := sign(Global.handInputAxis("ui_up", "ui_down", parent.OwnerID))
+	var exitLadder := false
+	
 	parent.motion.y = input * 400
 	if input == 0:
 		parent.ladderPlayback.stop()
@@ -57,3 +68,4 @@ func exit():
 	parent.motion.y = -500
 	parent.snapDesatived = false
 	parent.gravity = true
+	parent.lockRotate = false

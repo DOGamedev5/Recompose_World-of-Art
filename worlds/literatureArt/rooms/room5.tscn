@@ -1942,7 +1942,7 @@ scale = Vector2( 317.6, 111.2 )
 [node name="CameraLimitsArea" type="Area2D" parent="."]
 visible = false
 script = ExtResource( 1 )
-limitsMin = Vector2( -408, -1408 )
+limitsMin = Vector2( -408, -1448 )
 limitsMax = Vector2( 1e+07, 632 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]

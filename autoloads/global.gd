@@ -31,6 +31,7 @@ enum plataforms {
 	STEAM,
 	ITCHIO
 }
+var currentPlataform : int = plataforms.STEAM
 
 var options : OptionsSave
 
@@ -85,6 +86,12 @@ func checkCommandLine() -> void:
 			cmdargs.connectLobby = true
 
 func setup():
+	if not Steam.isSteamRunning():
+		currentPlataform = plataforms.ITCHIO
+		return
+	else:
+		currentPlataform = plataforms.STEAM
+	
 	var initialize_response: Dictionary = Steam.steamInitEx(480, false)
 	print("Did Steam initialize?: %s" % initialize_response)
 

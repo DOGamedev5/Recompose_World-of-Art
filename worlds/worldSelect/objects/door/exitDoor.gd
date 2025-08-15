@@ -25,11 +25,15 @@ func _on_interactBallon_exitered():
 func _on_interactBallon_interacted():
 	if screenShow: return
 	screenShow = true
+	Global.player.moving = false
 	$confirmExit.show()
+	yield(get_tree().create_timer(0.2), "timeout")
+	$confirmExit/Panel/margin/VBoxContainer/HBoxContainer/no.grab_focus()
 
 func _on_no_pressed():
 	$confirmExit.hide()
 	screenShow = false
+	Global.player.moving = true
 
 func _on_yes_pressed():
 	Network.leaveLobby()

@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://worlds/worldSelect/objects/custumizer/ColorButton/colorFrame.png" type="Texture" id=1]
+[ext_resource path="res://worlds/worldSelect/objects/custumizer/characterButton/characterButton.gd" type="Script" id=2]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoIdle.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.0196078, 0.0117647, 0.0352941, 1 )
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 2, 1, 28, 31 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 128, 128 )
+
+[node name="characterButton" type="PanelContainer"]
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 5 )
+script = ExtResource( 2 )
+texture = SubResource( 9 )
+
+[node name="button" type="TextureButton" parent="."]
+margin_right = 128.0
+margin_bottom = 128.0
+toggle_mode = true
+texture_normal = SubResource( 6 )
+texture_pressed = SubResource( 7 )
+texture_hover = SubResource( 8 )
+expand = true
+stretch_mode = 5
+
+[node name="margin" type="MarginContainer" parent="."]
+margin_right = 128.0
+margin_bottom = 128.0
+mouse_filter = 2
+custom_constants/margin_right = 24
+custom_constants/margin_top = 24
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 24
+
+[node name="sprite" type="TextureRect" parent="margin"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 104.0
+margin_bottom = 104.0
+mouse_filter = 2
+texture = SubResource( 9 )
+expand = true
+stretch_mode = 5
+
+[connection signal="toggled" from="button" to="." method="_toggled"]

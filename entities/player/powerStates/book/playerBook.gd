@@ -21,19 +21,7 @@ func _physics_process(delta):
 	else:
 		$sprite/sprite.rotation = lerp_angle($sprite.rotation, deg2rad(5) * (realMotion.x / MAXSPEED), 0.5)
 
-#func jumpBase(force = JUMPFORCE):
-#	if canJump and couldUncounch():
-#		snapDesatived = true 
-#		motion.y = force
-#		coyote = false
-#		canJump = false
-#
-#	elif not Global.handInput("ui_jump", true, OwnerID) and not jumpReleased:
-#		motion.y /= 2
-#		jumpReleased = true
-#		snapDesatived = false or onVentoy
-
 func _step():
 	
-	AudioManager.playSFX(stepSFX, {"volume_db" : -7.5})
+	AudioManager.playSFX(stepSFX, {"volume_db" : -2.5, "pitch_scale" : rand_range(0.95, 1.2)}, true, global_position, 256)
 	

@@ -3,6 +3,7 @@ extends Area2D
 onready var sprite := $Custumizer
 onready var playerExample := $CanvasLayer/Control/margin/hbox/background/sprite
 onready var pallete := $CanvasLayer/Control/margin/hbox/options/Pallete
+onready var characterList := $CanvasLayer/Control/margin/hbox/options/characterSelect
 onready var hud := $CanvasLayer
 onready var hudControl := $CanvasLayer/Control
 onready var tween := $Tween
@@ -12,9 +13,18 @@ func _ready():
 	hud.hide()
 	for color in pallete.get_children():
 		color.connect("selected", self, "selected")
+	
+	for character in characterList.get_children():
+		character.connect("selected", self, "characterSelected")
 
 func selected(hueValue):
 	playerExample.material["shader_param/hue_shift"] = hueValue
+
+func characterSelected(character, texture):
+	playerExample.texture = texture
+	if character == Players.playerList[Network.steamID].character: return
+	Players.playerList[Network.steamID].character = character
+	Global.player.setupSprite()
 
 func _on_interactBallon_entered():
 	sprite.frame = 1

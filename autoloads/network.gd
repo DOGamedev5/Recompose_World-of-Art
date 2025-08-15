@@ -25,24 +25,37 @@ signal worldSelected(world)
 signal newMemberJoined(id)
 signal memberLeft(id)
 
-
 func _ready():
-	Steam.connect("p2p_session_request", self, "p2p_request")
-	Steam.connect("p2p_session_connect_fail", self, "p2p_connect_fail")
-	Steam.connect("lobby_created", self, "_lobby_created")
-	Steam.connect("lobby_match_list", self, "_lobby_match_list")
-	Steam.connect("lobby_joined", self, "_lobby_joined")
-	Steam.connect("lobby_chat_update", self, "_lobby_chat_update")
-	Steam.connect("join_requested", self, "_lobby_join_request")
+	if Steam.isSteamRunning():
 	
-	steamID = Steam.getSteamID()
-	personaName = Steam.getPersonaName()
+		Steam.connect("p2p_session_request", self, "p2p_request")
+		Steam.connect("p2p_session_connect_fail", self, "p2p_connect_fail")
+		Steam.connect("lobby_created", self, "_lobby_created")
+		Steam.connect("lobby_match_list", self, "_lobby_match_list")
+		Steam.connect("lobby_joined", self, "_lobby_joined")
+		Steam.connect("lobby_chat_update", self, "_lobby_chat_update")
+		Steam.connect("join_requested", self, "_lobby_join_request")
+	
+		steamID = Steam.getSteamID()
+		personaName = Steam.getPersonaName()
+	
+	else:
+		steamID = 0
+		personaName = ""
 
 func _process(_delta):
 	readAllP2PPackets()
 
 func get_lobby_menbers():
 	lobbyMembers.clear()
+	if Global.currentPlataform == Global.plataforms.ITCHIO:
+		lobbyMembers.append(
+			{
+				"ID" : 0,
+				"NAME" : ""
+			}
+		)
+
 
 	for menberI in range(Steam.getNumLobbyMembers(lobbyID)):
 		var ID := Steam.getLobbyMemberByIndex(lobbyID, menberI)
@@ -56,6 +69,7 @@ func get_lobby_menbers():
 		Players.addPlayer(ID)
 
 func sendP2PPacket(target : int, packet : Dictionary, sendType : int):
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return
 	var channel := 0
 	
 	var data := PoolByteArray([])
@@ -70,6 +84,7 @@ func sendP2PPacket(target : int, packet : Dictionary, sendType : int):
 		Steam.sendP2PPacket(target, data, sendType, channel)
 
 func readAllP2PPackets(count := 0):
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return
 	if count >= MAX_P2P_PACKETS: return
 	
 	if Steam.getAvailableP2PPacketSize(0) > 0:
@@ -77,6 +92,7 @@ func readAllP2PPackets(count := 0):
 		readAllP2PPackets(count + 1)
 
 func readP2PPacket():
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return
 	var packetSize := Steam.getAvailableP2PPacketSize(0)
 	if packetSize > 0:
 		var data := Steam.readP2PPacket(packetSize, 0)
@@ -100,6 +116,7 @@ func readP2PPacket():
 				print(packet["type"])
 			
 func p2p_request(steamIDRemote):
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return
 	if steamIDRemote == steamID: return
 	Steam.acceptP2PSessionWithUser(steamIDRemote)
 
@@ -126,18 +143,27 @@ func p2p_connect_fail(steam_id, session_error):
 		print("WARNING: Session failure with %s: unknown error %s" % [steam_id, session_error])
 
 func createLobby():
+	if Global.currentPlataform == Global.plataforms.ITCHIO:
+		get_lobby_menbers()
+		Players.addPlayer(0)
+		emit_signal("createdLobby")
+		return
 	if lobbyID == -1:
 		Steam.createLobby(lobbyStatus.Public, 4)
 
 func findLobbies():
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return
 	Steam.addRequestLobbyListDistanceFilter(searchDistance.Worldwide)
 	Steam.addRequestLobbyListStringFilter("game", "LastMinuteRepair", Steam.LOBBY_COMPARISON_EQUAL)
 	Steam.requestLobbyList()
 
 func joinLobby(LobbyID):
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return
 	Steam.joinLobby(LobbyID)
 
 func leaveLobby():
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return
+
 	for menber in lobbyMembers:
 		Steam.closeP2PSessionWithUser(menber["ID"])
 	
@@ -229,6 +255,8 @@ func _lobby_join_request(LobbyID, _friendID):
 	joinLobby(LobbyID)
 
 func is_host() -> bool:
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return true
+	
 	return Steam.getLobbyOwner(Network.lobbyID) == Network.steamID
 
 func is_owned(id) -> bool:

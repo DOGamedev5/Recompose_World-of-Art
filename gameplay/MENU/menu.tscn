@@ -1230,7 +1230,6 @@ script = ExtResource( 5 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="initial" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
@@ -1248,26 +1247,25 @@ custom_constants/margin_bottom = 64
 margin_left = 96.0
 margin_top = 64.0
 margin_right = 1265.0
-margin_bottom = 672.0
+margin_bottom = 680.0
 custom_constants/separation = 32
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="initial/MarginContainer/VBoxContainer2"]
-margin_left = 216.0
-margin_top = 20.0
-margin_right = 952.0
-margin_bottom = 196.0
-rect_min_size = Vector2( 736, 176 )
+margin_left = 344.0
+margin_right = 824.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 480, 224 )
 rect_pivot_offset = Vector2( 368, 0 )
-size_flags_horizontal = 4
-size_flags_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 2
 texture = ExtResource( 8 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="initial/MarginContainer/VBoxContainer2"]
-margin_top = 228.0
+margin_top = 256.0
 margin_right = 1169.0
-margin_bottom = 588.0
+margin_bottom = 616.0
 grow_horizontal = 2
 custom_constants/separation = 8
 alignment = 1
@@ -1577,6 +1575,7 @@ shortcut = SubResource( 59 )
 text = "mn_back"
 
 [node name="saves" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
@@ -1989,12 +1988,11 @@ visible = false
 
 [node name="planet" type="TextureRect" parent="background"]
 visible = false
-self_modulate = Color( 0.733333, 0.741176, 0.901961, 1 )
+self_modulate = Color( 0.576471, 0.505882, 0.690196, 1 )
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -368.0
 margin_right = 9344.0
-margin_bottom = 4700.0
+margin_bottom = 5068.0
 texture = ExtResource( 26 )
 stretch_mode = 2
 

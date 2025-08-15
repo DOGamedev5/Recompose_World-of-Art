@@ -208,3 +208,7 @@ func updateHueshift(newShift : int):
 	.updateHueshift(newShift)
 	$sprite/Sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
 
+func setupSprite():
+	.setupSprite()
+	$sprite/Sword.visible = Players.getPlayerCharater(OwnerID) == "alexandry"
+		

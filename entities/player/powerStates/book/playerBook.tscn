@@ -417,6 +417,9 @@ spriteGizmoPath = NodePath("sprite")
 [node name="coyoteTimer" parent="." index="1"]
 wait_time = 0.5
 
+[node name="Listener2D" parent="." index="2"]
+position = Vector2( 0, -56 )
+
 [node name="StateMachine" type="Node" parent="." index="14"]
 script = ExtResource( 2 )
 startingState = NodePath("IDLE")

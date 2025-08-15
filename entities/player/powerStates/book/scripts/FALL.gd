@@ -25,4 +25,4 @@ func exit():
 	parent.MAXFALL = 100
 	
 	if parent.onFloor():
-		AudioManager.playSFX(fallSFX, {"volume_db" : -10})
+		AudioManager.playSFX(fallSFX, {"volume_db" : -15, "pitch_scale" : rand_range(0.95, 1.3)}, true, parent.global_position, 256)

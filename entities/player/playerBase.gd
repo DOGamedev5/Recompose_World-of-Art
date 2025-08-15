@@ -24,6 +24,8 @@ export(String, DIR) var spritesPath := "res://entities/player/powerStates/"
 signal damaged(direction)
 
 var enteredObjects := []
+var actualSprite := ""
+var spritePath : Sprite
 
 var realMotion := Vector2.ZERO
 var lastPosition := Vector2.ZERO
@@ -430,12 +432,22 @@ func _on_jumpBuffer_timeout():
 func taunt(_tauntName):
 	pass
 
-func getSprite(spriteKey : String, spriteNode : NodePath):
-	var path : String = spriteKey % Players.playerList[OwnerID].character
+func getSprite(spriteKey : String, spriteNode : NodePath, mainSprite := true):
+	if mainSprite:
+		actualSprite = spriteKey
+		spritePath = get_node(spriteNode)
+	var path : String = spriteKey % str(Players.playerList[OwnerID].character)
 	if not LoadedObjects.loaded.has(path):
 		path = spriteKey % "lodrofo"
 	
 	get_node(spriteNode).texture = LoadedObjects.loaded[path]
+
+func setupSprite():
+	var path : String = actualSprite % str(Players.playerList[OwnerID].character)
+	if not LoadedObjects.loaded.has(path):
+		path = actualSprite % "lodrofo"
+	
+	spritePath.texture = LoadedObjects.loaded[path]
 	
 func updateHueshift(newShift : int):
 	Players.playerList[OwnerID].colorShift = newShift
