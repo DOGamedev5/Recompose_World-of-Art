@@ -15,3 +15,7 @@ contract1,pressione,press
 contract2,para confirmar,to confirm
 _yes,sim,yes
 _no,não,no
+_ready,pronto,ready
+_ready_count,pronto:%d/%d...,ready:%d/%d...
+_ready_alone,Lobby aberto,lobby opened
+_ready_offline,offline...,offline...

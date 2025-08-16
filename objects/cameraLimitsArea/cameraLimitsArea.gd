@@ -5,7 +5,7 @@ export var limitsMax := Vector2(10000000, 10000000)
 
 func _init():
 	collision_layer = 0
-	collision_mask = 256
+	collision_mask = 4096
 	
 	var _1 := connect("area_entered", self, "entered")
 	

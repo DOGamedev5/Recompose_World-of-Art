@@ -25,22 +25,14 @@ func process_state():
 	if Global.handInput("ui_jump", false, parent.OwnerID) and parent.couldUncounch():
 		return "JUMP"
 	
-	var input := Global.handInputAxis("ui_left", "ui_right", parent.OwnerID)
-	
-	var exitLadder := false
-	if input:
-		exitLadder = Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_left") 
-	
 	if not parent.canLadder or (Global.handInput("ui_left", false, parent.OwnerID) or Global.handInput("ui_right", false, parent.OwnerID)):
 		return "FALL"
-
 		
 	
 	return null
 
 func process_physics(_delta):
 	var input := sign(Global.handInputAxis("ui_up", "ui_down", parent.OwnerID))
-	var exitLadder := false
 	
 	parent.motion.y = input * 400
 	if input == 0:

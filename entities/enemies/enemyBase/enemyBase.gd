@@ -34,12 +34,11 @@ func _ready():
 	OwnerID = Network.steamID
 	scenePath = get_path()
 	
-	if Network.is_host():
-		var timer = Timer.new()
-		timer.wait_time = 0.05
-		timer.connect("timeout", self, "_networkUpdate")
-		add_child(timer)
-		timer.start()
+	var timer = Timer.new()
+	timer.wait_time = 0.05
+	timer.connect("timeout", self, "_networkUpdate")
+	add_child(timer)
+	timer.start()
 	
 	add_to_group("enemy")
 	if visionArea:
@@ -119,6 +118,7 @@ func hitted(damage : DamageAttack):
 	if damage.damage <= 0 or health <= 0:
 		return
 	modulate = Color(4, 4, 4, 1)
+	get_tree().create_timer(0.1).connect("timeout", self, "damageTimer")
 	health -= damage.damage
 	
 	if health <= 0:
@@ -142,13 +142,20 @@ func hitted(damage : DamageAttack):
 		queue_free()
 		return
 
+func damageTimer():
+	modulate = Color.white
+
 func sendPacket(data : Dictionary):
-	Network.sendP2PPacket(-1, {
-		"type" : "enemyUpdate",
-		"path" : scenePath,
-		"data" : data
-	},
+	Network.sendP2PPacket(Network.get_host(), {
+		"type" : "objectUpdateCall",
+		"method" : "readyCount",
+		"objectPath" : get_path(),
+		"value" : [data]
+	}, 
 	Steam.NETWORKING_SEND_UNRELIABLE)
+
+func receivePacket(_data : Dictionary):
+	pass
 
 func _networkUpdate():
 	pass

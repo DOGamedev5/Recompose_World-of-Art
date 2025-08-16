@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=2]
+[gd_scene load_steps=201 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -2122,6 +2122,9 @@ extents = Vector2( 40, 24 )
 [sub_resource type="RectangleShape2D" id=85]
 extents = Vector2( 40, 24 )
 
+[sub_resource type="RayShape2D" id=357]
+length = 40.0
+
 [sub_resource type="RectangleShape2D" id=159]
 extents = Vector2( 40, 16 )
 
@@ -2309,7 +2312,6 @@ position = Vector2( 5, 3 )
 shape = SubResource( 86 )
 
 [node name="attackSpeed" type="Area2D" parent="." index="25"]
-visible = false
 position = Vector2( 40, -23 )
 collision_layer = 256
 collision_mask = 256
@@ -2321,6 +2323,27 @@ hasOwnerID = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
 position = Vector2( 0, -5 )
 shape = SubResource( 85 )
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="attackSpeed" index="1"]
+position = Vector2( -32, -38 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="attackSpeed" index="2"]
+position = Vector2( -32, 21 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="attackSpeed" index="3"]
+position = Vector2( -32, 2 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="attackSpeed" index="4"]
+position = Vector2( -32, -20 )
+rotation = -1.5708
+shape = SubResource( 357 )
 
 [node name="attackRoll" type="Area2D" parent="." index="26"]
 visible = false

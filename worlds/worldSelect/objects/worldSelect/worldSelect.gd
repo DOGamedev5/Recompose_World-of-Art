@@ -20,6 +20,10 @@ func _ready():
 	hud.visible = false
 	close.disabled = true
 
+func _input(event):
+	if event.is_action_pressed("menu") and hud.visible:
+		_on_close_pressed()
+
 func selected(id):
 	close.disabled = true
 	get_parent().selectedWorld = id

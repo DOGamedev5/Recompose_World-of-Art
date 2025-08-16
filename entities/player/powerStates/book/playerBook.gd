@@ -23,5 +23,5 @@ func _physics_process(delta):
 
 func _step():
 	
-	AudioManager.playSFX(stepSFX, {"volume_db" : -2.5, "pitch_scale" : rand_range(0.95, 1.2)}, true, global_position, 256)
+	AudioManager.playSFX(stepSFX, {"volume_db" : -0.5, "pitch_scale" : rand_range(0.85, 1.2)}, true, global_position, 256)
 	

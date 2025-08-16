@@ -9,6 +9,7 @@ func enter(_lastState):
 	parent.setParticle(1, true)
 	parent.playback.travel("RUN")
 	parent.setCollision(0)
+
 	
 	if abs(parent.motion.x) < 120:
 		parent.motion.x = 120 * sign(parent.motion.x)
@@ -27,8 +28,10 @@ func process_state():
 	if parent.onWall():
 		return "WALL"
 	
-	if (parent.onSlope() or abs(parent.motion.x) > 900) and Global.handInput("ui_down", parent.OwnerID):
+	if ((parent.onSlope() and parent.running) or abs(parent.motion.x) > 900) and Global.handInput("ui_down", parent.OwnerID):
 		return "SUPERROLL"
+	elif parent.onSlope() and Global.handInput("ui_down", parent.OwnerID):
+		return "ROLL"
 			
 	if parent.motion.x == 0 and Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) == 0:
 		return "IDLE"

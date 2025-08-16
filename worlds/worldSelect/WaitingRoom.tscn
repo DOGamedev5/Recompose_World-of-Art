@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://worlds/worldSelect/WaitingRoom.gd" type="Script" id=1]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=2]
@@ -15,9 +15,75 @@
 [ext_resource path="res://worlds/worldSelect/objects/posters/poster.tscn" type="PackedScene" id=13]
 [ext_resource path="res://worlds/worldSelect/sprites/workPlan.png" type="Texture" id=14]
 [ext_resource path="res://worlds/worldSelect/sprites/notes.png" type="Texture" id=15]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/futile-pro-v1/FutilePro.otf" type="DynamicFontData" id=16]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=17]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 584, 284 )
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0.465438, 0.700461 )
+colors = PoolColorArray( 0, 0, 0, 0.929412, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture2D" id=10]
+gradient = SubResource( 9 )
+fill_from = Vector2( 0, 1.5 )
+fill_to = Vector2( 0, 0.5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_bottom = 24
+extra_spacing_char = 3
+extra_spacing_space = -2
+font_data = ExtResource( 16 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 17 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 18 )
+region_rect = Rect2( 48, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 18 )
+region_rect = Rect2( 96, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 25.0
+margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 18 )
+region_rect = Rect2( 144, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 18 )
+region_rect = Rect2( 0, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 224.0
@@ -132,6 +198,58 @@ position = Vector2( 24, -160 )
 [node name="ladder3" parent="stairs" instance=ExtResource( 4 )]
 position = Vector2( 24, -96 )
 
+[node name="hud" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="TextureRect" parent="hud"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 10 )
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="hud"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hud/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 1329.0
+margin_bottom = 704.0
+
+[node name="Label" type="Label" parent="hud/MarginContainer/HBoxContainer"]
+margin_top = 606.0
+margin_right = 271.0
+margin_bottom = 672.0
+size_flags_vertical = 8
+custom_fonts/font = SubResource( 3 )
+text = "pronto 0/1"
+align = 1
+valign = 1
+
+[node name="ready" type="Button" parent="hud/MarginContainer/HBoxContainer"]
+margin_left = 1063.0
+margin_top = 588.0
+margin_right = 1297.0
+margin_bottom = 672.0
+size_flags_horizontal = 10
+size_flags_vertical = 8
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 8 )
+toggle_mode = true
+text = "_ready"
+
 [node name="worldSelect" parent="." instance=ExtResource( 6 )]
 position = Vector2( -336, -288 )
 
@@ -185,6 +303,8 @@ collision_layer = 0
 collision_mask = 4096
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="poster"]
+visible = false
 shape = SubResource( 2 )
 
+[connection signal="toggled" from="hud/MarginContainer/HBoxContainer/ready" to="." method="_on_ready_toggled"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bookWalk.png-4f157b14ec96a365ab79d9f309ba3772.stex"
+path="res://.import/bookWalk.png-edf3d70b885dafcfe93fc96c6fb76d3b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/powerStates/book/sprites/bookWalk.png"
-dest_files=[ "res://.import/bookWalk.png-4f157b14ec96a365ab79d9f309ba3772.stex" ]
+source_file="res://entities/player/powerStates/book/sprites/alexandry/bookWalk.png"
+dest_files=[ "res://.import/bookWalk.png-edf3d70b885dafcfe93fc96c6fb76d3b.stex" ]
 
 [params]
 

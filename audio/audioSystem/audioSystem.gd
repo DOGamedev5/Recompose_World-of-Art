@@ -30,17 +30,20 @@ func _setMusic(music : String):
 func stop():
 	musicPlayer.playing = false
 
-func playSFX(SFX : AudioStream, properties := {"volume_db" : 0}, positional := false, position = Vector2.ZERO, distance = .0, maskArea = 0):
+func playSFX(SFX : AudioStream, properties := {"volume_db" : 0}, positional := false, position := Vector2.ZERO, distance := .0, maskArea := 1):
 	var newSfx
 	
 	if positional:
 		newSfx = AudioStreamPlayer2D.new()
-		newSfx.position = position
+		newSfx.global_position = position
 		newSfx.max_distance = distance
 		newSfx.area_mask = maskArea
+		
+		
 	else:
 		newSfx = AudioStreamPlayer.new()
-	
+		
+	newSfx.autoplay = true
 	newSfx.stream = SFX
 	for key in properties:
 		newSfx[key] = properties[key]
@@ -48,5 +51,5 @@ func playSFX(SFX : AudioStream, properties := {"volume_db" : 0}, positional := f
 	newSfx.set_bus("SFX")
 	newSfx.connect("finished", newSfx, "queue_free")
 	
-	get_tree().get_root().add_child(newSfx)
+	Global.world.add_child(newSfx)
 	newSfx.play()

@@ -2,18 +2,18 @@
 
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=2]
-[ext_resource path="res://entities/player/powerStates/book/sprites/bookIdle.png" type="Texture" id=3]
+[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookIdle.png" type="Texture" id=3]
 [ext_resource path="res://entities/player/powerStates/book/scripts/IDLE.gd" type="Script" id=4]
 [ext_resource path="res://entities/player/powerStates/book/scripts/WALK.gd" type="Script" id=5]
 [ext_resource path="res://entities/player/powerStates/book/playerBook.gd" type="Script" id=6]
 [ext_resource path="res://entities/player/powerStates/book/scripts/JUMP.gd" type="Script" id=7]
 [ext_resource path="res://entities/player/powerStates/book/scripts/FLY.gd" type="Script" id=8]
 [ext_resource path="res://entities/player/powerStates/book/scripts/FALL.gd" type="Script" id=9]
-[ext_resource path="res://entities/player/powerStates/book/sprites/bookWalk.png" type="Texture" id=10]
-[ext_resource path="res://entities/player/powerStates/book/sprites/bookJump.png" type="Texture" id=11]
-[ext_resource path="res://entities/player/powerStates/book/sprites/bookFall.png" type="Texture" id=12]
-[ext_resource path="res://entities/player/powerStates/book/sprites/bookFly.png" type="Texture" id=13]
-[ext_resource path="res://entities/player/powerStates/book/sprites/bookFlyOut.png" type="Texture" id=14]
+[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookWalk.png" type="Texture" id=10]
+[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookJump.png" type="Texture" id=11]
+[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookFall.png" type="Texture" id=12]
+[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookFly.png" type="Texture" id=13]
+[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookFlyOut.png" type="Texture" id=14]
 
 [sub_resource type="CircleShape2D" id=35]
 radius = 16.0
@@ -26,7 +26,7 @@ tracks/0/path = NodePath("sprite/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -57,6 +57,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/book/sprites/%s/bookFall.png", NodePath("sprite/sprite"), true ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=25]
 resource_name = "FLY"
@@ -66,7 +80,7 @@ tracks/0/path = NodePath("sprite/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -97,6 +111,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/book/sprites/%s/bookFly.png", NodePath("sprite/sprite"), true ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=36]
 resource_name = "FLY_OUT"
@@ -107,7 +135,7 @@ tracks/0/path = NodePath("sprite/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -137,6 +165,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/book/sprites/%s/bookFlyOut.png", NodePath("sprite/sprite"), true ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -171,12 +213,26 @@ tracks/2/path = NodePath("sprite/sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ ExtResource( 3 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/book/sprites/%s/bookIdle.png", NodePath("sprite/sprite"), true ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -187,7 +243,7 @@ tracks/0/path = NodePath("sprite/sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -217,6 +273,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/book/sprites/%s/bookJump.png", NodePath("sprite/sprite"), true ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -250,7 +320,7 @@ tracks/2/path = NodePath("sprite/sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -292,7 +362,7 @@ tracks/2/path = NodePath("sprite/sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -306,9 +376,12 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [ "res://entities/player/powerStates/book/sprites/%s/bookWalk.png", NodePath("sprite/sprite"), true ],
+"method": "getSprite"
+}, {
 "args": [  ],
 "method": "_step"
 }, {
@@ -410,7 +483,7 @@ stateMachinePath = NodePath("StateMachine")
 ACCELERATION = 15
 DESACCELERATION = 100
 MAXSPEED = 800
-MAXFALL = 100
+MAXFALL = 200
 JUMPFORCE = -500
 spriteGizmoPath = NodePath("sprite")
 
@@ -446,6 +519,7 @@ position = Vector2( 0, -40 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 3
+frame = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="16"]
 position = Vector2( -8, -40 )

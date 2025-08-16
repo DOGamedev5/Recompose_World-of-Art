@@ -54,7 +54,7 @@ func _physics_process(delta):
 	
 	if active: move()
 
-	if OS.is_debug_build(): $a/Label.text = String("A")
+	if OS.is_debug_build(): $a/Label.text = String("")
 	elif get_node_or_null("a"): $a.queue_free()
 	
 	$sprite/speedEffect.visible = running and not isRolling
@@ -75,6 +75,7 @@ func _physics_process(delta):
 		canAttack = false
 
 func _networkUpdate():
+	if Network.lobbyID == -1: return
 	if Steam.getNumLobbyMembers(Network.lobbyID) <= 1: return
 	var animationTreePlay := playback.get_current_node()
 	var currentAnimation : String = ""
@@ -177,7 +178,7 @@ func setAttack():
 		attackComponents[1].setDamage(0)
 		
 func setCollision(ID := 0):
-	collisionShapes[ID].obj.disabled = false
+	collisionShapes[ID].obj.set_deferred("disabled", false)
 	
 	for obj in range(collisionShapes.size()):
 		if obj == ID: continue

@@ -17,6 +17,10 @@ func _ready():
 	for character in characterList.get_children():
 		character.connect("selected", self, "characterSelected")
 
+func _input(event):
+	if event.is_action_pressed("menu") and hud.visible:
+		_on_close_pressed()
+
 func selected(hueValue):
 	playerExample.material["shader_param/hue_shift"] = hueValue
 

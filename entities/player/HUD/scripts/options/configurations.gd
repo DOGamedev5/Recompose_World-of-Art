@@ -63,7 +63,7 @@ func _on_menu_pressed():
 	LoadSystem.addToQueueChangeScene("res://gameplay/MENU/menu.tscn")
 
 func _on_configurations_visibility_changed():
-	get_tree().paused = visible
+	get_tree().paused = visible and Network.lobbyID == -1
 
 func _on_music_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), linear2db(value))

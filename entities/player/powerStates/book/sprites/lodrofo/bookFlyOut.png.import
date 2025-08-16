@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bookFlyOut.png-954a00d39326c9963b4501ec2c1a0792.stex"
+path="res://.import/bookFlyOut.png-c03bc74b14b53dfdf7154bdd52b7686d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/powerStates/book/sprites/bookFlyOut.png"
-dest_files=[ "res://.import/bookFlyOut.png-954a00d39326c9963b4501ec2c1a0792.stex" ]
+source_file="res://entities/player/powerStates/book/sprites/lodrofo/bookFlyOut.png"
+dest_files=[ "res://.import/bookFlyOut.png-c03bc74b14b53dfdf7154bdd52b7686d.stex" ]
 
 [params]
 

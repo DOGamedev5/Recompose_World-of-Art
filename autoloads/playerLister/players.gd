@@ -39,7 +39,9 @@ func getPlayer(id):
 	return playerList[id]
 
 func getPlayerCharater(id : int):
-	return playerList[id].character
+	if playerList.has(id):
+		return playerList[id].character
+	else: "lodrofo"
 
 func setPlayerCharater(id : int, character : String):
 	playerList[id].character = character

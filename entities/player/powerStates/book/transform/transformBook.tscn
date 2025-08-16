@@ -118,14 +118,16 @@ polygon = PoolVector2Array( 48, 0, 32, -10, -32, -10, -48, 0 )
 anims/RESET = SubResource( 2 )
 anims/transform = SubResource( 3 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 volume_db = -7.0
 pitch_scale = 0.8
+max_distance = 256.0
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 pitch_scale = 0.75
+max_distance = 256.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -74 )

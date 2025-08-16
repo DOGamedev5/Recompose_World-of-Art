@@ -55,6 +55,10 @@ func get_lobby_menbers():
 				"NAME" : ""
 			}
 		)
+		Players.addPlayer(0)
+		return
+		
+		
 
 
 	for menberI in range(Steam.getNumLobbyMembers(lobbyID)):
@@ -112,6 +116,10 @@ func readP2PPacket():
 				if Players.playerList.has(packet["sender"][0]):
 					if Players.playerList[packet["sender"][0]].reference:
 						Players.playerList[packet["sender"][0]].reference.receivePacket(packet)
+			"objectUpdateProperty":
+				get_node(packet["objectPath"]).set(packet["property"], packet["value"])
+			"objectUpdateCall":
+				get_node(packet["objectPath"]).callv(packet["method"], packet["value"])
 			_:
 				print(packet["type"])
 			
@@ -261,3 +269,7 @@ func is_host() -> bool:
 
 func is_owned(id) -> bool:
 	return id == steamID
+
+func get_host():
+	if Global.currentPlataform == Global.plataforms.ITCHIO: return 0
+	return Steam.getLobbyOwner(Network.lobbyID)
