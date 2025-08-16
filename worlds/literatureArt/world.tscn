@@ -11,9 +11,9 @@
 [ext_resource path="res://worlds/literatureArt/rooms/room7.tscn" type="PackedScene" id=9]
 [ext_resource path="res://worlds/literatureArt/rooms/room8.tscn" type="PackedScene" id=10]
 [ext_resource path="res://worlds/classes/teleportBase/tube/tubeEnter.tscn" type="PackedScene" id=11]
-[ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=12]
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=13]
 [ext_resource path="res://worlds/literatureArt/background.tscn" type="PackedScene" id=14]
+[ext_resource path="res://worlds/classes/portal/portal.tscn" type="PackedScene" id=15]
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -59,9 +59,10 @@ destinationPath = NodePath("../tube")
 limitsMin = Vector2( -408, -1408 )
 limitsMax = Vector2( 1e+07, 632 )
 
-[node name="portal" type="Position2D" parent="."]
-position = Vector2( -336, -272 )
-script = ExtResource( 12 )
+[node name="portal" parent="." instance=ExtResource( 15 )]
+position = Vector2( -288, -400 )
+limitsMin = Vector2( -616, -1208 )
+limitsMax = Vector2( 1e+07, 48 )
 
 [node name="HUD" parent="." instance=ExtResource( 13 )]
 

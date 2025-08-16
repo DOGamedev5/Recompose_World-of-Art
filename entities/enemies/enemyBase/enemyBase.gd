@@ -115,32 +115,39 @@ func onFloor():
 	return is_on_floor()
 
 func hitted(damage : DamageAttack):
-	if damage.damage <= 0 or health <= 0:
-		return
+	if not Network.is_owned(damage.objectId): return
+	if damage.damage <= 0 or health <= 0: return
+	
+	damaged(damage.damage)
+	sendPacket({"type" : "attacked", "damage" : damage.damage, "direction" : damage.direction})
+	deathDetect(damage.direction)
+
+func damaged(damage):
 	modulate = Color(4, 4, 4, 1)
 	get_tree().create_timer(0.1).connect("timeout", self, "damageTimer")
-	health -= damage.damage
+	health -= damage
+
+func deathDetect(direction):
+	if health > 0: return
 	
-	if health <= 0:
-		var smoke = load("res://objects/dustBlow/dustBlow.tscn").instance()
-		smoke.amount = 12
-		owner.add_child(smoke)
-		smoke.lifetime = 0.8
-		smoke.preprocess = 0.4
-		smoke.global_position = global_position
-		
-		emit_signal("defeated", self)
-		
-		var death = enemyDeath.instance()
-		death.texture = deathSprite
-		death.direction = sign(damage.direction.x)
-		
-		get_parent().get_parent().add_child(death)
-		death.global_position = global_position
-		death.flip_h = sprite.flip_h
-		
-		queue_free()
-		return
+	var smoke = load("res://objects/dustBlow/dustBlow.tscn").instance()
+	smoke.amount = 12
+	owner.add_child(smoke)
+	smoke.lifetime = 0.8
+	smoke.preprocess = 0.4
+	smoke.global_position = global_position
+	
+	emit_signal("defeated", self)
+	
+	var death = enemyDeath.instance()
+	death.texture = deathSprite
+	death.direction = sign(direction.x)
+	
+	get_parent().get_parent().add_child(death)
+	death.global_position = global_position
+	death.flip_h = sprite.flip_h
+	
+	queue_free()
 
 func damageTimer():
 	modulate = Color.white
@@ -148,14 +155,16 @@ func damageTimer():
 func sendPacket(data : Dictionary):
 	Network.sendP2PPacket(Network.get_host(), {
 		"type" : "objectUpdateCall",
-		"method" : "readyCount",
+		"method" : "receicePacket",
 		"objectPath" : get_path(),
 		"value" : [data]
 	}, 
 	Steam.NETWORKING_SEND_UNRELIABLE)
 
-func receivePacket(_data : Dictionary):
-	pass
+func receivePacket(data : Dictionary):
+	if data["type"] == "attacked":
+		damaged(data["damage"])
+		deathDetect(data["direction"])
 
 func _networkUpdate():
 	pass

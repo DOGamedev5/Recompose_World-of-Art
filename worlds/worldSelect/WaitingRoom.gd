@@ -10,7 +10,7 @@ onready var playerScene := preload("res://entities/player/powerStates/normal/pla
 
 var totalReady := 0
 
-var selectedWorld : int
+var selectedWorld : int = -1
 
 func _ready():
 	Network.sendP2PPacket(-1, {"type" : "startGame"}, 2)
@@ -25,6 +25,8 @@ func _process(_delta):
 		totalText.text = tr("_ready_offline")
 	elif Network.lobbyMembers.size() > 1:
 		totalText.text = tr("_ready_count") % [totalReady, Network.lobbyMembers.size() - 1]
+		$worldSelect.already = totalReady
+		if selectedWorld != -1 and totalReady == Network.lobbyMembers.size() - 1: exit()
 	else:
 		totalText.text = tr("_ready_alone")
 

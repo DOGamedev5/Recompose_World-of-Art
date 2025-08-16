@@ -128,7 +128,7 @@ func rotateSprite(delta):
 	if not onFloor():
 		weight = 10
 	
-		if running:
+		if running or isRolling:
 			angle = motion.angle()
 			if motion.x < 0:
 				angle += PI

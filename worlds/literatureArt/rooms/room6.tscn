@@ -409,22 +409,19 @@ position = Vector2( 512, -112 )
 [node name="clockBlock" parent="clockBlocks" instance=ExtResource( 9 )]
 
 [node name="clockBlock2" parent="clockBlocks" instance=ExtResource( 9 )]
-position = Vector2( 32, 0 )
+position = Vector2( 0, -32 )
 
 [node name="clockBlock3" parent="clockBlocks" instance=ExtResource( 9 )]
-position = Vector2( 64, 0 )
+position = Vector2( 0, -64 )
 
 [node name="clockBlock4" parent="clockBlocks" instance=ExtResource( 9 )]
-position = Vector2( 96, 0 )
+position = Vector2( 0, -96 )
 
 [node name="clockBlock5" parent="clockBlocks" instance=ExtResource( 9 )]
-position = Vector2( 128, 0 )
+position = Vector2( 0, -128 )
 
 [node name="clockBlock6" parent="clockBlocks" instance=ExtResource( 9 )]
-position = Vector2( 160, 0 )
-
-[node name="clockBlock7" parent="clockBlocks" instance=ExtResource( 9 )]
-position = Vector2( 192, 0 )
+position = Vector2( 0, -160 )
 
 [node name="BreakableTilesManager" type="Node2D" parent="."]
 script = ExtResource( 10 )

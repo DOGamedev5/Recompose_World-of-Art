@@ -12,16 +12,27 @@ func _resistence_set(value):
 	resistence = value
 
 func _on_HitboxComponent_HitboxDamaged(damage):
-	if damage.damage >= resistence:
-		var particleInstance = particle.instance()
+	if damage.damage >= resistence and Network.is_owned(damage.objectId):
 		
-		
-		particleInstance.particlesAmount = particlesAmount
-		particleInstance.resistence = resistence
-		get_parent().add_child(particleInstance)
-		particleInstance.position = position
-		
-		queue_free()
+		destroy()
+		Network.sendP2PPacket(-1, {
+			"type" : "objectUpdateCall",
+			"objectPath" : get_path(),
+			"method" : "destroy",
+			"value" : []
+		}, Steam.P2P_SEND_RELIABLE)
+
+func destroy():
+	collision_layer = 0
+
+	var particleInstance = particle.instance()
+	
+	particleInstance.particlesAmount = particlesAmount
+	particleInstance.resistence = resistence
+	get_parent().add_child(particleInstance)
+	particleInstance.position = position
+	
+	queue_free()
 
 func _on_VisibilityEnabler2D_screen_entered():
 	$CollisionShape2D.disabled = false
@@ -30,3 +41,4 @@ func _on_VisibilityEnabler2D_screen_entered():
 func _on_VisibilityEnabler2D_screen_exited():
 	$CollisionShape2D.disabled = true
 	$HitboxComponent/CollisionShape2D.disabled = true
+

@@ -254,11 +254,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoloads/playerLister/playerInfo.gd"
 }, {
-"base": "Node2D",
-"class": "PuppetPlayer",
-"language": "GDScript",
-"path": "res://entities/player/puppetPlayer/PuppetPlayer.gd"
-}, {
 "base": "Resource",
 "class": "Question",
 "language": "GDScript",
@@ -369,7 +364,6 @@ _global_script_class_icons={
 "PlayerBase": "",
 "PlayerHud": "",
 "PlayerInfo": "",
-"PuppetPlayer": "",
 "Question": "",
 "RoomClass": "",
 "RoomWarp": "",
@@ -585,6 +579,7 @@ file_logging/enable_file_logging=true
 [physics]
 
 common/enable_pause_aware_picking=true
+2d/bvh_collision_margin=2.0
 2d/default_gravity=10
 
 [rendering]

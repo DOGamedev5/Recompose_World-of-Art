@@ -10,5 +10,4 @@ export var netOwner := -1
 
 ### Client Variables
 var reference : Node
-var loadedRooms := []
 

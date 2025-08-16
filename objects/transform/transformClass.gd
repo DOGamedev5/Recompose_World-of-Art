@@ -14,8 +14,16 @@ var camera : Camera2D
 export var limitsMin := Vector2(-10000000, -10000000)
 export var limitsMax := Vector2(10000000, 10000000)
 
+var beingUsed := false
+var whoUsing := -1
+
 func _ready():
+	collision_mask = 4096
+	
 	animationPlayer = get_node(animationPlayerPath)
+	if animationPlayer is AnimationPlayer:
+		animationPlayer.connect("animation_finished", self, "setup")
+	
 	camera = get_node(cameraPath)
 	
 	camera["limit_left"] = int(limitsMin.x + global_position.x)
@@ -26,40 +34,57 @@ func _ready():
 	var _1 = connect("area_entered", self, "areaEntered")
 
 func areaEntered(area):
-	if not (area.is_in_group("player") and area.get_parent().is_in_group("normal") == normalFilter):
+	if not (area.is_in_group("player") and area.get_parent().is_in_group("normal") == normalFilter) or beingUsed:
+		return
+	if not Network.is_owned(area.get_parent().OwnerID):
 		return
 	
-	Global.player.setCinematic(true)
+	Network.sendP2PPacket(Network.get_host(), {
+		"type" : "objectUpdateCall",
+		"method" : "animationStart",
+		"objectPath" : get_path(),
+		"value" : [Network.steamID]
+	},
+	Steam.NETWORKING_SEND_RELIABLE)
 	
-#	camera.current = true
-	var oldPlayer = Global.player
-	oldPlayer.visible = false
+	animationStart(Network.steamID)
 	
-	var oldCameraLimits := {
-		"min" : Vector2(
-			oldPlayer.camera.limit_left,
-			oldPlayer.camera.limit_top
-		),
-		"max" : Vector2(
-			oldPlayer.camera.limit_right,
-			oldPlayer.camera.limit_bottom
-		)
-	}
+func animationStart(id):
+	beingUsed = true
+	whoUsing = id
+#	Players.playerList[id].reference.active = false
+	Players.playerList[id].reference.pause_mode = 1
+	Players.playerList[id].reference.visible = false
+	
+	if Network.is_owned(id): Global.player.setCinematic(true)
 	
 	if animationPlayer is AnimationPlayer:
 		animationPlayer.play(animation)
-		yield(animationPlayer, "animation_finished")
 	else:
 		var playback : AnimationNodeStateMachinePlayback = animationPlayer["parameters/playback"]
 		playback.travel(animation)
-		yield(get_tree().create_timer(animationTime), "timeout")
+		get_tree().create_timer(animationTime).connect("timeout", self, "setup")
+
+func setup(_anim:="", id := whoUsing):
+	var oldPlayer = Players.playerList[id].reference
+	var newPlayer : PlayerBase = LoadedObjects.loaded[transformation].instance()
 	
-	Global.player = LoadedObjects.loaded[transformation].instance()
-	Global.player.OwnerID = oldPlayer.OwnerID
+	newPlayer.global_position = global_position + offset
+	if Network.steamID == id:
+		Global.player = newPlayer
+
+	newPlayer.OwnerID = id
+	
+	Global.world.add_child(newPlayer)
+
+	newPlayer.owner = Global.world
+			
+	Players.playerList[id].reference = newPlayer
+	oldPlayer.pause_mode = 0
 	oldPlayer.queue_free()
-	Global.player.global_position = global_position + offset
-	
-	Global.world.call_deferred("add_child", Global.player)
-	Global.world.call_deferred("setCameraLimits", oldCameraLimits["min"], oldCameraLimits["max"])
+	beingUsed = false
+#	Global.world.call_deferred("add_child", Global.player)
+#	Global.world.call_deferred("setCameraLimits", oldCameraLimits["min"], oldCameraLimits["max"])
 	
 	Global.playerHud.cinematic.desactivaded()
+	

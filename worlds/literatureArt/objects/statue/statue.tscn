@@ -5,20 +5,18 @@
 [ext_resource path="res://worlds/classes/statue/statue.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 28, 48 )
+extents = Vector2( 40, 80 )
 
 [node name="statue" type="Node2D"]
 script = ExtResource( 3 )
 hitboxPath = NodePath("HitboxComponent")
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
-position = Vector2( -4.76837e-07, -76 )
-scale = Vector2( 5.6, 8.4 )
-process_parent = true
-physics_process_parent = true
+position = Vector2( 0, -84 )
+scale = Vector2( 4.8, 8.4 )
 
 [node name="StatueBook" type="Sprite" parent="."]
-position = Vector2( 0, -88 )
+position = Vector2( 0, -120 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 
@@ -28,5 +26,5 @@ collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2( 0, -48 )
+position = Vector2( 0, -80 )
 shape = SubResource( 1 )

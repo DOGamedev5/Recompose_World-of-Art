@@ -29,7 +29,6 @@ var spritePath : Sprite
 
 var realMotion := Vector2.ZERO
 var lastPosition := Vector2.ZERO
-var cinematic := false
 
 var jumpBuffer := false
 var jumpReleased := false
@@ -38,8 +37,6 @@ var coyote := true
 var fliped := false
 var stunned := false
 var counched := false
-var active := true
-var moving := true
 var shieldActived := false
 var currentSnapLength := .0
 var snapDesatived := false
@@ -47,6 +44,10 @@ var canLadder := false
 var lockRotate := false
 
 var health = MAXHEALTH
+
+var cinematic := false
+var active := true
+var moving := true
 
 const inputCord := {
 	"X" : ["ui_left", "ui_right"],
@@ -62,7 +63,7 @@ func _ready():
 		timer.start()
 		
 		listener.current = true
-		camera.current = true
+		if Global.world.isPortalSetup: camera.current = true
 	
 		var hud := get_node_or_null("../HUD")
 		if hud: hud.call_deferred("init", self)

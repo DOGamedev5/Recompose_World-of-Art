@@ -12,26 +12,39 @@ func _ready():
 	var _1 = hitbox.connect("HitboxDamaged", self, "destroy")
 
 func destroy(attack : DamageAttack):
-	if "player" in attack.objectGroup:
-		var smoke = load("res://objects/dustBlow/dustBlow.tscn")
-		var smokes := []
-		for _i in range(5):
-			var newSmoke = smoke.instance()
-			newSmoke.amount = 4
-			newSmoke.lifetime = 1
-			newSmoke.preprocess = 0.3
-			smokes.append(newSmoke)
+	if "player" in attack.objectGroup and Network.is_owned(attack.objectId):
+		destroySetup()
 		
-		smokes[0].global_position = to_global(Vector2(32, -32))
-		smokes[1].global_position = to_global(Vector2(16, -64))
-		smokes[2].global_position = to_global(Vector2(-16, -24))
-		smokes[3].global_position = to_global(Vector2(-8, -72))
-		smokes[4].global_position = to_global(Vector2(16, -104))
-		
-		for smk in smokes:
-			Global.world.add_child(smk)
+		Network.sendP2PPacket(-1,
+		{
+			"type" : "objectUpdateCall",
+			"objectPath" : get_path(),
+			"method" : "destroySetup",
+			"value" : []
+		},
+		Steam.NETWORKING_SEND_RELIABLE
+		)
 		
 
-		Global.world.setupTimer(timer)
-		
-		queue_free()
+func destroySetup():
+	var smoke = load("res://objects/dustBlow/dustBlow.tscn")
+	var smokes := []
+	for _i in range(5):
+		var newSmoke = smoke.instance()
+		newSmoke.amount = 4
+		newSmoke.lifetime = 1
+		newSmoke.preprocess = 0.3
+		smokes.append(newSmoke)
+	
+	smokes[0].global_position = to_global(Vector2(32, -32))
+	smokes[1].global_position = to_global(Vector2(16, -64))
+	smokes[2].global_position = to_global(Vector2(-16, -24))
+	smokes[3].global_position = to_global(Vector2(-8, -72))
+	smokes[4].global_position = to_global(Vector2(16, -104))
+	
+	for smk in smokes:
+		Global.world.add_child(smk)
+	
+	Global.world.setupTimer(timer)
+
+	queue_free()

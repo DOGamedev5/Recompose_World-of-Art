@@ -2336,12 +2336,17 @@ rotation = -1.5708
 shape = SubResource( 357 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="attackSpeed" index="3"]
-position = Vector2( -32, 2 )
+position = Vector2( -32, 7 )
 rotation = -1.5708
 shape = SubResource( 357 )
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="attackSpeed" index="4"]
-position = Vector2( -32, -20 )
+position = Vector2( -32, -25 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="attackSpeed" index="5"]
+position = Vector2( -32, -9 )
 rotation = -1.5708
 shape = SubResource( 357 )
 

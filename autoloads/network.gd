@@ -107,21 +107,29 @@ func readP2PPacket():
 		match packet["type"]:
 			"message": Global.sendMessagge(packet["text"], data["remote_steam_id"])
 			"startGame":
-				print("a")
 				emit_signal("startedGame")
+				
 			"selectedWorld":
 				emit_signal("worldSelected", packet["world"])
-				print(packet["world"])
+				
 			"playerUpdate":
 				if Players.playerList.has(packet["sender"][0]):
 					if Players.playerList[packet["sender"][0]].reference:
 						Players.playerList[packet["sender"][0]].reference.receivePacket(packet)
+						
 			"objectUpdateProperty":
-				get_node(packet["objectPath"]).set(packet["property"], packet["value"])
+				var obj := get_node_or_null(packet["objectPath"])
+				if obj:
+					if is_instance_valid(obj) and obj.is_inside_tree():
+						obj.set(packet["property"], packet["value"])
+						
 			"objectUpdateCall":
-				get_node(packet["objectPath"]).callv(packet["method"], packet["value"])
+				var obj := get_node_or_null(packet["objectPath"])
+				if obj:
+					if is_instance_valid(obj) and obj.is_inside_tree():
+						obj.callv(packet["method"], packet["value"])
 			_:
-				print(packet["type"])
+				push_warning("no packetType setup: %s" % String(packet["type"]))
 			
 func p2p_request(steamIDRemote):
 	if Global.currentPlataform == Global.plataforms.ITCHIO: return
