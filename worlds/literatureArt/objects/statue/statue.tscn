@@ -10,6 +10,7 @@ extents = Vector2( 40, 80 )
 [node name="statue" type="Node2D"]
 script = ExtResource( 3 )
 hitboxPath = NodePath("HitboxComponent")
+timer = 130
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 0, -84 )

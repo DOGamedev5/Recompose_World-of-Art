@@ -3,7 +3,7 @@ extends State
 var splat := false
 
 func enter(lastState):
-	parent.playback.travel("WALLED")
+	if Network.is_owned(parent.OwnerID): parent.playback.travel("WALLED")
 	
 	if not parent.onFloor() or ["TOP_SPEED", "ATTACK", "ROLL", "JUMP", "FALL"].has(lastState):
 		parent.walledPlayback.travel("SPLAT")
@@ -14,7 +14,7 @@ func enter(lastState):
 
 	elif parent.onFloor() and abs(parent.motion.x) <= parent.MAXSPEED:
 		splat = false
-		parent.walledPlayback.travel("WALL")
+		if Network.is_owned(parent.OwnerID): parent.walledPlayback.travel("WALL")
 	
 	if parent.motion.y < 0:
 		parent.motion.y /= 2
@@ -46,7 +46,7 @@ func process_state():
 	return null
 
 func process_physics(_delta):
-	if splat and not parent.onFloor():
+	if splat and not parent.onFloor() and Network.is_owned(parent.OwnerID):
 		parent.walledPlayback.travel("SPLAT")
 	
 	if not parent.stunned:

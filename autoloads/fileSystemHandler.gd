@@ -65,8 +65,10 @@ func saveGameData(position = null):
 	saveDataJSON(Global.savePath + worldSaveFile, Global.worldData)
 
 func loadGameData(dataPath):
-	Global.save = loadDataResource(dataPath + gameSaveFile)
-	Global.worldData = loadDataJSON(dataPath + worldSaveFile)
+	Global.save = SaveGame.new()
+	
+#	Global.save = loadDataResource(dataPath + gameSaveFile)
+#	Global.worldData = loadDataJSON(dataPath + worldSaveFile)
 	Global.savePath = dataPath
 
 func deleteFile(filePath):

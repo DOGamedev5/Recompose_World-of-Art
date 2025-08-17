@@ -6,6 +6,8 @@ var time_max = 100
 
 onready var queueLoad := []
 
+onready var playersRemaining := []
+
 signal finishedLoad()
 signal objectLoaded(object)
 
@@ -30,6 +32,7 @@ class QueueObject:
 	var scene
 	var loader : ResourceInteractiveLoader
 	var deffered := false
+	var finished := false
 	
 	func _init(objectPath, flags := {}):
 		path = objectPath
@@ -127,12 +130,30 @@ func _process(_delta):
 		if label: label.text = "%0d%%" % (float(loader.get_stage()) / loader.get_stage_count() * 100)
 
 	elif error == ERR_FILE_EOF:
+		if label: label.text = "100%"
+		if label: label.text = "wainting other players... %d/%d" % [Players.playerList.keys().size() - playersRemaining.size(), Players.playerList.keys().size()]
+		
 		var result = loader.get_resource()
 		
-		if queueLoad[0].type == 1:
+		
+		if queueLoad[0].type == 1 and not queueLoad[0].finished:
 			Global.tree.change_scene_to(result)
-		else:
+		
+		elif not queueLoad[0].finished:
 			queueLoad[0].end(result.instance())
+		
+		queueLoad[0].finished = true
+		
+		if queueLoad[0].type == 1 and playersRemaining:
+			Global.tree.paused = true
+			Network.callRemote("playerReady", get_path(), [Network.steamID])
+			callv("playerReady", [Network.steamID])
+#			playerReady(Network.steamID)
+			if playersRemaining:
+				if label: label.text = "wainting other players... %d/%d" % [Players.playerList.keys().size() - playersRemaining.size(), Players.playerList.keys().size()]
+				return
+			else:
+				Global.tree.paused = false
 		
 		queueLoad[0].queue_free()
 		queueLoad.pop_front()
@@ -143,4 +164,10 @@ func _process(_delta):
 	else:
 		push_error("erro when loading '{0}', error {1}".format([queueLoad[0].path, error]))
 	
-	
+func startWaitingOthers():
+	playersRemaining.clear()
+	for member in Players.playerList:
+		playersRemaining.append(member)
+
+func playerReady(id):
+	playersRemaining.erase(id)

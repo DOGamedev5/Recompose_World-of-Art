@@ -26,6 +26,7 @@ var attackTime := 20.0
 var attackVelocity := 800.0
 var isRolling := false
 var canAttack := true
+var lastUpdate := 0
 
 onready var collisionShapes := [
 	{obj = $CollisionShape2D, onWall = [true, true, true]},
@@ -90,10 +91,14 @@ func _networkUpdate():
 		"motion" : motion,
 		"sprite_rotation" : $sprite.rotation,
 		"global_position" : global_position,
-		"currentState" : stateMachine.currentState.name
-	}, Steam.P2P_SEND_RELIABLE)
+		"currentState" : stateMachine.currentState.name,
+		"updateTimer" : Time.get_unix_time_from_system()
+	}, Steam.P2P_SEND_UNRELIABLE)
 
 func receivePacket(packet):
+	if packet["updateTimer"] < lastUpdate: return
+	lastUpdate = packet["updateTimer"]
+	
 	playback.travel(packet["animationsPlaying"])
 	if packet["animationName"]:
 		animation["parameters/{n}/{n}/playback".format({"n" : packet["animationsPlaying"]})].travel(packet["animationName"])

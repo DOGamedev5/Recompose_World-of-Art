@@ -87,6 +87,17 @@ func sendP2PPacket(target : int, packet : Dictionary, sendType : int):
 	else:
 		Steam.sendP2PPacket(target, data, sendType, channel)
 
+func callRemote(method : String, objectPath, args := [], SEND := Steam.NETWORKING_SEND_RELIABLE):
+	Network.sendP2PPacket(-1,
+		{
+			"type" : "objectUpdateCall",
+			"objectPath" : objectPath,
+			"method" : method,
+			"value" : args
+		},
+		SEND
+		)
+
 func readAllP2PPackets(count := 0):
 	if Global.currentPlataform == Global.plataforms.ITCHIO: return
 	if count >= MAX_P2P_PACKETS: return
@@ -127,7 +138,9 @@ func readP2PPacket():
 				var obj := get_node_or_null(packet["objectPath"])
 				if obj:
 					if is_instance_valid(obj) and obj.is_inside_tree():
-						obj.callv(packet["method"], packet["value"])
+						print(packet["method"])
+						
+						if obj.has_method(packet["method"]): obj.callv(packet["method"], packet["value"])
 			_:
 				push_warning("no packetType setup: %s" % String(packet["type"]))
 			
@@ -222,29 +235,30 @@ func _lobby_chat_update(_lobbyID, changedID, makingChangeID, chatState):
 	match chatState:
 		1:
 			get_lobby_menbers()
-			emit_signal("newMemberJoined", changer)
+			emit_signal("newMemberJoined", makingChangeID)
 			
 			Global.sendMessagge("{n} has entered the lobby! welcome!".format({"n" : changer})) 
 			
 		2:
 			get_lobby_menbers()
-			emit_signal("memberLeft", changer)
+			emit_signal("memberLeft", makingChangeID)
 			
 			Global.sendMessagge("{n} has left the lobby. We'll miss you!!".format({"n" : changer})) 
 		
 		8:
 			get_lobby_menbers()
-			emit_signal("memberLeft", changer)
+			emit_signal("memberLeft", makingChangeID)
 			
 			Global.sendMessagge("{n} has been kicked! Maybe you'll learn this time...".format({"n" : changer})) 
 		
 		16:
 			get_lobby_menbers()
-			emit_signal("memberLeft", changer)
+			emit_signal("memberLeft", makingChangeID)
 			
 			Global.sendMessagge("{n} has been banned! You are not welcome here!".format({"n" : changer}))
 		
 		_: Global.sendMessagge("{n} has... did something?".format({"n" : changer}))
+	
 	match chatState:
 		1: print("{n} has entered the lobby! welcome!".format({"n" : changer})) 
 		2: print("{n} has left the lobby. We'll miss you!!".format({"n" : changer})) 

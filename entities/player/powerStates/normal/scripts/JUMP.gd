@@ -47,17 +47,17 @@ func process_physics(_delta):
 	
 	if parent.isRolling:
 		parent.motion.x = sign(parent.motion.x) * parent.MAXSPEED
-		parent.playback.travel("NORMAL")
-		parent.normalPlayback.travel("ROLL")
+		if Network.is_owned(parent.OwnerID): parent.playback.travel("NORMAL")
+		if Network.is_owned(parent.OwnerID): parent.normalPlayback.travel("ROLL")
 	
 	elif not parent.counched or parent.running:
 		var maxSpeed : float
 		if parent.running:
-			parent.playback.travel("RUN")
+			if Network.is_owned(parent.OwnerID): parent.playback.travel("RUN")
 			maxSpeed = parent.runningVelocity
 		else:
-			parent.playback.travel("NORMAL")
-			parent.normalPlayback.travel("JUMP")
+			if Network.is_owned(parent.OwnerID): parent.playback.travel("NORMAL")
+			if Network.is_owned(parent.OwnerID): parent.normalPlayback.travel("JUMP")
 			maxSpeed = parent.MAXSPEED
 		
 		parent.moveBase("X", parent.motion.x, maxSpeed)
@@ -65,8 +65,8 @@ func process_physics(_delta):
 		parent.jumpBase()
 	
 	else:
-		parent.playback.travel("COUNCH")
-		parent.counchPlayback.travel("COUNCHJUMP")
+		if Network.is_owned(parent.OwnerID): parent.playback.travel("COUNCH")
+		if Network.is_owned(parent.OwnerID): parent.counchPlayback.travel("COUNCHJUMP")
 		
 		parent.moveBase("X", parent.motion.x, 240)
 		

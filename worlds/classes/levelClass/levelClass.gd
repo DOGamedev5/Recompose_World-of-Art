@@ -33,6 +33,7 @@ func _init():
 	add_child(objects)
 
 func _ready():
+	LoadSystem.startWaitingOthers()
 	Network.connect("memberLeft", self, "_memberLeft")
 	Global.save = SaveGame.new() if not Global.save else Global.save
 	portal = get_node(portalPath)
@@ -102,9 +103,6 @@ func _process(delta):
 		timerModulate.color = lerp(timerModulate.color, finalColor, 1.3*delta)
 		Global.tree.call_group("canvasChanger", "set_color", timerModulate.color)
 
-func _input(event):
-	if event.is_action_pressed("interact") and portal.is_inside_tree():
-		setupTimer(80)
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
@@ -116,7 +114,7 @@ func setCanvasModulate(color : Color = canvasModulateColor):
 
 func _memberLeft(id):
 	Players.playerList[id].reference.queue_free()
-	Players.playerList.remove(id)
+	Players.playerList.erase(id)
 
 func loadSave():
 #	Global.player.active = false

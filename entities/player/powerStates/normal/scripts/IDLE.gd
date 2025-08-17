@@ -51,6 +51,11 @@ func process_state():
 func process_physics(delta):
 	parent.idleBase()
 	
+	if Players.getPlayerCharater(parent.OwnerID) == "alexandry" and sword.offset.y != 8:
+		sword.offset.y = lerp(sword.offset.y, -8, delta*20)
+	
+	if not Network.is_owned(parent.OwnerID): return
+	
 	if parent.counched:
 		parent.playback.travel("COUNCH")
 	else:
@@ -68,8 +73,6 @@ func process_physics(delta):
 		else:
 			parent.normalPlayback.travel("IDLE")
 	
-	if Players.getPlayerCharater(parent.OwnerID) == "alexandry" and sword.offset.y != 8:
-		sword.offset.y = lerp(sword.offset.y, -8, delta*20)
 
 func exit():
 	sword.visible = false

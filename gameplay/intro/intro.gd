@@ -8,13 +8,15 @@ onready var totalLoaders := 0
 var allLoaded := false
 
 func _ready():
-	LoadedObjects.connect("allTexturesLoaded", self, "exit")
+#	LoadedObjects.connect("allTexturesLoaded", self, "exit")
 	LoadedObjects.loadDirectory("res://entities/player/powerStates/", "player", ".png")
 	LoadedObjects.loadDirectory("res://entities/player/powerStates/", "powerPlayers", ".tscn", 0)
 
 func _process(_delta):
 	LoadedObjects.process()
 	if LoadedObjects.loaders.size() > totalLoaders: totalLoaders = LoadedObjects.loaders.size()
+	
+	allLoaded = LoadedObjects.alreadyLoaded == totalLoaders
 	
 	if LoadedObjects.currentSegments != LoadedObjects.totalSegments:
 		total.text = "Loading Textures... {percent} total: {current}/{total}".format({

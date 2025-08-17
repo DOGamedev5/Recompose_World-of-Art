@@ -40,7 +40,6 @@ func _on_Area2D_area_entered(area):
 		Steam.NETWORKING_SEND_RELIABLE
 		)
 
-
 func spectator(id):
 	Global.world.playerFinished(id)
 	

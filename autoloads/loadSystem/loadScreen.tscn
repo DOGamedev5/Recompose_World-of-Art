@@ -88,7 +88,7 @@ anims/RESET = SubResource( 2 )
 anims/runLodrofo = SubResource( 3 )
 
 [node name="Label" type="Label" parent="Control/Control"]
-anchor_left = -0.553273
+anchor_left = -2.98926
 anchor_right = 0.886
 anchor_bottom = 0.692
 margin_left = -0.103973

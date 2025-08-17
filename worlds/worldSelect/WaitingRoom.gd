@@ -40,6 +40,7 @@ func exit(world := selectedWorld):
 	get_tree().root.set_disable_input(true)
 
 func _newPlayer(id):
+	print(id)
 	var newPlayer : PlayerBase = LoadedObjects.loaded[playerScene].instance()
 	newPlayer.OwnerID = id
 	newPlayer.global_position = $RoomWarp.global_position
@@ -65,6 +66,7 @@ func _on_ready_toggled(button_pressed):
 		"value" : [button_pressed]
 	}, 
 	Steam.P2P_SEND_RELIABLE_WITH_BUFFERING)
+	readyCount(button_pressed)
 
 func readyCount(value : bool):
 	if value:

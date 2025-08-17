@@ -42,20 +42,20 @@ func process_physics(_delta):
 	
 	if parent.counched:
 		parent.moveBase("X", parent.motion.x, 180)
-		parent.playback.travel("COUNCH")
-		parent.counchPlayback.travel("CRAWLING")
+		if Network.is_owned(parent.OwnerID): parent.playback.travel("COUNCH")
+		if Network.is_owned(parent.OwnerID): parent.counchPlayback.travel("CRAWLING")
 		parent.setParticle(0, false)
 		
 	elif parent.couldUncounch(true):
 		parent.moveBase("X", parent.motion.x)
 		parent.setParticle(0, true)
 		
-		parent.playback.travel("NORMAL")
+		if Network.is_owned(parent.OwnerID): parent.playback.travel("NORMAL")
 		
 		if sign(parent.motion.x) != sign(input) and parent.motion.x != 0:
-			parent.normalPlayback.travel("STOPPING")
+			if Network.is_owned(parent.OwnerID): parent.normalPlayback.travel("STOPPING")
 		elif input != 0:
-			parent.normalPlayback.travel("WALK")
+			if Network.is_owned(parent.OwnerID): parent.normalPlayback.travel("WALK")
 	
 	parent.animation["parameters/NORMAL/NORMAL/WALK/TimeScale/scale"] = max(0.5, (abs(parent.motion.x) / parent.MAXSPEED) * 3)
 
