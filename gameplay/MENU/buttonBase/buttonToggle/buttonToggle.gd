@@ -32,8 +32,7 @@ func pressedTween():
 		
 	tween.start()
 
-
-func _on_CheckButton_toggled(button_pressed):
+func _on_CheckButton_toggled(button_pressed = pressed):
 	if not active: return
 	if button_pressed:
 		pressedTween()

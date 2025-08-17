@@ -1,12 +1,12 @@
 class_name HitboxComponent extends Area2D
 
-signal HitboxDamaged(damage, area)
+signal HitboxDamaged(damage)
+
+var active := false
 
 func _ready():
-	var _1 = connect("area_entered", self, "_areaEntered")
+	active = true
 
-func _areaEntered(area):
-	var damage := 0
-
-	emit_signal("HitboxDamaged", damage, area)
-
+func hit(damage : DamageAttack):
+	if not active: return
+	emit_signal("HitboxDamaged", damage)

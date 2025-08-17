@@ -1,62 +1,72 @@
 extends State
 
+func enter(_lastState):
+	
+	if abs(parent.motion.x) < 250:
+		parent.motion.x = 250 * Global.handInputAxis("ui_left", "ui_right", parent.OwnerID)
+		
+	parent.setParticle(0, false)
+	parent.setParticle(1, true)
+	parent.playback.travel("RUN")
+	parent.setCollision(0)
 
-
-func enter(_laststate):
-	parent.setParticle(0, true)
-	parent.setParticle(1, false)
-	parent.running = false
-
+	
+	if abs(parent.motion.x) < 120:
+		parent.motion.x = 120 * sign(parent.motion.x)
+	
+	if abs(parent.motion.x) > parent.MAXSPEED and not parent.running:
+		parent.running = true
+		var smoke : CPUParticles2D = load("res://objects/dustBlow/dustBlow.tscn").instance()
+		smoke.amount = 12
+		smoke.lifetime = 0.6
+		smoke.preprocess = 0.2
+		parent.get_parent().add_child(smoke)
+		smoke.global_position = parent.global_position - Vector2(0, 32)
+		parent.topSpeedPlayback.travel("RUN")
 
 func process_state():
-	if parent.motion.x == 0 and (Input.get_axis("ui_left", "ui_right") == 0 or not parent.moving) :
-		return "IDLE"
-		
-	if (parent.onSlope() or abs(parent.motion.x) > 500) and Input.is_action_just_pressed("ui_down"):
-		return "ROLL"
-	
 	if parent.onWall():
 		return "WALL"
+	
+	if ((parent.onSlope() and parent.running) or abs(parent.motion.x) > 900) and Global.handInput("ui_down", parent.OwnerID):
+		return "SUPERROLL"
+	elif parent.onSlope() and Global.handInput("ui_down", parent.OwnerID):
+		return "ROLL"
+			
+	if parent.motion.x == 0 and Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) == 0:
+		return "IDLE"
 		
-	elif parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
+	elif parent.canJump and parent.jumpBuffer and parent.couldUncounch():
 		return "JUMP"
 	
 	elif not parent.onFloor():
 		return "FALL"
 	
-	elif Input.is_action_pressed("run") and parent.couldUncounch(true):
-		return "TOP_SPEED"
+	elif not Global.handInput("run", true):
+		return "WALK"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttack and parent.couldUncounch(true):
-		return "ATTACK"
-	
-	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
+	elif Global.handInputAxis("ui_up", "ui_down", parent.OwnerID) and parent.canLadder:
 		return "LADDER"
-
 	
 	return null
 
 func process_physics(_delta):
-	var input := Input.get_axis("ui_left", "ui_right")
 	
-	if parent.counched:
-		parent.moveBase("X", parent.motion.x, 180)
-		parent.playback.travel("COUNCH")
-		parent.counchPlayback.travel("CRAWLING")
-		parent.setParticle(0, false)
-		
-	elif parent.couldUncounch(true):
-		parent.moveBase("X", parent.motion.x)
-		parent.setParticle(0, true)
-		
+	parent.moveBase("X", parent.motion.x, parent.runningVelocity)
+	parent.detectRunning()
+	
+	if sign(parent.motion.x) != sign(Global.handInputAxis("ui_left", "ui_right", parent.OwnerID)) and parent.motion.x != 0:
 		parent.playback.travel("NORMAL")
+		parent.normalPlayback.travel("STOPPING")
+	else:
+		parent.playback.travel("RUN")
+		if parent.running:
+			parent.topSpeedPlayback.travel("RUN")
 		
-		if sign(parent.motion.x) != sign(input) and parent.motion.x != 0:
-			parent.normalPlayback.travel("STOPPING")
-		elif input != 0:
-			parent.normalPlayback.travel("RUN")
 
 func exit():
-	parent.setParticle(0, false)
-
-	
+	parent.setParticle(1, false)
+	if not parent.running or abs(parent.motion.x) <= parent.MAXSPEED:
+		parent.attackComponents[1].monitoring = false
+		
+	parent.setCollision(0)

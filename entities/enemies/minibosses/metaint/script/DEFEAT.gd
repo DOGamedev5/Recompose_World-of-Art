@@ -4,8 +4,9 @@ onready var interactArea = $"../../interact"
 onready var dialogRect = $"../../dialog"
 
 const dialog = [
-	"Oh... you are pretty strong little one... what's your name?\nLodrofo...? hum, cool name",
-	"Now you are part of the guard of the paint kingdom, and you will be called Sir Lodrofo!"
+	{"image" : 0, "react" : 0, "text" : "metaint_3", "name" : "metaint"},
+	{"image" : 0, "react" : 0, "text" : "metaint_4", "name" : "metaint"},
+	{"image" : 0, "react" : 0, "text" : "metaint_5", "name" : "metaint"}
 ]
 
 func enter(_lastState):

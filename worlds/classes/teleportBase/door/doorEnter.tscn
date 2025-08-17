@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://objects/doors/sprites/caveDoor.png" type="Texture" id=1]
+[ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://worlds/classes/teleportBase/door/doorEnter.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 12 )
+
+[node name="doorEnter" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="CaveDoor" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="interactBallon" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -96 )
+areaInteractPath = NodePath("..")
+content = [ "/btn:ui_accept" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -12 )
+shape = SubResource( 1 )
+
+[connection signal="interacted" from="interactBallon" to="." method="_on_interactBallon_interacted"]

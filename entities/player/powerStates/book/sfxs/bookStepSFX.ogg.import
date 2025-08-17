@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bookStepSFX.ogg-fd75778dd5bc621ba73436ee2c0ab74c.oggstr"
+
+[deps]
+
+source_file="res://entities/player/powerStates/book/sfxs/bookStepSFX.ogg"
+dest_files=[ "res://.import/bookStepSFX.ogg-fd75778dd5bc621ba73436ee2c0ab74c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

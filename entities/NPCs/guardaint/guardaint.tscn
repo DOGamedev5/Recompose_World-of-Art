@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://entities/NPCs/guardaint/guardaint.gd" type="Script" id=1]
-[ext_resource path="res://entities/NPCs/guardaint/guardaint.pxo" type="Texture" id=2]
+[ext_resource path="res://entities/NPCs/guardaint/guardaint.png" type="Texture" id=2]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 16.0
@@ -43,6 +44,9 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 80, 36 )
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 40, 104 )
+
 [node name="Guardaint" type="KinematicBody2D"]
 z_index = -1
 z_as_relative = false
@@ -71,6 +75,7 @@ margin_top = -64.0
 margin_right = 0.0
 margin_bottom = -64.0
 areaInteractPath = NodePath("../Area2D")
+text = "E"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 1024
@@ -79,3 +84,15 @@ collision_mask = 1024
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 0, -36 )
 shape = SubResource( 4 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( -40, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, -104 )
+shape = SubResource( 5 )
+
+[node name="dialog" parent="." instance=ExtResource( 4 )]
+interactBallonPath = NodePath("../interactBallon")
+
+[connection signal="dialogClosed" from="dialog" to="." method="_on_dialog_dialogClosed"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4.gd" type="Script" id=1]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/light.pxo" type="Texture" id=2]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4-base.pxo" type="Texture" id=3]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint3-rope.pxo" type="Texture" id=4]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4-lamp.pxo" type="Texture" id=5]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/light.png" type="Texture" id=2]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4-base.png" type="Texture" id=3]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint3-rope.png" type="Texture" id=4]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/4/lampaint4-lamp.png" type="Texture" id=5]
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 4, 8, -4, 8, -8, 6, -8, 0, 8, 0, 8, 6 )
@@ -12,8 +12,11 @@ polygon = PoolVector2Array( 4, 8, -4, 8, -8, 6, -8, 0, 8, 0, 8, 6 )
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 
-[node name="lampaint4" type="Node2D"]
+[node name="lampaint4" type="Node2D" groups=["light", "shadow"]]
 script = ExtResource( 1 )
+visiblility = NodePath("lamp/VisibilityEnabler2D")
+lightPath = NodePath("lamp/Light2D")
+simpleLightPath = NodePath("lamp/Light")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 2 )
@@ -46,12 +49,15 @@ texture_scale = 2.0
 color = Color( 1, 0.87451, 0.784314, 1 )
 energy = 1.5
 shadow_enabled = true
+shadow_buffer_size = 32
+shadow_gradient_length = 4.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Light" type="Sprite" parent="lamp"]
 visible = false
+modulate = Color( 1.4, 1.4, 1.4, 0.678431 )
 self_modulate = Color( 1, 1, 1, 0.109804 )
 material = SubResource( 1 )
 texture = ExtResource( 2 )

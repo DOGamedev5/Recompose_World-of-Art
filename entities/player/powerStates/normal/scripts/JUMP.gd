@@ -1,8 +1,16 @@
 extends State
 
+var lastState
+
 func enter(laststate):
 	parent.setParticle(0, false)
 	parent.setParticle(1, false)
+	var smoke = parent.effects[0].instance()
+	smoke.amount = 6
+	parent.get_parent().add_child(smoke)
+	smoke.global_position = parent.global_position
+	
+	lastState = laststate
 	
 	parent.snapDesatived = true
 	if laststate == "ROLL":
@@ -18,14 +26,15 @@ func process_state():
 	elif parent.onFloor():
 		if parent.motion.x == 0: return "IDLE"
 			
-		if Input.is_action_pressed("run"): return "TOP_SPEED"
+		if Global.handInput("run", true, parent.OwnerID): return "RUN"
 			
-		return "RUN"
+		return "WALK"
 	
-	elif Input.is_action_just_pressed("attack") and parent.canAttack:
+	elif Global.handInput("attack", parent.OwnerID) and parent.canAttack:
 		return "ATTACK"
 	
-	elif (Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down")) and parent.canLadder:
+#	elif (InputHandler.InputPressed("ui_up") or InputHandler.InputPressed("ui_down")) and parent.canLadder:
+	elif Global.handInputAxis("ui_up", "ui_down", parent.OwnerID) and parent.canLadder:
 		return "LADDER"
 	
 	return null
@@ -33,14 +42,18 @@ func process_state():
 func process_physics(_delta):
 	parent.stoppedRunning()
 	
+	if abs(parent.motion.x) < 250 and int(parent.realMotion.x) == 0:
+		parent.motion.x = 0
+	
 	if parent.isRolling:
 		parent.motion.x = sign(parent.motion.x) * parent.MAXSPEED
-		parent.playback.travel("ROLL")
+		parent.playback.travel("NORMAL")
+		parent.normalPlayback.travel("ROLL")
 	
 	elif not parent.counched or parent.running:
 		var maxSpeed : float
 		if parent.running:
-			parent.playback.travel("TOP_SPEED")
+			parent.playback.travel("RUN")
 			maxSpeed = parent.runningVelocity
 		else:
 			parent.playback.travel("NORMAL")

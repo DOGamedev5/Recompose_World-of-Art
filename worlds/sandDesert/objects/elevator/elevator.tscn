@@ -1,0 +1,216 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://worlds/sandDesert/objects/elevator/elevator.png" type="Texture" id=1]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/3/lampaint3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://worlds/paintWorld/objects/elevator/elevatorCable.png" type="Texture" id=3]
+[ext_resource path="res://worlds/paintWorld/objects/elevator/elevator.gd" type="Script" id=4]
+[ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://worlds/sandDesert/objects/elevator/lever.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 128, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 128, 8 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 48, 8 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( -118, 0, -118, -16, 118, -16, 118, 0 )
+
+[sub_resource type="OccluderPolygon2D" id=5]
+polygon = PoolVector2Array( -118, -9, -118, -17, 118, -17, 118, -9 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lever:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Elevator:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "elevator"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Elevator:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "lever"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Lever:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.35, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 48, 16 )
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "elevator"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "lever"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=13]
+states/elevator/node = SubResource( 10 )
+states/elevator/position = Vector2( 752.333, 84.3333 )
+states/lever/node = SubResource( 11 )
+states/lever/position = Vector2( 419, 95 )
+transitions = [ "lever", "elevator", SubResource( 12 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=14]
+
+[node name="elevator" type="KinematicBody2D"]
+collision_mask = 0
+collision/safe_margin = 0.001
+script = ExtResource( 4 )
+
+[node name="Elevator" type="Sprite" parent="."]
+position = Vector2( 0, -80 )
+scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 1 )
+hframes = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 32 )
+shape = SubResource( 1 )
+disabled = true
+one_way_collision_margin = 0.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -152 )
+shape = SubResource( 2 )
+disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -168 )
+shape = SubResource( 3 )
+disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 0, -198 )
+points = PoolVector2Array( 0, 0, 0, -26 )
+width = 8.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 3 )
+texture_mode = 2
+
+[node name="lampaint3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -144 )
+z_index = 1
+z_as_relative = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( 0, -146 )
+occluder = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2( 0, 21 )
+occluder = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Lever" type="Sprite" parent="."]
+position = Vector2( 0, -48 )
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 6 )
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/elevator = SubResource( 9 )
+anims/lever = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -16 )
+shape = SubResource( 8 )
+
+[node name="interactBallon" parent="." instance=ExtResource( 5 )]
+areaInteractPath = NodePath("../Area2D")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 13 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 14 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 3.8147e-06, -128 )
+scale = Vector2( 12.8, 19.2 )
+process_parent = true
+physics_process_parent = true
+
+[connection signal="interacted" from="interactBallon" to="." method="_on_interactBallon_interacted"]
+[connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]

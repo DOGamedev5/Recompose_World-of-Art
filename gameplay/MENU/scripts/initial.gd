@@ -3,11 +3,17 @@ extends Control
 onready var options = $"../options"
 onready var saves = $"../saves"
 onready var parent = $"../"
-onready var credits = $"../Credits"
-
-onready var buttons := [$VBoxContainer/start, $VBoxContainer/options, $VBoxContainer/credits]
+onready var credits = $"../credits"
 
 var current := true
+
+func _ready():
+	if not Global.cmdargs.connectLobby:
+		show()
+	else:
+		hide()
+
+	enter()
 
 func _on_start_pressed():
 	parent.transition(saves, [self, options, credits])
@@ -18,11 +24,13 @@ func _on_options_pressed():
 func _on_credits_pressed():
 	parent.transition(credits, [self, saves, options])
 
-
 func enter():
-	for button in buttons:
-		button.active = true
+	parent.current = self
+	$MarginContainer/VBoxContainer2/VBoxContainer/start.grab_focus()
 
-func changed():
-	for button in buttons:
-		button.active = false
+
+func _on_exit_pressed():
+
+	$"../confirmExit".trigger()
+
+	

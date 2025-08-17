@@ -2,7 +2,7 @@
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.gd" type="Script" id=2]
-[ext_resource path="res://entities/classes/dialogComponent/classes/button/ButtonDialog.pxo" type="Texture" id=3]
+[ext_resource path="res://entities/player/HUD/classes/button/ButtonDialog.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=2]
 size = 64

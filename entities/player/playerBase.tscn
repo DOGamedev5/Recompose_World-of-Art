@@ -2,10 +2,13 @@
 
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=2]
-[ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RayShape2D" id=13]
+custom_solver_bias = 0.2
+length = 24.0
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 28 )
+extents = Vector2( 24, 28 )
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "RESET"
@@ -53,7 +56,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "shield"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("..:modulate")
@@ -69,7 +71,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=12]
-resource_name = "shieldStoping"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -86,50 +87,65 @@ tracks/0/keys = {
 }
 
 [node name="playerBase" type="KinematicBody2D" groups=["player"]]
-collision_layer = 0
+collision_layer = 1024
 script = ExtResource( 1 )
 
-[node name="HUD" parent="." instance=ExtResource( 3 )]
+[node name="jumpBuffer" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="coyoteTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
-[node name="flooDetectBack" type="RayCast2D" parent="."]
-position = Vector2( -6, 0 )
-enabled = true
-cast_to = Vector2( 0, 12 )
-
-[node name="floorDetect" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 0, 12 )
-
-[node name="flooDetectFont" type="RayCast2D" parent="."]
-position = Vector2( 6, 0 )
-enabled = true
-cast_to = Vector2( 0, 12 )
+[node name="Listener2D" type="Listener2D" parent="."]
+position = Vector2( 0, -15 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -63 )
-current = true
+position = Vector2( 0, -96 )
 editor_draw_limits = true
 
+[node name="rayShapeLeft" type="CollisionShape2D" parent="."]
+position = Vector2( -16, -28 )
+shape = SubResource( 13 )
+disabled = true
+
+[node name="rayShapeRight" type="CollisionShape2D" parent="."]
+position = Vector2( 16, -28 )
+shape = SubResource( 13 )
+disabled = true
+
 [node name="collideUp" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -8 )
 enabled = true
 cast_to = Vector2( 0, -56 )
 
+[node name="collideUpFront" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 16, -8 )
+enabled = true
+cast_to = Vector2( 0, -56 )
+
+[node name="collideUpBack" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -16, -8 )
+enabled = true
+cast_to = Vector2( 0, -56 )
+
 [node name="onWallTop" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -40 )
 enabled = true
 cast_to = Vector2( 28, 0 )
 
 [node name="onWallMid" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 28, 0 )
 
 [node name="onWallDown" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -8 )
 enabled = true
 cast_to = Vector2( 28, 0 )
@@ -139,10 +155,44 @@ position = Vector2( 0, -32 )
 enabled = true
 cast_to = Vector2( 0, 56 )
 
+[node name="slopeDetectLeft" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -8, -16 )
+enabled = true
+cast_to = Vector2( 0, 32 )
+
+[node name="slopeDetectRight" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 8, -16 )
+enabled = true
+cast_to = Vector2( 0, 32 )
+
+[node name="insideDetectLeft" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
+enabled = true
+cast_to = Vector2( -16, 0 )
+
+[node name="insideDetectRight" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+
+[node name="insideDetectLeft2" type="RayCast2D" parent="."]
+position = Vector2( 0, 8 )
+enabled = true
+cast_to = Vector2( -16, 0 )
+
+[node name="insideDetectRight2" type="RayCast2D" parent="."]
+position = Vector2( 0, 8 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+
 [node name="HitboxComponent" type="Area2D" parent="." groups=["player"]]
+visible = false
 position = Vector2( 0, -2 )
-collision_layer = 0
-collision_mask = 1536
+collision_layer = 5632
+collision_mask = 3584
+priority = 1.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true,
@@ -170,7 +220,9 @@ anims/shieldStoping = SubResource( 12 )
 wait_time = 3.5
 one_shot = true
 
+[connection signal="timeout" from="jumpBuffer" to="." method="_on_jumpBuffer_timeout"]
 [connection signal="timeout" from="coyoteTimer" to="." method="coyoteTimerTimeout"]
 [connection signal="HitboxDamaged" from="HitboxComponent" to="." method="hitboxTriggered"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_HitboxComponent_area_entered"]
 [connection signal="area_exited" from="HitboxComponent" to="." method="hitboxExited"]
 [connection signal="timeout" from="shieldSystem/shield" to="." method="shieldTimeout"]

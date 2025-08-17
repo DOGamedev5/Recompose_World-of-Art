@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=2]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://gameplay/MENU/serverFound/serverFound.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+outline_size = 3
+outline_color = Color( 0.188235, 0.0470588, 0.0784314, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+outline_size = 3
+outline_color = Color( 0.133333, 0.0470588, 0.188235, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 2 )
+region_rect = Rect2( 48, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 2 )
+region_rect = Rect2( 96, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 25.0
+margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 2 )
+region_rect = Rect2( 144, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+
+[node name="serverFound" type="HBoxContainer"]
+custom_constants/separation = 16
+script = ExtResource( 4 )
+
+[node name="Name" type="Label" parent="."]
+margin_top = 15.0
+margin_right = 331.0
+margin_bottom = 54.0
+custom_colors/font_color = Color( 1, 0.992157, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Servers Found:"
+align = 1
+valign = 1
+
+[node name="ID" type="Label" parent="."]
+margin_left = 347.0
+margin_top = 15.0
+margin_right = 518.0
+margin_bottom = 54.0
+custom_colors/font_color = Color( 0.713726, 0.752941, 0.823529, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "2334482"
+align = 1
+valign = 1
+
+[node name="enter" type="Button" parent="."]
+margin_left = 534.0
+margin_right = 689.0
+margin_bottom = 69.0
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../erase")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../erase")
+focus_neighbour_bottom = NodePath("../../exit")
+size_flags_horizontal = 10
+size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 7 )
+text = "enter"
+
+[connection signal="pressed" from="enter" to="." method="_on_enter_pressed"]

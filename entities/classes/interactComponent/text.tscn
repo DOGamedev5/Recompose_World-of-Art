@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/classes/interactComponent/text.tres" type="DynamicFont" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=5]
+light_mode = 1
+
+[sub_resource type="StyleBoxEmpty" id=2]
+content_margin_left = 4.0
+
+[node name="text" type="Label"]
+light_mask = 0
+material = SubResource( 5 )
+use_parent_material = true
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 37.0
+margin_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+custom_styles/normal = SubResource( 2 )
+text = "EA"
+align = 1

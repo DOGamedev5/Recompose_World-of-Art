@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://gameplay/classes/cinematic/cinematicPlayer.gd" type="Script" id=1]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+script = ExtResource( 1 )

@@ -1,19 +1,23 @@
 extends CanvasLayer
 
 onready var tween = $Tween
+onready var transitionPlayer := $transition/AnimationPlayer
+onready var backgroundPlayer := $background/AnimationPlayer
+onready var current := $initial
+
+func _ready():
+	AudioManager.playMusic("recompose")
 
 func transition(show, hide : Array):
-	tween.interpolate_property(show, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.4,
-		Tween.TRANS_CUBIC, Tween.EASE_OUT, 0.5)
 	show.current = true
+	transitionPlayer.play(show.name)
+	yield($transition, "transitionTrigger")
+	show.visible = true
 	
 	for obj in hide:
 		obj.current = false
-		obj.changed()
-		tween.interpolate_property(obj, "rect_scale", obj["rect_scale"], Vector2(0, 0), 0.4,
-		Tween.TRANS_CUBIC, Tween.EASE_IN)
+		obj.visible = false
 	
-	tween.start()
-	yield(tween, "tween_all_completed")
+	backgroundPlayer.play(show.name)
 	
 	show.enter()

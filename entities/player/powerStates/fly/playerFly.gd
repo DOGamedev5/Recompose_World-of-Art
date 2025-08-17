@@ -1,39 +1,24 @@
 extends PlayerBase
 
-enum states {IDLE, FLY}
-
-var currentState : int = states.IDLE
-
+func _ready():
+	$Sprite.visible = Network.is_owned(OwnerID)
 
 func _physics_process(_delta):
+	motion = Vector2(
+		Global.handInputAxis("ui_left", "ui_right", OwnerID),
+		Global.handInputAxis("ui_up", "ui_down", OwnerID)
+	).normalized() * MAXSPEED
 	
-	if currentState == states.IDLE:
-		var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		
-		if input:
-			currentState = states.FLY
-		
-		elif Input.is_action_just_pressed("ui_accept"):
-			changePowerup("Normal")
-	
-	elif currentState == states.FLY:
-		var input := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		
-		if not input and motion == Vector2.ZERO:
-			currentState = states.IDLE
-		
-		elif Input.is_action_just_pressed("ui_accept"):
-			changePowerup("Normal")
-	
-	match currentState:
-		states.IDLE:
-			pass
-		
-		states.FLY:
-			var input := Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis( "ui_up", "ui_down"))
-			
-			motion = Vector2(moveBase(input.x, motion.x), moveBase(input.y, motion.y))
-			
-			
-		
 	motion = move_and_slide(motion)
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	if camera.limit_top > global_position.y:
+		global_position.y = camera.limit_top + 32
+	if camera.limit_bottom < global_position.y:
+		global_position.y = camera.limit_bottom - 32
+	if camera.limit_left > global_position.x:
+		global_position.x = camera.limit_left + 64
+	if camera.limit_right < global_position.x:
+		global_position.x = camera.limit_right - 64
+

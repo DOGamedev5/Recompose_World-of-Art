@@ -15,12 +15,15 @@ func _setLenght(value):
 	$lamp.position.y = 10 + value
 
 func desative():
-	$lamp/Light2D.enabled = false
+	light.enabled = false
 
 func ative():
-	if not Global.simpleLight:
-		$lamp/Light2D.enabled = true
+	if not Global.options.simpleLight:
+		light.enabled = true
 
 func _toggledSimpleLight(value):
 	$lamp/Light.visible = value
-	$lamp/Light2D.enabled = !value
+	light.enabled = !value
+
+func _toggledShadow(value):
+	light.shadow_enabled = value

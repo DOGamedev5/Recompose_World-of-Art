@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/paperSFX.ogg-72488543947146525ed01db97a81560a.oggstr"
+
+[deps]
+
+source_file="res://gameplay/MENU/audio/paperSFX.ogg"
+dest_files=[ "res://.import/paperSFX.ogg-72488543947146525ed01db97a81560a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

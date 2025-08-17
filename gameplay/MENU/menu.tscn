@@ -1,35 +1,87 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=102 format=2]
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
 [ext_resource path="res://gameplay/MENU/scripts/options.gd" type="Script" id=3]
 [ext_resource path="res://gameplay/MENU/scripts/saves.gd" type="Script" id=4]
 [ext_resource path="res://gameplay/MENU/scripts/menu.gd" type="Script" id=5]
-[ext_resource path="res://gameplay/MENU/saveSlot.tscn" type="PackedScene" id=6]
-[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.tscn" type="PackedScene" id=7]
-[ext_resource path="res://gameplay/MENU/title.pxo" type="Texture" id=8]
-[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=10]
-[ext_resource path="res://worlds/paintWorld/sprites/credits_images/1.png" type="Texture" id=11]
-[ext_resource path="res://gameplay/MENU/creditsPaint/creditsPaint.tscn" type="PackedScene" id=12]
-[ext_resource path="res://worlds/paintWorld/sprites/credits_images/0.png" type="Texture" id=13]
-[ext_resource path="res://worlds/paintWorld/sprites/credits_images/2.png" type="Texture" id=14]
-[ext_resource path="res://worlds/paintWorld/sprites/credits_images/3.png" type="Texture" id=15]
-[ext_resource path="res://worlds/paintWorld/sprites/credits_images/5.png" type="Texture" id=16]
-[ext_resource path="res://worlds/paintWorld/sprites/credits_images/4.png" type="Texture" id=17]
-[ext_resource path="res://worlds/paintWorld/sprites/credits_images/6.png" type="Texture" id=18]
-[ext_resource path="res://worlds/paintWorld/sprites/credits_images/7.png" type="Texture" id=19]
-[ext_resource path="res://gameplay/MENU/scripts/Credits.gd" type="Script" id=20]
-[ext_resource path="res://gameplay/MENU/panel.pxo" type="Texture" id=21]
-[ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.tscn" type="PackedScene" id=22]
+[ext_resource path="res://gameplay/MENU/saveslot/contract.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gameplay/MENU/credits.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gameplay/MENU/title.png" type="Texture" id=8]
+[ext_resource path="res://gameplay/MENU/audio/paperSFX.ogg" type="AudioStream" id=9]
+[ext_resource path="res://gameplay/MENU/scripts/confirmExit.gd" type="Script" id=10]
+[ext_resource path="res://gameplay/themes/panel.tres" type="StyleBox" id=11]
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=12]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://gameplay/MENU/saveslot/panel.png" type="Texture" id=14]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/equipment-pro-v1.1/EquipmentPro.otf" type="DynamicFontData" id=15]
+[ext_resource path="res://gameplay/MENU/sprites/SpinNumber.png" type="Texture" id=16]
+[ext_resource path="res://gameplay/classes/chat/send.png" type="Texture" id=17]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.png" type="Texture" id=21]
+[ext_resource path="res://gameplay/MENU/sprites/slider.png" type="Texture" id=23]
+[ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=24]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.otf" type="DynamicFontData" id=25]
+[ext_resource path="res://gameplay/MENU/sprites/planet.png" type="Texture" id=26]
+[ext_resource path="res://gameplay/MENU/sprites/clouds.png" type="Texture" id=27]
+[ext_resource path="res://gameplay/MENU/scripts/transition.gd" type="Script" id=28]
+[ext_resource path="res://gameplay/MENU/sprites/papers.png" type="Texture" id=29]
+[ext_resource path="res://gameplay/MENU/sprites/fragments.png" type="Texture" id=30]
 
-[sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 21 )
-region_rect = Rect2( 0, 0, 128, 128 )
+[sub_resource type="DynamicFont" id=13]
+size = 64
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 25 )
+
+[sub_resource type="StyleBoxTexture" id=14]
+texture = ExtResource( 24 )
+region_rect = Rect2( 48, 0, 48, 64 )
 margin_left = 16.0
 margin_right = 16.0
 margin_top = 16.0
-margin_bottom = 16.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=15]
+texture = ExtResource( 24 )
+region_rect = Rect2( 96, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 25.0
+margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id=17]
+texture = ExtResource( 24 )
+region_rect = Rect2( 144, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+expand_margin_top = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id=16]
+texture = ExtResource( 24 )
+region_rect = Rect2( 0, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 32.0
+
+[sub_resource type="StyleBoxTexture" id=44]
+
+[sub_resource type="Theme" id=45]
+TabContainer/styles/panel = SubResource( 44 )
+
+[sub_resource type="InputEventAction" id=56]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=57]
+shortcut = SubResource( 56 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
@@ -41,38 +93,1139 @@ font_data = ExtResource( 1 )
 [sub_resource type="DynamicFont" id=7]
 size = 32
 outline_size = 2
-outline_color = Color( 0.709804, 0.556863, 0.392157, 1 )
+outline_color = Color( 0.219608, 0.2, 0.439216, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 23 )
+region = Rect2( 32, 16, 16, 16 )
+margin = Rect2( 0, 0, 0, 2 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 23 )
+region = Rect2( 32, 0, 16, 16 )
+margin = Rect2( 0, 0, 0, 2 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 23 )
+region_rect = Rect2( 0, 18, 32, 18 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 6.0
+margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 23 )
+region_rect = Rect2( 0, 0, 32, 18 )
+margin_left = 10.0
+margin_right = 10.0
+margin_top = 12.0
+margin_bottom = 12.0
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 23 )
+region = Rect2( 0, 36, 32, 18 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 23 )
+region = Rect2( 32, 0, 16, 16 )
+margin = Rect2( 0, 0, 0, 2 )
+
+[sub_resource type="Theme" id=49]
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0.984314, 1, 0.682353, 0.513726 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.0784314, 0.0431373, 0.121569, 0.686275 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 0.129412, 0.0980392, 0.239216, 0.337255 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+anti_aliasing = false
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 21 )
+region = Rect2( 0, 0, 52, 34 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 21 )
+region = Rect2( 104, 0, 52, 34 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 21 )
+region = Rect2( 52, 0, 52, 34 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 21 )
+region = Rect2( 156, 0, 52, 34 )
+
+[sub_resource type="StyleBoxTexture" id=66]
+texture = ExtResource( 24 )
+region_rect = Rect2( 144, 0, 48, 64 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="Theme" id=38]
+CheckButton/icons/off = SubResource( 62 )
+CheckButton/icons/off_disabled = SubResource( 63 )
+CheckButton/icons/on = SubResource( 64 )
+CheckButton/icons/on_disabled = SubResource( 65 )
+CheckButton/styles/focus = SubResource( 66 )
+
+[sub_resource type="InputEventAction" id=58]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=59]
+shortcut = SubResource( 58 )
+
+[sub_resource type="InputEventAction" id=60]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=61]
+shortcut = SubResource( 60 )
+
+[sub_resource type="CanvasItemMaterial" id=76]
+blend_mode = 3
+
+[sub_resource type="StyleBoxFlat" id=78]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.0431373, 0.109804, 0.172549, 0.666667 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id=79]
+
+[sub_resource type="DynamicFont" id=82]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 3
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=83]
+content_margin_left = 4.0
+content_margin_right = 6.0
+
+[sub_resource type="StyleBoxEmpty" id=92]
+
+[sub_resource type="StyleBoxEmpty" id=93]
+
+[sub_resource type="AtlasTexture" id=94]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=95]
+atlas = ExtResource( 17 )
+region = Rect2( 72, 0, 36, 36 )
+
+[sub_resource type="AtlasTexture" id=96]
+atlas = ExtResource( 17 )
+region = Rect2( 36, 0, 36, 36 )
+
+[sub_resource type="DynamicFont" id=77]
+size = 48
+outline_size = 2
+outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=88]
+size = 32
+outline_size = 2
+outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=85]
+size = 64
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 25 )
+
+[sub_resource type="DynamicFont" id=89]
+size = 64
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 25 )
+
+[sub_resource type="DynamicFont" id=80]
+size = 80
+outline_size = 2
+outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=75]
+size = 64
+outline_size = 2
+outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 13 )
+
+[sub_resource type="StyleBoxTexture" id=87]
+texture = ExtResource( 14 )
+region_rect = Rect2( 128, 0, 128, 128 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 16.0
+
+[sub_resource type="DynamicFont" id=90]
+size = 64
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 15 )
+
+[sub_resource type="Theme" id=91]
+LineEdit/fonts/font = SubResource( 90 )
+LineEdit/styles/normal = SubResource( 87 )
+
+[sub_resource type="DynamicFont" id=81]
+size = 64
+outline_size = 2
+outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 13 )
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("background/planet:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("background/planet:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("background/papers:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("background/papers:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("background/ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("background/ColorRect2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "credits"
+tracks/0/type = "value"
+tracks/0/path = NodePath("background/ColorRect2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "initial"
+length = 300.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("background/planet:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 300 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1300, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("background/planet:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("background/papers:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("background/ColorRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("background/ColorRect2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "options"
+tracks/0/type = "value"
+tracks/0/path = NodePath("background/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("background/planet:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "saves"
+tracks/0/type = "value"
+tracks/0/path = NodePath("background/papers:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("background/papers:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.380392, 0.384314, 0.517647, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("background/planet:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 29 )
+region = Rect2( 4200, 0, 700, 400 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 29 )
+region = Rect2( 0, 0, 700, 400 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 29 )
+region = Rect2( 3500, 0, 700, 400 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 29 )
+region = Rect2( 2800, 0, 700, 400 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 29 )
+region = Rect2( 2100, 0, 700, 400 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 29 )
+region = Rect2( 1400, 0, 700, 400 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 29 )
+region = Rect2( 700, 0, 700, 400 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 27 )
+region = Rect2( 700, 0, 700, 400 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 27 )
+region = Rect2( 0, 0, 700, 400 )
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("cloud1:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 736 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("cloud2:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 21 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("cloud2:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 736 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("cloud1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("cloud2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("background:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("background:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("paper1:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("paper3:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("paper2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("paper4:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("paper5:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("fragment1:rect_position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 736 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("fragment2:rect_position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 736 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("fragment1:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("fragment2:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("paperSound:playing")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("ColorRect:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("ColorRect:material:shader_param/circle_size")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("../options:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("../options:margin_top")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "credits"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:material:shader_param/circle_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.7 ),
+"transitions": PoolRealArray( 1, 2.37841, 0.5 ),
+"update": 0,
+"values": [ 1.0, 1.0, 0.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+}, {
+"args": [  ],
+"method": "transitionFinish"
+} ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "initial"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("cloud1:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 0.732042, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 736 ), Vector2( 0, -900 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("cloud2:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 1.1 ),
+"transitions": PoolRealArray( 1.6245, 0.482969, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 736 ), Vector2( 0, 536 ), Vector2( 0, -900 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("cloud1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("cloud2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.5, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+}, {
+"args": [  ],
+"method": "transitionFinish"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ColorRect:material:shader_param/circle_size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ColorRect:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "options"
+length = 1.55
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("fragment1:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 0.353554, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 736 ), Vector2( 0, -1000 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("fragment2:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 1.5 ),
+"transitions": PoolRealArray( 1, 0.277393, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 736 ), Vector2( 0, 736 ), Vector2( 0, -1000 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3, 1.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+}, {
+"args": [  ],
+"method": "transitionFinish"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("fragment1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("fragment2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../options:margin_top")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.55, 0.95 ),
+"transitions": PoolRealArray( 1, 0.450625, 1 ),
+"update": 0,
+"values": [ 700, 700, 0.0 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "saves"
+length = 2.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.7, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+}, {
+"args": [  ],
+"method": "transitionFinish"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("background:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 1.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("background:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.4 ),
+"transitions": PoolRealArray( 0.574349, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("paper1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.7, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("paper3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.4, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("paper2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1.6, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("paper4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.2, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("paper5:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.8, 1.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("paperSound:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 2.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 700, 500 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 30 )
+region = Rect2( 700, 0, 700, 500 )
+
+[sub_resource type="Shader" id=53]
+code = "// CC0 licence
+// Credit Bramwell Williams
+
+shader_type canvas_item;
+
+uniform float circle_size : hint_range(0,1) = 0.5f;
+
+void fragment(){
+    if (distance(vec2(0.5,0.5), UV) < circle_size){
+        COLOR = vec4(1, 1, 1, 0);
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id=54]
+shader = SubResource( 53 )
+shader_param/circle_size = 1.0
+
+[sub_resource type="DynamicFont" id=73]
 size = 64
 outline_size = 4
-outline_color = Color( 0.290196, 0.133333, 0.188235, 1 )
-extra_spacing_char = 4
-font_data = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 32
-outline_size = 2
-outline_color = Color( 0.290196, 0.133333, 0.188235, 1 )
-extra_spacing_char = 4
-font_data = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 32
-outline_size = 2
-outline_color = Color( 0.478431, 0.611765, 0.686275, 1 )
-extra_spacing_char = 4
-font_data = ExtResource( 9 )
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -16
+extra_spacing_bottom = -8
+extra_spacing_char = 6
+font_data = ExtResource( 25 )
 
 [node name="menu" type="CanvasLayer"]
+layer = 2
 script = ExtResource( 5 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.0156863, 0.0117647, 0.027451, 1 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -82,648 +1235,1010 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
 script = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="initial"]
-anchor_left = 0.223
-anchor_top = 0.152
-anchor_right = 0.764
-anchor_bottom = 0.391
-margin_left = 0.496979
-margin_top = 0.127991
-margin_right = 0.195923
-margin_bottom = 0.223969
+[node name="MarginContainer" type="MarginContainer" parent="initial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 96
+custom_constants/margin_top = 64
+custom_constants/margin_left = 96
+custom_constants/margin_bottom = 64
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="initial/MarginContainer"]
+margin_left = 96.0
+margin_top = 64.0
+margin_right = 1265.0
+margin_bottom = 680.0
+custom_constants/separation = 32
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="initial/MarginContainer/VBoxContainer2"]
+margin_left = 344.0
+margin_right = 824.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 480, 224 )
 rect_pivot_offset = Vector2( 368, 0 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
 texture = ExtResource( 8 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="initial"]
-anchor_left = 0.376194
-anchor_top = 0.5
-anchor_right = 0.61058
-anchor_bottom = 0.722826
-
-[node name="start" parent="initial/VBoxContainer" instance=ExtResource( 7 )]
-text = "Start"
-
-[node name="HSeparator" type="HSeparator" parent="initial/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 76.0
-margin_right = 319.0
-margin_bottom = 88.0
-custom_constants/separation = 12
-
-[node name="options" parent="initial/VBoxContainer" instance=ExtResource( 7 )]
-margin_top = 92.0
-margin_bottom = 164.0
-text = "Options"
-
-[node name="HSeparator2" type="HSeparator" parent="initial/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 168.0
-margin_right = 319.0
-margin_bottom = 180.0
-custom_constants/separation = 12
-
-[node name="credits" parent="initial/VBoxContainer" instance=ExtResource( 7 )]
-margin_top = 184.0
-margin_bottom = 256.0
-text = "Credits"
-
-[node name="options" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_scale = Vector2( 1e-05, 1e-05 )
-rect_pivot_offset = Vector2( 680.5, 368 )
-script = ExtResource( 3 )
-
-[node name="Panel" type="Panel" parent="options"]
-anchor_left = 0.341
-anchor_top = 0.196
-anchor_right = 0.658
-anchor_bottom = 0.804
-margin_left = -0.101013
-margin_top = -0.256012
-margin_right = 0.461914
-margin_bottom = 0.255981
-custom_styles/panel = SubResource( 3 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="options/Panel"]
-modulate = Color( 0.945098, 0.988235, 1, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -32.0
-
-[node name="Label" type="Label" parent="options/Panel/VBoxContainer"]
-margin_right = 367.0
-margin_bottom = 51.0
-custom_fonts/font = SubResource( 2 )
-text = "Options"
-align = 1
-valign = 1
-
-[node name="HSeparator" type="HSeparator" parent="options/Panel/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 55.0
-margin_right = 367.0
-margin_bottom = 87.0
-custom_constants/separation = 32
-
-[node name="HBoxContainer" type="HBoxContainer" parent="options/Panel/VBoxContainer"]
-margin_top = 91.0
-margin_right = 367.0
-margin_bottom = 125.0
+[node name="VBoxContainer" type="VBoxContainer" parent="initial/MarginContainer/VBoxContainer2"]
+margin_top = 256.0
+margin_right = 1169.0
+margin_bottom = 616.0
+grow_horizontal = 2
+size_flags_vertical = 7
+custom_constants/separation = 8
 alignment = 1
 
-[node name="Label2" type="Label" parent="options/Panel/VBoxContainer/HBoxContainer"]
-margin_left = 11.0
-margin_top = 4.0
-margin_right = 215.0
-margin_bottom = 30.0
-custom_colors/font_color = Color( 0.988235, 0.976471, 0.87451, 1 )
-custom_fonts/font = SubResource( 7 )
-text = "Simple Lights"
+[node name="start" type="Button" parent="initial/MarginContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 443.0
+margin_right = 725.0
+margin_bottom = 84.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "mn_start"
+
+[node name="options" type="Button" parent="initial/MarginContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 469.0
+margin_top = 92.0
+margin_right = 699.0
+margin_bottom = 176.0
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "mn_opt"
+
+[node name="credits" type="Button" parent="initial/MarginContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 467.0
+margin_top = 184.0
+margin_right = 701.0
+margin_bottom = 268.0
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "mn_cre"
+
+[node name="exit" type="Button" parent="initial/MarginContainer/VBoxContainer2/VBoxContainer"]
+margin_left = 313.0
+margin_top = 276.0
+margin_right = 855.0
+margin_bottom = 360.0
+size_flags_horizontal = 6
+theme = SubResource( 45 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+shortcut = SubResource( 57 )
+text = "player_conf_quit"
+
+[node name="options" type="MarginContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 256
+custom_constants/margin_top = 64
+custom_constants/margin_left = 256
+custom_constants/margin_bottom = 64
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="options"]
+modulate = Color( 0.945098, 0.988235, 1, 1 )
+margin_left = 256.0
+margin_top = 64.0
+margin_right = 1105.0
+margin_bottom = 672.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="options/VBoxContainer"]
+margin_top = 122.0
+margin_right = 849.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 2 )
+text = "mn_opt"
 align = 1
 valign = 1
 
-[node name="VSeparator" type="VSeparator" parent="options/Panel/VBoxContainer/HBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 219.0
-margin_right = 299.0
-margin_bottom = 34.0
-custom_constants/separation = 80
+[node name="HBoxContainer3" type="HBoxContainer" parent="options/VBoxContainer"]
+margin_top = 197.0
+margin_right = 849.0
+margin_bottom = 377.0
+custom_constants/separation = 128
 
-[node name="CheckButton" parent="options/Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 22 )]
-margin_left = 303.0
-margin_right = 355.0
-align = 2
-icon_align = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="options/VBoxContainer/HBoxContainer3"]
+margin_right = 360.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+custom_constants/separation = 4
 
-[node name="buttonMenu" parent="options/Panel" instance=ExtResource( 7 )]
-margin_left = 144.0
-margin_top = 479.002
-margin_right = 320.0
-margin_bottom = 551.002
-rect_min_size = Vector2( 144, 72 )
-text = "Back"
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="Label3" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_right = 360.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_opt_music"
+valign = 1
 
-[node name="saves" type="Control" parent="."]
+[node name="music" type="HSlider" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 30.0
+margin_right = 360.0
+margin_bottom = 48.0
+custom_icons/grabber_highlight = SubResource( 72 )
+custom_icons/grabber = SubResource( 9 )
+custom_styles/slider = SubResource( 10 )
+custom_styles/grabber_area_highlight = SubResource( 11 )
+custom_styles/grabber_area = SubResource( 11 )
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer/music"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_scale = Vector2( 1e-05, 1e-05 )
+margin_left = -2.0
+margin_right = 2.0
+texture = SubResource( 12 )
+patch_margin_left = 10
+patch_margin_top = 4
+patch_margin_right = 10
+patch_margin_bottom = 6
+
+[node name="Label4" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 52.0
+margin_right = 360.0
+margin_bottom = 78.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_opt_sfx"
+valign = 1
+
+[node name="sound" type="HSlider" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 82.0
+margin_right = 360.0
+margin_bottom = 100.0
+custom_icons/grabber_highlight = SubResource( 72 )
+custom_icons/grabber = SubResource( 51 )
+custom_styles/slider = SubResource( 10 )
+custom_styles/grabber_area_highlight = SubResource( 11 )
+custom_styles/grabber_area = SubResource( 11 )
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer/sound"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.0
+margin_right = 2.0
+texture = SubResource( 12 )
+patch_margin_left = 10
+patch_margin_top = 4
+patch_margin_right = 10
+patch_margin_bottom = 6
+
+[node name="Label5" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 104.0
+margin_right = 360.0
+margin_bottom = 130.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_lang"
+valign = 1
+
+[node name="languages" type="OptionButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_top = 134.0
+margin_right = 360.0
+margin_bottom = 160.0
+theme = SubResource( 49 )
+custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 46 )
+custom_styles/pressed = SubResource( 47 )
+custom_styles/focus = SubResource( 46 )
+custom_styles/disabled = SubResource( 47 )
+custom_styles/normal = SubResource( 48 )
+text = "mn_lang"
+clip_text = true
+icon_align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="options/VBoxContainer/HBoxContainer3"]
+margin_left = 488.0
+margin_right = 849.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+custom_constants/separation = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_right = 361.0
+margin_bottom = 42.0
+hint_tooltip = "uses simple light to improve performance."
+
+[node name="Label" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
+margin_top = 8.0
+margin_right = 140.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_opt_sl"
+valign = 1
+
+[node name="simpleLight" type="CheckButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
+margin_left = 297.0
+margin_right = 361.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+size_flags_vertical = 5
+theme = SubResource( 38 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 46.0
+margin_right = 361.0
+margin_bottom = 88.0
+
+[node name="Label" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
+margin_top = 8.0
+margin_right = 146.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_opt_sh"
+align = 1
+valign = 1
+
+[node name="shadow" type="CheckButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2"]
+margin_left = 297.0
+margin_right = 361.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+theme = SubResource( 38 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 92.0
+margin_right = 361.0
+margin_bottom = 134.0
+
+[node name="Label" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
+margin_top = 8.0
+margin_right = 134.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_vsync"
+align = 1
+valign = 1
+
+[node name="vsync" type="CheckButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3"]
+margin_left = 297.0
+margin_right = 361.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+theme = SubResource( 38 )
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 138.0
+margin_right = 361.0
+margin_bottom = 180.0
+
+[node name="Label" type="Label" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4"]
+margin_top = 8.0
+margin_right = 140.0
+margin_bottom = 34.0
+custom_colors/font_color = Color( 0.87451, 0.976471, 0.988235, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "mn_opt_cl"
+align = 1
+valign = 1
+
+[node name="color" type="CheckButton" parent="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4"]
+margin_left = 297.0
+margin_right = 361.0
+margin_bottom = 42.0
+size_flags_horizontal = 10
+theme = SubResource( 38 )
+
+[node name="exit" type="Button" parent="options/VBoxContainer"]
+margin_left = 286.0
+margin_top = 401.0
+margin_right = 562.0
+margin_bottom = 485.0
+focus_neighbour_left = NodePath("../HBoxContainer3/VBoxContainer/music")
+focus_neighbour_right = NodePath("../HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight")
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+shortcut = SubResource( 59 )
+text = "mn_back"
+
+[node name="saves" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
 script = ExtResource( 4 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="saves"]
-anchor_left = 0.105512
-anchor_top = 0.152
-anchor_right = 0.893
-anchor_bottom = 0.826087
-margin_left = 0.397995
-margin_top = -8.87201
-margin_right = 0.626953
-margin_bottom = -9.0
+[node name="saves" type="MarginContainer" parent="saves"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 96
+custom_constants/margin_top = 64
+custom_constants/margin_left = 96
+custom_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="saves/saves"]
+margin_left = 96.0
+margin_top = 64.0
+margin_right = 1300.0
+margin_bottom = 672.0
+custom_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="saves/saves/VBoxContainer"]
+margin_right = 1204.0
+margin_bottom = 408.0
+focus_neighbour_bottom = NodePath("../HBoxContainer2")
+size_flags_vertical = 3
+custom_constants/separation = 50
 alignment = 1
 
-[node name="saveSlot" parent="saves/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 65.0
-margin_right = 340.0
-menuPath = NodePath("../../..")
-
-[node name="VSeparator" type="VSeparator" parent="saves/HBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 344.0
-margin_right = 394.0
-margin_bottom = 496.0
-custom_constants/separation = 50
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="saveSlot2" parent="saves/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 398.0
-margin_right = 673.0
-saveID = 2
-menuPath = NodePath("../../..")
-
-[node name="VSeparator2" type="VSeparator" parent="saves/HBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 677.0
-margin_right = 727.0
-margin_bottom = 496.0
-custom_constants/separation = 50
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="saveSlot3" parent="saves/HBoxContainer" instance=ExtResource( 6 )]
-margin_left = 731.0
-margin_right = 1006.0
-saveID = 3
-menuPath = NodePath("../../..")
-
-[node name="buttonMenu" parent="saves" instance=ExtResource( 7 )]
-anchor_left = 0.434974
-anchor_top = 0.857337
-anchor_right = 0.564291
-anchor_bottom = 0.955163
-margin_right = 0.0
-margin_bottom = 0.0
-rect_min_size = Vector2( 176, 72 )
-text = "Back"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Credits" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_scale = Vector2( 1e-05, 1e-05 )
-rect_pivot_offset = Vector2( 680.5, 368 )
-script = ExtResource( 20 )
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Credits"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 200.0
-margin_top = 50.0
-margin_right = -200.0
-scroll_horizontal_enabled = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Credits/ScrollContainer"]
-margin_right = 961.0
-margin_bottom = 2294.0
-rect_min_size = Vector2( 961, 1864 )
-
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_right = 961.0
-margin_bottom = 60.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Arts and animations"
-align = 1
-
-[node name="HSeparator2" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 64.0
-margin_right = 961.0
-margin_bottom = 76.0
-custom_constants/separation = 12
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 80.0
-margin_right = 961.0
-margin_bottom = 143.0
-
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_right = 200.0
-margin_bottom = 63.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "DOGael Arts:
-"
-
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 204.0
-margin_right = 606.0
-margin_bottom = 63.0
-custom_fonts/font = ExtResource( 10 )
-text = "most of Sprites, Tilesets
-and animations"
-
-[node name="HSeparator3" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 147.0
-margin_right = 961.0
-margin_bottom = 171.0
-custom_constants/separation = 24
-
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 175.0
-margin_right = 961.0
-margin_bottom = 235.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Paints Collab"
-align = 1
-
-[node name="Xulico" parent="Credits/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 239.0
-margin_bottom = 328.0
-images = [ ExtResource( 13 ), ExtResource( 14 ) ]
-links = {
-"Instragam": "https://www.instagram.com/xulico.pixel?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D"
-}
-Name = "Xulico"
-
-[node name="Andrew" parent="Credits/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 332.0
-margin_bottom = 421.0
-images = [ ExtResource( 11 ) ]
-links = {
-"Andrew": "https://twitter.com/Andrew_px1"
-}
-Name = "Andrew"
-
-[node name="Kumuri" parent="Credits/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 425.0
-margin_bottom = 514.0
-images = [ ExtResource( 15 ) ]
-links = {
-"Artstation": "https://www.artstation.com/kumorikek/profile"
-}
-Name = "Kumuri"
-
-[node name="Tiago" parent="Credits/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 518.0
-margin_bottom = 607.0
-images = [ ExtResource( 17 ) ]
-links = {
-"Artstation": "https://www.artstation.com/zoroaki"
-}
-Name = "Tiago"
-
-[node name="glent" parent="Credits/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 611.0
-margin_bottom = 700.0
-images = [ ExtResource( 16 ) ]
-links = {
-"Artstation": "https://www.artstation.com/Glentgm",
-"Commisions": "https://vgen.co/glentgm"
-}
-Name = "GlentGm"
-
-[node name="Fari" parent="Credits/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 704.0
-margin_bottom = 793.0
-images = [ ExtResource( 18 ) ]
-links = {
-"Artstation": "https://www.artstation.com/fari16",
-"Twitter": "https://twitter.com/PixelFari"
-}
-Name = "Fari"
-
-[node name="JoãoRicardo" parent="Credits/ScrollContainer/VBoxContainer" instance=ExtResource( 12 )]
-margin_top = 797.0
-margin_bottom = 886.0
-images = [ ExtResource( 19 ) ]
-links = {
-"itch.io": "https://joaoricardotv.itch.io/"
-}
-Name = "João Ricardo"
-
-[node name="label" type="Label" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 890.0
-margin_right = 961.0
-margin_bottom = 986.0
-custom_fonts/font = SubResource( 5 )
-text = "OBS.: that is a reference of a manga that he made, the sprites has made by DOGael
-"
-autowrap = true
-
-[node name="HSeparator4" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 990.0
-margin_right = 961.0
-margin_bottom = 1070.0
-custom_constants/separation = 80
-
-[node name="Label3" type="Label" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1074.0
-margin_right = 961.0
-margin_bottom = 1134.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Programers"
-align = 1
-
-[node name="HSeparator5" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1138.0
-margin_right = 961.0
-margin_bottom = 1150.0
-custom_constants/separation = 12
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1154.0
-margin_right = 961.0
-margin_bottom = 1184.0
-
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 214.0
-margin_bottom = 30.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "DOGael Arts: "
-
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 218.0
-margin_right = 430.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 10 )
-text = "Misael Victor"
-
-[node name="HSeparator6" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1188.0
-margin_right = 961.0
-margin_bottom = 1268.0
-custom_constants/separation = 80
-
-[node name="Label4" type="Label" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1272.0
-margin_right = 961.0
-margin_bottom = 1332.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Game Designs"
-align = 1
-
-[node name="HSeparator7" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1336.0
-margin_right = 961.0
-margin_bottom = 1348.0
-custom_constants/separation = 12
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1352.0
-margin_right = 961.0
-margin_bottom = 1382.0
-
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer3"]
-margin_right = 214.0
-margin_bottom = 30.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "DOGael Arts: "
-
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer3"]
-margin_left = 218.0
-margin_right = 430.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 10 )
-text = "Misael Victor"
-
-[node name="HSeparator8" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1386.0
-margin_right = 961.0
-margin_bottom = 1466.0
-custom_constants/separation = 80
-
-[node name="Label5" type="Label" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1470.0
-margin_right = 961.0
-margin_bottom = 1530.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Level Designs"
-align = 1
-
-[node name="HSeparator9" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1534.0
-margin_right = 961.0
-margin_bottom = 1546.0
-custom_constants/separation = 12
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1550.0
-margin_right = 961.0
-margin_bottom = 1580.0
-
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer4"]
-margin_right = 214.0
-margin_bottom = 30.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "DOGael Arts: "
-
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer4"]
-margin_left = 218.0
-margin_right = 430.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 10 )
-text = "Misael Victor"
-
-[node name="HSeparator10" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1584.0
-margin_right = 961.0
-margin_bottom = 1664.0
-custom_constants/separation = 80
-
-[node name="Label6" type="Label" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1668.0
-margin_right = 961.0
-margin_bottom = 1728.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Sound Designs"
-align = 1
-
-[node name="HSeparator11" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1732.0
-margin_right = 961.0
-margin_bottom = 1744.0
-custom_constants/separation = 12
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1748.0
-margin_right = 961.0
-margin_bottom = 1778.0
-
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer5"]
-margin_right = 214.0
-margin_bottom = 30.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "DOGael Arts: "
-
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer5"]
-margin_left = 218.0
-margin_right = 430.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 10 )
-text = "Misael Victor"
-
-[node name="HSeparator12" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1782.0
-margin_right = 961.0
-margin_bottom = 1862.0
-custom_constants/separation = 80
-
-[node name="Label7" type="Label" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1866.0
-margin_right = 961.0
-margin_bottom = 1926.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Special thanks for"
-align = 1
-
-[node name="HSeparator13" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 1930.0
-margin_right = 961.0
-margin_bottom = 1942.0
-custom_constants/separation = 12
-
-[node name="HBoxContainer6" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 1946.0
-margin_right = 961.0
-margin_bottom = 2009.0
-
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer6"]
+[node name="contract" parent="saves/saves/VBoxContainer/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 144.0
 margin_right = 416.0
-margin_bottom = 63.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "Berari, Nokio and biely: 
-"
+margin_bottom = 408.0
+focus_neighbour_right = NodePath("../contract2")
+focus_neighbour_bottom = NodePath("../../HBoxContainer2/create")
 
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer6"]
-margin_left = 420.0
-margin_right = 864.0
-margin_bottom = 63.0
-custom_fonts/font = ExtResource( 10 )
-text = "helped me to improve in my
-programmer skills"
+[node name="contract2" parent="saves/saves/VBoxContainer/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 466.0
+margin_right = 738.0
+margin_bottom = 408.0
+focus_neighbour_left = NodePath("../contract")
+focus_neighbour_right = NodePath("../contract3")
+focus_neighbour_bottom = NodePath("../../HBoxContainer2/create")
+saveID = 2
 
-[node name="HBoxContainer7" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 2013.0
-margin_right = 961.0
-margin_bottom = 2076.0
+[node name="contract3" parent="saves/saves/VBoxContainer/HBoxContainer" instance=ExtResource( 6 )]
+margin_left = 788.0
+margin_right = 1060.0
+margin_bottom = 408.0
+focus_neighbour_left = NodePath("../contract2")
+focus_neighbour_bottom = NodePath("../../HBoxContainer2/create")
+saveID = 3
 
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer7"]
-margin_right = 306.0
-margin_bottom = 63.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "Gowth and SrBurns
-Brothers: "
+[node name="HBoxContainer2" type="HBoxContainer" parent="saves/saves/VBoxContainer"]
+margin_top = 424.0
+margin_right = 1204.0
+margin_bottom = 508.0
+custom_constants/separation = 50
+alignment = 1
 
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer7"]
-margin_left = 310.0
-margin_right = 786.0
-margin_bottom = 63.0
-custom_fonts/font = ExtResource( 10 )
-text = "helped to choose the name of
-the game"
+[node name="create" type="Button" parent="saves/saves/VBoxContainer/HBoxContainer2"]
+margin_right = 328.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../enter")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../erase")
+focus_neighbour_bottom = NodePath("../../exit")
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "mn_create"
 
-[node name="HBoxContainer8" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 2080.0
-margin_right = 961.0
-margin_bottom = 2176.0
+[node name="erase" type="Button" parent="saves/saves/VBoxContainer/HBoxContainer2"]
+margin_left = 378.0
+margin_right = 860.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../create")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../enter")
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "mn_start_erase"
 
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer8"]
-margin_right = 410.0
+[node name="enter" type="Button" parent="saves/saves/VBoxContainer/HBoxContainer2"]
+margin_left = 910.0
+margin_right = 1204.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../erase")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../create")
+focus_neighbour_bottom = NodePath("../../exit")
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "mn_enter"
+
+[node name="exit" type="Button" parent="saves/saves/VBoxContainer"]
+margin_left = 464.0
+margin_top = 524.0
+margin_right = 740.0
+margin_bottom = 608.0
+focus_neighbour_top = NodePath("../HBoxContainer2/create")
+size_flags_horizontal = 6
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+shortcut = SubResource( 61 )
+text = "mn_back"
+
+[node name="enter" type="ColorRect" parent="saves"]
+visible = false
+material = SubResource( 76 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.368627, 0.439216, 0.572549, 0.196078 )
+
+[node name="MarginContainer" type="MarginContainer" parent="saves/enter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="lobby" type="HBoxContainer" parent="saves/enter/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 1329.0
+margin_bottom = 704.0
+custom_constants/separation = 32
+
+[node name="ColorRect" type="PanelContainer" parent="saves/enter/MarginContainer/lobby"]
+margin_right = 504.0
+margin_bottom = 672.0
+rect_min_size = Vector2( 504, 0 )
+size_flags_horizontal = 0
+custom_styles/panel = SubResource( 78 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby/ColorRect"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 496.0
+margin_bottom = 664.0
+theme = SubResource( 79 )
+
+[node name="Label" type="Label" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
+margin_right = 488.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 12 )
+text = "Your IP: 128.128.128
+Chat:"
+
+[node name="chat" type="RichTextLabel" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
+margin_top = 55.0
+margin_right = 488.0
+margin_bottom = 580.0
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 82 )
+custom_styles/focus = SubResource( 83 )
+custom_styles/normal = SubResource( 83 )
+bbcode_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
+margin_top = 584.0
+margin_right = 488.0
+margin_bottom = 656.0
+custom_constants/separation = 8
+
+[node name="send" type="LineEdit" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer"]
+margin_right = 408.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 0, 72 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 12 )
+custom_styles/read_only = SubResource( 92 )
+custom_styles/focus = SubResource( 93 )
+custom_styles/normal = ExtResource( 11 )
+placeholder_text = "Text chat"
+placeholder_alpha = 0.691
+
+[node name="sendButton" type="TextureButton" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 416.0
+margin_right = 488.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture_normal = SubResource( 94 )
+texture_pressed = SubResource( 95 )
+texture_hover = SubResource( 96 )
+expand = true
+
+[node name="info" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby"]
+margin_left = 536.0
+margin_right = 1297.0
+margin_bottom = 672.0
+size_flags_horizontal = 3
+custom_constants/separation = 96
+
+[node name="a" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
+margin_right = 761.0
+margin_bottom = 67.0
+size_flags_vertical = 0
+
+[node name="playerList" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby/info/a"]
+margin_right = 235.0
+margin_bottom = 67.0
+
+[node name="Label" type="Label" parent="saves/enter/MarginContainer/lobby/info/a/playerList"]
+margin_right = 235.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 77 )
+text = "Player list"
+
+[node name="list" type="Label" parent="saves/enter/MarginContainer/lobby/info/a/playerList"]
+margin_top = 43.0
+margin_right = 235.0
+margin_bottom = 67.0
+size_flags_vertical = 2
+custom_fonts/font = SubResource( 88 )
+text = "Players"
+
+[node name="characters" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
+margin_top = 163.0
+margin_right = 761.0
+margin_bottom = 492.0
+size_flags_vertical = 3
+
+[node name="buttons" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
+margin_top = 588.0
+margin_right = 761.0
+margin_bottom = 672.0
+alignment = 1
+
+[node name="Logout" type="Button" parent="saves/enter/MarginContainer/lobby/info/buttons"]
+margin_right = 150.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../erase")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../erase")
+focus_neighbour_bottom = NodePath("../../exit")
+size_flags_horizontal = 2
+size_flags_vertical = 5
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 85 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "Exit"
+
+[node name="Start" type="Button" parent="saves/enter/MarginContainer/lobby/info/buttons"]
+margin_left = 581.0
+margin_right = 761.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../erase")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../erase")
+focus_neighbour_bottom = NodePath("../../exit")
+size_flags_horizontal = 10
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 89 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+disabled = true
+text = "Start"
+
+[node name="findParty" type="VBoxContainer" parent="saves/enter/MarginContainer"]
+visible = false
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 1329.0
+margin_bottom = 704.0
+
+[node name="Label" type="Label" parent="saves/enter/MarginContainer/findParty"]
+margin_right = 1297.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 80 )
+text = "Find Party"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="saves/enter/MarginContainer/findParty"]
+margin_top = 73.0
+margin_right = 1297.0
+margin_bottom = 169.0
+custom_constants/separation = 48
+
+[node name="IPenter" type="LineEdit" parent="saves/enter/MarginContainer/findParty/HBoxContainer"]
+margin_right = 673.0
 margin_bottom = 96.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "the GlentPixel Community:
+rect_min_size = Vector2( 0, 72 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 75 )
+custom_styles/normal = SubResource( 87 )
+placeholder_text = "Enter LobbyID"
 
-"
-
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer8"]
-margin_left = 414.0
-margin_right = 938.0
+[node name="enter" type="Button" parent="saves/enter/MarginContainer/findParty/HBoxContainer"]
+margin_left = 721.0
+margin_right = 909.0
 margin_bottom = 96.0
-custom_fonts/font = ExtResource( 10 )
-text = "helped to improve my pixel art
-skills and make a collab for the
-paintings"
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../erase")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../erase")
+focus_neighbour_bottom = NodePath("../../exit")
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "enter"
 
-[node name="HBoxContainer9" type="HBoxContainer" parent="Credits/ScrollContainer/VBoxContainer"]
-margin_top = 2180.0
-margin_right = 961.0
-margin_bottom = 2210.0
+[node name="SpinBox" type="SpinBox" parent="saves/enter/MarginContainer/findParty/HBoxContainer"]
+margin_left = 957.0
+margin_right = 1297.0
+margin_bottom = 96.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = SubResource( 91 )
+custom_icons/updown = ExtResource( 16 )
+min_value = 1.0
+value = 1.0
+rounded = true
+prefix = "page:"
 
-[node name="Label" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer9"]
-margin_right = 116.0
-margin_bottom = 30.0
-custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
-custom_fonts/font = SubResource( 6 )
-text = "Maple: "
+[node name="Panel" type="PanelContainer" parent="saves/enter/MarginContainer/findParty"]
+margin_top = 173.0
+margin_right = 1297.0
+margin_bottom = 584.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 78 )
 
-[node name="Label2" type="Label" parent="Credits/ScrollContainer/VBoxContainer/HBoxContainer9"]
-margin_left = 120.0
-margin_right = 874.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 10 )
-text = "helped to fix the english mistakes that I made"
+[node name="VBoxContainer2" type="VBoxContainer" parent="saves/enter/MarginContainer/findParty/Panel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1289.0
+margin_bottom = 403.0
 
-[node name="HSeparator14" type="HSeparator" parent="Credits/ScrollContainer/VBoxContainer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 2214.0
-margin_right = 961.0
-margin_bottom = 2294.0
-custom_constants/separation = 80
+[node name="Label2" type="Label" parent="saves/enter/MarginContainer/findParty/Panel/VBoxContainer2"]
+margin_right = 1281.0
+margin_bottom = 54.0
+custom_fonts/font = SubResource( 81 )
+text = "Servers Found:"
+align = 1
+valign = 1
 
-[node name="buttonMenu" parent="Credits" instance=ExtResource( 7 )]
-anchor_left = 0.0235121
-anchor_top = 0.0434783
-anchor_right = 0.170463
-anchor_bottom = 0.141304
-margin_right = 0.0
-margin_bottom = 0.0
-rect_min_size = Vector2( 200, 72 )
-text = "exit"
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="lobbies" type="VBoxContainer" parent="saves/enter/MarginContainer/findParty/Panel/VBoxContainer2"]
+margin_top = 58.0
+margin_right = 1281.0
+margin_bottom = 395.0
+size_flags_vertical = 3
 
-[connection signal="pressed" from="initial/VBoxContainer/start" to="initial" method="_on_start_pressed"]
-[connection signal="pressed" from="initial/VBoxContainer/options" to="initial" method="_on_options_pressed"]
-[connection signal="pressed" from="initial/VBoxContainer/credits" to="initial" method="_on_credits_pressed"]
-[connection signal="toggled" from="options/Panel/VBoxContainer/HBoxContainer/CheckButton" to="options" method="_on_simpleLight_toggled"]
-[connection signal="pressed" from="options/Panel/buttonMenu" to="options" method="_on_exitOptions_pressed"]
-[connection signal="pressed" from="saves/buttonMenu" to="saves" method="_on_ExitSaves_pressed"]
-[connection signal="pressed" from="Credits/buttonMenu" to="Credits" method="_on_buttonMenu_pressed"]
+[node name="exit" type="Button" parent="saves/enter/MarginContainer/findParty"]
+margin_left = 573.0
+margin_top = 588.0
+margin_right = 723.0
+margin_bottom = 672.0
+rect_pivot_offset = Vector2( -290, 68 )
+focus_neighbour_left = NodePath("../erase")
+focus_neighbour_top = NodePath("../../HBoxContainer/contract")
+focus_neighbour_right = NodePath("../erase")
+focus_neighbour_bottom = NodePath("../../exit")
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "Exit"
+
+[node name="RefleshLobbies" type="Timer" parent="saves/enter"]
+wait_time = 2.0
+
+[node name="credits" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="background" type="CanvasLayer" parent="."]
+
+[node name="planet" type="TextureRect" parent="background"]
+visible = false
+self_modulate = Color( 0.576471, 0.505882, 0.690196, 1 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_right = 9344.0
+margin_bottom = 5068.0
+texture = ExtResource( 26 )
+stretch_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="background"]
+root_node = NodePath("../..")
+autoplay = "initial"
+anims/RESET = SubResource( 18 )
+anims/credits = SubResource( 55 )
+anims/initial = SubResource( 19 )
+anims/options = SubResource( 33 )
+anims/saves = SubResource( 24 )
+
+[node name="papers" type="TextureRect" parent="background"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1400, 800 )
+texture = SubResource( 26 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="background"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.305882, 0.133333, 0.207843, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="background"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0862745, 0.0156863, 0.0156863, 1 )
+
+[node name="transition" type="CanvasLayer" parent="."]
+layer = 3
+script = ExtResource( 28 )
+
+[node name="background" type="TextureRect" parent="transition"]
+visible = false
+margin_right = 1400.0
+margin_bottom = 800.0
+texture = SubResource( 27 )
+expand = true
+stretch_mode = 5
+
+[node name="paper5" type="TextureRect" parent="transition"]
+visible = false
+margin_right = 1400.0
+margin_bottom = 800.0
+texture = SubResource( 32 )
+expand = true
+stretch_mode = 7
+
+[node name="paper4" type="TextureRect" parent="transition"]
+visible = false
+margin_right = 1400.0
+margin_bottom = 800.0
+texture = SubResource( 28 )
+expand = true
+stretch_mode = 7
+
+[node name="paper3" type="TextureRect" parent="transition"]
+visible = false
+margin_right = 1400.0
+margin_bottom = 800.0
+texture = SubResource( 29 )
+expand = true
+stretch_mode = 7
+
+[node name="paper2" type="TextureRect" parent="transition"]
+visible = false
+margin_right = 1400.0
+margin_bottom = 800.0
+texture = SubResource( 30 )
+expand = true
+stretch_mode = 7
+
+[node name="paper1" type="TextureRect" parent="transition"]
+visible = false
+margin_right = 1400.0
+margin_bottom = 800.0
+texture = SubResource( 31 )
+expand = true
+stretch_mode = 7
+
+[node name="cloud1" type="TextureRect" parent="transition"]
+visible = false
+margin_top = 736.0
+margin_right = 700.0
+margin_bottom = 1136.0
+rect_scale = Vector2( 2, 2 )
+texture = SubResource( 20 )
+stretch_mode = 7
+
+[node name="cloud2" type="TextureRect" parent="transition"]
+visible = false
+margin_top = 736.0
+margin_right = 700.0
+margin_bottom = 1136.0
+rect_scale = Vector2( 2, 2 )
+texture = SubResource( 21 )
+stretch_mode = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="transition"]
+anims/RESET = SubResource( 22 )
+anims/credits = SubResource( 52 )
+anims/initial = SubResource( 23 )
+anims/options = SubResource( 34 )
+anims/saves = SubResource( 25 )
+
+[node name="fragment1" type="TextureRect" parent="transition"]
+visible = false
+margin_top = 736.0
+margin_right = 1400.0
+margin_bottom = 1736.0
+rect_min_size = Vector2( 1400, 1000 )
+texture = SubResource( 35 )
+expand = true
+stretch_mode = 7
+
+[node name="fragment2" type="TextureRect" parent="transition"]
+visible = false
+margin_top = 736.0
+margin_right = 1400.0
+margin_bottom = 1736.0
+rect_min_size = Vector2( 1400, 1000 )
+texture = SubResource( 36 )
+expand = true
+stretch_mode = 7
+
+[node name="paperSound" type="AudioStreamPlayer" parent="transition"]
+stream = ExtResource( 9 )
+bus = "SFX"
+
+[node name="ColorRect" type="ColorRect" parent="transition"]
+visible = false
+material = SubResource( 54 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0862745, 0.0156863, 0.0156863, 1 )
+
+[node name="confirmExit" type="CanvasLayer" parent="."]
+layer = 4
+visible = false
+script = ExtResource( 10 )
+
+[node name="ColorRect" type="ColorRect" parent="confirmExit"]
+modulate = Color( 1, 1, 1, 0.501961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0941176, 0.027451, 0.121569, 1 )
+
+[node name="Panel" type="PanelContainer" parent="confirmExit"]
+self_modulate = Color( 0.529412, 0.505882, 0.588235, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -359.0
+margin_top = -40.0
+margin_right = 359.0
+margin_bottom = 40.0
+custom_styles/panel = ExtResource( 11 )
+
+[node name="margin" type="MarginContainer" parent="confirmExit/Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="confirmExit/Panel/margin"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 484.0
+margin_bottom = 160.0
+custom_constants/separation = 32
+
+[node name="Label" type="Label" parent="confirmExit/Panel/margin/VBoxContainer"]
+margin_right = 686.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 73 )
+text = "mn_exitQuestion"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="confirmExit/Panel/margin/VBoxContainer"]
+margin_top = 68.0
+margin_right = 686.0
+margin_bottom = 152.0
+
+[node name="no" type="Button" parent="confirmExit/Panel/margin/VBoxContainer/HBoxContainer"]
+margin_left = 123.0
+margin_right = 217.0
+margin_bottom = 84.0
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "_no"
+
+[node name="yes" type="Button" parent="confirmExit/Panel/margin/VBoxContainer/HBoxContainer"]
+margin_left = 453.0
+margin_right = 577.0
+margin_bottom = 84.0
+size_flags_horizontal = 6
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+text = "_yes"
+
+[connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/start" to="initial" method="_on_start_pressed"]
+[connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/options" to="initial" method="_on_options_pressed"]
+[connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/credits" to="initial" method="_on_credits_pressed"]
+[connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/exit" to="initial" method="_on_exit_pressed"]
+[connection signal="drag_ended" from="options/VBoxContainer/HBoxContainer3/VBoxContainer/music" to="options" method="_on_drag_ended"]
+[connection signal="value_changed" from="options/VBoxContainer/HBoxContainer3/VBoxContainer/music" to="options" method="_on_music_value_changed"]
+[connection signal="drag_ended" from="options/VBoxContainer/HBoxContainer3/VBoxContainer/sound" to="options" method="_on_drag_ended"]
+[connection signal="value_changed" from="options/VBoxContainer/HBoxContainer3/VBoxContainer/sound" to="options" method="_on_sound_value_changed"]
+[connection signal="item_selected" from="options/VBoxContainer/HBoxContainer3/VBoxContainer/languages" to="options" method="_on_languages_item_selected"]
+[connection signal="toggled" from="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/simpleLight" to="options" method="_on_simpleLight_toggled"]
+[connection signal="toggled" from="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer2/shadow" to="options" method="_on_shadow_toggled"]
+[connection signal="toggled" from="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer3/vsync" to="options" method="_on_vsync_toggled"]
+[connection signal="toggled" from="options/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer4/color" to="options" method="_on_color_toggled"]
+[connection signal="pressed" from="options/VBoxContainer/exit" to="options" method="_on_exit_pressed"]
+[connection signal="pressed" from="saves/saves/VBoxContainer/HBoxContainer2/create" to="saves" method="_on_createLobby_pressed"]
+[connection signal="pressed" from="saves/saves/VBoxContainer/HBoxContainer2/erase" to="saves" method="_on_erase_pressed"]
+[connection signal="pressed" from="saves/saves/VBoxContainer/HBoxContainer2/enter" to="saves" method="enterServer"]
+[connection signal="pressed" from="saves/saves/VBoxContainer/exit" to="saves" method="_on_exit_pressed"]
+[connection signal="text_entered" from="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer/send" to="saves" method="_on_send_pressed"]
+[connection signal="pressed" from="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer/sendButton" to="saves" method="_on_send_pressed"]
+[connection signal="pressed" from="saves/enter/MarginContainer/lobby/info/buttons/Logout" to="saves" method="_on_logout"]
+[connection signal="pressed" from="saves/enter/MarginContainer/lobby/info/buttons/Start" to="saves" method="_on_Start_pressed"]
+[connection signal="pressed" from="saves/enter/MarginContainer/findParty/HBoxContainer/enter" to="saves" method="_on_enter_pressed"]
+[connection signal="value_changed" from="saves/enter/MarginContainer/findParty/HBoxContainer/SpinBox" to="saves" method="_on_SpinBox_value_changed"]
+[connection signal="pressed" from="saves/enter/MarginContainer/findParty/exit" to="saves" method="_on_exitFindLobby_pressed"]
+[connection signal="timeout" from="saves/enter/RefleshLobbies" to="saves" method="_on_RefleshLobbies_timeout"]
+[connection signal="animation_started" from="transition/AnimationPlayer" to="transition" method="_on_AnimationPlayer_animation_started"]
+[connection signal="pressed" from="confirmExit/Panel/margin/VBoxContainer/HBoxContainer/no" to="confirmExit" method="_on_no_pressed"]
+[connection signal="pressed" from="confirmExit/Panel/margin/VBoxContainer/HBoxContainer/yes" to="confirmExit" method="_on_yes_pressed"]

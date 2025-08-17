@@ -1,0 +1,1471 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=1]
+[ext_resource path="res://gameplay/MENU/title.png" type="Texture" id=2]
+[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://worlds/paintWorld/sprites/credits_images/0.png" type="Texture" id=6]
+[ext_resource path="res://worlds/paintWorld/sprites/credits_images/1.png" type="Texture" id=7]
+[ext_resource path="res://worlds/paintWorld/sprites/credits_images/5.png" type="Texture" id=8]
+[ext_resource path="res://worlds/paintWorld/sprites/credits_images/4.png" type="Texture" id=9]
+[ext_resource path="res://worlds/paintWorld/sprites/credits_images/6.png" type="Texture" id=10]
+[ext_resource path="res://worlds/paintWorld/sprites/credits_images/7.png" type="Texture" id=11]
+[ext_resource path="res://gameplay/MENU/scripts/Credits.gd" type="Script" id=12]
+[ext_resource path="res://worlds/paintWorld/sprites/credits_images/2.png" type="Texture" id=13]
+[ext_resource path="res://worlds/paintWorld/sprites/credits_images/3.png" type="Texture" id=14]
+[ext_resource path="res://gameplay/MENU/creditsPaint/creditsPaint.tscn" type="PackedScene" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+outline_size = 4
+outline_color = Color( 0.290196, 0.133333, 0.188235, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+outline_size = 2
+outline_color = Color( 0.290196, 0.133333, 0.188235, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_char = 4
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+outline_size = 2
+outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
+extra_spacing_top = -4
+extra_spacing_bottom = -2
+extra_spacing_char = 4
+font_data = ExtResource( 4 )
+
+[node name="credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 680.5, 368 )
+script = ExtResource( 12 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 64
+custom_constants/margin_left = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 64.0
+margin_right = 1297.0
+margin_bottom = 2958.0
+custom_constants/separation = 8
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_right = 1233.0
+margin_bottom = 256.0
+custom_constants/separation = 256
+custom_styles/separator = SubResource( 7 )
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+margin_left = 248.0
+margin_top = 264.0
+margin_right = 984.0
+margin_bottom = 440.0
+rect_min_size = Vector2( 736, 176 )
+size_flags_horizontal = 4
+texture = ExtResource( 2 )
+expand = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 448.0
+margin_right = 1233.0
+margin_bottom = 512.0
+custom_constants/separation = 64
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 520.0
+margin_right = 1233.0
+margin_bottom = 580.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Arts and animations"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 588.0
+margin_right = 1233.0
+margin_bottom = 639.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 614.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_left = 418.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 420.0
+margin_bottom = 51.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "most of Sprites, Tilesets,
+animations, SFX and Music"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 647.0
+margin_right = 1233.0
+margin_bottom = 695.0
+custom_constants/separation = 48
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 703.0
+margin_right = 1233.0
+margin_bottom = 763.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Paints of the paintCavern (collab)"
+align = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 771.0
+margin_right = 1233.0
+margin_bottom = 1017.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 614.0
+margin_bottom = 246.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_left = 498.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Kumuri:"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_left = 510.0
+margin_top = 28.0
+margin_right = 614.0
+margin_bottom = 52.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Xulico:"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_left = 524.0
+margin_top = 56.0
+margin_right = 614.0
+margin_bottom = 107.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Glent:
+"
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_left = 486.0
+margin_top = 111.0
+margin_right = 614.0
+margin_bottom = 135.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Andrew:"
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_left = 518.0
+margin_top = 139.0
+margin_right = 614.0
+margin_bottom = 163.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Tiago:"
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_left = 534.0
+margin_top = 167.0
+margin_right = 614.0
+margin_bottom = 218.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Fari:
+"
+
+[node name="Label7" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+margin_left = 394.0
+margin_top = 222.0
+margin_right = 614.0
+margin_bottom = 246.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "João Ricardo:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 246.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_right = 444.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Bluesky: kuropx.bsky.social"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 28.0
+margin_right = 372.0
+margin_bottom = 52.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Twitter: @Xulico_pixel"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 56.0
+margin_right = 454.0
+margin_bottom = 107.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Bluesky: glentgm.bsky.social
+Artstation: Glentgm"
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 111.0
+margin_right = 370.0
+margin_bottom = 135.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Twitter: @Andrew_px1"
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 139.0
+margin_right = 310.0
+margin_bottom = 163.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Artstation: zoroaki"
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 167.0
+margin_right = 330.0
+margin_bottom = 218.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Twitter: @PixelFari
+Artstation: fari16"
+
+[node name="Label7" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+margin_top = 222.0
+margin_right = 472.0
+margin_bottom = 246.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 1 )
+text = "itch.io: joaoricardotv.itch.io"
+
+[node name="label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 1025.0
+margin_right = 1233.0
+margin_bottom = 1088.0
+custom_colors/font_color = Color( 0.941176, 0.992157, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "the sprites of João Ricardo has made by DOGael, is a reference of a manga that João made."
+align = 1
+autowrap = true
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 1096.0
+margin_right = 1233.0
+margin_bottom = 1144.0
+custom_constants/separation = 48
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 1152.0
+margin_right = 1233.0
+margin_bottom = 1212.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Programer"
+align = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 1220.0
+margin_right = 1233.0
+margin_bottom = 1244.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_left = 418.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_right = 460.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "mechanics and others system"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 1252.0
+margin_right = 1233.0
+margin_bottom = 1300.0
+custom_constants/separation = 48
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 1308.0
+margin_right = 1233.0
+margin_bottom = 1368.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Game Designer and Level Designs"
+align = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 1376.0
+margin_right = 1233.0
+margin_bottom = 1400.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
+margin_left = 418.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer2"]
+margin_right = 222.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Game Director"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 1408.0
+margin_right = 1233.0
+margin_bottom = 1456.0
+custom_constants/separation = 48
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 1464.0
+margin_right = 1233.0
+margin_bottom = 1524.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Sound Designs"
+align = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 1532.0
+margin_right = 1233.0
+margin_bottom = 1556.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer"]
+margin_left = 418.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer5/VBoxContainer2"]
+margin_right = 242.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "SFX and Musics"
+
+[node name="HSeparator8" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 1564.0
+margin_right = 1233.0
+margin_bottom = 1612.0
+custom_constants/separation = 48
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label8" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 1620.0
+margin_right = 1233.0
+margin_bottom = 1680.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Translations"
+align = 1
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 1688.0
+margin_right = 1233.0
+margin_bottom = 1740.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer11"]
+margin_right = 614.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer11/VBoxContainer"]
+margin_left = 418.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts:"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer11/VBoxContainer"]
+margin_left = 516.0
+margin_top = 28.0
+margin_right = 614.0
+margin_bottom = 52.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Maple:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer11"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer11/VBoxContainer2"]
+margin_right = 374.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Portuguese and English"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer11/VBoxContainer2"]
+margin_top = 28.0
+margin_right = 134.0
+margin_bottom = 52.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Revision"
+
+[node name="HSeparator11" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 1748.0
+margin_right = 1233.0
+margin_bottom = 1796.0
+custom_constants/separation = 48
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label11" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 1804.0
+margin_right = 1233.0
+margin_bottom = 1864.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Assets"
+align = 1
+
+[node name="HBoxContainer12" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 1872.0
+margin_right = 1233.0
+margin_bottom = 1896.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer12"]
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer12/VBoxContainer"]
+margin_left = 316.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "humble-fonts-free:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer12"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer12/VBoxContainer2"]
+margin_right = 238.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "itch.io: somepx"
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 1904.0
+margin_right = 1233.0
+margin_bottom = 1952.0
+custom_constants/separation = 48
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label7" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 1960.0
+margin_right = 1233.0
+margin_bottom = 2020.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Special thanks"
+align = 1
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_left = 444.0
+margin_top = 2028.0
+margin_right = 788.0
+margin_bottom = 2052.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Godot Brasil Discord:"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 2060.0
+margin_right = 1233.0
+margin_bottom = 2280.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer6"]
+margin_right = 614.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_left = 502.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Berari:"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_left = 514.0
+margin_top = 28.0
+margin_right = 614.0
+margin_bottom = 52.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Nokio:"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_left = 456.0
+margin_top = 56.0
+margin_right = 614.0
+margin_bottom = 80.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Biely Dev:"
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_left = 522.0
+margin_top = 84.0
+margin_right = 614.0
+margin_bottom = 108.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Lalão:"
+
+[node name="Label9" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_left = 434.0
+margin_top = 112.0
+margin_right = 614.0
+margin_bottom = 136.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "MagoMagão:"
+
+[node name="Label10" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_left = 440.0
+margin_top = 140.0
+margin_right = 614.0
+margin_bottom = 164.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Bisnaguito:"
+
+[node name="Label11" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_left = 486.0
+margin_top = 168.0
+margin_right = 614.0
+margin_bottom = 192.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Hensley:"
+
+[node name="Label12" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
+margin_left = 430.0
+margin_top = 196.0
+margin_right = 614.0
+margin_bottom = 220.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "RafBolacha:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer2"]
+margin_right = 410.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: matheus-s-arruda"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer2"]
+margin_top = 28.0
+margin_right = 290.0
+margin_bottom = 52.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: BielMaxBR"
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer2"]
+margin_top = 56.0
+margin_right = 262.0
+margin_bottom = 80.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: BielyDev"
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer2"]
+margin_top = 84.0
+margin_right = 352.0
+margin_bottom = 108.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: lazaromenezes"
+
+[node name="Label10" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer2"]
+margin_top = 112.0
+margin_right = 294.0
+margin_bottom = 136.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "itch.io: magomagao"
+
+[node name="Label11" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer2"]
+margin_top = 140.0
+margin_right = 356.0
+margin_bottom = 164.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Twitter: @995164031B"
+
+[node name="Label12" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer2"]
+margin_top = 168.0
+margin_right = 248.0
+margin_bottom = 192.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "itch.io: elsenyh"
+
+[node name="Label13" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer2"]
+margin_top = 196.0
+margin_right = 302.0
+margin_bottom = 220.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "itch.io: rafbolacha"
+
+[node name="HSeparator9" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 2288.0
+margin_right = 1233.0
+margin_bottom = 2320.0
+custom_constants/separation = 32
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label9" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_left = 485.0
+margin_top = 2328.0
+margin_right = 747.0
+margin_bottom = 2352.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Ciência Discord:"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 2360.0
+margin_right = 1233.0
+margin_bottom = 2692.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer7"]
+margin_right = 614.0
+margin_bottom = 332.0
+size_flags_horizontal = 3
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 284.0
+margin_right = 614.0
+margin_bottom = 24.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Rotfuchs Von Vulpes:"
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 472.0
+margin_top = 28.0
+margin_right = 614.0
+margin_bottom = 52.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Giovanni:"
+
+[node name="Label7" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 458.0
+margin_top = 56.0
+margin_right = 614.0
+margin_bottom = 80.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Sr. Burns:"
+
+[node name="Label8" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 512.0
+margin_top = 84.0
+margin_right = 614.0
+margin_bottom = 108.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Gowth:"
+
+[node name="Label11" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 536.0
+margin_top = 112.0
+margin_right = 614.0
+margin_bottom = 136.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Josh:"
+
+[node name="Label12" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 406.0
+margin_top = 140.0
+margin_right = 614.0
+margin_bottom = 164.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "NashiraDeer:"
+
+[node name="Label13" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 486.0
+margin_top = 168.0
+margin_right = 614.0
+margin_bottom = 192.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Lujaire:"
+
+[node name="Label14" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 502.0
+margin_top = 196.0
+margin_right = 614.0
+margin_bottom = 220.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Succ3s:"
+
+[node name="Label15" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 510.0
+margin_top = 224.0
+margin_right = 614.0
+margin_bottom = 248.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Ellora:"
+
+[node name="Label16" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 522.0
+margin_top = 252.0
+margin_right = 614.0
+margin_bottom = 276.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Walle:"
+
+[node name="Label17" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 540.0
+margin_top = 280.0
+margin_right = 614.0
+margin_bottom = 304.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Cien:"
+
+[node name="Label18" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer"]
+margin_left = 532.0
+margin_top = 308.0
+margin_right = 614.0
+margin_bottom = 332.0
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Reds:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer7"]
+margin_left = 618.0
+margin_right = 1233.0
+margin_bottom = 332.0
+size_flags_horizontal = 3
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_right = 456.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: Rotfuchs-von-Vulpes"
+
+[node name="Label7" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 28.0
+margin_right = 268.0
+margin_bottom = 52.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: GiovanyH"
+
+[node name="Label8" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 56.0
+margin_right = 324.0
+margin_bottom = 80.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: SrBurns-rep"
+
+[node name="Label9" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 84.0
+margin_right = 258.0
+margin_bottom = 108.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "(no information)"
+
+[node name="Label10" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 112.0
+margin_right = 344.0
+margin_bottom = 136.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: Josh-dev-prv"
+
+[node name="Label11" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 140.0
+margin_right = 320.0
+margin_bottom = 164.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: nashiradeer"
+
+[node name="Label12" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 168.0
+margin_right = 256.0
+margin_bottom = 192.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: oluigipo"
+
+[node name="Label13" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 196.0
+margin_right = 230.0
+margin_bottom = 220.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: Succ3s"
+
+[node name="Label14" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 224.0
+margin_right = 272.0
+margin_bottom = 248.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: elloramir"
+
+[node name="Label15" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 252.0
+margin_right = 228.0
+margin_bottom = 276.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: 0Walle"
+
+[node name="Label16" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 280.0
+margin_right = 378.0
+margin_bottom = 304.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: CientistaVuador"
+
+[node name="Label17" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer7/VBoxContainer2"]
+margin_top = 308.0
+margin_right = 272.0
+margin_bottom = 332.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Github: hadron13"
+
+[node name="HSeparator10" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 2700.0
+margin_right = 1233.0
+margin_bottom = 2732.0
+custom_constants/separation = 32
+custom_styles/separator = SubResource( 7 )
+
+[node name="Label10" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_left = 560.0
+margin_top = 2740.0
+margin_right = 672.0
+margin_bottom = 2764.0
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 0.85098, 0.32549, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Others:"
+
+[node name="Label17" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_left = 113.0
+margin_top = 2772.0
+margin_right = 1119.0
+margin_bottom = 2958.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 8 )
+text = "\"Obrigado para todos os meus amigos e colegas e professores
+da escola, além da minha familia e familiares e todos que me
+apoiaram no meu sonho. Esse projeto foi dedicado para todos
+eles e para amantes da arte, eu dei o meu melhor e espero
+que o resultado seja agradavél\"
+
+~ Misael Victor (DOGael Arts)"
+align = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+margin_top = 50.0
+margin_right = -200.0
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 961.0
+margin_bottom = 2210.0
+rect_min_size = Vector2( 961, 1864 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_right = 961.0
+margin_bottom = 60.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Arts and animations"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 64.0
+margin_right = 961.0
+margin_bottom = 76.0
+custom_constants/separation = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 80.0
+margin_right = 961.0
+margin_bottom = 143.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 63.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts:
+"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 204.0
+margin_top = 6.0
+margin_right = 606.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 1 )
+text = "most of Sprites, Tilesets
+and animations"
+
+[node name="HSeparator3" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 147.0
+margin_right = 961.0
+margin_bottom = 171.0
+custom_constants/separation = 24
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 175.0
+margin_right = 961.0
+margin_bottom = 235.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Paints Collab"
+align = 1
+
+[node name="Xulico" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 15 )]
+margin_top = 239.0
+margin_bottom = 328.0
+images = [ ExtResource( 6 ), ExtResource( 13 ) ]
+links = {
+"Instragam": "https://www.instagram.com/xulico.pixel?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D"
+}
+Name = "Xulico"
+
+[node name="Andrew" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 15 )]
+margin_top = 332.0
+margin_bottom = 421.0
+images = [ ExtResource( 7 ) ]
+links = {
+"Andrew": "https://twitter.com/Andrew_px1"
+}
+Name = "Andrew"
+
+[node name="Kumuri" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 15 )]
+margin_top = 425.0
+margin_bottom = 514.0
+images = [ ExtResource( 14 ) ]
+links = {
+"Artstation": "https://www.artstation.com/kumorikek/profile"
+}
+Name = "Kumuri"
+
+[node name="Tiago" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 15 )]
+margin_top = 518.0
+margin_bottom = 607.0
+images = [ ExtResource( 9 ) ]
+links = {
+"Artstation": "https://www.artstation.com/zoroaki"
+}
+Name = "Tiago"
+
+[node name="glent" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 15 )]
+margin_top = 611.0
+margin_bottom = 700.0
+images = [ ExtResource( 8 ) ]
+links = {
+"Artstation": "https://www.artstation.com/Glentgm",
+"Commisions": "https://vgen.co/glentgm"
+}
+Name = "GlentGm"
+
+[node name="Fari" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 15 )]
+margin_top = 704.0
+margin_bottom = 793.0
+images = [ ExtResource( 10 ) ]
+links = {
+"Artstation": "https://www.artstation.com/fari16",
+"Twitter": "https://twitter.com/PixelFari"
+}
+Name = "Fari"
+
+[node name="JoãoRicardo" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 15 )]
+margin_top = 797.0
+margin_bottom = 886.0
+images = [ ExtResource( 11 ) ]
+links = {
+"itch.io": "https://joaoricardotv.itch.io/"
+}
+Name = "João Ricardo"
+
+[node name="label" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 890.0
+margin_right = 961.0
+margin_bottom = 986.0
+custom_fonts/font = SubResource( 5 )
+text = "OBS.: that is a reference of a manga that he made, the sprites has made by DOGael
+"
+autowrap = true
+
+[node name="HSeparator4" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 990.0
+margin_right = 961.0
+margin_bottom = 1070.0
+custom_constants/separation = 80
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1074.0
+margin_right = 961.0
+margin_bottom = 1134.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Programers"
+align = 1
+
+[node name="HSeparator5" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1138.0
+margin_right = 961.0
+margin_bottom = 1150.0
+custom_constants/separation = 12
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1154.0
+margin_right = 961.0
+margin_bottom = 1184.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 214.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts: "
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 218.0
+margin_top = 3.0
+margin_right = 430.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "Misael Victor"
+
+[node name="HSeparator6" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1188.0
+margin_right = 961.0
+margin_bottom = 1268.0
+custom_constants/separation = 80
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1272.0
+margin_right = 961.0
+margin_bottom = 1332.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Game Designs"
+align = 1
+
+[node name="HSeparator7" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1336.0
+margin_right = 961.0
+margin_bottom = 1348.0
+custom_constants/separation = 12
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1352.0
+margin_right = 961.0
+margin_bottom = 1382.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 214.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts: "
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 218.0
+margin_top = 3.0
+margin_right = 430.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "Misael Victor"
+
+[node name="HSeparator8" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1386.0
+margin_right = 961.0
+margin_bottom = 1466.0
+custom_constants/separation = 80
+
+[node name="Label5" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1470.0
+margin_right = 961.0
+margin_bottom = 1530.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Level Designs"
+align = 1
+
+[node name="HSeparator9" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1534.0
+margin_right = 961.0
+margin_bottom = 1546.0
+custom_constants/separation = 12
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1550.0
+margin_right = 961.0
+margin_bottom = 1580.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 214.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts: "
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 218.0
+margin_top = 3.0
+margin_right = 430.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "Misael Victor"
+
+[node name="HSeparator10" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1584.0
+margin_right = 961.0
+margin_bottom = 1664.0
+custom_constants/separation = 80
+
+[node name="Label6" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1668.0
+margin_right = 961.0
+margin_bottom = 1728.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Sound Designs"
+align = 1
+
+[node name="HSeparator11" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1732.0
+margin_right = 961.0
+margin_bottom = 1744.0
+custom_constants/separation = 12
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1748.0
+margin_right = 961.0
+margin_bottom = 1778.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer5"]
+margin_right = 214.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "DOGael Arts: "
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 218.0
+margin_top = 3.0
+margin_right = 430.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "Misael Victor"
+
+[node name="HSeparator12" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1782.0
+margin_right = 961.0
+margin_bottom = 1862.0
+custom_constants/separation = 80
+
+[node name="Label7" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1866.0
+margin_right = 961.0
+margin_bottom = 1926.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Special thanks for"
+align = 1
+
+[node name="HSeparator13" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 1930.0
+margin_right = 961.0
+margin_bottom = 1942.0
+custom_constants/separation = 12
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 1946.0
+margin_right = 961.0
+margin_bottom = 2009.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer6"]
+margin_right = 416.0
+margin_bottom = 63.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Berari, Nokio and biely: 
+"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 420.0
+margin_top = 6.0
+margin_right = 864.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 1 )
+text = "helped me to improve in my
+programmer skills"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 2013.0
+margin_right = 961.0
+margin_bottom = 2076.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer7"]
+margin_right = 306.0
+margin_bottom = 63.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Gowth and SrBurns
+Brothers: "
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer7"]
+margin_left = 310.0
+margin_top = 6.0
+margin_right = 786.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 1 )
+text = "helped to choose the name of
+the game"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 2080.0
+margin_right = 961.0
+margin_bottom = 2176.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer8"]
+margin_right = 410.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "the GlentPixel Community:
+
+"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer8"]
+margin_left = 414.0
+margin_top = 9.0
+margin_right = 938.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 1 )
+text = "helped to improve my pixel art
+skills and make a collab for the
+paintings"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 2180.0
+margin_right = 961.0
+margin_bottom = 2210.0
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer9"]
+margin_right = 116.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0.992157, 0.952941, 0.360784, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Maple: "
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer9"]
+margin_left = 120.0
+margin_top = 3.0
+margin_right = 874.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "helped to fix the english mistakes that I made"
+
+[node name="HSeparator14" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 2214.0
+margin_right = 961.0
+margin_bottom = 2294.0
+custom_constants/separation = 80
+
+[node name="Tween" type="Tween" parent="."]

@@ -1,7 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://worlds/literatureArt/portal/literatureArtPortal.pxo" type="Texture" id=1]
-[ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.gd" type="Script" id=2]
+[ext_resource path="res://worlds/classes/dimensionPortal/hud/hudPortal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://worlds/worldSelect/objects/worldSelect/sprites/literatureArtPortal.png" type="Texture" id=3]
+[ext_resource path="res://worlds/literatureArt/portal/litaratureArtPortal.gd" type="Script" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=5]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 64, 64 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 288, 120 )
@@ -38,24 +46,45 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[node name="literaturePortal" type="Node2D"]
-script = ExtResource( 2 )
+[node name="literaturePortal" type="Area2D"]
+material = SubResource( 5 )
+script = ExtResource( 4 )
+worldName = "literatureArt"
+hudPortalPath = NodePath("hud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+light_mask = 0
+z_index = -1
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
 
 [node name="LiteratureArtPortal" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 z_index = -1
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 hframes = 6
-
-[node name="Area2D" type="Area2D" parent="."]
-light_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/open = SubResource( 3 )
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[node name="hud" parent="." instance=ExtResource( 1 )]
+margin_top = -83.0
+margin_bottom = -83.0
+interactBallonPath = NodePath("../interactBallon")
+textName = "LiteratureArt"
+
+[node name="interactBallon" parent="." instance=ExtResource( 2 )]
+areaInteractPath = NodePath("..")
+content = [ "/btn:interact" ]
+showArroy = false
+
+[connection signal="entered" from="interactBallon" to="." method="_on_interactBallon_entered"]
+[connection signal="exitered" from="interactBallon" to="." method="_on_interactBallon_exitered"]

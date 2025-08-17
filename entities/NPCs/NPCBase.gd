@@ -2,13 +2,23 @@ class_name NPCBase extends KinematicBody2D
 
 export(NodePath) var interactionBallonPath
 export(NodePath) var spritePath
+export(NodePath) var animationPath
+
 export var fliped := false setget setFliped
+export var canFlip := true
+export var cinematic := false
 
 var interactBallon
 var sprite
-var playerNode
+var animationNode
+
+var entered := false
 
 var direction
+
+func _init():
+	collision_layer = 0
+	collision_mask = 0
 
 
 func _ready():
@@ -19,13 +29,15 @@ func _ready():
 		var _1 = interactBallon.connect("entered", self, "_playerEntered")
 		var _2 = interactBallon.connect("exitered", self, "_playerExitered")
 		
-	
 	if spritePath:
 		sprite = get_node(spritePath)
+	
+	if animationPath:
+		animationNode = get_node(animationPath)
 
 func _physics_process(_delta):
-	if playerNode:
-		direction = sign(playerNode.global_position.x - global_position.x)
+	if entered and canFlip and not cinematic:
+		direction = sign(Global.player.global_position.x - global_position.x)
 		fliped = direction != 1
 	
 	sprite.flip_h = fliped
@@ -35,8 +47,10 @@ func setFliped(value):
 	if sprite:
 		sprite.flip_h = fliped
 
-func _playerEntered(player):
-	playerNode = player
+func _playerEntered():
+	entered = true
 
-func _playerExitered(_player):
-	playerNode = null
+func _playerExitered():
+	entered = false
+
+

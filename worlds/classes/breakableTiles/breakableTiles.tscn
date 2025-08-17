@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://worlds/classes/breakableTiles/breakableTiles.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 18 )
+
+[node name="breakableTiles" type="Area2D"]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource( 1 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="enable" type="VisibilityEnabler2D" parent="."]
+rect = Rect2( -9, -9, 18, 18 )
+process_parent = true
+physics_process_parent = true

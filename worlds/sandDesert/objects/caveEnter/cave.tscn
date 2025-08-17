@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://worlds/sandDesert/objects/caveEnter/caveEnter.png" type="Texture" id=1]
+[ext_resource path="res://entities/classes/interactComponent/interactBallon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/doors/door.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 64, 44 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 72, 32, 112, 64 )
+
+[node name="caveEnter" type="Area2D"]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -44 )
+shape = SubResource( 2 )
+
+[node name="CaveEnter" type="Sprite" parent="."]
+position = Vector2( 0, -64 )
+scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
+texture = SubResource( 1 )
+
+[node name="interactBallon" parent="." instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = -128.0
+margin_right = 0.0
+margin_bottom = -128.0
+areaInteractPath = NodePath("..")
+content = [ "/btn:interact" ]
+
+[connection signal="interacted" from="interactBallon" to="." method="changeRoom"]

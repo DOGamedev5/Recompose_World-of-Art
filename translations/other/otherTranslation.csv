@@ -1,0 +1,23 @@
+,pt_BR,en
+other_tutor_1,pressione Espaço,press Space
+other_tutor_2,pressione K,press K
+other_tutor_3,pressione L para correr,press L to run
+other_tutor_4,pressione S,press S
+dialog_press1,Pressione ,Press 
+dialog_press2,para continuar...,to continue...
+player_conf,configurações.,configurations.
+player_conf_quit,sair do jogo,quit game
+player_conf_exit,menu,menu
+player_items,inventario,imventory
+player_stats,status,stats
+player_map,mapa,map
+contract1,pressione,press 
+contract2,para confirmar,to confirm
+_yes,sim,yes
+_no,não,no
+_ready,pronto,ready
+_ready_count,pronto:%d/%d...,ready:%d/%d...
+_ready_alone,Lobby aberto,lobby opened
+_ready_offline,offline...,offline...
+_ready_waiting,aguardando outros jodares... %d/%d,waiting other players... %d/%d
+_cancel,cancelar,cancel

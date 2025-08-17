@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/paintCaverns.ogg-375fc221daf5da17a6b0faa82ddbf808.oggstr"
+
+[deps]
+
+source_file="res://audio/musics/paintCaverns.ogg"
+dest_files=[ "res://.import/paintCaverns.ogg-375fc221daf5da17a6b0faa82ddbf808.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

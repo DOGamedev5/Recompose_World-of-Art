@@ -1,7 +1,7 @@
 extends Control
 
 onready var rect = $NinePatchRect
-onready var label = $NinePatchRect/Label
+onready var label = $Label
 
 export(String) var text
 
@@ -14,7 +14,7 @@ enum stats {
 var currentStat = stats.NORMAL
 
 func _ready():
-	label.text = text
+#	label.text = text
 	setSize()
 
 func updateTexture(stat = currentStat):
@@ -22,9 +22,12 @@ func updateTexture(stat = currentStat):
 	currentStat = stat
 
 func setSize():
-	label.set_text(text)
-	var size = $NinePatchRect/Label.text.length()*16 + 16
-
-	$NinePatchRect.rect_min_size.x = size
+	label.text = ""
 	
-	rect_min_size.x = size
+	label.rect_size.x = 0
+	label.text = text
+
+func _on_Label_resized():
+	if label:
+		rect_min_size.x = label.rect_min_size.x + 24
+		rect.rect_size.x = label.rect_size.x + 24

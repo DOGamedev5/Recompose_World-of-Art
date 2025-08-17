@@ -5,12 +5,12 @@ onready var barrier = $StaticBody2D/CollisionShape2D
 
 onready var textDialogs := [
 	[
-		"Rodolfo- oh, sorry, Lodrofo!!!\nwhat do you want?",
-		"you want to fight in the coliseun?!?!\noh ok, there is your sword.",
+		{"name" : "iront","text" : "iront_1"},
+		{"name" : "iront","text" : "iront_2"},
 		preload("res://entities/NPCs/iront/irontQuestion.tres")
 	],
 	[
-		"hello Lodrofo, everthing going well?"
+		{"name" : "iront","text" : "iront_4"}
 	]
 ]
 
@@ -25,9 +25,9 @@ func _ready():
 		position = Vector2(-1392, -224)
 
 func optionChosen(question, option):
-	if question == "do you want to enter the coliseum now?":
-		if option == "Yes!":
-			dialog.addText("ok fine, there is you sword")
+	if question == "iront_3":
+		if option == "iront_3_1":
+			dialog.addText("iront_3_3")
 			Global.save.world["paintWorld"]["colliseun"] = true
 			barrier.disabled = true
 

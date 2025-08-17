@@ -1,41 +1,29 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://entities/classes/interactComponent/ballon.pxo" type="Texture" id=1]
+[ext_resource path="res://entities/classes/interactComponent/ballon.png" type="Texture" id=1]
 [ext_resource path="res://entities/classes/interactComponent/interactBallon.gd" type="Script" id=2]
-[ext_resource path="res://entities/classes/interactComponent/arrow.pxo" type="Texture" id=3]
-[ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://entities/classes/interactComponent/arrow.png" type="Texture" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
 
+[sub_resource type="CanvasItemMaterial" id=7]
+light_mode = 1
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
 [sub_resource type="CanvasItemMaterial" id=4]
 light_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id=5]
-light_mode = 1
-
-[sub_resource type="DynamicFont" id=1]
-size = 32
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_bottom = 5
-extra_spacing_char = 3
-extra_spacing_space = -2
-font_data = ExtResource( 4 )
-
-[sub_resource type="StyleBoxEmpty" id=2]
-content_margin_left = 4.0
-
-[node name="interactBallon" type="Control"]
+[node name="interactBallon" type="Node2D"]
 light_mask = 0
 material = SubResource( 3 )
-anchor_left = -0.059
-anchor_top = -0.13
-anchor_right = 0.059
-margin_left = 80.299
-margin_top = 95.68
-margin_right = -80.299
+z_index = 1
+z_as_relative = false
 script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "/btn:input"
+}
 
 [node name="arrow" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.435294 )
@@ -55,17 +43,23 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="ballon" type="NinePatchRect" parent="ballonContent"]
-modulate = Color( 1, 1, 1, 0.776471 )
+[node name="ballon" type="PanelContainer" parent="ballonContent"]
+modulate = Color( 1, 1, 1, 0.901961 )
+material = SubResource( 7 )
+margin_left = -16.0
+margin_top = -59.0
+margin_right = 16.0
+margin_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_styles/panel = SubResource( 6 )
+
+[node name="ballon" type="NinePatchRect" parent="ballonContent/ballon"]
 light_mask = 0
 material = SubResource( 4 )
 use_parent_material = true
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -23.0
-margin_top = -55.0
-margin_right = 16.0
-margin_bottom = -23.0
+margin_right = 32.0
+margin_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource( 1 )
@@ -74,19 +68,25 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
-[node name="text" type="Label" parent="ballonContent/ballon"]
-light_mask = 0
-material = SubResource( 5 )
-use_parent_material = true
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="MarginContainer" type="MarginContainer" parent="ballonContent/ballon"]
+margin_right = 32.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ballonContent/ballon/MarginContainer"]
 margin_left = 4.0
-margin_right = -4.0
-grow_horizontal = 0
-grow_vertical = 0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
-text = "EA"
-align = 1
-valign = 1
+margin_top = 4.0
+margin_right = 28.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

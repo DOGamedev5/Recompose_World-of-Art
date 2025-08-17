@@ -1,8 +1,6 @@
 extends State
 
 onready var timer = $Timer
-
-
 var direction := -1
 
 func enter(_lastState):

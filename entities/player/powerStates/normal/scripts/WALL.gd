@@ -7,7 +7,9 @@ func enter(lastState):
 	
 	if not parent.onFloor() or ["TOP_SPEED", "ATTACK", "ROLL", "JUMP", "FALL"].has(lastState):
 		parent.walledPlayback.travel("SPLAT")
+		parent.lockRotate = true
 		parent.stunned = true
+		$"Timer".start()
 		splat = true
 
 	elif parent.onFloor() and abs(parent.motion.x) <= parent.MAXSPEED:
@@ -26,14 +28,20 @@ func process_state():
 			return "FALL"
 
 	if parent.onFloor():
-		if Input.get_axis("ui_left", "ui_right") == 0:
+		if Global.handInputAxis("ui_left", "ui_right", parent.OwnerID) == 0:
 			return "IDLE"
 			
 		elif not parent.onWall():
-			return "RUN"
+			return "WALK"
 	
-	if parent.canJump and Input.is_action_pressed("ui_jump") and parent.couldUncounch():
-		return "JUMP"
+	if parent.jumpBuffer and $"Timer".is_stopped():
+		if parent.canJump and parent.couldUncounch():
+			return "JUMP"
+		
+		parent.motion.x = (1 - (int(parent.fliped) * 2)) * -200
+		parent.motion.y = -500
+
+		return "FALL"
 	
 	return null
 
@@ -48,5 +56,6 @@ func process_physics(_delta):
 		parent.stunned = false
 	
 func exit():
+	parent.lockRotate = false
 	parent.stunned = false
 

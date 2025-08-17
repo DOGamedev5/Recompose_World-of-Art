@@ -1,0 +1,273 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://entities/enemies/bugouth/bugouth.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/bugouth/sprites/bugouth.png" type="Texture" id=2]
+[ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=6]
+[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthDeath.png" type="Texture" id=7]
+[ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=9]
+[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthAttack.png" type="Texture" id=11]
+[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthBite.png" type="Texture" id=12]
+
+[sub_resource type="Animation" id=10]
+resource_name = "BITE"
+length = 0.3
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bugouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bugouth:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bugouth:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "DASH"
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bugouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bugouth:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bugouth:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "IDLE"
+length = 0.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bugouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bugouth:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bugouth:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bugouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bugouth:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Bugouth:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "BITE"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "DASH"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=4]
+states/BITE/node = SubResource( 12 )
+states/BITE/position = Vector2( 528.333, 208.333 )
+states/DASH/node = SubResource( 13 )
+states/DASH/position = Vector2( 568.333, 91 )
+states/IDLE/node = SubResource( 3 )
+states/IDLE/position = Vector2( 288.333, 161.667 )
+transitions = [ "IDLE", "DASH", SubResource( 14 ), "DASH", "BITE", SubResource( 15 ), "BITE", "IDLE", SubResource( 16 ) ]
+start_node = "IDLE"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 24.0
+
+[node name="bugouth" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+gravity = false
+MAXSPEED = 200
+attackAreaArray = [ NodePath("AttackComponent") ]
+hitboxAreaPath = NodePath("HitboxComponent")
+spritePath = NodePath("Bugouth")
+deathSprite = ExtResource( 7 )
+animationTreePath = NodePath("AnimationTree")
+maxHealth = 1
+health = 1
+flipArea = true
+canUnwatch = true
+
+[node name="Bugouth" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/BITE = SubResource( 10 )
+anims/DASH = SubResource( 11 )
+anims/IDLE = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 4 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 4.76837e-07, 4.76837e-07 )
+scale = Vector2( 2.4, 2.4 )
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 1280
+collision_mask = 0
+monitoring = false
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource( 8 )
+
+[node name="AttackComponent" type="Area2D" parent="."]
+position = Vector2( 16, 0 )
+collision_layer = 512
+collision_mask = 0
+script = ExtResource( 9 )
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
+position = Vector2( -16, 0 )
+shape = SubResource( 9 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]

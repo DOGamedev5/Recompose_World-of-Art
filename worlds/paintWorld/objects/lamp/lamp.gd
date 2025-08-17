@@ -3,18 +3,24 @@ extends Node
 
 export var fliped := false setget _setFliped
 export(NodePath) var visiblility
+export(Vector2) var lightPosition
+export(NodePath) var lightPath
+export(NodePath) var simpleLightPath
+onready var light : Light2D = get_node(lightPath)
+onready var simpleLight : Sprite = get_node(simpleLightPath)
 
 func _ready():
-#	var _1 = connect("script_changed", self, "scriptChanged")
+	
 	if visiblility:
 		var visibily = get_node(visiblility)
 	
 		var _2 = visibily.connect("screen_entered", self, "ative")
 		var _3 = visibily.connect("screen_exited", self, "desative")
 	
-	var _4 = Global.connect("simpleLightChanged", self, "_toggledSimpleLight")
-	
-	_toggledSimpleLight(Global.options.simpleLight)
+	if Global.is_inside_tree():
+		light.enabled = !Global.options.simpleLight
+		simpleLight.visible = Global.options.simpleLight
+		light.shadow_enabled = Global.options.shadows
 
 func _setFliped(value):
 	fliped = value
@@ -29,12 +35,15 @@ func scriptChanged():
 	fliped = fliped
 
 func desative():
-	$Light2D.enabled = false
+	light.enabled = false
 
 func ative():
 	if not Global.options.simpleLight:
-		$Light2D.enabled = true
+		light.enabled = true
 
 func _toggledSimpleLight(value):
-	$Light.visible = value
-	$Light2D.enabled = !value
+	simpleLight.visible = value
+	light.enabled = !value
+
+func _toggledShadow(value):
+	light.shadow_enabled = value

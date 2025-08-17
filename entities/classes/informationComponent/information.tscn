@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://entities/classes/informationComponent/paper.pxo" type="Texture" id=1]
+[ext_resource path="res://entities/classes/informationComponent/paper.png" type="Texture" id=1]
 [ext_resource path="res://entities/classes/informationComponent/information.gd" type="Script" id=2]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/equipment-pro-v1.1/EquipmentPro.ttf" type="DynamicFontData" id=3]
 

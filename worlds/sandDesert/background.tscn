@@ -1,0 +1,179 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://worlds/sandDesert/tilesets/backgroundDesert.png" type="Texture" id=1]
+[ext_resource path="res://worlds/sandDesert/tilesets/cloud.png" type="Texture" id=2]
+[ext_resource path="res://worlds/sandDesert/objects/sun.png" type="Texture" id=3]
+[ext_resource path="res://worlds/sandDesert/background.gd" type="Script" id=5]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.345098, 0.603922, 0.823529, 1, 0.854902, 1, 0.752941, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.622857, 0.788571, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.298039, 0.0627451, 0.172549, 1, 0.941176, 0.811765, 0.498039, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+width = 1040
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource( 5 )
+
+[node name="layer1" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 1, 0 )
+motion_offset = Vector2( -900, 0 )
+motion_mirroring = Vector2( 1800, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="layer1"]
+margin_left = 1800.0
+margin_top = -448.0
+margin_right = 2700.0
+margin_bottom = 1352.0
+rect_rotation = 90.0
+texture = SubResource( 2 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="layer1"]
+margin_left = 1800.0
+margin_top = -448.0
+margin_right = 2700.0
+margin_bottom = 1352.0
+rect_rotation = 90.0
+texture = SubResource( 2 )
+expand = true
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0, 0 )
+motion_offset = Vector2( -750, 0 )
+motion_mirroring = Vector2( 0.05, 0 )
+
+[node name="Sun" type="Sprite" parent="ParallaxLayer5"]
+self_modulate = Color( 1.5, 1.5, 1.5, 1 )
+material = SubResource( 3 )
+position = Vector2( 953, -371 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.25, 0.2 )
+motion_offset = Vector2( 0, -120 )
+motion_mirroring = Vector2( 2600, 0 )
+
+[node name="BackgroundDesert" type="Sprite" parent="ParallaxLayer4"]
+self_modulate = Color( 1, 1, 1, 0.780392 )
+position = Vector2( 650, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 2
+frame = 1
+
+[node name="BackgroundDesert2" type="Sprite" parent="ParallaxLayer4"]
+self_modulate = Color( 1, 1, 1, 0.780392 )
+position = Vector2( 1950, 0 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 2
+frame = 1
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.5, 0.4 )
+motion_offset = Vector2( 0, -180 )
+motion_mirroring = Vector2( 2600, 0 )
+
+[node name="BackgroundDesert" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 650, 56 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="BackgroundDesert2" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 1950, 56 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="degrade" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 2600, 860 )
+rotation = -1.5708
+scale = Vector2( 1, 2600 )
+texture = SubResource( 5 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+modulate = Color( 0.976562, 0.976562, 0.976562, 0.752941 )
+motion_scale = Vector2( 0.05, 0.05 )
+motion_mirroring = Vector2( 2600, 0 )
+
+[node name="Cloud2" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 528, -224 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud5" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 1696, -216 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud7" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 2144, -376 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud9" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 1456, -376 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud10" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 184, -192 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud8" type="Sprite" parent="ParallaxLayer3"]
+position = Vector2( 2416, -240 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.075, 0.075 )
+motion_mirroring = Vector2( 2600, 0 )
+
+[node name="Cloud" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 136, -328 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud2" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 720, -296 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud3" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 1048, -336 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud4" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 1296, -230 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud6" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 1848, -312 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Cloud7" type="Sprite" parent="ParallaxLayer2"]
+position = Vector2( 2272, -230 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." groups=["canvasChanger", "color"]]
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

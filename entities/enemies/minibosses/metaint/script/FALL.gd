@@ -7,6 +7,9 @@ func enter(_lastState):
 
 func exit():
 	parent.flipLock = false
+	$"../../CPUParticles2D".emitting = true
+	$"../../CPUParticles2D2".emitting = true
+	parent.motion.x = 0
 
 func process_state():
 	if parent.onFloor():

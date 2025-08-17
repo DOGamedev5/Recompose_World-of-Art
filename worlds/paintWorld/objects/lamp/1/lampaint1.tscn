@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.pxo" type="Texture" id=1]
-[ext_resource path="res://worlds/paintWorld/objects/lamp/light.pxo" type="Texture" id=2]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/1/lampaint1.png" type="Texture" id=1]
+[ext_resource path="res://worlds/paintWorld/objects/lamp/light.png" type="Texture" id=2]
 [ext_resource path="res://worlds/paintWorld/objects/lamp/lamp.gd" type="Script" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=2]
@@ -10,14 +10,16 @@ blend_mode = 1
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -21, -6, 21, -6, 21, 0, -21, 0 )
 
-[node name="lampaint1" type="Node2D"]
+[node name="lampaint1" type="Node2D" groups=["light", "shadow"]]
 z_index = -2
 z_as_relative = false
 script = ExtResource( 3 )
 visiblility = NodePath("VisibilityEnabler2D")
+lightPath = NodePath("Light2D")
+simpleLightPath = NodePath("Light")
 
 [node name="Light" type="Sprite" parent="."]
-visible = false
+modulate = Color( 1.4, 1.4, 1.4, 0.678431 )
 self_modulate = Color( 1, 1, 1, 0.109804 )
 show_behind_parent = true
 material = SubResource( 2 )
@@ -44,6 +46,8 @@ texture_scale = 2.0
 color = Color( 1, 0.87451, 0.784314, 1 )
 energy = 1.5
 shadow_enabled = true
+shadow_buffer_size = 32
+shadow_gradient_length = 4.0
 __meta__ = {
 "_edit_lock_": true
 }
@@ -56,6 +60,7 @@ __meta__ = {
 }
 
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
 position = Vector2( 18, -72 )
 scale = Vector2( 16.8, 16.8 )
 process_parent = true

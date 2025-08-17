@@ -1,40 +1,45 @@
-[gd_scene load_steps=181 format=2]
+[gd_scene load_steps=201 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoIdle.pxo" type="Texture" id=3]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoRun.pxo" type="Texture" id=4]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoWall.pxo" type="Texture" id=5]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoIdle.png" type="Texture" id=3]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoRun.png" type="Texture" id=4]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoWall.png" type="Texture" id=5]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/IDLE.gd" type="Script" id=6]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=7]
-[ext_resource path="res://entities/player/powerStates/normal/scripts/RUN.gd" type="Script" id=8]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/WALK.gd" type="Script" id=8]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/JUMP.gd" type="Script" id=9]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/FALL.gd" type="Script" id=10]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/WALL.gd" type="Script" id=11]
-[ext_resource path="res://entities/player/powerStates/normal/scripts/TOP_SPEED.gd" type="Script" id=12]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoTopSpeed.pxo" type="Texture" id=13]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/AIR/lodrofoFall.pxo" type="Texture" id=14]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/AIR/lodrofoJump.pxo" type="Texture" id=15]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoSplat.pxo" type="Texture" id=16]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoStop.pxo" type="Texture" id=17]
-[ext_resource path="res://entities/player/powerStates/normal/scripts/ATTACK.gd" type="Script" id=18]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoAttack.pxo" type="Texture" id=19]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/RUN.gd" type="Script" id=12]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoTopSpeed.png" type="Texture" id=13]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoFall.png" type="Texture" id=14]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoJump.png" type="Texture" id=15]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoSplat.png" type="Texture" id=16]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoStop.png" type="Texture" id=17]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/DASH.gd" type="Script" id=18]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/lodrofoAttack.png" type="Texture" id=19]
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=20]
-[ext_resource path="res://entities/player/sprites/top_speedEffect.pxo" type="Texture" id=21]
-[ext_resource path="res://gameplay/effects/effect1.pxo" type="Texture" id=22]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoDamaged.pxo" type="Texture" id=23]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoCounch.pxo" type="Texture" id=24]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoCrawling.pxo" type="Texture" id=25]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/AIR/lodrofoCounchJump.pxo" type="Texture" id=26]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/AIR/lodrofoCounchFall.pxo" type="Texture" id=27]
+[ext_resource path="res://entities/player/sprites/top_speedEffect.png" type="Texture" id=21]
+[ext_resource path="res://gameplay/effects/effect1.png" type="Texture" id=22]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoDamaged.png" type="Texture" id=23]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoCounch.png" type="Texture" id=24]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoCrawling.png" type="Texture" id=25]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoCounchJump.png" type="Texture" id=26]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/AIR/lodrofoCounchFall.png" type="Texture" id=27]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/DAMAGED.gd" type="Script" id=28]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/RUN/lodrofoRoll.pxo" type="Texture" id=29]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoRoll.png" type="Texture" id=29]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/ROLL.gd" type="Script" id=30]
 [ext_resource path="res://entities/player/powerStates/normal/scripts/LADDER.gd" type="Script" id=31]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/IDLE/lodrofoLadder.pxo" type="Texture" id=32]
-[ext_resource path="res://gameplay/effects/effect2.pxo" type="Texture" id=33]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/DashParticle.pxo" type="Texture" id=34]
-[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofoToRun.pxo" type="Texture" id=35]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoLadder.png" type="Texture" id=32]
+[ext_resource path="res://gameplay/effects/effect2.png" type="Texture" id=33]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/IDLE/lodrofoEnterExit.png" type="Texture" id=34]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoToRun.png" type="Texture" id=35]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/lodrofo/RUN/lodrofoSuperRoll.png" type="Texture" id=36]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/SUPERROLL.gd" type="Script" id=37]
+[ext_resource path="res://entities/player/powerStates/normal/scripts/TAUNT.gd" type="Script" id=38]
+[ext_resource path="res://entities/player/shaders/hueShifter.gdshader" type="Shader" id=39]
+[ext_resource path="res://entities/player/powerStates/normal/sprites/alexandry/sword.png" type="Texture" id=40]
 
 [sub_resource type="CanvasItemMaterial" id=193]
 particles_animation = true
@@ -42,15 +47,27 @@ particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="RectangleShape2D" id=87]
-resource_local_to_scene = true
-custom_solver_bias = 1.0
-extents = Vector2( 16, 28 )
+[sub_resource type="ShaderMaterial" id=356]
+shader = ExtResource( 39 )
+shader_param/hue_shift = 0.0
+
+[sub_resource type="CapsuleShape2D" id=336]
+custom_solver_bias = 0.5
+radius = 15.0
+height = 7.0
+
+[sub_resource type="RayShape2D" id=341]
+custom_solver_bias = 0.01
+length = 24.0
+
+[sub_resource type="RectangleShape2D" id=342]
+custom_solver_bias = 0.5
+extents = Vector2( 16, 4 )
 
 [sub_resource type="Animation" id=122]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("../speedEffect:frame")
+tracks/0/path = NodePath("../sprite/speedEffect:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -63,12 +80,11 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=123]
-resource_name = "speedEffect"
 length = 0.25
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("../speedEffect:frame")
+tracks/0/path = NodePath("../sprite/speedEffect:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -81,11 +97,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=73]
-resource_name = "ATTACK"
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:hframes")
+tracks/0/path = NodePath("sprite/Sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -97,7 +112,7 @@ tracks/0/keys = {
 "values": [ 6 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("sprite/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -109,7 +124,7 @@ tracks/1/keys = {
 "values": [ 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -121,11 +136,11 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:texture")
+tracks/3/path = NodePath("sprite/Sprite:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -146,17 +161,30 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/lodrofoAttack.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=91]
-resource_name = "COUNCH"
 length = 1.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -164,7 +192,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 24 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("sprite/Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -176,7 +204,7 @@ tracks/1/keys = {
 "values": [ 0, 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/path = NodePath("sprite/Sprite:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -188,7 +216,7 @@ tracks/2/keys = {
 "values": [ 2 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:vframes")
+tracks/3/path = NodePath("sprite/Sprite:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -225,15 +253,28 @@ tracks/5/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoCounch.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=127]
-resource_name = "COUNCHFALL"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -241,7 +282,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 27 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -253,7 +294,7 @@ tracks/1/keys = {
 "values": [ 5 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -278,16 +319,29 @@ tracks/3/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/AIR/lodrofoCounchFall.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=124]
-resource_name = "COUNCHJUMP"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -295,7 +349,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 26 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -307,7 +361,7 @@ tracks/1/keys = {
 "values": [ 4 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -319,7 +373,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:vframes")
+tracks/3/path = NodePath("sprite/Sprite:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -344,16 +398,29 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/AIR/lodrofoCounchJump.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=106]
-resource_name = "CRAWLING"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -361,7 +428,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 25 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -373,7 +440,7 @@ tracks/1/keys = {
 "values": [ 10 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/path = NodePath("sprite/Sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -385,7 +452,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:frame")
+tracks/3/path = NodePath("sprite/Sprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -410,15 +477,34 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoCrawling.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+} ]
+}
 
 [sub_resource type="Animation" id=134]
-resource_name = "DAMAGED"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -426,7 +512,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 23 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -438,7 +524,7 @@ tracks/1/keys = {
 "values": [ 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -449,16 +535,135 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoDamaged.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
-[sub_resource type="Animation" id=33]
-resource_name = "FALL"
-length = 0.2
+[sub_resource type="Animation" id=343]
+resource_name = "ENTER"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 34 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoEnterExit.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
+
+[sub_resource type="Animation" id=344]
+resource_name = "EXIT"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 34 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoEnterExit.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
+
+[sub_resource type="Animation" id=33]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -466,7 +671,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 14 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -478,7 +683,7 @@ tracks/1/keys = {
 "values": [ 3 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/path = NodePath("sprite/Sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -490,7 +695,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:frame")
+tracks/3/path = NodePath("sprite/Sprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -515,17 +720,30 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/AIR/lodrofoFall.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
-resource_name = "IDLE"
 length = 12.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -533,7 +751,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 3 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("sprite/Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -545,7 +763,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 22 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/path = NodePath("sprite/Sprite:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -557,7 +775,7 @@ tracks/2/keys = {
 "values": [ 23 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:vframes")
+tracks/3/path = NodePath("sprite/Sprite:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -594,13 +812,26 @@ tracks/5/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoIdle.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=41]
-resource_name = "JUMP"
 length = 0.3
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:hframes")
+tracks/0/path = NodePath("sprite/Sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -612,7 +843,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("sprite/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -624,7 +855,7 @@ tracks/1/keys = {
 "values": [ 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -636,11 +867,11 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:texture")
+tracks/3/path = NodePath("sprite/Sprite:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -661,14 +892,27 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/AIR/lodrofoJump.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=185]
-resource_name = "LADDERDOWN"
 length = 0.4
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:hframes")
+tracks/0/path = NodePath("sprite/Sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -680,7 +924,7 @@ tracks/0/keys = {
 "values": [ 10 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("sprite/Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -692,25 +936,38 @@ tracks/1/keys = {
 "values": [ 9, 8, 7, 6, 4, 3, 2, 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:texture")
+tracks/2/path = NodePath("sprite/Sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 32 ) ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoLadder.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=162]
-resource_name = "LADDERUP"
 length = 0.4
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:hframes")
+tracks/0/path = NodePath("sprite/Sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -722,7 +979,7 @@ tracks/0/keys = {
 "values": [ 10 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("sprite/Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -734,26 +991,40 @@ tracks/1/keys = {
 "values": [ 1, 2, 3, 4, 6, 7, 8, 9 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:texture")
+tracks/2/path = NodePath("sprite/Sprite:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 2,
 "values": [ ExtResource( 32 ) ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoLadder.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture:load_path")
+tracks/0/path = NodePath("sprite/Sprite:texture:load_path")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -761,11 +1032,11 @@ tracks/0/keys = {
 "values": [ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:texture")
+tracks/1/path = NodePath("sprite/Sprite:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -773,7 +1044,7 @@ tracks/1/keys = {
 "values": [ ExtResource( 3 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/path = NodePath("sprite/Sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -785,7 +1056,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/path = NodePath("sprite/Sprite:hframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -797,7 +1068,7 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:frame")
+tracks/4/path = NodePath("sprite/Sprite:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -834,16 +1105,15 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=154]
-resource_name = "ROLL"
 length = 0.2
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -851,7 +1121,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 29 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -863,7 +1133,7 @@ tracks/1/keys = {
 "values": [ 4 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -881,24 +1151,37 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.05 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 1 ],
 "method": "setCollision"
 } ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoRoll.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
-resource_name = "RUN"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -906,7 +1189,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -918,7 +1201,7 @@ tracks/1/keys = {
 "values": [ 12 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -930,7 +1213,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:vframes")
+tracks/3/path = NodePath("sprite/Sprite:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -962,9 +1245,12 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.4, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoRun.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
 "args": [  ],
 "method": "_stepSfx"
 }, {
@@ -974,15 +1260,14 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=49]
-resource_name = "SPLAT"
 length = 0.8
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -990,7 +1275,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 16 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1002,7 +1287,7 @@ tracks/1/keys = {
 "values": [ 3 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/path = NodePath("sprite/Sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1014,7 +1299,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:frame")
+tracks/3/path = NodePath("sprite/Sprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1025,13 +1310,26 @@ tracks/3/keys = {
 "update": 1,
 "values": [ 0, 1, 2 ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoSplat.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=64]
-resource_name = "STOPPING"
 length = 0.25
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("sprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1043,7 +1341,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:vframes")
+tracks/1/path = NodePath("sprite/Sprite:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1055,7 +1353,7 @@ tracks/1/keys = {
 "values": [ 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/path = NodePath("sprite/Sprite:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1067,29 +1365,101 @@ tracks/2/keys = {
 "values": [ 6 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:texture")
+tracks/3/path = NodePath("sprite/Sprite:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 17 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoStop.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
+
+[sub_resource type="Animation" id=337]
+resource_name = "SUPERROLL"
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoSuperRoll.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
+"args": [ 1 ],
+"method": "setCollision"
+} ]
+}
 
 [sub_resource type="Animation" id=29]
-resource_name = "TOP_SPEED"
 length = 0.4
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1097,7 +1467,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 13 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1109,7 +1479,7 @@ tracks/1/keys = {
 "values": [ 8 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/path = NodePath("sprite/Sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1121,7 +1491,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:frame")
+tracks/3/path = NodePath("sprite/Sprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1146,16 +1516,35 @@ tracks/4/keys = {
 "method": "setCollision"
 } ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoTopSpeed.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+} ]
+}
 
 [sub_resource type="Animation" id=196]
-resource_name = "ToRun1"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1163,7 +1552,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 35 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1175,7 +1564,7 @@ tracks/1/keys = {
 "values": [ 8 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1186,17 +1575,44 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0, 1 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_stepSfx"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoToRun.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
+}
 
 [sub_resource type="Animation" id=197]
-resource_name = "ToRun2"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1204,7 +1620,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 35 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1216,7 +1632,7 @@ tracks/1/keys = {
 "values": [ 8 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
+tracks/2/path = NodePath("sprite/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1227,17 +1643,36 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 2, 3, 4, 5, 6, 7 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/RUN/lodrofoToRun.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+}, {
+"args": [  ],
+"method": "_stepSfx"
+} ]
+}
 
 [sub_resource type="Animation" id=23]
-resource_name = "WALL"
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("sprite/Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
@@ -1245,7 +1680,7 @@ tracks/0/keys = {
 "values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/path = NodePath("sprite/Sprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1257,7 +1692,7 @@ tracks/1/keys = {
 "values": [ 8 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/path = NodePath("sprite/Sprite:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1269,7 +1704,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:frame")
+tracks/3/path = NodePath("sprite/Sprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1279,6 +1714,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/normal/sprites/%s/IDLE/lodrofoWall.png", NodePath("sprite/Sprite") ],
+"method": "getSprite"
+} ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=74]
@@ -1331,7 +1780,7 @@ states/CRAWLING/node = SubResource( 232 )
 states/CRAWLING/position = Vector2( 874.111, 251 )
 transitions = [ "COUNCH", "CRAWLING", SubResource( 233 ), "COUNCH", "COUNCHJUMP", SubResource( 234 ), "COUNCHJUMP", "COUNCHFALL", SubResource( 235 ), "CRAWLING", "COUNCHFALL", SubResource( 236 ), "COUNCH", "COUNCHFALL", SubResource( 237 ), "CRAWLING", "COUNCHJUMP", SubResource( 238 ), "COUNCHJUMP", "CRAWLING", SubResource( 239 ), "COUNCHJUMP", "COUNCH", SubResource( 240 ), "COUNCHFALL", "COUNCHJUMP", SubResource( 241 ), "CRAWLING", "COUNCH", SubResource( 242 ), "COUNCHFALL", "COUNCH", SubResource( 243 ), "COUNCHFALL", "CRAWLING", SubResource( 244 ) ]
 start_node = "COUNCH"
-graph_offset = Vector2( 0, 274.512 )
+graph_offset = Vector2( 0, 17.7465 )
 
 [sub_resource type="AnimationNodeBlendTree" id=246]
 graph_offset = Vector2( 542.803, 449.911 )
@@ -1342,8 +1791,6 @@ node_connections = [ "output", 0, "COUNCH" ]
 
 [sub_resource type="AnimationNodeAnimation" id=135]
 animation = "DAMAGED"
-
-[sub_resource type="AnimationNodeTimeSeek" id=192]
 
 [sub_resource type="AnimationNodeAnimation" id=186]
 animation = "LADDERDOWN"
@@ -1363,14 +1810,16 @@ states/LADDERUP/position = Vector2( 176.333, 137.666 )
 transitions = [ "LADDERUP", "LADDERDOWN", SubResource( 188 ), "LADDERDOWN", "LADDERUP", SubResource( 189 ) ]
 graph_offset = Vector2( -137.913, -35 )
 
+[sub_resource type="AnimationNodeTimeSeek" id=192]
+
 [sub_resource type="AnimationNodeBlendTree" id=174]
-graph_offset = Vector2( -270.038, 308.038 )
+graph_offset = Vector2( -448.352, 105.165 )
+nodes/LADDER/node = SubResource( 190 )
+nodes/LADDER/position = Vector2( 106.667, 373.333 )
 nodes/Seek/node = SubResource( 192 )
 nodes/Seek/position = Vector2( 400, 346.667 )
-nodes/StateMachine/node = SubResource( 190 )
-nodes/StateMachine/position = Vector2( 106.667, 373.333 )
 nodes/output/position = Vector2( 613.333, 346.667 )
-node_connections = [ "output", 0, "Seek", "Seek", 0, "StateMachine" ]
+node_connections = [ "Seek", 0, "LADDER", "output", 0, "Seek" ]
 
 [sub_resource type="AnimationNodeAnimation" id=264]
 animation = "FALL"
@@ -1384,6 +1833,9 @@ animation = "JUMP"
 [sub_resource type="AnimationNodeAnimation" id=312]
 animation = "ROLL"
 
+[sub_resource type="AnimationNodeAnimation" id=268]
+animation = "STOPPING"
+
 [sub_resource type="AnimationNodeAnimation" id=301]
 animation = "RUN"
 
@@ -1395,10 +1847,7 @@ nodes/Animation/position = Vector2( 240, 213.333 )
 nodes/TimeScale/node = SubResource( 302 )
 nodes/TimeScale/position = Vector2( 453.333, 186.667 )
 nodes/output/position = Vector2( 640, 186.667 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
-
-[sub_resource type="AnimationNodeAnimation" id=268]
-animation = "STOPPING"
+node_connections = [ "TimeScale", 0, "Animation", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=271]
 switch_mode = 2
@@ -1450,26 +1899,26 @@ states/JUMP/node = SubResource( 266 )
 states/JUMP/position = Vector2( 624.926, 438.309 )
 states/ROLL/node = SubResource( 312 )
 states/ROLL/position = Vector2( 763, 583.778 )
-states/RUN/node = SubResource( 303 )
-states/RUN/position = Vector2( 626.457, 236.778 )
 states/STOPPING/node = SubResource( 268 )
 states/STOPPING/position = Vector2( 761.667, 105.667 )
-transitions = [ "JUMP", "FALL", SubResource( 271 ), "STOPPING", "IDLE", SubResource( 277 ), "IDLE", "JUMP", SubResource( 278 ), "FALL", "IDLE", SubResource( 279 ), "IDLE", "FALL", SubResource( 280 ), "STOPPING", "RUN", SubResource( 304 ), "RUN", "STOPPING", SubResource( 305 ), "RUN", "IDLE", SubResource( 306 ), "IDLE", "RUN", SubResource( 307 ), "RUN", "JUMP", SubResource( 308 ), "JUMP", "RUN", SubResource( 309 ), "RUN", "FALL", SubResource( 310 ), "FALL", "RUN", SubResource( 311 ), "RUN", "ROLL", SubResource( 313 ), "ROLL", "JUMP", SubResource( 314 ), "FALL", "ROLL", SubResource( 315 ), "STOPPING", "ROLL", SubResource( 316 ), "IDLE", "ROLL", SubResource( 317 ), "ROLL", "IDLE", SubResource( 318 ), "ROLL", "RUN", SubResource( 319 ) ]
+states/WALK/node = SubResource( 303 )
+states/WALK/position = Vector2( 626.457, 236.778 )
+transitions = [ "JUMP", "FALL", SubResource( 271 ), "STOPPING", "IDLE", SubResource( 277 ), "IDLE", "JUMP", SubResource( 278 ), "FALL", "IDLE", SubResource( 279 ), "IDLE", "FALL", SubResource( 280 ), "STOPPING", "WALK", SubResource( 304 ), "WALK", "STOPPING", SubResource( 305 ), "WALK", "IDLE", SubResource( 306 ), "IDLE", "WALK", SubResource( 307 ), "WALK", "JUMP", SubResource( 308 ), "JUMP", "WALK", SubResource( 309 ), "WALK", "FALL", SubResource( 310 ), "FALL", "WALK", SubResource( 311 ), "WALK", "ROLL", SubResource( 313 ), "ROLL", "JUMP", SubResource( 314 ), "FALL", "ROLL", SubResource( 315 ), "STOPPING", "ROLL", SubResource( 316 ), "IDLE", "ROLL", SubResource( 317 ), "ROLL", "IDLE", SubResource( 318 ), "ROLL", "WALK", SubResource( 319 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 0, 44.7778 )
+graph_offset = Vector2( 0, -16.1698 )
 
 [sub_resource type="AnimationNodeBlendTree" id=283]
-graph_offset = Vector2( 320.276, 101.525 )
+graph_offset = Vector2( 241.18, 180.673 )
 nodes/NORMAL/node = SubResource( 282 )
 nodes/NORMAL/position = Vector2( 720, 240 )
 nodes/output/position = Vector2( 1066.67, 320 )
 node_connections = [ "output", 0, "NORMAL" ]
 
-[sub_resource type="AnimationNodeAnimation" id=155]
-animation = "ROLL"
-
 [sub_resource type="AnimationNodeAnimation" id=198]
 animation = "TOP_SPEED"
+
+[sub_resource type="AnimationNodeAnimation" id=338]
+animation = "SUPERROLL"
 
 [sub_resource type="AnimationNodeAnimation" id=199]
 animation = "ToRun1"
@@ -1489,23 +1938,55 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=228]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=339]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=340]
+
 [sub_resource type="AnimationNodeStateMachine" id=205]
-states/TOP_SPEED/node = SubResource( 198 )
-states/TOP_SPEED/position = Vector2( 695, 208.333 )
+states/RUN/node = SubResource( 198 )
+states/RUN/position = Vector2( 695, 208.333 )
+states/SUPERROLL/node = SubResource( 338 )
+states/SUPERROLL/position = Vector2( 939.501, 189.667 )
 states/ToRun1/node = SubResource( 199 )
 states/ToRun1/position = Vector2( 656.333, 376.333 )
 states/ToRun2/node = SubResource( 200 )
 states/ToRun2/position = Vector2( 925.667, 337.667 )
-transitions = [ "ToRun1", "ToRun2", SubResource( 201 ), "ToRun2", "ToRun1", SubResource( 202 ), "ToRun2", "TOP_SPEED", SubResource( 203 ), "TOP_SPEED", "ToRun1", SubResource( 204 ), "ToRun1", "TOP_SPEED", SubResource( 228 ) ]
+transitions = [ "ToRun1", "ToRun2", SubResource( 201 ), "ToRun2", "ToRun1", SubResource( 202 ), "ToRun2", "RUN", SubResource( 203 ), "RUN", "ToRun1", SubResource( 204 ), "ToRun1", "RUN", SubResource( 228 ), "RUN", "SUPERROLL", SubResource( 339 ), "SUPERROLL", "RUN", SubResource( 340 ) ]
 start_node = "ToRun1"
-end_node = "TOP_SPEED"
+end_node = "RUN"
+graph_offset = Vector2( 377.834, 94.1769 )
 
 [sub_resource type="AnimationNodeBlendTree" id=206]
-graph_offset = Vector2( 774.754, 187.744 )
+graph_offset = Vector2( 1108.15, 346.382 )
 nodes/RUN/node = SubResource( 205 )
 nodes/RUN/position = Vector2( 800, 346.667 )
 nodes/output/position = Vector2( 1120, 346.667 )
 node_connections = [ "output", 0, "RUN" ]
+
+[sub_resource type="AnimationNodeAnimation" id=345]
+animation = "ENTER"
+
+[sub_resource type="AnimationNodeAnimation" id=346]
+animation = "EXIT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=347]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=348]
+
+[sub_resource type="AnimationNodeStateMachine" id=349]
+states/ENTER/node = SubResource( 345 )
+states/ENTER/position = Vector2( 387, 80.7778 )
+states/EXIT/node = SubResource( 346 )
+states/EXIT/position = Vector2( 596.333, 80.3333 )
+transitions = [ "EXIT", "ENTER", SubResource( 347 ), "ENTER", "EXIT", SubResource( 348 ) ]
+start_node = "ENTER"
+
+[sub_resource type="AnimationNodeBlendTree" id=350]
+graph_offset = Vector2( 415.115, 217.8 )
+nodes/TAUNT/node = SubResource( 349 )
+nodes/TAUNT/position = Vector2( 346.667, 160 )
+nodes/output/position = Vector2( 586.667, 160 )
+node_connections = [ "output", 0, "TAUNT" ]
 
 [sub_resource type="AnimationNodeAnimation" id=320]
 animation = "SPLAT"
@@ -1566,10 +2047,6 @@ node_connections = [ "output", 0, "WALLED" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=289]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=292]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=293]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=294]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=295]
@@ -1592,32 +2069,38 @@ node_connections = [ "output", 0, "WALLED" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=330]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=331]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=332]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=333]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=351]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=352]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=353]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=354]
+
 [sub_resource type="AnimationNodeStateMachine" id=13]
 states/ATTACK/node = SubResource( 74 )
-states/ATTACK/position = Vector2( 236.337, 289.48 )
+states/ATTACK/position = Vector2( 728.811, 550.975 )
 states/COUNCH/node = SubResource( 246 )
-states/COUNCH/position = Vector2( 827.513, 450.116 )
+states/COUNCH/position = Vector2( 160.846, 550.601 )
 states/DAMAGED/node = SubResource( 135 )
 states/DAMAGED/position = Vector2( 500.795, 647.417 )
 states/LADDER/node = SubResource( 174 )
-states/LADDER/position = Vector2( 836.82, 298.236 )
+states/LADDER/position = Vector2( 729.026, 350.491 )
 states/NORMAL/node = SubResource( 283 )
-states/NORMAL/position = Vector2( 484.64, 196.104 )
-states/ROLL/node = SubResource( 155 )
-states/ROLL/position = Vector2( 611.613, 731.433 )
-states/TOP_SPEED/node = SubResource( 206 )
-states/TOP_SPEED/position = Vector2( 98.3083, 429.355 )
+states/NORMAL/position = Vector2( 731.791, 197.77 )
+states/RUN/node = SubResource( 206 )
+states/RUN/position = Vector2( 258.308, 197.02 )
+states/TAUNT/node = SubResource( 350 )
+states/TAUNT/position = Vector2( 494.684, 92.5305 )
 states/WALLED/node = SubResource( 325 )
-states/WALLED/position = Vector2( 173.287, 612.094 )
-transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "TOP_SPEED", "LADDER", SubResource( 207 ), "TOP_SPEED", "DAMAGED", SubResource( 211 ), "DAMAGED", "TOP_SPEED", SubResource( 212 ), "ATTACK", "TOP_SPEED", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "TOP_SPEED", "COUNCH", SubResource( 254 ), "COUNCH", "TOP_SPEED", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "TOP_SPEED", SubResource( 284 ), "TOP_SPEED", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "ROLL", SubResource( 292 ), "ROLL", "NORMAL", SubResource( 293 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "TOP_SPEED", "WALLED", SubResource( 327 ), "WALLED", "TOP_SPEED", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "ROLL", "WALLED", SubResource( 331 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ) ]
+states/WALLED/position = Vector2( 154.649, 350.401 )
+transitions = [ "ATTACK", "DAMAGED", SubResource( 144 ), "RUN", "LADDER", SubResource( 207 ), "RUN", "DAMAGED", SubResource( 211 ), "DAMAGED", "RUN", SubResource( 212 ), "ATTACK", "RUN", SubResource( 217 ), "ATTACK", "COUNCH", SubResource( 247 ), "COUNCH", "ATTACK", SubResource( 248 ), "COUNCH", "LADDER", SubResource( 253 ), "RUN", "COUNCH", SubResource( 254 ), "COUNCH", "RUN", SubResource( 255 ), "DAMAGED", "COUNCH", SubResource( 257 ), "COUNCH", "DAMAGED", SubResource( 258 ), "NORMAL", "RUN", SubResource( 284 ), "RUN", "NORMAL", SubResource( 285 ), "NORMAL", "DAMAGED", SubResource( 288 ), "DAMAGED", "NORMAL", SubResource( 289 ), "NORMAL", "LADDER", SubResource( 294 ), "LADDER", "NORMAL", SubResource( 295 ), "NORMAL", "ATTACK", SubResource( 296 ), "ATTACK", "NORMAL", SubResource( 297 ), "NORMAL", "COUNCH", SubResource( 298 ), "COUNCH", "NORMAL", SubResource( 299 ), "WALLED", "DAMAGED", SubResource( 326 ), "RUN", "WALLED", SubResource( 327 ), "WALLED", "RUN", SubResource( 328 ), "WALLED", "COUNCH", SubResource( 329 ), "COUNCH", "WALLED", SubResource( 330 ), "WALLED", "NORMAL", SubResource( 332 ), "NORMAL", "WALLED", SubResource( 333 ), "RUN", "TAUNT", SubResource( 351 ), "TAUNT", "RUN", SubResource( 352 ), "TAUNT", "NORMAL", SubResource( 353 ), "NORMAL", "TAUNT", SubResource( 354 ) ]
 start_node = "NORMAL"
-graph_offset = Vector2( -180.6, 412.783 )
+graph_offset = Vector2( 26.3503, 0.344169 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=152]
 
@@ -1627,18 +2110,23 @@ graph_offset = Vector2( -180.6, 412.783 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=300]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=227]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=335]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=355]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=334]
 
 [sub_resource type="RectangleShape2D" id=86]
-extents = Vector2( 35, 10 )
+extents = Vector2( 40, 24 )
 
 [sub_resource type="RectangleShape2D" id=85]
 extents = Vector2( 40, 24 )
 
+[sub_resource type="RayShape2D" id=357]
+length = 40.0
+
 [sub_resource type="RectangleShape2D" id=159]
-extents = Vector2( 35, 16 )
+extents = Vector2( 40, 16 )
 
 [sub_resource type="CanvasItemMaterial" id=88]
 particles_animation = true
@@ -1651,66 +2139,53 @@ min_value = -200.0
 max_value = 200.0
 _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 119.325 ), 498.258, 0.0, 0, 0 ]
 
-[sub_resource type="CanvasItemMaterial" id=194]
-particles_animation = true
-particles_anim_h_frames = 4
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="AtlasTexture" id=195]
-atlas = ExtResource( 34 )
-region = Rect2( 0, 0, 256, 64 )
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
-[node name="playerNormal" instance=ExtResource( 2 )]
+[node name="playerNormal" groups=["input", "normal"] instance=ExtResource( 2 )]
 collision/safe_margin = 1.0
 script = ExtResource( 1 )
 stateMachinePath = NodePath("StateMachine")
-particles = [ NodePath("runningParticle"), NodePath("topspeedParicle") ]
 ACCELERATION = 6
-DESACCELERATION = 22
+DESACCELERATION = 16
 GRAVITY = 26
 MAXSPEED = 600
 MAXFALL = 600
 JUMPFORCE = -850
+spriteGizmoPath = NodePath("sprite")
+particles = [ NodePath("runningParticle"), NodePath("topspeedParicle") ]
+spritesPath = "res://entities/player/powerStates/normal/sprites"
 runningVelocity = 1000.0
 
-[node name="flooDetectBack" parent="." index="2"]
-position = Vector2( -14, -8 )
-cast_to = Vector2( 0, 24 )
+[node name="coyoteTimer" parent="." index="1"]
+wait_time = 0.15
 
-[node name="floorDetect" parent="." index="3"]
-position = Vector2( 0, -8 )
-z_index = 6
-cast_to = Vector2( 0, 32 )
+[node name="rayShapeLeft" parent="." index="4"]
+position = Vector2( -13, -28 )
 
-[node name="flooDetectFont" parent="." index="4"]
-position = Vector2( 14, -8 )
-cast_to = Vector2( 0, 24 )
+[node name="rayShapeRight" parent="." index="5"]
+position = Vector2( 13, -28 )
 
-[node name="Camera2D" parent="." index="5"]
-position = Vector2( 0, -64 )
-
-[node name="collideUp" parent="." index="6"]
-visible = false
-
-[node name="onWallTop" parent="." index="7"]
+[node name="onWallTop" parent="." index="9"]
 position = Vector2( 0, -48 )
 
-[node name="onWallMid" parent="." index="8"]
+[node name="onWallMid" parent="." index="10"]
 position = Vector2( 0, -28 )
 enabled = false
 
-[node name="slopeDetect" parent="." index="10"]
+[node name="slopeDetect" parent="." index="12"]
 position = Vector2( 0, -16 )
-cast_to = Vector2( 0, 80 )
+cast_to = Vector2( 0, 40 )
 
-[node name="HitboxComponent" parent="." index="11"]
-visible = false
-collision_layer = 1536
+[node name="slopeDetectLeft" parent="." index="13"]
+position = Vector2( -16, -16 )
 
-[node name="topspeedParicle" type="CPUParticles2D" parent="." index="12"]
+[node name="slopeDetectRight" parent="." index="14"]
+position = Vector2( 16, -16 )
+
+[node name="insideDetectLeft" parent="." index="15"]
+cast_to = Vector2( -17, 0 )
+
+[node name="topspeedParicle" type="CPUParticles2D" parent="." index="16"]
 material = SubResource( 193 )
 emitting = false
 amount = 12
@@ -1725,29 +2200,72 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="." index="13"]
-position = Vector2( 0, -32 )
+[node name="sprite" type="Node2D" parent="." index="17"]
+position = Vector2( 0, -2 )
+
+[node name="Sword" type="Sprite" parent="sprite" index="0"]
+position = Vector2( 24, 2 )
+rotation = 0.0349066
+scale = Vector2( 2, 2 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 40 )
+offset = Vector2( 0, -8 )
+
+[node name="Sprite" type="Sprite" parent="sprite" index="1"]
+material = SubResource( 356 )
+position = Vector2( 0, -30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="14"]
-position = Vector2( 0, -28 )
-shape = SubResource( 87 )
+[node name="speedEffect" type="Sprite" parent="sprite" index="2"]
+self_modulate = Color( 1, 1, 1, 0.79 )
+position = Vector2( 28, -30 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 21 )
+hframes = 5
+frame = 4
 
-[node name="speedAnimation" type="AnimationPlayer" parent="." index="15"]
+[node name="swordFloor" type="RayCast2D" parent="sprite" index="3"]
+position = Vector2( -32, -22 )
+enabled = true
+cast_to = Vector2( 0, 32 )
+
+[node name="swordFloor2" type="RayCast2D" parent="sprite" index="4"]
+position = Vector2( 24, -22 )
+enabled = true
+cast_to = Vector2( 0, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="18"]
+position = Vector2( 0, -42 )
+shape = SubResource( 336 )
+
+[node name="rayShape" type="CollisionShape2D" parent="." index="19"]
+position = Vector2( 0, -24 )
+shape = SubResource( 341 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="20"]
+visible = false
+position = Vector2( 0, -26 )
+shape = SubResource( 342 )
+disabled = true
+
+[node name="speedAnimation" type="AnimationPlayer" parent="." index="21"]
 root_node = NodePath("../CollisionShape2D")
 autoplay = "speedEffect"
 anims/RESET = SubResource( 122 )
 anims/speedEffect = SubResource( 123 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="16"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="22"]
 anims/ATTACK = SubResource( 73 )
 anims/COUNCH = SubResource( 91 )
 anims/COUNCHFALL = SubResource( 127 )
 anims/COUNCHJUMP = SubResource( 124 )
 anims/CRAWLING = SubResource( 106 )
 anims/DAMAGED = SubResource( 134 )
+anims/ENTER = SubResource( 343 )
+anims/EXIT = SubResource( 344 )
 anims/FALL = SubResource( 33 )
 anims/IDLE = SubResource( 3 )
 anims/JUMP = SubResource( 41 )
@@ -1758,83 +2276,119 @@ anims/ROLL = SubResource( 154 )
 anims/RUN = SubResource( 5 )
 anims/SPLAT = SubResource( 49 )
 anims/STOPPING = SubResource( 64 )
+anims/SUPERROLL = SubResource( 337 )
 anims/TOP_SPEED = SubResource( 29 )
 anims/ToRun1 = SubResource( 196 )
 anims/ToRun2 = SubResource( 197 )
 anims/WALL = SubResource( 23 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="17"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="23"]
 tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 root_motion_track = NodePath("Sprite:frame")
 parameters/playback = SubResource( 152 )
 parameters/COUNCH/COUNCH/playback = SubResource( 263 )
+parameters/LADDER/LADDER/playback = SubResource( 191 )
 parameters/LADDER/Seek/seek_position = -1.0
-parameters/LADDER/StateMachine/playback = SubResource( 191 )
 parameters/NORMAL/NORMAL/playback = SubResource( 300 )
-parameters/NORMAL/NORMAL/RUN/TimeScale/scale = 1.0
-parameters/TOP_SPEED/RUN/playback = SubResource( 227 )
+parameters/NORMAL/NORMAL/WALK/TimeScale/scale = 1.0
+parameters/RUN/RUN/playback = SubResource( 335 )
+parameters/TAUNT/TAUNT/playback = SubResource( 355 )
 parameters/WALLED/WALLED/playback = SubResource( 334 )
 
-[node name="attackPunch" type="Area2D" parent="." index="18"]
+[node name="attackPunch" type="Area2D" parent="." index="24"]
 visible = false
 position = Vector2( 35, -31 )
 collision_layer = 256
 collision_mask = 256
-monitoring = false
+monitorable = false
 script = ExtResource( 20 )
 damage = 1
+hasOwnerID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
+position = Vector2( 5, 3 )
 shape = SubResource( 86 )
 
-[node name="attackSpeed" type="Area2D" parent="." index="19"]
-visible = false
+[node name="attackSpeed" type="Area2D" parent="." index="25"]
 position = Vector2( 40, -23 )
 collision_layer = 256
 collision_mask = 256
-monitoring = false
+monitorable = false
 script = ExtResource( 20 )
 damage = 2
+hasOwnerID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
 position = Vector2( 0, -5 )
 shape = SubResource( 85 )
+disabled = true
 
-[node name="attackRoll" type="Area2D" parent="." index="20"]
-position = Vector2( 35, -19 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="attackSpeed" index="1"]
+position = Vector2( -32, -38 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="attackSpeed" index="2"]
+position = Vector2( -32, 21 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="attackSpeed" index="3"]
+position = Vector2( -32, 7 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="attackSpeed" index="4"]
+position = Vector2( -32, -25 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="attackSpeed" index="5"]
+position = Vector2( -32, -9 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="attackRoll" type="Area2D" parent="." index="26"]
+visible = false
+position = Vector2( 40, -23 )
 collision_layer = 256
 collision_mask = 256
 script = ExtResource( 20 )
 damage = 1
+hasOwnerID = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackRoll" index="0"]
 shape = SubResource( 159 )
 
-[node name="StateMachine" type="Node" parent="." index="21"]
+[node name="StateMachine" type="Node" parent="." index="27"]
 script = ExtResource( 7 )
 startingState = NodePath("IDLE")
 
-[node name="IDLE" type="Node" parent="StateMachine" index="0"]
+[node name="IDLE" type="Node" parent="StateMachine" index="0" groups=["input"]]
 script = ExtResource( 6 )
 
-[node name="RUN" type="Node" parent="StateMachine" index="1"]
+[node name="WALK" type="Node" parent="StateMachine" index="1" groups=["input"]]
 script = ExtResource( 8 )
 
-[node name="JUMP" type="Node" parent="StateMachine" index="2"]
+[node name="JUMP" type="Node" parent="StateMachine" index="2" groups=["input"]]
 script = ExtResource( 9 )
 
-[node name="FALL" type="Node" parent="StateMachine" index="3"]
+[node name="FALL" type="Node" parent="StateMachine" index="3" groups=["input"]]
 script = ExtResource( 10 )
 
-[node name="WALL" type="Node" parent="StateMachine" index="4"]
+[node name="WALL" type="Node" parent="StateMachine" index="4" groups=["input"]]
 script = ExtResource( 11 )
 
-[node name="TOP_SPEED" type="Node" parent="StateMachine" index="5"]
+[node name="Timer" type="Timer" parent="StateMachine/WALL" index="0"]
+wait_time = 0.3
+one_shot = true
+
+[node name="RUN" type="Node" parent="StateMachine" index="5" groups=["input"]]
 script = ExtResource( 12 )
 
-[node name="ATTACK" type="Node" parent="StateMachine" index="6"]
+[node name="ATTACK" type="Node" parent="StateMachine" index="6" groups=["input"]]
 script = ExtResource( 18 )
 
 [node name="attackTimer" type="Timer" parent="StateMachine/ATTACK" index="0"]
@@ -1845,16 +2399,26 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[node name="DAMAGED" type="Node" parent="StateMachine" index="7"]
+[node name="DAMAGED" type="Node" parent="StateMachine" index="7" groups=["input"]]
 script = ExtResource( 28 )
 
-[node name="ROLL" type="Node" parent="StateMachine" index="8"]
+[node name="ROLL" type="Node" parent="StateMachine" index="8" groups=["input"]]
 script = ExtResource( 30 )
 
-[node name="LADDER" type="Node" parent="StateMachine" index="9"]
+[node name="LADDER" type="Node" parent="StateMachine" index="9" groups=["input"]]
 script = ExtResource( 31 )
 
-[node name="a" type="Node2D" parent="." index="22"]
+[node name="SUPERROLL" type="Node" parent="StateMachine" index="10" groups=["input"]]
+script = ExtResource( 37 )
+
+[node name="TAUNT" type="Node" parent="StateMachine" index="11"]
+script = ExtResource( 38 )
+
+[node name="Timer" type="Timer" parent="StateMachine/TAUNT" index="0"]
+one_shot = true
+
+[node name="a" type="Node2D" parent="." index="28"]
+visible = false
 z_index = 4
 
 [node name="Label" type="Label" parent="a" index="0"]
@@ -1866,15 +2430,7 @@ text = "a"
 align = 1
 valign = 1
 
-[node name="speedEffect" type="Sprite" parent="." index="23"]
-self_modulate = Color( 1, 1, 1, 0.79 )
-position = Vector2( 28, -32 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 21 )
-hframes = 5
-frame = 4
-
-[node name="runningParticle" type="CPUParticles2D" parent="." index="24"]
+[node name="runningParticle" type="CPUParticles2D" parent="." index="29"]
 material = SubResource( 88 )
 emitting = false
 amount = 6
@@ -1893,21 +2449,23 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="dashParticle" type="CPUParticles2D" parent="." index="25"]
-material = SubResource( 194 )
-position = Vector2( 0, -32 )
-emitting = false
-amount = 1
-one_shot = true
-texture = SubResource( 195 )
-gravity = Vector2( 0, 0 )
-scale_amount = 2.0
-anim_speed = 2.0
-__meta__ = {
-"_edit_group_": true
-}
+[node name="specialEffectTimer" type="Timer" parent="." index="30"]
+wait_time = 0.075
+autostart = true
+
+[node name="insideDetectRight" parent="." index="31"]
+cast_to = Vector2( 17, 0 )
+
+[node name="insideDetectLeft2" parent="." index="32"]
+position = Vector2( 0, 5 )
+cast_to = Vector2( -17, 0 )
+
+[node name="insideDetectRight2" parent="." index="33"]
+position = Vector2( 0, 5 )
+cast_to = Vector2( 17, 0 )
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )
 
 [connection signal="damaged" from="." to="StateMachine/DAMAGED" method="itsDamaged"]
+[connection signal="timeout" from="specialEffectTimer" to="." method="_on_specialEffectTimer_timeout"]

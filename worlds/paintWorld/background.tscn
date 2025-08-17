@@ -1,0 +1,16 @@
+[gd_scene format=2]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="layer1" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 1, 0 )
+motion_offset = Vector2( -900, 0 )
+motion_mirroring = Vector2( 1800, 0 )
+
+[node name="ColorRect2" type="ColorRect" parent="layer1"]
+margin_top = -448.0
+margin_right = 1800.0
+margin_bottom = 452.0
+color = Color( 0.105882, 0.0784314, 0.12549, 1 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." groups=["canvasChanger"]]

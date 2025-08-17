@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
+[ext_resource path="res://worlds/paintWorld/rooms/room3.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://worlds/paintWorld/rooms/room1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
+[ext_resource path="res://worlds/paintWorld/background.tscn" type="PackedScene" id=6]
+[ext_resource path="res://worlds/paintWorld/rooms/room2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://worlds/classes/canvasModulateChanger/CanvasModulteChanger.gd" type="Script" id=8]
+[ext_resource path="res://worlds/paintWorld/rooms/room4.tscn" type="PackedScene" id=9]
+[ext_resource path="res://worlds/paintWorld/rooms/room5.tscn" type="PackedScene" id=10]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 488, 168 )
+
+[node name="world" type="Node2D"]
+material = SubResource( 2 )
+position = Vector2( -11, -36 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+canvasModulateColor = Color( 0.858824, 0.760784, 0.917647, 1 )
+portalPath = NodePath("portal")
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="RoomWarp" type="Position2D" parent="."]
+position = Vector2( -67, -1546 )
+script = ExtResource( 5 )
+
+[node name="portal" type="Position2D" parent="."]
+position = Vector2( 171, -1036 )
+script = ExtResource( 5 )
+
+[node name="room1" parent="." instance=ExtResource( 4 )]
+position = Vector2( -5, -652 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="room1"]
+position = Vector2( 984, -784 )
+scale = Vector2( 154.4, 94.4 )
+freeze_bodies = false
+
+[node name="room2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2523, -652 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="room2"]
+position = Vector2( 763, -784 )
+scale = Vector2( 77.3, 94.4 )
+
+[node name="room3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2523, -492 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="room3"]
+position = Vector2( 496, 576 )
+scale = Vector2( 104, 57.6 )
+
+[node name="room4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2523, 660 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="room4"]
+position = Vector2( 496, 416 )
+scale = Vector2( 104, 41.6 )
+
+[node name="room5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 4059, 660 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
+
+[node name="CanvasModulaterChanger" type="Area2D" parent="."]
+script = ExtResource( 8 )
+colorChange = Color( 0.729412, 0.65098, 0.611765, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasModulaterChanger"]
+position = Vector2( 795, -2284 )
+shape = SubResource( 1 )

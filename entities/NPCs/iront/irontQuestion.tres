@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-question = "do you want to enter the coliseum now?"
-options = [ "Yes!", "No, let me train more." ]
+question = "iront_3"
+options = [ "iront_3_1", "iront_3_2" ]

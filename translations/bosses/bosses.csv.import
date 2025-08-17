@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://translations/bosses/bosses.pt_BR.translation", "res://translations/bosses/bosses.en.translation" ]
+
+source_file="res://translations/bosses/bosses.csv"
+dest_files=[ "res://translations/bosses/bosses.pt_BR.translation", "res://translations/bosses/bosses.en.translation" ]
+
+[params]
+
+compress=true
+delimiter=0
