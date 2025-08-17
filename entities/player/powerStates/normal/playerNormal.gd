@@ -107,10 +107,8 @@ func receivePacket(packet):
 func rotateNormal(delta):
 	var floorNormal : Vector2 = .rotateNormal(delta)
 	
-	if not onFloor()and running:
+	if not onFloor() and (running or isRolling):
 		floorNormal = Vector2(sin(motion.angle()), cos(motion.angle()))
-		
-#		floorNormal.x *= -1
 	
 	return floorNormal
 

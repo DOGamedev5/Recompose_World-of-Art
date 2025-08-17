@@ -1258,7 +1258,7 @@ margin_bottom = 224.0
 rect_min_size = Vector2( 480, 224 )
 rect_pivot_offset = Vector2( 368, 0 )
 size_flags_horizontal = 6
-size_flags_vertical = 2
+size_flags_vertical = 6
 texture = ExtResource( 8 )
 expand = true
 
@@ -1267,6 +1267,7 @@ margin_top = 256.0
 margin_right = 1169.0
 margin_bottom = 616.0
 grow_horizontal = 2
+size_flags_vertical = 7
 custom_constants/separation = 8
 alignment = 1
 

@@ -25,6 +25,8 @@ onready var objects : Node2D
 
 signal clockInitialized
 
+onready var finsihedPlayers := {}
+
 func _init():
 	objects = Node2D.new()
 	objects.name = "objects"
@@ -72,14 +74,15 @@ func setup():
 			player.owner = self
 			
 			Players.playerList[member["ID"]].reference = player
-	
+			finsihedPlayers[member["ID"]] = false
+			
 #	AudioManager.playMusic("paintCaverns")
 func _process(delta):
 	var finalColor := currentColor
 	if canvasModulate.color != currentColor and canvasModulate.visible:
 		if clock: 
 			if timer.time_left < 30:
-				finalColor *= Color(0.97, 0.67, 0.78)
+				finalColor *= Color(0.97, 0.65, 1)
 			elif timer.time_left < 60:
 				finalColor *= Color(0.8, 0.75, 0.9)
 			else:
@@ -90,14 +93,18 @@ func _process(delta):
 	else:
 		if clock:
 			if timer.time_left < 30:
-				finalColor = Color(0.97, 0.67, 0.78)
+				finalColor = Color(0.97, 0.65, 1)
 			elif timer.time_left < 60:
-				finalColor = Color(0.8, 0.75, 0.9)
+				finalColor = Color(0.62, 0.62, 0.84)
 			else:
 				finalColor = Color(0.6, 0.8, 0.95)
 				
 		timerModulate.color = lerp(timerModulate.color, finalColor, 1.3*delta)
 		Global.tree.call_group("canvasChanger", "set_color", timerModulate.color)
+
+func _input(event):
+	if event.is_action_pressed("interact") and portal.is_inside_tree():
+		setupTimer(80)
 
 func setCameraLimits(limitsMin : Vector2, limitsMax : Vector2):
 	get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME, "player", "setCameraLimits", limitsMin, limitsMax)
@@ -124,11 +131,40 @@ func setupTimer(time):
 	clock = true
 	timer.wait_time = time
 	timer.start()
-	portal.escapeActivate()
+	if portal.has_method("escapeActivate"):
+		portal.escapeActivate()
 	
 	emit_signal("clockInitialized")
+
+func playerFinished(id):
+	finsihedPlayers[id] = true
+	var allFinish := true
+	for i in finsihedPlayers.keys():
+		allFinish = allFinish and finsihedPlayers[i]
 	
-	
+	if allFinish:
+		LoadSystem.openScreen()
+		LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")
+	else:
+		addSpectator(id)
+
+func addSpectator(id):
+	var oldPlayer = Players.getPlayer(id).reference
+	var newPlayer : PlayerBase = LoadedObjects.loaded["res://entities/player/powerStates/fly/playerFly.tscn"].instance()
+
+	newPlayer.global_position = global_position
+	if Network.steamID == id:
+		Global.player = newPlayer
+
+	newPlayer.OwnerID = id
+
+	Global.world.add_child(newPlayer)
+
+	newPlayer.owner = Global.world
+
+	Players.playerList[id].reference = newPlayer
+	oldPlayer.pause_mode = 0
+	oldPlayer.queue_free()
 
 func _exit_tree():
 	if not Global.in_game:

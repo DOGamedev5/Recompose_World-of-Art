@@ -22,7 +22,6 @@ onready var lobbiesList := $enter/MarginContainer/findParty/Panel/VBoxContainer2
 onready var refleshLobbies := $enter/RefleshLobbies
 onready var start := $enter/MarginContainer/lobby/info/buttons/Start
 
-
 enum lobbyStatus {Private, Friends, Public, Invisible}
 enum searchDistance {Close, Default, Far, Worldwide}
 

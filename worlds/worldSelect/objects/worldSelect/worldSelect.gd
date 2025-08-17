@@ -23,7 +23,6 @@ func _ready():
 	hudControl.modulate = Color.transparent
 	hud.visible = false
 	close.disabled = true
-	
 
 func _process(_delta):
 	if Network.lobbyMembers.size() > 1:
@@ -37,7 +36,7 @@ func selected(id):
 	close.disabled = true
 	get_parent().selectedWorld = id
 	selectedWorld = true
-	if  Network.lobbyMembers.size() > 1:
+	if Network.lobbyMembers.size() > 1:
 		$CanvasLayer/Control/margin/panel/ready.visible = true
 	else:
 		Global.player.moving = true

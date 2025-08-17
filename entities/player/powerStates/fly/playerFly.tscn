@@ -1,23 +1,68 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/player/powerStates/fly/playerFly.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://entities/player/powerStates/fly/eye.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
-[node name="playerFly" instance=ExtResource( 2 )]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
+
+[node name="playerFly" groups=["spectator"] instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 ACCELERATION = 5
 DESACCELERATION = 15
+MAXSPEED = 800
 
-[node name="Sprite" type="Sprite" parent="." index="3"]
-self_modulate = Color( 0.4, 0.8, 1, 1 )
-position = Vector2( 0, -8 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 position = Vector2( 0, -8 )
 shape = SubResource( 1 )
+disabled = true
+
+[node name="slopeDetect" parent="." index="13"]
+enabled = false
+
+[node name="slopeDetectLeft" parent="." index="14"]
+enabled = false
+
+[node name="slopeDetectRight" parent="." index="15"]
+enabled = false
+
+[node name="insideDetectLeft" parent="." index="16"]
+enabled = false
+
+[node name="insideDetectRight" parent="." index="17"]
+enabled = false
+
+[node name="insideDetectLeft2" parent="." index="18"]
+enabled = false
+
+[node name="insideDetectRight2" parent="." index="19"]
+enabled = false
+
+[node name="HitboxComponent" parent="." index="20"]
+visible = true
+collision_layer = 1024
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2( 0, 2 )
+
+[node name="AnimationTree" parent="shieldSystem" index="0"]
+parameters/playback = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="22"]
+position = Vector2( -1.90735e-06, 1.43051e-06 )
+scale = Vector2( 3.2, 1.6 )
+
+[node name="Sprite" type="Sprite" parent="." index="23"]
+modulate = Color( 1, 1, 1, 0.827451 )
+material = SubResource( 3 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

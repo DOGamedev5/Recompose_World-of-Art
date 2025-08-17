@@ -8,10 +8,9 @@ motion_offset = Vector2( -900, 0 )
 motion_mirroring = Vector2( 1800, 0 )
 
 [node name="ColorRect" type="ColorRect" parent="layer1"]
-margin_left = 16.0
 margin_top = -448.0
-margin_right = 1816.0
+margin_right = 1800.0
 margin_bottom = 452.0
-color = Color( 0.47451, 0.4, 0.352941, 1 )
+color = Color( 0.398438, 0.328563, 0.284431, 1 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["canvasChanger", "color"]]
+[node name="CanvasLayer" type="CanvasModulate" parent="." groups=["canvasChanger", "color"]]

@@ -27,12 +27,25 @@ func createPlayers():
 	$Tween.interpolate_property(sprite, "scale", Vector2.ZERO, Vector2(1, 1), 0.8, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	$Tween.start()
 
-func _on_Area2D_area_entered(_area):
-	pass # Replace with function body.
+func _on_Area2D_area_entered(area):
+	if not Network.is_owned(area.get_parent().OwnerID) or area.get_parent().is_in_group("spectator"): return
+	spectator(Network.steamID)
+	Network.sendP2PPacket(-1,
+		{
+			"type" : "objectUpdateCall",
+			"objectPath" : get_path(),
+			"method" : "spectator",
+			"value" : [Network.steamID]
+		},
+		Steam.NETWORKING_SEND_RELIABLE
+		)
 
+
+func spectator(id):
+	Global.world.playerFinished(id)
+	
 func _on_Tween_tween_completed(_object, _key : String):
 	if setup:
-		$AnimationPlayer.stop()
 		return
 	
 	for member in Network.lobbyMembers:
@@ -51,6 +64,7 @@ func _on_Tween_tween_completed(_object, _key : String):
 		player.owner = Global.world
 
 		Players.playerList[member["ID"]].reference = player
+		Global.world.finsihedPlayers[member["ID"]] = false
 	
 	setup = true
 	
@@ -60,8 +74,6 @@ func _on_Tween_tween_completed(_object, _key : String):
 func setupCamera():
 	Global.player.camera.current = true
 	Global.world.isPortalSetup = true
-	
-	pass
 
 func escapeActivate():
 	$Tween.interpolate_property(sprite, "scale", Vector2.ZERO, Vector2(1, 1), 0.8, Tween.TRANS_CUBIC, Tween.EASE_OUT)
@@ -73,4 +85,6 @@ func escapeActivate():
 
 func _on_VisibilityEnabler2D_screen_entered():
 	$Area2D/CollisionShape2D.disabled = not Global.world.clock
+	$AnimationPlayer.play("spin")
+	
 		

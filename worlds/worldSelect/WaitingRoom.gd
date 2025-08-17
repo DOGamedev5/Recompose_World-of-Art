@@ -6,7 +6,7 @@ onready var worlds := [
 	"res://worlds/literatureArt/world.tscn",
 	"res://worlds/paintWorld/world.tscn"
 ]
-onready var playerScene := preload("res://entities/player/powerStates/normal/playerNormal.tscn")
+onready var playerScene := "res://entities/player/powerStates/normal/playerNormal.tscn"
 
 var totalReady := 0
 
@@ -14,9 +14,9 @@ var selectedWorld : int = -1
 
 func _ready():
 	Network.sendP2PPacket(-1, {"type" : "startGame"}, 2)
-	Network.connect("worldSelected", self, "selected")
+	Network.connect("worldSelected", self, "exit")
 	Network.connect("newMemberJoined", self, "_newPlayer")
-	
+
 	$hud/MarginContainer/HBoxContainer/ready.visible = not Network.is_host()
 #	$hud.visible = Network.lobbyID != -1
 	
@@ -40,7 +40,7 @@ func exit(world := selectedWorld):
 	get_tree().root.set_disable_input(true)
 
 func _newPlayer(id):
-	var newPlayer := playerScene.instance()
+	var newPlayer : PlayerBase = LoadedObjects.loaded[playerScene].instance()
 	newPlayer.OwnerID = id
 	newPlayer.global_position = $RoomWarp.global_position
 	add_child(newPlayer)
