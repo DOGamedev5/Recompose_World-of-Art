@@ -7,6 +7,8 @@ onready var current := $initial
 
 func _ready():
 	AudioManager.playMusic("recompose")
+	FileSystemHandler.initAutoSave()
+	
 
 func transition(show, hide : Array):
 	show.current = true

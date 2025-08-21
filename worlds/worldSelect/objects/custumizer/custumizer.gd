@@ -23,12 +23,20 @@ func _input(event):
 
 func selected(hueValue):
 	playerExample.material["shader_param/hue_shift"] = hueValue
+	Players.playerList[Network.steamID].colorShift = hueValue
+	Players.selfPlayerInfo.colorShift = hueValue
+	Players.playerList[Network.steamID].reference.updateHueshift(hueValue)
+	FileSystemHandler.saveGameData()
+	Network.eyeShake()
 
 func characterSelected(character, texture):
 	playerExample.texture = texture
 	if character == Players.playerList[Network.steamID].character: return
 	Players.playerList[Network.steamID].character = character
+	Players.selfPlayerInfo.character = character
 	Global.player.setupSprite()
+	FileSystemHandler.saveGameData()
+	Network.eyeShake()
 
 func _on_interactBallon_entered():
 	sprite.frame = 1
@@ -44,6 +52,10 @@ func _on_interactBallon_interacted():
 	for color in pallete.get_children():
 		if color.hueShift == Players.playerList[Network.steamID].colorShift:
 			color.toggled = true
+	
+	for character in characterList.get_children():
+		if character.spriteName == Players.playerList[Network.steamID].character:
+			character.toggled = true
 			
 	hud.visible = true
 	tween.interpolate_property(hudControl, "modulate", hudControl.modulate, Color.white, 0.2, Tween.TRANS_QUAD, Tween.EASE_IN)

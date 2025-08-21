@@ -3,8 +3,18 @@ extends Node
 var _file := File.new()
 var _dir := Directory.new()
 
-const worldSaveFile := "worldData.json"
-const gameSaveFile := "save.tres"
+#const worldSaveFile := "worldData.json"
+const infoSaveFile := "user://info.tres"
+const confSaveFile := "user://conf.tres"
+
+onready var saveTimer := Timer.new()
+
+func initAutoSave():
+	get_tree().get_root().add_child(saveTimer)
+	
+	saveTimer.wait_time = 2
+	saveTimer.connect("timeout", FileSystemHandler, "saveGameData")
+	saveTimer.start()
 
 func fileExist(dataPath):
 	return _file.file_exists(dataPath)
@@ -45,31 +55,32 @@ func generateWorldData():
 		}
 	}
 
-func createFileData(path):
-	var _error := _dir.make_dir_recursive(path + "/worldRooms")
+func createFileData(_path): pass
+#	var _error := _dir.make_dir_recursive(path + "/worldRooms")
 	
-	if not fileExist(path + gameSaveFile):
-		saveDataResource(path + gameSaveFile, SaveGame.new())
-		saveDataJSON(path + worldSaveFile, generateWorldData())
-		
-	elif not fileExist(path + worldSaveFile):
-		var roomData : Dictionary = {}
-		
-		saveDataJSON(path + worldSaveFile, roomData)
+#	if not fileExist(path + gameSaveFile):
+#		saveDataResource(path + gameSaveFile, SaveGame.new())
+#		saveDataJSON(path + worldSaveFile, generateWorldData())
+#
+#	elif not fileExist(path + worldSaveFile):
+#		var roomData : Dictionary = {}
+#
+#		saveDataJSON(path + worldSaveFile, roomData)
 
-func saveGameData(position = null):
-	Global.save.player["position"] = position if position else Global.player.global_position
-	Global.save.played = true
-	
-	saveDataResource(Global.savePath + gameSaveFile, Global.save)
-	saveDataJSON(Global.savePath + worldSaveFile, Global.worldData)
+func saveGameData():
+	saveDataResource(infoSaveFile, Players.selfPlayerInfo)
+	saveDataResource(confSaveFile, Global.options)
 
-func loadGameData(dataPath):
-	Global.save = SaveGame.new()
+func loadGameData():
+	if fileExist(confSaveFile):
+		Global.options = loadDataResource(confSaveFile)
+	else:
+		Global.options = OptionsSave.new()
 	
-#	Global.save = loadDataResource(dataPath + gameSaveFile)
-#	Global.worldData = loadDataJSON(dataPath + worldSaveFile)
-	Global.savePath = dataPath
+	if fileExist(infoSaveFile):
+		Players.selfPlayerInfo = loadDataResource(infoSaveFile)
+	else:
+		Players.selfPlayerInfo = PlayerInfo.new()
 
 func deleteFile(filePath):
 	var file := File.new()

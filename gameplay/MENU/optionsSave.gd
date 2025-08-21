@@ -8,4 +8,5 @@ export var sfxVolume := 0.90
 export var useThreadForLights := true
 export var vsync := 0
 export var lang : String
-export var playerName := "New Player"
+export var steamID := 0
+export var persona := ""

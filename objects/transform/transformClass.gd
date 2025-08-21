@@ -50,6 +50,7 @@ func areaEntered(area):
 	animationStart(Network.steamID)
 	
 func animationStart(id):
+	if beingUsed: return
 	beingUsed = true
 	whoUsing = id
 #	Players.playerList[id].reference.active = false
@@ -70,21 +71,25 @@ func setup(_anim:="", id := whoUsing):
 	var newPlayer : PlayerBase = LoadedObjects.loaded[transformation].instance()
 	
 	newPlayer.global_position = global_position + offset
-	if Network.steamID == id:
-		Global.player = newPlayer
-
 	newPlayer.OwnerID = id
 	
 	Global.world.add_child(newPlayer)
 
 	newPlayer.owner = Global.world
 			
+	if Network.steamID == id:
+		Global.player = newPlayer
 	Players.playerList[id].reference = newPlayer
+	
 	oldPlayer.pause_mode = 0
 	oldPlayer.queue_free()
 	beingUsed = false
-#	Global.world.call_deferred("add_child", Global.player)
-#	Global.world.call_deferred("setCameraLimits", oldCameraLimits["min"], oldCameraLimits["max"])
 	
 	Global.playerHud.cinematic.desactivaded()
 	
+func getSprite(spriteKey : String, spriteNode : NodePath):
+	var path : String = spriteKey % str(Players.playerList[whoUsing].character)
+	if not LoadedObjects.loaded.has(path):
+		path = spriteKey % "lodrofo"
+	
+	get_node(spriteNode).texture = LoadedObjects.loaded[path]

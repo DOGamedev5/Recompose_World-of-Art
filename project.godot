@@ -249,7 +249,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/player/HUD/playerHud.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "PlayerInfo",
 "language": "GDScript",
 "path": "res://autoloads/playerLister/playerInfo.gd"
@@ -399,8 +399,8 @@ SteamMultiplayer="*res://autoloads/steamMultiplayer.gd"
 Network="*res://autoloads/network.gd"
 FileSystemHandler="*res://autoloads/fileSystemHandler.gd"
 LoadScreen="*res://autoloads/loadSystem/loadScreen.tscn"
-LoadSystem="*res://autoloads/loadSystem/loadSystem.gd"
 LoadedObjects="*res://autoloads/loadSystem/loadedObjects/loadedObjects.gd"
+LoadSystem="*res://autoloads/loadSystem/loadSystem.tscn"
 AudioManager="*res://audio/audioSystem/audioSystem.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 Discord="*res://addons/discord_game_sdk/discord.gd"
@@ -412,7 +412,7 @@ window/size/width=1361
 window/size/height=736
 window/size/fullscreen=true
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 

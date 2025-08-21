@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bookTransform.png-d4cbd1b893ef439680d496c1ba5b09d0.stex"
+path="res://.import/bookTransform.png-4bb8b6065b9dc81d30ceff7db453d177.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/powerStates/book/transform/bookTransform.png"
-dest_files=[ "res://.import/bookTransform.png-d4cbd1b893ef439680d496c1ba5b09d0.stex" ]
+source_file="res://entities/player/powerStates/book/transform/lodrofo/bookTransform.png"
+dest_files=[ "res://.import/bookTransform.png-4bb8b6065b9dc81d30ceff7db453d177.stex" ]
 
 [params]
 

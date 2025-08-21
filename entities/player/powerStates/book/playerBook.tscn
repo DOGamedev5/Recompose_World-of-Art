@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=2]
@@ -9,11 +9,11 @@
 [ext_resource path="res://entities/player/powerStates/book/scripts/JUMP.gd" type="Script" id=7]
 [ext_resource path="res://entities/player/powerStates/book/scripts/FLY.gd" type="Script" id=8]
 [ext_resource path="res://entities/player/powerStates/book/scripts/FALL.gd" type="Script" id=9]
-[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookWalk.png" type="Texture" id=10]
-[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookJump.png" type="Texture" id=11]
-[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookFall.png" type="Texture" id=12]
-[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookFly.png" type="Texture" id=13]
-[ext_resource path="res://entities/player/powerStates/book/sprites/lodrofo/bookFlyOut.png" type="Texture" id=14]
+[ext_resource path="res://entities/player/shaders/hueShifter.gdshader" type="Shader" id=10]
+
+[sub_resource type="ShaderMaterial" id=44]
+shader = ExtResource( 10 )
+shader_param/hue_shift = 0.0
 
 [sub_resource type="CircleShape2D" id=35]
 radius = 16.0
@@ -22,48 +22,36 @@ radius = 16.0
 resource_name = "FALL"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite/sprite:texture")
+tracks/0/path = NodePath("sprite/sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 12 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("sprite/sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 5 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("sprite/sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -76,48 +64,36 @@ tracks/3/keys = {
 resource_name = "FLY"
 length = 0.7
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite/sprite:texture")
+tracks/0/path = NodePath("sprite/sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 13 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("sprite/sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 7 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("sprite/sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -131,48 +107,36 @@ resource_name = "FLY_OUT"
 length = 0.35
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite/sprite:texture")
+tracks/0/path = NodePath("sprite/sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 14 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("sprite/sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 7 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("sprite/sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -208,25 +172,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 3 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("sprite/sprite:texture")
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = false
+tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ ExtResource( 3 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -239,48 +191,36 @@ tracks/3/keys = {
 resource_name = "JUMP"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprite/sprite:texture")
+tracks/0/path = NodePath("sprite/sprite:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 11 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("sprite/sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 5 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("sprite/sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -315,18 +255,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 3 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("sprite/sprite:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ ExtResource( 3 ) ]
-}
 
 [sub_resource type="Animation" id=5]
 resource_name = "WALK"
@@ -357,25 +285,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 8 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("sprite/sprite:texture")
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = false
+tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ ExtResource( 10 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.1, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
@@ -482,7 +398,7 @@ script = ExtResource( 6 )
 stateMachinePath = NodePath("StateMachine")
 ACCELERATION = 15
 DESACCELERATION = 100
-MAXSPEED = 800
+MAXSPEED = 750
 MAXFALL = 200
 JUMPFORCE = -500
 spriteGizmoPath = NodePath("sprite")
@@ -513,12 +429,15 @@ script = ExtResource( 8 )
 script = ExtResource( 9 )
 
 [node name="sprite" type="Node2D" parent="." index="15"]
+material = SubResource( 44 )
 
 [node name="sprite" type="Sprite" parent="sprite" index="0"]
+use_parent_material = true
 position = Vector2( 0, -40 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 3
+frame = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="16"]
 position = Vector2( -8, -40 )

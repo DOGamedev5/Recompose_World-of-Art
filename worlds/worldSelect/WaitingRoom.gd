@@ -40,7 +40,6 @@ func exit(world := selectedWorld):
 	get_tree().root.set_disable_input(true)
 
 func _newPlayer(id):
-	print(id)
 	var newPlayer : PlayerBase = LoadedObjects.loaded[playerScene].instance()
 	newPlayer.OwnerID = id
 	newPlayer.global_position = $RoomWarp.global_position

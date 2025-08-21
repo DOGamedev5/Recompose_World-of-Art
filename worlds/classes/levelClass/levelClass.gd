@@ -33,7 +33,6 @@ func _init():
 	add_child(objects)
 
 func _ready():
-	LoadSystem.startWaitingOthers()
 	Network.connect("memberLeft", self, "_memberLeft")
 	Global.save = SaveGame.new() if not Global.save else Global.save
 	portal = get_node(portalPath)

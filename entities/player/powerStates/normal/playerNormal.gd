@@ -29,8 +29,8 @@ var canAttack := true
 var lastUpdate := 0
 
 onready var collisionShapes := [
-	{obj = $CollisionShape2D, onWall = [true, true, true]},
-	{obj = $CollisionShape2D3, onWall = [false, true, true]}
+	{obj = $CollisionShape2D, onWall = [true, true, true], hitbox = $HitboxComponent/CollisionShape2D},
+	{obj = $CollisionShape2D3, onWall = [false, true, true], hitbox = $HitboxComponent/CollisionShape2D2}
 ]
 
 onready var stepSFX = [
@@ -41,10 +41,14 @@ func _enter_tree():
 	$sprite/Sprite.hframes = 23
 	
 func _ready():
-	$sprite/Sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
+	$sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
+	if not Network.is_owned(OwnerID):
+		for attack in attackComponents:
+			attack.setDamage(0)
+	
 
 func _physics_process(delta):
-	if not active: return
+	if not active or not Network.is_owned(OwnerID): return
 	
 	physics_process(delta)
 	_coyoteTimer()
@@ -104,7 +108,7 @@ func receivePacket(packet):
 		animation["parameters/{n}/{n}/playback".format({"n" : packet["animationsPlaying"]})].travel(packet["animationName"])
 	
 	global_position = packet["global_position"]
-	stateMachine.changeState(packet["currentState"])
+#	stateMachine.changeState(packet["currentState"])
 	motion = packet["motion"]
 	$sprite.rotation = packet["sprite_rotation"]
 
@@ -164,7 +168,9 @@ func detectRunning():
 func setFlipConfig():
 	if stunned: return
 	
-	flipObject(attackComponents)
+#	flipObject(attackComponents)
+	for attack in attackComponents:
+		attack.rotation = PI * int(fliped)
 	
 	$sprite/speedEffect.position.x = 28 * (1 - 2 * int(fliped))
 	$sprite/speedEffect.flip_h = fliped
@@ -182,11 +188,16 @@ func setAttack():
 		
 func setCollision(ID := 0):
 	collisionShapes[ID].obj.set_deferred("disabled", false)
+	collisionShapes[ID].hitbox.set_deferred("disabled", false)
 	
 	for obj in range(collisionShapes.size()):
 		if obj == ID: continue
+		
 		collisionShapes[obj].obj.disabled = true
-
+		
+		if collisionShapes[obj].hitbox != collisionShapes[ID].hitbox:
+			collisionShapes[obj].hitbox.set_deferred("disabled", true)
+	
 	for ray in range(3):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
 	
@@ -210,7 +221,7 @@ func taunt(tauntName):
 
 func updateHueshift(newShift : int):
 	.updateHueshift(newShift)
-	$sprite/Sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
+	$sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
 
 func setupSprite():
 	.setupSprite()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=201 format=2]
+[gd_scene load_steps=199 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -47,7 +47,7 @@ particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="ShaderMaterial" id=356]
+[sub_resource type="ShaderMaterial" id=360]
 shader = ExtResource( 39 )
 shader_param/hue_shift = 0.0
 
@@ -1905,10 +1905,10 @@ states/WALK/node = SubResource( 303 )
 states/WALK/position = Vector2( 626.457, 236.778 )
 transitions = [ "JUMP", "FALL", SubResource( 271 ), "STOPPING", "IDLE", SubResource( 277 ), "IDLE", "JUMP", SubResource( 278 ), "FALL", "IDLE", SubResource( 279 ), "IDLE", "FALL", SubResource( 280 ), "STOPPING", "WALK", SubResource( 304 ), "WALK", "STOPPING", SubResource( 305 ), "WALK", "IDLE", SubResource( 306 ), "IDLE", "WALK", SubResource( 307 ), "WALK", "JUMP", SubResource( 308 ), "JUMP", "WALK", SubResource( 309 ), "WALK", "FALL", SubResource( 310 ), "FALL", "WALK", SubResource( 311 ), "WALK", "ROLL", SubResource( 313 ), "ROLL", "JUMP", SubResource( 314 ), "FALL", "ROLL", SubResource( 315 ), "STOPPING", "ROLL", SubResource( 316 ), "IDLE", "ROLL", SubResource( 317 ), "ROLL", "IDLE", SubResource( 318 ), "ROLL", "WALK", SubResource( 319 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( 0, -16.1698 )
+graph_offset = Vector2( 0, 265.864 )
 
 [sub_resource type="AnimationNodeBlendTree" id=283]
-graph_offset = Vector2( 241.18, 180.673 )
+graph_offset = Vector2( 340.832, 184.202 )
 nodes/NORMAL/node = SubResource( 282 )
 nodes/NORMAL/position = Vector2( 720, 240 )
 nodes/output/position = Vector2( 1066.67, 320 )
@@ -2116,17 +2116,8 @@ graph_offset = Vector2( 26.3503, 0.344169 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=334]
 
-[sub_resource type="RectangleShape2D" id=86]
-extents = Vector2( 40, 24 )
-
-[sub_resource type="RectangleShape2D" id=85]
-extents = Vector2( 40, 24 )
-
 [sub_resource type="RayShape2D" id=357]
-length = 40.0
-
-[sub_resource type="RectangleShape2D" id=159]
-extents = Vector2( 40, 16 )
+length = 56.0
 
 [sub_resource type="CanvasItemMaterial" id=88]
 particles_animation = true
@@ -2138,6 +2129,9 @@ particles_anim_loop = false
 min_value = -200.0
 max_value = 200.0
 _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 119.325 ), 498.258, 0.0, 0, 0 ]
+
+[sub_resource type="RectangleShape2D" id=359]
+extents = Vector2( 16, 14 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
@@ -2201,9 +2195,11 @@ __meta__ = {
 }
 
 [node name="sprite" type="Node2D" parent="." index="17"]
+material = SubResource( 360 )
 position = Vector2( 0, -2 )
 
 [node name="Sword" type="Sprite" parent="sprite" index="0"]
+use_parent_material = true
 position = Vector2( 24, 2 )
 rotation = 0.0349066
 scale = Vector2( 2, 2 )
@@ -2213,7 +2209,7 @@ texture = ExtResource( 40 )
 offset = Vector2( 0, -8 )
 
 [node name="Sprite" type="Sprite" parent="sprite" index="1"]
-material = SubResource( 356 )
+use_parent_material = true
 position = Vector2( 0, -30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
@@ -2221,6 +2217,7 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="speedEffect" type="Sprite" parent="sprite" index="2"]
 self_modulate = Color( 1, 1, 1, 0.79 )
+use_parent_material = true
 position = Vector2( 28, -30 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 21 )
@@ -2228,7 +2225,7 @@ hframes = 5
 frame = 4
 
 [node name="swordFloor" type="RayCast2D" parent="sprite" index="3"]
-position = Vector2( -32, -22 )
+position = Vector2( -24, -22 )
 enabled = true
 cast_to = Vector2( 0, 32 )
 
@@ -2238,10 +2235,12 @@ enabled = true
 cast_to = Vector2( 0, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="18"]
+visible = false
 position = Vector2( 0, -42 )
 shape = SubResource( 336 )
 
 [node name="rayShape" type="CollisionShape2D" parent="." index="19"]
+visible = false
 position = Vector2( 0, -24 )
 shape = SubResource( 341 )
 
@@ -2299,20 +2298,40 @@ parameters/WALLED/WALLED/playback = SubResource( 334 )
 
 [node name="attackPunch" type="Area2D" parent="." index="24"]
 visible = false
-position = Vector2( 35, -31 )
+position = Vector2( 0, -32 )
 collision_layer = 256
 collision_mask = 256
 monitorable = false
 script = ExtResource( 20 )
-damage = 1
 hasOwnerID = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attackPunch" index="0"]
-position = Vector2( 5, 3 )
-shape = SubResource( 86 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="attackPunch" index="0"]
+position = Vector2( 0, -29 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="attackPunch" index="1"]
+position = Vector2( 0, 30 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="attackPunch" index="2"]
+position = Vector2( 0, 16 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="attackPunch" index="3"]
+position = Vector2( 0, -16 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="attackPunch" index="4"]
+rotation = -1.5708
+shape = SubResource( 357 )
 
 [node name="attackSpeed" type="Area2D" parent="." index="25"]
-position = Vector2( 40, -23 )
+visible = false
+position = Vector2( 0, -32 )
 collision_layer = 256
 collision_mask = 256
 monitorable = false
@@ -2320,47 +2339,52 @@ script = ExtResource( 20 )
 damage = 2
 hasOwnerID = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attackSpeed" index="0"]
-position = Vector2( 0, -5 )
-shape = SubResource( 85 )
-disabled = true
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="attackSpeed" index="1"]
-position = Vector2( -32, -38 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="attackSpeed" index="0"]
+position = Vector2( 0, -29 )
 rotation = -1.5708
 shape = SubResource( 357 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="attackSpeed" index="2"]
-position = Vector2( -32, 21 )
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="attackSpeed" index="1"]
+position = Vector2( 0, 30 )
 rotation = -1.5708
 shape = SubResource( 357 )
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="attackSpeed" index="3"]
-position = Vector2( -32, 7 )
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="attackSpeed" index="2"]
+position = Vector2( 0, 16 )
 rotation = -1.5708
 shape = SubResource( 357 )
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="attackSpeed" index="4"]
-position = Vector2( -32, -25 )
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="attackSpeed" index="3"]
+position = Vector2( 0, -16 )
 rotation = -1.5708
 shape = SubResource( 357 )
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="attackSpeed" index="5"]
-position = Vector2( -32, -9 )
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="attackSpeed" index="4"]
 rotation = -1.5708
 shape = SubResource( 357 )
 
 [node name="attackRoll" type="Area2D" parent="." index="26"]
 visible = false
-position = Vector2( 40, -23 )
+position = Vector2( 0, -20 )
 collision_layer = 256
 collision_mask = 256
 script = ExtResource( 20 )
-damage = 1
 hasOwnerID = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attackRoll" index="0"]
-shape = SubResource( 159 )
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="attackRoll" index="0"]
+position = Vector2( 0, 16 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="attackRoll" index="1"]
+position = Vector2( 0, 4 )
+rotation = -1.5708
+shape = SubResource( 357 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="attackRoll" index="2"]
+position = Vector2( 0, -8 )
+rotation = -1.5708
+shape = SubResource( 357 )
 
 [node name="StateMachine" type="Node" parent="." index="27"]
 script = ExtResource( 7 )
@@ -2463,6 +2487,17 @@ cast_to = Vector2( -17, 0 )
 [node name="insideDetectRight2" parent="." index="33"]
 position = Vector2( 0, 5 )
 cast_to = Vector2( 17, 0 )
+
+[node name="HitboxComponent" parent="." index="34"]
+visible = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2( 0, -14 )
+shape = SubResource( 359 )
+disabled = true
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="1"]
+visible = false
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )

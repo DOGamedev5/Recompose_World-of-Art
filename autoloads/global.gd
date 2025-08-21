@@ -53,6 +53,7 @@ puppetsync var chat := PoolStringArray([])
 signal chatUpdated
 
 func _ready():
+	FileSystemHandler.loadGameData()
 	setup()
 	randomize()
 	

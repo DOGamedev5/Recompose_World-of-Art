@@ -71,7 +71,7 @@ border_color = Color( 0.8, 0.8, 0.8, 0 )
 atlas = ExtResource( 10 )
 region = Rect2( 18, 5, 28, 35 )
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=14]
 shader = ExtResource( 4 )
 shader_param/hue_shift = 0.0
 
@@ -210,7 +210,7 @@ size_flags_horizontal = 10
 custom_styles/panel = ExtResource( 6 )
 
 [node name="sprite" type="TextureRect" parent="CanvasLayer/Control/margin/hbox/background"]
-material = SubResource( 2 )
+material = SubResource( 14 )
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 496.0

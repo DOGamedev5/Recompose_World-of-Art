@@ -12,6 +12,9 @@ func process_state():
 			
 		return "WALK"
 	
+	if Global.handInput("attack", true, parent.OwnerID):
+		return "FLY"
+	
 	return null
 
 func process_physics(_delta):

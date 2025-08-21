@@ -8,6 +8,9 @@ onready var currentSegments := 0
 onready var alreadyLoaded := 0
 
 signal allTexturesLoaded
+signal allLoaded
+
+onready var havenLoaded := false
 
 func loadDirectory(DirPath : String, texturesReference : String, extension := ".png", deep := -1):
 	var dir := Directory.new()
@@ -67,6 +70,7 @@ func process():
 		toLoad.clear()
 	
 	elif loaders.size() > 0:
+		havenLoaded = true
 		var error = loaders[0]["load"].poll()
 
 		if error == OK:
@@ -84,4 +88,7 @@ func process():
 
 		else:
 			push_error("erro when loading '{0}', error {1}".format([loaders[0]["path"], error]))
+	elif havenLoaded:
+		havenLoaded = false
+		emit_signal("allLoaded")
 

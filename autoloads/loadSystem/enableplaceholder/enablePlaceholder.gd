@@ -39,13 +39,6 @@ func activaded(area : Area2D):
 		playersInside.append(area)
 	
 		if not is_instance_valid(obj): obj = placeholder.create_instance(false, scene)
-
-func enteredScreen():
-	if not is_instance_valid(obj):
-		obj = placeholder.create_instance(false, scene)
-		
-		get_parent().roomLoaded(placeholder.name)
-		print(get_parent().loadedRooms)
 	
 func exited(area : Area2D):
 	if is_instance_valid(obj) and not area.is_in_group("player"): return

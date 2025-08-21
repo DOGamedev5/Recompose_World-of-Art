@@ -1,8 +1,7 @@
-extends Node
+extends Resource
 class_name PlayerInfo
 
 ### Save variables
-export var playerName := "New Player"
 export var character := "lodrofo"
 export var colorShift := 0
 export var type := 0

@@ -6,18 +6,27 @@ enum {
 	netEnet
 }
 
+onready var selfPlayerInfo : PlayerInfo
+onready var saveTimer := Timer.new()
+
+
+
 func addPlayer(id, reference = null, type := netSteam, netOwner := -1):
-	if playerList.has(id): return
+	if playerList.has(id): 
+		if reference:
+			playerList[id].reference = reference
+		return
 	
-	playerList[id] = PlayerInfo.new()
-	playerList[id].name = String(id)
+	if Network.is_owned(id):
+		playerList[id] = selfPlayerInfo
+	else:
+		playerList[id] = PlayerInfo.new()
 
 	playerList[id].type = type
 	if netOwner == netEnet: playerList[id].netOwner = netOwner
 	if reference:
 		playerList[id].reference = reference
-	
-	add_child(playerList[id])
+
 
 func removePlayer(id : int):
 	if not playerList.has(id): return

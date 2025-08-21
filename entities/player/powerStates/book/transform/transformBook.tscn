@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://entities/player/powerStates/book/transform/bookTransform.png" type="Texture" id=1]
+[ext_resource path="res://entities/player/powerStates/book/transform/lodrofo/bookTransform.png" type="Texture" id=1]
 [ext_resource path="res://objects/transform/transformClass.gd" type="Script" id=2]
 [ext_resource path="res://entities/player/powerStates/book/sfxs/bookStepSFX.ogg" type="AudioStream" id=3]
 [ext_resource path="res://entities/player/powerStates/book/sfxs/closeBookSFX.ogg" type="AudioStream" id=4]
@@ -86,6 +86,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://entities/player/powerStates/book/transform/%s/bookTransform.png", NodePath("BookTransform") ],
+"method": "getSprite"
+} ]
 }
 
 [node name="transform" type="Area2D"]

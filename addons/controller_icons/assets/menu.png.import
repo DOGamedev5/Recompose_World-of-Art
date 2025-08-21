@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/menu.png-90302e9e2a81667c60beb62716dd216f.stex"
+path="res://.import/menu.png-9b5b9b2488492e41af168a70baa96df7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/controller_icons/assets/xboxone/menu.png"
-dest_files=[ "res://.import/menu.png-90302e9e2a81667c60beb62716dd216f.stex" ]
+source_file="res://addons/controller_icons/assets/menu.png"
+dest_files=[ "res://.import/menu.png-9b5b9b2488492e41af168a70baa96df7.stex" ]
 
 [params]
 

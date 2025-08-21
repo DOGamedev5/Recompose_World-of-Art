@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node
 
 const MAIN_SCENE := "res://gameplay/MENU/menu.tscn"
 

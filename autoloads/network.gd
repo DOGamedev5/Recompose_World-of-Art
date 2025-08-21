@@ -38,10 +38,13 @@ func _ready():
 	
 		steamID = Steam.getSteamID()
 		personaName = Steam.getPersonaName()
+		
+		Global.options.persona = personaName
+		Global.options.steamID = steamID
 	
 	else:
-		steamID = 0
-		personaName = ""
+		steamID = Global.options.steamID
+		personaName = Global.options.persona
 
 func _process(_delta):
 	readAllP2PPackets()
@@ -51,15 +54,11 @@ func get_lobby_menbers():
 	if Global.currentPlataform == Global.plataforms.ITCHIO:
 		lobbyMembers.append(
 			{
-				"ID" : 0,
+				"ID" : steamID,
 				"NAME" : ""
 			}
 		)
-		Players.addPlayer(0)
 		return
-		
-		
-
 
 	for menberI in range(Steam.getNumLobbyMembers(lobbyID)):
 		var ID := Steam.getLobbyMemberByIndex(lobbyID, menberI)
@@ -70,7 +69,6 @@ func get_lobby_menbers():
 			}
 		)
 		
-		Players.addPlayer(ID)
 
 func sendP2PPacket(target : int, packet : Dictionary, sendType : int):
 	if Global.currentPlataform == Global.plataforms.ITCHIO: return
@@ -98,6 +96,14 @@ func callRemote(method : String, objectPath, args := [], SEND := Steam.NETWORKIN
 		SEND
 		)
 
+func eyeShake(target := -1):
+	sendP2PPacket(target, {"type" : "eyeshake", "playerInfo":
+			{
+				"character" : Players.selfPlayerInfo.character,
+				"colorShift" : Players.selfPlayerInfo.colorShift,
+				"sender" : steamID
+			}}, Steam.P2P_SEND_RELIABLE_WITH_BUFFERING)
+
 func readAllP2PPackets(count := 0):
 	if Global.currentPlataform == Global.plataforms.ITCHIO: return
 	if count >= MAX_P2P_PACKETS: return
@@ -116,6 +122,11 @@ func readP2PPacket():
 		var packet : Dictionary = bytes2var(data["data"])
 		
 		match packet["type"]:
+			"eyeshake":
+				
+				Players.playerList[packet["sender"]].character = packet["character"]
+				Players.playerList[packet["sender"]].colorShift = packet["colorShift"]
+				
 			"message": Global.sendMessagge(packet["text"], data["remote_steam_id"])
 			"startGame":
 				emit_signal("startedGame")
@@ -138,7 +149,6 @@ func readP2PPacket():
 				var obj := get_node_or_null(packet["objectPath"])
 				if obj:
 					if is_instance_valid(obj) and obj.is_inside_tree():
-						print(packet["method"])
 						
 						if obj.has_method(packet["method"]): obj.callv(packet["method"], packet["value"])
 			_:
@@ -174,7 +184,6 @@ func p2p_connect_fail(steam_id, session_error):
 func createLobby():
 	if Global.currentPlataform == Global.plataforms.ITCHIO:
 		get_lobby_menbers()
-		Players.addPlayer(0)
 		emit_signal("createdLobby")
 		return
 	if lobbyID == -1:
@@ -223,6 +232,8 @@ func _lobby_joined(LobbyID, _permissions, _locked, response):
 		lobbyID = LobbyID
 		emit_signal("enteredLobby")
 		get_lobby_menbers()
+	
+		eyeShake(-1)
 
 func _lobby_match_list(lobbiesAll):
 	emit_signal("lobbyMatchList", lobbiesAll)
@@ -238,38 +249,41 @@ func _lobby_chat_update(_lobbyID, changedID, makingChangeID, chatState):
 			emit_signal("newMemberJoined", makingChangeID)
 			
 			Global.sendMessagge("{n} has entered the lobby! welcome!".format({"n" : changer})) 
+			eyeShake(makingChangeID)
+			
+			Players.addPlayer(makingChangeID)
 			
 		2:
 			get_lobby_menbers()
 			emit_signal("memberLeft", makingChangeID)
 			
-			Global.sendMessagge("{n} has left the lobby. We'll miss you!!".format({"n" : changer})) 
+			Global.sendMessagge("{n} has left the lobby. We'll miss you!!".format({"n" : changer}))
 		
 		8:
 			get_lobby_menbers()
 			emit_signal("memberLeft", makingChangeID)
 			
-			Global.sendMessagge("{n} has been kicked! Maybe you'll learn this time...".format({"n" : changer})) 
+			Global.sendMessagge("{n} has been kicked! Maybe you'll learn this time...".format({"n" : changer}))
 		
 		16:
 			get_lobby_menbers()
 			emit_signal("memberLeft", makingChangeID)
 			
 			Global.sendMessagge("{n} has been banned! You are not welcome here!".format({"n" : changer}))
-		
-		_: Global.sendMessagge("{n} has... did something?".format({"n" : changer}))
+			
+		_: Global.sendMessagge("{n} has... did something? state: {value}".format({"n" : changer, "value" : chatState}))
+	
+	if chatState in [2, 8, 16]:
+		Players.removePlayer(makingChangeID)
+	
+	get_lobby_menbers()
 	
 	match chatState:
 		1: print("{n} has entered the lobby! welcome!".format({"n" : changer})) 
 		2: print("{n} has left the lobby. We'll miss you!!".format({"n" : changer})) 
 		8: print("{n} has been kicked! Maybe you'll learn this time...".format({"n" : changer})) 
 		16: print("{n} has been banned! You are not welcome here!".format({"n" : changer}))
-		_: print("{n} has... did something?".format({"n" : changer}))
-	
-	if chatState in [2, 8, 16]:
-		Players.removePlayer(makingChangeID)
-	
-	get_lobby_menbers()
+		_: print("{n} has... did something? state: {value}".format({"n" : changer, "value" : chatState}))
 
 func _lobby_message():
 	pass

@@ -5,7 +5,7 @@ onready var flipSFX : AudioStream = preload("res://entities/player/powerStates/b
 func enter(_ls):
 	
 	AudioManager.playSFX(parent.stepSFX, {"volume_db" : 2.6, "pitch_scale" : rand_range(0.98, 1.3)}, true, parent.global_position, 256)
-	parent.MAXSPEED = 750
+	parent.MAXSPEED = 850
 	parent.snapDesatived = true
 
 func process_state():
@@ -27,6 +27,6 @@ func process_physics(_delta):
 	parent.playback.travel("FLY")
 
 func exit():
-	parent.MAXSPEED = 600
+	parent.MAXSPEED = 750
 	parent.snapDesatived = false
 

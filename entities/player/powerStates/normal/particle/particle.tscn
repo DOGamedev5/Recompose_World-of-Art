@@ -18,6 +18,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
 material = SubResource( 1 )
 z_index = 1
 z_as_relative = false
+emitting = false
 amount = 1
 lifetime = 0.5
 texture = ExtResource( 1 )

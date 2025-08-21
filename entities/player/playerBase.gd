@@ -117,7 +117,7 @@ func physics_process(delta):
 		stateMachine.processMachine(delta)
 
 func detectInside():
-	var normalMin := 0.8
+	var normalMin := 0.75
 	
 	if not $rayShapeLeft.disabled:
 		if insideDetect[2].is_colliding():
@@ -447,7 +447,7 @@ func setupSprite():
 	var path : String = actualSprite % str(Players.playerList[OwnerID].character)
 	if not LoadedObjects.loaded.has(path):
 		path = actualSprite % "lodrofo"
-	
+		
 	spritePath.texture = LoadedObjects.loaded[path]
 	
 func updateHueshift(newShift : int):

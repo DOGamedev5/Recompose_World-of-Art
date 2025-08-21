@@ -7,9 +7,11 @@ onready var stepSFX : AudioStream = preload("res://entities/player/powerStates/b
 
 var onVentoy := false
 
+func _ready():
+	$sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
+
 func _physics_process(delta):
 	physics_process(delta)
-	snapDesatived = onVentoy or snapDesatived
 	move()
 	_coyoteTimer()
 #	rotateSprite(delta)
@@ -20,6 +22,21 @@ func _physics_process(delta):
 		$sprite/sprite.rotation = lerp_angle($sprite.rotation, deg2rad(15) * (realMotion.x / MAXSPEED), 0.5)
 	else:
 		$sprite/sprite.rotation = lerp_angle($sprite.rotation, deg2rad(5) * (realMotion.x / MAXSPEED), 0.5)
+
+func move():
+	var snap := Vector2.ZERO
+	if not (snapDesatived or onVentoy):
+		
+		snap = Vector2.DOWN * SNAPLENGTH
+
+	if motion: detectInside()
+	
+	motion = move_and_slide_with_snap(motion, Vector2.DOWN*snap, Vector2.UP, true) 
+	currentSnapLength = snap.y
+
+func updateHueshift(newShift : int):
+	.updateHueshift(newShift)
+	$sprite.material["shader_param/hue_shift"] = Players.playerList[OwnerID].colorShift
 
 func _step():
 	

@@ -11,9 +11,13 @@ func process_state():
 			return "JUMP"
 		
 		if parent.motion.x == 0: return "IDLE"
+		
 			
 		return "WALK"
-
+	
+	if Global.handInput("attack", true, parent.OwnerID):
+		return "FLY"
+	
 func process_physics(_delta):
 	if abs(parent.motion.x) < 250 and int(parent.realMotion.x) == 0:
 		parent.motion.x = 0

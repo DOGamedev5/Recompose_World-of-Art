@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gameplay/MENU/scripts/initial.gd" type="Script" id=2]
@@ -11,12 +11,10 @@
 [ext_resource path="res://gameplay/MENU/audio/paperSFX.ogg" type="AudioStream" id=9]
 [ext_resource path="res://gameplay/MENU/scripts/confirmExit.gd" type="Script" id=10]
 [ext_resource path="res://gameplay/themes/panel.tres" type="StyleBox" id=11]
-[ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=12]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://gameplay/MENU/saveslot/panel.png" type="Texture" id=14]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/equipment-pro-v1.1/EquipmentPro.otf" type="DynamicFontData" id=15]
 [ext_resource path="res://gameplay/MENU/sprites/SpinNumber.png" type="Texture" id=16]
-[ext_resource path="res://gameplay/classes/chat/send.png" type="Texture" id=17]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.png" type="Texture" id=21]
 [ext_resource path="res://gameplay/MENU/sprites/slider.png" type="Texture" id=23]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=24]
@@ -217,82 +215,6 @@ shortcut = SubResource( 60 )
 [sub_resource type="CanvasItemMaterial" id=76]
 blend_mode = 3
 
-[sub_resource type="StyleBoxFlat" id=78]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color( 0.0431373, 0.109804, 0.172549, 0.666667 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="Theme" id=79]
-
-[sub_resource type="DynamicFont" id=82]
-size = 32
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_char = 3
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxEmpty" id=83]
-content_margin_left = 4.0
-content_margin_right = 6.0
-
-[sub_resource type="StyleBoxEmpty" id=92]
-
-[sub_resource type="StyleBoxEmpty" id=93]
-
-[sub_resource type="AtlasTexture" id=94]
-atlas = ExtResource( 17 )
-region = Rect2( 0, 0, 36, 36 )
-
-[sub_resource type="AtlasTexture" id=95]
-atlas = ExtResource( 17 )
-region = Rect2( 72, 0, 36, 36 )
-
-[sub_resource type="AtlasTexture" id=96]
-atlas = ExtResource( 17 )
-region = Rect2( 36, 0, 36, 36 )
-
-[sub_resource type="DynamicFont" id=77]
-size = 48
-outline_size = 2
-outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
-extra_spacing_top = -4
-extra_spacing_bottom = -2
-extra_spacing_char = 4
-font_data = ExtResource( 13 )
-
-[sub_resource type="DynamicFont" id=88]
-size = 32
-outline_size = 2
-outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
-extra_spacing_top = -4
-extra_spacing_bottom = -2
-extra_spacing_char = 4
-font_data = ExtResource( 13 )
-
-[sub_resource type="DynamicFont" id=85]
-size = 64
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_top = -16
-extra_spacing_bottom = -8
-extra_spacing_char = 6
-font_data = ExtResource( 25 )
-
-[sub_resource type="DynamicFont" id=89]
-size = 64
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_top = -16
-extra_spacing_bottom = -8
-extra_spacing_char = 6
-font_data = ExtResource( 25 )
-
 [sub_resource type="DynamicFont" id=80]
 size = 80
 outline_size = 2
@@ -328,6 +250,17 @@ font_data = ExtResource( 15 )
 [sub_resource type="Theme" id=91]
 LineEdit/fonts/font = SubResource( 90 )
 LineEdit/styles/normal = SubResource( 87 )
+
+[sub_resource type="StyleBoxFlat" id=78]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.0431373, 0.109804, 0.172549, 0.666667 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="DynamicFont" id=81]
 size = 64
@@ -1230,6 +1163,7 @@ script = ExtResource( 5 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="initial" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
@@ -1576,13 +1510,13 @@ shortcut = SubResource( 59 )
 text = "mn_back"
 
 [node name="saves" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 680.5, 368 )
 script = ExtResource( 4 )
 
 [node name="saves" type="MarginContainer" parent="saves"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 96
@@ -1611,6 +1545,7 @@ margin_right = 416.0
 margin_bottom = 408.0
 focus_neighbour_right = NodePath("../contract2")
 focus_neighbour_bottom = NodePath("../../HBoxContainer2/create")
+disabled = true
 
 [node name="contract2" parent="saves/saves/VBoxContainer/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 466.0
@@ -1619,7 +1554,7 @@ margin_bottom = 408.0
 focus_neighbour_left = NodePath("../contract")
 focus_neighbour_right = NodePath("../contract3")
 focus_neighbour_bottom = NodePath("../../HBoxContainer2/create")
-saveID = 2
+disabled = true
 
 [node name="contract3" parent="saves/saves/VBoxContainer/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 788.0
@@ -1627,7 +1562,7 @@ margin_right = 1060.0
 margin_bottom = 408.0
 focus_neighbour_left = NodePath("../contract2")
 focus_neighbour_bottom = NodePath("../../HBoxContainer2/create")
-saveID = 3
+disabled = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="saves/saves/VBoxContainer"]
 margin_top = 424.0
@@ -1709,7 +1644,6 @@ shortcut = SubResource( 61 )
 text = "mn_back"
 
 [node name="enter" type="ColorRect" parent="saves"]
-visible = false
 material = SubResource( 76 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1723,155 +1657,7 @@ custom_constants/margin_top = 32
 custom_constants/margin_left = 32
 custom_constants/margin_bottom = 32
 
-[node name="lobby" type="HBoxContainer" parent="saves/enter/MarginContainer"]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 1329.0
-margin_bottom = 704.0
-custom_constants/separation = 32
-
-[node name="ColorRect" type="PanelContainer" parent="saves/enter/MarginContainer/lobby"]
-margin_right = 504.0
-margin_bottom = 672.0
-rect_min_size = Vector2( 504, 0 )
-size_flags_horizontal = 0
-custom_styles/panel = SubResource( 78 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby/ColorRect"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 496.0
-margin_bottom = 664.0
-theme = SubResource( 79 )
-
-[node name="Label" type="Label" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
-margin_right = 488.0
-margin_bottom = 51.0
-custom_fonts/font = ExtResource( 12 )
-text = "Your IP: 128.128.128
-Chat:"
-
-[node name="chat" type="RichTextLabel" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
-margin_top = 55.0
-margin_right = 488.0
-margin_bottom = 580.0
-size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 82 )
-custom_styles/focus = SubResource( 83 )
-custom_styles/normal = SubResource( 83 )
-bbcode_enabled = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer"]
-margin_top = 584.0
-margin_right = 488.0
-margin_bottom = 656.0
-custom_constants/separation = 8
-
-[node name="send" type="LineEdit" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer"]
-margin_right = 408.0
-margin_bottom = 72.0
-rect_min_size = Vector2( 0, 72 )
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 12 )
-custom_styles/read_only = SubResource( 92 )
-custom_styles/focus = SubResource( 93 )
-custom_styles/normal = ExtResource( 11 )
-placeholder_text = "Text chat"
-placeholder_alpha = 0.691
-
-[node name="sendButton" type="TextureButton" parent="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer"]
-margin_left = 416.0
-margin_right = 488.0
-margin_bottom = 72.0
-rect_min_size = Vector2( 72, 72 )
-texture_normal = SubResource( 94 )
-texture_pressed = SubResource( 95 )
-texture_hover = SubResource( 96 )
-expand = true
-
-[node name="info" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby"]
-margin_left = 536.0
-margin_right = 1297.0
-margin_bottom = 672.0
-size_flags_horizontal = 3
-custom_constants/separation = 96
-
-[node name="a" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
-margin_right = 761.0
-margin_bottom = 67.0
-size_flags_vertical = 0
-
-[node name="playerList" type="VBoxContainer" parent="saves/enter/MarginContainer/lobby/info/a"]
-margin_right = 235.0
-margin_bottom = 67.0
-
-[node name="Label" type="Label" parent="saves/enter/MarginContainer/lobby/info/a/playerList"]
-margin_right = 235.0
-margin_bottom = 39.0
-custom_fonts/font = SubResource( 77 )
-text = "Player list"
-
-[node name="list" type="Label" parent="saves/enter/MarginContainer/lobby/info/a/playerList"]
-margin_top = 43.0
-margin_right = 235.0
-margin_bottom = 67.0
-size_flags_vertical = 2
-custom_fonts/font = SubResource( 88 )
-text = "Players"
-
-[node name="characters" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
-margin_top = 163.0
-margin_right = 761.0
-margin_bottom = 492.0
-size_flags_vertical = 3
-
-[node name="buttons" type="HBoxContainer" parent="saves/enter/MarginContainer/lobby/info"]
-margin_top = 588.0
-margin_right = 761.0
-margin_bottom = 672.0
-alignment = 1
-
-[node name="Logout" type="Button" parent="saves/enter/MarginContainer/lobby/info/buttons"]
-margin_right = 150.0
-margin_bottom = 84.0
-rect_pivot_offset = Vector2( -290, 68 )
-focus_neighbour_left = NodePath("../erase")
-focus_neighbour_top = NodePath("../../HBoxContainer/contract")
-focus_neighbour_right = NodePath("../erase")
-focus_neighbour_bottom = NodePath("../../exit")
-size_flags_horizontal = 2
-size_flags_vertical = 5
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 85 )
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 17 )
-custom_styles/disabled = SubResource( 15 )
-custom_styles/normal = SubResource( 16 )
-text = "Exit"
-
-[node name="Start" type="Button" parent="saves/enter/MarginContainer/lobby/info/buttons"]
-margin_left = 581.0
-margin_right = 761.0
-margin_bottom = 84.0
-rect_pivot_offset = Vector2( -290, 68 )
-focus_neighbour_left = NodePath("../erase")
-focus_neighbour_top = NodePath("../../HBoxContainer/contract")
-focus_neighbour_right = NodePath("../erase")
-focus_neighbour_bottom = NodePath("../../exit")
-size_flags_horizontal = 10
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 89 )
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 17 )
-custom_styles/disabled = SubResource( 15 )
-custom_styles/normal = SubResource( 16 )
-disabled = true
-text = "Start"
-
 [node name="findParty" type="VBoxContainer" parent="saves/enter/MarginContainer"]
-visible = false
 margin_left = 32.0
 margin_top = 32.0
 margin_right = 1329.0
@@ -2133,6 +1919,9 @@ material = SubResource( 54 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0862745, 0.0156863, 0.0156863, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="confirmExit" type="CanvasLayer" parent="."]
 layer = 4
@@ -2144,6 +1933,9 @@ modulate = Color( 1, 1, 1, 0.501961 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0941176, 0.027451, 0.121569, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Panel" type="PanelContainer" parent="confirmExit"]
 self_modulate = Color( 0.529412, 0.505882, 0.588235, 1 )
@@ -2156,14 +1948,20 @@ margin_top = -40.0
 margin_right = 359.0
 margin_bottom = 40.0
 custom_styles/panel = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="margin" type="MarginContainer" parent="confirmExit/Panel"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 492.0
+margin_bottom = 168.0
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="confirmExit/Panel/margin"]
 margin_left = 8.0
@@ -2171,21 +1969,30 @@ margin_top = 8.0
 margin_right = 484.0
 margin_bottom = 160.0
 custom_constants/separation = 32
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Label" type="Label" parent="confirmExit/Panel/margin/VBoxContainer"]
 margin_right = 686.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 73 )
 text = "mn_exitQuestion"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="confirmExit/Panel/margin/VBoxContainer"]
 margin_top = 68.0
 margin_right = 686.0
 margin_bottom = 152.0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="no" type="Button" parent="confirmExit/Panel/margin/VBoxContainer/HBoxContainer"]
 margin_left = 123.0
-margin_right = 217.0
+margin_right = 251.0
 margin_bottom = 84.0
 size_flags_horizontal = 6
 size_flags_vertical = 0
@@ -2197,6 +2004,9 @@ custom_styles/focus = SubResource( 17 )
 custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 16 )
 text = "_no"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="yes" type="Button" parent="confirmExit/Panel/margin/VBoxContainer/HBoxContainer"]
 margin_left = 453.0
@@ -2212,6 +2022,9 @@ custom_styles/focus = SubResource( 17 )
 custom_styles/disabled = SubResource( 15 )
 custom_styles/normal = SubResource( 16 )
 text = "_yes"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/start" to="initial" method="_on_start_pressed"]
 [connection signal="pressed" from="initial/MarginContainer/VBoxContainer2/VBoxContainer/options" to="initial" method="_on_options_pressed"]
@@ -2231,10 +2044,6 @@ text = "_yes"
 [connection signal="pressed" from="saves/saves/VBoxContainer/HBoxContainer2/erase" to="saves" method="_on_erase_pressed"]
 [connection signal="pressed" from="saves/saves/VBoxContainer/HBoxContainer2/enter" to="saves" method="enterServer"]
 [connection signal="pressed" from="saves/saves/VBoxContainer/exit" to="saves" method="_on_exit_pressed"]
-[connection signal="text_entered" from="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer/send" to="saves" method="_on_send_pressed"]
-[connection signal="pressed" from="saves/enter/MarginContainer/lobby/ColorRect/VBoxContainer/HBoxContainer/sendButton" to="saves" method="_on_send_pressed"]
-[connection signal="pressed" from="saves/enter/MarginContainer/lobby/info/buttons/Logout" to="saves" method="_on_logout"]
-[connection signal="pressed" from="saves/enter/MarginContainer/lobby/info/buttons/Start" to="saves" method="_on_Start_pressed"]
 [connection signal="pressed" from="saves/enter/MarginContainer/findParty/HBoxContainer/enter" to="saves" method="_on_enter_pressed"]
 [connection signal="value_changed" from="saves/enter/MarginContainer/findParty/HBoxContainer/SpinBox" to="saves" method="_on_SpinBox_value_changed"]
 [connection signal="pressed" from="saves/enter/MarginContainer/findParty/exit" to="saves" method="_on_exitFindLobby_pressed"]
