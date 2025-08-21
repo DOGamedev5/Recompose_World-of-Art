@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://worlds/literatureArt/objects/ventoy/ventoy.png" type="Texture" id=1]
 [ext_resource path="res://gameplay/effects/effect4.png" type="Texture" id=2]
 [ext_resource path="res://worlds/literatureArt/objects/ventoy/ventoyArea.gd" type="Script" id=3]
+[ext_resource path="res://worlds/paintWorld/sprites/playerAnimation/papers.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -43,6 +44,20 @@ particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
+[sub_resource type="CanvasItemMaterial" id=5]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id=6]
+max_value = 2.0
+bake_resolution = 200
+_data = [ Vector2( 0.00638686, 1.63804 ), 0.0, 0.0, 0, 0, Vector2( 0.688869, 1.51534 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -9.89702, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 0.454902, 0.447059, 0.498039, 1, 1, 1, 1, 1 )
+
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 30, 224 )
 
@@ -51,6 +66,7 @@ extents = Vector2( 30, 224 )
 [node name="Ventoy" type="Sprite" parent="."]
 position = Vector2( 48, -8 )
 scale = Vector2( 2, 2 )
+z_index = -1
 texture = ExtResource( 1 )
 hframes = 3
 
@@ -65,6 +81,7 @@ anims/idle = SubResource( 2 )
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 material = SubResource( 3 )
 position = Vector2( 48, -40 )
+z_index = -1
 lifetime = 2.0
 speed_scale = 2.0
 randomness = 1.0
@@ -79,9 +96,34 @@ radial_accel_random = 0.81
 scale_amount = 2.0
 anim_speed = 1.0
 
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+material = SubResource( 5 )
+position = Vector2( 48, -40 )
+z_index = -1
+lifetime = 3.0
+speed_scale = 2.0
+explosiveness = 0.1
+randomness = 1.0
+lifetime_randomness = 0.53
+texture = ExtResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 32, 32 )
+direction = Vector2( 0, -1 )
+spread = 0.0
+gravity = Vector2( 0, -165 )
+linear_accel = 0.42
+linear_accel_random = 1.0
+angle = 18.0
+angle_random = 1.0
+scale_amount = 2.0
+scale_amount_curve = SubResource( 6 )
+color_ramp = SubResource( 7 )
+anim_offset_random = 1.0
+
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 material = SubResource( 3 )
 position = Vector2( 24, -40 )
+z_index = -1
 lifetime = 2.0
 speed_scale = 2.0
 randomness = 1.0
@@ -99,6 +141,7 @@ anim_speed = 1.0
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
 material = SubResource( 3 )
 position = Vector2( 72, -40 )
+z_index = -1
 lifetime = 2.0
 speed_scale = 2.0
 randomness = 1.0

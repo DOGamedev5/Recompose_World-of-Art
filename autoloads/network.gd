@@ -138,6 +138,7 @@ func readP2PPacket():
 				if Players.playerList.has(packet["sender"][0]):
 					if Players.playerList[packet["sender"][0]].reference:
 						Players.playerList[packet["sender"][0]].reference.receivePacket(packet)
+				
 						
 			"objectUpdateProperty":
 				var obj := get_node_or_null(packet["objectPath"])

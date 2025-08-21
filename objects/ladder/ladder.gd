@@ -1,6 +1,6 @@
 extends Node2D
 
 func _ready():
-	pass
-#	var textureName = Global.currentRoom.world.get_file()
-#	$Ladder.texture = load("res://objects/ladder/sprites/%s.png" % (textureName))
+	if Global.world.alternativeTextures.has("ladder"):
+		$Ladder.texture = Global.world.alternativeTextures["ladder"]
+

@@ -5,13 +5,10 @@ onready var currentColor : Color
 export var portalPath : NodePath
 onready var portal : RoomWarp
 
-export(Array, NodePath) var doorWarps
-export(Array, NodePath) var normalWarps
-export(Array, NodePath) var tubeWarps
-export(Array, NodePath) var portalWarps
-
 onready var canvasModulate := CanvasModulate.new()
 onready var timerModulate := CanvasModulate.new()
+
+export var alternativeTextures := {}
 
 var isPortalSetup := false
 var clock := false
@@ -23,6 +20,8 @@ onready var cameraLimitsMax := Vector2(10000000, 10000000)
 
 onready var objects : Node2D
 
+onready var fragmentsTextures := []
+
 signal clockInitialized
 
 onready var finsihedPlayers := {}
@@ -31,6 +30,7 @@ func _init():
 	objects = Node2D.new()
 	objects.name = "objects"
 	add_child(objects)
+	Global.world = self
 
 func _ready():
 	Network.connect("memberLeft", self, "_memberLeft")
@@ -39,7 +39,6 @@ func _ready():
 	
 #	Global.save.played = true
 	Global.in_game = true
-	Global.world = self
 	timer.one_shot = true
 	add_child(timer)
 	
