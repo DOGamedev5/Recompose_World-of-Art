@@ -458,7 +458,6 @@ LoadSystem="*res://autoloads/loadSystem/loadSystem.tscn"
 AudioManager="*res://audio/audioSystem/audioSystem.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 Players="*res://autoloads/playerLister/Players.tscn"
-Discord="*res://addons/discord_game_sdk/discord.gd"
 
 [display]
 
@@ -470,7 +469,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/controller_icons/plugin.cfg", "res://addons/discord_game_sdk/plugin.cfg", "res://addons/nklbdev.tile_palette/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/controller_icons/plugin.cfg", "res://addons/nklbdev.tile_palette/plugin.cfg" )
 
 [gdnative]
 

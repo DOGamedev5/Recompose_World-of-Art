@@ -202,7 +202,10 @@ func setCollision(ID := 0):
 func _on_specialEffectTimer_timeout():
 	if running:
 		var newEffect := specialEffect.instance()
-		newEffect.currentSprite = sprite
+		newEffect.spriteTexture = sprite.texture
+		newEffect.hframes = sprite.hframes
+		newEffect.fliped = sprite.flip_h
+		
 		get_parent().add_child(newEffect)
 		newEffect.position = position - Vector2(0, 32)
 		newEffect.rotation = spriteGizmo.rotation

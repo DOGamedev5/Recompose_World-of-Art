@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=2]
@@ -13,8 +13,11 @@
 [ext_resource path="res://entities/enemies/bugouth/bugouth.tscn" type="PackedScene" id=11]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTiles.tscn" type="PackedScene" id=12]
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 312, 576 )
+
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 1384, 640 )
+extents = Vector2( 1072, 640 )
 
 [node name="room8" type="Node2D"]
 script = ExtResource( 1 )
@@ -1136,12 +1139,19 @@ visible = false
 position = Vector2( 568, -796 )
 scale = Vector2( 148, 88.4 )
 
+[node name="CameraLimitsArea2" type="Area2D" parent="."]
+position = Vector2( 568, -796 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea2"]
+position = Vector2( 1072, -52 )
+shape = SubResource( 2 )
+
 [node name="CameraLimitsArea" type="Area2D" parent="."]
-visible = false
 script = ExtResource( 2 )
 limitsMin = Vector2( -1e+07, -1608 )
 limitsMax = Vector2( 1e+07, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]
-position = Vector2( 568, -744 )
+position = Vector2( 256, -744 )
 shape = SubResource( 1 )

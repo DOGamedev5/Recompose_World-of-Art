@@ -1,13 +1,14 @@
 extends CPUParticles2D
 
-var currentSprite : Sprite
+var spriteTexture
+var hframes : int
+var fliped := false
 
 func _ready():
-	texture = currentSprite.texture
-	material["particles_anim_h_frames"] = currentSprite.hframes
-	scale.x = 1 - (int(currentSprite.flip_h)*2)
+	texture = spriteTexture
+	material["particles_anim_h_frames"] = hframes
+	scale.x = 1 - (int(fliped)*2)
 	emitting = true
-
 
 func _on_Timer_timeout():
 	queue_free()

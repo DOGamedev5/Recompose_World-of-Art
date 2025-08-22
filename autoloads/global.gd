@@ -73,7 +73,6 @@ func _ready():
 	options = FileSystemHandler.loadDataResource(optionsSavePath)
 	
 	setup_langueges()
-	call_deferred("updateActivity")
 	
 	checkCommandLine()
 	
@@ -115,22 +114,6 @@ func sendMessagge(message : String, sender : int = -1):
 	
 	if chat.size() > 40:
 		chat.remove(0)
-
-func updateActivity() -> void:
-	var activity = Discord.Activity.new()
-	activity.set_type(Discord.ActivityType.Playing)
-	activity.set_state("playing")
-
-	var assets = activity.get_assets()
-	assets.set_large_image("large")
-
-	var timestamps = activity.get_timestamps()
-	timestamps.set_start(time)
-	assets.set_large_text("RECOMPOSE: World of Art")
-	
-	var result = yield(Discord.activity_manager.update_activity(activity), "result").result
-	if result != Discord.Result.Ok:
-		push_error(str(result))
 		
 func _input(_event):
 	
