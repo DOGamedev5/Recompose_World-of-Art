@@ -6,11 +6,15 @@ export var collectID := 0
 onready var collectTexture := $Sprite
 
 func _ready():
-	collectTexture.texture = Global.world.fragmentsTextures[collectID]
+	if Global.world.fragmentsTextures.size() < collectID:
+		collectTexture.texture = Global.world.fragmentsTextures[collectID]
 
 func collected():
+	collect()
+	Network.callRemote("collect", get_path(), [Network.steamID])
+
+func collect(id := Network.steamID):
 	if hasCollected: return
 	hasCollected = true
 	$AnimationPlayer.play("open")
-	
-	Network.callRemote("collected", get_path())
+	Global.world.collect(collectID, id)

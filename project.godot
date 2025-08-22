@@ -169,6 +169,16 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/discord_game_sdk/discord_party_size.gdns"
 }, {
+"base": "Node",
+"class": "DiscordRPC",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/DiscordRPC.gd"
+}, {
+"base": "Reference",
+"class": "DiscordRPCUtil",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/RPC.gd"
+}, {
 "base": "",
 "class": "DiscordResult",
 "language": "NativeScript",
@@ -208,6 +218,11 @@ _global_script_classes=[ {
 "class": "HitboxComponent",
 "language": "GDScript",
 "path": "res://entities/classes/hitboxComponent/hitboxComponent.gd"
+}, {
+"base": "Reference",
+"class": "IPCUtil",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/util/IPCUtil.gd"
 }, {
 "base": "Node2D",
 "class": "InteractBallon",
@@ -258,6 +273,21 @@ _global_script_classes=[ {
 "class": "Question",
 "language": "GDScript",
 "path": "res://entities/classes/dialogComponent/classes/question.gd"
+}, {
+"base": "Reference",
+"class": "RichPresence",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/ipc/module/rich presence/RichPresence.gd"
+}, {
+"base": "Reference",
+"class": "RichPresenceButton",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/ipc/module/rich presence/RichPresenceButton.gd"
+}, {
+"base": "",
+"class": "RichPresenceModule",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/ipc/module/rich presence/RichPreseneModule.gd"
 }, {
 "base": "Node2D",
 "class": "RoomClass",
@@ -313,6 +343,21 @@ _global_script_classes=[ {
 "class": "TransformClass",
 "language": "GDScript",
 "path": "res://objects/transform/transformClass.gd"
+}, {
+"base": "Reference",
+"class": "URLUtil",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/util/URLUtil.gd"
+}, {
+"base": "Reference",
+"class": "UUID",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/util/UUID.gd"
+}, {
+"base": "",
+"class": "UpdateRichPresencePayload",
+"language": "GDScript",
+"path": "res://addons/Discord RPC/ipc/module/rich presence/UpdateRichPresencePayload.gd"
 } ]
 _global_script_class_icons={
 "AreaTrigger": "",
@@ -347,6 +392,8 @@ _global_script_class_icons={
 "DiscordLobbyTransaction": "",
 "DiscordOverlayManager": "",
 "DiscordPartySize": "",
+"DiscordRPC": "",
+"DiscordRPCUtil": "",
 "DiscordResult": "",
 "DiscordUser": "",
 "Door": "",
@@ -355,6 +402,7 @@ _global_script_class_icons={
 "EntityBase": "",
 "GameState": "",
 "HitboxComponent": "",
+"IPCUtil": "",
 "InteractBallon": "",
 "LevelClass": "",
 "Member": "",
@@ -365,6 +413,9 @@ _global_script_class_icons={
 "PlayerHud": "",
 "PlayerInfo": "",
 "Question": "",
+"RichPresence": "",
+"RichPresenceButton": "",
+"RichPresenceModule": "",
 "RoomClass": "",
 "RoomWarp": "",
 "SaveGame": "",
@@ -375,7 +426,10 @@ _global_script_class_icons={
 "TeleportBase": "",
 "TextDialog": "",
 "TilepropsScene": "",
-"TransformClass": ""
+"TransformClass": "",
+"URLUtil": "",
+"UUID": "",
+"UpdateRichPresencePayload": ""
 }
 
 [application]
@@ -403,8 +457,8 @@ LoadedObjects="*res://autoloads/loadSystem/loadedObjects/loadedObjects.gd"
 LoadSystem="*res://autoloads/loadSystem/loadSystem.tscn"
 AudioManager="*res://audio/audioSystem/audioSystem.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
-Discord="*res://addons/discord_game_sdk/discord.gd"
 Players="*res://autoloads/playerLister/Players.tscn"
+Discord="*res://addons/discord_game_sdk/discord.gd"
 
 [display]
 

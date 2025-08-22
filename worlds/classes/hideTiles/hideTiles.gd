@@ -1,21 +1,33 @@
 extends Area2D
 
-export var tilemapPath : NodePath
-onready var tilemap : TileMap = get_node_or_null(tilemapPath) as TileMap
+var entered := false
 
 func _init():
 	collision_layer = 0
-	collision_mask = 256
-	
-	tilemap.collision_layer = 0
-	tilemap.collision_mask = 0
+	collision_mask = 4096
 	
 	connect("area_entered", self, "_playerEntered")
-	
+	connect("area_exited", self, "_playerExited")
+
+func _process(delta):
+	if entered:
+		modulate = lerp(modulate, Color(0.4, 0.4, 0.4, 0.5), 10*delta)
+	else:
+		modulate = lerp(modulate, Color(1, 1, 1, 1), 10*delta)
+
 func _playerEntered(area : Area2D):
 	if area.get_parent().is_in_group("player"):
 		if not Network.is_owned(area.get_parent().OwnerID): return
-		
-		pass
 	
+	entered = true
+#	modulate = Color(0.4, 0.4, 0.4, 0.4)
+	z_index = -1
+
+func _playerExited(area : Area2D):
+	if area.get_parent().is_in_group("player"):
+		if not Network.is_owned(area.get_parent().OwnerID): return
+	
+	entered = false
+#	modulate = Color(1, 1, 1, 1)
+	z_index = 1
 	

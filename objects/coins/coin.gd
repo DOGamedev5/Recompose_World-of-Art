@@ -8,6 +8,8 @@ func _ready():
 
 func _on_coin_area_entered(area):
 	if not area.is_in_group("player"): return
-	Global.addToRoomData(owner.ID, name, "collectedCoins")
+	if not Network.is_owned(area.get_parent().OwnerID): return
 	
-	queue_free()
+	modulate.a = 0.3
+	collision_layer = 0
+	collision_mask = 0

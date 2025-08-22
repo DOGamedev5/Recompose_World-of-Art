@@ -20,7 +20,8 @@ onready var cameraLimitsMax := Vector2(10000000, 10000000)
 
 onready var objects : Node2D
 
-onready var fragmentsTextures := []
+export var fragmentsTextures := []
+onready var collectedFragments := {}
 
 signal clockInitialized
 
@@ -67,6 +68,7 @@ func setup():
 			if Network.steamID == member["ID"]:
 				Global.player = player
 			
+			Players.addPlayer(member["ID"], player)
 			player.OwnerID = member["ID"]
 			player.global_position = portal.global_position
 			add_child(player)
@@ -143,6 +145,10 @@ func playerFinished(id):
 		LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")
 	else:
 		addSpectator(id)
+
+func collect(FragmentID, gotID):
+	if collectedFragments.size() > FragmentID:
+		collectedFragments[FragmentID] = gotID
 
 func addSpectator(id):
 	var oldPlayer = Players.getPlayer(id).reference

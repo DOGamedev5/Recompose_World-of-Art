@@ -21,6 +21,7 @@ z_as_relative = false
 emitting = false
 amount = 1
 lifetime = 0.5
+one_shot = true
 texture = ExtResource( 1 )
 gravity = Vector2( 0, 8 )
 scale_amount = 2.0

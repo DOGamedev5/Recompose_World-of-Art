@@ -9,18 +9,20 @@ func enter(_ls):
 	parent.snapDesatived = true
 
 func process_state():
-	if parent.jumpBuffer or parent.is_on_wall():
+	if Global.handInput("attack", false, parent.OwnerID):
 		return "FALL"
 	
 	elif parent.onFloor():
+		parent.motion.x /= 4
 		if parent.motion.x == 0: return "IDLE"
+		
 		
 		return "WALK"
 	
 	return null
 
 func process_physics(_delta):
-	if abs(parent.motion.x) < 250 and int(parent.realMotion.x) == 0:
+	if abs(parent.motion.x) < 250 and int(parent.realMotion.x) == 0 and not parent.onVentoy:
 		parent.motion.x = 0
 		
 	parent.moveBase("X", parent.motion.x)

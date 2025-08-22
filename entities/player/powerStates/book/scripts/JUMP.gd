@@ -12,7 +12,7 @@ func process_state():
 			
 		return "WALK"
 	
-	if Global.handInput("attack", true, parent.OwnerID):
+	if Global.handInput("attack", false, parent.OwnerID):
 		return "FLY"
 	
 	return null

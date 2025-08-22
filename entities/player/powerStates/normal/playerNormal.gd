@@ -29,8 +29,8 @@ var canAttack := true
 var lastUpdate := 0
 
 onready var collisionShapes := [
-	{obj = $CollisionShape2D, onWall = [true, true, true], hitbox = $HitboxComponent/CollisionShape2D},
-	{obj = $CollisionShape2D3, onWall = [false, true, true], hitbox = $HitboxComponent/CollisionShape2D2}
+	{obj = $CollisionShape2D, onWall = [true, true, true], hitbox = false},
+	{obj = $CollisionShape2D3, onWall = [false, true, true], hitbox = true}
 ]
 
 onready var stepSFX = [
@@ -188,15 +188,13 @@ func setAttack():
 		
 func setCollision(ID := 0):
 	collisionShapes[ID].obj.set_deferred("disabled", false)
-	collisionShapes[ID].hitbox.set_deferred("disabled", false)
 	
 	for obj in range(collisionShapes.size()):
 		if obj == ID: continue
 		
 		collisionShapes[obj].obj.disabled = true
 		
-		if collisionShapes[obj].hitbox != collisionShapes[ID].hitbox:
-			collisionShapes[obj].hitbox.set_deferred("disabled", true)
+		$HitboxComponent/CollisionShape2D.disabled = collisionShapes[obj].hitbox
 	
 	for ray in range(3):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]

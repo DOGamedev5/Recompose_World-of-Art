@@ -2491,13 +2491,12 @@ cast_to = Vector2( 17, 0 )
 [node name="HitboxComponent" parent="." index="34"]
 visible = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitboxComponent" index="0" groups=["player"]]
 position = Vector2( 0, -14 )
 shape = SubResource( 359 )
-disabled = true
 
 [node name="CollisionShape2D" parent="HitboxComponent" index="1"]
-visible = false
+position = Vector2( 0, -30 )
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )

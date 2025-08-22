@@ -15,7 +15,7 @@ func _physics_process(delta):
 			if not Global.player.stateMachine.currentState.name in ["JUMP", "FLY"] and Global.player.onFloor():
 			
 				Global.player.stateMachine.changeState("FLY")
-				Global.player.position += Vector2(force*delta * sin(global_rotation)*8, force*delta * -cos(global_rotation))
+				Global.player.position += Vector2(force*delta * sin(global_rotation)*8, 0*force*delta * -cos(global_rotation))
 			Global.player.motion += Vector2(force*delta * sin(global_rotation)*8, force*delta * -cos(global_rotation))
 		else:
 			Global.player.motion += Vector2(force*delta*0.6 * sin(global_rotation)*8, force*delta*0.6 * -cos(global_rotation))

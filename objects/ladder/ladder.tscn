@@ -4,7 +4,7 @@
 [ext_resource path="res://objects/ladder/ladder.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 16 )
+extents = Vector2( 32, 24 )
 
 [node name="ladder" type="Node2D" groups=["ladder"]]
 z_index = -1
