@@ -71,7 +71,7 @@ func init():
 	var directions := [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 	
 	Global.player.global_position = (global_position + directions[direction] * 86) + Vector2.DOWN*32
-	Global.world.setCameraLimits(limitsMin + global_position, limitsMax + global_position)
+#	Global.world.setCameraLimits(limitsMin + global_position, limitsMax + global_position)
 	
 	$AnimationPlayer.play("enter")
 

@@ -72,6 +72,7 @@ anims/idle = SubResource( 3 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( 8, 8 )
+z_index = 1
 emitting = false
 amount = 4
 lifetime = 0.2

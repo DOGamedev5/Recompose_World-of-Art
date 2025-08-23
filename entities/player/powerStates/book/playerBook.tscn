@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=2]
@@ -388,6 +388,9 @@ graph_offset = Vector2( 0, 87.202 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 32, 36 )
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [sub_resource type="RayShape2D" id=43]
@@ -399,7 +402,7 @@ stateMachinePath = NodePath("StateMachine")
 ACCELERATION = 15
 DESACCELERATION = 100
 MAXSPEED = 750
-MAXFALL = 200
+MAXFALL = 100
 JUMPFORCE = -500
 spriteGizmoPath = NodePath("sprite")
 
@@ -461,6 +464,10 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 root_motion_track = NodePath("sprite:frame")
 parameters/playback = SubResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+position = Vector2( 0, -34 )
+shape = SubResource( 45 )
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 1 )

@@ -1,12 +1,12 @@
 [gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://entities/enemies/bugouth/bugouth.gd" type="Script" id=1]
-[ext_resource path="res://entities/enemies/bugouth/sprites/bugouth.png" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/literature/bugouth/bugouth.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/literature/bugouth/sprites/bugouth.png" type="Texture" id=2]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=6]
-[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthDeath.png" type="Texture" id=7]
+[ext_resource path="res://entities/enemies/literature/bugouth/sprites/bugouthDeath.png" type="Texture" id=7]
 [ext_resource path="res://entities/classes/attackComponent/attackComponent.gd" type="Script" id=9]
-[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthAttack.png" type="Texture" id=11]
-[ext_resource path="res://entities/enemies/bugouth/sprites/bugouthBite.png" type="Texture" id=12]
+[ext_resource path="res://entities/enemies/literature/bugouth/sprites/bugouthAttack.png" type="Texture" id=11]
+[ext_resource path="res://entities/enemies/literature/bugouth/sprites/bugouthBite.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=10]
 resource_name = "BITE"
@@ -269,5 +269,3 @@ damage = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent"]
 position = Vector2( -16, 0 )
 shape = SubResource( 9 )
-
-[node name="Navigation2D" type="Navigation2D" parent="."]

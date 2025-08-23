@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bugouthDeath.png-d1579b4ad719c72cddbdde42170f72e1.stex"
+path="res://.import/paperBombIdle.png-062ddf8b277073565e5a3f23360da33c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/bugouth/sprites/bugouthDeath.png"
-dest_files=[ "res://.import/bugouthDeath.png-d1579b4ad719c72cddbdde42170f72e1.stex" ]
+source_file="res://entities/enemies/literature/paperbomb/paperBombIdle.png"
+dest_files=[ "res://.import/paperBombIdle.png-062ddf8b277073565e5a3f23360da33c.stex" ]
 
 [params]
 

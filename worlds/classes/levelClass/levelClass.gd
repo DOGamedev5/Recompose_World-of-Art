@@ -55,7 +55,11 @@ func _ready():
 	add_child(timerModulate)
 	
 	setup()
-	
+
+func _input(event):
+	if event.is_action("interact"):
+		setupTimer(80)
+
 func setup():
 
 	if portal.has_method("createPlayers"):
@@ -140,11 +144,13 @@ func playerFinished(id):
 	for i in finsihedPlayers.keys():
 		allFinish = allFinish and finsihedPlayers[i]
 	
-	if allFinish:
-		LoadSystem.openScreen()
-		LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")
-	else:
-		addSpectator(id)
+	addSpectator(id)
+	
+#	if allFinish:
+#		LoadSystem.openScreen()
+#		LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")
+#	else:
+#		addSpectator(id)
 
 func collect(FragmentID, gotID):
 	if collectedFragments.size() > FragmentID:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=181 format=2]
+[gd_scene load_steps=182 format=2]
 
 [ext_resource path="res://entities/player/powerStates/normal/playerNormal.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/playerBase.tscn" type="PackedScene" id=2]
@@ -1851,6 +1851,9 @@ _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 
 [sub_resource type="RectangleShape2D" id=359]
 extents = Vector2( 16, 14 )
 
+[sub_resource type="RectangleShape2D" id=361]
+extents = Vector2( 16, 27 )
+
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
 [node name="playerNormal" groups=["input", "normal"] instance=ExtResource( 2 )]
@@ -2213,8 +2216,9 @@ visible = true
 position = Vector2( 0, -14 )
 shape = SubResource( 359 )
 
-[node name="CollisionShape2D" parent="HitboxComponent" index="1"]
-position = Vector2( 0, -30 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="1"]
+position = Vector2( 0, -27 )
+shape = SubResource( 361 )
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]
 parameters/playback = SubResource( 153 )

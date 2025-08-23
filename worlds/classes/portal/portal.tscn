@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://worlds/classes/portal/portal.png" type="Texture" id=1]
 [ext_resource path="res://worlds/classes/portal/portal.gd" type="Script" id=2]
 [ext_resource path="res://worlds/shaders/0069.png" type="Texture" id=3]
+[ext_resource path="res://worlds/classes/portal/attract.gd" type="Script" id=4]
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -144,14 +145,34 @@ tracks/3/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 40.0
+radius = 16.0
+
+[sub_resource type="Curve" id=6]
+min_value = -0.3
+max_value = 0.0
+_data = [ Vector2( 0, -0.224233 ), 0.0, 0.0, 0, 0, Vector2( 0.980994, 0 ), -0.0157362, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=7]
+min_value = -40.0
+max_value = 40.0
+_data = [ Vector2( 0, 7.85276 ), 0.0, 0.0, 0, 0, Vector2( 0.326023, -40 ), -140.577, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0.0705521 ), 0.0, -0.570928, 0, 0, Vector2( 0.390351, 0.990798 ), 0.245878, 0.245878, 0, 0, Vector2( 0.99269, 0 ), -0.486392, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.597403, 1 )
+colors = PoolColorArray( 0.160784, 0.113725, 0.313726, 1, 0.282353, 0.8, 0.615686, 1, 1, 1, 1, 1 )
+
+[sub_resource type="CircleShape2D" id=10]
+radius = 96.0
 
 [node name="portal" type="Position2D"]
 script = ExtResource( 2 )
 
 [node name="Portal" type="Sprite" parent="."]
 material = SubResource( 5 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 1.5, 1.5 )
 z_index = -1
 texture = ExtResource( 1 )
 
@@ -171,7 +192,6 @@ anims/RESET = SubResource( 1 )
 anims/spin = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4096
 
@@ -188,6 +208,72 @@ visible = false
 position = Vector2( -1.35525e-20, -5.72205e-06 )
 scale = Vector2( 12.8, 12.8 )
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 2
+amount = 18
+lifetime = 3.0
+speed_scale = 1.2
+explosiveness = 0.2
+randomness = 0.41
+emission_shape = 1
+emission_sphere_radius = 108.0
+spread = 85.28
+gravity = Vector2( 0, 4 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+angular_velocity = 10.0
+angular_velocity_random = 0.52
+orbit_velocity = -0.2
+orbit_velocity_random = 0.7
+orbit_velocity_curve = SubResource( 6 )
+radial_accel = 30.0
+radial_accel_random = 0.3
+radial_accel_curve = SubResource( 7 )
+angle = 180.0
+angle_random = 1.0
+scale_amount = 16.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 8 )
+color = Color( 2.73, 3, 2.73, 1 )
+color_ramp = SubResource( 9 )
+hue_variation_random = 0.17
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -24 )
+z_index = 2
+emitting = false
+amount = 12
+lifetime = 4.0
+explosiveness = 0.2
+randomness = 0.29
+emission_shape = 1
+emission_sphere_radius = 96.0
+spread = 85.28
+gravity = Vector2( 0, 4 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+radial_accel = 30.0
+radial_accel_random = 0.3
+radial_accel_curve = SubResource( 7 )
+scale_amount = 16.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 8 )
+color = Color( 1.44, 1.74, 1.44, 0.85 )
+color_ramp = SubResource( 9 )
+hue_variation_random = 0.17
+
+[node name="attract" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4096
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attract"]
+shape = SubResource( 10 )
+disabled = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_entered"]
+[connection signal="area_entered" from="attract" to="attract" method="_on_attract_area_entered"]

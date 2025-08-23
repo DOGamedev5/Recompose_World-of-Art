@@ -10,6 +10,7 @@ const confSaveFile := "user://conf.tres"
 onready var saveTimer := Timer.new()
 
 func initAutoSave():
+	if saveTimer.is_inside_tree(): return
 	get_tree().get_root().add_child(saveTimer)
 	
 	saveTimer.wait_time = 2

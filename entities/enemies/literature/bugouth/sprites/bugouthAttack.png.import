@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bugouthAttack.png-872c76d7d1b0501f0c42bb0cb982aa0c.stex"
+path="res://.import/bugouthAttack.png-16428f9d8ba3494a1e417b8cf1093a40.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/bugouth/sprites/bugouthAttack.png"
-dest_files=[ "res://.import/bugouthAttack.png-872c76d7d1b0501f0c42bb0cb982aa0c.stex" ]
+source_file="res://entities/enemies/literature/bugouth/sprites/bugouthAttack.png"
+dest_files=[ "res://.import/bugouthAttack.png-16428f9d8ba3494a1e417b8cf1093a40.stex" ]
 
 [params]
 

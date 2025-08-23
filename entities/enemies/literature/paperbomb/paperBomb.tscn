@@ -1,0 +1,142 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://worlds/classes/areaTrigger/areaTrigger.gd" type="Script" id=1]
+[ext_resource path="res://entities/enemies/literature/paperbomb/paperBombIdle.png" type="Texture" id=2]
+[ext_resource path="res://entities/enemies/literature/paperbomb/paperBomb.gd" type="Script" id=3]
+[ext_resource path="res://entities/enemies/literature/paperbomb/scripts/TOJUMP.gd" type="Script" id=4]
+[ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=5]
+[ext_resource path="res://entities/enemies/literature/paperbomb/scripts/IDLE.gd" type="Script" id=6]
+[ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "IDLE"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PaperBombIdle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaperBombIdle:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PaperBombIdle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaperBombIdle:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 104, 169 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 28.0
+
+[node name="paperBomb" type="KinematicBody2D"]
+collision_layer = 0
+script = ExtResource( 3 )
+stateMachinePath = NodePath("StateMachine")
+GRAVITY = 20
+MAXFALL = 400
+JUMPFORCE = -800
+MAXHEALTH = 2
+hitboxAreaPath = NodePath("HitboxComponent")
+spritePath = NodePath("PaperBombIdle")
+maxHealth = 2
+health = 2
+
+[node name="PaperBombIdle" type="Sprite" parent="."]
+position = Vector2( 0, -32 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -24 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/IDLE = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="AreaTrigger" type="Area2D" parent="."]
+script = ExtResource( 1 )
+objectPath = NodePath("../StateMachine/IDLE")
+methodName = "set"
+binds = [ "activaded", true ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTrigger"]
+position = Vector2( 0, -168 )
+shape = SubResource( 4 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 5 )
+startingState = NodePath("IDLE")
+
+[node name="IDLE" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="TOJUMP" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="StateMachine/TOJUMP"]
+wait_time = 0.1
+one_shot = true
+
+[node name="JUMP" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="StateMachine/JUMP"]
+wait_time = 0.4
+one_shot = true
+
+[node name="EXPLODE" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2( 0, -24 )
+shape = SubResource( 5 )

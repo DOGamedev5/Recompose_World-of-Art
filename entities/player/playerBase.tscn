@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/player/playerBase.gd" type="Script" id=1]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=2]
@@ -6,9 +6,6 @@
 [sub_resource type="RayShape2D" id=13]
 custom_solver_bias = 0.2
 length = 24.0
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 24, 28 )
 
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "RESET"
@@ -198,10 +195,6 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" groups=["player"]]
-position = Vector2( 0, -26 )
-shape = SubResource( 1 )
 
 [node name="shieldSystem" type="Node" parent="."]
 

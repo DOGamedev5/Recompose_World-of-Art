@@ -10,7 +10,7 @@
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=8]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=9]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=10]
-[ext_resource path="res://entities/enemies/bugouth/bugouth.tscn" type="PackedScene" id=11]
+[ext_resource path="res://entities/enemies/literature/bugouth/bugouth.tscn" type="PackedScene" id=11]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTiles.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=2]

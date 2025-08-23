@@ -2,6 +2,7 @@ class_name AreaTrigger extends Area2D
 
 export(NodePath) var objectPath
 export(String) var methodName
+export(Array) var binds := []
 
 func _ready():
 	collision_layer = 0
@@ -17,5 +18,7 @@ func entered(area : Area2D):
 		if object is EnablePlaceholder:
 			object.obj.call(methodName)
 		else:
-			get_node(objectPath).call(methodName)
+			var obj := get_node_or_null(objectPath)
+			if obj:
+				if obj.has_method(methodName): obj.callv(methodName, binds)
 	

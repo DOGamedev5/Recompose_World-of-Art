@@ -9,8 +9,8 @@ export(NodePath) var spritePath
 onready var sprite := get_node_or_null(spritePath)
 export(Texture) var deathSprite
 export(NodePath) var animationTreePath
-onready var animationTree = get_node(animationTreePath)
-onready var animationPlayback = animationTree["parameters/playback"]
+onready var animationTree = get_node_or_null(animationTreePath)
+onready var animationPlayback = animationTree["parameters/playback"] if animationTree else null
 
 onready var scenePath : String
 
@@ -49,6 +49,8 @@ func _ready():
 		visionArea.set_collision_layer_bit(11, true)
 	
 	if hitboxArea:
+		hitboxArea.collision_mask = 0
+		hitboxArea.collision_layer = 256 + 1024
 		hitboxArea.connect("HitboxDamaged", self, "hitted")
 	
 

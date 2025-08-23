@@ -2,6 +2,10 @@ extends RoomWarp
 
 onready var sprite := $Portal
 onready var time := 0.0
+onready var particle := [
+	$CPUParticles2D,
+	$CPUParticles2D2
+]
 
 export var limitsMin := Vector2(-10000000, -10000000)
 export var limitsMax := Vector2(10000000, 10000000)
@@ -24,8 +28,11 @@ func createPlayers():
 	$Camera2D.limit_top = limitsMin.y
 	$Camera2D.limit_right = limitsMax.x
 	$Camera2D.limit_bottom = limitsMax.y
-	$Tween.interpolate_property(sprite, "scale", Vector2.ZERO, Vector2(1, 1), 0.8, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	$Tween.interpolate_property(sprite, "scale", Vector2.ZERO, Vector2(1.5, 1.5), 0.8, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	$Tween.start()
+	particle[0].emitting = true
+	particle[1].emitting = true
+	
 
 func _on_Area2D_area_entered(area):
 	if not Network.is_owned(area.get_parent().OwnerID) or area.get_parent().is_in_group("spectator"): return
@@ -45,6 +52,8 @@ func spectator(id):
 	
 func _on_Tween_tween_completed(_object, _key : String):
 	if setup:
+		particle[0].emitting = sprite.scale.x > 1
+		particle[1].emitting = sprite.scale.x > 1
 		return
 	
 	for member in Network.lobbyMembers:
@@ -67,7 +76,7 @@ func _on_Tween_tween_completed(_object, _key : String):
 	
 	setup = true
 	
-	$Tween.interpolate_property(sprite, "scale", Vector2(1, 1), Vector2.ZERO, 0.8, Tween.TRANS_CUBIC, Tween.EASE_IN, 1.8)
+	$Tween.interpolate_property(sprite, "scale", Vector2(1.5, 1.5), Vector2.ZERO, 0.8, Tween.TRANS_CUBIC, Tween.EASE_IN, 1.8)
 	$Tween.start()
 
 func setupCamera():
@@ -75,12 +84,13 @@ func setupCamera():
 	Global.world.isPortalSetup = true
 
 func escapeActivate():
-	$Tween.interpolate_property(sprite, "scale", Vector2.ZERO, Vector2(1, 1), 0.8, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	$Tween.interpolate_property(sprite, "scale", Vector2.ZERO, Vector2(1.5, 1.5), 0.8, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	$Tween.start()
 	$AnimationPlayer.play("spin")
 	
 	if $VisibilityEnabler2D.is_on_screen():
 		$Area2D/CollisionShape2D.disabled = false
+		$attract/CollisionShape2D.disabled = false
 
 func _on_VisibilityEnabler2D_screen_entered():
 	$Area2D/CollisionShape2D.disabled = not Global.world.clock

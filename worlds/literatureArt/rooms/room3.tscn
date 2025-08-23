@@ -7,7 +7,7 @@
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=5]
 [ext_resource path="res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/ladder/ladder.tscn" type="PackedScene" id=7]
-[ext_resource path="res://entities/enemies/bugouth/bugouth.tscn" type="PackedScene" id=8]
+[ext_resource path="res://entities/enemies/literature/bugouth/bugouth.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=9]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=10]
 [ext_resource path="res://entities/placa/plate.tscn" type="PackedScene" id=11]
@@ -137,15 +137,6 @@ position = Vector2( 3984, 896 )
 [node name="ladder19" parent="stairs" instance=ExtResource( 7 )]
 position = Vector2( 3984, 960 )
 
-[node name="ladder20" parent="stairs" instance=ExtResource( 7 )]
-position = Vector2( 3984, 1024 )
-
-[node name="ladder21" parent="stairs" instance=ExtResource( 7 )]
-position = Vector2( 3984, 1088 )
-
-[node name="ladder22" parent="stairs" instance=ExtResource( 7 )]
-position = Vector2( 3984, 1152 )
-
 [node name="blocks" type="Node2D" parent="."]
 
 [node name="block" parent="blocks" instance=ExtResource( 3 )]
@@ -230,7 +221,10 @@ position = Vector2( 4136, 512 )
 position = Vector2( 2792, -400 )
 
 [node name="bugouth2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1272, 952 )
+position = Vector2( 1792, 1136 )
+
+[node name="bugouth4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1192, 1064 )
 
 [node name="bugouth3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 4192, 416 )
@@ -1632,6 +1626,7 @@ position = Vector2( 247, -268 )
 shape = SubResource( 1 )
 
 [node name="CameraLimitsArea2" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 1 )
 limitsMin = Vector2( -1e+07, -1224 )
 limitsMax = Vector2( 5768, 1920 )
@@ -1676,11 +1671,13 @@ position = Vector2( 5360, 1200 )
 
 [node name="tube" parent="." instance=ExtResource( 16 )]
 position = Vector2( 5568, -936 )
-destinationPath = NodePath(".")
+destinationPath = NodePath("../tube2")
+limitsMin = Vector2( -1e+07, -1224 )
+limitsMax = Vector2( 5768, 1920 )
 direction = 0
 
 [node name="tube2" parent="." instance=ExtResource( 16 )]
 position = Vector2( 5128, 792 )
-destinationPath = NodePath(".")
+destinationPath = NodePath("../tube")
 limitsMin = Vector2( -1e+07, -1224 )
 limitsMax = Vector2( 5768, 1920 )
