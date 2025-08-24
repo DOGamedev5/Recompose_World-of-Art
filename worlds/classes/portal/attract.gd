@@ -18,6 +18,6 @@ func _process(delta):
 			enteredPlayers.erase(p)
 			continue
 
-		p.global_position = lerp(p.global_position, global_position + Vector2(0, 32 * 0.7), delta*4)
+		p.global_position = lerp(p.global_position, global_position + Vector2(0, 32 * 0.7), delta*8)
 		p.scale = lerp(p.scale, Vector2(0.7, 0.7), delta*3)
 		p.modulate = lerp(p.modulate, Color(0.7, 0.6, 1, 0.1), delta*6)

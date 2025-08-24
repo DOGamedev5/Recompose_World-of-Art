@@ -1852,7 +1852,7 @@ _data = [ Vector2( 0.0132979, 1.53375 ), 0.0, 305.305, 0, 0, Vector2( 0.612589, 
 extents = Vector2( 16, 14 )
 
 [sub_resource type="RectangleShape2D" id=361]
-extents = Vector2( 16, 27 )
+extents = Vector2( 16, 31 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=153]
 
@@ -2217,7 +2217,7 @@ position = Vector2( 0, -14 )
 shape = SubResource( 359 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="1"]
-position = Vector2( 0, -27 )
+position = Vector2( 0, -29 )
 shape = SubResource( 361 )
 
 [node name="AnimationTree" parent="shieldSystem" index="0"]

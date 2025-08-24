@@ -17,6 +17,7 @@ func _process(_delta):
 	if LoadedObjects.loaders.size() > totalLoaders: totalLoaders = LoadedObjects.loaders.size()
 	
 #	allLoaded = LoadedObjects.alreadyLoaded == totalLoaders
+	if allLoaded and not $AnimationPlayer.is_playing(): var _1 = get_tree().change_scene_to(menu)
 	
 	if LoadedObjects.currentSegments != LoadedObjects.totalSegments:
 		total.text = "Loading Textures... {percent} total: {current}/{total}".format({

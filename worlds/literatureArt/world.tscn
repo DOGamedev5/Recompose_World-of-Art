@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/literatureArt/rooms/room1.tscn" type="PackedScene" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://entities/player/HUD/playerHud.tscn" type="PackedScene" id=13]
 [ext_resource path="res://worlds/literatureArt/background.tscn" type="PackedScene" id=14]
 [ext_resource path="res://worlds/classes/portal/portal.tscn" type="PackedScene" id=15]
+[ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments1.png" type="Texture" id=16]
+[ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments3.png" type="Texture" id=17]
+[ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments2.png" type="Texture" id=18]
+[ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments4.png" type="Texture" id=19]
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,6 +26,7 @@ portalPath = NodePath("portal")
 alternativeTextures = {
 "ladder": ExtResource( 12 )
 }
+fragmentsTextures = [ ExtResource( 16 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 19 ) ]
 
 [node name="room1" parent="." instance=ExtResource( 2 )]
 position = Vector2( -448, 16 )

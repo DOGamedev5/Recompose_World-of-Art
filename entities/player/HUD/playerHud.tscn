@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.png" type="Texture" id=2]
@@ -9,13 +9,17 @@
 [ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeDamaged.png" type="Texture" id=7]
 [ext_resource path="res://gameplay/MENU/saveslot/panel.png" type="Texture" id=8]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/futile-pro-v1/FutilePro.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments3.png" type="Texture" id=10]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonToggle/buttonToggle.png" type="Texture" id=12]
 [ext_resource path="res://entities/player/HUD/sprites/closeButton.png" type="Texture" id=13]
 [ext_resource path="res://entities/player/HUD/scripts/options/configurations.gd" type="Script" id=14]
 [ext_resource path="res://gameplay/MENU/buttonBase/buttonMenu.png" type="Texture" id=15]
 [ext_resource path="res://gameplay/MENU/sprites/slider.png" type="Texture" id=16]
-[ext_resource path="res://entities/player/HUD/inventory/inventoryIcon.png" type="Texture" id=24]
+[ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments1.png" type="Texture" id=17]
+[ext_resource path="res://entities/player/HUD/sprites/fragments.png" type="Texture" id=18]
+[ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments2.png" type="Texture" id=19]
+[ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments4.png" type="Texture" id=20]
 [ext_resource path="res://entities/player/HUD/scripts/cinematic/cinematic.gd" type="Script" id=25]
 [ext_resource path="res://entities/classes/dialogComponent/dialog.tres" type="DynamicFont" id=26]
 [ext_resource path="res://entities/classes/dialogComponent/dialog.png" type="Texture" id=27]
@@ -27,14 +31,6 @@
 [ext_resource path="res://addons/controller_icons/objects/TextureRect.gd" type="Script" id=33]
 [ext_resource path="res://entities/player/HUD/sprites/timerBackground.png" type="Texture" id=34]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/matchup-pro-v1.1/MatchupPro.otf" type="DynamicFontData" id=35]
-
-[sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 24 )
-region = Rect2( 62, 0, 62, 54 )
-
-[sub_resource type="AtlasTexture" id=50]
-atlas = ExtResource( 24 )
-region = Rect2( 0, 0, 62, 54 )
 
 [sub_resource type="AtlasTexture" id=57]
 atlas = ExtResource( 2 )
@@ -417,25 +413,91 @@ margin_top = 16.0
 margin_right = 1345.0
 margin_bottom = 720.0
 
-[node name="Control" type="Control" parent="container/HUD"]
+[node name="fragments" type="Control" parent="container/HUD"]
+modulate = Color( 1, 1, 1, 0.2 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -145.0
 margin_bottom = 136.0
 mouse_filter = 1
 
-[node name="inventoryButton" type="TextureButton" parent="container/HUD/Control"]
-pause_mode = 2
-visible = false
-margin_left = -16.0
-margin_top = 40.0
-margin_right = 108.0
-margin_bottom = 144.0
-mouse_default_cursor_shape = 2
-texture_normal = SubResource( 49 )
-texture_pressed = SubResource( 50 )
-texture_hover = SubResource( 50 )
+[node name="TextureRect" type="TextureRect" parent="container/HUD/fragments"]
+margin_left = -112.0
+margin_top = -24.0
+margin_right = 160.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 272, 272 )
+texture = ExtResource( 18 )
 expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="container/HUD/fragments/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 60
+custom_constants/margin_top = 60
+custom_constants/margin_left = 60
+custom_constants/margin_bottom = 60
+
+[node name="GridContainer" type="GridContainer" parent="container/HUD/fragments/TextureRect/MarginContainer"]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 212.0
+margin_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 2
+
+[node name="1" type="TextureRect" parent="container/HUD/fragments/TextureRect/MarginContainer/GridContainer"]
+modulate = Color( 0.129412, 0.109804, 0.27451, 1 )
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 74.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 72, 72 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 17 )
+expand = true
+
+[node name="2" type="TextureRect" parent="container/HUD/fragments/TextureRect/MarginContainer/GridContainer"]
+modulate = Color( 0.129412, 0.109804, 0.27451, 1 )
+margin_left = 78.0
+margin_top = 2.0
+margin_right = 150.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 72, 72 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 19 )
+expand = true
+
+[node name="3" type="TextureRect" parent="container/HUD/fragments/TextureRect/MarginContainer/GridContainer"]
+modulate = Color( 0.129412, 0.109804, 0.27451, 1 )
+margin_left = 2.0
+margin_top = 78.0
+margin_right = 74.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 72, 72 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 10 )
+expand = true
+
+[node name="4" type="TextureRect" parent="container/HUD/fragments/TextureRect/MarginContainer/GridContainer"]
+modulate = Color( 0.129412, 0.109804, 0.27451, 1 )
+margin_left = 78.0
+margin_top = 78.0
+margin_right = 150.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 72, 72 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture = ExtResource( 20 )
+expand = true
+
+[node name="Tween" type="Tween" parent="container/HUD/fragments"]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="container/HUD"]
 margin_left = 8.0
@@ -1179,7 +1241,6 @@ text = "player_conf_exit"
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="pressed" from="container/HUD/Control/inventoryButton" to="." method="_on_inventoryButton_pressed"]
 [connection signal="dir_selected" from="DEBUG/worldSelect" to="DEBUG" method="_on_worldSelect_dir_selected"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/world" to="DEBUG" method="_on_room_pressed"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/go to room" to="DEBUG" method="_on_go_to_room_pressed"]

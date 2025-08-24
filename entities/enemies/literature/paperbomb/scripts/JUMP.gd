@@ -3,13 +3,12 @@ extends State
 onready var timer := $Timer
 
 func enter(_ls):
+	parent.motion.y = parent.JUMPFORCE
 	timer.start()
-	parent.motion.y = 0
 
 func process_state():
 	if timer.is_stopped():
-		return "JUMP"
-	
-	return null
+		return "EXPLODE"
+
 
 

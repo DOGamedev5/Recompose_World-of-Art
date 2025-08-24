@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://worlds/classes/areaTrigger/areaTrigger.gd" type="Script" id=1]
 [ext_resource path="res://entities/enemies/literature/paperbomb/paperBombIdle.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://entities/classes/statemachinee/StateMachine.gd" type="Script" id=5]
 [ext_resource path="res://entities/enemies/literature/paperbomb/scripts/IDLE.gd" type="Script" id=6]
 [ext_resource path="res://entities/classes/hitboxComponent/hitboxComponent.gd" type="Script" id=7]
+[ext_resource path="res://entities/enemies/literature/paperbomb/scripts/JUMP.gd" type="Script" id=8]
+[ext_resource path="res://entities/enemies/literature/paperbomb/scripts/EXPLODE.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
@@ -68,7 +70,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 104, 169 )
+extents = Vector2( 104, 216.5 )
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 28.0
@@ -107,7 +109,7 @@ methodName = "set"
 binds = [ "activaded", true ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTrigger"]
-position = Vector2( 0, -168 )
+position = Vector2( 0, -120.5 )
 shape = SubResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -125,14 +127,14 @@ wait_time = 0.1
 one_shot = true
 
 [node name="JUMP" type="Node" parent="StateMachine"]
-script = ExtResource( 4 )
+script = ExtResource( 8 )
 
 [node name="Timer" type="Timer" parent="StateMachine/JUMP"]
-wait_time = 0.4
+wait_time = 0.6
 one_shot = true
 
 [node name="EXPLODE" type="Node" parent="StateMachine"]
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 script = ExtResource( 7 )

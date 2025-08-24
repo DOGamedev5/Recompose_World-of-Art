@@ -10,6 +10,10 @@ onready var HUD := $container/HUD
 onready var timer := $timer
 onready var timerLabel := $timer/TextureRect/Label
 
+onready var fragments := $container/HUD/fragments
+onready var fragmentsList := $container/HUD/fragments/TextureRect/MarginContainer/GridContainer
+onready var tweenFragments := $container/HUD/fragments/Tween
+
 var currentScreen := "HUD"
 
 func _ready():
@@ -58,9 +62,20 @@ func hitted(_direction):
 func setHealth(currentValue):
 	healthBarr.value = currentValue
 
-func _on_inventoryButton_pressed():
-	$inventory.visible = true
-	$HUD.visible = false
-	
-	currentScreen = "INVENTORY"
+func addFragmentsTextures(textures):
+	for i in range(textures.size()):
+		var fragment := fragmentsList.get_node(str(i + 1))
+		
+		fragment.texture = textures[i]
 
+func updateFragment(id, got):
+	var texture := fragmentsList.get_node(str(id+1))
+	
+	texture.modulate = Color.white if got else Color(0.13, 0.11, 0.27)
+	
+	tweenFragments.stop_all()
+#	fragments.modulate = Color.white
+	tweenFragments.interpolate_property(fragments, "rect_scale", Vector2(1.2, 1.2), Vector2(1, 1), 1, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tweenFragments.interpolate_property(fragments, "modulate", fragments.modulate, Color.white, 0.4, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tweenFragments.interpolate_property(fragments, "modulate", Color.white, Color(1, 1, 1, 0.2), 0.8, Tween.TRANS_CUBIC, Tween.EASE_IN, 1.2)
+	tweenFragments.start()

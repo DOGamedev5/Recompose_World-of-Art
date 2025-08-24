@@ -6,7 +6,7 @@ export var collectID := 0
 onready var collectTexture := $Sprite
 
 func _ready():
-	if Global.world.fragmentsTextures.size() < collectID:
+	if Global.world.fragmentsTextures.size() > collectID:
 		collectTexture.texture = Global.world.fragmentsTextures[collectID]
 
 func collected():

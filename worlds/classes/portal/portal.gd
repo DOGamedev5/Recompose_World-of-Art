@@ -32,20 +32,21 @@ func createPlayers():
 	$Tween.start()
 	particle[0].emitting = true
 	particle[1].emitting = true
-	
 
 func _on_Area2D_area_entered(area):
 	if not Network.is_owned(area.get_parent().OwnerID) or area.get_parent().is_in_group("spectator"): return
-	spectator(Network.steamID)
-	Network.sendP2PPacket(-1,
-		{
-			"type" : "objectUpdateCall",
-			"objectPath" : get_path(),
-			"method" : "spectator",
-			"value" : [Network.steamID]
-		},
-		Steam.NETWORKING_SEND_RELIABLE
-		)
+	area.get_parent().pause_mode = 1
+	
+#	spectator(Network.steamID)
+#	Network.sendP2PPacket(-1,
+#		{
+#			"type" : "objectUpdateCall",
+#			"objectPath" : get_path(),
+#			"method" : "spectator",
+#			"value" : [Network.steamID]
+#		},
+#		Steam.NETWORKING_SEND_RELIABLE
+#		)
 
 func spectator(id):
 	Global.world.playerFinished(id)
@@ -94,6 +95,7 @@ func escapeActivate():
 
 func _on_VisibilityEnabler2D_screen_entered():
 	$Area2D/CollisionShape2D.disabled = not Global.world.clock
+	$attract/CollisionShape2D.disabled = not Global.world.clock
 	$AnimationPlayer.play("spin")
 	
 		

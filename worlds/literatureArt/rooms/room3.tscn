@@ -1641,6 +1641,7 @@ shape = SubResource( 3 )
 
 [node name="chest" parent="." instance=ExtResource( 2 )]
 position = Vector2( 4336, 1200 )
+collectID = 3
 
 [node name="clockBlock" parent="." instance=ExtResource( 12 )]
 position = Vector2( 4032, 1088 )

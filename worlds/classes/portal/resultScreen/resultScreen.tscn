@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://worlds/shaders/normal.png" type="Texture" id=1]
+[ext_resource path="res://worlds/literatureArt/portal/background.png" type="Texture" id=2]
+[ext_resource path="res://worlds/classes/portal/resultScreen/resultScreen.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.223529, 0.462745, 0.568627, 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "color"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/TextureRect:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 8, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.09, 0.22, 0.33, 1 ), Color( 0, 0.34902, 0.223529, 1 ), Color( 0.121569, 0, 0.258824, 1 ), Color( 0.09, 0.22, 0.33, 1 ) ]
+}
+
+[sub_resource type="Shader" id=13]
+code = "shader_type canvas_item;
+
+uniform sampler2D NORMAL_MAP;
+uniform float refractionPower = 0.5;
+uniform float normalSize = 0.2;
+uniform vec2 offset = vec2(1, 1);
+uniform float textureScale = 2.0;
+uniform vec2 frequencyWave = vec2(1.4, 1.3);
+uniform vec2 frequencyTime = vec2(0.8, 0.4);
+
+vec2 effect(vec2 uv){
+	vec3 normalMap = normalize((texture(NORMAL_MAP, uv*vec2(normalSize) + offset).rgb * 2.0) - 1.0);
+	vec3 tangentViewDirection = vec3(0.0, 0.0, -1.0);
+	vec3 refractedDirection = refract(tangentViewDirection, normalMap, 0.75);
+	vec3 resultDirection = normalize(mix(tangentViewDirection, refractedDirection, refractionPower));
+	
+	return resultDirection.xy;
+}
+
+void fragment() {
+	float time = TIME * 0.02;
+	vec2 uv = (UV + effect(UV)) * textureScale + vec2(time*0.005, time*0.005);
+	
+	COLOR = texture(TEXTURE, vec2(uv.x + (cos(time*frequencyTime.x + uv.y*frequencyWave.x) *0.05), uv.y + cos(time*frequencyTime.y + uv.x*frequencyWave.y)*0.8));
+	
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = SubResource( 13 )
+shader_param/refractionPower = 0.3
+shader_param/normalSize = 0.5
+shader_param/offset = Vector2( 1, 1 )
+shader_param/textureScale = 1.0
+shader_param/frequencyWave = Vector2( 1, 1 )
+shader_param/frequencyTime = Vector2( 0.4, 0.4 )
+shader_param/NORMAL_MAP = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "color"
+anims/RESET = SubResource( 15 )
+anims/color = SubResource( 16 )
+
+[node name="Control" type="Control" parent="."]
+modulate = Color( 0.227451, 0.52549, 0.839216, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color( 0.223529, 0.462745, 0.568627, 1 )
+material = SubResource( 14 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 96
+custom_constants/margin_top = 64
+custom_constants/margin_left = 96
+custom_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 96.0
+margin_top = 64.0
+margin_right = 1265.0
+margin_bottom = 672.0
+custom_constants/separation = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 568.0
+margin_bottom = 608.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 600.0
+margin_right = 1169.0
+margin_bottom = 608.0
+size_flags_horizontal = 3

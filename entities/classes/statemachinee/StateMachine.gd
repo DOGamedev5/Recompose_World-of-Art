@@ -28,6 +28,7 @@ func changeState(newState : String):
 
 func processMachine(delta, processState := true):
 	var newState
+	if not currentState: return
 	if processState :
 		if get_parent().get("OwnerID"):
 			if Network.is_owned(get_parent().OwnerID):

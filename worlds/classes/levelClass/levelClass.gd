@@ -20,7 +20,7 @@ onready var cameraLimitsMax := Vector2(10000000, 10000000)
 
 onready var objects : Node2D
 
-export var fragmentsTextures := []
+export(Array, Texture) var fragmentsTextures := []
 onready var collectedFragments := {}
 
 signal clockInitialized
@@ -36,6 +36,7 @@ func _init():
 func _ready():
 	Network.connect("memberLeft", self, "_memberLeft")
 	Global.save = SaveGame.new() if not Global.save else Global.save
+	Global.playerHud.addFragmentsTextures(fragmentsTextures)
 	portal = get_node(portalPath)
 	
 #	Global.save.played = true
@@ -55,10 +56,6 @@ func _ready():
 	add_child(timerModulate)
 	
 	setup()
-
-func _input(event):
-	if event.is_action("interact"):
-		setupTimer(80)
 
 func setup():
 
@@ -144,17 +141,17 @@ func playerFinished(id):
 	for i in finsihedPlayers.keys():
 		allFinish = allFinish and finsihedPlayers[i]
 	
-	addSpectator(id)
-	
-#	if allFinish:
-#		LoadSystem.openScreen()
-#		LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")
-#	else:
-#		addSpectator(id)
+	if allFinish:
+		LoadSystem.openScreen()
+		LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")
+	else:
+		addSpectator(id)
 
 func collect(FragmentID, gotID):
-	if collectedFragments.size() > FragmentID:
+	if fragmentsTextures.size() > FragmentID:
 		collectedFragments[FragmentID] = gotID
+		if Network.is_owned(gotID):
+			Global.playerHud.updateFragment(FragmentID, true)
 
 func addSpectator(id):
 	var oldPlayer = Players.getPlayer(id).reference

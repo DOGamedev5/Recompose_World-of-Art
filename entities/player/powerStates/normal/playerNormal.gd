@@ -187,6 +187,8 @@ func setAttack():
 		attackComponents[1].setDamage(0)
 		
 func setCollision(ID := 0):
+	if is_queued_for_deletion(): return
+	
 	collisionShapes[ID].obj.set_deferred("disabled", false)
 	
 	for obj in range(collisionShapes.size()):
@@ -194,7 +196,7 @@ func setCollision(ID := 0):
 		
 		collisionShapes[obj].obj.disabled = true
 		
-		$HitboxComponent/CollisionShape2D.disabled = collisionShapes[obj].hitbox
+		$HitboxComponent/CollisionShape2D.set_deferred("disabled", collisionShapes[obj].hitbox)
 	
 	for ray in range(3):
 		onWallRayCast[ray].enabled = collisionShapes[ID].onWall[ray]
