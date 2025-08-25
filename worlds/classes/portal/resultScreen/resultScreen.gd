@@ -21,17 +21,28 @@ onready var updateInfo := $Timer
 
 onready var showStage := 0
 
+func _ready():
+	visible = false
+	$content/MarginContainer/HBoxContainer/VBoxContainer/buttons/finish.visible = Network.is_host()
+
 func _input(event):
+	tween.playback_speed = 1
+	if not visible: return
+	
 	if event.is_action_pressed("interact"):
 		tween.playback_speed = 2
-	else:
-		tween.playback_speed = 1
 
 func initFragment():
 	for i in range(4):
 		fragments[i].texture["atlas"] = Global.world.fragmentComplete
 
 func showResults():
+	initFragment()
+	Global.player.set_process(false)
+	Global.player.set_physics_process(false)
+	Global.player.pause_mode = 1
+	Global.player.visible = false
+	
 	content.modulate = Color(1, 1, 1, 0)
 	Global.playerHud.visible = false
 	visible = true
@@ -54,18 +65,19 @@ func _on_Tween_tween_all_completed():
 		
 	elif showStage == 3:
 		buttons.show()
+		$content/MarginContainer/HBoxContainer/VBoxContainer/buttons/ready.grab_focus()
 		showStage += 1
 
 func showFragmentsCollected():
 	var collected : Array = Global.world.collectedFragments.keys()
-	var tree := get_tree()
+#	var tree := get_tree()
 	
 	fragmentsBadge.rect_scale = Vector2(2, 2)
 	tween.interpolate_property(fragmentsBadge, "rect_scale", Vector2(2, 2), Vector2(1, 1), 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT, 0.2)
 	
 	for i in range(collected.size()):
-		tween.interpolate_property(fragments[collected[i]], "rect_scale", Vector2(2, 2), Vector2(1, 1), 1, Tween.TRANS_ELASTIC, Tween.EASE_OUT, i*1.2 + 0.7)
-		tree.create_timer(i*1.2 + 0.7).connect("timeout", self, "fragmentsShowTimer", [collected[i]])
+		tween.interpolate_property(fragments[collected[i]], "rect_scale", Vector2(2, 2), Vector2(1, 1), 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT, i*0.7 + 0.4)
+#		tree.create_timer(i*1.2 + 0.2).connect("timeout", self, "fragmentsShowTimer", [collected[i]])
 	
 	tween.start()
 
@@ -95,6 +107,10 @@ func showInfo():
 	tween.start()
 
 func _on_Tween_tween_started(object, _key):
+	if object in fragments:
+		object.modulate = Color.white
+		object.show_behind_parent = false
+	
 	object.visible = true
 
 func setPoints(value):
@@ -109,8 +125,8 @@ func _on_Timer_timeout():
 	ranking.sort()
 	ranking.invert()
 	
-	var names := "RANKING:\n"
-	var points := "\n"
+	var names := ""
+	var points := ""
 	
 	for i in ranking:
 		points += str(i).pad_zeros(10) + "\n"
@@ -118,3 +134,7 @@ func _on_Timer_timeout():
 	
 	infoNames.text = names
 	infoPoints.text = points
+
+func _on_finish_pressed():
+	LoadSystem.openScreen()
+	LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")

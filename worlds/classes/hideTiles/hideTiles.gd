@@ -5,6 +5,7 @@ var entered := false
 func _init():
 	collision_layer = 0
 	collision_mask = 4096
+	visible = true
 	
 	connect("area_entered", self, "_playerEntered")
 	connect("area_exited", self, "_playerExited")

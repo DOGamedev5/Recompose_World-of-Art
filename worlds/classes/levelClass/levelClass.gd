@@ -1,5 +1,8 @@
 class_name LevelClass extends Node2D
 
+onready var resultScreenScene := preload("res://worlds/classes/portal/resultScreen/resultScreen.tscn")
+onready var resultScreen
+
 export var canvasModulateColor := Color.white
 onready var currentColor : Color
 export var portalPath : NodePath
@@ -35,7 +38,15 @@ func _init():
 	Global.world = self
 
 func _ready():
+	resultScreen = get_node_or_null("resultScreen")
+	if not resultScreen:
+		resultScreen = resultScreenScene.instance()
+		resultScreen.name = "resultScreen"
+		add_child(resultScreen)
+	
 	Network.connect("memberLeft", self, "_memberLeft")
+	timer.connect("timeout", self, "timerStoped")
+	
 	Global.save = SaveGame.new() if not Global.save else Global.save
 	Global.playerHud.addFragmentsTextures(fragmentsTextures)
 	portal = get_node(portalPath)
@@ -58,9 +69,9 @@ func _ready():
 	
 	setup()
 
-func _input(event):
-	
-	if event.is_action_pressed("interact"): setupTimer(80)
+#func _input(event):
+#
+#	if event.is_action_pressed("interact"): setupTimer(20)
 
 func setup():
 
@@ -82,6 +93,8 @@ func setup():
 			
 			Players.playerList[member["ID"]].reference = player
 			finsihedPlayers[member["ID"]] = false
+	
+	Players.resetPlayersData()
 			
 #	AudioManager.playMusic("paintCaverns")
 func _process(delta):
@@ -121,6 +134,7 @@ func setCanvasModulate(color : Color = canvasModulateColor):
 func _memberLeft(id):
 	Players.playerList[id].reference.queue_free()
 	Players.playerList.erase(id)
+	
 
 func loadSave():
 #	Global.player.active = false
@@ -140,8 +154,26 @@ func setupTimer(time):
 	
 	emit_signal("clockInitialized")
 
+func timerStoped():
+	playerFinished(Network.steamID)
+	Network.sendP2PPacket(-1,
+		{
+			"type" : "objectUpdateCall",
+			"objectPath" : get_path(),
+			"method" : "playerFinished",
+			"value" : [Network.steamID]
+		},
+		Steam.NETWORKING_SEND_RELIABLE
+		)
+	
+	resultScreen.showResults()
+
 func playerFinished(id):
 	finsihedPlayers[id] = true
+	
+	if id == Network.steamID:
+		Global.playerHud.finished()
+		resultScreen.showResults()
 	var allFinish := true
 	for i in finsihedPlayers.keys():
 		allFinish = allFinish and finsihedPlayers[i]

@@ -25,6 +25,14 @@ func addPlayer(id, reference = null, type := netSteam, netOwner := -1):
 	if reference:
 		playerList[id].reference = reference
 
+func resetPlayersData():
+	for id in playerList.keys():
+		if Network.is_owned(id):
+			selfPlayerInfo.finished = false
+			selfPlayerInfo.points = 0
+		
+		playerList[id].finished = false
+		playerList[id].points = 0
 
 func removePlayer(id : int):
 	if not playerList.has(id): return
@@ -63,4 +71,7 @@ func addPoints(points : int):
 
 func getPoints(id := Network.steamID):
 	return playerList[id].points
-	
+
+func playerFinish(id := Network.steamID):
+	if Network.is_owned(id): selfPlayerInfo.finished = true
+	playerList[id].finished = true

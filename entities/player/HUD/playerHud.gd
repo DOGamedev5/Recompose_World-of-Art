@@ -81,7 +81,7 @@ func addPoints(points : int):
 func _on_pointTimer_timeout():
 	addPoints(-5)
 
-func enteredPortal():
+func finished():
 	timerPoints.stop()
 
 func addFragmentsTextures(textures):

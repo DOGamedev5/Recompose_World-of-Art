@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://worlds/classes/levelClass/levelClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/literatureArt/rooms/room1.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments2.png" type="Texture" id=18]
 [ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments4.png" type="Texture" id=19]
 [ext_resource path="res://worlds/literatureArt/sprites/fragment/artfact.png" type="Texture" id=20]
+[ext_resource path="res://worlds/classes/portal/resultScreen/resultScreen.tscn" type="PackedScene" id=21]
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -78,3 +79,6 @@ limitsMax = Vector2( 1e+07, 48 )
 [node name="HUD" parent="." instance=ExtResource( 13 )]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 14 )]
+
+[node name="resultScreen" parent="." instance=ExtResource( 21 )]
+visible = false

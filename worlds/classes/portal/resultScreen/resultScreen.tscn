@@ -295,9 +295,8 @@ clip_text = true
 
 [node name="info" type="PanelContainer" parent="content/MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
-margin_top = 182.0
 margin_right = 552.0
-margin_bottom = 333.0
+margin_bottom = 112.0
 rect_min_size = Vector2( 552, 112 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -307,7 +306,7 @@ custom_styles/panel = SubResource( 26 )
 margin_left = 32.0
 margin_top = 12.0
 margin_right = 520.0
-margin_bottom = 128.0
+margin_bottom = 89.0
 
 [node name="ranking" type="Label" parent="content/MarginContainer/HBoxContainer/VBoxContainer/info/VBoxContainer"]
 margin_right = 488.0
@@ -324,28 +323,27 @@ text = "RANKING:"
 [node name="HBoxContainer2" type="HBoxContainer" parent="content/MarginContainer/HBoxContainer/VBoxContainer/info/VBoxContainer"]
 margin_top = 28.0
 margin_right = 488.0
-margin_bottom = 116.0
+margin_bottom = 77.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 8
 
 [node name="names" type="Label" parent="content/MarginContainer/HBoxContainer/VBoxContainer/info/VBoxContainer/HBoxContainer2"]
-margin_right = 250.0
-margin_bottom = 88.0
-size_flags_horizontal = 0
+margin_right = 480.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_colors/font_color = Color( 0.843137, 0.94902, 1, 1 )
 custom_colors/font_color_shadow = Color( 0.156863, 0.298039, 0.627451, 1 )
 custom_constants/line_spacing = 8
 custom_fonts/font = SubResource( 27 )
-text = "RODOLFO da...:
-aasda............:
-sdasda..........:"
+clip_text = true
 
 [node name="points" type="Label" parent="content/MarginContainer/HBoxContainer/VBoxContainer/info/VBoxContainer/HBoxContainer2"]
-margin_left = 258.0
+margin_left = 488.0
 margin_right = 488.0
-margin_bottom = 88.0
+margin_bottom = 24.0
 size_flags_vertical = 0
 custom_colors/font_color = Color( 0.99, 0.91, 0.2, 1 )
 custom_colors/font_color_shadow = Color( 0.74902, 0.247059, 0.447059, 1 )
@@ -353,10 +351,6 @@ custom_constants/shadow_offset_x = 1
 custom_constants/line_spacing = 8
 custom_constants/shadow_offset_y = 1
 custom_fonts/font = ExtResource( 10 )
-text = "0000000000
-0000000000
-0000000000"
-percent_visible = -0.1
 
 [node name="buttons" type="HBoxContainer" parent="content/MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
@@ -508,4 +502,5 @@ wait_time = 0.1
 
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="tween_started" from="Tween" to="." method="_on_Tween_tween_started"]
+[connection signal="pressed" from="content/MarginContainer/HBoxContainer/VBoxContainer/buttons/finish" to="." method="_on_finish_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

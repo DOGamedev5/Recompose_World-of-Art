@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://worlds/classes/portal/portal.png" type="Texture" id=1]
 [ext_resource path="res://worlds/classes/portal/portal.gd" type="Script" id=2]
 [ext_resource path="res://worlds/shaders/normal.png" type="Texture" id=3]
 [ext_resource path="res://worlds/classes/portal/attract.gd" type="Script" id=4]
-[ext_resource path="res://worlds/classes/portal/resultScreen/resultScreen.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -273,10 +272,6 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attract"]
 shape = SubResource( 10 )
 disabled = true
-
-[node name="resultScreen" parent="." instance=ExtResource( 5 )]
-layer = 2
-visible = false
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
