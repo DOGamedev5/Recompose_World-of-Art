@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=1]
 [ext_resource path="res://worlds/literatureArt/sprites/tutorial1.png" type="Texture" id=2]
 [ext_resource path="res://worlds/literatureArt/tileset/literatureArt.tres" type="TileSet" id=3]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=4]
 [ext_resource path="res://worlds/literatureArt/sprites/tutorial2.png" type="Texture" id=5]
-[ext_resource path="res://entities/enemies/literature/paperbomb/paperBomb.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=9]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=10]
 
@@ -312,6 +311,3 @@ position = Vector2( 776, -600 )
 scale = Vector2( 2, 2 )
 z_index = -1
 texture = ExtResource( 5 )
-
-[node name="paperBomb" parent="." instance=ExtResource( 6 )]
-position = Vector2( 720, -368 )

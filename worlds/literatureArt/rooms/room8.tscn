@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=10]
 [ext_resource path="res://entities/enemies/literature/bugouth/bugouth.tscn" type="PackedScene" id=11]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTiles.tscn" type="PackedScene" id=12]
+[ext_resource path="res://entities/enemies/literature/paperbomb/paperBomb.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 312, 576 )
@@ -1155,3 +1156,6 @@ limitsMax = Vector2( 1e+07, -8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea"]
 position = Vector2( 256, -744 )
 shape = SubResource( 1 )
+
+[node name="paperBomb" parent="." instance=ExtResource( 13 )]
+position = Vector2( 64, -320 )

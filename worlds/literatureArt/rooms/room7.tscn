@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://objects/keyBlock/key/keyCollect.tscn" type="PackedScene" id=13]
 [ext_resource path="res://entities/player/powerStates/normal/transform/transformNormal.tscn" type="PackedScene" id=14]
 [ext_resource path="res://worlds/classes/clockBlock/clockBlock.tscn" type="PackedScene" id=15]
+[ext_resource path="res://objects/coins/gem/gem.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=61]
 extents = Vector2( 1516, 936 )
@@ -959,3 +960,9 @@ position = Vector2( 1080, 416 )
 
 [node name="chest" parent="." instance=ExtResource( 9 )]
 position = Vector2( 2192, 848 )
+
+[node name="gem" parent="." instance=ExtResource( 16 )]
+position = Vector2( 2600, 848 )
+
+[node name="gem2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 624, 232 )

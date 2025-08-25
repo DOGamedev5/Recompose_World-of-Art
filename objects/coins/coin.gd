@@ -10,6 +10,8 @@ func _on_coin_area_entered(area):
 	if not area.is_in_group("player"): return
 	if not Network.is_owned(area.get_parent().OwnerID): return
 	
+	Global.playerHud.addPoints(5)
+	
 	$CPUParticles2D.emitting = true
 	$"%Coins".modulate.a = 0.3
 	collision_layer = 0

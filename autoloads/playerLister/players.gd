@@ -9,8 +9,6 @@ enum {
 onready var selfPlayerInfo : PlayerInfo
 onready var saveTimer := Timer.new()
 
-
-
 func addPlayer(id, reference = null, type := netSteam, netOwner := -1):
 	if playerList.has(id): 
 		if reference:
@@ -57,3 +55,12 @@ func setPlayerCharater(id : int, character : String):
 
 func getUserPlayer(id):
 	return playerList[id]
+
+func addPoints(points : int):
+	selfPlayerInfo.points += points
+	selfPlayerInfo.points = int(max(selfPlayerInfo.points, 0))
+	playerList[Network.steamID].points = selfPlayerInfo.points
+
+func getPoints(id := Network.steamID):
+	return playerList[id].points
+	

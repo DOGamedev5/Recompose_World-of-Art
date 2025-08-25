@@ -70,7 +70,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 104, 216.5 )
+extents = Vector2( 260, 168 )
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 28.0
@@ -82,11 +82,12 @@ stateMachinePath = NodePath("StateMachine")
 GRAVITY = 20
 MAXFALL = 400
 JUMPFORCE = -800
-MAXHEALTH = 2
+MAXHEALTH = 3
 hitboxAreaPath = NodePath("HitboxComponent")
 spritePath = NodePath("PaperBombIdle")
-maxHealth = 2
-health = 2
+maxHealth = 3
+health = 3
+points = 30
 
 [node name="PaperBombIdle" type="Sprite" parent="."]
 position = Vector2( 0, -32 )
@@ -109,7 +110,7 @@ methodName = "set"
 binds = [ "activaded", true ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTrigger"]
-position = Vector2( 0, -120.5 )
+position = Vector2( 4, -168 )
 shape = SubResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -130,13 +131,15 @@ one_shot = true
 script = ExtResource( 8 )
 
 [node name="Timer" type="Timer" parent="StateMachine/JUMP"]
-wait_time = 0.6
+wait_time = 0.5
 one_shot = true
 
 [node name="EXPLODE" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
 [node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 3072
+collision_mask = 3072
 script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]

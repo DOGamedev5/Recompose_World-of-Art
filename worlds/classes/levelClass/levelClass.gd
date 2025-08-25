@@ -22,6 +22,7 @@ onready var objects : Node2D
 
 export(Array, Texture) var fragmentsTextures := []
 onready var collectedFragments := {}
+export(Texture) var fragmentComplete
 
 signal clockInitialized
 
@@ -56,6 +57,10 @@ func _ready():
 	add_child(timerModulate)
 	
 	setup()
+
+func _input(event):
+	
+	if event.is_action_pressed("interact"): setupTimer(80)
 
 func setup():
 
@@ -140,12 +145,13 @@ func playerFinished(id):
 	var allFinish := true
 	for i in finsihedPlayers.keys():
 		allFinish = allFinish and finsihedPlayers[i]
-	
+#
 	if allFinish:
-		LoadSystem.openScreen()
-		LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")
-	else:
-		addSpectator(id)
+		timer.stop()
+#		LoadSystem.openScreen()
+#		LoadSystem.addToQueueChangeScene("res://worlds/worldSelect/WaitingRoom.tscn")
+#	else:
+#		addSpectator(id)
 
 func collect(FragmentID, gotID):
 	if fragmentsTextures.size() > FragmentID:

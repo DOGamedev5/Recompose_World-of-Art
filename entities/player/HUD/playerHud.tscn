@@ -1,12 +1,12 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://entities/player/HUD/scripts/transition/transition.gd" type="Script" id=1]
-[ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeNormal.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/powerStates/normal/icon/lodrofoEyeNormal.png" type="Texture" id=2]
 [ext_resource path="res://entities/player/HUD/liveBarr/liveBarr.png" type="Texture" id=3]
 [ext_resource path="res://entities/player/HUD/playerHud.gd" type="Script" id=4]
 [ext_resource path="res://entities/player/HUD/scripts/options/DEBUG.gd" type="Script" id=5]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/compass-pro-v1.1/CompassPro.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://entities/player/HUD/sprites/lodrofoEyeDamaged.png" type="Texture" id=7]
+[ext_resource path="res://entities/player/powerStates/normal/icon/lodrofoEyeDamaged.png" type="Texture" id=7]
 [ext_resource path="res://gameplay/MENU/saveslot/panel.png" type="Texture" id=8]
 [ext_resource path="res://gameplay/assets/fonts/hf-free-complete/futile-pro-v1/FutilePro.otf" type="DynamicFontData" id=9]
 [ext_resource path="res://worlds/literatureArt/sprites/fragment/fragments3.png" type="Texture" id=10]
@@ -150,6 +150,27 @@ region = Rect2( 0, 0, 48, 66 )
 atlas = ExtResource( 3 )
 region = Rect2( 48, 0, 48, 66 )
 
+[sub_resource type="StyleBoxTexture" id=74]
+texture = SubResource( 17 )
+region_rect = Rect2( 0, 0, 48, 66 )
+margin_left = 4.0
+margin_right = 18.0
+margin_top = 10.0
+margin_bottom = 8.0
+
+[sub_resource type="DynamicFont" id=76]
+size = 64
+outline_size = 2
+outline_color = Color( 0.16, 0.02, 0.02, 1 )
+extra_spacing_top = -12
+extra_spacing_bottom = -2
+extra_spacing_char = 6
+font_data = ExtResource( 11 )
+
+[sub_resource type="StyleBoxEmpty" id=77]
+content_margin_right = 6.0
+content_margin_bottom = 4.0
+
 [sub_resource type="DynamicFont" id=73]
 size = 64
 outline_size = 4
@@ -178,7 +199,7 @@ outline_color = Color( 0.0313726, 0.0745098, 0.0980392, 1 )
 extra_spacing_char = 4
 font_data = ExtResource( 6 )
 
-[sub_resource type="CanvasItemMaterial" id=74]
+[sub_resource type="CanvasItemMaterial" id=78]
 light_mode = 1
 
 [sub_resource type="StyleBoxTexture" id=55]
@@ -508,7 +529,8 @@ custom_constants/separation = -13
 alignment = 2
 
 [node name="TextureRect2" type="TextureRect" parent="container/HUD/HBoxContainer"]
-margin_right = 160.0
+margin_left = 9.0
+margin_right = 169.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 160, 160 )
 texture = ExtResource( 30 )
@@ -541,6 +563,7 @@ active = true
 parameters/playback = SubResource( 23 )
 
 [node name="TextureProgress" type="TextureProgress" parent="container/HUD/HBoxContainer"]
+visible = false
 show_behind_parent = true
 margin_left = 147.0
 margin_top = 48.0
@@ -549,7 +572,7 @@ margin_bottom = 112.0
 rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 3
 size_flags_vertical = 4
-value = 100.0
+value = 69.0
 texture_under = SubResource( 17 )
 texture_progress = SubResource( 18 )
 nine_patch_stretch = true
@@ -557,6 +580,41 @@ stretch_margin_left = 4
 stretch_margin_top = 16
 stretch_margin_right = 18
 stretch_margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="container/HUD/HBoxContainer"]
+show_behind_parent = true
+margin_left = 156.0
+margin_top = 48.0
+margin_right = 496.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 340, 64 )
+size_flags_horizontal = 0
+size_flags_vertical = 6
+custom_styles/panel = SubResource( 74 )
+
+[node name="Label" type="Label" parent="container/HUD/HBoxContainer/PanelContainer"]
+margin_left = 4.0
+margin_top = 12.0
+margin_right = 322.0
+margin_bottom = 53.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 0, 57 )
+custom_colors/font_color = Color( 0.99, 0.91, 0.2, 1 )
+custom_colors/font_color_shadow = Color( 0.74902, 0.247059, 0.447059, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+custom_constants/shadow_as_outline = 0
+custom_fonts/font = SubResource( 76 )
+custom_styles/normal = SubResource( 77 )
+text = "0000001500"
+align = 2
+valign = 1
+clip_text = true
+
+[node name="pointTween" type="Tween" parent="container/HUD/HBoxContainer"]
+
+[node name="pointTimer" type="Timer" parent="container/HUD/HBoxContainer"]
+wait_time = 2.0
 
 [node name="timer" type="Control" parent="."]
 anchor_left = 0.5
@@ -831,7 +889,7 @@ text = "dialog_press1"
 align = 2
 
 [node name="ControllerTextureRect" type="TextureRect" parent="dialog/Control/VBoxContainer/MarginContainer2/HBoxContainer"]
-material = SubResource( 74 )
+material = SubResource( 78 )
 margin_left = 1065.0
 margin_right = 1105.0
 margin_bottom = 40.0
@@ -1241,6 +1299,7 @@ text = "player_conf_exit"
 
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="timeout" from="container/HUD/HBoxContainer/pointTimer" to="." method="_on_pointTimer_timeout"]
 [connection signal="dir_selected" from="DEBUG/worldSelect" to="DEBUG" method="_on_worldSelect_dir_selected"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/world" to="DEBUG" method="_on_room_pressed"]
 [connection signal="pressed" from="DEBUG/PanelContainer/VBoxContainer/go to room" to="DEBUG" method="_on_go_to_room_pressed"]

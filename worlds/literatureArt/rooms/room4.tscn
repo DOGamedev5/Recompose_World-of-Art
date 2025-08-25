@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/literatureArt/tileset/literatureArt.tres" type="TileSet" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=7]
 [ext_resource path="res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/enemies/literature/bugouth/bugouth.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/coins/gem/gem.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1188, 312 )
@@ -657,6 +658,9 @@ script = ExtResource( 3 )
 [node name="bugouth" parent="." instance=ExtResource( 9 )]
 position = Vector2( -624, 560 )
 
+[node name="bugouth3" parent="." instance=ExtResource( 9 )]
+position = Vector2( -1056, 144 )
+
 [node name="bugouth2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 176, -288 )
 
@@ -688,3 +692,6 @@ limitsMax = Vector2( 736, 928 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitsArea2"]
 position = Vector2( 160, 560 )
 shape = SubResource( 3 )
+
+[node name="gem" parent="." instance=ExtResource( 10 )]
+position = Vector2( -1520, 304 )

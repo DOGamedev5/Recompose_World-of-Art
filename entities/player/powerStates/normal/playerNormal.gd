@@ -29,8 +29,8 @@ var canAttack := true
 var lastUpdate := 0
 
 onready var collisionShapes := [
-	{obj = $CollisionShape2D, onWall = [true, true, true], hitbox = false},
-	{obj = $CollisionShape2D3, onWall = [false, true, true], hitbox = true}
+	{obj = $CollisionShape2D, onWall = [true, true, true], hitbox = true},
+	{obj = $CollisionShape2D3, onWall = [false, true, true], hitbox = false}
 ]
 
 onready var stepSFX = [
@@ -213,6 +213,7 @@ func _on_specialEffectTimer_timeout():
 		newEffect.rotation = spriteGizmo.rotation
 		
 func _stepSfx():
+	if pause_mode == 1: return 
 	var sfx = stepSFX[0]
 	if is_on_floor():
 		AudioManager.playSFX(sfx, {"pitch_scale" : rand_range(0.9, 1)}, true, global_position, 256)

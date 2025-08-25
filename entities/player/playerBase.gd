@@ -159,6 +159,7 @@ func rotateSprite(delta):
 	
 	if lockRotate:
 		$sprite.rotation = 0
+		hitbox.rotation = 0
 		return
 	
 	var floorNormal : Vector2 = rotateNormal(delta)
@@ -170,6 +171,7 @@ func rotateSprite(delta):
 	var angle : float = max(min(atan2(float(floorNormal.x), -float(floorNormal.y)), deg2rad(45)), deg2rad(-45))
 	
 	$sprite.rotation = lerp_angle($sprite.rotation, angle, weight * delta)
+	hitbox.rotation = $sprite.rotation
 
 func setParticle(index := 0, emitting := true):
 	var particle = get_node(particles[index])
@@ -385,8 +387,9 @@ func hitboxTriggered(damage : DamageAttack):
 
 	var direction : int = damage.direction.x
 	emit_signal("damaged", direction)
-	health -= damage.damage
-	$"../HUD".setHealth(health)
+	Global.playerHud.addPoints(damage.damage)
+#	health -= damage.damage
+#	$"../HUD".setHealth(health)
 	shieldActived = true
 
 func coyoteTimerTimeout():

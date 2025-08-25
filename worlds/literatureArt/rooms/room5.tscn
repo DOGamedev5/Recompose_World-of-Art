@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=1]
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://entities/enemies/literature/bugouth/bugouth.tscn" type="PackedScene" id=10]
 [ext_resource path="res://worlds/classes/clockBlock/clockBlock.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=12]
+[ext_resource path="res://entities/enemies/literature/paperbomb/paperBomb.tscn" type="PackedScene" id=13]
 [ext_resource path="res://objects/destrutiveBlocks/normal/16x16/destrutiveBlock.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -2033,3 +2034,15 @@ solid = false
 [node name="clockBlock8" parent="." instance=ExtResource( 11 )]
 position = Vector2( 5488, -544 )
 solid = false
+
+[node name="paperBomb" parent="." instance=ExtResource( 13 )]
+position = Vector2( 2616, -112 )
+
+[node name="paperBomb2" parent="." instance=ExtResource( 13 )]
+position = Vector2( 3424, -208 )
+
+[node name="paperBomb3" parent="." instance=ExtResource( 13 )]
+position = Vector2( 4504, -848 )
+
+[node name="paperBomb4" parent="." instance=ExtResource( 13 )]
+position = Vector2( 4864, -328 )

@@ -1,6 +1,7 @@
 extends RoomWarp
 
 onready var sprite := $Portal
+onready var resultScreen := $resultScreen
 onready var time := 0.0
 onready var particle := [
 	$CPUParticles2D,
@@ -11,6 +12,9 @@ export var limitsMin := Vector2(-10000000, -10000000)
 export var limitsMax := Vector2(10000000, 10000000)
 
 onready var setup := false
+
+func _ready():
+	resultScreen.initFragment()
 
 func _process(delta):
 	sprite.position.x = cos(-time)*15
@@ -35,20 +39,26 @@ func createPlayers():
 
 func _on_Area2D_area_entered(area):
 	if not Network.is_owned(area.get_parent().OwnerID) or area.get_parent().is_in_group("spectator"): return
+	area.get_parent().set_process(false)
+	area.get_parent().set_physics_process(false)
 	area.get_parent().pause_mode = 1
+	area.get_parent().visible = false
 	
-#	spectator(Network.steamID)
-#	Network.sendP2PPacket(-1,
-#		{
-#			"type" : "objectUpdateCall",
-#			"objectPath" : get_path(),
-#			"method" : "spectator",
-#			"value" : [Network.steamID]
-#		},
-#		Steam.NETWORKING_SEND_RELIABLE
-#		)
+	Global.playerHud.enteredPortal()
+	
+	finish(Network.steamID)
+	Network.sendP2PPacket(-1,
+		{
+			"type" : "objectUpdateCall",
+			"objectPath" : get_path(),
+			"method" : "finish",
+			"value" : [Network.steamID]
+		},
+		Steam.NETWORKING_SEND_RELIABLE
+		)
 
-func spectator(id):
+func finish(id):
+	resultScreen.showResults()
 	Global.world.playerFinished(id)
 	
 func _on_Tween_tween_completed(_object, _key : String):

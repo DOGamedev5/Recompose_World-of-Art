@@ -11,6 +11,7 @@ func _ready():
 
 func collected():
 	collect()
+	Global.playerHud.addPoints(500)
 	Network.callRemote("collect", get_path(), [Network.steamID])
 
 func collect(id := Network.steamID):

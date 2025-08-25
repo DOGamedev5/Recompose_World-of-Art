@@ -310,3 +310,9 @@ func is_owned(id) -> bool:
 func get_host():
 	if Global.currentPlataform == Global.plataforms.ITCHIO: return 0
 	return Steam.getLobbyOwner(Network.lobbyID)
+
+func getPersona(id):
+	if Global.currentPlataform == Global.plataforms.ITCHIO:
+		return Global.options.persona
+	else:
+		return Steam.getFriendPersonaName(id)

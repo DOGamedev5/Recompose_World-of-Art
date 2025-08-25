@@ -1,15 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://worlds/classes/roomClass/roomClass.gd" type="Script" id=1]
 [ext_resource path="res://worlds/literatureArt/tileset/literatureArt.tres" type="TileSet" id=2]
 [ext_resource path="res://objects/cameraLimitsArea/cameraLimitsArea.gd" type="Script" id=3]
 [ext_resource path="res://entities/player/powerStates/book/transform/transformBook.tscn" type="PackedScene" id=4]
 [ext_resource path="res://worlds/classes/roomWarp/roomWarp.gd" type="Script" id=5]
+[ext_resource path="res://entities/enemies/literature/bugouth/bugouth.tscn" type="PackedScene" id=6]
 [ext_resource path="res://worlds/literatureArt/objects/ventoy/ventoy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/ladder/ladder.tscn" type="PackedScene" id=8]
 [ext_resource path="res://worlds/classes/clockBlock/clockBlock.tscn" type="PackedScene" id=9]
 [ext_resource path="res://worlds/classes/breakableTiles/breakableTilesManager.gd" type="Script" id=10]
 [ext_resource path="res://objects/coins/coin.tscn" type="PackedScene" id=11]
+[ext_resource path="res://entities/player/powerStates/normal/transform/transformNormal.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1052, 428 )
@@ -420,6 +422,18 @@ position = Vector2( 0, -96 )
 [node name="clockBlock5" parent="clockBlocks" instance=ExtResource( 9 )]
 position = Vector2( 0, -128 )
 
+[node name="clockBlock17" parent="clockBlocks" instance=ExtResource( 9 )]
+position = Vector2( 448, -32 )
+
+[node name="clockBlock18" parent="clockBlocks" instance=ExtResource( 9 )]
+position = Vector2( 448, -64 )
+
+[node name="clockBlock19" parent="clockBlocks" instance=ExtResource( 9 )]
+position = Vector2( 448, -96 )
+
+[node name="clockBlock20" parent="clockBlocks" instance=ExtResource( 9 )]
+position = Vector2( 448, -128 )
+
 [node name="clockBlock6" parent="clockBlocks" instance=ExtResource( 9 )]
 position = Vector2( 0, -160 )
 
@@ -479,3 +493,9 @@ shape = SubResource( 1 )
 visible = false
 position = Vector2( 1060, -16 )
 scale = Vector2( 110.8, 89.6 )
+
+[node name="bugouth" parent="." instance=ExtResource( 6 )]
+position = Vector2( 592, -200 )
+
+[node name="TransformClass" parent="." instance=ExtResource( 12 )]
+position = Vector2( 808, -176 )

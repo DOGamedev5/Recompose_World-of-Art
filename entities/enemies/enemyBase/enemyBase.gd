@@ -16,6 +16,7 @@ onready var scenePath : String
 
 export var maxHealth := 20
 export var health := 20
+export var points := 10
 
 export var flipArea := false
 
@@ -140,6 +141,7 @@ func deathDetect(direction):
 	smoke.global_position = global_position
 	
 	emit_signal("defeated", self)
+	Global.playerHud.addPoints(points)
 	
 	var death = enemyDeath.instance()
 	death.texture = deathSprite
