@@ -76,7 +76,7 @@ func showFragmentsCollected():
 	tween.interpolate_property(fragmentsBadge, "rect_scale", Vector2(2, 2), Vector2(1, 1), 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT, 0.2)
 	
 	for i in range(collected.size()):
-		tween.interpolate_property(fragments[collected[i]], "rect_scale", Vector2(2, 2), Vector2(1, 1), 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT, i*0.7 + 0.4)
+		tween.interpolate_property(fragments[collected[i]], "rect_scale", Vector2(2, 2), Vector2(1, 1), 0.3, Tween.TRANS_ELASTIC, Tween.EASE_OUT, i*0.4 + 0.4)
 #		tree.create_timer(i*1.2 + 0.2).connect("timeout", self, "fragmentsShowTimer", [collected[i]])
 	
 	tween.start()

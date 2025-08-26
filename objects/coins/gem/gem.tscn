@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve" id=1]
 max_value = 8.0
-_data = [ Vector2( 0, 8 ), 0.0, 0.120758, 0, 0, Vector2( 0.905279, 0.417178 ), -32.1109, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 8 ), 0.0, 0.120758, 0, 0, Vector2( 1, 0 ), -32.1109, 0.0, 0, 0 ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 64, 64 )
@@ -55,8 +55,8 @@ hframes = 6
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = 1
 emitting = false
-amount = 24
-lifetime = 0.4
+amount = 36
+lifetime = 0.8
 one_shot = true
 explosiveness = 0.8
 emission_shape = 1
@@ -69,8 +69,8 @@ initial_velocity_random = 0.2
 angular_velocity = 360.0
 linear_accel = -270.0
 linear_accel_random = 0.3
-scale_amount = 2.0
-scale_amount_random = 0.5
+scale_amount = 3.0
+scale_amount_random = 0.3
 scale_amount_curve = SubResource( 1 )
 color = Color( 0.411765, 0.898039, 0.862745, 1 )
 hue_variation = 0.3

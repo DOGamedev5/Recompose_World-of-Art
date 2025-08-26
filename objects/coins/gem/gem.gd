@@ -4,13 +4,11 @@ var time := 0.0
 
 func _ready():
 	var _1 = connect("area_entered", self, "_on_coin_area_entered")
-	randomize()
-	var typeCoin = randi() % 3
-	$gem.region_rect.position.y = typeCoin * 8
+	
 
 func _process(delta):
-	$gem.position.y = cos(time)*20
 	time += delta
+	$gem.position.y = cos(time*1.2)*20
 	
 	if time > PI*2:
 		time -= PI*2

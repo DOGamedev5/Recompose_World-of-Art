@@ -287,7 +287,7 @@ default_bus_layout="res://audio/default_bus_layout.tres"
 [autoload]
 
 Global="*res://autoloads/global.gd"
-SteamMultiplayer="*res://autoloads/steamMultiplayer.gd"
+SteamMultiplayer="res://autoloads/steamMultiplayer.gd"
 Network="*res://autoloads/network.gd"
 FileSystemHandler="*res://autoloads/fileSystemHandler.gd"
 LoadScreen="*res://autoloads/loadSystem/loadScreen.tscn"

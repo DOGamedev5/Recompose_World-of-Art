@@ -24,6 +24,7 @@
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
+canvasModulateColor = Color( 1, 0.909804, 0.905882, 1 )
 portalPath = NodePath("portal")
 alternativeTextures = {
 "ladder": ExtResource( 12 )

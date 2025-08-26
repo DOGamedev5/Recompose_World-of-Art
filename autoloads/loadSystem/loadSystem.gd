@@ -72,6 +72,9 @@ class QueueObject:
 func _init():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 
+func _ready():
+	Network.connect("memberLeft", self, "playerReady")
+
 func openScreen():
 	set_process(true)
 	LoadScreen.visible = true
@@ -147,8 +150,8 @@ func _process(_delta):
 		if queueLoad[0].type == 1 and playersRemaining:
 			Global.tree.paused = true
 			Network.callRemote("playerReady", get_path(), [Network.steamID])
-			callv("playerReady", [Network.steamID])
-#			playerReady(Network.steamID)
+#			callv("playerReady", [Network.steamID])
+			playerReady(Network.steamID)
 			if playersRemaining:
 				if label: label.text = "wainting other players... %d/%d" % [Players.playerList.keys().size() - playersRemaining.size(), Players.playerList.keys().size()]
 				return
@@ -171,3 +174,4 @@ func startWaitingOthers():
 
 func playerReady(id):
 	playersRemaining.erase(id)
+

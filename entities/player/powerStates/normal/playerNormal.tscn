@@ -2085,7 +2085,6 @@ rotation = -1.5708
 shape = SubResource( 357 )
 
 [node name="attackRoll" type="Area2D" parent="." index="26"]
-visible = false
 position = Vector2( 0, -20 )
 collision_layer = 256
 collision_mask = 256

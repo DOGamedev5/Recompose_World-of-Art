@@ -70,7 +70,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 260, 168 )
+extents = Vector2( 192, 84 )
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 28.0
@@ -110,7 +110,7 @@ methodName = "set"
 binds = [ "activaded", true ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTrigger"]
-position = Vector2( 4, -168 )
+position = Vector2( 0, -84 )
 shape = SubResource( 4 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -124,7 +124,7 @@ script = ExtResource( 6 )
 script = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="StateMachine/TOJUMP"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="JUMP" type="Node" parent="StateMachine"]
@@ -137,6 +137,10 @@ one_shot = true
 [node name="EXPLODE" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
+[node name="Timer" type="Timer" parent="StateMachine/EXPLODE"]
+wait_time = 0.1
+one_shot = true
+
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 3072
 collision_mask = 3072
@@ -145,3 +149,5 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2( 0, -24 )
 shape = SubResource( 5 )
+
+[connection signal="timeout" from="StateMachine/EXPLODE/Timer" to="StateMachine/EXPLODE" method="_on_Timer_timeout"]
