@@ -24,6 +24,20 @@ extents = Vector2( 536, 240 )
 script = ExtResource( 1 )
 ID = 4
 
+[node name="TileMapBackground" type="TileMap" parent="."]
+position = Vector2( 0, -3 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="TileMapBack" type="TileMap" parent="."]
+position = Vector2( 0, -3 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 tile_set = ExtResource( 2 )

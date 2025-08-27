@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/candles.png-b7f5045e45b8de8bf427d6cdce98c150.stex"
+path="res://.import/candle.png-41d7cd6af888935eae2bc119676eac80.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://worlds/literatureArt/objects/candles/candles.png"
-dest_files=[ "res://.import/candles.png-b7f5045e45b8de8bf427d6cdce98c150.stex" ]
+source_file="res://worlds/literatureArt/objects/candles/candle/candle.png"
+dest_files=[ "res://.import/candle.png-41d7cd6af888935eae2bc119676eac80.stex" ]
 
 [params]
 

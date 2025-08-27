@@ -16,7 +16,6 @@ shape = SubResource( 1 )
 
 [node name="ClockBlock" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
-z_index = -1
 texture = ExtResource( 2 )
 hframes = 2
 

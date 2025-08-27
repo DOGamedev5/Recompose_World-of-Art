@@ -4,7 +4,7 @@ var velocity := 800
 
 func _ready():
 	$Tween.interpolate_property(self, "velocity", velocity, 0, 0.8, Tween.TRANS_CUBIC, Tween.EASE_IN)
-	$Tween.interpolate_property($sprite, "modulate", Color.white, Color(0.16, 0.01, 0.01), 0.8, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	$Tween.interpolate_property($sprite, "modulate", Color.white*1.5, Color(0.16, 0.01, 0.01), 0.8, Tween.TRANS_CUBIC, Tween.EASE_IN)
 	$Tween.start()
 
 func _physics_process(delta):

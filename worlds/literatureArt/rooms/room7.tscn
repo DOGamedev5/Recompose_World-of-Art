@@ -23,6 +23,18 @@ extents = Vector2( 1516, 936 )
 [node name="RoomClass" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="TileMapBackground" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+
+[node name="TileMapBack" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 tile_set = ExtResource( 4 )
