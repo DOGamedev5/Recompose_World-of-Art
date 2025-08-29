@@ -71,7 +71,7 @@ func _ready():
 
 #func _input(event):
 #
-#	if event.is_action_pressed("interact"): setupTimer(20)
+#	if event.is_action_pressed("interact"): setupTimer(80)
 
 func setup():
 

@@ -72,6 +72,7 @@ hframes = 2
 position = Vector2( 0, -64 )
 texture = ExtResource( 1 )
 texture_scale = 0.6
+range_z_max = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "IDLE"

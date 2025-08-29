@@ -4,7 +4,7 @@ var spriteTexture
 var hframes : int
 var fliped := false
 
-func _ready():
+func _enter_tree():
 	texture = spriteTexture
 	material["particles_anim_h_frames"] = hframes
 	scale.x = 1 - (int(fliped)*2)
